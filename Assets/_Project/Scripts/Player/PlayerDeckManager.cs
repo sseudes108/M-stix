@@ -1,16 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDeckManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class PlayerDeckManager : MonoBehaviour{
+    public List<CardSO> Deck => _deck;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //Prefabs
+    [SerializeField] private Card _cardPrefab;
+
+    //Lists
+    [SerializeField] public List<CardSO> _deck;
+
 }

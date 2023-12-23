@@ -9,13 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23f3200934481e14da6af93a044791c0, type: 3}
-  m_Name: Angel 2
+  m_Script: {fileID: 11500000, guid: 5bbf4a3a629ff4241a786b719a52a106, type: 3}
+  m_Name: Dragon 1
   m_EditorClassIdentifier: 
-  _monsterType: 1
-  _name: Danny Bendochy
+  _cardType: 1
+  _arcaneType: 2
+  _arcaneName: 
+  _effect: 
+  _front: {fileID: 0}
+  _ilustration: {fileID: 0}
+  _monsterType: 5
+  _monstarName: Draco
   _anima: {fileID: 21300000, guid: 66db323088d300548b0ef22cfe9cfdbb, type: 3}
-  _character: {fileID: 21300000, guid: 8f4a53f807a726f40adf4e19a59e082e, type: 3}
-  _atk: 2700
-  _def: 1800
-  _lvl: 3
+  _character: {fileID: 21300000, guid: 281a687a7216fd94a9905621272de6a2, type: 3}
+  _atk: 2200
+  _def: 1500
+  _lvl: 2

@@ -9,13 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23f3200934481e14da6af93a044791c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bbf4a3a629ff4241a786b719a52a106, type: 3}
   m_Name: Angel 1
   m_EditorClassIdentifier: 
+  _cardType: 1
+  _arcaneType: 2
+  _arcaneName: 
+  _effect: 
+  _front: {fileID: 0}
+  _ilustration: {fileID: 0}
   _monsterType: 1
-  _name: Alessandra Ribeiro
+  _monstarName: Alessandra
   _anima: {fileID: 21300000, guid: 6244000741d6948449cab2761af69737, type: 3}
-  _character: {fileID: 21300000, guid: 58d0b09cd1c446643aae9df450c24e61, type: 3}
-  _atk: 2200
-  _def: 2100
-  _lvl: 3
+  _character: {fileID: 21300000, guid: bb98f93508a25704db12a6eb77a7ec12, type: 3}
+  _atk: 2000
+  _def: 1000
+  _lvl: 2
