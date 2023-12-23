@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f3200934481e14da6af93a044791c0, type: 3}
+  m_Name: Angel 2
+  m_EditorClassIdentifier: 
+  _monsterType: 1
+  _name: Danny Bendochy
+  _anima: {fileID: 21300000, guid: 66db323088d300548b0ef22cfe9cfdbb, type: 3}
+  _character: {fileID: 21300000, guid: 8f4a53f807a726f40adf4e19a59e082e, type: 3}
+  _atk: 2700
+  _def: 1800
+  _lvl: 3
