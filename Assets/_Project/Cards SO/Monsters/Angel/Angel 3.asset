@@ -24,4 +24,4 @@ MonoBehaviour:
   _character: {fileID: 21300000, guid: 01b6bec481f30214e8e360c55694ad1e, type: 3}
   _atk: 3000
   _def: 2500
-  _lvl: 3
+  _lvl: 2

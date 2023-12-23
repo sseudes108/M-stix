@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bbf4a3a629ff4241a786b719a52a106, type: 3}
-  m_Name: Dragon 3
+  m_Name: Dragon 6
   m_EditorClassIdentifier: 
   _cardType: 1
   _arcaneType: 2
@@ -24,4 +24,4 @@ MonoBehaviour:
   _character: {fileID: 21300000, guid: 26483aee10b52a841914e11b5d7ec930, type: 3}
   _atk: 4200
   _def: 2700
-  _lvl: 2
+  _lvl: 4

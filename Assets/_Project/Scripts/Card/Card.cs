@@ -29,6 +29,7 @@ public class Card : MonoBehaviour{
     [SerializeField] private TMP_Text _name, _effect;
 
     private CardSO.CardType _cardType;
+    private bool _selected = false;
     
     private void Start() {
         _cardType = _cardData._cardType;
@@ -82,5 +83,20 @@ public class Card : MonoBehaviour{
     private void SetArcaneTexts(){
         _name.text = ArcaneInfo.Name;
         _effect.text = ArcaneInfo.Effect;
+    }
+
+    private void OnMouseDown() {
+        string name;
+        if(_selected){return;}
+
+        if(_cardType == CardSO.CardType.Monster){
+            name = _monsterInfo.Name;
+        }else{
+            name = _arcaneInfo.Name;
+        }
+
+        CardSelector.Instance.AddSelectedCard(this, name);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+        _selected = true;
     }
 }
