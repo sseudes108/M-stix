@@ -87,7 +87,7 @@ public class Card : MonoBehaviour{
 
     private void OnMouseDown() {
         string name;
-        if(_selected){return;}
+        HandPlacementController handPlacementController = GetComponentInParent<HandPlacementController>();
 
         if(_cardType == CardSO.CardType.Monster){
             name = _monsterInfo.Name;
@@ -95,8 +95,27 @@ public class Card : MonoBehaviour{
             name = _arcaneInfo.Name;
         }
 
+        if(!_selected){
+            SelectCard(handPlacementController);
+        }else{
+            DeselectCard(handPlacementController);
+        }
+    }
+    private void SelectCard(HandPlacementController handPlacementController){
+        handPlacementController.ocuppied = false;
+
         CardSelector.Instance.AddSelectedCard(this, name);
+        HandController.Instance.CardsInHand.Remove(this);
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
         _selected = true;
+    }
+
+    private void DeselectCard(HandPlacementController handPlacementController){
+        handPlacementController.ocuppied = true;
+        
+        CardSelector.Instance.SelectedCards.Remove(this);
+        HandController.Instance.CardsInHand.Add(this);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+        _selected = false;
     }
 }

@@ -17,12 +17,12 @@ public class CardSelector : MonoBehaviour{
     }
 
     public void AddSelectedCard(Card card, string name){
-        Debug.Log(string.Format("Adding card: {0}", name));
+        //Debug.Log(string.Format("Adding card: {0}, lvl:{1}", card.MonsterInfo.Name, card.MonsterInfo.LVL));
         _selectedCards.Add(card);
     }
 
     private void ResetSelectedCards(){
         _selectedCards.Clear();
-        Debug.Log("Selected cards clear");
+        //Debug.Log("Selected cards clear");
     }
 }

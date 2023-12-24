@@ -20,29 +20,10 @@ public class FusionManager : MonoBehaviour{
 
     private IEnumerator FusionRoutine(List<Card> selectedCards){
         
-        // Card monster1 = selectedCards[0];
-        // Card monster2 = selectedCards[1];
-
-        if(selectedCards[0].CardType == CardSO.CardType.Arcane){
-            selectedCards.Remove(selectedCards[0]);
-            Debug.Log("1 Arcane");
-            _playerHandController.RemoveCardFromHand(selectedCards[0]);
-            StopAllCoroutines();
-            StartCoroutine(FusionRoutine(selectedCards));
-        }
-
-        if(selectedCards[1].CardType == CardSO.CardType.Arcane){
-            selectedCards.Remove(selectedCards[1]);
-            Debug.Log("2 Arcane");
-            _playerHandController.RemoveCardFromHand(selectedCards[1]);
-            StopAllCoroutines();
-            StartCoroutine(FusionRoutine(selectedCards));
-        }
-
         if(!isLvlEqual(selectedCards[0], selectedCards[1])){
             Debug.Log(string.Format("lvls are not equals! selectedCards[0]: {0}, selectedCards[1]:{1}", selectedCards[0].MonsterInfo.LVL, selectedCards[1].MonsterInfo.LVL));
-            selectedCards.Remove(selectedCards[0]);
-            _playerHandController.RemoveCardFromHand(selectedCards[0]);
+            // selectedCards.Remove(selectedCards[0]);
+            // _playerHandController.RemoveCardFromHand(selectedCards[0]);
             StopAllCoroutines();
             StartCoroutine(FusionRoutine(selectedCards));
         }
@@ -51,7 +32,7 @@ public class FusionManager : MonoBehaviour{
 
         //Verifica o monstro com maior ataque e assim o tipo de monstro a ser instanciado
         CardSO.MonsterType strongestMonsterType = TypeOfStrongestMonster(selectedCards[0], selectedCards[1]);
-        Debug.Log(string.Format("Type of the strongest: {0}", strongestMonsterType));
+        //Debug.Log(string.Format("Type of the strongest: {0}", strongestMonsterType));
         yield return new WaitForSeconds(1);
         
         //Pega a lista de monstros do tipo informado
@@ -63,35 +44,29 @@ public class FusionManager : MonoBehaviour{
         
         //Cria o Controller
         int randomIndex = RandomValue(possibleMonsters);
-        Debug.Log(string.Format("Picked monster: {0}, {1}", possibleMonsters[randomIndex].name, possibleMonsters[randomIndex].MonsterInfo.Name));
+        //Debug.Log(string.Format("Picked monster: {0}, {1}", possibleMonsters[randomIndex].MonsterInfo.Name, possibleMonsters[randomIndex].MonsterInfo.LVL));
 
         //Define a data da lista de monstros possiveis criada
         _cardPrefab.SetCardData(possibleMonsters[randomIndex]);
 
-        CardSelector.Instance.SelectedCards.Remove(selectedCards[0]);
-        yield return new WaitForSeconds(0.2f);
-        CardSelector.Instance.SelectedCards.Remove(selectedCards[1]);
-        yield return new WaitForSeconds(0.2f);
+        DisableColliders(selectedCards); 
 
-        Debug.Log("Last step");
-        yield return new WaitForSeconds(1);
+        Debug.Log("Last Fusion step");
+        yield return new WaitForSeconds(2f);
         
         //Instancia
         Card fusionedMonster = Instantiate(_cardPrefab, selectedCards[0].transform.position, selectedCards[0].transform.rotation);
-    
-        
+
+        // CardSelector.Instance.SelectedCards.Remove(selectedCards[0]);
+        // CardSelector.Instance.SelectedCards.Remove(selectedCards[1]);
+                
         //Check if the list of selected cars is empty
         yield return new WaitForSeconds(0.2f);
         CheckFusionList(selectedCards, fusionedMonster);
 
         //final Hand Management 
-        FinalHandAjustments(selectedCards[0], selectedCards[1], fusionedMonster);
+        FinalHandAdjustments(selectedCards[0], selectedCards[1], fusionedMonster);
 
-        // _playerHandController.RemoveCardFromHand(selectedCards[0]);
-        // yield return new WaitForSeconds(0.2f);
-        // _playerHandController.RemoveCardFromHand(selectedCards[1]);
-        // yield return new WaitForSeconds(0.2f);
-        // _playerHandController.CardsInHand.Add(fusionedCard);
     }
 
     private int RandomValue(List<CardSO> list){
@@ -108,7 +83,7 @@ public class FusionManager : MonoBehaviour{
 
     //Verifica o tipo do monstro mais forte
     private CardSO.MonsterType TypeOfStrongestMonster(Card monster1, Card monster2){
-        if(monster2.MonsterInfo.ATK >= monster1.MonsterInfo.ATK){
+        if(monster1.MonsterInfo.ATK <= monster2.MonsterInfo.ATK){
             return monster2.MonsterInfo.Type;
         }else{
             return monster1.MonsterInfo.Type;
@@ -128,7 +103,7 @@ public class FusionManager : MonoBehaviour{
     private List<CardSO> MonstersWithHigherLvl(List<CardSO> list, int lvl){
         List<CardSO> possibleMonsters = new List<CardSO>();
         foreach (CardSO monster in list){
-            if(monster.MonsterInfo.LVL > lvl){
+            if(monster.MonsterInfo.LVL == lvl + 1){
                 possibleMonsters.Add(monster);
             }
         }
@@ -136,7 +111,9 @@ public class FusionManager : MonoBehaviour{
     }
 
     private void CheckFusionList(List<Card> selectedCards, Card fusionedCard){
-        if(selectedCards.Count == 0){return;};
+        //Debug.Log("Check Fusion List");
+
+        if(selectedCards.Count > 1){return;};
 
         Debug.Log(string.Format("selected cards count: {0}. Roll again", selectedCards.Count));
         CardSelector.Instance.AddSelectedCard(fusionedCard, fusionedCard.MonsterInfo.Name);
@@ -144,10 +121,23 @@ public class FusionManager : MonoBehaviour{
         StartCoroutine(FusionRoutine(selectedCards));
     }
 
-    private void FinalHandAjustments(Card fusionMaterial1, Card fusionMaterial2, Card fusionedMonster){
+    private void FinalHandAdjustments(Card fusionMaterial1, Card fusionMaterial2, Card fusionedMonster){
+        //Debug.Log("Final Hand Adjustments");
         _playerHandController.RemoveCardFromHand(fusionMaterial1);
         _playerHandController.RemoveCardFromHand(fusionMaterial2);
 
         _playerHandController.MoveFusionedCardToPositionInHand(fusionedMonster);
+
+        OnFusion?.Invoke();
+    }
+
+    private void DisableColliders(List<Card> materials){
+        int index = 0;
+        foreach (Card card in materials){
+            Collider collider = materials[index].gameObject.GetComponent<Collider>();
+            collider.enabled = false;
+            index++;
+            //Debug.Log("Disable collider");
+        }
     }
 }

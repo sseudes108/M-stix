@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class HandController : MonoBehaviour{
+    public static HandController Instance;
+
+
     public List<Card> CardsInHand => _cardsInHand;
     private DeckManager _deckManager;
     [SerializeField] private Card _cardPrefab;
@@ -12,21 +14,26 @@ public class HandController : MonoBehaviour{
     [SerializeField] private List<Card> _cardsInHand;
     [SerializeField] private List<CardSO> _pickedCards;
     [SerializeField] private List<CardSO> _cardsToAddToHand;
-    [SerializeField] private List<HandPlacementController> _freeHandCardPositions;   
+    [SerializeField] private List<HandPlacementController> _freeHandCardPositions;
+    private int _freePositionsInHand;
 
     private void Awake() {
+        if(Instance == null){Instance = this;}
+
         _deckManager = GetComponentInParent<DeckManager>();
 
-        StartCoroutine(DrawCardsRoutine());
+        CheckFreePositionsInHand(_handCardPositions);
+        StartCoroutine(DrawCardsRoutine());        
     }
+
     private void Update() {
         if(Input.GetKeyDown(KeyCode.R)){
             RemoveCardFromHand(_cardsInHand[2]);
         }
 
         if(Input.GetKeyDown(KeyCode.K)){
-            StartCoroutine(DrawCardsRoutine());
             CheckFreePositionsInHand(_handCardPositions);
+            StartCoroutine(DrawCardsRoutine());
         }
     }
     private IEnumerator DrawCardsRoutine(){
@@ -40,25 +47,29 @@ public class HandController : MonoBehaviour{
         MoveCardsToPosition(_cardsToAddToHand);
     }
 
-    private int CheckFreePositionsInHand(List<HandPlacementController> handCardPositions){
+    private void CheckFreePositionsInHand(List<HandPlacementController> handCardPositions){
+        Debug.Log("CheckFreePositionsInHand");
+
         _freeHandCardPositions.Clear();
+
         foreach(HandPlacementController cardPlace in handCardPositions){
             if(!cardPlace.ocuppied){
                 _freeHandCardPositions.Add(cardPlace);
             }
         }
-        return _freeHandCardPositions.Count;
+        _freePositionsInHand = _freeHandCardPositions.Count;
+        Debug.Log(string.Format("_freePositionsInHand{0}", _freePositionsInHand));
     }
 
     private List<CardSO> PickCardsFromDeck(){
         List<CardSO> pickedCards = new();
-        for(int i = 0; i < CheckFreePositionsInHand(_handCardPositions); i ++){
+        for(int i = 0; i < _freePositionsInHand ; i ++){
             int pickedCard = RandomValue(_deckManager.Deck);
 
             pickedCards.Add(_deckManager.Deck[pickedCard]);
             _deckManager.Deck.Remove(_deckManager.Deck[pickedCard]);
         }
-        //Debug.Log("Picked Cards");
+        Debug.Log("Picked Cards");
         return pickedCards;
     }
     private int RandomValue(List<CardSO> deck){
@@ -72,16 +83,20 @@ public class HandController : MonoBehaviour{
             cardsToAddToHand.Add(pickedCards[data]);
             data++;
         }
-        //Debug.Log("Cards in hand");
+        Debug.Log("Cards in hand");
         return cardsToAddToHand;
     }
 
     private void MoveCardsToPosition(List<CardSO> cardsToAddToHand){
+        Debug.Log("MoveCardsToPosition");
         int pos = 0;
+        //CheckFreePositionsInHand(_handCardPositions);
+
         foreach (CardSO card in cardsToAddToHand){
             _cardPrefab.SetCardData(card);
 
-            if (_handCardPositions[pos].ocuppied){
+            while (_handCardPositions[pos].ocuppied){
+                Debug.Log("Ocuppied");
                 pos++;
             }
 
@@ -93,17 +108,33 @@ public class HandController : MonoBehaviour{
         }
         cardsToAddToHand.Clear();
         _pickedCards.Clear();
+        CheckFreePositionsInHand(_handCardPositions);
         //Debug.Log("Move to position");
     }
 
     public void MoveFusionedCardToPositionInHand(Card fusionedCard){
+        int pos = 0;
+
         CheckFreePositionsInHand(_handCardPositions);
         
-        fusionedCard.transform.position = _freeHandCardPositions[0].gameObject.transform.position;
-        fusionedCard.transform.SetParent(_freeHandCardPositions[0].gameObject.transform);
+        // while(_handCardPositions[pos].ocuppied){
+        //         Debug.Log("Ocuppied");
+        //         pos++;
 
-        _freeHandCardPositions[0].ocuppied = true;
+        //         if(pos > _handCardPositions.Count){
+        //             Debug.Log("_handCardPositions Greater than 5");
+        //             pos = 0;
+        //         }
+        // }
+
+        Debug.Log(string.Format("_freeHandCardPositions.Count:{0}, Pos{1}",_freeHandCardPositions.Count, pos));
+        fusionedCard.transform.position = _freeHandCardPositions[pos].gameObject.transform.position;
+        fusionedCard.transform.SetParent(_freeHandCardPositions[pos].gameObject.transform);
+        
         _cardsInHand.Add(fusionedCard);
+        _freeHandCardPositions[pos].ocuppied = true;
+
+        CheckFreePositionsInHand(_handCardPositions);        
     }
 
     public void RemoveCardFromHand(Card cardToRemove){
@@ -111,6 +142,6 @@ public class HandController : MonoBehaviour{
         handPlacementController.ocuppied = false;
         _cardsInHand.Remove(cardToRemove);
         Destroy(cardToRemove.gameObject);
-        Debug.Log("RemoveCardFromHand");
+        //Debug.Log("RemoveCardFromHand");
     }
 }

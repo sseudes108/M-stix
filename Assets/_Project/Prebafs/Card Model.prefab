@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1917286895150334333}
   - component: {fileID: 6968556729700178902}
   - component: {fileID: 8115626118063649012}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Stats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1736509932221049271}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 3331063070062494628}
   - component: {fileID: 7576511120088857165}
   - component: {fileID: 4753046024120516564}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Anima
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7414053474639489952}
   - component: {fileID: 2526927568756056719}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5444317696986451232}
   - component: {fileID: 4908311903408077279}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2166732302096123175}
   - component: {fileID: 7236854163722884928}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 4690674870713267732}
   - component: {fileID: 3623067068400497030}
   - component: {fileID: 8624956271326103040}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Card Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36eaa8927726748ba42dd95f10e8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardData: {fileID: 11400000, guid: 7579890005670dd4c95580380c6a3bfd, type: 2}
+  _cardData: {fileID: 11400000, guid: d85251f9af2929d46b9a2f8e2556a4ec, type: 2}
   _monsterObject: {fileID: 8222672501260310730}
   _anima: {fileID: 7576511120088857165}
   _character: {fileID: 6886229615914229478}
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 4779559586015696152}
   - component: {fileID: 6890451496767334058}
   - component: {fileID: 8040521759680355471}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: DEF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 6534645061553893098}
   - component: {fileID: 4189764383168585952}
   - component: {fileID: 3501624325227377986}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -912,7 +912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2523702264477100139}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arcane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 8254745477373852220}
   - component: {fileID: 7692422965899560475}
   - component: {fileID: 8067056077167564698}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: LVL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1082,7 +1082,7 @@ GameObject:
   - component: {fileID: 5928646168694452202}
   - component: {fileID: 1963253237183489826}
   - component: {fileID: 4221500520332168412}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Stats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1182,7 +1182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 457287432169471535}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1216,7 +1216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1921910038512358881}
   - component: {fileID: 6886229615914229478}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1301,7 +1301,7 @@ GameObject:
   - component: {fileID: 5348996671470283073}
   - component: {fileID: 4861384440255441309}
   - component: {fileID: 6305750868268801297}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1435,7 +1435,7 @@ GameObject:
   - component: {fileID: 1480897082895096202}
   - component: {fileID: 7558712121440411388}
   - component: {fileID: 1203985126982611469}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ilustration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1569,7 +1569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6967446230923633307}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1604,7 +1604,7 @@ GameObject:
   - component: {fileID: 5222480238777218224}
   - component: {fileID: 2603698860002770347}
   - component: {fileID: 8332635689915098995}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ATK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
