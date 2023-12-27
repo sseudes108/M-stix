@@ -5,11 +5,11 @@ public class CardSO : ScriptableObject{
         Arcane, Monster,
     }
 
-    //Arcane
     public CardType _cardType;
-
+    //Arcane
+    public ArcaneInfo ArcaneInfo => GetArcaneInfo();
     public enum ArcaneType{
-        Magic, Trap, NotArcane,
+        Magic, Trap,
     }
     [Header("Arcane")]
     public ArcaneType _arcaneType;
@@ -30,7 +30,7 @@ public class CardSO : ScriptableObject{
     public MonsterInfo MonsterInfo => GetMonsterInfo();
     public enum MonsterType{
         Alchemist, Angel, Beast, Witch,
-        Demon, Dragon, Golem, Machine, NotMonster,
+        Demon, Dragon, Golem, Machine,
     }
     [Header("Monster")]
     [SerializeField] private MonsterType _monsterType;

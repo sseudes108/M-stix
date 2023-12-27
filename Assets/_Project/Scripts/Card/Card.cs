@@ -102,7 +102,7 @@ public class Card : MonoBehaviour{
         }
     }
     private void SelectCard(HandPlacementController handPlacementController){
-        handPlacementController.ocuppied = false;
+        handPlacementController.HandPlaceOcuppied = false;
 
         CardSelector.Instance.AddSelectedCard(this, name);
         HandController.Instance.CardsInHand.Remove(this);
@@ -111,11 +111,14 @@ public class Card : MonoBehaviour{
     }
 
     private void DeselectCard(HandPlacementController handPlacementController){
-        handPlacementController.ocuppied = true;
+        handPlacementController.HandPlaceOcuppied = true;
         
         CardSelector.Instance.SelectedCards.Remove(this);
         HandController.Instance.CardsInHand.Add(this);
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+        _selected = false;
+    }
+    public void DeselectCardFromRejectedFusion(){
         _selected = false;
     }
 }

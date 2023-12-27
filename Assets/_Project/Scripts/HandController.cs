@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class HandController : MonoBehaviour{
     public static HandController Instance;
 
-
     public List<Card> CardsInHand => _cardsInHand;
     private DeckManager _deckManager;
     [SerializeField] private Card _cardPrefab;
-    //[SerializeField] private List<Transform> _handCardPositions;
     [SerializeField] private List<HandPlacementController> _handCardPositions;
     [SerializeField] private List<Card> _cardsInHand;
     [SerializeField] private List<CardSO> _pickedCards;
     [SerializeField] private List<CardSO> _cardsToAddToHand;
     [SerializeField] private List<HandPlacementController> _freeHandCardPositions;
     private int _freePositionsInHand;
+    private Coroutine _drawRoutine;
 
     private void Awake() {
         if(Instance == null){Instance = this;}
@@ -23,19 +23,20 @@ public class HandController : MonoBehaviour{
         _deckManager = GetComponentInParent<DeckManager>();
 
         CheckFreePositionsInHand(_handCardPositions);
-        StartCoroutine(DrawCardsRoutine());        
+        _drawRoutine = StartCoroutine(DrawCardsRoutine());
     }
 
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.R)){
-            RemoveCardFromHand(_cardsInHand[2]);
-        }
-
         if(Input.GetKeyDown(KeyCode.K)){
-            CheckFreePositionsInHand(_handCardPositions);
-            StartCoroutine(DrawCardsRoutine());
+            DrawCards();
         }
     }
+
+    private void DrawCards(){
+        CheckFreePositionsInHand(_handCardPositions);
+        StartCoroutine(DrawCardsRoutine());
+    }
+
     private IEnumerator DrawCardsRoutine(){
 
         _pickedCards = PickCardsFromDeck();
@@ -44,36 +45,35 @@ public class HandController : MonoBehaviour{
         _cardsToAddToHand = CardsToAddToHand(_pickedCards);
         yield return new WaitForSeconds(2);
 
-        MoveCardsToPosition(_cardsToAddToHand);
+        MoveCardsToPositionInHand(_cardsToAddToHand);
     }
 
     private void CheckFreePositionsInHand(List<HandPlacementController> handCardPositions){
-        Debug.Log("CheckFreePositionsInHand");
-
         _freeHandCardPositions.Clear();
 
         foreach(HandPlacementController cardPlace in handCardPositions){
-            if(!cardPlace.ocuppied){
+            if(!cardPlace.HandPlaceOcuppied){
                 _freeHandCardPositions.Add(cardPlace);
             }
         }
         _freePositionsInHand = _freeHandCardPositions.Count;
-        Debug.Log(string.Format("_freePositionsInHand{0}", _freePositionsInHand));
     }
 
     private List<CardSO> PickCardsFromDeck(){
         List<CardSO> pickedCards = new();
-        for(int i = 0; i < _freePositionsInHand ; i ++){
-            int pickedCard = RandomValue(_deckManager.Deck);
 
+        for(int i = 0; i < _freePositionsInHand ; i ++){
+            int pickedCard = Random.Range(0, _deckManager.Deck.Count);
+
+            if(_deckManager.Deck.Count == 0){
+                Debug.Log("You Lose! No Remaining Cards on Deck");
+                StopCoroutine(_drawRoutine);
+            }
             pickedCards.Add(_deckManager.Deck[pickedCard]);
-            _deckManager.Deck.Remove(_deckManager.Deck[pickedCard]);
+            _deckManager.RemovePickedCard(_deckManager.Deck[pickedCard]);
         }
-        Debug.Log("Picked Cards");
+        Debug.Log(string.Format("Cards remaining in deck:{0}", _deckManager.CardsRemaining()));
         return pickedCards;
-    }
-    private int RandomValue(List<CardSO> deck){
-        return Random.Range(0, deck.Count);
     }
 
     private List<CardSO> CardsToAddToHand(List<CardSO> pickedCards){
@@ -83,65 +83,73 @@ public class HandController : MonoBehaviour{
             cardsToAddToHand.Add(pickedCards[data]);
             data++;
         }
-        Debug.Log("Cards in hand");
         return cardsToAddToHand;
     }
 
-    private void MoveCardsToPosition(List<CardSO> cardsToAddToHand){
-        Debug.Log("MoveCardsToPosition");
+    private void MoveCardsToPositionInHand(List<CardSO> cardsToAddToHand){
         int pos = 0;
-        //CheckFreePositionsInHand(_handCardPositions);
 
         foreach (CardSO card in cardsToAddToHand){
             _cardPrefab.SetCardData(card);
 
-            while (_handCardPositions[pos].ocuppied){
-                Debug.Log("Ocuppied");
+            while (_handCardPositions[pos].HandPlaceOcuppied){
+                Debug.Log("HandPlaceOcuppied");
                 pos++;
             }
 
             Card newCard = Instantiate(_cardPrefab, _handCardPositions[pos].gameObject.transform.position, _handCardPositions[pos].gameObject.transform.rotation);
             newCard.transform.SetParent(_handCardPositions[pos].transform);
-            _handCardPositions[pos].ocuppied = true;
+            _handCardPositions[pos].HandPlaceOcuppied = true;
             _cardsInHand.Add(newCard);
             pos++;
         }
         cardsToAddToHand.Clear();
         _pickedCards.Clear();
         CheckFreePositionsInHand(_handCardPositions);
-        //Debug.Log("Move to position");
     }
-
+    
+    //Only for test
     public void MoveFusionedCardToPositionInHand(Card fusionedCard){
-        int pos = 0;
-
+        //int pos = 0;
         CheckFreePositionsInHand(_handCardPositions);
-        
-        // while(_handCardPositions[pos].ocuppied){
-        //         Debug.Log("Ocuppied");
-        //         pos++;
 
-        //         if(pos > _handCardPositions.Count){
-        //             Debug.Log("_handCardPositions Greater than 5");
-        //             pos = 0;
-        //         }
-        // }
-
-        Debug.Log(string.Format("_freeHandCardPositions.Count:{0}, Pos{1}",_freeHandCardPositions.Count, pos));
-        fusionedCard.transform.position = _freeHandCardPositions[pos].gameObject.transform.position;
-        fusionedCard.transform.SetParent(_freeHandCardPositions[pos].gameObject.transform);
+        Debug.Log(string.Format("_freeHandCardPositions.Count:{0}",_freeHandCardPositions.Count));
+        fusionedCard.transform.position = _freeHandCardPositions[0].gameObject.transform.position;
+        fusionedCard.transform.SetParent(_freeHandCardPositions[0].gameObject.transform);
         
         _cardsInHand.Add(fusionedCard);
-        _freeHandCardPositions[pos].ocuppied = true;
+        _freeHandCardPositions[0].HandPlaceOcuppied = true;
 
         CheckFreePositionsInHand(_handCardPositions);        
+    }//Only for test
+
+    public void MoveCardToPlaceInBoard(Card fusionedCard){
+        Debug.Log("MoveCardToPlaceInBoard");
+
+        int pos = 0;
+
+        while(BoardManager.Instance.PlayerMonsterPlaces[pos].BoardPlaceOccupied == true){
+            pos++;
+            if(pos == 5){
+                break;
+            }
+        }
+
+        fusionedCard.gameObject.transform.SetParent(BoardManager.Instance.PlayerMonsterPlaces[pos].gameObject.transform);
+
+        fusionedCard.gameObject.transform.SetPositionAndRotation(BoardManager.Instance.PlayerMonsterPlaces[pos].transform.position, 
+        BoardManager.Instance.PlayerMonsterPlaces[pos].transform.rotation);
+
+        BoardManager.Instance.OcuppyPlace(BoardManager.Instance.PlayerMonsterPlaces, BoardManager.Instance.PlayerMonsterPlaces[pos]);
     }
 
     public void RemoveCardFromHand(Card cardToRemove){
+        Debug.Log("RemoveCardFromHand");
         HandPlacementController handPlacementController = cardToRemove.GetComponentInParent<HandPlacementController>();
-        handPlacementController.ocuppied = false;
+
+        if(handPlacementController != null){ handPlacementController.HandPlaceOcuppied = false;}
+
         _cardsInHand.Remove(cardToRemove);
         Destroy(cardToRemove.gameObject);
-        //Debug.Log("RemoveCardFromHand");
     }
 }
