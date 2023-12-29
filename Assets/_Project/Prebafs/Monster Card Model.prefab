@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3632268922189518627}
   - component: {fileID: 8256304127645995529}
   - component: {fileID: 5529758652228687241}
+  - component: {fileID: 5755529785268346683}
   m_Layer: 3
   m_Name: Monster Card Model
   m_TagString: Untagged
@@ -68,12 +69,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82411b192eefbd409f2f4ee3cb35149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardData: {fileID: 11400000, guid: 5b5548a5d0a612341bb43e23fd8aee3b, type: 2}
+  _cardData: {fileID: 11400000, guid: 8a40999eb5987cf42bbcb278e238484e, type: 2}
   _monsterSpriteRenderer: {fileID: 8688995278243358352}
   _animaSpriteRenderer: {fileID: 6002168017049990888}
   _lvl: {fileID: 1041982742777300622}
   _atk: {fileID: 4614052609137138911}
   _def: {fileID: 1772768247549169304}
+--- !u!114 &5755529785268346683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341638255425622438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dce7f709aff98b4c98fe8e29e185fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2621052940896036388
 GameObject:
   m_ObjectHideFlags: 0

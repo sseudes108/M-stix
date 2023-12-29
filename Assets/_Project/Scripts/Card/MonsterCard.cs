@@ -16,10 +16,11 @@ public class MonsterCard : MonoBehaviour{
     private void Awake() {
         _transform = GetComponent<Transform>();
         _monsterInfo = _cardData.GetMonsterInfo();
+        SetCard(_monsterInfo);
     }
 
     private void Start(){
-        SetCard(_monsterInfo);
+        // SetCard(_monsterInfo);
     }
 
     private void SetCard(Monster monsterInfo){

@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bbf4a3a629ff4241a786b719a52a106, type: 3}
+  m_Script: {fileID: 11500000, guid: b5b33e994d160f94f8c9be19d0f98470, type: 3}
   m_Name: Angel 3
   m_EditorClassIdentifier: 
   cardType: 1
-  _name: Danny Bendochy
+  _name: Angel 3
   _arcaneType: 0
   _effect: 
   _illustration: {fileID: 0}
   _frame: {fileID: 0}
   _monsterType: 0
-  _level: 1
-  _atk: 1700
-  _def: 1000
-  _monsterSprite: {fileID: 21300000, guid: 303bd52649ff46a44a7221f893502553, type: 3}
-  _animaSprite: {fileID: 21300000, guid: 66db323088d300548b0ef22cfe9cfdbb, type: 3}
+  _level: 2
+  _atk: 2500
+  _def: 2000
+  _monsterSprite: {fileID: 21300000, guid: 957cd46036eb45c4d883d6fd48c26d13, type: 3}
+  _animaSprite: {fileID: 21300000, guid: 6244000741d6948449cab2761af69737, type: 3}

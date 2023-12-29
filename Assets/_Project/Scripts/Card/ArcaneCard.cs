@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 
 public class ArcaneCard : MonoBehaviour{
+    public Arcane ArcaneInfo => _arcaneInfo;
     [SerializeField] private CardSO _cardData;
     [SerializeField] private SpriteRenderer _frameSpriteRenderer, _illustrationSpriteRenderer;
     [SerializeField] TMP_Text _name, _effect;
