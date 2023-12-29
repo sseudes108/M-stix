@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8765136866308144435}
-  - component: {fileID: 7929145861697627333}
   - component: {fileID: 423322439081958779}
   m_Layer: 0
   m_Name: Place Holder
@@ -26,26 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8545124322677364359}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.0917, y: 2.5352, z: 4.7526}
-  m_LocalScale: {x: 1.8593851, y: 2.5809333, z: 1}
+  m_LocalScale: {x: 1.8593847, y: 2.5809329, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7929145861697627333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8545124322677364359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35ba0cf3e761c3447bf4490683a072a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BoardPlaceOccupied: 0
 --- !u!212 &423322439081958779
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bbf4a3a629ff4241a786b719a52a106, type: 3}
-  m_Name: Angel 1
+  m_Name: Angel 9
   m_EditorClassIdentifier: 
   cardType: 1
   _name: Danny Bendochy
@@ -20,7 +20,7 @@ MonoBehaviour:
   _frame: {fileID: 0}
   _monsterType: 0
   _level: 3
-  _atk: 3300
-  _def: 2000
-  _monsterSprite: {fileID: 21300000, guid: 6ee16b980613af74a84172783128ff7f, type: 3}
-  _animaSprite: {fileID: 21300000, guid: 66db323088d300548b0ef22cfe9cfdbb, type: 3}
+  _atk: 3500
+  _def: 2500
+  _monsterSprite: {fileID: 21300000, guid: 78b31cfcf1fa157489e11a95bd501d12, type: 3}
+  _animaSprite: {fileID: 21300000, guid: 0b2f9e894851a2d408fe8e54c6b6ac91, type: 3}

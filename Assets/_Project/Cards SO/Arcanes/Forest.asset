@@ -12,16 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbf4a3a629ff4241a786b719a52a106, type: 3}
   m_Name: Forest
   m_EditorClassIdentifier: 
-  _cardType: 0
+  cardType: 0
+  _name: Forest
   _arcaneType: 0
-  _arcaneName: Forest
   _effect: The field is forest
-  _front: {fileID: 21300000, guid: dfd15053cc59f1a4d88d0819d77f438f, type: 3}
-  _ilustration: {fileID: 21300000, guid: 6244000741d6948449cab2761af69737, type: 3}
-  _monsterType: 8
-  _monstarName: 
-  _anima: {fileID: 0}
-  _character: {fileID: 0}
+  _illustration: {fileID: 21300000, guid: 6244000741d6948449cab2761af69737, type: 3}
+  _frame: {fileID: 21300000, guid: dfd15053cc59f1a4d88d0819d77f438f, type: 3}
+  _monsterType: 0
+  _level: 0
   _atk: 0
   _def: 0
-  _lvl: 0
+  _monsterSprite: {fileID: 0}
+  _animaSprite: {fileID: 0}
