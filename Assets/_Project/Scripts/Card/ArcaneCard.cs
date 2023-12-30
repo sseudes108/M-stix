@@ -24,4 +24,8 @@ public class ArcaneCard : MonoBehaviour{
         _frameSpriteRenderer.sprite = arcaneInfo.Frame;
         _illustrationSpriteRenderer.sprite = arcaneInfo.Illustration;
     }
+
+    public void SetData(CardSO data){
+        _cardData = data;
+    }
 }

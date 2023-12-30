@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public struct Arcane{
-
+public readonly struct Arcane{
     public enum ArcaneType{
         Arcane, Trap
     }

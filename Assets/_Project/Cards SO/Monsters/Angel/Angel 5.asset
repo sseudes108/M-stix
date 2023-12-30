@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Angel 5
   m_EditorClassIdentifier: 
   cardType: 1
-  _name: Angel 5
+  _name: Angel
   _arcaneType: 0
   _effect: 
   _illustration: {fileID: 0}

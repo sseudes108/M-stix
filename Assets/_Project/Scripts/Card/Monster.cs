@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public struct Monster
-{
+public readonly struct Monster{
     public enum MonsterType{
-        Angel, Dragon, Machine
+        Angel, Dragon, Machine, Golem,
+        Alchemist, Witch, Beast, Demon,
     }
-    public MonsterType Type;
+    public readonly MonsterType Type;
     public readonly string Name;
     public readonly int Level, Atk, Def;
     public readonly Sprite MonsterSprite;
