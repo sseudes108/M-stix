@@ -11,7 +11,6 @@ public abstract class Card : MonoBehaviour{
     public abstract void SetCardData(ScriptableObject cardData);
 
     protected void OnMouseDown() {
-        Debug.Log(this.name);
         if(!_selected){
             _selected = true;
             CardSelector.Instance.AddCardToSelectedList(this);

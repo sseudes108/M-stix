@@ -5,6 +5,9 @@ using UnityEngine;
 public class FusionCardsChecker : MonoBehaviour{
     public static FusionCardsChecker Instance {get; private set;}
     private Card _fusionedCard;
+
+    private Coroutine _checkCardsRoutine;
+
     private void Awake() {
         if(Instance != null){Debug.Log("Error! More than one FusionMonsterCardsChecker instance" + transform + Instance); Destroy(gameObject);}
         Instance = this;
@@ -13,28 +16,29 @@ public class FusionCardsChecker : MonoBehaviour{
     public void StartCheck(List<Card> selectedCards){
         StartCoroutine(CheckCards(selectedCards));
     }
+    
     private IEnumerator CheckCards(List<Card> selectedCards){
-        // DisableCardsCollider(selectedCards);
 
         Card card1 = selectedCards[0];
         Card card2 = selectedCards[1];
 
         if(card1 is ArcaneCard){
-            if(card2 is ArcaneCard){
-                card2.transform.position = card1.transform.position;               
-                CardSelector.Instance.RemoveCardFromSelectedList(card1);
-                //card1.gameObject.SetActive(false);
-                Destroy(card1.gameObject);
-            }
+            Debug.Log("card1 is ArcaneCard");
+
+            FusionFailed(card1, card2);
+            yield return new WaitForSeconds(1f);
         }
 
         if(card1 is MonsterCard){
+            Debug.Log("card1 is MonsterCard");
             if(card2 is ArcaneCard){
-                card2.transform.position = card1.transform.position;
-                CardSelector.Instance.RemoveCardFromSelectedList(card1);
-                //card1.gameObject.SetActive(false);
-                Destroy(card1.gameObject);
+                Debug.Log("card2 is ArcaneCard");
+
+                FusionFailed(card1, card2);
+                yield return new WaitForSeconds(1f);
             }else{
+                Debug.Log("card1 is MonsterCard");
+                Debug.Log("card2 is MonsterCard");
                 MonsterCard monsterCard1 = card1.GetComponent<MonsterCard>();
                 MonsterCard monsterCard2 = card2.GetComponent<MonsterCard>();
 
@@ -42,13 +46,15 @@ public class FusionCardsChecker : MonoBehaviour{
                 int lvlMonster2 = monsterCard2.GetLevel();
 
                 if(lvlMonster1 != lvlMonster2){
-                    card2.transform.position = card1.transform.position;
-                    //card1.gameObject.SetActive(false);
-                    Destroy(card1.gameObject);
+                    Debug.Log("lvlMonster1 != lvlMonster2");
+
+                    FusionFailed(card1, card2);
+                    yield return new WaitForSeconds(1f);
                 }
 
                 if(lvlMonster1 == lvlMonster2){
-                    yield return new WaitForSeconds(0.5f);
+                    Debug.Log("lvlMonster1: " + lvlMonster1 + "==" + "lvlMonster2: " + lvlMonster2);
+                    yield return new WaitForSeconds(1f);
 
                     MonsterCardSO.MonsterType strongestMonsterType = GetStrongestMonsterType(monsterCard1, monsterCard2);
                     List<MonsterCardSO> listOfStrongestType = GetListOfMonstersOfTheStrongestType(strongestMonsterType);
@@ -56,18 +62,28 @@ public class FusionCardsChecker : MonoBehaviour{
 
                     CreateFusionedCard(possibleMonsters);
 
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(1f);
 
-                    CardSelector.Instance.RemoveCardFromSelectedList(card1);
-                    //card1.gameObject.SetActive(false);
+                    CardSelector.Instance.RemoveCardFromSelectedList(card1);            
                     Destroy(card1.gameObject);
 
-                    CardSelector.Instance.RemoveCardFromSelectedList(card2);
-                    //card1.gameObject.SetActive(false);
+                    CardSelector.Instance.RemoveCardFromSelectedList(card2);           
                     Destroy(card2.gameObject);
                 }
             }
         }
+    }
+
+    private void FusionFailed(Card card1, Card card2){
+        Debug.Log("Fusion Failed");
+        card2.transform.position = card1.transform.position;
+        CardSelector.Instance.RemoveCardFromSelectedList(card1);
+        CardSelector.Instance.RemoveCardFromSelectedList(card2);
+
+        _fusionedCard = card2;
+        Destroy(card1.gameObject);
+
+        StopAllCoroutines();
     }
 
     private static List<MonsterCardSO> GetListOfPossibleMonsters(MonsterCard monsterCard1, List<MonsterCardSO> listOfStrongestType)
@@ -148,7 +164,7 @@ public class FusionCardsChecker : MonoBehaviour{
         _fusionedCard = CardCreator.Instance.CreateCard(possibleMonsters[randomIndex]);
     }
 
-    public Card FusionedCard(){
+    public Card GetFusionedCard(){
         return _fusionedCard;
     }
 }
