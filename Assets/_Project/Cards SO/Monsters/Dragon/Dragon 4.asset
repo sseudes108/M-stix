@@ -9,18 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b33e994d160f94f8c9be19d0f98470, type: 3}
+  m_Script: {fileID: 11500000, guid: b659373ede388fa469c242788bfe636f, type: 3}
   m_Name: Dragon 4
   m_EditorClassIdentifier: 
-  cardType: 1
-  _name: Dragon
-  _arcaneType: 0
-  _effect: 
-  _illustration: {fileID: 0}
-  _frame: {fileID: 0}
-  _monsterType: 1
-  _level: 3
-  _atk: 3100
-  _def: 2800
-  _monsterSprite: {fileID: 21300000, guid: 042e0f5d266518648af32510ce4532c1, type: 3}
-  _animaSprite: {fileID: 21300000, guid: 2b77d581ea17adf41b8741305642fe37, type: 3}
+  Name: Dragon 3
+  Character: {fileID: 21300000, guid: a788b6ecbbd37ee40860eea3d9c0574e, type: 3}
+  Anima: {fileID: 21300000, guid: 66db323088d300548b0ef22cfe9cfdbb, type: 3}
+  Level: 4
+  ATK: 4000
+  DEF: 3300

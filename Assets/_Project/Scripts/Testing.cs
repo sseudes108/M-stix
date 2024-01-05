@@ -1,18 +1,24 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Testing : MonoBehaviour{
-    
-    [SerializeField] private List<Card> cards;
 
-    void Update(){
+    PlayerHand _playerHand;
+
+    private void Awake() {
+        _playerHand = GetComponent<PlayerHand>();
+    }
+    private void Update() {
         if(Input.GetKeyDown(KeyCode.T)){
-            Fusion.Instance.StartFusionLine(cards);
+            _playerHand.DrawCards();
+        }
+        
+        if(Input.GetKeyDown(KeyCode.R)){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if(Input.GetKeyDown(KeyCode.R)){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name.ToString());
+        if(Input.GetKeyDown(KeyCode.F)){
+            FusionLogic.Instance.Fusion(CardSelector.Instance.SelectedCards);
         }
     }
 }

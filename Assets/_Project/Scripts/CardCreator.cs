@@ -1,26 +1,27 @@
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardCreator : MonoBehaviour{
+    public static CardCreator Instance {get; private set;}
+    [SerializeField] private MonsterCard _monsterCardPrefab;
+    [SerializeField] private ArcaneCard _arcaneCardPrefab;
 
-    [SerializeField] private ArcaneCard _arcanePrefab;
-    [SerializeField] private MonsterCard _monsterPrefab;
-
-    public Card CreateCard(CardSO cardData){      
-        if(cardData.cardType == CardSO.CardType.Arcane){
-            ArcaneCard newArcaneCard = _arcanePrefab;
-            newArcaneCard.SetData(cardData);
-            Card newCard = newArcaneCard.GetComponent<Card>();
-            return newCard;
-        }else{
-            MonsterCard newMonsterCard = _monsterPrefab;
-            newMonsterCard.SetData(cardData);
-            Card newCard = newMonsterCard.GetComponent<Card>();
-            return newCard;
-        }
+    private void Awake() {
+        if(Instance != null){Debug.Log("Error! More than one CardCreator instance" + transform + Instance); Destroy(gameObject);}
+        Instance = this;
     }
 
-    public void RemoveCreatedCardFromDeck(List<CardSO> deck, CardSO dataToRemove){
-        deck.Remove(dataToRemove);
+    public Card CreateCard(ScriptableObject cardData){
+        if(cardData is MonsterCardSO){
+            MonsterCardSO monsterCardData = cardData as MonsterCardSO;
+            MonsterCard newMonsterCard = Instantiate(_monsterCardPrefab);
+            newMonsterCard.SetCardData(monsterCardData);
+            return newMonsterCard;
+        }else{
+            ArcaneCardSO arcaneCardData = cardData as ArcaneCardSO;
+            ArcaneCard newArcaneCard = Instantiate(_arcaneCardPrefab);
+            newArcaneCard.SetCardData(arcaneCardData);
+            return newArcaneCard;
+        }
     }
 }

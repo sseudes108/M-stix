@@ -9,18 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b33e994d160f94f8c9be19d0f98470, type: 3}
+  m_Script: {fileID: 11500000, guid: b659373ede388fa469c242788bfe636f, type: 3}
   m_Name: Angel 3
   m_EditorClassIdentifier: 
-  cardType: 1
-  _name: Angel
-  _arcaneType: 0
-  _effect: 
-  _illustration: {fileID: 0}
-  _frame: {fileID: 0}
-  _monsterType: 0
-  _level: 2
-  _atk: 2500
-  _def: 2000
-  _monsterSprite: {fileID: 21300000, guid: 957cd46036eb45c4d883d6fd48c26d13, type: 3}
-  _animaSprite: {fileID: 21300000, guid: 6244000741d6948449cab2761af69737, type: 3}
+  Name: Angel 2
+  Character: {fileID: 21300000, guid: 78b31cfcf1fa157489e11a95bd501d12, type: 3}
+  Anima: {fileID: 21300000, guid: 0b2f9e894851a2d408fe8e54c6b6ac91, type: 3}
+  Level: 3
+  ATK: 3300
+  DEF: 2700
