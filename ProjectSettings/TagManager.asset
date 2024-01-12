@@ -44,9 +44,42 @@ TagManager:
   - name: Anima
     uniqueID: 2491195121
     locked: 0
-  - name: Character
-    uniqueID: 2983040565
-    locked: 0
   - name: Stats
     uniqueID: 3874477025
     locked: 0
+  - name: Character
+    uniqueID: 2983040565
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 

@@ -16,7 +16,7 @@ public class MonsterCard : Card{
     private void SetCard(){
         _monsterType = _monsterCardData.Type;
         _monsterSpriteRenderer.sprite = _monsterCardData.Character;
-        _animaSpriteRenderer.sprite = _monsterCardData.Anima;
+        _animaSpriteRenderer.sprite = null;
         _level.text = _monsterCardData.Level.ToString();
         _atk.text = _monsterCardData.ATK.ToString();
         _def.text = _monsterCardData.DEF.ToString();

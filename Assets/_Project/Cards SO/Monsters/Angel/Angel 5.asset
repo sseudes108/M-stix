@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b659373ede388fa469c242788bfe636f, type: 3}
   m_Name: Angel 5
   m_EditorClassIdentifier: 
+  Type: 0
   Name: Angel 1
-  Character: {fileID: 21300000, guid: 8f4a53f807a726f40adf4e19a59e082e, type: 3}
+  Character: {fileID: 21300000, guid: 617ac30726ec7064dac989b79361e76d, type: 3}
   Anima: {fileID: 21300000, guid: 66db323088d300548b0ef22cfe9cfdbb, type: 3}
   Level: 4
   ATK: 4000
