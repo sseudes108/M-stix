@@ -17,15 +17,26 @@ public class CardSelector : MonoBehaviour{
     
     public void AddCardToSelectedList(Card card){
         _selectedCards.Add(card);
+
         PlayerHandPositions playerHandPositions = card.GetComponentInParent<PlayerHandPositions>();
         playerHandPositions?.SetPositionFree();
-        card.transform.position += new Vector3(0f, 0.5f, 0.5f);
+
+        card.UpdateNumberInLine(_selectedCards.Count);
     }
 
     public void RemoveCardFromSelectedList(Card card){
         _selectedCards.Remove(card);
+
         PlayerHandPositions playerHandPositions = card.GetComponentInParent<PlayerHandPositions>();
-        playerHandPositions?.SetPositionFree();
-        card.transform.position += new Vector3(0f, -0.5f, -0.5f);
+        playerHandPositions?.SetPositionOccupied();
+
+        card.DeactiveNumberInLine();
+        UpdateInLineNumberAllCardsInLine();
+    }
+
+    public void UpdateInLineNumberAllCardsInLine(){
+        for(int i = 0; i <_selectedCards.Count; i++){
+            _selectedCards[i].UpdateNumberInLine(i + 1);
+        }
     }
 }

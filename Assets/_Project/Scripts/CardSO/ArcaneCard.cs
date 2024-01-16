@@ -19,11 +19,19 @@ public class ArcaneCard : Card{
         _effect.text = _arcaneCardData.Effect;
     }
 
+    private string GetName(){
+        return _arcaneCardData.Name;
+    }
+
     protected override CardType GetCardType(){
         return _cardType;
     }
 
     public override void SetCardData(ScriptableObject cardData){
         _arcaneCardData = (ArcaneCardSO)cardData;
+    }
+
+    protected override void OnMouseEnter(){
+        BattleUI.Instance.UpdateArcaneCardUIInfo(GetName());
     }
 }

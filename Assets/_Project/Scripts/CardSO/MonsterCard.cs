@@ -30,13 +30,23 @@ public class MonsterCard : Card{
         _monsterCardData = (MonsterCardSO)cardData;
     }
 
+    public string GetName(){
+        return _monsterCardData.Name;
+    }
+
     public int GetLevel(){
         return _monsterCardData.Level;
     }
     public int GetAtk(){
         return _monsterCardData.ATK;
     }
+    public int GetDef(){
+        return _monsterCardData.DEF;
+    }
     public MonsterCardSO.MonsterType GetMonsterType(){
         return _monsterCardData.Type;
+    }
+    protected override void OnMouseEnter(){
+        BattleUI.Instance.UpdateMonsterCardUIInfo(GetName(), GetAtk(), GetDef(), GetLevel());
     }
 }
