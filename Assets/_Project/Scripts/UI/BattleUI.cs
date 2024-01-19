@@ -50,7 +50,6 @@ public class BattleUI : MonoBehaviour{
     }
 
     private void PlayerHand_OnAnyCardDraw(Hand playerHand){
-        Debug.Log("PlayerHand_OnAnyCardDraw");
         UpdateDeckInfo(playerHand);
     }
 

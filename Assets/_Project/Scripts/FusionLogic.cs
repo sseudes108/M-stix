@@ -28,7 +28,7 @@ public class FusionLogic : MonoBehaviour{
         List<Card> selectedCards = CardSelector.Instance.SelectedCards;
 
         FusionCardsChecker.Instance.StartCheck(selectedCards);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.2f);
 
         Card resultCard = Instantiate(FusionCardsChecker.Instance.GetResultCard());
         yield return new WaitForSeconds(0.5f);
