@@ -22,7 +22,7 @@ public class MonsterCard : Card{
         _def.text = _monsterCardData.DEF.ToString();
     }
 
-    protected override CardType GetCardType(){
+    public override CardType GetCardType(){
         return _cardType;
     }
 

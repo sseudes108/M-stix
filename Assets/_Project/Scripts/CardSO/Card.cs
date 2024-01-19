@@ -1,29 +1,35 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public abstract class Card : MonoBehaviour{
-    protected enum CardType{
+    public enum CardType{
         Monster, Arcane
     }
 
+    public Action OnAnyCardSelectionChanged;
+
     [SerializeField] private GameObject _lineNumber;
     [SerializeField] private TextMeshProUGUI _lineInNumberText;
+
+    public static Action<Card> OnAnyCardSelected;
+
     protected bool _selected = false;
-    protected abstract CardType GetCardType();
+    public abstract CardType GetCardType();
     public abstract void SetCardData(ScriptableObject cardData);
     protected abstract void OnMouseEnter();
+    
     protected void OnMouseDown() {
         if(!_selected){
             _selected = true;
             transform.position += new Vector3(0f, 0.5f, 0.5f);
 
-            CardSelector.Instance.AddCardToSelectedList(this);
+            OnAnyCardSelected?.Invoke(this);
         }else{
             _selected = false;
             transform.position += new Vector3(0f, -0.5f, -0.5f);
 
-            // GetComponentInParent<PlayerHandPositions>().SetPositionOccupied();
-            CardSelector.Instance.RemoveCardFromSelectedList(this);
+            OnAnyCardSelected?.Invoke(this);
         }
     }
 
@@ -35,4 +41,6 @@ public abstract class Card : MonoBehaviour{
     public void DeactiveNumberInLine(){
         _lineNumber.gameObject.SetActive(false);
     }
+
+    public bool IsSelected() => _selected;
 }

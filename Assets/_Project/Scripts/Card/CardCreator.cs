@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardCreator : MonoBehaviour{
@@ -14,12 +13,12 @@ public class CardCreator : MonoBehaviour{
     public Card CreateCard(ScriptableObject cardData){
         if(cardData is MonsterCardSO){
             MonsterCardSO monsterCardData = cardData as MonsterCardSO;
-            MonsterCard newMonsterCard = Instantiate(_monsterCardPrefab);
+            MonsterCard newMonsterCard = _monsterCardPrefab;
             newMonsterCard.SetCardData(monsterCardData);
             return newMonsterCard;
         }else{
             ArcaneCardSO arcaneCardData = cardData as ArcaneCardSO;
-            ArcaneCard newArcaneCard = Instantiate(_arcaneCardPrefab);
+            ArcaneCard newArcaneCard = _arcaneCardPrefab;
             newArcaneCard.SetCardData(arcaneCardData);
             return newArcaneCard;
         }

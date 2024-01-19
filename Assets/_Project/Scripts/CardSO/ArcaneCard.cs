@@ -23,7 +23,7 @@ public class ArcaneCard : Card{
         return _arcaneCardData.Name;
     }
 
-    protected override CardType GetCardType(){
+    public override CardType GetCardType(){
         return _cardType;
     }
 

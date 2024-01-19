@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,9 @@ using UnityEngine;
 public class FusionLogic : MonoBehaviour{
     public static FusionLogic Instance {get; private set;}
     [SerializeField] private Transform _fusionedCardPosition;
-
     [SerializeField] private CardBoardPlacer _cardBoardPlacer;
+    public Action OnFusionStarted, OnFusionEnded;
+
     private void Awake() {
         if(Instance != null){Debug.Log("Error! More than one FusionLogic instance" + transform + Instance); Destroy(gameObject);}
         Instance = this;
@@ -14,25 +16,38 @@ public class FusionLogic : MonoBehaviour{
         _cardBoardPlacer = GetComponent<CardBoardPlacer>();
     }
 
-    public void Fusion(List<Card> selectedCards){
-        StartCoroutine(FusionRoutine(selectedCards));
+    public void StartFusion(){
+        List<Card> selectedCards = CardSelector.Instance.SelectedCards;
+        if(selectedCards.Count <= 1) return;
+        OnFusionStarted?.Invoke();
+
+        StartCoroutine(FusionRoutine());
     }
 
-    private IEnumerator FusionRoutine(List<Card> selectedCards){
+    private IEnumerator FusionRoutine(){
+        List<Card> selectedCards = CardSelector.Instance.SelectedCards;
 
         FusionCardsChecker.Instance.StartCheck(selectedCards);
+        yield return new WaitForSeconds(1f);
 
-        yield return new WaitForSeconds(3);
+        Card resultCard = Instantiate(FusionCardsChecker.Instance.GetResultCard());
+        yield return new WaitForSeconds(0.5f);
 
-        Card fusionedCard = FusionCardsChecker.Instance.GetFusionedCard();
+        if(selectedCards.Count != 0){
+            resultCard.transform.SetPositionAndRotation(_fusionedCardPosition.position, _fusionedCardPosition.rotation);
+            resultCard.transform.SetParent(_fusionedCardPosition);
+            CardSelector.Instance.AddFusionedCardToTheSelectedList(resultCard);
 
-        fusionedCard.transform.SetPositionAndRotation(_fusionedCardPosition.transform.position, _fusionedCardPosition.transform.rotation);
-        fusionedCard.transform.SetParent(_fusionedCardPosition);
+            StartFusion();
 
-        if(selectedCards.Count > 0){
-            CardSelector.Instance.AddFusionedCardToTheSelectedList(fusionedCard);
         }else{
-            _cardBoardPlacer.PlacePlayerMonsterCard(fusionedCard);
+            if(resultCard.GetCardType() == Card.CardType.Monster){
+                _cardBoardPlacer.PlacePlayerMonsterCard(resultCard);
+
+            }else{
+                _cardBoardPlacer.PlacePlayerArcaneCard(resultCard);
+            }
         }
+        OnFusionEnded?.Invoke();
     }
 }
