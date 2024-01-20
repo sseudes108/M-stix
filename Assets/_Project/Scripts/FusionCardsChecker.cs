@@ -74,6 +74,8 @@ public class FusionCardsChecker : MonoBehaviour{
     }
 
     private static void RemoveCardsFromSelectedList(Card card1, Card card2){
+        card1.DeactivateVisuals();
+        card2.DeactivateVisuals();
         CardSelector.Instance.RemoveCardFromSelectedList(card1);
         CardSelector.Instance.RemoveCardFromSelectedList(card2);
     }
@@ -150,11 +152,5 @@ public class FusionCardsChecker : MonoBehaviour{
         }
         return listOfStrongestType;
     }
-
-    // private void CreateFusionedCard(List<MonsterCardSO> possibleMonsters){
-    //     int randomIndex = Random.Range(0, possibleMonsters.Count);
-    //     _resultCard = CardCreator.Instance.CreateCard(possibleMonsters[randomIndex]);
-    // }
-
 
 }

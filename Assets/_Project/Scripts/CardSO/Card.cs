@@ -18,6 +18,8 @@ public abstract class Card : MonoBehaviour{
     public abstract CardType GetCardType();
     public abstract void SetCardData(ScriptableObject cardData);
     protected abstract void OnMouseEnter();
+    public abstract void DeactivateVisuals();
+    public abstract void ActivateVisuals();
     
     protected void OnMouseDown() {
         if(!_selected){

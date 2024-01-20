@@ -7,6 +7,7 @@ public class ArcaneCard : Card{
     [SerializeField] private ArcaneCardSO _arcaneCardData;
     [SerializeField] private SpriteRenderer _front, _illustration;
     [SerializeField] private TMP_Text _name, _effect;
+    [SerializeField] private GameObject _cardVisual;
 
     private void Start(){
         SetCard();
@@ -33,5 +34,12 @@ public class ArcaneCard : Card{
 
     protected override void OnMouseEnter(){
         BattleUI.Instance.UpdateArcaneCardUIInfo(GetName());
+    }
+
+    public override void DeactivateVisuals(){
+        _cardVisual.gameObject.SetActive(false);
+    }
+    public override void ActivateVisuals(){
+        _cardVisual.gameObject.SetActive(true);
     }
 }

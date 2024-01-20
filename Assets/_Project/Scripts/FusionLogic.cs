@@ -19,8 +19,8 @@ public class FusionLogic : MonoBehaviour{
     public void StartFusion(){
         List<Card> selectedCards = CardSelector.Instance.SelectedCards;
         if(selectedCards.Count <= 1) return;
-        OnFusionStarted?.Invoke();
 
+        OnFusionStarted?.Invoke();
         StartCoroutine(FusionRoutine());
     }
 
@@ -31,15 +31,17 @@ public class FusionLogic : MonoBehaviour{
         yield return new WaitForSeconds(1.2f);
 
         Card resultCard = Instantiate(FusionCardsChecker.Instance.GetResultCard());
-        yield return new WaitForSeconds(0.5f);
+        resultCard.ActivateVisuals();
+        //yield return new WaitForSeconds(0.1f);
 
         if(selectedCards.Count != 0){
             resultCard.transform.SetPositionAndRotation(_fusionedCardPosition.position, _fusionedCardPosition.rotation);
             resultCard.transform.SetParent(_fusionedCardPosition);
+            resultCard.transform.localScale = Vector3.one;
+            
             CardSelector.Instance.AddFusionedCardToTheSelectedList(resultCard);
 
             StartFusion();
-
         }else{
             if(resultCard.GetCardType() == Card.CardType.Monster){
                 _cardBoardPlacer.PlacePlayerMonsterCard(resultCard);

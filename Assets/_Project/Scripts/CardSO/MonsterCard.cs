@@ -7,6 +7,7 @@ public class MonsterCard : Card{
     [SerializeField] private SpriteRenderer _monsterSpriteRenderer, _animaSpriteRenderer;
     [SerializeField] private MonsterCardSO.MonsterType _monsterType;
     [SerializeField] private TMP_Text _level, _atk, _def;
+    [SerializeField] private GameObject _cardVisual;
 
     private void Start() {
         SetCard();
@@ -48,5 +49,12 @@ public class MonsterCard : Card{
     }
     protected override void OnMouseEnter(){
         BattleUI.Instance.UpdateMonsterCardUIInfo(GetName(), GetAtk(), GetDef(), GetLevel());
+    }
+
+    public override void DeactivateVisuals(){
+        _cardVisual.gameObject.SetActive(false);
+    }
+    public override void ActivateVisuals(){
+        _cardVisual.gameObject.SetActive(true);
     }
 }
