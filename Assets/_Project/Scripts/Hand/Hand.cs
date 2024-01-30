@@ -1,72 +1,52 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mistix;
 using UnityEngine;
 
-public class Hand : MonoBehaviour {
-    public static Action<Hand> OnAnyCardDraw;
-    [SerializeField] private List<Transform> _handPlaces;
+public class Hand : MonoBehaviour{
+    [SerializeField] List<HandPosition> _handPlaces;
     [SerializeField] private List<Transform> _freePositionsInHand;
-    [SerializeField] private Deck _deck;
+    private Deck _deck;
 
-    private void OnEnable() {
-        Card.OnAnyCardSelected += Card_OnAnyCardSelected;
-    }
-
-    private void OnDisable() {
-        Card.OnAnyCardSelected -= Card_OnAnyCardSelected;
+    private void Awake() {
+        _deck = GetComponentInParent<Deck>();
+        _freePositionsInHand = new();
     }
 
     private void Start() {
-        CheckFreePositionsInHand();
-        DrawCards();
+        VerifyPositionsInHand();
+    }
+    public void StartDrawCardRoutine(){
+        StartCoroutine(DrawCardRoutine());
     }
 
-    public void DrawCards(){
-        StartCoroutine(DrawRoutine());
+    public IEnumerator DrawCardRoutine(){
+        do{
+            var randomIndex = Random.Range(0, _deck.GetDeckInUse().Count);
+
+            InstantiateCard(CardCreator.Instance.CreateCard(_deck.GetDeckInUse()[randomIndex]));
+            yield return new WaitForSeconds(0.5f);
+
+        }while(_freePositionsInHand.Count > 0);
     }
 
-    private IEnumerator DrawRoutine(){
-        int numberOfFreePositionsInHand =  _freePositionsInHand.Count;
+    private void InstantiateCard(Card cardDrew){
+        var newCardDrew = Instantiate(cardDrew, _freePositionsInHand[0].transform.position, _freePositionsInHand[0].transform.rotation);
+        newCardDrew.gameObject.transform.SetParent(_freePositionsInHand[0]);
         
-        for(int i = 0; i < numberOfFreePositionsInHand; i++){
-            int randomIndexFromDeck = UnityEngine.Random.Range(0,_deck.DeckInUse.Count);
-            ScriptableObject cardata = _deck.DeckInUse[randomIndexFromDeck];
-
-            Card cardDrew = Instantiate(CardCreator.Instance.CreateCard(cardata));
-
-            _deck.RemoveCardFromDeck(randomIndexFromDeck);
-                        
-            cardDrew.transform.SetLocalPositionAndRotation(_freePositionsInHand[0].position, _freePositionsInHand[0].rotation);
-            cardDrew.transform.SetParent(_freePositionsInHand[0].transform);
-
-            HandPositions playerHandPositions = _freePositionsInHand[0].GetComponent<HandPositions>();
-            playerHandPositions.SetOccupied();    
-            
-            CheckFreePositionsInHand();
-            OnAnyCardDraw?.Invoke(this);
-
-            yield return new WaitForSeconds(0.2f);
-        }
-
-        Debug.Log("End Draw Routine");        
+        newCardDrew.name = $"{newCardDrew.GetCardInfo()}";
+        
+        _freePositionsInHand[0].GetComponent<HandPosition>().OcupyPlace();
+        VerifyPositionsInHand();
     }
 
-    private void Card_OnAnyCardSelected(Card card){
-        CheckFreePositionsInHand();
-    }
-
-    private void CheckFreePositionsInHand(){
+    public void VerifyPositionsInHand(){
         _freePositionsInHand.Clear();
-        foreach(Transform handPosition in _handPlaces){
-            HandPositions handPositions = handPosition.GetComponent<HandPositions>();
-            if(handPositions.Isfree()){
-                _freePositionsInHand.Add(handPosition);
+        foreach(var position in _handPlaces){
+            if(position.IsFree()){
+                var positionTransform = position.gameObject.transform;
+                _freePositionsInHand.Add(positionTransform);
             }
         }
-    }
-
-    public int GetCountDeckInUse(){
-        return _deck.DeckInUse.Count;
     }
 }

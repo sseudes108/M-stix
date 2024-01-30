@@ -248,8 +248,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 188775331888646262}
-  - component: {fileID: 1868833296611424820}
   - component: {fileID: 2542850963400044189}
+  - component: {fileID: 1731465945961569457}
+  - component: {fileID: 3340893759071168212}
   m_Layer: 3
   m_Name: Monster Card Model
   m_TagString: Untagged
@@ -265,36 +266,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2242855008778560614}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.45399043, y: 0, z: 0, w: 0.8910066}
-  m_LocalPosition: {x: -1.13, y: 10.2, z: -6.79}
+  m_LocalRotation: {x: 0.45399043, y: -0, z: -0, w: 0.8910066}
+  m_LocalPosition: {x: 3.2000003, y: 4.96287, z: -6.9299097}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4918971308016069241}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 54, y: 0, z: 0}
---- !u!114 &1868833296611424820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2242855008778560614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7102237ab488cdd49b05601ab407a158, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lineNumber: {fileID: 3267429510374184296}
-  _lineInNumberText: {fileID: 9126494480044887543}
-  _monsterCardData: {fileID: 11400000, guid: d34435d1aaf636a4eaceb76eaed01093, type: 2}
-  _monsterSpriteRenderer: {fileID: 8971795013467926644}
-  _animaSpriteRenderer: {fileID: 3922765055025976707}
-  _monsterType: 0
-  _level: {fileID: 9147337068551888598}
-  _atk: {fileID: 5128439629814731159}
-  _def: {fileID: 2499050723943703837}
-  _cardVisual: {fileID: 7140370526701464833}
 --- !u!65 &2542850963400044189
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -316,6 +295,35 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.5, y: 10.5, z: 0.12}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1731465945961569457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2242855008778560614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc89c58640dd4b44b2b965d55b005f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monsterCardData: {fileID: 11400000, guid: 26e89e441993e6a478600a206335c97c, type: 2}
+  _spriteRenderer: {fileID: 8971795013467926644}
+  _monsterAtk: {fileID: 5128439629814731159}
+  _monsterDef: {fileID: 2499050723943703837}
+  _monsterLevel: {fileID: 9147337068551888598}
+--- !u!114 &3340893759071168212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2242855008778560614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685d21563dee3e241b6c5c380e997ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2383307642355993225
 GameObject:
   m_ObjectHideFlags: 0

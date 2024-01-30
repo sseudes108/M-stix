@@ -1,25 +1,26 @@
 using UnityEngine;
+using Mistix;
 
 public class CardCreator : MonoBehaviour{
-    public static CardCreator Instance {get; private set;}
-    [SerializeField] private MonsterCard _monsterCardPrefab;
-    [SerializeField] private ArcaneCard _arcaneCardPrefab;
+    public static CardCreator Instance;
+    [SerializeField] MonsterCard _monsterCardPrefab;
+    [SerializeField] ArcaneCard _arcaneCardPrefab;
 
     private void Awake() {
-        if(Instance != null){Debug.Log("Error! More than one CardCreator instance" + transform + Instance); Destroy(gameObject);}
+        if(Instance != null){
+            Errors.InstanceError(this);
+        }
         Instance = this;
     }
 
     public Card CreateCard(ScriptableObject cardData){
         if(cardData is MonsterCardSO){
-            MonsterCardSO monsterCardData = cardData as MonsterCardSO;
             MonsterCard newMonsterCard = _monsterCardPrefab;
-            newMonsterCard.SetCardData(monsterCardData);
+            newMonsterCard.SetUpCardData(cardData);
             return newMonsterCard;
-        }else{
-            ArcaneCardSO arcaneCardData = cardData as ArcaneCardSO;
+        }else{;
             ArcaneCard newArcaneCard = _arcaneCardPrefab;
-            newArcaneCard.SetCardData(arcaneCardData);
+            newArcaneCard.SetUpCardData(cardData);
             return newArcaneCard;
         }
     }
