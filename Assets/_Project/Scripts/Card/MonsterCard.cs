@@ -7,19 +7,17 @@ namespace Mistix{
         [SerializeField] private MonsterCardSO _monsterCardData; 
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private TextMeshProUGUI _monsterAtk, _monsterDef, _monsterLevel;
-        private string _monsterName;
         private EMonsterType _monsterType;
 
         private void Start() {
-            SetUpMonterCard();
+            SetUpMonsterCard();
         }
 
         public override void SetUpCardData(ScriptableObject CardData){
             _monsterCardData = CardData as MonsterCardSO;
         }
 
-        public void SetUpMonterCard(){
-            _monsterName = _monsterCardData.Name;
+        public void SetUpMonsterCard(){
             _monsterAtk.text = _monsterCardData.Atk.ToString();
             _monsterDef.text = _monsterCardData.Def.ToString();
             _monsterLevel.text = _monsterCardData.Level.ToString();
