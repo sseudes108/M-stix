@@ -1,10 +1,8 @@
-using System.Transactions;
 using Mistix.Enums;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Mistix{
-        public class Card: MonoBehaviour{
+    public class Card: MonoBehaviour{
         private readonly ECardType _cardType;
         private readonly string _cardInfo;
 
@@ -28,18 +26,12 @@ namespace Mistix{
             }
         }
 
-        public virtual void SetUpCardData(ScriptableObject CardData){
-
-        }
+        public virtual void SetUpCardData(ScriptableObject CardData){}
 
 
-        public virtual ECardType GetCardType(){
-            return _cardType;
-        }
+        public virtual ECardType GetCardType(){return _cardType;}
 
-        public virtual string GetCardInfo(){
-            return _cardInfo;
-        }
+        public virtual string GetCardInfo(){return _cardInfo;}
 
         public void MoveCard(Vector3 destination, Quaternion rotation){
             _destination = destination;
