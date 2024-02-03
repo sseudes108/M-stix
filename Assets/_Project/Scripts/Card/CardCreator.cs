@@ -13,18 +13,22 @@ namespace Mistix{
             Instance = this;
         }
 
-        public Card CreateCard(ScriptableObject cardData){
+        public Card CreateCard(ScriptableObject cardData, Deck _deckInUse){
             if(cardData is MonsterCardSO){
                 MonsterCard newMonsterCard = _monsterCardPrefab;
                 newMonsterCard.SetUpCardData(cardData);
 
-                var newCard = Instantiate(newMonsterCard);
+                var newCard = Instantiate(newMonsterCard, TurnSystem.Instance.GetDeckPosition(), TurnSystem.Instance.GetDeckRotation());
+                _deckInUse.RemoveCardFromDeck(cardData);
+
                 return newCard;
             }else{;
                 ArcaneCard newArcaneCard = _arcaneCardPrefab;
                 newArcaneCard.SetUpCardData(cardData);
 
-                var newCard = Instantiate(newArcaneCard);
+                var newCard = Instantiate(newArcaneCard, TurnSystem.Instance.GetDeckPosition(), TurnSystem.Instance.GetDeckRotation());
+                _deckInUse.RemoveCardFromDeck(cardData);
+                
                 return newCard;
             }
         }

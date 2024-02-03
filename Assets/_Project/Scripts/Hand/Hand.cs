@@ -25,8 +25,8 @@ namespace Mistix{
         private IEnumerator DrawCardRoutine(){
             do{
                 var randomIndex = Random.Range(0, _deck.GetDeckInUse().Count);
-
-                SetCardInHand(CardCreator.Instance.CreateCard(_deck.GetDeckInUse()[randomIndex]));
+                        
+                SetCardInHand(CardCreator.Instance.CreateCard(_deck.GetDeckInUse()[randomIndex], _deck));
                 yield return new WaitForSeconds(0.5f);
 
             }while(_freePositionsInHand.Count > 0);
@@ -34,6 +34,7 @@ namespace Mistix{
 
         private void SetCardInHand(Card cardDrew){
             cardDrew.MoveCard(_freePositionsInHand[0].position, _freePositionsInHand[0].rotation);
+
             cardDrew.transform.SetParent(_freePositionsInHand[0]);
             cardDrew.name = $"{cardDrew.GetCardInfo()}";
             

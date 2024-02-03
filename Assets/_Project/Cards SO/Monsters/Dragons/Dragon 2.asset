@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4552449be85ecbe43b45cf77f8766464, type: 3}
-  m_Name: Angel1 4
+  m_Name: Dragon 2
   m_EditorClassIdentifier: 
-  MonsterType: 1
-  Name: Angelina
-  Level: 2
-  Atk: 2000
-  Def: 1500
-  Character: {fileID: 21300000, guid: df3e0d85e7bc60b40a5f1872f9e26278, type: 3}
+  MonsterType: 3
+  Name: Dragon
+  Level: 3
+  Atk: 3300
+  Def: 3000
+  Character: {fileID: 21300000, guid: e2df00b60834ec241a89ba31cb8cf0b2, type: 3}
