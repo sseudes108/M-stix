@@ -28,7 +28,7 @@ namespace Mistix{
                 //     _card1,
                 //     _card2
                 // };
-                var selectedCards = CardSelector.Instance.GetSelectedCardList();
+                var selectedCards = CardSelector.Instance.GetSelectedPlayerCardList();
                 Fusion.Instance.StartFusionRoutine(selectedCards);
             }
 

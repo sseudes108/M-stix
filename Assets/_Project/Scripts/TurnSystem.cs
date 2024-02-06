@@ -5,6 +5,7 @@ namespace Mistix{
         public static TurnSystem Instance;
         private static int _turn = 0;
         [SerializeField] private Transform _playerDeck, _enemyDeck;
+        [SerializeField] private Transform _fusionCardSpawner;
 
         private void Awake() {
             if(Instance != null){
@@ -23,20 +24,12 @@ namespace Mistix{
         public static int GetTurnNumber(){
             return _turn + 1;
         }
-        public Vector3 GetDeckPosition(){
-            if(IsPlayerTurn()){
-                return _playerDeck.position;
-            }else{
-                return _enemyDeck.position;
-            }
-        }
 
-        public Quaternion GetDeckRotation(){
-            if(IsPlayerTurn()){
-                return _playerDeck.rotation;
-            }else{
-                return _enemyDeck.rotation;
-            }
-        }
+        public Vector3 GetEnemyDeckPosition() => _enemyDeck.position;
+        public Quaternion GetEnemyDeckRotation() => _enemyDeck.rotation;
+        public Vector3 GetPlayerDeckPosition() => _playerDeck.position;
+        public Quaternion GetPlayerDeckRotation() => _playerDeck.rotation;
+        public Vector3 GetfusionCardSpawnerPosition() => _fusionCardSpawner.position;
+        public Quaternion GetfusionCardSpawnerRotation() => _fusionCardSpawner.rotation;
     }
 }

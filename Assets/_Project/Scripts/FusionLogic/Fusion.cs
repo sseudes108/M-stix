@@ -9,7 +9,7 @@ namespace Mistix.FusionLogic{
         public static Fusion Instance;
         private Coroutine _fusionRoutine;
 
-        [SerializeField] private Transform card1InLinePosition, card2InLinePosition;
+        [SerializeField] private Transform _card1InLinePosition, _card2InLinePosition;
 
         private void Awake() {
             if(Instance != null){
@@ -104,14 +104,18 @@ namespace Mistix.FusionLogic{
         private void MoveSelectedCardsToPosition(List<Card> selectedCards){
             var cardIndex = 0;
             foreach(var card in selectedCards){
+                card.GetComponent<Collider>().enabled = false;
                 if(cardIndex == 0){
-                    card.MoveCard(card1InLinePosition.position, card1InLinePosition.rotation);
+                    card.transform.SetParent(_card1InLinePosition.transform);
+                    card.MoveCard(_card1InLinePosition.position, _card1InLinePosition.rotation);
                 }else if(cardIndex == 1){
-                    card.MoveCard(card2InLinePosition.position, card2InLinePosition.rotation);
+                    card.transform.SetParent(_card2InLinePosition.transform);
+                    card.MoveCard(_card2InLinePosition.position, _card2InLinePosition.rotation);
                 }else{
-                    var offsetPosition = 1.5f * cardIndex;
-                    Vector3 finalPosition = new Vector3((float)(card2InLinePosition.position.x + offsetPosition), card2InLinePosition.position.y, card2InLinePosition.position.z);
-                    card.MoveCard(card2InLinePosition.position, card2InLinePosition.rotation);
+                    card.transform.SetParent(_card2InLinePosition.transform);
+                    var offsetPosition = 0.3f * cardIndex;
+                    Vector3 finalPosition = new((float)(_card2InLinePosition.position.x + offsetPosition), _card2InLinePosition.position.y, _card2InLinePosition.position.z);
+                    card.MoveCard(finalPosition, _card2InLinePosition.rotation);
                 }
                 cardIndex++;
             }

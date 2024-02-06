@@ -44,9 +44,5 @@ namespace Mistix{
         public override string GetCardInfo(){
             return $"Nome: {_monsterCardData.Name}, Level: {_monsterCardData.Level.ToString()}, Atk: {_monsterCardData.Atk.ToString()}";
         }
-
-        protected void OnMouseDown() {
-            Debug.Log(GetCardInfo());
-        }
     }
 }

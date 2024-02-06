@@ -7,8 +7,6 @@ namespace Mistix{
         private readonly ECardType _cardType;
         private readonly string _cardInfo;
 
-        public static Action<Card> OnCardSelected, OnCardDeselected;
-
         //Move
         private bool _canMove;
         private Vector3 _targetPosition;
@@ -18,14 +16,16 @@ namespace Mistix{
         private bool _selected = false;
         private Vector3 _notSelectedPosition;
 
-        private void OnEnable() {
-            OnCardSelected += OnCardSelected;
-            OnCardDeselected += OnCardDeselected;
-        }
+        protected bool _isPlayerCard;
 
-        private void OnDisable() {
-            OnCardSelected -= SelectCard;
-            OnCardDeselected -= DeselectCard;
+        private void Start() {
+            var handPosition = GetComponentInParent<HandPosition>();
+            var handOwner = handPosition.GetComponentInParent<Hand>();
+            if(handOwner is PlayerHand){
+                _isPlayerCard = true;
+            }else{
+                _isPlayerCard = false;
+            }
         }
 
         private void Update() {
@@ -41,7 +41,7 @@ namespace Mistix{
             transform.position = Vector3.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, rotationSpeed * Time.deltaTime);
 
-            if(Vector3.Distance(transform.position, _targetPosition) < 0.01f){
+            if(Vector3.Distance(transform.position, _targetPosition) < 0.02f){
                 _canMove = false;
             }
         }
@@ -60,25 +60,41 @@ namespace Mistix{
 
         protected virtual void OnMouseDown(){
             if(!_selected){
-                OnCardSelected?.Invoke(this);
+                if(TurnSystem.IsPlayerTurn() && _isPlayerCard){
+                    SelectCard();
+                }
             }else{
-                OnCardDeselected?.Invoke(this);
+                DeselectCard();
             }
-
             GetCardInfo();
         }
 
-        private void SelectCard(Card sender){
-            _notSelectedPosition = transform.position;
-            transform.position += new Vector3(0, 0.5f, 0.5f);
+        private void SelectCard(){
+            transform.position += new Vector3(0, 0.3f, 0.3f);
             _selected = true;
-            CardSelector.Instance.AddCardToSelectedList(sender);
+
+            if(TurnSystem.IsPlayerTurn() && _isPlayerCard){
+                CardSelector.Instance.AddCardToPlayerSelectedList(this);
+            }
+
+            //Enemy Turn and Enemy Card
+            if(!TurnSystem.IsPlayerTurn() && !_isPlayerCard){
+                CardSelector.Instance.AddCardToEnemySelectedList(this);
+            }
         }
 
-        private void DeselectCard(Card sender){
-            transform.position = _notSelectedPosition;
+        private void DeselectCard(){
+            transform.position += new Vector3(0, -0.3f, -0.3f);
             _selected = false;
-            CardSelector.Instance.RemoveCardFromSelectedList(sender);
+
+            if(TurnSystem.IsPlayerTurn() && _isPlayerCard){
+                CardSelector.Instance.RemoveCardFromPlayerSelectedList(this);
+            }
+
+            //Enemy Turn and Enemy Card
+            if(!TurnSystem.IsPlayerTurn() && !_isPlayerCard){
+                CardSelector.Instance.AddCardToEnemySelectedList(this);
+            }
         }
     }
 }

@@ -5,7 +5,8 @@ namespace Mistix{
     public class CardSelector:MonoBehaviour{
         public static CardSelector Instance;
 
-        [SerializeField] private List<Card> _selectedCards;
+        [SerializeField] private List<Card> _playerSelectedCards;
+        [SerializeField] private List<Card> _enemySelectedCards;
 
         private void Awake() {
             if(Instance != null){
@@ -14,16 +15,29 @@ namespace Mistix{
             Instance = this;
         }
 
-        public void AddCardToSelectedList(Card selectedCard){
+
+        //Player
+        public void AddCardToPlayerSelectedList(Card selectedCard){
             Debug.Log($"{selectedCard.name} Add to list");
-            _selectedCards.Add(selectedCard);
+            _playerSelectedCards.Add(selectedCard);
         }
         
-        public void RemoveCardFromSelectedList(Card deselectedCard){
+        public void RemoveCardFromPlayerSelectedList(Card deselectedCard){
             Debug.Log($"{deselectedCard.name} Removed from list");
-            _selectedCards.Remove(deselectedCard);
+            _playerSelectedCards.Remove(deselectedCard);
         }
+        public List<Card> GetSelectedPlayerCardList() => _playerSelectedCards;
 
-        public List<Card> GetSelectedCardList() => _selectedCards;
+        //Enemy
+        public void AddCardToEnemySelectedList(Card selectedCard){
+            Debug.Log($"{selectedCard.name} Add to list");
+            _enemySelectedCards.Add(selectedCard);
+        }
+        
+        public void RemoveCardFromEnemySelectedList(Card deselectedCard){
+            Debug.Log($"{deselectedCard.name} Removed from list");
+            _enemySelectedCards.Remove(deselectedCard);
+        }
+        public List<Card> GetSelectedEnemyCardList() => _enemySelectedCards;
     }
 }
