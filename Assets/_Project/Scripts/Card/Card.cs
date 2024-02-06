@@ -1,3 +1,4 @@
+using System;
 using Mistix.Enums;
 using UnityEngine;
 
@@ -5,9 +6,27 @@ namespace Mistix{
     public class Card: MonoBehaviour{
         private readonly ECardType _cardType;
         private readonly string _cardInfo;
+
+        public static Action<Card> OnCardSelected, OnCardDeselected;
+
+        //Move
         private bool _canMove;
         private Vector3 _targetPosition;
         private Quaternion _targetRotation;
+
+        //Select
+        private bool _selected = false;
+        private Vector3 _notSelectedPosition;
+
+        private void OnEnable() {
+            OnCardSelected += OnCardSelected;
+            OnCardDeselected += OnCardDeselected;
+        }
+
+        private void OnDisable() {
+            OnCardSelected -= SelectCard;
+            OnCardDeselected -= DeselectCard;
+        }
 
         private void Update() {
             if(_canMove){
@@ -39,6 +58,27 @@ namespace Mistix{
             _targetRotation = targetRotation;
         }
 
-        // protected virtual void OnMouseDown() {}
+        protected virtual void OnMouseDown(){
+            if(!_selected){
+                OnCardSelected?.Invoke(this);
+            }else{
+                OnCardDeselected?.Invoke(this);
+            }
+
+            GetCardInfo();
+        }
+
+        private void SelectCard(Card sender){
+            _notSelectedPosition = transform.position;
+            transform.position += new Vector3(0, 0.5f, 0.5f);
+            _selected = true;
+            CardSelector.Instance.AddCardToSelectedList(sender);
+        }
+
+        private void DeselectCard(Card sender){
+            transform.position = _notSelectedPosition;
+            _selected = false;
+            CardSelector.Instance.RemoveCardFromSelectedList(sender);
+        }
     }
 }

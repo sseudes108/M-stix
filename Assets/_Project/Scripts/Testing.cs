@@ -24,10 +24,11 @@ namespace Mistix{
             }
 
             if(Input.GetKeyDown(KeyCode.F)){
-                var selectedCards = new List<Card>{
-                    _card1,
-                    _card2
-                };
+                // var selectedCards = new List<Card>{
+                //     _card1,
+                //     _card2
+                // };
+                var selectedCards = CardSelector.Instance.GetSelectedCardList();
                 Fusion.Instance.StartFusionRoutine(selectedCards);
             }
 

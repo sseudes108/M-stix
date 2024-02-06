@@ -7,8 +7,9 @@ using UnityEngine;
 namespace Mistix.FusionLogic{
     public class Fusion:MonoBehaviour{
         public static Fusion Instance;
-
         private Coroutine _fusionRoutine;
+
+        [SerializeField] private Transform card1InLinePosition, card2InLinePosition;
 
         private void Awake() {
             if(Instance != null){
@@ -24,6 +25,8 @@ namespace Mistix.FusionLogic{
         }
 
         private IEnumerator FusionRoutine(List<Card> selectedCards){
+
+            MoveSelectedCardsToPosition(selectedCards);
 
             yield return new WaitForSeconds(0.5f);
             var card1 = selectedCards[0];
@@ -95,6 +98,22 @@ namespace Mistix.FusionLogic{
                     var randomIndex = Random.Range(0,possibleMonsterList.Count);
                     // InstantiateCard(CardCreator.Instance.CreateCard(_deck.GetDeckInUse()[randomIndex]));
                 }
+            }
+        }
+
+        private void MoveSelectedCardsToPosition(List<Card> selectedCards){
+            var cardIndex = 0;
+            foreach(var card in selectedCards){
+                if(cardIndex == 0){
+                    card.MoveCard(card1InLinePosition.position, card1InLinePosition.rotation);
+                }else if(cardIndex == 1){
+                    card.MoveCard(card2InLinePosition.position, card2InLinePosition.rotation);
+                }else{
+                    var offsetPosition = 1.5f * cardIndex;
+                    Vector3 finalPosition = new Vector3((float)(card2InLinePosition.position.x + offsetPosition), card2InLinePosition.position.y, card2InLinePosition.position.z);
+                    card.MoveCard(card2InLinePosition.position, card2InLinePosition.rotation);
+                }
+                cardIndex++;
             }
         }
     }

@@ -4,9 +4,20 @@ using UnityEngine;
 
 namespace Mistix{
     public class Hand : MonoBehaviour{
-        [SerializeField] List<HandPosition> _handPlaces;
+        [SerializeField] private GameObject _hand;
+        [SerializeField] private List<HandPosition> _handPlaces;
         [SerializeField] private List<Transform> _freePositionsInHand;
         private Deck _deck;
+
+        private void OnEnable() {
+            Card.OnCardSelected += Card_OnCardSelected;
+            Card.OnCardDeselected += Card_OnCardSelected;
+        }
+
+        private void OnDisable() {
+            Card.OnCardSelected -= Card_OnCardDeselected;
+            Card.OnCardDeselected -= Card_OnCardDeselected;
+        }
 
         private void Awake() {
             _deck = GetComponentInParent<Deck>();
@@ -15,6 +26,7 @@ namespace Mistix{
 
         private void Start() {
             VerifyPositionsInHand();
+            StartDrawCardRoutine();
         }
 
         //PUBLIC WHILE TESTING
@@ -38,8 +50,16 @@ namespace Mistix{
             cardDrew.transform.SetParent(_freePositionsInHand[0]);
             cardDrew.name = $"{cardDrew.GetCardInfo()}";
             
-            _freePositionsInHand[0].GetComponent<HandPosition>().OcupyPlace();
+            SetPositionInHandOcupied(cardDrew);
+            //_freePositionsInHand[0].GetComponent<HandPosition>().OcupyPlace();
             VerifyPositionsInHand();
+        }
+
+        private void SetPositionInHandFree(Card cardToRemove){
+            cardToRemove.GetComponentInParent<HandPosition>().FreePlace();
+        }
+        private void SetPositionInHandOcupied(Card cardToRemove){
+            cardToRemove.GetComponentInParent<HandPosition>().OcupyPlace();
         }
 
         private void VerifyPositionsInHand(){
@@ -51,6 +71,14 @@ namespace Mistix{
                 }
             }
         }
-        
+
+        private void Card_OnCardSelected(Card sender){
+            SetPositionInHandOcupied(sender);
+        }
+
+        private void Card_OnCardDeselected(Card sender){
+            SetPositionInHandFree(sender);
+        }
+
     }
 }
