@@ -17,11 +17,11 @@ namespace Mistix{
         public void ChangeTurn(){
             _turn++;
         }
-        public static bool IsPlayerTurn(){
+        public bool IsPlayerTurn(){
             return _turn % 2 == 0;
         }
 
-        public static int GetTurnNumber(){
+        public int GetTurnNumber(){
             return _turn + 1;
         }
 

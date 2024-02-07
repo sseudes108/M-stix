@@ -2124,8 +2124,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 603726729}
+  - component: {fileID: 603726730}
   m_Layer: 3
-  m_Name: Card 2 Position
+  m_Name: Fusion Card 2 Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2148,6 +2149,18 @@ Transform:
   - {fileID: 1463567098}
   m_Father: {fileID: 1499042839}
   m_LocalEulerAnglesHint: {x: 54, y: 0, z: 0}
+--- !u!114 &603726730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603726728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e31112bdde9c74eb957580a4ad4940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &614911299
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,8 +2994,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 993255014}
+  - component: {fileID: 993255015}
   m_Layer: 3
-  m_Name: Card 1 Position
+  m_Name: Fusion Card 1 Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3005,6 +3019,18 @@ Transform:
   - {fileID: 577180429}
   m_Father: {fileID: 1499042839}
   m_LocalEulerAnglesHint: {x: 54, y: 0, z: 0}
+--- !u!114 &993255015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993255012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e31112bdde9c74eb957580a4ad4940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1017941943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3853,6 +3879,7 @@ GameObject:
   - component: {fileID: 1499042839}
   - component: {fileID: 1499042838}
   - component: {fileID: 1499042840}
+  - component: {fileID: 1499042841}
   m_Layer: 0
   m_Name: FusionLogic
   m_TagString: Untagged
@@ -3905,6 +3932,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSelectedCards: []
   _enemySelectedCards: []
+--- !u!114 &1499042841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499042837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb3e7b9ab88dba4295fd026eb977cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHand: {fileID: 1885330197}
+  _enemyHand: {fileID: 1274422358}
 --- !u!1 &1521874152
 GameObject:
   m_ObjectHideFlags: 0

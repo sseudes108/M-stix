@@ -30,6 +30,7 @@ namespace Mistix{
 
         private void Update() {
             if(_canMove){
+                GetComponent<Collider>().enabled = false;
                 Move();
             }
         }
@@ -42,6 +43,13 @@ namespace Mistix{
             transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, rotationSpeed * Time.deltaTime);
 
             if(Vector3.Distance(transform.position, _targetPosition) < 0.02f){
+
+                //** Dont enable collider if the card is in the fusion line **//
+                var cardInFusionLine = GetComponentInParent<FusionPosition>();
+                if(cardInFusionLine == null){
+                    GetComponent<Collider>().enabled = true;
+                }
+
                 _canMove = false;
             }
         }
@@ -60,7 +68,7 @@ namespace Mistix{
 
         protected virtual void OnMouseDown(){
             if(!_selected){
-                if(TurnSystem.IsPlayerTurn() && _isPlayerCard){
+                if(TurnSystem.Instance.IsPlayerTurn() && _isPlayerCard){
                     SelectCard();
                 }
             }else{
@@ -73,12 +81,12 @@ namespace Mistix{
             transform.position += new Vector3(0, 0.3f, 0.3f);
             _selected = true;
 
-            if(TurnSystem.IsPlayerTurn() && _isPlayerCard){
+            if(TurnSystem.Instance.IsPlayerTurn() && _isPlayerCard){
                 CardSelector.Instance.AddCardToPlayerSelectedList(this);
             }
 
             //Enemy Turn and Enemy Card
-            if(!TurnSystem.IsPlayerTurn() && !_isPlayerCard){
+            if(!TurnSystem.Instance.IsPlayerTurn() && !_isPlayerCard){
                 CardSelector.Instance.AddCardToEnemySelectedList(this);
             }
         }
@@ -87,12 +95,12 @@ namespace Mistix{
             transform.position += new Vector3(0, -0.3f, -0.3f);
             _selected = false;
 
-            if(TurnSystem.IsPlayerTurn() && _isPlayerCard){
+            if(TurnSystem.Instance.IsPlayerTurn() && _isPlayerCard){
                 CardSelector.Instance.RemoveCardFromPlayerSelectedList(this);
             }
 
             //Enemy Turn and Enemy Card
-            if(!TurnSystem.IsPlayerTurn() && !_isPlayerCard){
+            if(!TurnSystem.Instance.IsPlayerTurn() && !_isPlayerCard){
                 CardSelector.Instance.AddCardToEnemySelectedList(this);
             }
         }

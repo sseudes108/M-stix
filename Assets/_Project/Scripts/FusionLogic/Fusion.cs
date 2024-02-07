@@ -1,13 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Mistix.Enums;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Mistix.FusionLogic{
     public class Fusion:MonoBehaviour{
         public static Fusion Instance;
         private Coroutine _fusionRoutine;
+
+        public Action OnFusionStarted, OnFusionEnded;
 
         [SerializeField] private Transform _card1InLinePosition, _card2InLinePosition;
 
@@ -25,6 +27,7 @@ namespace Mistix.FusionLogic{
         }
 
         private IEnumerator FusionRoutine(List<Card> selectedCards){
+            OnFusionStarted?.Invoke();
 
             MoveSelectedCardsToPosition(selectedCards);
 
@@ -95,28 +98,35 @@ namespace Mistix.FusionLogic{
                     }
 
                     //Fusion Success
-                    var randomIndex = Random.Range(0,possibleMonsterList.Count);
+                    var randomIndex = UnityEngine.Random.Range(0,possibleMonsterList.Count);
                     // InstantiateCard(CardCreator.Instance.CreateCard(_deck.GetDeckInUse()[randomIndex]));
+                    OnFusionEnded?.Invoke();
                 }
             }
         }
 
         private void MoveSelectedCardsToPosition(List<Card> selectedCards){
             var cardIndex = 0;
+
             foreach(var card in selectedCards){
-                card.GetComponent<Collider>().enabled = false;
+                var cardCollider = card.GetComponent<Collider>();
+                cardCollider.enabled = false;
+
                 if(cardIndex == 0){
                     card.transform.SetParent(_card1InLinePosition.transform);
                     card.MoveCard(_card1InLinePosition.position, _card1InLinePosition.rotation);
+
                 }else if(cardIndex == 1){
                     card.transform.SetParent(_card2InLinePosition.transform);
                     card.MoveCard(_card2InLinePosition.position, _card2InLinePosition.rotation);
+
                 }else{
                     card.transform.SetParent(_card2InLinePosition.transform);
                     var offsetPosition = 0.3f * cardIndex;
                     Vector3 finalPosition = new((float)(_card2InLinePosition.position.x + offsetPosition), _card2InLinePosition.position.y, _card2InLinePosition.position.z);
                     card.MoveCard(finalPosition, _card2InLinePosition.rotation);
                 }
+
                 cardIndex++;
             }
         }

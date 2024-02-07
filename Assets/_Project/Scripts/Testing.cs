@@ -32,8 +32,8 @@ namespace Mistix{
                 Fusion.Instance.StartFusionRoutine(selectedCards);
             }
 
-            _turnDebugText.text = @$"Turn: {TurnSystem.GetTurnNumber().ToString()}
-            IsPlayerTurn: {TurnSystem.IsPlayerTurn()}";
+            _turnDebugText.text = @$"Turn: {TurnSystem.Instance.GetTurnNumber().ToString()}
+            IsPlayerTurn: {TurnSystem.Instance.IsPlayerTurn()}";
         }
     }
 }
