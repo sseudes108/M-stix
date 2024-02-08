@@ -25,9 +25,9 @@ namespace Mistix{
             _monsterType = _monsterCardData.MonsterType;
         }
 
-        public override ECardType GetCardType(){
-            return ECardType.Monster;
-        }
+        // public override void SetCardType(){
+        //     _cardType = ECardType.Monster;
+        // }
 
         public int GetMonsterAtk(){
             return _monsterCardData.Atk;

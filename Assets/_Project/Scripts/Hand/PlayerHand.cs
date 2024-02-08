@@ -8,7 +8,7 @@ public class PlayerHand : Hand{
         do{
             var randomIndex = Random.Range(0, _deck.GetDeckInUse().Count);
                     
-            SetCardInHand(CardCreator.Instance.CreateCard(_deck.GetDeckInUse()[randomIndex], _deck, this));
+            SetCardInHand(BattleManager.Instance.CardCreator.CreateCard(_deck.GetDeckInUse()[randomIndex], _deck, this));
             yield return new WaitForSeconds(0.5f);
 
         }while(_freePositionsInHand.Count > 0);

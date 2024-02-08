@@ -2,17 +2,9 @@ using UnityEngine;
 
 namespace Mistix{
     public class TurnSystem : MonoBehaviour{
-        public static TurnSystem Instance;
         private static int _turn = 0;
         [SerializeField] private Transform _playerDeck, _enemyDeck;
         [SerializeField] private Transform _fusionCardSpawner;
-
-        private void Awake() {
-            if(Instance != null){
-                Errors.InstanceError(this);
-            }
-            Instance = this;
-        }
 
         public void ChangeTurn(){
             _turn++;

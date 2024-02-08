@@ -6,63 +6,56 @@ using UnityEngine;
 
 namespace Mistix.FusionLogic{
     public class Fusion:MonoBehaviour{
-        public static Fusion Instance;
-        private Coroutine _fusionRoutine;
 
+        private FusionCardsPlacement _fusionPlacement;
         public Action OnFusionStarted, OnFusionEnded;
 
-        [SerializeField] private Transform _card1InLinePosition, _card2InLinePosition;
-
         private void Awake() {
-            if(Instance != null){
-                Errors.InstanceError(this);
-            }
-            Instance = this;
+            _fusionPlacement = GetComponent<FusionCardsPlacement>();
         }
-
         public void StartFusionRoutine(List<Card> selectedCards){
-            if(_fusionRoutine == null){
-                StartCoroutine(FusionRoutine(selectedCards));
-            }
+            StartCoroutine(FusionRoutine(selectedCards));
         }
 
         private IEnumerator FusionRoutine(List<Card> selectedCards){
             OnFusionStarted?.Invoke();
-
-            MoveSelectedCardsToPosition(selectedCards);
+            _fusionPlacement.MoveSelectedCardsToPosition(selectedCards);
 
             yield return new WaitForSeconds(0.5f);
             var card1 = selectedCards[0];
             var card2 = selectedCards[1];
 
-            //Verificar se ambos são mostros//
-
             var card1Type = card1.GetCardType();
             var card2Type = card2.GetCardType();
 
-            if(card1Type == Enums.ECardType.Arcane){
+
+            //Arcane and Monster
+            if(card1Type == ECardType.Arcane){
                 Debug.Log("Fusion Failed - Card 1 Arcane");
-                StopCoroutine(_fusionRoutine);
+                FusionFailed(card1, card2);
             }
 
-            if(card1Type == Enums.ECardType.Monster && card2Type == Enums.ECardType.Arcane){
+            //Monster and Arcane
+            if(card1Type == ECardType.Monster && card2Type == ECardType.Arcane){
                 Debug.Log("Fusion Failed - Card 2 Arcane");
-                StopCoroutine(_fusionRoutine);
+                FusionFailed(card1, card2);
             }
-
-            if(card1Type == Enums.ECardType.Monster && card2Type == Enums.ECardType.Monster){
+            
+            //Monster and Monster
+            if(card1Type == ECardType.Monster && card2Type == ECardType.Monster){
                 var monster1 = card1.GetComponent<MonsterCard>();
                 var monster2 = card2.GetComponent<MonsterCard>();
 
                 var monster1Level = monster1.GetMonsterLevel();
                 var monster2Level = monster2.GetMonsterLevel();
 
-                //Level
+                //Differente levels
                 if(monster1Level != monster2Level){
                     Debug.Log("Fusion Failed - Levels are not equal");
-                    StopCoroutine(_fusionRoutine);
+                    FusionFailed(card1, card2);
                 }
 
+                //Levels equals
                 if(monster1Level == monster2Level){
                     var monster1Atk = monster1.GetMonsterAtk();
                     var monster2Atk = monster2.GetMonsterAtk();
@@ -77,13 +70,13 @@ namespace Mistix.FusionLogic{
                     List<MonsterCardSO> strongestMonsterList = new();
                     switch(strongestMonsterType){
                         case EMonsterType.Angel:
-                            strongestMonsterList = CardsDatabase.Instance.GetAngels();
+                            strongestMonsterList = BattleManager.Instance.CardsDatabase.GetAngels();
                         break;
                         case EMonsterType.Machine:
-                            strongestMonsterList = CardsDatabase.Instance.GetMachines();
+                            strongestMonsterList = BattleManager.Instance.CardsDatabase.GetMachines();
                         break;
                         case EMonsterType.Dragon:
-                            strongestMonsterList = CardsDatabase.Instance.GetDragons();
+                            strongestMonsterList = BattleManager.Instance.CardsDatabase.GetDragons();
                         break;
                         default:
                             Debug.Log("Error getting the strongest monster list");
@@ -98,37 +91,30 @@ namespace Mistix.FusionLogic{
                     }
 
                     //Fusion Success
+                    _fusionPlacement.MoveResultCardToPosition(card1);
+                    _fusionPlacement.MoveResultCardToPosition(card2);
+                    
+                    yield return new WaitForSeconds(0.3f);
+
+                    card1.gameObject.SetActive(false);
+                    card2.gameObject.SetActive(false);
+
+
                     var randomIndex = UnityEngine.Random.Range(0,possibleMonsterList.Count);
-                    // InstantiateCard(CardCreator.Instance.CreateCard(_deck.GetDeckInUse()[randomIndex]));
+                    var resultCard = BattleManager.Instance.CardCreator.CreateFusionedCard(possibleMonsterList[randomIndex]);
+                    _fusionPlacement.MoveResultCardToPosition(resultCard);
+
                     OnFusionEnded?.Invoke();
                 }
             }
         }
 
-        private void MoveSelectedCardsToPosition(List<Card> selectedCards){
-            var cardIndex = 0;
+        private void FusionFailed(Card card1, Card card2){
+            _fusionPlacement.MoveResultCardToPosition(card1);
+            _fusionPlacement.MoveResultCardToPosition(card2);
 
-            foreach(var card in selectedCards){
-                var cardCollider = card.GetComponent<Collider>();
-                cardCollider.enabled = false;
-
-                if(cardIndex == 0){
-                    card.transform.SetParent(_card1InLinePosition.transform);
-                    card.MoveCard(_card1InLinePosition.position, _card1InLinePosition.rotation);
-
-                }else if(cardIndex == 1){
-                    card.transform.SetParent(_card2InLinePosition.transform);
-                    card.MoveCard(_card2InLinePosition.position, _card2InLinePosition.rotation);
-
-                }else{
-                    card.transform.SetParent(_card2InLinePosition.transform);
-                    var offsetPosition = 0.3f * cardIndex;
-                    Vector3 finalPosition = new((float)(_card2InLinePosition.position.x + offsetPosition), _card2InLinePosition.position.y, _card2InLinePosition.position.z);
-                    card.MoveCard(finalPosition, _card2InLinePosition.rotation);
-                }
-
-                cardIndex++;
-            }
+            card1.gameObject.SetActive(false);
+            _fusionPlacement.MoveResultCardToPosition(card2);
         }
     }
 }

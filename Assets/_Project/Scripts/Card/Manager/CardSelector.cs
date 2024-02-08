@@ -3,18 +3,9 @@ using UnityEngine;
 
 namespace Mistix{
     public class CardSelector:MonoBehaviour{
-        public static CardSelector Instance;
 
         [SerializeField] private List<Card> _playerSelectedCards;
         [SerializeField] private List<Card> _enemySelectedCards;
-
-        private void Awake() {
-            if(Instance != null){
-                Errors.InstanceError(this);
-            }
-            Instance = this;
-        }
-
 
         //Player
         public void AddCardToPlayerSelectedList(Card selectedCard){

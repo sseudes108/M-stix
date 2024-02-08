@@ -28,12 +28,12 @@ namespace Mistix{
                 //     _card1,
                 //     _card2
                 // };
-                var selectedCards = CardSelector.Instance.GetSelectedPlayerCardList();
-                Fusion.Instance.StartFusionRoutine(selectedCards);
+                var selectedCards = BattleManager.Instance.CardSelector.GetSelectedPlayerCardList();
+                BattleManager.Instance.Fusion.StartFusionRoutine(selectedCards);
             }
 
-            _turnDebugText.text = @$"Turn: {TurnSystem.Instance.GetTurnNumber().ToString()}
-            IsPlayerTurn: {TurnSystem.Instance.IsPlayerTurn()}";
+            _turnDebugText.text = @$"Turn: {BattleManager.Instance.TurnSystem.GetTurnNumber().ToString()}
+            IsPlayerTurn: {BattleManager.Instance.TurnSystem.IsPlayerTurn()}";
         }
     }
 }

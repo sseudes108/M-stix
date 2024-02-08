@@ -1,10 +1,12 @@
 using System;
 using Mistix.Enums;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
 
 namespace Mistix{
     public class Card: MonoBehaviour{
-        private readonly ECardType _cardType;
+        protected ECardType _cardType;
         private readonly string _cardInfo;
 
         //Move
@@ -14,19 +16,27 @@ namespace Mistix{
 
         //Select
         private bool _selected = false;
-        private Vector3 _notSelectedPosition;
 
         protected bool _isPlayerCard;
 
         private void Start() {
-            var handPosition = GetComponentInParent<HandPosition>();
-            var handOwner = handPosition.GetComponentInParent<Hand>();
-            if(handOwner is PlayerHand){
-                _isPlayerCard = true;
+            TryGetComponent<Hand>(out Hand handOwner);
+
+            if(handOwner != null){
+                if(handOwner is PlayerHand){
+                    _isPlayerCard = true;
+                }else{
+                    _isPlayerCard = false;
+                }
             }else{
-                _isPlayerCard = false;
+                if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
+                    _isPlayerCard = true;
+                }else{
+                    _isPlayerCard = false;
+                }
             }
         }
+
 
         private void Update() {
             if(_canMove){
@@ -56,7 +66,17 @@ namespace Mistix{
 
         public virtual void SetUpCardData(ScriptableObject CardData){}
 
-        public virtual ECardType GetCardType(){return _cardType;}
+        public ECardType GetCardType(){
+            var isMonster = GetComponent<MonsterCard>();
+
+            if(isMonster != null){
+                _cardType = ECardType.Monster;
+            }else{
+                _cardType = ECardType.Arcane;
+            }
+
+            return _cardType;
+        }
 
         public virtual string GetCardInfo(){return _cardInfo;}
 
@@ -68,7 +88,7 @@ namespace Mistix{
 
         protected virtual void OnMouseDown(){
             if(!_selected){
-                if(TurnSystem.Instance.IsPlayerTurn() && _isPlayerCard){
+                if(BattleManager.Instance.TurnSystem.IsPlayerTurn() && _isPlayerCard){
                     SelectCard();
                 }
             }else{
@@ -81,13 +101,13 @@ namespace Mistix{
             transform.position += new Vector3(0, 0.3f, 0.3f);
             _selected = true;
 
-            if(TurnSystem.Instance.IsPlayerTurn() && _isPlayerCard){
-                CardSelector.Instance.AddCardToPlayerSelectedList(this);
+            if(BattleManager.Instance.TurnSystem.IsPlayerTurn() && _isPlayerCard){
+                BattleManager.Instance.CardSelector.AddCardToPlayerSelectedList(this);
             }
 
             //Enemy Turn and Enemy Card
-            if(!TurnSystem.Instance.IsPlayerTurn() && !_isPlayerCard){
-                CardSelector.Instance.AddCardToEnemySelectedList(this);
+            if(!BattleManager.Instance.TurnSystem.IsPlayerTurn() && !_isPlayerCard){
+                BattleManager.Instance.CardSelector.AddCardToEnemySelectedList(this);
             }
         }
 
@@ -95,13 +115,13 @@ namespace Mistix{
             transform.position += new Vector3(0, -0.3f, -0.3f);
             _selected = false;
 
-            if(TurnSystem.Instance.IsPlayerTurn() && _isPlayerCard){
-                CardSelector.Instance.RemoveCardFromPlayerSelectedList(this);
+            if(BattleManager.Instance.TurnSystem.IsPlayerTurn() && _isPlayerCard){
+                BattleManager.Instance.CardSelector.RemoveCardFromPlayerSelectedList(this);
             }
 
             //Enemy Turn and Enemy Card
-            if(!TurnSystem.Instance.IsPlayerTurn() && !_isPlayerCard){
-                CardSelector.Instance.AddCardToEnemySelectedList(this);
+            if(!BattleManager.Instance.TurnSystem.IsPlayerTurn() && !_isPlayerCard){
+                BattleManager.Instance.CardSelector.AddCardToEnemySelectedList(this);
             }
         }
     }

@@ -22,16 +22,8 @@ namespace Mistix{
             _effect.text = _arcaneCardData.Effect;
         }
 
-        public override ECardType GetCardType(){
-            return ECardType.Arcane;
-        }
-
         public override string GetCardInfo(){
-            return $"{GetCardType()}{_arcaneCardData.Name}";
-        }
-
-        protected void OnMouseDown() {
-            Debug.Log(GetCardInfo());
+            return $"{ECardType.Arcane}{_arcaneCardData.Name}";
         }
     }
 }

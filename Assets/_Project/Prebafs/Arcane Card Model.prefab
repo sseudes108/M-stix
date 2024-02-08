@@ -410,6 +410,7 @@ GameObject:
   - component: {fileID: 3157861272450470554}
   - component: {fileID: 5661784831563342660}
   - component: {fileID: 8548483455547499289}
+  - component: {fileID: -3284103323075644727}
   m_Layer: 3
   m_Name: Arcane Card Model
   m_TagString: Untagged
@@ -466,10 +467,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9fd061716d75e44b5c5f3351c939ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arcaneCardData: {fileID: 11400000, guid: e0ae539854a7e854bb3bd6c4a750be04, type: 2}
+  _arcaneCardData: {fileID: 11400000, guid: a1f026d7d529b2a4c8722c65ae45fc98, type: 2}
   _spriteRenderer: {fileID: 190372746527914956}
   _name: {fileID: 3607036888805716875}
   _effect: {fileID: 2133795377911837473}
+--- !u!114 &-3284103323075644727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183218443179840995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685d21563dee3e241b6c5c380e997ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6512111040484149498
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +852,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &2278404028906691052
 MonoBehaviour:

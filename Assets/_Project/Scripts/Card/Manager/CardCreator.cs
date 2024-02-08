@@ -2,16 +2,25 @@ using UnityEngine;
 
 namespace Mistix{
     public class CardCreator : MonoBehaviour{
-        public static CardCreator Instance;
         [SerializeField] MonsterCard _monsterCardPrefab;
         [SerializeField] ArcaneCard _arcaneCardPrefab;
 
-        private void Awake() {
-            
-            if(Instance != null){
-                Errors.InstanceError(this);
+
+        public Card CreateFusionedCard(ScriptableObject cardData){
+            if (cardData is MonsterCardSO){
+                MonsterCard newMonsterCard = _monsterCardPrefab;
+                newMonsterCard.SetUpCardData(cardData);
+
+                var newCard = Instantiate(newMonsterCard);
+                return newCard;
             }
-            Instance = this;
+            else{
+                ArcaneCard newArcaneCard = _arcaneCardPrefab;
+                newArcaneCard.SetUpCardData(cardData);
+
+                var newCard = Instantiate(newArcaneCard);
+                return newCard;
+            }
         }
 
         public Card CreateCard(ScriptableObject cardData, Deck _deckInUse, MonoBehaviour sender){
@@ -41,16 +50,16 @@ namespace Mistix{
         private static void CheckPositionToSpawnCard(MonoBehaviour sender, out Vector3 deckPosition, out Quaternion deckRotation){
 
             if (sender is PlayerHand){
-                deckPosition = TurnSystem.Instance.GetPlayerDeckPosition();
-                deckRotation = TurnSystem.Instance.GetPlayerDeckRotation();
+                deckPosition = BattleManager.Instance.TurnSystem.GetPlayerDeckPosition();
+                deckRotation = BattleManager.Instance.TurnSystem.GetPlayerDeckRotation();
             }
             else if (sender is EnemyHand){
-                deckPosition = TurnSystem.Instance.GetEnemyDeckPosition();
-                deckRotation = TurnSystem.Instance.GetEnemyDeckRotation();
+                deckPosition = BattleManager.Instance.TurnSystem.GetEnemyDeckPosition();
+                deckRotation = BattleManager.Instance.TurnSystem.GetEnemyDeckRotation();
             }
             else{
-                deckPosition = TurnSystem.Instance.GetfusionCardSpawnerPosition();
-                deckRotation = TurnSystem.Instance.GetfusionCardSpawnerRotation();
+                deckPosition = BattleManager.Instance.TurnSystem.GetfusionCardSpawnerPosition();
+                deckRotation = BattleManager.Instance.TurnSystem.GetfusionCardSpawnerRotation();
             }
         }
     }
