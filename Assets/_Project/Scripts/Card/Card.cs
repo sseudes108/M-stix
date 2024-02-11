@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using Mistix.Enums;
 using UnityEditor;
 using UnityEngine;
@@ -20,21 +21,7 @@ namespace Mistix{
         protected bool _isPlayerCard;
 
         private void Start() {
-            TryGetComponent<Hand>(out Hand handOwner);
-
-            if(handOwner != null){
-                if(handOwner is PlayerHand){
-                    _isPlayerCard = true;
-                }else{
-                    _isPlayerCard = false;
-                }
-            }else{
-                if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
-                    _isPlayerCard = true;
-                }else{
-                    _isPlayerCard = false;
-                }
-            }
+            SetIsPlayerCard();
         }
 
 
@@ -52,7 +39,7 @@ namespace Mistix{
             transform.position = Vector3.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, rotationSpeed * Time.deltaTime);
 
-            if(Vector3.Distance(transform.position, _targetPosition) < 0.02f){
+            if(Vector3.Distance(transform.position, _targetPosition) < 0.02f & transform.rotation == _targetRotation){
 
                 //** Dont enable collider if the card is in the fusion line **//
                 var cardInFusionLine = GetComponentInParent<FusionPosition>();
@@ -94,34 +81,41 @@ namespace Mistix{
             }else{
                 DeselectCard();
             }
-            GetCardInfo();
+            // GetCardInfo();
         }
 
         private void SelectCard(){
             transform.position += new Vector3(0, 0.3f, 0.3f);
             _selected = true;
 
-            if(BattleManager.Instance.TurnSystem.IsPlayerTurn() && _isPlayerCard){
-                BattleManager.Instance.CardSelector.AddCardToPlayerSelectedList(this);
-            }
+            BattleManager.Instance.CardSelector.AddCardToSelectedList(this);
 
-            //Enemy Turn and Enemy Card
-            if(!BattleManager.Instance.TurnSystem.IsPlayerTurn() && !_isPlayerCard){
-                BattleManager.Instance.CardSelector.AddCardToEnemySelectedList(this);
-            }
         }
 
         private void DeselectCard(){
             transform.position += new Vector3(0, -0.3f, -0.3f);
             _selected = false;
 
-            if(BattleManager.Instance.TurnSystem.IsPlayerTurn() && _isPlayerCard){
-                BattleManager.Instance.CardSelector.RemoveCardFromPlayerSelectedList(this);
-            }
+            BattleManager.Instance.CardSelector.RemoveCardFromSelectedList(this);
+        }
 
-            //Enemy Turn and Enemy Card
-            if(!BattleManager.Instance.TurnSystem.IsPlayerTurn() && !_isPlayerCard){
-                BattleManager.Instance.CardSelector.AddCardToEnemySelectedList(this);
+        public bool IsPlayerCard() => _isPlayerCard;
+
+        public void SetIsPlayerCard(){
+            TryGetComponent<Hand>(out Hand handOwner);
+
+            if(handOwner != null){
+                if(handOwner is PlayerHand){
+                    _isPlayerCard = true;
+                }else{
+                    _isPlayerCard = false;
+                }
+            }else{
+                if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
+                    _isPlayerCard = true;
+                }else{
+                    _isPlayerCard = false;
+                }
             }
         }
     }

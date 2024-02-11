@@ -7,28 +7,53 @@ namespace Mistix{
         [SerializeField] private List<Card> _playerSelectedCards;
         [SerializeField] private List<Card> _enemySelectedCards;
 
+        public void AddCardToSelectedList(Card cardToAdd){
+            if(cardToAdd.IsPlayerCard()){
+                // Debug.Log("Add to player selected list");
+                AddCardToPlayerSelectedList(cardToAdd);
+            }else{
+                // Debug.Log("Add to enemy selected list");
+                AddCardToEnemySelectedList(cardToAdd);
+            }
+        }
+
+        public void RemoveCardFromSelectedList(Card cardToRemove){
+            if(cardToRemove.IsPlayerCard()){
+                Debug.Log("Removed from player selected list");
+                RemoveCardFromPlayerSelectedList(cardToRemove);
+            }else{
+                Debug.Log("Removed from enemy selected list");
+                RemoveCardFromEnemySelectedList(cardToRemove);
+            }
+        }
+
+        public void AddResultCardToSelectedList(Card fusionedCard){
+            if(fusionedCard.IsPlayerCard()){
+                _playerSelectedCards.Insert(0, fusionedCard);
+            }else{
+                _enemySelectedCards.Insert(0, fusionedCard);
+            }
+        }
+
         //Player
-        public void AddCardToPlayerSelectedList(Card selectedCard){
-            Debug.Log($"{selectedCard.name} Add to list");
+        private void AddCardToPlayerSelectedList(Card selectedCard){
             _playerSelectedCards.Add(selectedCard);
         }
         
-        public void RemoveCardFromPlayerSelectedList(Card deselectedCard){
-            Debug.Log($"{deselectedCard.name} Removed from list");
+        private void RemoveCardFromPlayerSelectedList(Card deselectedCard){
             _playerSelectedCards.Remove(deselectedCard);
         }
-        public List<Card> GetSelectedPlayerCardList() => _playerSelectedCards;
-
+        
         //Enemy
-        public void AddCardToEnemySelectedList(Card selectedCard){
-            Debug.Log($"{selectedCard.name} Add to list");
+        private void AddCardToEnemySelectedList(Card selectedCard){
             _enemySelectedCards.Add(selectedCard);
         }
         
-        public void RemoveCardFromEnemySelectedList(Card deselectedCard){
-            Debug.Log($"{deselectedCard.name} Removed from list");
+        private void RemoveCardFromEnemySelectedList(Card deselectedCard){
             _enemySelectedCards.Remove(deselectedCard);
         }
+
+        public List<Card> GetSelectedPlayerCardList() => _playerSelectedCards;
         public List<Card> GetSelectedEnemyCardList() => _enemySelectedCards;
     }
 }
