@@ -19,10 +19,10 @@ namespace Mistix{
 
         public void RemoveCardFromSelectedList(Card cardToRemove){
             if(cardToRemove.IsPlayerCard()){
-                Debug.Log("Removed from player selected list");
+                // Debug.Log("Removed from player selected list");
                 RemoveCardFromPlayerSelectedList(cardToRemove);
             }else{
-                Debug.Log("Removed from enemy selected list");
+                // Debug.Log("Removed from enemy selected list");
                 RemoveCardFromEnemySelectedList(cardToRemove);
             }
         }

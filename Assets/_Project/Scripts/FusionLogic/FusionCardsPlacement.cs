@@ -28,7 +28,7 @@ public class FusionCardsPlacement : MonoBehaviour{
 
     //Move The position of hand to off the screen when fusion starts
     private void Fusion_OnFusionStarted(){
-        Debug.Log("Fusion_OnFusionStarted Invoked");
+        // Debug.Log("Fusion_OnFusionStarted Invoked");
 
         if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
             Vector3 targetPosition = new(0.72f,-1f,-3f);
@@ -41,7 +41,7 @@ public class FusionCardsPlacement : MonoBehaviour{
     }
     
     private void Fusion_OnFusionEnded(){
-        Debug.Log("Fusion_OnFusionEnded Invoked");
+        // Debug.Log("Fusion_OnFusionEnded Invoked");
 
     }
 
@@ -78,7 +78,7 @@ public class FusionCardsPlacement : MonoBehaviour{
                 card.transform.SetParent(_card2InLinePosition.transform);
                 
                 var offsetPosition = 0.3f * cardIndex;
-                Vector3 finalPosition = new((float)(_card2InLinePosition.position.x + offsetPosition), _card2InLinePosition.position.y, _card2InLinePosition.position.z);
+                Vector3 finalPosition = new(_card2InLinePosition.position.x + offsetPosition, _card2InLinePosition.position.y, _card2InLinePosition.position.z);
 
                 card.MoveCard(finalPosition, _card2InLinePosition.rotation);
             }

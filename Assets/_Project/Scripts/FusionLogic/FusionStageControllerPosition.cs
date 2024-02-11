@@ -35,7 +35,7 @@ public class FusionStageControllerPosition : MonoBehaviour{
     }
     
     private void Fusion_OnFusionEnded(){
-        Debug.Log("Fusion_OnFusionEnded Invoked");
+        // Debug.Log("Fusion_OnFusionEnded Invoked");
 
         if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
             Vector3 targetPosition = _playerHandStartPosition;

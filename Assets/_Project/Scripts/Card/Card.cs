@@ -21,7 +21,7 @@ namespace Mistix{
         protected bool _isPlayerCard;
 
         private void Start() {
-            SetIsPlayerCard();
+            SetUpCardOwner();
         }
 
 
@@ -101,7 +101,7 @@ namespace Mistix{
 
         public bool IsPlayerCard() => _isPlayerCard;
 
-        public void SetIsPlayerCard(){
+        public void SetUpCardOwner(){
             TryGetComponent<Hand>(out Hand handOwner);
 
             if(handOwner != null){
