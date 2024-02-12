@@ -16,10 +16,11 @@ namespace Mistix.FusionLogic{
         }
 
         public void StartFusionRoutine(List<Card> selectedCards){
-            _fusionRoutine = StartCoroutine(FusionRoutine(selectedCards));
+            StartCoroutine(FusionRoutine(selectedCards));
         }
 
         public IEnumerator FusionRoutine(List<Card> selectedCards){
+
             do{
                 OnFusionStarted?.Invoke();
                 _fusionPlacement.MoveSelectedCardsToPosition(selectedCards);
@@ -51,39 +52,42 @@ namespace Mistix.FusionLogic{
                 yield return new WaitForSeconds(0.5f);
 
                 //Monster and Monster
-                var monster1 = card1.GetComponent<MonsterCard>();
-                var monster2 = card2.GetComponent<MonsterCard>();
+                if(card1Type == ECardType.Monster && card2Type == ECardType.Monster){
+                    var monster1 = card1.GetComponent<MonsterCard>();
+                    var monster2 = card2.GetComponent<MonsterCard>();
 
-                var monster1Level = monster1.GetMonsterLevel();
-                var monster2Level = monster2.GetMonsterLevel();
+                    var monster1Level = monster1.GetMonsterLevel();
+                    var monster2Level = monster2.GetMonsterLevel();
 
-                //Levels not equals
-                if(monster1Level != monster2Level){
-                    Debug.Log($"Fusion Failed Lvls not equal - Card 1 - Lvl {monster1Level} Card 2 - Lvl {monster2Level}");
-                    FusionFailed(card1, card2, selectedCards);
-                }
-                yield return new WaitForSeconds(0.5f);
+                    //Levels not equals
+                    if(monster1Level != monster2Level){
+                        Debug.Log($"Fusion Failed Lvls not equal - Card 1 - Lvl {monster1Level} Card 2 - Lvl {monster2Level}");
+                        FusionFailed(card1, card2, selectedCards);
+                    }
+                    yield return new WaitForSeconds(0.5f);
 
+                    //levels equals
+                    if(monster1Level == monster2Level){
+                        var monster1Atk = monster1.GetMonsterAtk();
+                        var monster2Atk = monster2.GetMonsterAtk();
 
-                //levels equals
-                if(monster1Level == monster2Level){
-                    var monster1Atk = monster1.GetMonsterAtk();
-                    var monster2Atk = monster2.GetMonsterAtk();
+                        EMonsterType strongestMonsterType;
+                        if (monster2Atk < monster1Atk){
+                            strongestMonsterType = monster1.GetMonsterType();
+                        }else{
+                            strongestMonsterType = monster2.GetMonsterType();
+                        }
 
-                    EMonsterType strongestMonsterType;
-                    if (monster2Atk < monster1Atk){
-                        strongestMonsterType = monster1.GetMonsterType();
-                    }else{
-                        strongestMonsterType = monster2.GetMonsterType();
+                        var strongestMonsterTypeList = GetStrongestTypeList(strongestMonsterType);
+
+                        var possibleResultMonsters = GetPossibleResultMonsterList(strongestMonsterTypeList, monster1Level);
+
+                        Card resultCard = FusionCards(possibleResultMonsters);
+
+                        FusionSucess(resultCard, card1, card2, selectedCards);
+
                     }
 
-                    var strongestMonsterTypeList = GetStrongestTypeList(strongestMonsterType);
-
-                    var possibleResultMonsters = GetPossibleResultMonsterList(strongestMonsterTypeList, monster1Level);
-
-                    Card resultCard = FusionCards(possibleResultMonsters);
-
-                    FusionSucess(resultCard, card1, card2, selectedCards);
                 }
                 
             } while(selectedCards.Count > 0);
@@ -139,8 +143,9 @@ namespace Mistix.FusionLogic{
             if(selectedCards.Count != 0){
                 BattleManager.Instance.CardSelector.AddResultCardToSelectedList(card2);
             }else{
-                StopCoroutine(_fusionRoutine);
-                _fusionRoutine = null;
+                StopAllCoroutines();
+                // StopCoroutine(_fusionRoutine);
+                // _fusionRoutine = null;
             }
         }
 
@@ -158,8 +163,9 @@ namespace Mistix.FusionLogic{
             if(selectedCards.Count != 0){
                 BattleManager.Instance.CardSelector.AddResultCardToSelectedList(resultCard);
             }else{
-                StopCoroutine(_fusionRoutine);
-                _fusionRoutine = null;
+                StopAllCoroutines();
+                // StopCoroutine(_fusionRoutine);
+                // _fusionRoutine = null;
             }
         }
     }
