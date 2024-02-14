@@ -8,6 +8,13 @@ namespace Mistix{
 
         public void ChangeTurn(){
             _turn++;
+
+            if(IsPlayerTurn()){
+                CameraController.Instance.MoveCamera(CameraController.Instance.PlayerCamera);
+            }else{
+                CameraController.Instance.MoveCamera(CameraController.Instance.EnemyCamera);
+            }
+
         }
         public bool IsPlayerTurn(){
             return _turn % 2 == 0;

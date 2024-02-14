@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using Mistix;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class FusionCardsPlacement : MonoBehaviour{
     [SerializeField] private Transform _playerHand, _enemyHand;
-    [SerializeField] private Transform _resultCardPosition, _card1InLinePosition, _card2InLinePosition;
+    [SerializeField] private Transform _playerResultCardPosition, _playerCard1InLinePosition, _playerCard2InLinePosition;
+    [SerializeField] private Transform _enemyResultCardPosition, _enemyCard1InLinePosition, _enemyCard2InLinePosition;
+    private Transform _parent;
 
     private Vector3 _playerHandStartPosition, _enemyHandStartPosition;
 
@@ -58,38 +61,70 @@ public class FusionCardsPlacement : MonoBehaviour{
         }
     }
 
-
     //Move and organize the cards in fusion line position
     public void MoveSelectedCardsToPosition(List<Card> selectedCards){
+
+        var card1TargetPosition = new Vector3();
+        var card2TargetPosition = new Vector3();
+        var card1TargetRotation = new Quaternion();
+        var card2TargetRotation = new Quaternion();
+
         var cardIndex = 0;
+
+        if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
+            card1TargetPosition = _playerCard1InLinePosition.position;
+            card2TargetPosition = _playerCard2InLinePosition.position;
+            
+            card1TargetRotation = _playerCard1InLinePosition.rotation;
+            card2TargetRotation = _playerCard2InLinePosition.rotation;
+            _parent = _playerCard1InLinePosition;
+        }else{
+            card1TargetPosition = _enemyCard1InLinePosition.position;
+            card2TargetPosition = _enemyCard2InLinePosition.position;
+            
+            card1TargetRotation = _enemyCard1InLinePosition.rotation;
+            card2TargetRotation = _enemyCard2InLinePosition.rotation;
+            _parent = _enemyCard1InLinePosition;
+        }
 
         foreach(var card in selectedCards){
             card.GetComponent<Collider>().enabled = false;
-
             if(cardIndex == 0){
-                card.transform.SetParent(_card1InLinePosition.transform);
-                card.MoveCard(_card1InLinePosition.position, _card1InLinePosition.rotation);
+                card.transform.SetParent(_parent);
+                card.MoveCard(card1TargetPosition, card1TargetRotation);
 
             }else if(cardIndex == 1){
-                card.transform.SetParent(_card2InLinePosition.transform);
-                card.MoveCard(_card2InLinePosition.position, _card2InLinePosition.rotation);
+                card.transform.SetParent(_parent);
+                card.MoveCard(card2TargetPosition, card2TargetRotation);
 
             }else{
-                card.transform.SetParent(_card2InLinePosition.transform);
+                card.transform.SetParent(_parent);
                 
                 var offsetPosition = 0.3f * cardIndex;
-                Vector3 finalPosition = new(_card2InLinePosition.position.x + offsetPosition, _card2InLinePosition.position.y, _card2InLinePosition.position.z);
+                Vector3 finalPosition = new(card2TargetPosition.x + offsetPosition, card2TargetPosition.y, card2TargetPosition.z);
 
-                card.MoveCard(finalPosition, _card2InLinePosition.rotation);
+                card.MoveCard(finalPosition, card2TargetRotation);
             }
-
             cardIndex++;
         }
     }
 
     public void MoveResultCardToPosition(Card resultCard){
-        resultCard.MoveCard(_resultCardPosition.position, _resultCardPosition.rotation);
+        var resultCardPosition = new Vector3();
+        var resultCardRotation = new Quaternion();
 
-        resultCard.transform.SetParent(_resultCardPosition);
+        if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
+            resultCardPosition = _playerResultCardPosition.position;
+            resultCardRotation = _playerResultCardPosition.rotation;
+            _parent = _playerResultCardPosition;
+        }else{
+            resultCardPosition = _enemyResultCardPosition.position;
+            resultCardRotation = _enemyResultCardPosition.rotation;
+            _parent = _enemyResultCardPosition;
+        }
+
+        resultCard.MoveCard(resultCardPosition, resultCardRotation);
+
+        resultCard.transform.SetParent(_parent);
     }
 }

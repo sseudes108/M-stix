@@ -81,7 +81,7 @@ namespace Mistix{
             }else{
                 DeselectCard();
             }
-            // GetCardInfo();
+            GetCardInfo();
         }
 
         private void SelectCard(){

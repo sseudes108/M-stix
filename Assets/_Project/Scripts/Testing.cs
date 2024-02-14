@@ -24,19 +24,12 @@ namespace Mistix{
             }
 
             if(Input.GetKeyDown(KeyCode.F)){
-                // var selectedCards = new List<Card>{
-                //     _card1,
-                //     _card2
-                // };
                 var selectedCards = BattleManager.Instance.CardSelector.GetSelectedPlayerCardList();
                 BattleManager.Instance.Fusion.StartFusionRoutine(selectedCards);
             }
 
             if(Input.GetKeyDown(KeyCode.Y)){
-                CameraController.Instance.MoveCamera(CameraController.Instance.EnemyCamera);
-            }
-            if(Input.GetKeyDown(KeyCode.U)){
-                CameraController.Instance.MoveCamera(CameraController.Instance.PlayerCamera);
+                BattleManager.Instance.TurnSystem.ChangeTurn();
             }
 
             _turnDebugText.text = @$"Turn: {BattleManager.Instance.TurnSystem.GetTurnNumber().ToString()}
