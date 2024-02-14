@@ -32,6 +32,13 @@ namespace Mistix{
                 BattleManager.Instance.Fusion.StartFusionRoutine(selectedCards);
             }
 
+            if(Input.GetKeyDown(KeyCode.Y)){
+                CameraController.Instance.MoveCamera(CameraController.Instance.EnemyCamera);
+            }
+            if(Input.GetKeyDown(KeyCode.U)){
+                CameraController.Instance.MoveCamera(CameraController.Instance.PlayerCamera);
+            }
+
             _turnDebugText.text = @$"Turn: {BattleManager.Instance.TurnSystem.GetTurnNumber().ToString()}
             IsPlayerTurn: {BattleManager.Instance.TurnSystem.IsPlayerTurn()}";
         }
