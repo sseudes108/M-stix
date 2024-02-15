@@ -126,7 +126,7 @@ namespace Mistix.FusionLogic{
             var randomIndex = UnityEngine.Random.Range(0, possibleCards.Count);
             var resultCard = BattleManager.Instance.CardCreator.CreateFusionedCard(possibleCards[randomIndex]);
             _fusionPlacement.MoveResultCardToPosition(resultCard);
-            resultCard.SetUpCardOwner();
+            // resultCard.SetUpCardOwner();
             return resultCard;
         }
 

@@ -18,12 +18,11 @@ namespace Mistix{
         //Select
         private bool _selected = false;
 
-        protected bool _isPlayerCard;
+        [SerializeField] private bool _isPlayerCard;
 
-        private void Start() {
-            SetUpCardOwner();
-        }
-
+        // private void Awake() {
+        //     SetUpCardOwner();
+        // }
 
         private void Update() {
             if(_canMove){
@@ -73,27 +72,43 @@ namespace Mistix{
             _targetRotation = targetRotation;
         }
 
-        protected virtual void OnMouseDown(){
+        private void OnMouseDown(){
             if(!_selected){
-                if(BattleManager.Instance.TurnSystem.IsPlayerTurn() && _isPlayerCard){
-                    SelectCard();
-                }
+                SelectCard();
             }else{
                 DeselectCard();
             }
             GetCardInfo();
+            Debug.Log("OnMouseDown");
         }
 
         private void SelectCard(){
-            transform.position += new Vector3(0, 0.3f, 0.3f);
+
+            var newPosition = new Vector3();
+
+            if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
+                newPosition = new Vector3(0f, 0.3f, 0.3f);
+            }else{
+                newPosition.y = 1f;
+            }
+
+            transform.position += newPosition;
             _selected = true;
 
             BattleManager.Instance.CardSelector.AddCardToSelectedList(this);
-
         }
 
         private void DeselectCard(){
-            transform.position += new Vector3(0, -0.3f, -0.3f);
+            var newPosition = new Vector3();
+
+            if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
+                newPosition = new Vector3(0f, -0.3f, -0.3f);
+            }else{
+                newPosition.y = -1f;
+                newPosition.z = 0;
+            }
+            
+            transform.position += newPosition;
             _selected = false;
 
             BattleManager.Instance.CardSelector.RemoveCardFromSelectedList(this);
@@ -101,22 +116,23 @@ namespace Mistix{
 
         public bool IsPlayerCard() => _isPlayerCard;
 
-        public void SetUpCardOwner(){
-            TryGetComponent<Hand>(out Hand handOwner);
+        // public void SetUpCardOwner(){
+        //     TryGetComponent<Hand>(out Hand handOwner);
 
-            if(handOwner != null){
-                if(handOwner is PlayerHand){
-                    _isPlayerCard = true;
-                }else{
-                    _isPlayerCard = false;
-                }
-            }else{
-                if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
-                    _isPlayerCard = true;
-                }else{
-                    _isPlayerCard = false;
-                }
-            }
-        }
+        //     if(handOwner != null){
+        //         if(handOwner is PlayerHand){
+        //             _isPlayerCard = true;
+        //         }
+        //         if(handOwner is EnemyHand){
+        //             _isPlayerCard = false;
+        //         }
+        //     }else{
+        //         if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
+        //             _isPlayerCard = true;
+        //         }else{
+        //             _isPlayerCard = false;
+        //         }
+        //     }
+        // }
     }
 }

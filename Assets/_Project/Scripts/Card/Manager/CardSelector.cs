@@ -8,7 +8,7 @@ namespace Mistix{
         [SerializeField] private List<Card> _enemySelectedCards;
 
         public void AddCardToSelectedList(Card cardToAdd){
-            if(cardToAdd.IsPlayerCard()){
+            if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
                 // Debug.Log("Add to player selected list");
                 AddCardToPlayerSelectedList(cardToAdd);
             }else{
@@ -18,7 +18,7 @@ namespace Mistix{
         }
 
         public void RemoveCardFromSelectedList(Card cardToRemove){
-            if(cardToRemove.IsPlayerCard()){
+            if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
                 // Debug.Log("Removed from player selected list");
                 RemoveCardFromPlayerSelectedList(cardToRemove);
             }else{
