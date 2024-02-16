@@ -1,21 +1,22 @@
+using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Mistix{
     public class TurnSystem : MonoBehaviour{
-        private static int _turn = 0;
-        [SerializeField] private Transform _playerDeck, _enemyDeck;
-        [SerializeField] private Transform _fusionCardSpawner;
+        public Action OnTurnEnd;
+
+        private static int _turn;
+
+        private void Start() {
+            _turn = 0;
+        }
 
         public void ChangeTurn(){
             _turn++;
-
-            if(IsPlayerTurn()){
-                CameraController.Instance.MoveCamera(CameraController.Instance.PlayerCamera);
-            }else{
-                CameraController.Instance.MoveCamera(CameraController.Instance.EnemyCamera);
-            }
-
+            OnTurnEnd?.Invoke();
         }
+
         public bool IsPlayerTurn(){
             return _turn % 2 == 0;
         }
@@ -24,11 +25,11 @@ namespace Mistix{
             return _turn + 1;
         }
 
-        public Vector3 GetEnemyDeckPosition() => _enemyDeck.position;
-        public Quaternion GetEnemyDeckRotation() => _enemyDeck.rotation;
-        public Vector3 GetPlayerDeckPosition() => _playerDeck.position;
-        public Quaternion GetPlayerDeckRotation() => _playerDeck.rotation;
-        public Vector3 GetfusionCardSpawnerPosition() => _fusionCardSpawner.position;
-        public Quaternion GetfusionCardSpawnerRotation() => _fusionCardSpawner.rotation;
+        // public Vector3 GetEnemyDeckPosition() => _enemyDeck.position;
+        // public Quaternion GetEnemyDeckRotation() => _enemyDeck.rotation;
+        // public Vector3 GetPlayerDeckPosition() => _playerDeck.position;
+        // public Quaternion GetPlayerDeckRotation() => _playerDeck.rotation;
+        // public Vector3 GetfusionCardSpawnerPosition() => _fusionCardSpawner.position;
+        // public Quaternion GetfusionCardSpawnerRotation() => _fusionCardSpawner.rotation;
     }
 }

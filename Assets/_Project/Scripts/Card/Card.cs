@@ -1,9 +1,5 @@
-using System;
-using System.Security.Cryptography;
 using Mistix.Enums;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.UI;
 
 namespace Mistix{
     public class Card: MonoBehaviour{
@@ -17,12 +13,6 @@ namespace Mistix{
 
         //Select
         private bool _selected = false;
-
-        [SerializeField] private bool _isPlayerCard;
-
-        // private void Awake() {
-        //     SetUpCardOwner();
-        // }
 
         private void Update() {
             if(_canMove){
@@ -79,17 +69,15 @@ namespace Mistix{
                 DeselectCard();
             }
             GetCardInfo();
-            Debug.Log("OnMouseDown");
         }
 
         private void SelectCard(){
-
             var newPosition = new Vector3();
 
             if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
                 newPosition = new Vector3(0f, 0.3f, 0.3f);
             }else{
-                newPosition.y = 1f;
+                newPosition = new Vector3(0f, 0.3f, -0.3f);
             }
 
             transform.position += newPosition;
@@ -104,8 +92,7 @@ namespace Mistix{
             if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
                 newPosition = new Vector3(0f, -0.3f, -0.3f);
             }else{
-                newPosition.y = -1f;
-                newPosition.z = 0;
+                newPosition = new Vector3(0f, -0.3f, 0.3f);
             }
             
             transform.position += newPosition;
@@ -113,26 +100,5 @@ namespace Mistix{
 
             BattleManager.Instance.CardSelector.RemoveCardFromSelectedList(this);
         }
-
-        public bool IsPlayerCard() => _isPlayerCard;
-
-        // public void SetUpCardOwner(){
-        //     TryGetComponent<Hand>(out Hand handOwner);
-
-        //     if(handOwner != null){
-        //         if(handOwner is PlayerHand){
-        //             _isPlayerCard = true;
-        //         }
-        //         if(handOwner is EnemyHand){
-        //             _isPlayerCard = false;
-        //         }
-        //     }else{
-        //         if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
-        //             _isPlayerCard = true;
-        //         }else{
-        //             _isPlayerCard = false;
-        //         }
-        //     }
-        // }
     }
 }

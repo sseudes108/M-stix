@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour{
 
-    public static CameraController Instance;
-
     public Transform PlayerCamera => _playerCamera;
     public Transform EnemyCamera => _enemyCamera;
     
@@ -16,11 +14,12 @@ public class CameraController : MonoBehaviour{
     private Transform _targetPosition;
     private bool _canMove;
 
-    private void Awake() {
-        if(Instance != null){
-            Errors.InstanceError(this);
-        }
-        Instance = this;
+    private void OnEnable() {
+        BattleManager.Instance.TurnSystem.OnTurnEnd += TurnSystem_OnTurnEnd;
+    }
+
+    private void OnDisable() {
+        BattleManager.Instance.TurnSystem.OnTurnEnd -= TurnSystem_OnTurnEnd;
     }
 
     private void Update() {
@@ -37,6 +36,16 @@ public class CameraController : MonoBehaviour{
             }
         }
     }
+
+    private void TurnSystem_OnTurnEnd(){
+        Debug.Log("Camera Controller TurnSystem_OnTurnEnd");
+        if(BattleManager.Instance.TurnSystem){
+            MoveCamera(_playerCamera);
+        }else{
+            MoveCamera(_enemyCamera);
+        }
+    }
+
 
     public void MoveCamera(Transform targetPosition){
         _targetPosition = targetPosition;

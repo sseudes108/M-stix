@@ -28,7 +28,7 @@ namespace Mistix{
         }
 
         public void AddResultCardToSelectedList(Card fusionedCard){
-            if(fusionedCard.IsPlayerCard()){
+            if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
                 _playerSelectedCards.Insert(0, fusionedCard);
             }else{
                 _enemySelectedCards.Insert(0, fusionedCard);

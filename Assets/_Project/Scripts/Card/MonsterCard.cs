@@ -45,8 +45,8 @@ namespace Mistix{
             return $"Nome: {_monsterCardData.Name}, Level: {_monsterCardData.Level.ToString()}, Atk: {_monsterCardData.Atk.ToString()}";
         }
 
-        private new void OnMouseDown(){
-            Debug.Log("MonsterCard MouseDown");
+        private void OnMouseDown(){
+            
         }
     }
 }

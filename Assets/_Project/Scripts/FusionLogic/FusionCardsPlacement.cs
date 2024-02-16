@@ -1,17 +1,23 @@
 using System.Collections.Generic;
 using Mistix;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class FusionCardsPlacement : MonoBehaviour{
     [SerializeField] private Transform _playerHand, _enemyHand;
-    [SerializeField] private Transform _playerResultCardPosition, _playerCard1InLinePosition, _playerCard2InLinePosition;
-    [SerializeField] private Transform _enemyResultCardPosition, _enemyCard1InLinePosition, _enemyCard2InLinePosition;
+    
+    [Header("Player")]
+    [SerializeField] private Transform _playerResultCardPosition;    
+    [SerializeField] private Transform _playerCard1InLinePosition, _playerCard2InLinePosition;
+
+    [Header("Enemy")]
+    [SerializeField] private Transform _enemyResultCardPosition; 
+    [SerializeField] private Transform _enemyCard1InLinePosition, _enemyCard2InLinePosition;
     private Transform _parent;
 
     private Vector3 _playerHandStartPosition, _enemyHandStartPosition;
 
     private void OnEnable() {
+        BattleManager.Instance.TurnSystem.OnTurnEnd += TurnSystem_OnTurnEnd;
         BattleManager.Instance.Fusion.OnFusionStarted += Fusion_OnFusionStarted;
         BattleManager.Instance.Fusion.OnFusionEnded += Fusion_OnFusionEnded;
     }
@@ -22,7 +28,6 @@ public class FusionCardsPlacement : MonoBehaviour{
     }
 
     private void Start() {
-
         //Defalt hand Positions
         _playerHandStartPosition = _playerHand.position;
         _enemyHandStartPosition = _enemyHand.position;
@@ -31,14 +36,14 @@ public class FusionCardsPlacement : MonoBehaviour{
 
     //Move The position of hand to off the screen when fusion starts
     private void Fusion_OnFusionStarted(){
-        // Debug.Log("Fusion_OnFusionStarted Invoked");
+        Debug.Log("Fusion_OnFusionStarted Invoked");
 
         if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
             Vector3 targetPosition = new(0.72f,-1f,-3f);
             _playerHand.GetComponent<Hand>().MoveHand(targetPosition);
 
         }else{
-            Vector3 targetPosition = new(0.72f,-1f,-3f);
+            Vector3 targetPosition = new(-4.2f, -0.9f, 12f);
             _enemyHand.GetComponent<Hand>().MoveHand(targetPosition);
         }
     }
@@ -50,7 +55,6 @@ public class FusionCardsPlacement : MonoBehaviour{
 
     //Move The position of hand to default in the draw phase
     private void DrawPhaseStarts(){
-        
         if(BattleManager.Instance.TurnSystem.IsPlayerTurn()){
             Vector3 targetPosition = _playerHandStartPosition;
             _playerHand.GetComponent<Hand>().MoveHand(targetPosition);
@@ -126,5 +130,10 @@ public class FusionCardsPlacement : MonoBehaviour{
         resultCard.MoveCard(resultCardPosition, resultCardRotation);
 
         resultCard.transform.SetParent(_parent);
+    }
+
+    private void TurnSystem_OnTurnEnd(){
+        Debug.Log("TurnSystem_OnTurnEnd");
+        DrawPhaseStarts();
     }
 }

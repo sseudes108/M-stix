@@ -25,5 +25,9 @@ namespace Mistix{
         public override string GetCardInfo(){
             return $"{ECardType.Arcane}{_arcaneCardData.Name}";
         }
+
+        private void OnMouseDown(){
+            
+        }
     }
 }

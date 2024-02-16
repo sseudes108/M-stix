@@ -578,9 +578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c082eedab8eb759ea66257ba57327e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDeck: {fileID: 366016741}
-  _enemyDeck: {fileID: 1068359692}
-  _fusionCardSpawner: {fileID: 0}
 --- !u!4 &89340716
 Transform:
   m_ObjectHideFlags: 0
@@ -2969,6 +2966,7 @@ GameObject:
   - component: {fileID: 918633443}
   - component: {fileID: 918633444}
   - component: {fileID: 918633442}
+  - component: {fileID: 918633445}
   m_Layer: 0
   m_Name: Card Manager
   m_TagString: Untagged
@@ -3062,6 +3060,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 92f29110a10c53dd8965517a60a19594, type: 2}
   - {fileID: 11400000, guid: e544949f84202e2eebb813a85c999694, type: 2}
   _machines: []
+--- !u!114 &918633445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918633438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a5fca7c1f7ab844879027f89cf4fc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerDeck: {fileID: 404766728}
+  _enemyDeck: {fileID: 376695350}
+  _fusionCardSpawner: {fileID: 1779567653}
 --- !u!1001 &925696280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4707,6 +4720,7 @@ Transform:
   m_Children:
   - {fileID: 557430078}
   - {fileID: 918415491}
+  - {fileID: 1779567653}
   m_Father: {fileID: 282582114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1499042840
@@ -5343,6 +5357,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1768254478}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1779567652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1779567653}
+  m_Layer: 0
+  m_Name: Fusion Spawn Place
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1779567653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779567652}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1499042839}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1797104038
 GameObject:
   m_ObjectHideFlags: 0

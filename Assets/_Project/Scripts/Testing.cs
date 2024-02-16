@@ -24,12 +24,11 @@ namespace Mistix{
             }
 
             if(Input.GetKeyDown(KeyCode.F)){
-                var selectedCards = BattleManager.Instance.CardSelector.GetSelectedPlayerCardList();
-                BattleManager.Instance.Fusion.StartFusionRoutine(selectedCards);
+                BattleManager.Instance.StartFusion();
             }
 
             if(Input.GetKeyDown(KeyCode.Y)){
-                BattleManager.Instance.TurnSystem.ChangeTurn();
+                BattleManager.Instance.EndTurn();
             }
 
             _turnDebugText.text = @$"Turn: {BattleManager.Instance.TurnSystem.GetTurnNumber().ToString()}

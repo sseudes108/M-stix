@@ -20,7 +20,6 @@ namespace Mistix.FusionLogic{
         }
 
         public IEnumerator FusionRoutine(List<Card> selectedCards){
-
             do{
                 OnFusionStarted?.Invoke();
                 _fusionPlacement.MoveSelectedCardsToPosition(selectedCards);
@@ -124,7 +123,7 @@ namespace Mistix.FusionLogic{
 
         private Card FusionCards<T>(List<T> possibleCards) where T : ScriptableObject{
             var randomIndex = UnityEngine.Random.Range(0, possibleCards.Count);
-            var resultCard = BattleManager.Instance.CardCreator.CreateFusionedCard(possibleCards[randomIndex]);
+            var resultCard = BattleManager.Instance.CardCreator.CreateFusionedCard(possibleCards[randomIndex], this);
             _fusionPlacement.MoveResultCardToPosition(resultCard);
             // resultCard.SetUpCardOwner();
             return resultCard;
