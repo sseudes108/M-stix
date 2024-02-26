@@ -4,13 +4,16 @@ using Mistix.Enums;
 
 namespace Mistix{
     public class MonsterCard : Card{
-        [SerializeField] private MonsterCardSO _monsterCardData; 
-        [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private TextMeshProUGUI _monsterAtk, _monsterDef, _monsterLevel;
+        [SerializeField] private MonsterCardSO _monsterCardData;
+        // [SerializeField] private SpriteRenderer _spriteRenderer;
+        // [SerializeField] private TextMeshProUGUI _monsterAtk, _monsterDef, _monsterLevel;
         private EMonsterType _monsterType;
 
-        private void Start() {
+        private void Awake() {
             SetUpMonsterCard();
+        }
+
+        private void Start() {
         }
 
         public override void SetUpCardData(ScriptableObject CardData){
@@ -18,11 +21,12 @@ namespace Mistix{
         }
 
         public void SetUpMonsterCard(){
-            _monsterAtk.text = _monsterCardData.Atk.ToString();
-            _monsterDef.text = _monsterCardData.Def.ToString();
-            _monsterLevel.text = _monsterCardData.Level.ToString();
-            _spriteRenderer.sprite = _monsterCardData.Character;
+            // _monsterAtk.text = _monsterCardData.Atk.ToString();
+            // _monsterDef.text = _monsterCardData.Def.ToString();
+            // _monsterLevel.text = _monsterCardData.Level.ToString();
+            // _spriteRenderer.sprite = _monsterCardData.Character;
             _monsterType = _monsterCardData.MonsterType;
+            _ilustration = _monsterCardData.Ilustration;
         }
 
         // public override void SetCardType(){
@@ -43,6 +47,10 @@ namespace Mistix{
 
         public override string GetCardInfo(){
             return $"Nome: {_monsterCardData.Name}, Level: {_monsterCardData.Level.ToString()}, Atk: {_monsterCardData.Atk.ToString()}";
+        }
+
+        public override Texture2D GetCardIlustration(){
+            return _ilustration;
         }
 
         private void OnMouseDown(){

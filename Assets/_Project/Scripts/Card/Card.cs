@@ -5,6 +5,7 @@ namespace Mistix{
     public class Card: MonoBehaviour{
         protected ECardType _cardType;
         private readonly string _cardInfo;
+        [SerializeField] protected Texture2D _ilustration;
 
         //Move
         private bool _canMove;
@@ -56,6 +57,7 @@ namespace Mistix{
 
         public virtual string GetCardInfo(){return _cardInfo;}
 
+        public virtual Texture2D GetCardIlustration(){return _ilustration;}
         public void MoveCard(Vector3 targetPosition, Quaternion targetRotation){
             _canMove = true;
             _targetPosition = targetPosition;

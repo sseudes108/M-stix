@@ -9,6 +9,6 @@ namespace Mistix{
         public string Name;
         [Range(1,8)] public int Level;
         public int Atk, Def;
-        public Sprite Character;
+        public Texture2D Ilustration;
     }
 }
