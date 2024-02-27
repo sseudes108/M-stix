@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Frame:
-        m_Texture: {fileID: 2800000, guid: dfd15053cc59f1a4d88d0819d77f438f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 846ed8889b4cd214599ea7267f2a37bd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Frame_Mask:
@@ -83,6 +83,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _CastShadows: 1
     - _Cull: 2
+    - _Cutoff: 1
     - _DstBlend: 0
     - _Float: 0.5
     - _QueueControl: 0
