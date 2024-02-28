@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4552449be85ecbe43b45cf77f8766464, type: 3}
-  m_Name: Dragon 1
+  m_Script: {fileID: 11500000, guid: daf8ba680c59d07469ef1024c3d2face, type: 3}
+  m_Name: Kai!
   m_EditorClassIdentifier: 
-  MonsterType: 3
-  Name: Dragon 1
-  Level: 2
-  Atk: 2500
-  Def: 2000
-  Ilustration: {fileID: 2800000, guid: ab2f1827c8df95148bcb39f7c1be6ea4, type: 3}
+  Ilustration: {fileID: 2800000, guid: da8941cf7c4eb4d49964ca19eb155ee8, type: 3}
+  Name: Kai!
+  Effect: Destroy the attacking monster
+  ArcaneType: 1

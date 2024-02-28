@@ -37,6 +37,10 @@ namespace Mistix{
             return _monsterCardData.Atk;
         }
 
+        public int GetMonsterDef(){
+            return _monsterCardData.Def;
+        }
+
         public int GetMonsterLevel(){
             return _monsterCardData.Level;
         }

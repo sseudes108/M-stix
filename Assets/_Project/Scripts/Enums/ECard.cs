@@ -11,6 +11,7 @@ namespace Mistix.Enums{
     public enum EMonsterType{
         Angel = 1,
         Machine = 2,
-        Dragon = 3
+        Dragon = 3,
+        Beast = 4,
     }
 }

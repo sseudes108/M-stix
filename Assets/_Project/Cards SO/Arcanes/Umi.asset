@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ilustration: {fileID: 2800000, guid: 703336bcfd40d6d46822979123b6c5de, type: 3}
   Name: Umi
-  Effect: +500 water monsters
+  Effect: +500 Atk for all water monsters
   ArcaneType: 2

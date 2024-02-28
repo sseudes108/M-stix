@@ -32,6 +32,14 @@ namespace Mistix{
             return $"{ECardType.Arcane}{_arcaneCardData.Name}";
         }
 
+        public string GetCardName(){
+            return _arcaneCardData.Name;
+        }
+
+        public string GetCardEffectText(){
+            return _arcaneCardData.Effect;
+        }
+
         public EArcaneType GetArcaneType() => _arcaneType;
 
         public override Texture2D GetCardIlustration(){
