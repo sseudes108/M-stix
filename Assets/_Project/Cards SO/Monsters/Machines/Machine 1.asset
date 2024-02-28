@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4552449be85ecbe43b45cf77f8766464, type: 3}
   m_Name: Machine 1
   m_EditorClassIdentifier: 
-  MonsterType: 2
+  MonsterType: 1
   Name: Machine 1
   Level: 2
   Atk: 2200

@@ -50,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Frame:
-        m_Texture: {fileID: 2800000, guid: 360cea1234a4ef144b2c5ee860da169f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 546bff79c3155754e83c2d2f6f7aabb7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ilustration:
@@ -58,7 +58,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ilustration_Mask:
-        m_Texture: {fileID: 2800000, guid: 527efdbec203ecb4695284601251729f, type: 3}
+        m_Texture: {fileID: 2800000, guid: eb8b6f1b3d8890547a21a0904198ef92, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -81,7 +81,7 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 10
-    - _Foil_Effect_Velocity: 1
+    - _Foil_Effect_Velocity: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
@@ -90,7 +90,7 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Offset: {r: 1, g: 1, b: 0, a: 0}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Offset: {r: 0.99, g: 0.81, b: 0, a: 0}
+    - _Tiling: {r: 1.03, g: 1.09, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

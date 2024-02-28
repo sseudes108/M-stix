@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0018, y: -0.4665}
-  m_SizeDelta: {x: 32.8481, y: 9.9863}
+  m_AnchoredPosition: {x: -0.0014, y: -0.4727}
+  m_SizeDelta: {x: 34.4832, y: 11.1736}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4183726937953222738
 MeshRenderer:
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.6
+  m_fontSize: 44.85
   m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -210,8 +210,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0002, y: 0.519}
-  m_SizeDelta: {x: 33.3958, y: 5}
+  m_AnchoredPosition: {x: -0.001, y: -0.293}
+  m_SizeDelta: {x: 36.3376, y: 4.2109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5291702336404850761
 MeshRenderer:
@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 674708005241860760}
   - component: {fileID: 4906250843233521105}
   - component: {fileID: 4440310955510591682}
+  - component: {fileID: -651418012595306582}
   m_Layer: 0
   m_Name: ArcaneCard
   m_TagString: Untagged
@@ -487,3 +488,25 @@ MonoBehaviour:
   _lvl: {fileID: 0}
   _name: {fileID: 4960645230613465989}
   _effect: {fileID: 6582015218185450270}
+--- !u!64 &-651418012595306582
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2326150449548943894}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2548323895237073491, guid: f193791a53fd96948ad63fc874d6fc63, type: 3}
