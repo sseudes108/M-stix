@@ -5,7 +5,7 @@ namespace Mistix{
     public class Card: MonoBehaviour{
         protected ECardType _cardType;
         private readonly string _cardInfo;
-        [SerializeField] protected Texture2D _ilustration;
+        protected Texture2D _ilustration;
 
         //Move
         private bool _canMove;

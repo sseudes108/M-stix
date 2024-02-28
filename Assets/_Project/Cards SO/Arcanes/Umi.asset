@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf8ba680c59d07469ef1024c3d2face, type: 3}
   m_Name: Umi
   m_EditorClassIdentifier: 
-  Illustration: {fileID: 21300000, guid: 0b2f9e894851a2d408fe8e54c6b6ac91, type: 3}
+  Ilustration: {fileID: 2800000, guid: 703336bcfd40d6d46822979123b6c5de, type: 3}
   Name: Umi
-  Effect: Water +500
+  Effect: +500 water monsters
   ArcaneType: 2

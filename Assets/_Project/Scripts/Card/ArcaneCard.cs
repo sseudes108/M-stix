@@ -9,8 +9,11 @@ namespace Mistix{
         // [SerializeField] private TextMeshProUGUI _name, _effect;
         private EArcaneType _arcaneType;
 
-        private void Start() {
+        private void Awake() {
             SetUpArcaneCard();
+        }
+
+        private void Start() {
         }
 
         public override void SetUpCardData(ScriptableObject CardData){

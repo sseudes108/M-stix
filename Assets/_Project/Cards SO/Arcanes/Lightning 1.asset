@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf8ba680c59d07469ef1024c3d2face, type: 3}
   m_Name: Lightning 1
   m_EditorClassIdentifier: 
-  Illustration: {fileID: 21300000, guid: 6244000741d6948449cab2761af69737, type: 3}
-  Name: Forest
+  Ilustration: {fileID: 2800000, guid: 4257f2973c3bd5649b23ac543896a0fa, type: 3}
+  Name: Thunder 1
   Effect: 500 Def To all monsters
+  ArcaneType: 2

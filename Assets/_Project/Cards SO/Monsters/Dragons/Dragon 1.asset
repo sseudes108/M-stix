@@ -17,4 +17,4 @@ MonoBehaviour:
   Level: 2
   Atk: 2700
   Def: 1800
-  Character: {fileID: 21300000, guid: c60d4f16cdc5cfe4ebc2db2bba668526, type: 3}
+  Ilustration: {fileID: 2800000, guid: 91e698ed151eb5c4ab8e0af877d4156f, type: 3}
