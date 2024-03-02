@@ -20,4 +20,11 @@ public class FusionPositions : MonoBehaviour {
             cardIndex++;
         }
     }
+
+    public void FusionSucces_MoveCardMaterials(List<Card> cardsToMove){
+        foreach(var card in cardsToMove){
+            card.transform.SetParent(_resultCardPosition);
+            card.MoveCard(_resultCardPosition.position, _resultCardPosition.rotation);
+        }
+    }
 }

@@ -462,6 +462,10 @@ MonoBehaviour:
   _level: {fileID: 6747958113099069938}
   _attack: {fileID: 5433811842320668057}
   _defense: {fileID: 3983618186729299743}
+  _lvl: 0
+  _atk: 0
+  _def: 0
+  _monsterType: 0
 --- !u!114 &4912674022285877524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +481,7 @@ MonoBehaviour:
   _renderer: {fileID: 0}
   _card: {fileID: 0}
   _selectedCard: {fileID: 0}
+  _dissolveSpeed: 2
 --- !u!65 &4242230821440548837
 BoxCollider:
   m_ObjectHideFlags: 0

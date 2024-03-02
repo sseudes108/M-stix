@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Hand : MonoBehaviour{
     [SerializeField] protected List<Transform> _handPositions;
-    protected List<Transform> _freeHandPositions;
+    protected List<Transform> _freeHandPositions = new();
     protected Hand _hand;
     public Deck deck;
 

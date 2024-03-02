@@ -12,6 +12,7 @@ public class BattleManager : MonoBehaviour {
 
     public FusionPositions FusionPositions => _fusionManager.FusionPositions;
     public Fusion Fusion => _fusionManager.Fusion;
+    public FusionVisuals FusionVisuals => _fusionManager.FusionVisuals;
 
     public HandPlayer PlayerHand => _playerHand;
 

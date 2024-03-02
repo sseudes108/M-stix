@@ -12,11 +12,16 @@ public class Fusion : MonoBehaviour {
     }
 
     private IEnumerator FusionRoutine(List<Card> selectedCards){
+        float waitTime = 1f;
+
         //Move hand off camera
         OnFusionStart?.Invoke();
 
         //Disable Card Colliders
         DisableCardColliders(selectedCards);
+
+        //Reset Colors
+        BattleManager.Instance.FusionVisuals.ResetBorderColors(selectedCards);
 
         //Move cards to fusion line
         BattleManager.Instance.FusionPositions.MoveCardsToPosition(selectedCards);
@@ -27,10 +32,12 @@ public class Fusion : MonoBehaviour {
         //Precisa ser arrumado! da forma que está não é póssivel usar cartas de equipa na linha de fusão.
         if(card1.GetCardType() != card2.GetCardType()){
             Debug.Log("Fusion Failed. Diferent card types");
-            StopAllCoroutines();
+            // StopAllCoroutines();
         }
 
-        if(card1.GetCardType() != card2.GetCardType()){
+        if(card1.GetCardType() == card2.GetCardType()){
+            yield return new WaitForSeconds(waitTime);
+
             if(card1.GetCardType() == ECardType.Monster){
                 //FusionMonster
 
@@ -44,6 +51,8 @@ public class Fusion : MonoBehaviour {
                 var monster1Atk = monster1.GetAttack();
                 var monster2Atk = monster2.GetAttack();
 
+                yield return new WaitForSeconds(1);
+
                 //Fusion Failed
                 if(monster1Lvl != monster2Lvl){
                     Debug.Log("Fusion Failed. Levels are not equals");
@@ -51,6 +60,7 @@ public class Fusion : MonoBehaviour {
                 }
 
                 //Get Strongest Monster Type
+
                 EMonsterType strongestMonsterType;
                 if(monster1Atk > monster2Atk){
                     strongestMonsterType = monster1.GetMonsterType();
@@ -60,6 +70,8 @@ public class Fusion : MonoBehaviour {
 
                 //Get List of the strongest Monster Type
                 List<CardMonsterSO> strongestTypeList = new();
+
+                yield return new WaitForSeconds(waitTime);
 
                 switch(strongestMonsterType){
                     case EMonsterType.Angel:
@@ -81,31 +93,42 @@ public class Fusion : MonoBehaviour {
 
                 //List of the possible monsters (Correct lvl)
                 List<CardMonsterSO> possibleMonsters = new();
+                var targetLvl = monster1Lvl + 1;
+
                 foreach(var monster in strongestTypeList){
-                    if(monster.Level == monster1Lvl + 1){
+                    if(monster.Level == targetLvl){
                         possibleMonsters.Add(monster);
                     }
                 }
 
-                var randomIndex = UnityEngine.Random.Range(0, BattleManager.Instance.PlayerHand.deck.DeckInUse.Count);
-                var fusionedCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(BattleManager.Instance.PlayerHand.deck.DeckInUse[randomIndex]));
+                List<Card> materials = new(){card1,card2};
+                BattleManager.Instance.FusionPositions.FusionSucces_MoveCardMaterials(materials);
+                yield return new WaitForSeconds(waitTime / 3);
+                BattleManager.Instance.FusionVisuals.DissolveCards(materials);
+
+                yield return new WaitForSeconds(waitTime + 1);
+                card1.gameObject.SetActive(false);
+                card2.gameObject.SetActive(false);
+
+                var randomIndex = UnityEngine.Random.Range(0, possibleMonsters.Count);
+                var fusionedCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(possibleMonsters[randomIndex]));
                 fusionedCard.name = $"{fusionedCard.GetCardName()} - Fusioned";
                 
                 fusionedCard.transform.SetParent(BattleManager.Instance.FusionPositions.ResultCardPosition);
                 fusionedCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosition.position, 
-                    BattleManager.Instance.FusionPositions.ResultCardPosition.rotation);
+                    BattleManager.Instance.FusionPositions.ResultCardPosition.rotation
+                );
 
             }else if(card1.GetCardType() == ECardType.Arcane){
                 //FusionArcane
             }
         }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(waitTime);
         OnFusionEnd?.Invoke();
         Debug.Log("Fusion Ended");
-        Debug.Log("Coroutine did not stopped");
+        // Debug.Log("Coroutine did not stopped");
     }
-
 
     private void DisableCardColliders(List<Card> selectedCards){
         foreach(var card in selectedCards){

@@ -1,6 +1,7 @@
 public enum ECardType{
     Arcane = 1,
-    Monster = 2,   
+    Monster = 2,
+    Err = 3,
 }
 public enum EMonsterType{
     Angel = 1,

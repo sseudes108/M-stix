@@ -443,6 +443,7 @@ MonoBehaviour:
   _renderer: {fileID: 0}
   _card: {fileID: 0}
   _selectedCard: {fileID: 0}
+  _dissolveSpeed: 2
 --- !u!65 &-2807650119943163623
 BoxCollider:
   m_ObjectHideFlags: 0

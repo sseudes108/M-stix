@@ -5,8 +5,10 @@ public class CardMonster : Card {
     [SerializeField] private TextMeshProUGUI _level;
     [SerializeField] private TextMeshProUGUI _attack, _defense;
 
-    private int _lvl, _atk, _def;
-    private EMonsterType _monsterType;
+    // -- //
+    [SerializeField] private int _lvl, _atk, _def;
+    [SerializeField]private EMonsterType _monsterType;
+    //Needs to be Serialize Fields (Dont Know Why)//
 
     public override void SetCardData(ScriptableObject cardData){
         _cardData = cardData as CardMonsterSO;
@@ -17,8 +19,6 @@ public class CardMonster : Card {
         var monsterData = _cardData as CardMonsterSO;
 
         _ilustration = monsterData.Ilustration;
-
-        _cardType = ECardType.Monster;
 
         _level.text = monsterData.Level.ToString();
         _lvl = monsterData.Level;
@@ -32,10 +32,9 @@ public class CardMonster : Card {
         _monsterType = monsterData.MonsterType;
     }
 
-    // public CardMonsterSO GetCardType() => _cardData as CardMonsterSO;
-
     public int GetLevel() => _lvl;
     public int GetAttack() => _atk;
     public int GetDefense() => _def;
     public EMonsterType GetMonsterType() => _monsterType;
+    public override ECardType GetCardType(){return ECardType.Monster;}
 }

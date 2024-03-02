@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Card : MonoBehaviour {
     public Texture2D Ilustration => _ilustration;
+    public CardShaderController Shader => _shader;
 
-    [SerializeField] protected ScriptableObject _cardData;
-    protected ECardType _cardType;
-    
+    [SerializeField] protected ScriptableObject _cardData;    
     [SerializeField] protected Texture2D _ilustration;
     //Need to be serialized. Dont know why.
 
@@ -35,8 +34,9 @@ public class Card : MonoBehaviour {
     public virtual void SetCardData(ScriptableObject cardData){}
     public virtual void SetUpCardVariables(){}
     
+    public virtual ECardType GetCardType(){return ECardType.Err;}
+
     public string GetCardName() => _cardData.name;
-    public ECardType GetCardType() => _cardType;
 
     public void DisableCardCollider() {_collider.enabled = false;}
     public void EnableCollider() {_collider.enabled = true;}

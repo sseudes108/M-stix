@@ -1,10 +1,16 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CardShaderController : MonoBehaviour {
     [SerializeField] protected Renderer _renderer;
     [SerializeField] protected Card _card;
     [SerializeField] private Material _selectedCard;
+
+    private bool _dissolve = false;
+    private float _cutOff;
+    [SerializeField] float _dissolveSpeed;
 
     private void Awake() {
         _renderer = GetComponentInChildren<Renderer>();
@@ -14,6 +20,12 @@ public class CardShaderController : MonoBehaviour {
     private void Start() {
         SetCardImage();
         ResetBoarderColor();
+    }
+
+    private void Update() {
+        if(_dissolve){
+            DissolveCard();
+        }
     }
 
     private void SetCardImage(){
@@ -48,5 +60,21 @@ public class CardShaderController : MonoBehaviour {
         faceMat.SetFloat("_Intensity", 0);
 
         _renderer.materials = new[]{_renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2]};
+    }
+
+    public void DissolveCard(){
+        StartCoroutine(DissolveCardRoutine());
+    }
+
+    public IEnumerator DissolveCardRoutine(){
+        _dissolve = true;
+        _cutOff -= _dissolveSpeed * Time.deltaTime;
+
+        var faceMat = new Material(_renderer.sharedMaterials[1]);
+        faceMat.SetFloat("_CutOff", _cutOff);
+        _renderer.materials = new[]{_renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2]};
+
+        yield return new WaitForSeconds(1);
+        _dissolve = false;
     }
 }

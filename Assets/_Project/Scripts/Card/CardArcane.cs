@@ -15,9 +15,10 @@ public class CardArcane : Card {
     public override void SetUpCardVariables(){
         var arcaneData = _cardData as CardArcaneSO;
         _ilustration = arcaneData.Ilustration;
-        _cardType = ECardType.Arcane;
         _name.text = arcaneData.Name;
         _effect.text = arcaneData.Effect;
     }
+
+    public override ECardType GetCardType(){return ECardType.Arcane;}
 
 }
