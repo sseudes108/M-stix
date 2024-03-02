@@ -459,6 +459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardData: {fileID: 11400000, guid: 12a3ea6e7ed0241439cc0e51082405fe, type: 2}
   _ilustration: {fileID: 2800000, guid: 610af28bf0267094186557352eae61af, type: 3}
+  _statsCanvas: {fileID: 7187030712878497788}
   _level: {fileID: 6747958113099069938}
   _attack: {fileID: 5433811842320668057}
   _defense: {fileID: 3983618186729299743}
@@ -478,9 +479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c278dca86ffdd2d419cfff30d2343812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 0}
-  _card: {fileID: 0}
-  _selectedCard: {fileID: 0}
   _dissolveSpeed: 2
 --- !u!65 &4242230821440548837
 BoxCollider:

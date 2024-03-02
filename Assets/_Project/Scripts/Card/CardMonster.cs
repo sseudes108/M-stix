@@ -2,13 +2,18 @@ using TMPro;
 using UnityEngine;
 
 public class CardMonster : Card {
+    [Header("Stats")]
     [SerializeField] private TextMeshProUGUI _level;
     [SerializeField] private TextMeshProUGUI _attack, _defense;
 
     // -- //
-    [SerializeField] private int _lvl, _atk, _def;
-    [SerializeField]private EMonsterType _monsterType;
+    [HideInInspector] [SerializeField] private int _lvl, _atk, _def;
+    [HideInInspector] [SerializeField] private EMonsterType _monsterType;
     //Needs to be Serialize Fields (Dont Know Why)//
+
+    private void Start(){
+        SetUpCardVariables();
+    }
 
     public override void SetCardData(ScriptableObject cardData){
         _cardData = cardData as CardMonsterSO;

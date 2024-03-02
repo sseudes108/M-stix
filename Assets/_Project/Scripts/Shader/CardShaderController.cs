@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class CardShaderController : MonoBehaviour {
-    [SerializeField] protected Renderer _renderer;
-    [SerializeField] protected Card _card;
-    [SerializeField] private Material _selectedCard;
+    protected Renderer _renderer;
+    protected Card _card;
 
+    [Header("Dissolve")]
+    [SerializeField] private float _dissolveSpeed;
+    private float _cutOff = 1;
     private bool _dissolve = false;
-    private float _cutOff;
-    [SerializeField] float _dissolveSpeed;
+    private bool _solidify = false;
 
     private void Awake() {
         _renderer = GetComponentInChildren<Renderer>();
@@ -24,7 +23,10 @@ public class CardShaderController : MonoBehaviour {
 
     private void Update() {
         if(_dissolve){
-            DissolveCard();
+            DissolveCardEffect();
+        }
+        if(_solidify){
+            SolidifyCardEffect();
         }
     }
 
@@ -63,18 +65,42 @@ public class CardShaderController : MonoBehaviour {
     }
 
     public void DissolveCard(){
-        StartCoroutine(DissolveCardRoutine());
+        _dissolve = true;
     }
 
-    public IEnumerator DissolveCardRoutine(){
-        _dissolve = true;
-        _cutOff -= _dissolveSpeed * Time.deltaTime;
-
+    private void DissolveCardEffect(){
         var faceMat = new Material(_renderer.sharedMaterials[1]);
+
+        _cutOff = Mathf.MoveTowards(_cutOff, 0f, _dissolveSpeed * Time.deltaTime);
+
         faceMat.SetFloat("_CutOff", _cutOff);
         _renderer.materials = new[]{_renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2]};
 
-        yield return new WaitForSeconds(1);
-        _dissolve = false;
+        if(_cutOff < 0.5f){
+            _card.DisableStatTexts();
+            _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }else{
+            _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        }
+
+        if(_cutOff == 0f) {_dissolve = false;}
+    }
+
+    private void SolidifyCardEffect(){
+        var faceMat = new Material(_renderer.sharedMaterials[1]);
+
+        _cutOff = Mathf.MoveTowards(_cutOff, 1f, _dissolveSpeed * Time.deltaTime);
+
+        faceMat.SetFloat("_CutOff", _cutOff);
+        _renderer.materials = new[]{_renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2]};
+
+        if(_cutOff > 0.5f){
+            _card.EnableStatTexts();
+            _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        }else{
+            _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+
+        if(_cutOff == 1f) {_solidify = false;}
     }
 }

@@ -34,7 +34,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ilustration:
-        m_Texture: {fileID: 2800000, guid: 443fed11c6e1ce5409007d3005679fab, type: 3}
+        m_Texture: {fileID: 2800000, guid: c7e2e582e2aefb14f85b020f79cc223d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ilustration_Mask:
@@ -56,13 +56,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _CutOff: 1
-    - _Intensity: 1.5
+    - _Intensity: 0
     - _NoiseScale: 54
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - _Color: {r: 3.4822018, g: 2.944031, b: 1.0348052, a: 1}
-    - _SelectedBorderColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SelectedBorderColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5650879887643310066
