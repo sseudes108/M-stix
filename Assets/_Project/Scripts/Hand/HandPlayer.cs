@@ -6,6 +6,6 @@ public class HandPlayer : Hand {
         _hand = GetComponent<HandPlayer>();
     }
     protected override void GetDeck(){
-        _deck = GetComponentInChildren<Deck>();
+        deck = GetComponentInChildren<Deck>();
     }
 }

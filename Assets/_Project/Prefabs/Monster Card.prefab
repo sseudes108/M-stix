@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3000
+  m_text: 2500
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -419,6 +419,8 @@ GameObject:
   - component: {fileID: 5815561219565745873}
   - component: {fileID: 4881323329512931153}
   - component: {fileID: 4912674022285877524}
+  - component: {fileID: 4242230821440548837}
+  - component: {fileID: 5556612183310882995}
   m_Layer: 0
   m_Name: Monster Card
   m_TagString: Untagged
@@ -455,9 +457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9faf473dca3ca6b42bca92168fc86561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardData: {fileID: 11400000, guid: e501a5fa589aa5d4bb9c72d8a4a36b58, type: 2}
-  _ilustration: {fileID: 2800000, guid: 2b2af67cf6ba1f946a0d569560dd9e40, type: 3}
-  _canMove: 1
+  _cardData: {fileID: 11400000, guid: 12a3ea6e7ed0241439cc0e51082405fe, type: 2}
+  _ilustration: {fileID: 2800000, guid: 610af28bf0267094186557352eae61af, type: 3}
   _level: {fileID: 6747958113099069938}
   _attack: {fileID: 5433811842320668057}
   _defense: {fileID: 3983618186729299743}
@@ -475,6 +476,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 0}
   _card: {fileID: 0}
+  _selectedCard: {fileID: 0}
+--- !u!65 &4242230821440548837
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5393155775568532097}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.05, y: 3.22, z: 0.05}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5556612183310882995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5393155775568532097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d6e101b55d9064bb6bb15e5a3686ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6430186276225859077
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +625,7 @@ GameObject:
   - component: {fileID: 7706822515368031445}
   - component: {fileID: 7196160880598203949}
   - component: {fileID: 7039157632402986157}
+  - component: {fileID: 7132149262947909228}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -667,3 +703,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7132149262947909228
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785323881695778361}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02, y: 0.02, z: 0.02}
+  m_Center: {x: 0, y: 0, z: -0.0000000037252903}

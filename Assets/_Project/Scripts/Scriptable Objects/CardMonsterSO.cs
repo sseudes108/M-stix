@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CardMonsterSO", menuName = "CardMonsterSO", order = 0)]
 public class CardMonsterSO : ScriptableObject {
     public EMonsterType MonsterType;
+    public EAnimaType FirstAnima, SecondAnima;
     public Texture2D Ilustration;
     public string Name;
     public string Description;

@@ -4,18 +4,34 @@ using UnityEngine;
 
 public abstract class Hand : MonoBehaviour{
     [SerializeField] protected List<Transform> _handPositions;
-    [SerializeField] protected List<Transform> _freeHandPositions;
-    [SerializeField] protected Hand _hand;
-    [SerializeField] protected Deck _deck;
+    protected List<Transform> _freeHandPositions;
+    protected Hand _hand;
+    public Deck deck;
+
+    //Move
+    private Movement _movement;
+
+    private void OnEnable() {
+        BattleManager.Instance.Fusion.OnFusionStart += Fusion_OnFusionStart;
+        // BattleManager.Instance.Fusion.OnFusionEnd +=
+    }
+
+    private void OnDisable() {
+        BattleManager.Instance.Fusion.OnFusionStart -= Fusion_OnFusionStart;
+        // BattleManager.Instance.Fusion.OnFusionEnd -=
+    }
 
     private void Awake() {
         GetHand();
         GetDeck();
+        _movement = GetComponentInChildren<Movement>();
     }
 
     private void Start() {
         DrawCard();
     }
+    protected virtual void GetHand(){}
+    protected virtual void GetDeck(){}
 
     private void CheckFreePositionsInHand(){
         _freeHandPositions.Clear();
@@ -26,10 +42,7 @@ public abstract class Hand : MonoBehaviour{
             }
         }
     }
-
-    protected virtual void GetHand(){}
-    protected virtual void GetDeck(){}
-
+    
     public virtual void DrawCard(){
         StartCoroutine(DrawCardRoutine());
     }
@@ -42,21 +55,26 @@ public abstract class Hand : MonoBehaviour{
             cardsToDraw = _freeHandPositions.Count;
 
             //Card data
-            var randomIndex = Random.Range(0, _deck.DeckInUse.Count);
-            var randomCardData = _deck.DeckInUse[randomIndex];
+            var randomIndex = Random.Range(0, deck.DeckInUse.Count);
+            var randomCardData = deck.DeckInUse[randomIndex];
 
             //Spawn Position
-            _deck.transform.GetPositionAndRotation(out Vector3 spawnPosition, out Quaternion spawnRotation);
+            deck.transform.GetPositionAndRotation(out Vector3 spawnPosition, out Quaternion spawnRotation);
 
             //Instance
             var drewCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(randomCardData), spawnPosition, spawnRotation);
+            drewCard.name = drewCard.GetCardName();
+
+            //Remove card from deck
+            deck.RemoveCardFromDeck(randomCardData);
 
             //Set Parent
             drewCard.transform.SetParent(_freeHandPositions[0].transform);
+
             //Move to hand position
             drewCard.MoveCard(_freeHandPositions[0].transform.position, _freeHandPositions[0].transform.rotation);
 
-            //Ocupy place
+            //Ocupy place in hand
             _freeHandPositions[0].GetComponent<HandPosition>().SetHandPlaceOccupied();
 
             //Refresh positions
@@ -66,5 +84,13 @@ public abstract class Hand : MonoBehaviour{
             yield return new WaitForSeconds(0.5f);
             
         }while(cardsToDraw > 1);
+    }
+
+    protected virtual void MoveHand(Vector3 targetPosition){
+        _movement.SetTargetPosition(targetPosition, 5);
+    }
+
+    private void Fusion_OnFusionStart(){
+        MoveHand(BattleManager.Instance.FusionPositions.HandOffCameraPos.position);
     }
 }

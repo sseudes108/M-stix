@@ -1,40 +1,68 @@
+using System.Diagnostics;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Card : MonoBehaviour {
-    [SerializeField] protected ScriptableObject _cardData;
-    [SerializeField] protected Texture2D _ilustration;
-    public virtual void SetCardData(ScriptableObject cardData){}
-    public virtual void SetUpCardVariables(){}
     public Texture2D Ilustration => _ilustration;
 
-    protected bool _canMove = false;
-    private Vector3 _targetPosition;
-    private Quaternion _targetRotation;
+    [SerializeField] protected ScriptableObject _cardData;
+    protected ECardType _cardType;
+    
+    [SerializeField] protected Texture2D _ilustration;
+    //Need to be serialized. Dont know why.
+
+    //Shader
+    private CardShaderController _shader;
+    private Color _selectedColor = new(191, 162, 57);
+
+    //Physics
+    protected Collider _collider;
+    protected bool _isSelected = false;
+
+    //Movement
+    private Movement _movement;
 
     private void Awake() {
-        _canMove = false;
+        SetUpComponents();
     }
 
-    private void Update() {
-        if(_canMove){
-            Move();
-        }
+    private void SetUpComponents(){
+        _collider = GetComponentInChildren<Collider>();
+        _shader = GetComponentInChildren<CardShaderController>();
+        _movement = GetComponent<Movement>();
     }
 
-    private void Move(){
-        float moveSpeed = 5f;
-        float rotateSpeed = 300.0f;
-        transform.position = Vector3.Lerp(transform.position, _targetPosition, moveSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, rotateSpeed * Time.deltaTime);
+    public virtual void SetCardData(ScriptableObject cardData){}
+    public virtual void SetUpCardVariables(){}
+    
+    public string GetCardName() => _cardData.name;
+    public ECardType GetCardType() => _cardType;
 
-        if(Vector3.Distance(transform.position, _targetPosition) < 0.2f && transform.rotation == _targetRotation){
-            _canMove = false;
-        }
-    }
+    public void DisableCardCollider() {_collider.enabled = false;}
+    public void EnableCollider() {_collider.enabled = true;}
 
     public void MoveCard(Vector3 targetPosition, Quaternion targetRotation){
-        _canMove = true;
-        _targetPosition = targetPosition;
-        _targetRotation = targetRotation;
+        _movement.SetTargetPosition(targetPosition, targetRotation, 5);
+    }
+
+    protected void OnMouseDown() {
+        Vector3 newPos = new();
+
+        if(!_isSelected){
+            BattleManager.Instance.CardSelector.AddCardToSelectedList(this);
+            newPos = new (0,+0.3f,0);
+            _shader.SetBoarderColor(_selectedColor);
+
+            _isSelected = true;
+            
+        }else{
+            BattleManager.Instance.CardSelector.RemoveCardFromSelectedList(this);
+            newPos = new (0,-0.3f,0);
+            _shader.ResetBoarderColor();
+    
+            _isSelected = false;
+        }
+
+        transform.position += newPos;
     }
 }

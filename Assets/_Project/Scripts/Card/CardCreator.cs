@@ -18,5 +18,4 @@ public class CardCreator : MonoBehaviour {
         
         return newCard;
     }
-
 }

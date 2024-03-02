@@ -12,3 +12,13 @@ public enum EArcaneType{
     Magic = 1,
     Trap = 1,
 }
+
+public enum EAnimaType{
+    Venus = 1,
+    Mars = 2,
+    Saturn = 3,
+    Jupiter = 4,
+    Mercury  = 5,
+    Sun = 6,
+    Moon = 7
+}

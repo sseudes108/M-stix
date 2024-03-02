@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Destroy the Attacking Monster
+  m_text: Dark Monsters loses 500 Attack
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Kai
+  m_text: Gold Castle
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -386,6 +386,8 @@ GameObject:
   - component: {fileID: 3177665968823313727}
   - component: {fileID: 2054356691919396678}
   - component: {fileID: 2377074242140369596}
+  - component: {fileID: -2807650119943163623}
+  - component: {fileID: -8510782291562397222}
   m_Layer: 0
   m_Name: Arcane Card
   m_TagString: Untagged
@@ -422,9 +424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093406704fdc60a4da1e0b1a34e9c519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardData: {fileID: 11400000, guid: 8bd055605268987468b44ba488ab48cb, type: 2}
-  _ilustration: {fileID: 2800000, guid: 48809ea7726a5b04dabe2a1faf4f1ca7, type: 3}
-  _canMove: 1
+  _cardData: {fileID: 11400000, guid: 461cfe3987adb244e8f428b265376dd3, type: 2}
+  _ilustration: {fileID: 2800000, guid: 891ac098ed878794490fb4f16ff529d6, type: 3}
   _name: {fileID: 6411438032015808742}
   _effect: {fileID: 6740770476947275584}
 --- !u!114 &2377074242140369596
@@ -441,6 +442,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 0}
   _card: {fileID: 0}
+  _selectedCard: {fileID: 0}
+--- !u!65 &-2807650119943163623
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266507099630813383}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.05, y: 3.22, z: 0.05}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8510782291562397222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266507099630813383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d6e101b55d9064bb6bb15e5a3686ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8449145667442293490
 GameObject:
   m_ObjectHideFlags: 0

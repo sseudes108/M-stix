@@ -3,18 +3,35 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour {
     public static BattleManager Instance;
     [SerializeField] private CardManager _cardManager;
+    [SerializeField] private FusionManager _fusionManager;
+    [SerializeField] private HandPlayer _playerHand;
 
     public CardCreator CardCreator => _cardManager.CardCreator;
+    public CardSelector CardSelector => _cardManager.CardSelector;
+    public CardsDatabase CardsDatabase => _cardManager.CardsDatabase;
+
+    public FusionPositions FusionPositions => _fusionManager.FusionPositions;
+    public Fusion Fusion => _fusionManager.Fusion;
+
+    public HandPlayer PlayerHand => _playerHand;
+
+    
 
     private void Awake(){
-        SetSingletonInstance();
+        SetSingleton();
+        SetComponents();
     }
 
-    private void SetSingletonInstance(){
+    private void SetSingleton(){
         if (Instance != null){
             Debug.Log("More than one instance of BattleManager");
             Destroy(gameObject);
         }
         Instance = this;
+    }
+
+    private void SetComponents(){
+        _cardManager = GetComponentInChildren<CardManager>();
+        _fusionManager = GetComponentInChildren<FusionManager>();
     }
 }

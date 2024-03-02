@@ -16,5 +16,9 @@ public class Testing : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.R)){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        
+        if(Input.GetKeyDown(KeyCode.F)){
+            BattleManager.Instance.Fusion.StartFusionRoutine(BattleManager.Instance.CardSelector.GetSelectedCards());
+        }
     }
 }
