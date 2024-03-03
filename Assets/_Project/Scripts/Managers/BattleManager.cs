@@ -4,7 +4,15 @@ public class BattleManager : MonoBehaviour {
     public static BattleManager Instance;
     [SerializeField] private CardManager _cardManager;
     [SerializeField] private FusionManager _fusionManager;
+    [SerializeField] private UIBattleManager _uiBattleManager;
+
     [SerializeField] private HandPlayer _playerHand;
+    [SerializeField] private HandEnemy _enemyHand;
+
+    //Public Refs//
+
+    //UI
+    public UIBattleManager UIBattleManager => _uiBattleManager;
 
     //Card
     public CardCreator CardCreator => _cardManager.CardCreator;
@@ -15,13 +23,12 @@ public class BattleManager : MonoBehaviour {
     public Fusion Fusion => _fusionManager.Fusion;
     public FusionMonster FusionMonster => _fusionManager.FusionMonster;
     public FusionArcane FusionArcane => _fusionManager.FusionArcane;
-
-    //Fusion positions
     public FusionPositions FusionPositions => _fusionManager.FusionPositions;
     public FusionVisuals FusionVisuals => _fusionManager.FusionVisuals;
 
     //Hands
     public HandPlayer PlayerHand => _playerHand;
+    public HandEnemy EnemyHand => _enemyHand;
 
     private void Awake(){
         SetSingleton();
@@ -39,5 +46,6 @@ public class BattleManager : MonoBehaviour {
     private void SetComponents(){
         _cardManager = GetComponentInChildren<CardManager>();
         _fusionManager = GetComponentInChildren<FusionManager>();
+        _uiBattleManager = GetComponentInChildren<UIBattleManager>();
     }
 }

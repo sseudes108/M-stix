@@ -67,10 +67,14 @@ public class FusionMonster : Fusion {
                 case EMonsterType.Golem:
                     strongestTypeList = BattleManager.Instance.CardsDatabase.Golens;
                 break;
+                case EMonsterType.She:
+                    strongestTypeList = BattleManager.Instance.CardsDatabase.She;
+                break;
                 default:
                     Debug.Log("Error. Type not found");
                 break;
             }
+            Debug.Log($"Stongest Monster Type {strongestMonsterType}");
 
             //List of the possible monsters (Correct lvl)
             List<CardMonsterSO> possibleMonsters = new();

@@ -9,10 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25951863083db9a44a4de7dc845ae3ff, type: 3}
-  m_Name: Arcane 7
+  m_Script: {fileID: 11500000, guid: 649a865fa6bd933409a88f9eef29c96a, type: 3}
+  m_Name: SH 2
   m_EditorClassIdentifier: 
-  ArcaneType: 3
-  Ilustration: {fileID: 2800000, guid: bd9adea594b324a40afc05810b4462bc, type: 3}
-  Name: Black Pendant
-  Effect: A Saturn Equiped Monster Gain 500 Atk
+  MonsterType: 5
+  FirstAnima: 1
+  SecondAnima: 2
+  Ilustration: {fileID: 2800000, guid: 6c367946760d2ca4ab36fff324777b89, type: 3}
+  Name: Sh
+  Description: Sh
+  Level: 2
+  Attack: 5000
+  Defense: 5000

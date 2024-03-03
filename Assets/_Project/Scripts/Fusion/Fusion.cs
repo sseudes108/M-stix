@@ -39,7 +39,7 @@ public class Fusion : MonoBehaviour {
 
             //Precisa ser arrumado! da forma que está não é póssivel usar cartas de equipe na linha de fusão.
             if(card1.GetCardType() != card2.GetCardType()){
-                Debug.Log("Fusion Failed - Lvls are not equals");
+                Debug.Log("Fusion Failed - Types are not equals");
                 //Remove Cards From line
                 BattleManager.Instance.Fusion.RemoveCardsFromFusionLine(card1, card2);
 

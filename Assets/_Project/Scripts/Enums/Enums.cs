@@ -8,10 +8,12 @@ public enum EMonsterType{
     Dragon = 2,
     Machina = 3,
     Golem = 4,
+    She = 5,
 }
 public enum EArcaneType{
     Magic = 1,
-    Trap = 1,
+    Trap = 2,
+    Equip = 3,
 }
 
 public enum EAnimaType{

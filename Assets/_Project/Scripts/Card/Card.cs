@@ -62,7 +62,7 @@ public class Card : MonoBehaviour {
     }
 
 
-    protected void OnMouseDown() {
+    private void OnMouseDown() {
         Vector3 newPos = new();
 
         if(!_isSelected){
@@ -81,5 +81,9 @@ public class Card : MonoBehaviour {
         }
 
         transform.position += newPos;
+    }
+
+    private void OnMouseOver() {
+        BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(Ilustration);
     }
 }
