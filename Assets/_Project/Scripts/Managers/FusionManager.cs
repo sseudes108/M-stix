@@ -7,6 +7,7 @@ public class FusionManager : MonoBehaviour {
     [SerializeField] private Fusion _fusion;
     [SerializeField] private FusionMonster _fusionMonster;
     [SerializeField] private FusionArcane _fusionArcane;
+    [SerializeField] private FusionEquip _fusionEquip;
 
 
     public FusionPositions FusionPositions => _fusionPositions;
@@ -15,6 +16,7 @@ public class FusionManager : MonoBehaviour {
     public Fusion Fusion => _fusion;
     public FusionMonster FusionMonster => _fusionMonster;
     public FusionArcane FusionArcane => _fusionArcane;
+    public FusionEquip FusionEquip => _fusionEquip;
 
     private void Awake() {
         _fusionPositions = GetComponent<FusionPositions>();
@@ -24,5 +26,6 @@ public class FusionManager : MonoBehaviour {
 
         _fusionMonster = GetComponent<FusionMonster>();
         _fusionArcane = GetComponent<FusionArcane>();
+        _fusionEquip = GetComponent<FusionEquip>();
     }
 }

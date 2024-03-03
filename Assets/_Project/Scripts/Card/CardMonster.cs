@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class CardMonster : Card {
     // -- //
     [HideInInspector] [SerializeField] private int _lvl, _atk, _def;
     [HideInInspector] [SerializeField] private EMonsterType _monsterType;
+    [HideInInspector] [SerializeField] private List<EAnimaType> _animas;
     //Needs to be Serialize Fields (Dont Know Why)//
 
     private void Start(){
@@ -25,21 +27,39 @@ public class CardMonster : Card {
 
         _ilustration = monsterData.Ilustration;
 
-        _level.text = monsterData.Level.ToString();
-        _lvl = monsterData.Level;
-
         _attack.text = monsterData.Attack.ToString();
         _atk = monsterData.Attack;
 
         _defense.text = monsterData.Defense.ToString();
         _def = monsterData.Defense;
 
+        _level.text = monsterData.Level.ToString();
+        _lvl = monsterData.Level;
+
+        _animas = new(){
+            monsterData.FirstAnima,
+            monsterData.SecondAnima,
+        };
+
         _monsterType = monsterData.MonsterType;
+    }
+
+    public void ChangeMonsterStats(int newAtk, int newDef, int newLvl){
+        _atk = newAtk;
+        _def = newDef;
+        _lvl = newLvl;
+
+        //UI Card
+        _attack.text = newAtk.ToString();
+        _defense.text = newDef.ToString();
+        _level.text = newLvl.ToString();
     }
 
     public int GetLevel() => _lvl;
     public int GetAttack() => _atk;
     public int GetDefense() => _def;
+    public (int, int, int) GetMonsterStats(){return (GetAttack(), GetDefense(), GetLevel());}
+    public List<EAnimaType> GetAnimas() => _animas;
     public EMonsterType GetMonsterType() => _monsterType;
     public override ECardType GetCardType(){return ECardType.Monster;}
 }

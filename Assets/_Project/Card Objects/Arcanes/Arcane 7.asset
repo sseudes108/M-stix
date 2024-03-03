@@ -16,3 +16,7 @@ MonoBehaviour:
   Ilustration: {fileID: 2800000, guid: bd9adea594b324a40afc05810b4462bc, type: 3}
   Name: Black Pendant
   Effect: A Saturn Equiped Monster Gain 500 Atk
+  AnimaLink: 1
+  AttackModifier: 500
+  DefModifier: 0
+  LevelModifier: 0

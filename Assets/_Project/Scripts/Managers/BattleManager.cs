@@ -23,6 +23,8 @@ public class BattleManager : MonoBehaviour {
     public Fusion Fusion => _fusionManager.Fusion;
     public FusionMonster FusionMonster => _fusionManager.FusionMonster;
     public FusionArcane FusionArcane => _fusionManager.FusionArcane;
+    public FusionEquip FusionEquip => _fusionManager.FusionEquip;
+
     public FusionPositions FusionPositions => _fusionManager.FusionPositions;
     public FusionVisuals FusionVisuals => _fusionManager.FusionVisuals;
 

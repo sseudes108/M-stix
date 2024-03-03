@@ -1,14 +1,20 @@
 public enum ECardType{
     Arcane = 1,
     Monster = 2,
+
+    //
     Err = 3,
+    //
 }
 public enum EMonsterType{
     Angel = 1,
     Dragon = 2,
     Machina = 3,
     Golem = 4,
+
+    //
     She = 5,
+    //
 }
 public enum EArcaneType{
     Magic = 1,

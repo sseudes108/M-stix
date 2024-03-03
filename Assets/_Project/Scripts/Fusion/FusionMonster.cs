@@ -109,6 +109,7 @@ public class FusionMonster : Fusion {
             //Move fusioned card to position
             fusionedCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosition);
 
+            // var teste = BattleManager.Instance.Fusion.GetCardsInFusionLine();
             if(BattleManager.Instance.Fusion.GetCardsInFusionLine() > 0){
                 BattleManager.Instance.Fusion.AddCardToFusionLine(fusionedCard);
             }

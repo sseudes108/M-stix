@@ -16,3 +16,7 @@ MonoBehaviour:
   Ilustration: {fileID: 2800000, guid: 18a40cac981e1974c8a04d5145ac38e7, type: 3}
   Name: Fire Pedant
   Effect: A Mars Monsters Gain 500 Atk
+  AnimaLink: 2
+  AttackModifier: -500
+  DefenseModifier: 0
+  LevelModifier: 0

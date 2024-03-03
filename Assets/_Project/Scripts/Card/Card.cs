@@ -61,7 +61,6 @@ public class Card : MonoBehaviour {
         _movement.SetTargetPosition(targetPosition, targetRotation, moveSpeed);
     }
 
-
     private void OnMouseDown() {
         Vector3 newPos = new();
 
