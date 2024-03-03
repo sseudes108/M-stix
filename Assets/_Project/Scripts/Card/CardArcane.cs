@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class CardArcane : Card {
 
+    [Header("Stats")]
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _effect;
 
     public override void SetCardData(ScriptableObject cardData){
         _cardData = cardData as CardArcaneSO;
-
         SetUpCardVariables();
     }
 
@@ -20,5 +20,4 @@ public class CardArcane : Card {
     }
 
     public override ECardType GetCardType(){return ECardType.Arcane;}
-
 }

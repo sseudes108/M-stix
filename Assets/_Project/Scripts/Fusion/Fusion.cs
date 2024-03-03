@@ -7,6 +7,9 @@ public class Fusion : MonoBehaviour {
 
     public Action OnFusionStart, OnFusionEnd;
 
+    int _cardsInFusionLine;
+    [SerializeField] List<Card> _fusionLine;
+
     public void StartFusionRoutine(List<Card> selectedCards){
         StartCoroutine(FusionRoutine(selectedCards));
     }
@@ -20,119 +23,116 @@ public class Fusion : MonoBehaviour {
         //Disable Card Colliders
         DisableCardColliders(selectedCards);
 
-        //Reset Colors
+        //Reset Border card Colors
         BattleManager.Instance.FusionVisuals.ResetBorderColors(selectedCards);
 
         //Move cards to fusion line
-        BattleManager.Instance.FusionPositions.MoveCardsToPosition(selectedCards);
+        // BattleManager.Instance.FusionPositions.MoveCardsToPosition(selectedCards);
 
-        var card1 = selectedCards[0];
-        var card2 = selectedCards[1];
+        _fusionLine.Clear();
+        _fusionLine = selectedCards;
 
-        //Precisa ser arrumado! da forma que está não é póssivel usar cartas de equipa na linha de fusão.
-        if(card1.GetCardType() != card2.GetCardType()){
-            Debug.Log("Fusion Failed. Diferent card types");
-            // StopAllCoroutines();
-        }
+        do{
+            Debug.Log("Do");
+            //Move cards to fusion line
+            BattleManager.Instance.FusionPositions.MoveCardsToPosition(selectedCards);
 
-        if(card1.GetCardType() == card2.GetCardType()){
-            yield return new WaitForSeconds(waitTime);
+            var card1 = _fusionLine[0];
+            var card2 = _fusionLine[1];
 
-            if(card1.GetCardType() == ECardType.Monster){
-                //FusionMonster
+            //Precisa ser arrumado! da forma que está não é póssivel usar cartas de equipe na linha de fusão.
+            if(card1.GetCardType() != card2.GetCardType()){
+                yield return new WaitForSeconds(0.5f);
+                BattleManager.Instance.FusionVisuals.DissolveCard(card1);
+                Debug.Log("Fusion Failed. Diferent card types");
+                // StopAllCoroutines();
+            }
 
-                //Variables
-                var monster1 = card1 as CardMonster;
-                var monster2 = card2 as CardMonster;
-
-                var monster1Lvl = monster1.GetLevel();
-                var monster2Lvl = monster2.GetLevel();
-
-                var monster1Atk = monster1.GetAttack();
-                var monster2Atk = monster2.GetAttack();
-
-                yield return new WaitForSeconds(1);
-
-                //Fusion Failed
-                if(monster1Lvl != monster2Lvl){
-                    Debug.Log("Fusion Failed. Levels are not equals");
-                    StopAllCoroutines();
-                }
-
-                //Get Strongest Monster Type
-
-                EMonsterType strongestMonsterType;
-                if(monster1Atk > monster2Atk){
-                    strongestMonsterType = monster1.GetMonsterType();
-                }else{
-                    strongestMonsterType = monster2.GetMonsterType();
-                }
-
-                //Get List of the strongest Monster Type
-                List<CardMonsterSO> strongestTypeList = new();
-
+            if(card1.GetCardType() == card2.GetCardType()){
                 yield return new WaitForSeconds(waitTime);
 
-                switch(strongestMonsterType){
-                    case EMonsterType.Angel:
-                        strongestTypeList = BattleManager.Instance.CardsDatabase.Angels;
-                    break;
-                    case EMonsterType.Machina:
-                        strongestTypeList = BattleManager.Instance.CardsDatabase.Machinas;
-                    break;
-                    case EMonsterType.Dragon:
-                        strongestTypeList = BattleManager.Instance.CardsDatabase.Dragons;
-                    break;
-                    case EMonsterType.Golem:
-                        strongestTypeList = BattleManager.Instance.CardsDatabase.Golens;
-                    break;
-                    default:
-                        Debug.Log("Error. Type not found");
-                    break;
+                if(card1.GetCardType() == ECardType.Monster){
+                    //FusionMonster
+                    MonsterFusion(card1 as CardMonster, card2 as CardMonster);
+                    RemoveCardsFromFusionLine(card1, card2);
+
+                    yield return new WaitForSeconds(5);
+
+
+                }else if(card1.GetCardType() == ECardType.Arcane){
+                    //FusionArcane
+                    ArcaneFusion(card1 as CardArcane, card2 as CardArcane);
+                    RemoveCardsFromFusionLine(card1, card2);
+
+                    yield return new WaitForSeconds(5);
                 }
+            }    
+        }while(selectedCards.Count > 0);
 
-                //List of the possible monsters (Correct lvl)
-                List<CardMonsterSO> possibleMonsters = new();
-                var targetLvl = monster1Lvl + 1;
+        // var card1 = selectedCards[0];
+        // var card2 = selectedCards[1];
 
-                foreach(var monster in strongestTypeList){
-                    if(monster.Level == targetLvl){
-                        possibleMonsters.Add(monster);
-                    }
-                }
+        // //Precisa ser arrumado! da forma que está não é póssivel usar cartas de equipe na linha de fusão.
+        // if(card1.GetCardType() != card2.GetCardType()){
+        //     yield return new WaitForSeconds(0.5f);
+        //     BattleManager.Instance.FusionVisuals.DissolveCard(card1);
+        //     Debug.Log("Fusion Failed. Diferent card types");
+        //     // StopAllCoroutines();
+        // }
 
-                List<Card> materials = new(){card1,card2};
-                BattleManager.Instance.FusionPositions.FusionSucces_MoveCardMaterials(materials);
-                yield return new WaitForSeconds(waitTime / 3);
-                BattleManager.Instance.FusionVisuals.DissolveCards(materials);
+        // if(card1.GetCardType() == card2.GetCardType()){
+        //     yield return new WaitForSeconds(waitTime);
 
-                yield return new WaitForSeconds(waitTime + 1);
-                card1.gameObject.SetActive(false);
-                card2.gameObject.SetActive(false);
+        //     if(card1.GetCardType() == ECardType.Monster){
+        //         //FusionMonster
+        //         MonsterFusion(card1 as CardMonster, card2 as CardMonster);
+        //         yield return new WaitForSeconds(5);
 
-                var randomIndex = UnityEngine.Random.Range(0, possibleMonsters.Count);
-                var fusionedCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(possibleMonsters[randomIndex]));
-                fusionedCard.name = $"{fusionedCard.GetCardName()} - Fusioned";
-                
-                fusionedCard.transform.SetParent(BattleManager.Instance.FusionPositions.ResultCardPosition);
-                fusionedCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosition.position, 
-                    BattleManager.Instance.FusionPositions.ResultCardPosition.rotation
-                );
+        //         RemoveCardsFromFusionLine(card1, card2, selectedCards);
 
-            }else if(card1.GetCardType() == ECardType.Arcane){
-                //FusionArcane
-            }
-        }
+        //     }else if(card1.GetCardType() == ECardType.Arcane){
+        //         //FusionArcane
+        //         ArcaneFusion(card1 as CardArcane, card2 as CardArcane);
+        //         yield return new WaitForSeconds(5);
+
+        //         RemoveCardsFromFusionLine(card1, card2, selectedCards);
+        //     }
+        // }
+
+        // if(selectedCards.Count > 0){
+        //     //Restart Fusion();
+        //     Debug.Log(selectedCards.Count);
+        //     Debug.Log("restart fusion. Do while?");
+        // }
 
         yield return new WaitForSeconds(waitTime);
         OnFusionEnd?.Invoke();
         Debug.Log("Fusion Ended");
-        // Debug.Log("Coroutine did not stopped");
     }
 
-    private void DisableCardColliders(List<Card> selectedCards){
+    private  void DisableCardColliders(List<Card> selectedCards){
         foreach(var card in selectedCards){
-            card.DisableCardCollider();
+            card.DisableCollider();
         }
     }
+
+    private void MonsterFusion(CardMonster monster1, CardMonster monster2){
+        BattleManager.Instance.FusionMonster.MonsterFusion(monster1, monster2);
+    }
+    private void ArcaneFusion(CardArcane arcane1, CardArcane arcane2){
+        BattleManager.Instance.FusionArcane.ArcaneFusion(arcane1, arcane2);
+    }
+
+    private void RemoveCardsFromFusionLine(Card card1, Card card2){
+        _fusionLine.Remove(card1);
+        _fusionLine.Remove(card2);
+
+        _cardsInFusionLine = _fusionLine.Count;
+    }
+
+    public void AddCardToFusionLine(Card cardToAdd){
+        _fusionLine.Insert(0, cardToAdd);
+    }
+
+    public int CardsInFusionLine() => _cardsInFusionLine;
 }

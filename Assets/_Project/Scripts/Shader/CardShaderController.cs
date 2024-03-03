@@ -33,8 +33,12 @@ public class CardShaderController : MonoBehaviour {
     private void SetCardImage(){
         var faceMat = new Material(_renderer.sharedMaterials[1]);
         faceMat.SetTexture("_Ilustration", _card.Ilustration);
-        
-        _renderer.materials = new[]{_renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2]};
+
+        SetChangesToMaterial(faceMat);
+    }
+
+    private void SetChangesToMaterial(Material faceMat){
+        _renderer.materials = new[] { _renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2] };
     }
 
     public void SetBoarderColor(Color newColor){
@@ -52,7 +56,7 @@ public class CardShaderController : MonoBehaviour {
         faceMat.SetColor("_SelectedBorderColor", adjustedColor);
         faceMat.SetFloat("_Intensity", 1.5f);
         
-        _renderer.materials = new[]{_renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2]};
+        SetChangesToMaterial(faceMat);
     }
 
     public void ResetBoarderColor(){
@@ -61,7 +65,7 @@ public class CardShaderController : MonoBehaviour {
         faceMat.SetColor("_SelectedBorderColor", Color.black);
         faceMat.SetFloat("_Intensity", 0);
 
-        _renderer.materials = new[]{_renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2]};
+        SetChangesToMaterial(faceMat);
     }
 
     public void DissolveCard(){
@@ -74,10 +78,10 @@ public class CardShaderController : MonoBehaviour {
         _cutOff = Mathf.MoveTowards(_cutOff, 0f, _dissolveSpeed * Time.deltaTime);
 
         faceMat.SetFloat("_CutOff", _cutOff);
-        _renderer.materials = new[]{_renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2]};
+        SetChangesToMaterial(faceMat);
 
         if(_cutOff < 0.5f){
-            _card.DisableStatTexts();
+            _card.DisableStatCanvas();
             _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         }else{
             _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
@@ -92,10 +96,10 @@ public class CardShaderController : MonoBehaviour {
         _cutOff = Mathf.MoveTowards(_cutOff, 1f, _dissolveSpeed * Time.deltaTime);
 
         faceMat.SetFloat("_CutOff", _cutOff);
-        _renderer.materials = new[]{_renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2]};
+        SetChangesToMaterial(faceMat);
 
         if(_cutOff > 0.5f){
-            _card.EnableStatTexts();
+            _card.EnableStatCanvas();
             _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         }else{
             _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;

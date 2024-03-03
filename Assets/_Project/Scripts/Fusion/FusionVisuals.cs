@@ -7,10 +7,14 @@ public class FusionVisuals : MonoBehaviour {
             card.Shader.ResetBoarderColor();
         }
     }
-
-    public void DissolveCards(List<Card> cards){
+    
+    public void DissolveCard(List<Card> cards){
         foreach(var card in cards){
             card.Shader.DissolveCard();
         }
     }
+    public void DissolveCard(Card card){
+        card.Shader.DissolveCard();
+    }
+
 }

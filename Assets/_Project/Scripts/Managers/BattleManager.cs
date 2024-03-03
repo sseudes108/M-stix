@@ -6,14 +6,21 @@ public class BattleManager : MonoBehaviour {
     [SerializeField] private FusionManager _fusionManager;
     [SerializeField] private HandPlayer _playerHand;
 
+    //Card
     public CardCreator CardCreator => _cardManager.CardCreator;
     public CardSelector CardSelector => _cardManager.CardSelector;
     public CardsDatabase CardsDatabase => _cardManager.CardsDatabase;
 
-    public FusionPositions FusionPositions => _fusionManager.FusionPositions;
+    //Fusion
     public Fusion Fusion => _fusionManager.Fusion;
+    public FusionMonster FusionMonster => _fusionManager.FusionMonster;
+    public FusionArcane FusionArcane => _fusionManager.FusionArcane;
+
+    //Fusion positions
+    public FusionPositions FusionPositions => _fusionManager.FusionPositions;
     public FusionVisuals FusionVisuals => _fusionManager.FusionVisuals;
 
+    //Hands
     public HandPlayer PlayerHand => _playerHand;
 
     

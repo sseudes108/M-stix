@@ -38,14 +38,15 @@ public class Card : MonoBehaviour {
     public virtual ECardType GetCardType(){return ECardType.Err;}
     public string GetCardName() => _cardData.name;
 
-    public void DisableStatTexts(){_statsCanvas.gameObject.SetActive(false);}
-    public void EnableStatTexts(){_statsCanvas.gameObject.SetActive(true);}
+    public void DisableStatCanvas(){_statsCanvas.gameObject.SetActive(false);}
+    public void EnableStatCanvas(){_statsCanvas.gameObject.SetActive(true);}
 
-    public void DisableCardCollider() {_collider.enabled = false;}
-    public void EnableCollider() {_collider.enabled = true;}
+    public void DisableCollider(){_collider.enabled = false;}
+    public void EnableCollider(){_collider.enabled = true;}
 
     public void MoveCard(Vector3 targetPosition, Quaternion targetRotation){
-        _movement.SetTargetPosition(targetPosition, targetRotation, 5);
+        float moveSpeed = 5.0f;
+        _movement.SetTargetPosition(targetPosition, targetRotation, moveSpeed);
     }
 
     protected void OnMouseDown() {
