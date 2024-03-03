@@ -56,23 +56,20 @@ public abstract class Hand : MonoBehaviour{
 
             //Card data
             var randomIndex = Random.Range(0, deck.DeckInUse.Count);
-            var randomCardData = deck.DeckInUse[randomIndex];
+            var cardData = deck.DeckInUse[randomIndex];
 
             //Spawn Position
             deck.transform.GetPositionAndRotation(out Vector3 spawnPosition, out Quaternion spawnRotation);
 
             //Instance
-            var drewCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(randomCardData), spawnPosition, spawnRotation);
+            var drewCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(cardData), spawnPosition, spawnRotation);
             drewCard.name = drewCard.GetCardName();
 
             //Remove card from deck
-            deck.RemoveCardFromDeck(randomCardData);
-
-            //Set Parent
-            drewCard.transform.SetParent(_freeHandPositions[0].transform);
+            deck.RemoveCardFromDeck(cardData);
 
             //Move to hand position
-            drewCard.MoveCard(_freeHandPositions[0].transform.position, _freeHandPositions[0].transform.rotation);
+            drewCard.MoveCard(_freeHandPositions[0].transform);
 
             //Ocupy place in hand
             _freeHandPositions[0].GetComponent<HandPosition>().SetHandPlaceOccupied();

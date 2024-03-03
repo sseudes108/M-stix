@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dark Monsters loses 500 Attack
+  m_text: All Saturn Monsters Gains 1000 Atk
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gold Castle
+  m_text: Graveyard
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -384,10 +384,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3177665968823313727}
-  - component: {fileID: 2054356691919396678}
-  - component: {fileID: 2377074242140369596}
   - component: {fileID: -2807650119943163623}
   - component: {fileID: -8510782291562397222}
+  - component: {fileID: 2054356691919396678}
+  - component: {fileID: 2377074242140369596}
+  - component: {fileID: 2676180443558989560}
+  - component: {fileID: -3240014460662678234}
   m_Layer: 0
   m_Name: Arcane Card
   m_TagString: Untagged
@@ -412,36 +414,6 @@ Transform:
   - {fileID: 7793251080753310618}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
---- !u!114 &2054356691919396678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8266507099630813383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 093406704fdc60a4da1e0b1a34e9c519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cardData: {fileID: 11400000, guid: 461cfe3987adb244e8f428b265376dd3, type: 2}
-  _ilustration: {fileID: 2800000, guid: 891ac098ed878794490fb4f16ff529d6, type: 3}
-  _statsCanvas: {fileID: 7793251080753310618}
-  _name: {fileID: 6411438032015808742}
-  _effect: {fileID: 6740770476947275584}
---- !u!114 &2377074242140369596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8266507099630813383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75d1bff16172d3c46aeca980c123130b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dissolveSpeed: 2
 --- !u!65 &-2807650119943163623
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -475,6 +447,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d6e101b55d9064bb6bb15e5a3686ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2054356691919396678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266507099630813383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093406704fdc60a4da1e0b1a34e9c519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardData: {fileID: 11400000, guid: d8ba40ed687fcb94b8f38039a5b6b0d4, type: 2}
+  _ilustration: {fileID: 2800000, guid: 002984bee330dcf4cb9603855e55d95d, type: 3}
+  _cardModel: {fileID: 8908545616206179756}
+  _statsCanvas: {fileID: 7793251080753310618}
+  _name: {fileID: 6411438032015808742}
+  _effect: {fileID: 6740770476947275584}
+--- !u!114 &2377074242140369596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266507099630813383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d1bff16172d3c46aeca980c123130b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2676180443558989560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266507099630813383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaefad05393c70347ab52662fd58710d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3240014460662678234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266507099630813383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080e798d30c093f4abf593203ae8d92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dissolveSpeed: 2
 --- !u!1 &8449145667442293490
 GameObject:
   m_ObjectHideFlags: 0

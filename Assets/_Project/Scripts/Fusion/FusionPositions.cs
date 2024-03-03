@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,20 +12,26 @@ public class FusionPositions : MonoBehaviour {
 
     public Transform ResultCardPosition => _resultCardPosition;
 
-    public void MoveCardsToPosition(List<Card> cardsToMove){
+    public void MoveCardToPosition(List<Card> cardsToMove){
         var cardIndex = 0;
 
         foreach(var card in cardsToMove){
-            card.transform.SetParent(_LinePositions[cardIndex]);
-            card.MoveCard(_LinePositions[cardIndex].position, _LinePositions[cardIndex].rotation);
+            card.MoveCard(_LinePositions[cardIndex]);
             cardIndex++;
         }
     }
 
-    public void FusionSucces_MoveCardMaterials(List<Card> cardsToMove){
+    public void FusionSucess(List<Card> cardsToMove){
         foreach(var card in cardsToMove){
-            card.transform.SetParent(_resultCardPosition);
-            card.MoveCard(_resultCardPosition.position, _resultCardPosition.rotation);
+            card.MoveCard(_resultCardPosition);
         }
     }
+    public void FusionFailed(Card cardToMove){
+        cardToMove.MoveCard(_resultCardPosition);
+    }
+    public void MoveCardToFirstPositionInlinePos(Card cardToMove){
+        cardToMove.MoveCard(_LinePositions[0]);
+    }
+    
+    public Transform ResultCardPos => _resultCardPosition;
 }

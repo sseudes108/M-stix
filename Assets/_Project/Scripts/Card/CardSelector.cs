@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CardSelector : MonoBehaviour {
-    [SerializeField] List<Card> _selectedCards;
+    List<Card> _selectedCards = new();
 
     public void AddCardToSelectedList(Card selectedCard){
         _selectedCards.Add(selectedCard);
@@ -11,6 +11,6 @@ public class CardSelector : MonoBehaviour {
     public void RemoveCardFromSelectedList(Card selectedCard){
         _selectedCards.Remove(selectedCard);
     }
-
+    
     public List<Card> GetSelectedCards() => _selectedCards;
 }

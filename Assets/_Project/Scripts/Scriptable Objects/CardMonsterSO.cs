@@ -1,5 +1,4 @@
 using System;
-using System.Net.Http.Headers;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CardMonsterSO", menuName = "CardMonsterSO", order = 0)]

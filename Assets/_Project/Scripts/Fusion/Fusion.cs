@@ -7,8 +7,8 @@ public class Fusion : MonoBehaviour {
 
     public Action OnFusionStart, OnFusionEnd;
 
-    int _cardsInFusionLine;
-    [SerializeField] List<Card> _fusionLine;
+    private int _cardsInFusionLine;
+    [SerializeField] private List<Card> _fusionLine;
 
     public void StartFusionRoutine(List<Card> selectedCards){
         StartCoroutine(FusionRoutine(selectedCards));
@@ -26,26 +26,38 @@ public class Fusion : MonoBehaviour {
         //Reset Border card Colors
         BattleManager.Instance.FusionVisuals.ResetBorderColors(selectedCards);
 
-        //Move cards to fusion line
-        // BattleManager.Instance.FusionPositions.MoveCardsToPosition(selectedCards);
-
         _fusionLine.Clear();
         _fusionLine = selectedCards;
 
         do{
-            Debug.Log("Do");
-            //Move cards to fusion line
-            BattleManager.Instance.FusionPositions.MoveCardsToPosition(selectedCards);
+            //Move cards to fusion line positions
+            BattleManager.Instance.FusionPositions.MoveCardToPosition(selectedCards);
+            yield return new WaitForSeconds(3f);
 
             var card1 = _fusionLine[0];
             var card2 = _fusionLine[1];
 
             //Precisa ser arrumado! da forma que está não é póssivel usar cartas de equipe na linha de fusão.
             if(card1.GetCardType() != card2.GetCardType()){
-                yield return new WaitForSeconds(0.5f);
+                Debug.Log("Fusion Failed - Lvls are not equals");
+                //Remove Cards From line
+                BattleManager.Instance.Fusion.RemoveCardsFromFusionLine(card1, card2);
+
+                //Move the second card position
+                BattleManager.Instance.FusionPositions.MoveCardToFirstPositionInlinePos(card2);
+                yield return new WaitForSeconds(0.3f);
+
+                //Dissolve the first card
                 BattleManager.Instance.FusionVisuals.DissolveCard(card1);
-                Debug.Log("Fusion Failed. Diferent card types");
-                // StopAllCoroutines();
+                yield return new WaitForSeconds(0.6f);
+
+                //Check if the line is 0
+                if(GetCardsInFusionLine() > 0){
+                    AddCardToFusionLine(card2);
+                }else{
+                    BattleManager.Instance.FusionPositions.FusionFailed(card2);
+                }
+                yield return new WaitForSeconds(3);
             }
 
             if(card1.GetCardType() == card2.GetCardType()){
@@ -56,61 +68,25 @@ public class Fusion : MonoBehaviour {
                     MonsterFusion(card1 as CardMonster, card2 as CardMonster);
                     RemoveCardsFromFusionLine(card1, card2);
 
-                    yield return new WaitForSeconds(5);
-
+                    yield return new WaitForSeconds(3);
 
                 }else if(card1.GetCardType() == ECardType.Arcane){
                     //FusionArcane
                     ArcaneFusion(card1 as CardArcane, card2 as CardArcane);
                     RemoveCardsFromFusionLine(card1, card2);
 
-                    yield return new WaitForSeconds(5);
+                    yield return new WaitForSeconds(3);
                 }
-            }    
+            }
+              
         }while(selectedCards.Count > 0);
 
-        // var card1 = selectedCards[0];
-        // var card2 = selectedCards[1];
-
-        // //Precisa ser arrumado! da forma que está não é póssivel usar cartas de equipe na linha de fusão.
-        // if(card1.GetCardType() != card2.GetCardType()){
-        //     yield return new WaitForSeconds(0.5f);
-        //     BattleManager.Instance.FusionVisuals.DissolveCard(card1);
-        //     Debug.Log("Fusion Failed. Diferent card types");
-        //     // StopAllCoroutines();
-        // }
-
-        // if(card1.GetCardType() == card2.GetCardType()){
-        //     yield return new WaitForSeconds(waitTime);
-
-        //     if(card1.GetCardType() == ECardType.Monster){
-        //         //FusionMonster
-        //         MonsterFusion(card1 as CardMonster, card2 as CardMonster);
-        //         yield return new WaitForSeconds(5);
-
-        //         RemoveCardsFromFusionLine(card1, card2, selectedCards);
-
-        //     }else if(card1.GetCardType() == ECardType.Arcane){
-        //         //FusionArcane
-        //         ArcaneFusion(card1 as CardArcane, card2 as CardArcane);
-        //         yield return new WaitForSeconds(5);
-
-        //         RemoveCardsFromFusionLine(card1, card2, selectedCards);
-        //     }
-        // }
-
-        // if(selectedCards.Count > 0){
-        //     //Restart Fusion();
-        //     Debug.Log(selectedCards.Count);
-        //     Debug.Log("restart fusion. Do while?");
-        // }
-
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(0.5f);
         OnFusionEnd?.Invoke();
         Debug.Log("Fusion Ended");
     }
 
-    private  void DisableCardColliders(List<Card> selectedCards){
+    private void DisableCardColliders(List<Card> selectedCards){
         foreach(var card in selectedCards){
             card.DisableCollider();
         }
@@ -123,7 +99,7 @@ public class Fusion : MonoBehaviour {
         BattleManager.Instance.FusionArcane.ArcaneFusion(arcane1, arcane2);
     }
 
-    private void RemoveCardsFromFusionLine(Card card1, Card card2){
+    public void RemoveCardsFromFusionLine(Card card1, Card card2){
         _fusionLine.Remove(card1);
         _fusionLine.Remove(card2);
 
@@ -134,5 +110,5 @@ public class Fusion : MonoBehaviour {
         _fusionLine.Insert(0, cardToAdd);
     }
 
-    public int CardsInFusionLine() => _cardsInFusionLine;
+    public int GetCardsInFusionLine() => _cardsInFusionLine;
 }

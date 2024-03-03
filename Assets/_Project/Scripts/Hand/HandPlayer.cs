@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public class HandPlayer : Hand {
-
     protected override void GetHand(){
         _hand = GetComponent<HandPlayer>();
     }

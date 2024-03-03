@@ -2,18 +2,22 @@ using NUnit.Framework;
 using UnityEngine;
 
 public class CardShaderController : MonoBehaviour {
-    protected Renderer _renderer;
-    protected Card _card;
+   
+    private Renderer _renderer;
+    private Card _card;
 
-    [Header("Dissolve")]
-    [SerializeField] private float _dissolveSpeed;
-    private float _cutOff = 1;
-    private bool _dissolve = false;
-    private bool _solidify = false;
+    //Dissolve
+    private ShaderDissolve _dissolveShader;
+
+    //Border
+    private ShaderBorders _bordersShader;
 
     private void Awake() {
         _renderer = GetComponentInChildren<Renderer>();
         _card = GetComponent<Card>();
+
+        _dissolveShader = GetComponent<ShaderDissolve>();
+        _bordersShader = GetComponent<ShaderBorders>();
     }
 
     private void Start() {
@@ -21,13 +25,8 @@ public class CardShaderController : MonoBehaviour {
         ResetBoarderColor();
     }
 
-    private void Update() {
-        if(_dissolve){
-            DissolveCardEffect();
-        }
-        if(_solidify){
-            SolidifyCardEffect();
-        }
+    public void SetChangesToMaterial(Material faceMat){
+        _renderer.materials = new[] { _renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2] };
     }
 
     private void SetCardImage(){
@@ -36,75 +35,21 @@ public class CardShaderController : MonoBehaviour {
 
         SetChangesToMaterial(faceMat);
     }
-
-    private void SetChangesToMaterial(Material faceMat){
-        _renderer.materials = new[] { _renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2] };
-    }
-
+    
     public void SetBoarderColor(Color newColor){
-        var faceMat = new Material(_renderer.sharedMaterials[1]);
-
-        //Adjust to controle the brightness of the color (HDR)
-        float intensityFactor = 0.01f;
-        Color adjustedColor = new Color(
-            newColor.r * intensityFactor, 
-            newColor.g * intensityFactor, 
-            newColor.b * intensityFactor,
-            newColor.a
-        );
-
-        faceMat.SetColor("_SelectedBorderColor", adjustedColor);
-        faceMat.SetFloat("_Intensity", 1.5f);
-        
-        SetChangesToMaterial(faceMat);
+        _bordersShader.SetBoarderColor(newColor);
     }
-
     public void ResetBoarderColor(){
-        var faceMat = new Material(_renderer.sharedMaterials[1]);
-
-        faceMat.SetColor("_SelectedBorderColor", Color.black);
-        faceMat.SetFloat("_Intensity", 0);
-
-        SetChangesToMaterial(faceMat);
+        _bordersShader.ResetBoarderColor();
     }
 
     public void DissolveCard(){
-        _dissolve = true;
+        _dissolveShader.DissolveCard();
+    }
+    public void SolidifyCard(){
+        _dissolveShader.SolidifyCard();
     }
 
-    private void DissolveCardEffect(){
-        var faceMat = new Material(_renderer.sharedMaterials[1]);
-
-        _cutOff = Mathf.MoveTowards(_cutOff, 0f, _dissolveSpeed * Time.deltaTime);
-
-        faceMat.SetFloat("_CutOff", _cutOff);
-        SetChangesToMaterial(faceMat);
-
-        if(_cutOff < 0.5f){
-            _card.DisableStatCanvas();
-            _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        }else{
-            _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-        }
-
-        if(_cutOff == 0f) {_dissolve = false;}
-    }
-
-    private void SolidifyCardEffect(){
-        var faceMat = new Material(_renderer.sharedMaterials[1]);
-
-        _cutOff = Mathf.MoveTowards(_cutOff, 1f, _dissolveSpeed * Time.deltaTime);
-
-        faceMat.SetFloat("_CutOff", _cutOff);
-        SetChangesToMaterial(faceMat);
-
-        if(_cutOff > 0.5f){
-            _card.EnableStatCanvas();
-            _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-        }else{
-            _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        }
-
-        if(_cutOff == 1f) {_solidify = false;}
-    }
+    public Renderer Renderer => _renderer;
+    public Card Card => _card;
 }

@@ -23,8 +23,6 @@ public class BattleManager : MonoBehaviour {
     //Hands
     public HandPlayer PlayerHand => _playerHand;
 
-    
-
     private void Awake(){
         SetSingleton();
         SetComponents();

@@ -417,10 +417,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5815561219565745873}
-  - component: {fileID: 4881323329512931153}
-  - component: {fileID: 4912674022285877524}
   - component: {fileID: 4242230821440548837}
   - component: {fileID: 5556612183310882995}
+  - component: {fileID: 4881323329512931153}
+  - component: {fileID: 4912674022285877524}
+  - component: {fileID: 2444258382929000206}
+  - component: {fileID: 4180421458946985633}
   m_Layer: 0
   m_Name: Monster Card
   m_TagString: Untagged
@@ -445,41 +447,6 @@ Transform:
   - {fileID: 7187030712878497788}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
---- !u!114 &4881323329512931153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5393155775568532097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9faf473dca3ca6b42bca92168fc86561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cardData: {fileID: 11400000, guid: 12a3ea6e7ed0241439cc0e51082405fe, type: 2}
-  _ilustration: {fileID: 2800000, guid: 610af28bf0267094186557352eae61af, type: 3}
-  _statsCanvas: {fileID: 7187030712878497788}
-  _level: {fileID: 6747958113099069938}
-  _attack: {fileID: 5433811842320668057}
-  _defense: {fileID: 3983618186729299743}
-  _lvl: 0
-  _atk: 0
-  _def: 0
-  _monsterType: 0
---- !u!114 &4912674022285877524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5393155775568532097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c278dca86ffdd2d419cfff30d2343812, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dissolveSpeed: 2
 --- !u!65 &4242230821440548837
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -513,6 +480,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d6e101b55d9064bb6bb15e5a3686ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4881323329512931153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5393155775568532097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9faf473dca3ca6b42bca92168fc86561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardData: {fileID: 11400000, guid: 12a3ea6e7ed0241439cc0e51082405fe, type: 2}
+  _ilustration: {fileID: 2800000, guid: 610af28bf0267094186557352eae61af, type: 3}
+  _statsCanvas: {fileID: 7187030712878497788}
+  _cardModel: {fileID: 7706822515368031445}
+  _level: {fileID: 6747958113099069938}
+  _attack: {fileID: 5433811842320668057}
+  _defense: {fileID: 3983618186729299743}
+  _lvl: 0
+  _atk: 0
+  _def: 0
+  _monsterType: 0
+--- !u!114 &4912674022285877524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5393155775568532097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c278dca86ffdd2d419cfff30d2343812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2444258382929000206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5393155775568532097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaefad05393c70347ab52662fd58710d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4180421458946985633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5393155775568532097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080e798d30c093f4abf593203ae8d92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dissolveSpeed: 2
 --- !u!1 &6430186276225859077
 GameObject:
   m_ObjectHideFlags: 0
