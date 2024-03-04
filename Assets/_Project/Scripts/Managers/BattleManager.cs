@@ -21,7 +21,8 @@ public class BattleManager : MonoBehaviour {
     //Card
     public CardCreator CardCreator => _cardManager.CardCreator;
     public CardSelector CardSelector => _cardManager.CardSelector;
-    public CardsDatabase CardsDatabase => _cardManager.CardsDatabase;
+    public CardDatabase CardsDatabase => _cardManager.CardsDatabase;
+    public CardVisuals CardVisuals => _cardManager.CardVisuals;
 
     //Fusion
     public Fusion Fusion => _fusionManager.Fusion;
@@ -30,7 +31,7 @@ public class BattleManager : MonoBehaviour {
     public FusionEquip FusionEquip => _fusionManager.FusionEquip;
 
     public FusionPositions FusionPositions => _fusionManager.FusionPositions;
-    public FusionVisuals FusionVisuals => _fusionManager.FusionVisuals;
+    // public FusionVisuals FusionVisuals => _fusionManager.FusionVisuals;
 
     //Hands
     public HandPlayer PlayerHand => _playerHand;

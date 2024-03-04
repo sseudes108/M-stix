@@ -105,6 +105,6 @@ public abstract class Hand : MonoBehaviour{
     }
 
     private void Fusion_OnFusionStart(){
-        MoveHand(BattleManager.Instance.FusionPositions.HandOffCameraPos.position);
+        MoveHand(BattleManager.Instance.FusionPositions.HandOffCameraPosition.position);
     }
 }

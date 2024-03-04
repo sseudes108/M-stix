@@ -16,3 +16,7 @@ MonoBehaviour:
   Ilustration: {fileID: 2800000, guid: 48809ea7726a5b04dabe2a1faf4f1ca7, type: 3}
   Name: Kai!
   Effect: Destroy The Attacking Monster
+  AnimaLink: 0
+  AttackModifier: 0
+  DefenseModifier: 0
+  LevelModifier: 0

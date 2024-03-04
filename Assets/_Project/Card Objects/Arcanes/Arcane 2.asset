@@ -16,3 +16,7 @@ MonoBehaviour:
   Ilustration: {fileID: 2800000, guid: 2eeb787bf1b450c43b3b9cc1cbfe6740, type: 3}
   Name: Forest
   Effect: All Saturn Monsters Gains 500 Def
+  AnimaLink: 0
+  AttackModifier: 0
+  DefenseModifier: 0
+  LevelModifier: 0

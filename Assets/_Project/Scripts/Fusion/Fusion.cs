@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class Fusion : MonoBehaviour {
 
     public Action OnFusionStart, OnFusionEnd;
+
+    protected Card _fusionResultCard;
     
     [SerializeField] private List<Card> _fusionLine;
 
@@ -24,15 +25,17 @@ public class Fusion : MonoBehaviour {
         DisableCardColliders(selectedCards);
 
         //Reset Border card Colors
-        BattleManager.Instance.FusionVisuals.ResetBorderColors(selectedCards);
+        BattleManager.Instance.CardVisuals.ResetBorderColors(selectedCards);
 
         _fusionLine.Clear();
         _fusionLine = selectedCards;
 
         do{
+            _fusionResultCard = null;
+
             //Move cards to fusion line positions
             BattleManager.Instance.FusionPositions.MoveCardToPosition(selectedCards);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(waitTime/3);
 
             var card1 = _fusionLine[0];
             var card2 = _fusionLine[1];
@@ -71,6 +74,16 @@ public class Fusion : MonoBehaviour {
               
         }while(selectedCards.Count > 0);
 
+        //Criar logica para escolher a anima
+        // bool isAnimaSelected = false;
+        // do{
+        //     yield return new WaitForEndOfFrame();
+        // }while(isAnimaSelected = false);
+        Debug.Log("Select Anima");
+        yield return new WaitForSeconds(3);
+
+        BattleManager.Instance.FusionPositions.MoveCardToBoardPlaceSelectionPlace(_fusionResultCard);
+
         OnFusionEnd?.Invoke();
         Debug.Log("Fusion Ended");
     }
@@ -102,11 +115,13 @@ public class Fusion : MonoBehaviour {
 
     public int GetCardsInFusionLine() => _fusionLine.Count;
 
-
     public void FusionFailed(Card card1, Card card2){
        StartCoroutine(FusionFailedRoutine(card1, card2));
     }
     private IEnumerator FusionFailedRoutine(Card card1, Card card2){
+        //Set Result of fusion Card
+        _fusionResultCard = card2;
+
         //Cards used in fusion
         var materials = new List<Card>() {card1, card2};
 
@@ -114,7 +129,7 @@ public class Fusion : MonoBehaviour {
         BattleManager.Instance.FusionPositions.MergeCards(materials);
 
         //Dissolve the first card
-        BattleManager.Instance.FusionVisuals.DissolveCard(card1, Color.red);
+        BattleManager.Instance.CardVisuals.DissolveCard(card1, Color.red);
         yield return new WaitForSeconds(0.5f);
 
         //Momentaneo, apenas para testar a visualização da card no UI - 
@@ -122,16 +137,16 @@ public class Fusion : MonoBehaviour {
             card2.EnableCollider();
         //
 
+        Debug.Log("Corrigir! Fusion Failed - Fusion - Destroy Card");
+        card1.DisableModelVisual();
+        card1.gameObject.SetActive(false);
+
         //Check if the line is 0
         if(BattleManager.Instance.Fusion.GetCardsInFusionLine() > 0){
             BattleManager.Instance.Fusion.AddCardToFusionLine(card2);
         }else{
-            BattleManager.Instance.FusionPositions.FusionFailed(card2);
+            BattleManager.Instance.FusionPositions.MoveCardToResultPosition(card2);
         }
-
-        Debug.Log("Corrigir! Fusion Failed - Fusion - Destroy Card");
-        card1.DisableModelVisual();
-        card1.gameObject.SetActive(false);
     }
 
     //Monster Fusion Sucess
@@ -139,6 +154,9 @@ public class Fusion : MonoBehaviour {
         StartCoroutine(FusionSucessRoutine(card1, card2, resultCard));
     }
     private IEnumerator FusionSucessRoutine(Card card1, Card card2, Card resultCard){
+        //Set Result of fusion Card
+        _fusionResultCard = resultCard;
+
         //Cards used in fusion
         var materials = new List<Card>() {card1, card2};
 
@@ -147,7 +165,7 @@ public class Fusion : MonoBehaviour {
 
         yield return new WaitForSeconds(0.4f);
         //Dissolve cards used
-        BattleManager.Instance.FusionVisuals.DissolveCard(materials, Color.green);
+        BattleManager.Instance.CardVisuals.DissolveCard(materials, Color.green);
 
         //Set Card Owner
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
@@ -157,7 +175,7 @@ public class Fusion : MonoBehaviour {
         resultCard.EnableCollider();
 
         //Move fusioned card to position
-        resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosition);
+        resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion);
 
         //Check if the line is 0
         if(GetCardsInFusionLine() > 0){
@@ -170,15 +188,18 @@ public class Fusion : MonoBehaviour {
         StartCoroutine(FusionSucessRoutine(card1, card2));
     }
     private IEnumerator FusionSucessRoutine(CardArcane arcane, CardMonster monster){
+        //Set Result of fusion Card
+        _fusionResultCard = monster;
+
         //Cards used in fusion
         List<Card> materials = new(){arcane, monster};
 
         //Move cards
         BattleManager.Instance.FusionPositions.MergeCards(materials);
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
         //Dissolve arcane card used
-        BattleManager.Instance.FusionVisuals.DissolveCard(arcane, Color.green);
+        BattleManager.Instance.CardVisuals.DissolveCard(arcane, Color.green);
 
         //Set Card Owner
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
@@ -191,7 +212,7 @@ public class Fusion : MonoBehaviour {
         //
 
         //Move fusioned card to position
-        monster.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosition);
+        monster.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion);
 
         //Check if the line is 0
         if(GetCardsInFusionLine() > 0){

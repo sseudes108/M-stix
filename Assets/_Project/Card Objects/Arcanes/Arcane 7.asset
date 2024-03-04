@@ -18,5 +18,5 @@ MonoBehaviour:
   Effect: A Saturn Equiped Monster Gain 500 Atk
   AnimaLink: 1
   AttackModifier: 500
-  DefModifier: 0
+  DefenseModifier: 0
   LevelModifier: 0

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardsDatabase : MonoBehaviour {
+public class CardDatabase : MonoBehaviour {
     [SerializeField] private List<CardMonsterSO> _angel;
     [SerializeField] private List<CardMonsterSO> _dragon;
     [SerializeField] private List<CardMonsterSO> _golem;

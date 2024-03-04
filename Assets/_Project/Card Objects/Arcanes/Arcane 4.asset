@@ -16,3 +16,7 @@ MonoBehaviour:
   Ilustration: {fileID: 2800000, guid: 002984bee330dcf4cb9603855e55d95d, type: 3}
   Name: Graveyard
   Effect: All Saturn Monsters Gains 1000 Atk
+  AnimaLink: 0
+  AttackModifier: 0
+  DefenseModifier: 0
+  LevelModifier: 0

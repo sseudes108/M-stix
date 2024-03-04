@@ -77,13 +77,14 @@ public class FusionMonster : Fusion {
             //make card invisible
             fusionedCard.DisableStatCanvas();
             fusionedCard.DisableModelVisual();
-            BattleManager.Instance.FusionVisuals.MakeCardInvisible(fusionedCard);
+            BattleManager.Instance.CardVisuals.MakeCardInvisible(fusionedCard);
 
+            //Fusion 
             BattleManager.Instance.Fusion.FusionSucess(monster1, monster2, fusionedCard);
 
             //Make card Visible
             yield return new WaitForSeconds(1f);
-            BattleManager.Instance.FusionVisuals.SolidifyCard(fusionedCard, Color.white);
+            BattleManager.Instance.CardVisuals.SolidifyCard(fusionedCard, Color.white);
 
             //Deactivate objetcs of the used cards (Destroy)
             monster1.gameObject.SetActive(false);

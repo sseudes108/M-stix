@@ -8,9 +8,9 @@ public class CardArcane : Card {
     [SerializeField] private TextMeshProUGUI _effect;
 
     //
-    [HideInInspector] [SerializeField] private EArcaneType _arcaneType;
-    [HideInInspector] [SerializeField] private EAnimaType _animaLink;
-    [HideInInspector] [SerializeField] private int _atkModifier, _defModifier, _lvlModifier;
+    [SerializeField] private EArcaneType _arcaneType;
+    [SerializeField] private EAnimaType _animaLink;
+    [SerializeField] private int _atkModifier, _defModifier, _lvlModifier;
     //Needs to be Serialize Fields (Dont Know Why)//
 
     public override void SetCardData(ScriptableObject cardData){

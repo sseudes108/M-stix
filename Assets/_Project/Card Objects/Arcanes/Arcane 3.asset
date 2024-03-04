@@ -16,3 +16,7 @@ MonoBehaviour:
   Ilustration: {fileID: 2800000, guid: 891ac098ed878794490fb4f16ff529d6, type: 3}
   Name: Golden Castle
   Effect: All Jupiter Monsters Gains 500 Atk
+  AnimaLink: 0
+  AttackModifier: 0
+  DefenseModifier: 0
+  LevelModifier: 0

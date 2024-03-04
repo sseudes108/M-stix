@@ -27,7 +27,7 @@ public class Card : MonoBehaviour {
     [SerializeField] private bool _isPlayerCard = false;
     [SerializeField] private bool _isOnHand = false;
     [SerializeField] private bool _isOnField = false;
-    [SerializeField] private bool _isFaceUp;
+    [SerializeField] private bool _isFaceDown = false;
 
     private void Awake() {
         SetUpComponents();
@@ -93,7 +93,7 @@ public class Card : MonoBehaviour {
     }
 
     private void OnMouseOver() {
-        if(_isPlayerCard || _isOnField && _isFaceUp){
+        if(_isPlayerCard || _isOnField && !_isFaceDown){
             BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(Ilustration);
         }
     }
@@ -107,7 +107,7 @@ public class Card : MonoBehaviour {
     public void SetCardOnField(){_isOnField = true;}
     public bool IsOnField(){return _isOnField;}
 
-    public void SetCardFaceUp(){_isFaceUp = true;}
-    public bool IsFaceUp(){return _isFaceUp;}
+    public void SetCardFaceDown(){_isFaceDown = true;}
+    public bool IsFaceDown(){return _isFaceDown;}
 
 }

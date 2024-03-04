@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FusionVisuals : MonoBehaviour {
+public class CardVisuals : MonoBehaviour {
     public void ResetBorderColors(List<Card> cards){
         foreach(var card in cards){
             card.Shader.ResetBoarderColor();

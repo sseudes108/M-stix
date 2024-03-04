@@ -16,3 +16,7 @@ MonoBehaviour:
   Ilustration: {fileID: 2800000, guid: b1fe83c0cb320b147bef1e3edbf6e2fa, type: 3}
   Name: Fire
   Effect: 500 Damage to enemy
+  AnimaLink: 0
+  AttackModifier: 0
+  DefenseModifier: 0
+  LevelModifier: 0
