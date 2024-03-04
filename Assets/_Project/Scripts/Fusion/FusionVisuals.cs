@@ -8,17 +8,17 @@ public class FusionVisuals : MonoBehaviour {
         }
     }
     
-    public void DissolveCard(List<Card> cards){
+    public void DissolveCard(List<Card> cards, Color newColor){
         foreach(var card in cards){
-            card.Shader.DissolveCard();
+            card.Shader.DissolveCard(newColor);
         }
     }
-    public void DissolveCard(Card card){
-        card.Shader.DissolveCard();
+    public void DissolveCard(Card card, Color newColor){
+        card.Shader.DissolveCard(newColor);
     }
 
-    public void SolidifyCard(Card card){
-        card.Shader.SolidifyCard();
+    public void SolidifyCard(Card card, Color newColor){
+        card.Shader.SolidifyCard(newColor);
     }
 
     public void MakeCardInvisible(Card card){

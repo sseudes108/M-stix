@@ -42,7 +42,8 @@ public class Fusion : MonoBehaviour {
                 EquipeFusion(card1, card2);                
                 RemoveCardsFromFusionLine(card1, card2);
 
-                yield return new WaitForSeconds(1);
+                //Time for the Equip fusion Coroutine finish
+                yield return new WaitForSeconds(3);
             }
 
             //Type Equals (monster x monster / arcane x arcane)
@@ -54,6 +55,8 @@ public class Fusion : MonoBehaviour {
                     MonsterFusion(card1 as CardMonster, card2 as CardMonster);
                     RemoveCardsFromFusionLine(card1, card2);
 
+
+                    //Time for the Monster fusion Coroutine finish
                     yield return new WaitForSeconds(3);
 
                 }else if(card1.GetCardType() == ECardType.Arcane){
@@ -61,6 +64,7 @@ public class Fusion : MonoBehaviour {
                     ArcaneFusion(card1 as CardArcane, card2 as CardArcane);
                     RemoveCardsFromFusionLine(card1, card2);
 
+                    //Time for the Arcane fusion Coroutine finish
                     yield return new WaitForSeconds(3);
                 }
             }

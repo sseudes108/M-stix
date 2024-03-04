@@ -8,32 +8,46 @@ public class ShaderDissolve : MonoBehaviour {
 
     CardShaderController _shader;
 
+    Color _color;
+
     private void Awake() {
         _shader = GetComponentInParent<CardShaderController>();
     }
 
     private void Update() {
         if(_dissolve){
-            DissolveCardEffect();
+            DissolveCardEffect(_color);
         }
         if(_solidify){
-            SolidifyCardEffect();
+            SolidifyCardEffect(_color);
         }
     }
 
-    public void DissolveCard(){
+    public void DissolveCard(Color newColor){
+        _color = newColor;
         _dissolve = true;
     }
-    public void SolidifyCard(){
+    public void SolidifyCard(Color newColor){
+        _color = newColor;
         _solidify = true;
     }
 
-    private void DissolveCardEffect(){
+    private void DissolveCardEffect(Color newColor){
         var faceMat = new Material(_shader.Renderer.sharedMaterials[1]);
 
         _cutOff = Mathf.MoveTowards(_cutOff, 0f, _dissolveSpeed * Time.deltaTime);
 
+        //Adjust to controle the brightness of the color (HDR)
+        float intensityFactor = 2f;
+        Color adjustedColor = new(
+            newColor.r * intensityFactor, 
+            newColor.g * intensityFactor, 
+            newColor.b * intensityFactor,
+            newColor.a
+        );
+
         faceMat.SetFloat("_CutOff", _cutOff);
+        faceMat.SetColor("_EdgeColor", adjustedColor);
         _shader.SetChangesToMaterial(faceMat);
 
         if(_cutOff < 0.5f){
@@ -46,12 +60,22 @@ public class ShaderDissolve : MonoBehaviour {
         if(_cutOff == 0f) {_dissolve = false;}
     }
 
-    private void SolidifyCardEffect(){
+    private void SolidifyCardEffect(Color newColor){
         var faceMat = new Material(_shader.Renderer.sharedMaterials[1]);
 
         _cutOff = Mathf.MoveTowards(_cutOff, 1f, _dissolveSpeed * Time.deltaTime);
 
+        //Adjust to controle the brightness of the color (HDR)
+        float intensityFactor = 2f;
+        Color adjustedColor = new(
+            newColor.r * intensityFactor, 
+            newColor.g * intensityFactor, 
+            newColor.b * intensityFactor,
+            newColor.a
+        );
+
         faceMat.SetFloat("_CutOff", _cutOff);
+        faceMat.SetColor("_EdgeColor", adjustedColor);
         _shader.SetChangesToMaterial(faceMat);
 
         if(_cutOff > 0.5f){

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2500
+  m_text: 5000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 5000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -492,17 +492,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9faf473dca3ca6b42bca92168fc86561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardData: {fileID: 11400000, guid: 12a3ea6e7ed0241439cc0e51082405fe, type: 2}
-  _ilustration: {fileID: 2800000, guid: 610af28bf0267094186557352eae61af, type: 3}
-  _statsCanvas: {fileID: 7187030712878497788}
+  _cardData: {fileID: 11400000, guid: ba717f5eb47c8df44a459e71e05ea0b9, type: 2}
+  _ilustration: {fileID: 2800000, guid: bbd7e5019e51aaa4daae26902b06b8a7, type: 3}
   _cardModel: {fileID: 7706822515368031445}
+  _statsCanvas: {fileID: 7187030712878497788}
+  _isPlayerCard: 0
+  _isOnHand: 0
+  _isOnField: 0
   _level: {fileID: 6747958113099069938}
   _attack: {fileID: 5433811842320668057}
   _defense: {fileID: 3983618186729299743}
-  _lvl: 0
-  _atk: 0
-  _def: 0
-  _monsterType: 0
+  _lvl: 3
+  _atk: 5000
+  _def: 5000
+  _monsterType: 5
+  _animas: 0100000002000000
 --- !u!114 &4912674022285877524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080e798d30c093f4abf593203ae8d92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dissolveSpeed: 2
+  _dissolveSpeed: 1
 --- !u!1 &6430186276225859077
 GameObject:
   m_ObjectHideFlags: 0

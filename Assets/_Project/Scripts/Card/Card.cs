@@ -46,6 +46,8 @@ public class Card : MonoBehaviour {
 
     public void DisableStatCanvas(){
         _statsCanvas.gameObject.SetActive(false);
+    }
+    public void DisableModelVisual(){
         _cardModel.gameObject.SetActive(false);
     }
     public void EnableStatCanvas(){

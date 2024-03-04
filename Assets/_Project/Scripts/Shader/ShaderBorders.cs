@@ -20,7 +20,7 @@ public class ShaderBorders : MonoBehaviour {
         );
 
         faceMat.SetColor("_SelectedBorderColor", adjustedColor);
-        faceMat.SetFloat("_Intensity", 1f);
+        faceMat.SetFloat("_Intensity", 5f);
         
         _shader.SetChangesToMaterial(faceMat);
     }

@@ -44,11 +44,11 @@ public class CardShaderController : MonoBehaviour {
         _bordersShader.ResetBoarderColor();
     }
 
-    public void DissolveCard(){
-        _dissolveShader.DissolveCard();
+    public void DissolveCard(Color newColor){
+        _dissolveShader.DissolveCard(newColor);
     }
-    public void SolidifyCard(){
-        _dissolveShader.SolidifyCard();
+    public void SolidifyCard(Color newColor){
+        _dissolveShader.SolidifyCard(newColor);
     }
     public void MakeCardCardInvisible(){
         _dissolveShader.MakeCardInvisible();

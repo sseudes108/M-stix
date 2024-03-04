@@ -1,3 +1,5 @@
+using System.Drawing;
+
 public enum ECardType{
     Arcane = 1,
     Monster = 2,

@@ -25,13 +25,13 @@ public class FusionMonster : Fusion {
                 //Remove Cards From line
                 BattleManager.Instance.Fusion.RemoveCardsFromFusionLine(monster1, monster2);
 
+                //Dissolve the first card
+                BattleManager.Instance.FusionVisuals.DissolveCard(monster1, Color.red);
+                yield return new WaitForSeconds(0.1f);
+
                 //Move the second card position
                 BattleManager.Instance.FusionPositions.MoveCardToFirstPositionInlinePos(monster2);
-                yield return new WaitForSeconds(0.3f);
-
-                //Dissolve the first card
-                BattleManager.Instance.FusionVisuals.DissolveCard(monster1);
-                yield return new WaitForSeconds(0.6f);
+                yield return new WaitForSeconds(1f);
 
                 //Check if the line is 0
                 if(BattleManager.Instance.Fusion.GetCardsInFusionLine() > 0){
@@ -39,6 +39,10 @@ public class FusionMonster : Fusion {
                 }else{
                     BattleManager.Instance.FusionPositions.FusionFailed(monster2);
                 }
+
+                Debug.Log("Corrigir! Fusion Failed - FusionMonster - Destroy Card");
+                monster1.DisableModelVisual();
+
             #endregion
 
             //Block the rest of the routine
@@ -97,12 +101,7 @@ public class FusionMonster : Fusion {
 
             yield return new WaitForSeconds(0.4f);
             //Dissolve cards used
-            BattleManager.Instance.FusionVisuals.DissolveCard(materials);
-
-            //Deactivate objetcs of the used cards (Destroy)
-            yield return new WaitForSeconds(0.3f);
-            monster1.gameObject.SetActive(false);
-            monster2.gameObject.SetActive(false);
+            BattleManager.Instance.FusionVisuals.DissolveCard(materials, Color.green);
 
             //Instantiate fusioned card
             var randomIndex = Random.Range(0, possibleMonsters.Count);
@@ -121,19 +120,24 @@ public class FusionMonster : Fusion {
 
             //make card invisible
             fusionedCard.DisableStatCanvas();
+            fusionedCard.DisableModelVisual();
             BattleManager.Instance.FusionVisuals.MakeCardInvisible(fusionedCard);
 
             //Move fusioned card to position
             fusionedCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosition);
 
             //Make card appear
-            yield return new WaitForSeconds(0.5f);
-            BattleManager.Instance.FusionVisuals.SolidifyCard(fusionedCard);
+            yield return new WaitForSeconds(1f);
+            BattleManager.Instance.FusionVisuals.SolidifyCard(fusionedCard, Color.white);
 
             // var teste = BattleManager.Instance.Fusion.GetCardsInFusionLine();
             if(BattleManager.Instance.Fusion.GetCardsInFusionLine() > 0){
                 BattleManager.Instance.Fusion.AddCardToFusionLine(fusionedCard);
             }
+
+            //Deactivate objetcs of the used cards (Destroy)
+            monster1.gameObject.SetActive(false);
+            monster2.gameObject.SetActive(false);
         }
     }
 }

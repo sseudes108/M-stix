@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: All Saturn Monsters Gains 1000 Atk
+  m_text: A Saturn Equiped Monster Gain 500 Atk
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Graveyard
+  m_text: Black Pendant
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -459,12 +459,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093406704fdc60a4da1e0b1a34e9c519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardData: {fileID: 11400000, guid: d8ba40ed687fcb94b8f38039a5b6b0d4, type: 2}
-  _ilustration: {fileID: 2800000, guid: 002984bee330dcf4cb9603855e55d95d, type: 3}
+  _cardData: {fileID: 11400000, guid: e4854d376bafb6f42bdb6e361bb13c41, type: 2}
+  _ilustration: {fileID: 2800000, guid: bd9adea594b324a40afc05810b4462bc, type: 3}
   _cardModel: {fileID: 8908545616206179756}
   _statsCanvas: {fileID: 7793251080753310618}
+  _isPlayerCard: 0
+  _isOnHand: 0
+  _isOnField: 0
   _name: {fileID: 6411438032015808742}
   _effect: {fileID: 6740770476947275584}
+  _arcaneType: 3
+  _animaLink: 1
+  _atkModifier: 500
+  _defModifier: 0
+  _lvlModifier: 0
 --- !u!114 &2377074242140369596
 MonoBehaviour:
   m_ObjectHideFlags: 0

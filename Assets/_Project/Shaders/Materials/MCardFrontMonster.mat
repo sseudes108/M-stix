@@ -56,12 +56,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _CutOff: 1
+    - _EdgeSize: 0.02
     - _Intensity: 0
-    - _NoiseScale: 54
+    - _NoiseScale: 20
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - _Color: {r: 3.4822018, g: 2.944031, b: 1.0348052, a: 1}
+    - _EdgeColor: {r: 2.7109234, g: 10.432948, b: 0, a: 0}
     - _SelectedBorderColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

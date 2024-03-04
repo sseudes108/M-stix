@@ -25,7 +25,7 @@ public class FusionEquip : Fusion {
                     yield return new WaitForSeconds(0.3f);
 
                     //Dissolve the first card
-                    BattleManager.Instance.FusionVisuals.DissolveCard(card1);
+                    BattleManager.Instance.FusionVisuals.DissolveCard(card1, Color.red);
                     yield return new WaitForSeconds(0.6f);
 
                     //Check if the line is 0
@@ -73,7 +73,7 @@ public class FusionEquip : Fusion {
                     yield return new WaitForSeconds(0.3f);
 
                     //Dissolve the first card
-                    BattleManager.Instance.FusionVisuals.DissolveCard(card1);
+                    BattleManager.Instance.FusionVisuals.DissolveCard(card1, Color.red);
                     yield return new WaitForSeconds(0.6f);
 
                     //Check if the line is 0
@@ -102,7 +102,7 @@ public class FusionEquip : Fusion {
                     yield return new WaitForSeconds(0.3f);
 
                     //Dissolve the first card
-                    BattleManager.Instance.FusionVisuals.DissolveCard(card1);
+                    BattleManager.Instance.FusionVisuals.DissolveCard(card1, Color.red);
                     yield return new WaitForSeconds(0.6f);
 
                     //Check if the line is 0
@@ -134,7 +134,7 @@ public class FusionEquip : Fusion {
                     yield return new WaitForSeconds(0.3f);
 
                     //Dissolve the first card
-                    BattleManager.Instance.FusionVisuals.DissolveCard(card1);
+                    BattleManager.Instance.FusionVisuals.DissolveCard(card1, Color.red);
                     yield return new WaitForSeconds(0.6f);
 
                     //Check if the line is 0
