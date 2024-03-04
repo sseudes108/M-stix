@@ -21,7 +21,7 @@ public class FusionPositions : MonoBehaviour {
         }
     }
 
-    public void FusionSucess(List<Card> cardsToMove){
+    public void MergeCards(List<Card> cardsToMove){
         foreach(var card in cardsToMove){
             card.MoveCard(_resultCardPosition);
         }

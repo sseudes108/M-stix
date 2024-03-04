@@ -15,27 +15,8 @@ public class FusionEquip : Fusion {
 
             if(arcaneType != EArcaneType.Equip){
                 //Not an equip card
-                #region Fusion Failed
-                    Debug.Log("The arcane card is not an equip card");
-                    //Remove Cards From line
-                    BattleManager.Instance.Fusion.RemoveCardsFromFusionLine(card1, card2);
-
-                    //Move the second card position
-                    BattleManager.Instance.FusionPositions.MoveCardToFirstPositionInlinePos(card2);
-                    yield return new WaitForSeconds(0.3f);
-
-                    //Dissolve the first card
-                    BattleManager.Instance.FusionVisuals.DissolveCard(card1, Color.red);
-                    yield return new WaitForSeconds(0.6f);
-
-                    //Check if the line is 0
-                    if(GetCardsInFusionLine() > 0){
-                        AddCardToFusionLine(card2);
-                    }else{
-                        BattleManager.Instance.FusionPositions.FusionFailed(card2);
-                    }
-                    yield return new WaitForSeconds(3);
-                #endregion
+                Debug.Log("The arcane card is not an equip card");
+                BattleManager.Instance.Fusion.FusionFailed(arcane, card2);
 
             }else{
                 var monster = card1 as CardMonster;
@@ -52,7 +33,7 @@ public class FusionEquip : Fusion {
                     int newLvl = lvlMonster + lvlMod;
 
                     //Move cards (aproximar as duas)
-                    //wait (0.3f);
+                    yield return new WaitForSeconds(0.3f);
                     //dissolve arcane card
 
                     monster.ChangeMonsterStats(newAtk, newDef, newLvl);
@@ -63,27 +44,8 @@ public class FusionEquip : Fusion {
 
                 }else{
                     //Equip card not compatible with the monster
-                    #region Fusion Failed
-                    Debug.Log("The arcane card is not an equip card");
-                    //Remove Cards From line
-                    BattleManager.Instance.Fusion.RemoveCardsFromFusionLine(card1, card2);
-
-                    //Move the second card position
-                    BattleManager.Instance.FusionPositions.MoveCardToFirstPositionInlinePos(card2);
-                    yield return new WaitForSeconds(0.3f);
-
-                    //Dissolve the first card
-                    BattleManager.Instance.FusionVisuals.DissolveCard(card1, Color.red);
-                    yield return new WaitForSeconds(0.6f);
-
-                    //Check if the line is 0
-                    if(GetCardsInFusionLine() > 0){
-                        AddCardToFusionLine(card2);
-                    }else{
-                        BattleManager.Instance.FusionPositions.FusionFailed(card2);
-                    }
-                    yield return new WaitForSeconds(3);
-                    #endregion
+                    Debug.Log("The arcane card is not compatible with the monster");
+                    BattleManager.Instance.Fusion.FusionFailed(arcane, monster);
                 }
             }
         }else if(card1.GetCardType() == ECardType.Arcane){
@@ -92,28 +54,8 @@ public class FusionEquip : Fusion {
 
             if(arcaneType != EArcaneType.Equip){
                 //Not an equip card
-                #region Fusion Failed
-                    Debug.Log("The arcane card is not an equip card");
-                    //Remove Cards From line
-                    BattleManager.Instance.Fusion.RemoveCardsFromFusionLine(card1, card2);
-
-                    //Move the second card position
-                    BattleManager.Instance.FusionPositions.MoveCardToFirstPositionInlinePos(card2);
-                    yield return new WaitForSeconds(0.3f);
-
-                    //Dissolve the first card
-                    BattleManager.Instance.FusionVisuals.DissolveCard(card1, Color.red);
-                    yield return new WaitForSeconds(0.6f);
-
-                    //Check if the line is 0
-                    if(GetCardsInFusionLine() > 0){
-                        AddCardToFusionLine(card2);
-                    }else{
-                        BattleManager.Instance.FusionPositions.FusionFailed(card2);
-                    }
-                    yield return new WaitForSeconds(3);
-                #endregion
-
+                Debug.Log("The arcane card is not an equip card");
+                BattleManager.Instance.Fusion.FusionFailed(arcane, card2);
             }else{
                 var monster = card2 as CardMonster;
                 var animas = monster.GetAnimas();
@@ -124,27 +66,8 @@ public class FusionEquip : Fusion {
                     //Implement
                 }else{
                     //Equip card not compatible with the monster
-                    #region Fusion Failed
                     Debug.Log("The arcane card is not an equip card");
-                    //Remove Cards From line
-                    BattleManager.Instance.Fusion.RemoveCardsFromFusionLine(card1, card2);
-
-                    //Move the second card position
-                    BattleManager.Instance.FusionPositions.MoveCardToFirstPositionInlinePos(card2);
-                    yield return new WaitForSeconds(0.3f);
-
-                    //Dissolve the first card
-                    BattleManager.Instance.FusionVisuals.DissolveCard(card1, Color.red);
-                    yield return new WaitForSeconds(0.6f);
-
-                    //Check if the line is 0
-                    if(GetCardsInFusionLine() > 0){
-                        AddCardToFusionLine(card2);
-                    }else{
-                        BattleManager.Instance.FusionPositions.FusionFailed(card2);
-                    }
-                    yield return new WaitForSeconds(3);
-                    #endregion
+                    BattleManager.Instance.Fusion.FusionFailed(arcane, monster);
                 }
             }
         }

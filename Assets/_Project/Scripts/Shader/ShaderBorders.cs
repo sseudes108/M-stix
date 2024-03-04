@@ -11,7 +11,7 @@ public class ShaderBorders : MonoBehaviour {
         var faceMat = new Material(_shader.Renderer.sharedMaterials[1]);
 
         //Adjust to controle the brightness of the color (HDR)
-        float intensityFactor = 0.01f;
+        float intensityFactor = 0.02f;
         Color adjustedColor = new Color(
             newColor.r * intensityFactor, 
             newColor.g * intensityFactor, 
@@ -20,7 +20,7 @@ public class ShaderBorders : MonoBehaviour {
         );
 
         faceMat.SetColor("_SelectedBorderColor", adjustedColor);
-        faceMat.SetFloat("_Intensity", 5f);
+        faceMat.SetFloat("_Intensity", 1f);
         
         _shader.SetChangesToMaterial(faceMat);
     }

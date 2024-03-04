@@ -63,7 +63,7 @@ public class ShaderDissolve : MonoBehaviour {
     private void SolidifyCardEffect(Color newColor){
         var faceMat = new Material(_shader.Renderer.sharedMaterials[1]);
 
-        _cutOff = Mathf.MoveTowards(_cutOff, 1f, _dissolveSpeed * Time.deltaTime);
+        _cutOff = Mathf.MoveTowards(_cutOff, 1f, _dissolveSpeed / 2 * Time.deltaTime);
 
         //Adjust to controle the brightness of the color (HDR)
         float intensityFactor = 2f;
