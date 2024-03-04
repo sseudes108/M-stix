@@ -14,7 +14,6 @@ public class FusionEquip : Fusion {
                 //Failed - Not an equip card
                 Debug.Log("The arcane card is not an equip card");
                 BattleManager.Instance.Fusion.FusionFailed(monster, arcane);
-                // BattleManager.Instance.Fusion.FusionFailed(arcane, monster);
 
                 //Block the rest of the routine
                 isEquipCard = false;

@@ -10,7 +10,7 @@ public class FusionPositions : MonoBehaviour {
     public Transform HandOffCameraPosition => _handOffCameraPosition;
     public Transform HandDefaultPosition => _defaultHandPosition;
     public Transform ResultCardPosistion => _resultCardPosition;
-
+    
     public void MoveCardToPosition(List<Card> cardsToMove){
         var cardIndex = 0;
 

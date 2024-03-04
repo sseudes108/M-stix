@@ -110,4 +110,7 @@ public class Card : MonoBehaviour {
     public void SetCardFaceDown(){_isFaceDown = true;}
     public bool IsFaceDown(){return _isFaceDown;}
 
+    public void DestroyCard(){
+        Destroy(gameObject);
+    }
 }

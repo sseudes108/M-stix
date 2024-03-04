@@ -85,10 +85,6 @@ public class FusionMonster : Fusion {
             //Make card Visible
             yield return new WaitForSeconds(1f);
             BattleManager.Instance.CardVisuals.SolidifyCard(fusionedCard, Color.white);
-
-            //Deactivate objetcs of the used cards (Destroy)
-            monster1.gameObject.SetActive(false);
-            monster2.gameObject.SetActive(false);
         }
     }
 }

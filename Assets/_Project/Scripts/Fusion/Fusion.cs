@@ -8,7 +8,7 @@ public class Fusion : MonoBehaviour {
     public Action OnFusionStart, OnFusionEnd;
 
     protected Card _fusionResultCard;
-    
+        
     [SerializeField] private List<Card> _fusionLine;
 
     public void StartFusionRoutine(List<Card> selectedCards){
@@ -79,11 +79,16 @@ public class Fusion : MonoBehaviour {
         // do{
         //     yield return new WaitForEndOfFrame();
         // }while(isAnimaSelected = false);
-        Debug.Log("Select Anima");
-        yield return new WaitForSeconds(3);
 
+        if(_fusionResultCard is CardMonster){
+            Debug.Log("Select Anima");
+            yield return new WaitForSeconds(3);
+        }
+
+        //Move Place Selection
         BattleManager.Instance.FusionPositions.MoveCardToBoardPlaceSelectionPlace(_fusionResultCard);
 
+        //End Fusion Signal
         OnFusionEnd?.Invoke();
         Debug.Log("Fusion Ended");
     }
@@ -137,9 +142,9 @@ public class Fusion : MonoBehaviour {
             card2.EnableCollider();
         //
 
-        Debug.Log("Corrigir! Fusion Failed - Fusion - Destroy Card");
+        //Destroy Card
         card1.DisableModelVisual();
-        card1.gameObject.SetActive(false);
+        card1.DestroyCard();
 
         //Check if the line is 0
         if(BattleManager.Instance.Fusion.GetCardsInFusionLine() > 0){
@@ -163,16 +168,24 @@ public class Fusion : MonoBehaviour {
         //Move cards
         BattleManager.Instance.FusionPositions.MergeCards(materials);
 
-        yield return new WaitForSeconds(0.4f);
         //Dissolve cards used
+        yield return new WaitForSeconds(0.3f);
         BattleManager.Instance.CardVisuals.DissolveCard(materials, Color.green);
+
+        //Destroy Cards
+        yield return new WaitForSeconds(0.3f);
+        card1.DestroyCard();
+        card2.DestroyCard();
 
         //Set Card Owner
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
             resultCard.SetPlayerCard();
         }
 
+        //Momentaneo, apenas para testar a visualização da card no UI - 
+        //Ativar o colider apenas quando a card for adicionada um board place
         resultCard.EnableCollider();
+        //
 
         //Move fusioned card to position
         resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion);
@@ -197,9 +210,13 @@ public class Fusion : MonoBehaviour {
         //Move cards
         BattleManager.Instance.FusionPositions.MergeCards(materials);
 
-        yield return new WaitForSeconds(0.3f);
         //Dissolve arcane card used
+        yield return new WaitForSeconds(0.3f);
         BattleManager.Instance.CardVisuals.DissolveCard(arcane, Color.green);
+
+        //Destroy Cards
+        yield return new WaitForSeconds(0.3f);
+        arcane.DestroyCard();
 
         //Set Card Owner
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
