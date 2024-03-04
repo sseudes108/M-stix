@@ -17,4 +17,11 @@ public class FusionVisuals : MonoBehaviour {
         card.Shader.DissolveCard();
     }
 
+    public void SolidifyCard(Card card){
+        card.Shader.SolidifyCard();
+    }
+
+    public void MakeCardInvisible(Card card){
+        card.Shader.MakeCardCardInvisible();
+    }
 }

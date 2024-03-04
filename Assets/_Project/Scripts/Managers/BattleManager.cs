@@ -5,6 +5,7 @@ public class BattleManager : MonoBehaviour {
     [SerializeField] private CardManager _cardManager;
     [SerializeField] private FusionManager _fusionManager;
     [SerializeField] private UIBattleManager _uiBattleManager;
+    [SerializeField] private TurnManager _turnManager;
 
     [SerializeField] private HandPlayer _playerHand;
     [SerializeField] private HandEnemy _enemyHand;
@@ -13,6 +14,9 @@ public class BattleManager : MonoBehaviour {
 
     //UI
     public UIBattleManager UIBattleManager => _uiBattleManager;
+
+    //Turn
+    public TurnManager TurnManager => _turnManager;
 
     //Card
     public CardCreator CardCreator => _cardManager.CardCreator;
@@ -49,5 +53,6 @@ public class BattleManager : MonoBehaviour {
         _cardManager = GetComponentInChildren<CardManager>();
         _fusionManager = GetComponentInChildren<FusionManager>();
         _uiBattleManager = GetComponentInChildren<UIBattleManager>();
+        _turnManager = GetComponentInChildren<TurnManager>();
     }
 }

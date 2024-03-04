@@ -63,4 +63,8 @@ public class ShaderDissolve : MonoBehaviour {
 
         if(_cutOff == 1f) {_solidify = false;}
     }
+
+    public void MakeCardInvisible(){
+        _cutOff = 0;
+    }
 }

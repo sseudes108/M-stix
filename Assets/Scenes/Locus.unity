@@ -1306,13 +1306,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 585c2b60d359d27409e38798b57f4a45, type: 2}
   - {fileID: 11400000, guid: 422d2d12307e6b446afce0341696ba00, type: 2}
   - {fileID: 11400000, guid: e4671eaa11aca0e479aba0a686f2122c, type: 2}
-  - {fileID: 11400000, guid: d72b523617fe6c34e921baae2c1b3111, type: 2}
-  - {fileID: 11400000, guid: e4854d376bafb6f42bdb6e361bb13c41, type: 2}
-  - {fileID: 11400000, guid: bc5029d4c86e66c44926eaa35e345ebb, type: 2}
-  - {fileID: 11400000, guid: d72b523617fe6c34e921baae2c1b3111, type: 2}
   - {fileID: 11400000, guid: e4854d376bafb6f42bdb6e361bb13c41, type: 2}
   - {fileID: 11400000, guid: d72b523617fe6c34e921baae2c1b3111, type: 2}
-  - {fileID: 11400000, guid: e4854d376bafb6f42bdb6e361bb13c41, type: 2}
   - {fileID: 11400000, guid: 8a4c49f4b55bd1144829c0f9319b571b, type: 2}
   - {fileID: 11400000, guid: 94f90ae2862760d4688d748ff545fe34, type: 2}
   - {fileID: 11400000, guid: efa168a112b929a44af8b35c0a3d178a, type: 2}
@@ -2261,6 +2256,7 @@ Transform:
   - {fileID: 804014458}
   - {fileID: 393657848}
   - {fileID: 1144255326}
+  - {fileID: 1288288090}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1169583550
@@ -2278,8 +2274,9 @@ MonoBehaviour:
   _cardManager: {fileID: 0}
   _fusionManager: {fileID: 0}
   _uiBattleManager: {fileID: 0}
+  _turnManager: {fileID: 0}
   _playerHand: {fileID: 1572615333}
-  _enemyHand: {fileID: 0}
+  _enemyHand: {fileID: 2018721258}
 --- !u!1 &1181589497
 GameObject:
   m_ObjectHideFlags: 0
@@ -2562,6 +2559,51 @@ Transform:
   - {fileID: 1476401288}
   m_Father: {fileID: 1682592278}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1288288089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1288288090}
+  - component: {fileID: 1288288091}
+  m_Layer: 0
+  m_Name: TurnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1288288090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288288089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1169583549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1288288091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288288089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebd4bfb2e140bd4c82e17dd8f632b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _turn: 0
 --- !u!1 &1296482494
 GameObject:
   m_ObjectHideFlags: 0
@@ -3491,6 +3533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2018721257}
+  - component: {fileID: 2018721258}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -3515,6 +3558,25 @@ Transform:
   - {fileID: 2127364007}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2018721258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018721256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4494781812021a449fc37bc070e1bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handPositions:
+  - {fileID: 1296482495}
+  - {fileID: 1129533681}
+  - {fileID: 489847846}
+  - {fileID: 2106969359}
+  - {fileID: 530795775}
+  deck: {fileID: 0}
 --- !u!1 &2026863248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3728,29 +3790,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardsInDeck:
-  - {fileID: 11400000, guid: 5e02f590bfafd774289fdc05f9191942, type: 2}
-  - {fileID: 11400000, guid: f9cf545cc3cf9f4489f359d5b06c4f74, type: 2}
-  - {fileID: 11400000, guid: 8a4c49f4b55bd1144829c0f9319b571b, type: 2}
-  - {fileID: 11400000, guid: 94f90ae2862760d4688d748ff545fe34, type: 2}
-  - {fileID: 11400000, guid: c23b85c6a5cb93e47ac1f98f8ac6dd53, type: 2}
-  - {fileID: 11400000, guid: a6254916988433f4998ffabefe3c975a, type: 2}
-  - {fileID: 11400000, guid: 585c2b60d359d27409e38798b57f4a45, type: 2}
-  - {fileID: 11400000, guid: efa168a112b929a44af8b35c0a3d178a, type: 2}
-  - {fileID: 11400000, guid: 815b27521319ab04ea459e76d26ab7b5, type: 2}
-  - {fileID: 11400000, guid: 422af3e3d2854e84bad3bcc29509f5e0, type: 2}
-  - {fileID: 11400000, guid: 422d2d12307e6b446afce0341696ba00, type: 2}
-  - {fileID: 11400000, guid: e4671eaa11aca0e479aba0a686f2122c, type: 2}
-  - {fileID: 11400000, guid: ba717f5eb47c8df44a459e71e05ea0b9, type: 2}
-  - {fileID: 11400000, guid: 90546bda3cb976f4d9544932ce26f2a2, type: 2}
-  - {fileID: 11400000, guid: 197eead3b55bf544c8b064315c4889da, type: 2}
-  - {fileID: 11400000, guid: bc5029d4c86e66c44926eaa35e345ebb, type: 2}
-  - {fileID: 11400000, guid: e86def246622966439b5ee379f0ce0c9, type: 2}
-  - {fileID: 11400000, guid: ea7b3e2667a6b2149a6983352deadd72, type: 2}
-  - {fileID: 11400000, guid: d8ba40ed687fcb94b8f38039a5b6b0d4, type: 2}
-  - {fileID: 11400000, guid: 4828bfd23adef7f47bc71815c004d524, type: 2}
-  - {fileID: 11400000, guid: 9865db3b581316344885210786a2683d, type: 2}
-  - {fileID: 11400000, guid: e4854d376bafb6f42bdb6e361bb13c41, type: 2}
-  - {fileID: 11400000, guid: d72b523617fe6c34e921baae2c1b3111, type: 2}
+  - {fileID: 11400000, guid: 5f9abb5c2af1a4a42919bf35524f3eec, type: 2}
+  - {fileID: 11400000, guid: 47eb12ce50c27584d9e1b5990b623d4b, type: 2}
+  - {fileID: 11400000, guid: 0e591a481cf03a24ca7693e6a250ea40, type: 2}
+  - {fileID: 11400000, guid: 1e07aedddae0c984ba994e98c850527c, type: 2}
+  - {fileID: 11400000, guid: 5c959840b10f28944bfe56f4cff72096, type: 2}
 --- !u!114 &62067139523182964
 MonoBehaviour:
   m_ObjectHideFlags: 0

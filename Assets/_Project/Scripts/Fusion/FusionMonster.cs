@@ -19,24 +19,27 @@ public class FusionMonster : Fusion {
         //Fusion Failed
         bool equalLevels = true;
         if(monster1Lvl != monster2Lvl){
-            Debug.Log("Fusion Failed - Lvls are not equals");
-            //Remove Cards From line
-            BattleManager.Instance.Fusion.RemoveCardsFromFusionLine(monster1, monster2);
+            //Not equal levels
+            #region Fusion Failed
+                Debug.Log("Fusion Failed - Lvls are not equals");
+                //Remove Cards From line
+                BattleManager.Instance.Fusion.RemoveCardsFromFusionLine(monster1, monster2);
 
-            //Move the second card position
-            BattleManager.Instance.FusionPositions.MoveCardToFirstPositionInlinePos(monster2);
-            yield return new WaitForSeconds(0.3f);
+                //Move the second card position
+                BattleManager.Instance.FusionPositions.MoveCardToFirstPositionInlinePos(monster2);
+                yield return new WaitForSeconds(0.3f);
 
-            //Dissolve the first card
-            BattleManager.Instance.FusionVisuals.DissolveCard(monster1);
-            yield return new WaitForSeconds(0.6f);
+                //Dissolve the first card
+                BattleManager.Instance.FusionVisuals.DissolveCard(monster1);
+                yield return new WaitForSeconds(0.6f);
 
-            //Check if the line is 0
-            if(BattleManager.Instance.Fusion.GetCardsInFusionLine() > 0){
-                BattleManager.Instance.Fusion.AddCardToFusionLine(monster2);
-            }else{
-                BattleManager.Instance.FusionPositions.FusionFailed(monster2);
-            }
+                //Check if the line is 0
+                if(BattleManager.Instance.Fusion.GetCardsInFusionLine() > 0){
+                    BattleManager.Instance.Fusion.AddCardToFusionLine(monster2);
+                }else{
+                    BattleManager.Instance.FusionPositions.FusionFailed(monster2);
+                }
+            #endregion
 
             //Block the rest of the routine
             equalLevels = false;
@@ -92,22 +95,40 @@ public class FusionMonster : Fusion {
             //Move cards
             BattleManager.Instance.FusionPositions.FusionSucess(materials);
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.4f);
             //Dissolve cards used
             BattleManager.Instance.FusionVisuals.DissolveCard(materials);
 
             //Deactivate objetcs of the used cards (Destroy)
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.3f);
             monster1.gameObject.SetActive(false);
             monster2.gameObject.SetActive(false);
-            
+
             //Instantiate fusioned card
             var randomIndex = Random.Range(0, possibleMonsters.Count);
             var fusionedCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(possibleMonsters[randomIndex]));
             fusionedCard.name = $"{fusionedCard.GetCardName()} - Fusioned";
-            
+
+            //Set Card Owner
+            if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+                fusionedCard.SetPlayerCard();
+            }
+
+            //Momentaneo, apenas para testar a visualização da card no UI - 
+            //Ativar o colider apenas quando a card for adicionada um board place
+                fusionedCard.EnableCollider();
+            //
+
+            //make card invisible
+            fusionedCard.DisableStatCanvas();
+            BattleManager.Instance.FusionVisuals.MakeCardInvisible(fusionedCard);
+
             //Move fusioned card to position
             fusionedCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosition);
+
+            //Make card appear
+            yield return new WaitForSeconds(0.5f);
+            BattleManager.Instance.FusionVisuals.SolidifyCard(fusionedCard);
 
             // var teste = BattleManager.Instance.Fusion.GetCardsInFusionLine();
             if(BattleManager.Instance.Fusion.GetCardsInFusionLine() > 0){

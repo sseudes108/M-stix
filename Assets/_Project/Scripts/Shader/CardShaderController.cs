@@ -39,6 +39,7 @@ public class CardShaderController : MonoBehaviour {
     public void SetBoarderColor(Color newColor){
         _bordersShader.SetBoarderColor(newColor);
     }
+
     public void ResetBoarderColor(){
         _bordersShader.ResetBoarderColor();
     }
@@ -48,6 +49,9 @@ public class CardShaderController : MonoBehaviour {
     }
     public void SolidifyCard(){
         _dissolveShader.SolidifyCard();
+    }
+    public void MakeCardCardInvisible(){
+        _dissolveShader.MakeCardInvisible();
     }
 
     public Renderer Renderer => _renderer;

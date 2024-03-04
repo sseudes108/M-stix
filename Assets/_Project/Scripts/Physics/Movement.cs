@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour {
         transform.position = Vector3.Lerp(transform.position, _targetPosition, _moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, rotateSpeed * Time.deltaTime);
 
-        if(Vector3.Distance(transform.position, _targetPosition) < 0.2f && transform.rotation == _targetRotation){
+        if(Vector3.Distance(transform.position, _targetPosition) < 0.01f && transform.rotation == _targetRotation){
             _canMove = false;
         }
     }

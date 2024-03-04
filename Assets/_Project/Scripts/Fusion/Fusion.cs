@@ -6,8 +6,7 @@ using UnityEngine;
 public class Fusion : MonoBehaviour {
 
     public Action OnFusionStart, OnFusionEnd;
-
-    // [SerializeField] private int _cardsInFusionLine;
+    
     [SerializeField] private List<Card> _fusionLine;
 
     public void StartFusionRoutine(List<Card> selectedCards){
@@ -32,7 +31,7 @@ public class Fusion : MonoBehaviour {
         do{
             //Move cards to fusion line positions
             BattleManager.Instance.FusionPositions.MoveCardToPosition(selectedCards);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
 
             var card1 = _fusionLine[0];
             var card2 = _fusionLine[1];
@@ -42,8 +41,8 @@ public class Fusion : MonoBehaviour {
                 //FusionEquip
                 EquipeFusion(card1, card2);                
                 RemoveCardsFromFusionLine(card1, card2);
-                
-                yield return new WaitForSeconds(3);
+
+                yield return new WaitForSeconds(1);
             }
 
             //Type Equals (monster x monster / arcane x arcane)
@@ -92,8 +91,6 @@ public class Fusion : MonoBehaviour {
     public void RemoveCardsFromFusionLine(Card card1, Card card2){
         _fusionLine.Remove(card1);
         _fusionLine.Remove(card2);
-
-        // _cardsInFusionLine = _fusionLine.Count;
     }
 
     public void AddCardToFusionLine(Card cardToAdd){

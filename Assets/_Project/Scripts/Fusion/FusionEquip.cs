@@ -44,7 +44,22 @@ public class FusionEquip : Fusion {
 
                 if(animas.Contains(animaLink)){
                     //Sucess
-                    StartModifyMonsterStatsRoutine(arcane, monster);
+                    (int atkMonster, int defMonster, int lvlMonster) = monster.GetMonsterStats();
+                    (int atkMod, int defMod, int lvlMod) = arcane.GetModifiers();
+
+                    int newAtk = atkMonster + atkMod;
+                    int newDef = defMonster + defMod;
+                    int newLvl = lvlMonster + lvlMod;
+
+                    //Move cards (aproximar as duas)
+                    //wait (0.3f);
+                    //dissolve arcane card
+
+                    monster.ChangeMonsterStats(newAtk, newDef, newLvl);
+
+                    //Move monster to result position
+                    //wait (2f);
+                    //Check if the fusion is over
 
                 }else{
                     //Equip card not compatible with the monster
@@ -69,7 +84,6 @@ public class FusionEquip : Fusion {
                     }
                     yield return new WaitForSeconds(3);
                     #endregion
-
                 }
             }
         }else if(card1.GetCardType() == ECardType.Arcane){
@@ -77,7 +91,7 @@ public class FusionEquip : Fusion {
             var arcaneType = arcane.GetArcaneType();
 
             if(arcaneType != EArcaneType.Equip){
-
+                //Not an equip card
                 #region Fusion Failed
                     Debug.Log("The arcane card is not an equip card");
                     //Remove Cards From line
@@ -107,8 +121,7 @@ public class FusionEquip : Fusion {
 
                 if(animas.Contains(animaLink)){
                     //Sucess
-                    StartModifyMonsterStatsRoutine(arcane, monster);
-
+                    //Implement
                 }else{
                     //Equip card not compatible with the monster
                     #region Fusion Failed
@@ -134,39 +147,6 @@ public class FusionEquip : Fusion {
                     #endregion
                 }
             }
-        }
-    }
-
-    private void StartModifyMonsterStatsRoutine(CardArcane arcane, CardMonster monster){
-        ModifyMonsterStatsRoutine(arcane, monster);
-    }
-
-    private IEnumerator ModifyMonsterStatsRoutine(CardArcane arcane, CardMonster monster){
-        (int atkMonster, int defMonster, int lvlMonster) = monster.GetMonsterStats();
-        (int atkMod, int defMod, int lvlMod) = arcane.GetModifiers();
-
-        int newAtk = atkMonster + atkMod;
-        int newDef = defMonster + defMod;
-        int newLvl = lvlMonster + lvlMod;
-
-        monster.ChangeMonsterStats(newAtk, newDef, newLvl);
-
-        //Cards used in fusion
-        List<Card> materials = new(){arcane, monster};
-
-        //Move cards
-        BattleManager.Instance.FusionPositions.FusionSucess(materials);
-
-        yield return new WaitForSeconds(0.5f);
-        //Dissolve cards used
-        BattleManager.Instance.FusionVisuals.DissolveCard(arcane);
-                
-        //Move fusioned card to position
-        monster.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosition);
-
-        // var teste = BattleManager.Instance.Fusion.GetCardsInFusionLine();
-        if(BattleManager.Instance.Fusion.GetCardsInFusionLine() > 0){
-            BattleManager.Instance.Fusion.AddCardToFusionLine(monster);
         }
     }
 }
