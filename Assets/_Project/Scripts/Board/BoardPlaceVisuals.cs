@@ -1,116 +1,102 @@
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class BoardPlaceVisuals : MonoBehaviour {
-    private BoardCardPlacement _boardCardPlacement;
 
-    private void Awake() {
-        _boardCardPlacement = GetComponent<BoardCardPlacement>();
+    private void OnEnable() {
+        StartCoroutine(Bug_Fix_BattleManager_Fusion());
     }
 
-    public void BoardPlacementGlowEffect(){
-
+    private void OnDisable() {
+        BattleManager.Instance.Fusion.OnFusionEnd -= Fusion_OnFusionEnd;
     }
 
-    public void SetBoarderColor(Renderer[] _renderers, Color newColor){
-        var borderMat = new Material(_renderers[0].sharedMaterials[1]);
+    public void Fusion_OnFusionEnd(){
+        // Debug.Log("Fusion Ended - Board Place Visuals");
+        var cardInSelectionPlace = BattleManager.Instance.FusionPositions.GetCardInBoardSelectionPlace();
+        
+        if(cardInSelectionPlace is CardMonster){
+            //Glow monster
+            Debug.Log("Glow monster");
+            
+            List<Transform> monsterBoardPlaces;
+            if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+                monsterBoardPlaces = BattleManager.Instance.BoardPlaceManager.PlayerBoardPlaces.MonsterPlaces;
+            }else{
+                monsterBoardPlaces = BattleManager.Instance.BoardPlaceManager.EnemyBoardPlaces.MonsterPlaces;
+            }
 
-        //Adjust to controle the brightness of the color (HDR)
-        float intensityFactor = 0.1f;
-        Color adjustedColor = new Color(
-            newColor.r * intensityFactor, 
-            newColor.g * intensityFactor, 
-            newColor.b * intensityFactor,
-            newColor.a
-        );
+            //Renderers
+            List<Renderer> renderers = new();
+            foreach(var monsterBoardPlace in monsterBoardPlaces){
+                var boardCardMonster = monsterBoardPlace.GetComponent<BoardCardMonsterPlace>();
+                var renders = boardCardMonster.Renderers;
+                renderers.InsertRange(0, renders);
 
-        borderMat.SetColor("_SelectedBorderColor", adjustedColor);
-        borderMat.SetFloat("_Intensity", 2f);
-        borderMat.SetFloat("_TimeMultiplier", 2f);
+                foreach(var renderer in renderers){
+                    var newBorderMaterial = new Material(renderer.sharedMaterials[1]);
+                    
+                    //Adjust to controle the brightness of the color (HDR)
+                    var newColor = Color.white;
+                    float intensityFactor = 1f;
+                    Color adjustedColor = new Color(
+                        newColor.r * intensityFactor, 
+                        newColor.g * intensityFactor, 
+                        newColor.b * intensityFactor,
+                        newColor.a
+                    );
 
-        foreach(var renderer in _renderers){
-            renderer.materials = new[] {renderer.sharedMaterials[0], borderMat, renderer.sharedMaterials[2] };
-        }
-    }
+                    newBorderMaterial.SetColor("_BorderColor", adjustedColor);
+                    newBorderMaterial.SetFloat("_Intensity", 10f);
+                    newBorderMaterial.SetFloat("_TimeMultiplier", 10f);
+                    
+                    renderer.materials = new[] { renderer.sharedMaterials[0], newBorderMaterial, renderer.sharedMaterials[2] };
+                }
+            }
 
-    public void ResetBoarderColor(Renderer[] _renderers){
-        var materials = new List<Material>();
-        var borderMat = new Material(_renderers[0].sharedMaterials[1]);
-
-        foreach(var renderer in _renderers){
-            materials.Add(renderer.sharedMaterials[1]);
-        }
-
-        Color color;
-        if(_boardCardPlacement is BoardCardMonsterPlace){
-            color = Color.blue;
         }else{
-            color = Color.red;
-        }
+            //Glow Arcane
+            Debug.Log("Glow Arcane");
 
-        borderMat.SetColor("_SelectedBorderColor", color);
-        borderMat.SetFloat("_Intensity", 1.5f);
-        borderMat.SetFloat("_TimeMultiplier", 0f);
+            List<Transform> arcaneBoardPlaces;
+            if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+                arcaneBoardPlaces = BattleManager.Instance.BoardPlaceManager.PlayerBoardPlaces.ArcanePlaces;
+            }else{
+                arcaneBoardPlaces = BattleManager.Instance.BoardPlaceManager.EnemyBoardPlaces.ArcanePlaces;
+            }
 
-        foreach(var renderer in _renderers){
-            renderer.materials = new[] {renderer.sharedMaterials[0], borderMat, renderer.sharedMaterials[2] };
+            //Renderer
+            foreach(var arcaneBoardPlace in arcaneBoardPlaces){
+                var boardCardArcane = arcaneBoardPlace.GetComponent<BoardCardArcanePlace>();
+                var renderer = boardCardArcane.Renderer;
+
+                var newBorderMaterial = new Material(renderer.sharedMaterials[1]);
+                
+                //Adjust to controle the brightness of the color (HDR)
+                var newColor = Color.green;
+                float intensityFactor = 1f;
+                Color adjustedColor = new Color(
+                    newColor.r * intensityFactor, 
+                    newColor.g * intensityFactor, 
+                    newColor.b * intensityFactor,
+                    newColor.a
+                );
+
+                newBorderMaterial.SetColor("_BorderColor", adjustedColor);
+                newBorderMaterial.SetFloat("_Intensity", 10f);
+                newBorderMaterial.SetFloat("_TimeMultiplier", 10f);
+                
+                renderer.materials = new[] { renderer.sharedMaterials[0], newBorderMaterial, renderer.sharedMaterials[2] };
+            }
         }
     }
 
+    private IEnumerator Bug_Fix_BattleManager_Fusion(){
+        //reference Exception BattleManager_Instance.Fusion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void SetBoarderColor(Renderer _renderer, Color newColor){
-        var faceMat = new Material(_renderer.sharedMaterials[1]);
-
-        //Adjust to controle the brightness of the color (HDR)
-        float intensityFactor = 0.1f;
-        Color adjustedColor = new Color(
-            newColor.r * intensityFactor, 
-            newColor.g * intensityFactor, 
-            newColor.b * intensityFactor,
-            newColor.a
-        );
-
-        faceMat.SetColor("_SelectedBorderColor", adjustedColor);
-        faceMat.SetFloat("_Intensity", 2f);
-        faceMat.SetFloat("_TimeMultiplier", 2f);
-
-        _renderer.materials = new[] { _renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2] };
-    }
-
-    public void ResetBoarderColor(Renderer _renderer){
-        var faceMat = new Material(_renderer.sharedMaterials[1]);
-
-        Color color;
-        if(_boardCardPlacement is BoardCardMonsterPlace){
-            color = Color.blue;
-        }else{
-            color = Color.red;
-        }
-
-        faceMat.SetColor("_SelectedBorderColor", color);
-        faceMat.SetFloat("_Intensity", 1.5f);
-        faceMat.SetFloat("_TimeMultiplier", 0f);
-
-        _renderer.materials = new[] { _renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2] };
+        yield return new WaitForEndOfFrame();
+        BattleManager.Instance.Fusion.OnFusionEnd += Fusion_OnFusionEnd;
     }
 }

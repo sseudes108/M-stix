@@ -10,6 +10,8 @@ public class BattleManager : MonoBehaviour {
     [SerializeField] private HandPlayer _playerHand;
     [SerializeField] private HandEnemy _enemyHand;
 
+    [SerializeField] private BoardPlaceManager _boardPlaceManager;
+
     //Public Refs//
 
     //UI
@@ -31,11 +33,14 @@ public class BattleManager : MonoBehaviour {
     public FusionEquip FusionEquip => _fusionManager.FusionEquip;
 
     public FusionPositions FusionPositions => _fusionManager.FusionPositions;
-    // public FusionVisuals FusionVisuals => _fusionManager.FusionVisuals;
 
     //Hands
     public HandPlayer PlayerHand => _playerHand;
     public HandEnemy EnemyHand => _enemyHand;
+
+    //Board
+    public BoardPlaceManager BoardPlaceManager => _boardPlaceManager;
+    public BoardPlaceVisuals BoardPlaceVisuals => _boardPlaceManager.BoardPlaceVisuals;
 
     private void Awake(){
         SetSingleton();
@@ -55,5 +60,6 @@ public class BattleManager : MonoBehaviour {
         _fusionManager = GetComponentInChildren<FusionManager>();
         _uiBattleManager = GetComponentInChildren<UIBattleManager>();
         _turnManager = GetComponentInChildren<TurnManager>();
+        _boardPlaceManager = GetComponentInChildren<BoardPlaceManager>();
     }
 }

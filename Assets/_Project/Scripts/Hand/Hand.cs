@@ -11,23 +11,13 @@ public abstract class Hand : MonoBehaviour{
     //Move
     private Movement _movement;
 
-    /*
-    If adicionado para evitar um erro de ref ao ter as duas hands ativas na cena
-        Não quebrava o jogo, o mesmo prossegue após o pause. A ordem de exucação dos scripts esta correta e fusion não é null.
-        Enfim, essa verificação evita o erro.
-    */
+    //
     private void OnEnable() {
-        if (BattleManager.Instance != null && BattleManager.Instance.Fusion != null){
-            BattleManager.Instance.Fusion.OnFusionStart += Fusion_OnFusionStart;
-            // BattleManager.Instance.Fusion.OnFusionEnd +=
-        }
+        BattleManager.Instance.Fusion.OnFusionStart += Fusion_OnFusionStart;
     }
 
     private void OnDisable() {
-        if (BattleManager.Instance != null && BattleManager.Instance.Fusion != null){
-            BattleManager.Instance.Fusion.OnFusionStart -= Fusion_OnFusionStart;
-            // BattleManager.Instance.Fusion.OnFusionEnd -=
-        }
+        BattleManager.Instance.Fusion.OnFusionStart -= Fusion_OnFusionStart;
     }
 
     private void Awake() {
@@ -103,8 +93,8 @@ public abstract class Hand : MonoBehaviour{
             _movement.SetTargetPosition(targetPosition, 5); 
         }
     }
-
     private void Fusion_OnFusionStart(){
+        Debug.Log("Fusion Start Signal");
         MoveHand(BattleManager.Instance.FusionPositions.HandOffCameraPosition.position);
     }
 }

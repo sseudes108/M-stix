@@ -6,6 +6,8 @@ public class FusionManager : MonoBehaviour {
     [SerializeField] private FusionMonster _fusionMonster;
     [SerializeField] private FusionArcane _fusionArcane;
     [SerializeField] private FusionEquip _fusionEquip;
+    private void OnEnable() {
+    }
 
     private void Awake() {
         _fusion = GetComponent<Fusion>();

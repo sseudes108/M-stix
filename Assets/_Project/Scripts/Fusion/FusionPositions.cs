@@ -10,7 +10,8 @@ public class FusionPositions : MonoBehaviour {
     public Transform HandOffCameraPosition => _handOffCameraPosition;
     public Transform HandDefaultPosition => _defaultHandPosition;
     public Transform ResultCardPosistion => _resultCardPosition;
-    
+    private Card _cardInBoardPlaceSelection;
+        
     public void MoveCardToPosition(List<Card> cardsToMove){
         var cardIndex = 0;
 
@@ -34,5 +35,10 @@ public class FusionPositions : MonoBehaviour {
 
     public void MoveCardToBoardPlaceSelectionPlace(Card cardToMove){
         cardToMove.MoveCard(_boardPlaceSelectionPlace);
+        _cardInBoardPlaceSelection = cardToMove;
+    }
+    
+    public Card GetCardInBoardSelectionPlace(){
+        return _cardInBoardPlaceSelection;
     }
 }

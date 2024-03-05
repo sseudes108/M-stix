@@ -2,9 +2,11 @@ using UnityEngine;
 
 public abstract class BoardCardPlacement : MonoBehaviour {
     [SerializeField] protected Collider _collider;
+    protected Renderer _renderer;
 
     protected void Awake() {
         _collider = GetComponent<Collider>();
+        _renderer = GetComponentInChildren<Renderer>();
     }
     
     private void OnMouseDown() {
@@ -18,4 +20,6 @@ public abstract class BoardCardPlacement : MonoBehaviour {
 
         Debug.Log($"Click on {cardPlacement}");
     }
+
+    public virtual Renderer Renderer => _renderer;
 }
