@@ -70,27 +70,27 @@ public class Card : MonoBehaviour {
     }
 
     private void OnMouseDown() {
-        if(BattleManager.Instance.BattleStateManager.CurrentState != BattleManager.Instance.SelectionPhase){return;}
+        if(BattleManager.Instance.BattleStateManager.CurrentPhase != BattleManager.Instance.SelectionPhase){return;}
+
         if(_isPlayerCard && _isOnHand){
-            Vector3 newPos = new();
+                Vector3 newPos = new();
 
-            if(!_isSelected){
-                BattleManager.Instance.CardSelector.AddCardToSelectedList(this);
-                newPos = new (0,+0.3f,0);
-                _shader.SetBoarderColor(_selectedColor);
+                if(!_isSelected){
+                    BattleManager.Instance.CardSelector.AddCardToSelectedList(this);
+                    newPos = new (0,+0.3f,0);
+                    _shader.SetBoarderColor(_selectedColor);
 
-                _isSelected = true;
-                
-            }else{
-                BattleManager.Instance.CardSelector.RemoveCardFromSelectedList(this);
-                newPos = new (0,-0.3f,0);
-                _shader.ResetBoarderColor();
-        
-                _isSelected = false;
+                    _isSelected = true;
+                    
+                }else{
+                    BattleManager.Instance.CardSelector.RemoveCardFromSelectedList(this);
+                    newPos = new (0,-0.3f,0);
+                    _shader.ResetBoarderColor();
+            
+                    _isSelected = false;
+                }
+                transform.position += newPos;
             }
-
-            transform.position += newPos;
-        }
     }
 
     private void OnMouseOver() {
@@ -102,7 +102,7 @@ public class Card : MonoBehaviour {
     public void SetPlayerCard(){_isPlayerCard = true;}
     public bool IsPlayerCard(){return _isPlayerCard;}
 
-    public void SetCardOnHand(){_isOnHand = true;}
+    public void SetCardOnHand(bool isOnHand){_isOnHand = isOnHand;}
     public bool IsOnHand(){return _isOnHand;}
 
     public void SetCardOnField(){_isOnField = true;}

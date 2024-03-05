@@ -35,14 +35,20 @@ public class BattleManager : MonoBehaviour {
     public FusionEquip FusionEquip => _fusionManager.FusionEquip;
 
     //Board
+    public BoardPlaceVisuals BoardPlaceVisuals => _boardPlaceManager.BoardPlaceVisuals;
     public PlayerBoardPlaces PlayerBoardPlaces => _boardPlaceManager.PlayerBoardPlaces;
     public EnemyBoardPlaces EnemyBoardPlaces => _boardPlaceManager.EnemyBoardPlaces;
 
-    public BattlePhaseStateManager BattleStateManager => _battleStateManager;
 
-    public BattleAbstract StartPhase => _battleStateManager.BattlePhaseStart;
-    public BattleAbstract DrawPhase => _battleStateManager.BattlePhaseDraw;
-    public BattleAbstract SelectionPhase => _battleStateManager.BattlePhaseSelection;
+    //Battle State Machine
+    public BattlePhaseStateManager BattleStateManager => _battleStateManager;
+    public BattlePhaseStart StartPhase => _battleStateManager.BattlePhaseStart;
+    public BattlePhaseDraw DrawPhase => _battleStateManager.BattlePhaseDraw;
+    public BattlePhaseCardSelection SelectionPhase => _battleStateManager.BattlePhaseCardSelection;
+    public BattlePhaseFusion FusionPhase => _battleStateManager.BattlePhaseFusion;
+    public BattlePhaseFaceSelection FaceSelectionPhase => _battleStateManager.BattlePhaseFaceSelection;
+    public BattlePhaseSelectAnima AnimaSelectionPhase => _battleStateManager.BattlePhaseSelectAnima;
+    public BattlePhaseBoardPlaceSelection BoardPlaceSelectionPhase => _battleStateManager.BattleBoardSelectionPhase;
 
     //Hand
     public HandPlayer PlayerHand => _handPlayer;

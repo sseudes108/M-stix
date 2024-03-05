@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BattlePhaseStart : BattleAbstract{
     public override void EnterState(){
-        Debug.Log("EnterState BattlePhaseStart");
+        BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Start);
         Wait();
     }
 
@@ -14,8 +14,8 @@ public class BattlePhaseStart : BattleAbstract{
     }
 
     private IEnumerator WaitRoutine(){
-        Debug.Log("Waiting");
-        yield return new WaitForSeconds(10);
+        Debug.Log("Waiting Start");
+        yield return new WaitForSeconds(1);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.DrawPhase);
     }
 

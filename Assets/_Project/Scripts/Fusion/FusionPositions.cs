@@ -33,7 +33,7 @@ public class FusionPositions : MonoBehaviour {
         cardToMove.MoveCard(_LinePositions[0]);
     }
 
-    public void MoveCardToBoardPlaceSelectionPlace(Card cardToMove){
+    public void MoveCardToBoardPlaceSelectionPos(Card cardToMove){
         cardToMove.MoveCard(_boardPlaceSelectionPlace);
         _cardInBoardPlaceSelection = cardToMove;
     }

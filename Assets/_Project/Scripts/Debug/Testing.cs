@@ -19,7 +19,7 @@ public class Testing : MonoBehaviour {
         }
         
         if(Input.GetKeyDown(KeyCode.F)){
-            BattleManager.Instance.Fusion.StartFusionRoutine(BattleManager.Instance.CardSelector.GetSelectedCards());
+            BattleManager.Instance.SelectionPhase.EndSelection();
         }
     }
 }

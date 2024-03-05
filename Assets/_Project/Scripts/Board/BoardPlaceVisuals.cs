@@ -1,23 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardPlaceVisuals : MonoBehaviour {
 
-    private void OnEnable() {
-        StartCoroutine(Bug_Fix_BattleManager_Fusion());
-    }
+    public void Fusion_OnFusionEnd(Card fusionResultCard){
 
-    private void OnDisable() {
-        BattleManager.Instance.Fusion.OnFusionEnd -= Fusion_OnFusionEnd;
-    }
-
-    public void Fusion_OnFusionEnd(){
         var isPlayerTurn = BattleManager.Instance.TurnManager.IsPlayerTurn();
-        var cardInSelectionPlace = BattleManager.Instance.FusionPositions.GetCardInBoardSelectionPlace();
-        
-        if(cardInSelectionPlace is CardMonster){
+
+        if(fusionResultCard is CardMonster){
             //Glow Monster places
+
             List<Transform> monsterBoardPlaces;
             if(isPlayerTurn){
                 monsterBoardPlaces = BattleManager.Instance.PlayerBoardPlaces.MonsterPlaces;
@@ -34,12 +26,14 @@ public class BoardPlaceVisuals : MonoBehaviour {
 
                 foreach(var renderer in renderers){
                     var newColor = Color.white;
+                    
                     ChangeMaterial(renderer, newColor);
                 }
             }
 
         }else{
             //Glow Arcane places
+
             List<Transform> arcaneBoardPlaces;
             if(isPlayerTurn){
                 arcaneBoardPlaces = BattleManager.Instance.PlayerBoardPlaces.ArcanePlaces;
@@ -75,11 +69,5 @@ public class BoardPlaceVisuals : MonoBehaviour {
         newBorderMaterial.SetFloat("_TimeMultiplier", 10f);
 
         renderer.materials = new[] { renderer.sharedMaterials[0], newBorderMaterial, renderer.sharedMaterials[2] };
-    }
-
-    private IEnumerator Bug_Fix_BattleManager_Fusion(){
-        //reference Exception BattleManager_Instance.Fusion
-        yield return new WaitForEndOfFrame();
-        BattleManager.Instance.Fusion.OnFusionEnd += Fusion_OnFusionEnd;
     }
 }

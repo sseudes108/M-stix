@@ -33,3 +33,18 @@ public enum EAnimaType{
     Sun = 6,
     Moon = 7
 }
+
+public enum EStateMachinePhase{
+    Start,
+    Draw,
+    CardSelection,
+    Fusion,
+    FaceSelection,
+    AnimaSelection,
+    BoardPlaceSelection,
+    Action,
+    Attack,
+    Damage,
+    ActionTwo,
+    End
+}

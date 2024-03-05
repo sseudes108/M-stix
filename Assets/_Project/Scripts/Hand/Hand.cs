@@ -10,15 +10,7 @@ public abstract class Hand : MonoBehaviour{
 
     //Move
     private Movement _movement;
-
     //
-    private void OnEnable() {
-        BattleManager.Instance.Fusion.OnFusionStart += Fusion_OnFusionStart;
-    }
-
-    private void OnDisable() {
-        BattleManager.Instance.Fusion.OnFusionStart -= Fusion_OnFusionStart;
-    }
 
     private void Awake() {
         GetHand();
@@ -73,7 +65,7 @@ public abstract class Hand : MonoBehaviour{
 
             //Ocupy place in hand
             _freeHandPositions[0].GetComponent<HandPosition>().SetHandPlaceOccupied();
-            drewCard.SetCardOnHand();
+            drewCard.SetCardOnHand(true);
 
             //Refresh positions
             CheckFreePositionsInHand();
@@ -83,16 +75,15 @@ public abstract class Hand : MonoBehaviour{
             
         }while(cardsToDraw > 1);
 
-        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionPhase);
+        yield return new WaitForSeconds(0.2f);
+        EndDrawPhase();
     }
 
-    protected virtual void MoveHand(Vector3 targetPosition){
+    public virtual void MoveHand(Vector3 targetPosition){
         if(_hand is HandPlayer){
             _movement.SetTargetPosition(targetPosition, 5); 
         }
     }
-    private void Fusion_OnFusionStart(){
-        Debug.Log("Fusion Start Signal");
-        MoveHand(BattleManager.Instance.FusionPositions.HandOffCameraPosition.position);
-    }
+
+    protected virtual void EndDrawPhase(){}
 }
