@@ -147,8 +147,8 @@ public class Fusion : MonoBehaviour {
         card1.DestroyCard();
 
         //Check if the line is 0
-        if(BattleManager.Instance.Fusion.GetCardsInFusionLine() > 0){
-            BattleManager.Instance.Fusion.AddCardToFusionLine(card2);
+        if(GetCardsInFusionLine() > 0){
+            AddCardToFusionLine(card2);
         }else{
             BattleManager.Instance.FusionPositions.MoveCardToResultPosition(card2);
         }

@@ -25,10 +25,6 @@ public abstract class Hand : MonoBehaviour{
         GetDeck();
         _movement = GetComponentInChildren<Movement>();
     }
-
-    private void Start() {
-        DrawCard();
-    }
     protected virtual void GetHand(){}
     protected virtual void GetDeck(){}
 
@@ -42,11 +38,11 @@ public abstract class Hand : MonoBehaviour{
         }
     }
     
-    public virtual void DrawCard(){
-        StartCoroutine(DrawCardRoutine());
+    public virtual void DrawCards(){
+        StartCoroutine(DrawCardsRoutine());
     }
 
-    private IEnumerator DrawCardRoutine(){
+    private IEnumerator DrawCardsRoutine(){
         CheckFreePositionsInHand();
         int cardsToDraw;
 
@@ -86,6 +82,8 @@ public abstract class Hand : MonoBehaviour{
             yield return new WaitForSeconds(0.5f);
             
         }while(cardsToDraw > 1);
+
+        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionPhase);
     }
 
     protected virtual void MoveHand(Vector3 targetPosition){

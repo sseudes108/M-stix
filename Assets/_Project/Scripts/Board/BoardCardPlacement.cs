@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public abstract class BoardCardPlacement : MonoBehaviour {
-    [SerializeField] protected Collider _collider;
+    [SerializeField] protected bool _isFree;
+    protected Collider _collider;
     protected Renderer _renderer;
 
     protected void Awake() {

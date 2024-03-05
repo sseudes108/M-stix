@@ -11,7 +11,7 @@ public class Testing : MonoBehaviour {
 
     private void Update() {
         if(Input.GetKeyDown(KeyCode.D)){
-            playerHand.DrawCard();
+            playerHand.DrawCards();
         }
         
         if(Input.GetKeyDown(KeyCode.R)){

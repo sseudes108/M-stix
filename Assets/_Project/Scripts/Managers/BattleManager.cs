@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour {
     public static BattleManager Instance;
+    
     [SerializeField] private CardManager _cardManager;
     [SerializeField] private FusionManager _fusionManager;
     [SerializeField] private UIBattleManager _uiBattleManager;
     [SerializeField] private TurnManager _turnManager;
-
-    [SerializeField] private HandPlayer _playerHand;
-    [SerializeField] private HandEnemy _enemyHand;
-
     [SerializeField] private BoardPlaceManager _boardPlaceManager;
+    [SerializeField] private BattlePhaseStateManager _battleStateManager;
+
+    [SerializeField] private HandPlayer _handPlayer;
+    [SerializeField] private HandEnemy _handEnemy;
 
     //Public Refs//
 
@@ -28,19 +29,24 @@ public class BattleManager : MonoBehaviour {
 
     //Fusion
     public Fusion Fusion => _fusionManager.Fusion;
+    public FusionPositions FusionPositions => _fusionManager.FusionPositions;
     public FusionMonster FusionMonster => _fusionManager.FusionMonster;
     public FusionArcane FusionArcane => _fusionManager.FusionArcane;
     public FusionEquip FusionEquip => _fusionManager.FusionEquip;
 
-    public FusionPositions FusionPositions => _fusionManager.FusionPositions;
-
-    //Hands
-    public HandPlayer PlayerHand => _playerHand;
-    public HandEnemy EnemyHand => _enemyHand;
-
     //Board
-    public BoardPlaceManager BoardPlaceManager => _boardPlaceManager;
-    public BoardPlaceVisuals BoardPlaceVisuals => _boardPlaceManager.BoardPlaceVisuals;
+    public PlayerBoardPlaces PlayerBoardPlaces => _boardPlaceManager.PlayerBoardPlaces;
+    public EnemyBoardPlaces EnemyBoardPlaces => _boardPlaceManager.EnemyBoardPlaces;
+
+    public BattlePhaseStateManager BattleStateManager => _battleStateManager;
+
+    public BattleAbstract StartPhase => _battleStateManager.BattlePhaseStart;
+    public BattleAbstract DrawPhase => _battleStateManager.BattlePhaseDraw;
+    public BattleAbstract SelectionPhase => _battleStateManager.BattlePhaseSelection;
+
+    //Hand
+    public HandPlayer PlayerHand => _handPlayer;
+    public HandEnemy EnemyHand => _handEnemy;
 
     private void Awake(){
         SetSingleton();
@@ -61,5 +67,6 @@ public class BattleManager : MonoBehaviour {
         _uiBattleManager = GetComponentInChildren<UIBattleManager>();
         _turnManager = GetComponentInChildren<TurnManager>();
         _boardPlaceManager = GetComponentInChildren<BoardPlaceManager>();
+        _battleStateManager = GetComponentInChildren<BattlePhaseStateManager>();
     }
 }

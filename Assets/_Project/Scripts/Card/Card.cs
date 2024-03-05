@@ -70,6 +70,7 @@ public class Card : MonoBehaviour {
     }
 
     private void OnMouseDown() {
+        if(BattleManager.Instance.BattleStateManager.CurrentState != BattleManager.Instance.SelectionPhase){return;}
         if(_isPlayerCard && _isOnHand){
             Vector3 newPos = new();
 
