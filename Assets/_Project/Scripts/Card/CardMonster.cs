@@ -13,6 +13,7 @@ public class CardMonster : Card {
     [HideInInspector] [SerializeField] private List<EAnimaType> _animas;
     //Needs to be Serialize Fields (Dont Know Why)//
 
+
     private void Start(){
         SetUpCardVariables();
     }
@@ -62,4 +63,16 @@ public class CardMonster : Card {
     public List<EAnimaType> GetAnimas() => _animas;
     public EMonsterType GetMonsterType() => _monsterType;
     public override ECardType GetCardType(){return ECardType.Monster;}
+
+    public void ShowMonsterModeOptions(){
+        ShowOptions();
+        _selection1.text = "Attack";
+        _selection2.text = "Defense";
+    }
+    
+    public void ShowAnimaOptions(){
+        ShowOptions();
+        _selection1.text = $"{_animas[0]}";
+        _selection2.text = $"{_animas[1]}";
+    }
 }

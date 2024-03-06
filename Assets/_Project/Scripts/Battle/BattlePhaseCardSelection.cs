@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class BattlePhaseCardSelection : BattleAbstract {
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.CardSelection);

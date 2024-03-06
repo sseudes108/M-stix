@@ -1,5 +1,4 @@
-public class BattlePhaseBoardPlaceSelection : BattleAbstract
-{
+public class BattlePhaseBoardPlaceSelection : BattleAbstract{
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.BoardPlaceSelection);
        

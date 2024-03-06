@@ -1,9 +1,17 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour {
     public Texture2D Ilustration => _ilustration;
     public CardShaderController Shader => _shader;
+
+    [Header("Selection")]
+    [SerializeField] protected GameObject _buttons;
+    [SerializeField] protected Button _button1, button2;
+    [SerializeField] protected TextMeshProUGUI _selection1;
+    [SerializeField] protected TextMeshProUGUI _selection2;
 
     // -- //
     [HideInInspector] [SerializeField] protected ScriptableObject _cardData;    
@@ -11,7 +19,9 @@ public class Card : MonoBehaviour {
     //Need to be serialized. Dont know why.//
 
     //Canvas and Model
-    [SerializeField] protected Transform _cardModel, _statsCanvas;
+    [Header("Model")]
+    [SerializeField] protected Transform _cardModel;
+    [SerializeField] protected Transform _statsCanvas;
 
     //Shader
     private CardShaderController _shader;
@@ -25,6 +35,7 @@ public class Card : MonoBehaviour {
     private Movement _movement;
 
     //Card owner and place
+    [Header("Card settings")]
     [SerializeField] private bool _isPlayerCard = false;
     [SerializeField] private bool _isOnHand = false;
     [SerializeField] private bool _isOnField = false;
@@ -72,7 +83,7 @@ public class Card : MonoBehaviour {
     }
 
     private void OnMouseDown() {
-        if(BattleManager.Instance.BattleStateManager.CurrentPhase != BattleManager.Instance.SelectionPhase){return;}
+        if(BattleManager.Instance.BattleStateManager.CurrentPhase != BattleManager.Instance.CardSelectionPhase){return;}
 
         if(_isPlayerCard && _isOnHand){
                 Vector3 newPos = new();
@@ -115,6 +126,23 @@ public class Card : MonoBehaviour {
 
     public void SetFusionedCard(){_isFusioned = true;}
     public bool IsFusioned(){return _isFusioned;}
+
+    public virtual void ShowFaceOptions(){
+        ShowOptions();
+        _selection1.text = "Face Up";
+        _selection2.text = "Face Down";
+    }
+
+    public void ShowOptions(){
+        _buttons.SetActive(true);
+    }
+    public void HideOptions(){
+        _buttons.SetActive(false);
+    }
+
+    public (Button, Button) GetOptionButtons(){
+        return (_button1,  button2);
+    }
 
     public void DestroyCard(){
         Destroy(gameObject);

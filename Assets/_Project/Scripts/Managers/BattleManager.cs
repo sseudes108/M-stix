@@ -44,7 +44,7 @@ public class BattleManager : MonoBehaviour {
     public BattlePhaseStateManager BattleStateManager => _battleStateManager;
     public BattlePhaseStart StartPhase => _battleStateManager.BattlePhaseStart;
     public BattlePhaseDraw DrawPhase => _battleStateManager.BattlePhaseDraw;
-    public BattlePhaseCardSelection SelectionPhase => _battleStateManager.BattlePhaseCardSelection;
+    public BattlePhaseCardSelection CardSelectionPhase => _battleStateManager.BattlePhaseCardSelection;
     public BattlePhaseFusion FusionPhase => _battleStateManager.BattlePhaseFusion;
     public BattlePhaseFaceSelection FaceSelectionPhase => _battleStateManager.BattlePhaseFaceSelection;
     public BattlePhaseMonsterModeSelection MonsterModeSelectionPhase => _battleStateManager.BattlePhaseMonsterModeSelection;

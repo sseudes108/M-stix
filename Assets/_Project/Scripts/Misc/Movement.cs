@@ -45,5 +45,11 @@ public class Movement : MonoBehaviour {
         _canMove = true;
     }
 
+    public void SetTargetRotation(Quaternion targetRotation){
+        _targetRotation = targetRotation;
+
+        _canMove = true;
+    }
+
     public (Vector3,Quaternion) GetStartPositionAndRotation() => (_startPosition, _startRotation);
 }

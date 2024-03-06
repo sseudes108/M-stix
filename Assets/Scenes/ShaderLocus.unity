@@ -631,6 +631,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arcane Card
       objectReference: {fileID: 0}
+    - target: {fileID: 8266507099630813383, guid: e93642bb6871e7c4fb0634395a98f4f0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -644,41 +649,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4881323329512931153, guid: 80c3c3e87ae221a45b72c5f866f03f5c,
-        type: 3}
-      propertyPath: _cardData
-      value: 
-      objectReference: {fileID: 11400000, guid: 7eb986e9ef55c5648aa93c6caf84f8b9,
-        type: 2}
-    - target: {fileID: 4912674022285877524, guid: 80c3c3e87ae221a45b72c5f866f03f5c,
-        type: 3}
-      propertyPath: _cutOff
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4912674022285877524, guid: 80c3c3e87ae221a45b72c5f866f03f5c,
-        type: 3}
-      propertyPath: _dissolveSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5393155775568532097, guid: 80c3c3e87ae221a45b72c5f866f03f5c,
         type: 3}
       propertyPath: m_Name
       value: Monster Card
-      objectReference: {fileID: 0}
-    - target: {fileID: 5815561219565745873, guid: 80c3c3e87ae221a45b72c5f866f03f5c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5815561219565745873, guid: 80c3c3e87ae221a45b72c5f866f03f5c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5815561219565745873, guid: 80c3c3e87ae221a45b72c5f866f03f5c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5815561219565745873, guid: 80c3c3e87ae221a45b72c5f866f03f5c,
         type: 3}
@@ -728,11 +702,6 @@ PrefabInstance:
     - target: {fileID: 5815561219565745873, guid: 80c3c3e87ae221a45b72c5f866f03f5c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5815561219565745873, guid: 80c3c3e87ae221a45b72c5f866f03f5c,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

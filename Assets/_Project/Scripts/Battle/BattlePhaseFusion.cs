@@ -14,7 +14,7 @@ public class BattlePhaseFusion : BattleAbstract {
         foreach(var card in selectedCards){
             card.SetCardOnHand(false);
         }
-
+        
         BattleManager.Instance.Fusion.StartFusionRoutine(selectedCards);
     }
 

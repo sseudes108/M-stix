@@ -5,7 +5,7 @@ public class BattlePhaseStateManager : MonoBehaviour {
     public BattleAbstract _currentState;
     private BattlePhaseStart _startPhase;
     private BattlePhaseDraw _drawPhase;
-    private BattlePhaseCardSelection _selectionPhase;
+    private BattlePhaseCardSelection _cardSelectionPhase;
     private BattlePhaseFusion _fusionPhase;
     private BattlePhaseFaceSelection _faceSelectionPhase;
     private BattlePhaseMonsterModeSelection _monsterModeSelectionPhase;
@@ -44,7 +44,7 @@ public class BattlePhaseStateManager : MonoBehaviour {
     private void SetStates(){
         _startPhase = new BattlePhaseStart();
         _drawPhase = new BattlePhaseDraw();
-        _selectionPhase = new BattlePhaseCardSelection();
+        _cardSelectionPhase = new BattlePhaseCardSelection();
         _fusionPhase = new BattlePhaseFusion();
         _faceSelectionPhase = new BattlePhaseFaceSelection();
         _monsterModeSelectionPhase = new BattlePhaseMonsterModeSelection();
@@ -60,7 +60,7 @@ public class BattlePhaseStateManager : MonoBehaviour {
     public BattleAbstract CurrentPhase => _currentState;
     public BattlePhaseStart BattlePhaseStart => _startPhase;
     public BattlePhaseDraw BattlePhaseDraw => _drawPhase;
-    public BattlePhaseCardSelection BattlePhaseCardSelection => _selectionPhase;
+    public BattlePhaseCardSelection BattlePhaseCardSelection => _cardSelectionPhase;
     public BattlePhaseFusion BattlePhaseFusion => _fusionPhase;
     public BattlePhaseFaceSelection BattlePhaseFaceSelection => _faceSelectionPhase;
     public BattlePhaseMonsterModeSelection BattlePhaseMonsterModeSelection => _monsterModeSelectionPhase;
