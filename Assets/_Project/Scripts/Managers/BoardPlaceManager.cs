@@ -12,10 +12,6 @@ public class BoardPlaceManager : MonoBehaviour {
         _enemyBoardPlaces = GetComponentInChildren<EnemyBoardPlaces>();
     }
 
-    private void Start() {
-        
-    }
-
     public BoardPlaceVisuals BoardPlaceVisuals => _boardPlaceVisuals;
     public PlayerBoardPlaces PlayerBoardPlaces => _playerBoardPlaces;
     public EnemyBoardPlaces EnemyBoardPlaces => _enemyBoardPlaces;

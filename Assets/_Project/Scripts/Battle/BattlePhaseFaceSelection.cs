@@ -22,7 +22,8 @@ public class BattlePhaseFaceSelection : BattleAbstract
 
     private IEnumerator WaitRoutine(){
         Debug.Log("Waiting Face Select");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
+        
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.BoardPlaceSelectionPhase);
     }
 }

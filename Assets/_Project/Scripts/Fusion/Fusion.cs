@@ -4,17 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Fusion : MonoBehaviour {
-
-    // public Action OnFusionStart, OnFusionEnd;
-
     protected Card _resultCard;
-        
+
     [SerializeField] private List<Card> _fusionLine;
 
     public void StartFusionRoutine(List<Card> selectedCards){
         StartCoroutine(FusionRoutine(selectedCards));
     }
-
+    
     private IEnumerator FusionRoutine(List<Card> selectedCards){
         float waitTime = 2f;
         
@@ -82,7 +79,12 @@ public class Fusion : MonoBehaviour {
             //Caso tenha apenas uma carta na lista o resultado será ela
             _resultCard = selectedCards[0];
             _resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion);
-            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FaceSelectionPhase);
+
+            if(_resultCard is CardMonster){
+                BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.AnimaSelectionPhase);
+            }else{
+                BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FaceSelectionPhase);
+            }
         }
     }
 
@@ -126,6 +128,7 @@ public class Fusion : MonoBehaviour {
     private IEnumerator FusionFailedRoutine(Card card1, Card card2){
         //Set Result of fusion Card
         _resultCard = card2;
+        _resultCard.SetFusionedCard();
 
         //Cards used in fusion
         var materials = new List<Card>() {card1, card2};

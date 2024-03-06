@@ -47,8 +47,10 @@ public class BattleManager : MonoBehaviour {
     public BattlePhaseCardSelection SelectionPhase => _battleStateManager.BattlePhaseCardSelection;
     public BattlePhaseFusion FusionPhase => _battleStateManager.BattlePhaseFusion;
     public BattlePhaseFaceSelection FaceSelectionPhase => _battleStateManager.BattlePhaseFaceSelection;
+    public BattlePhaseMonsterModeSelection MonsterModeSelectionPhase => _battleStateManager.BattlePhaseMonsterModeSelection;
     public BattlePhaseSelectAnima AnimaSelectionPhase => _battleStateManager.BattlePhaseSelectAnima;
     public BattlePhaseBoardPlaceSelection BoardPlaceSelectionPhase => _battleStateManager.BattleBoardSelectionPhase;
+    public BattlePhaseAction ActionPhase => _battleStateManager.BattlePhaseAction;
 
     //Hand
     public HandPlayer PlayerHand => _handPlayer;

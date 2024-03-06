@@ -1,4 +1,3 @@
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class BattlePhaseStateManager : MonoBehaviour {
@@ -9,6 +8,7 @@ public class BattlePhaseStateManager : MonoBehaviour {
     private BattlePhaseCardSelection _selectionPhase;
     private BattlePhaseFusion _fusionPhase;
     private BattlePhaseFaceSelection _faceSelectionPhase;
+    private BattlePhaseMonsterModeSelection _monsterModeSelectionPhase;
     private BattlePhaseSelectAnima _animaSelectionPhase;
     private BattlePhaseBoardPlaceSelection _boardPlaceSelectionPhase;
     private BattlePhaseAction _actionPhase;
@@ -47,6 +47,7 @@ public class BattlePhaseStateManager : MonoBehaviour {
         _selectionPhase = new BattlePhaseCardSelection();
         _fusionPhase = new BattlePhaseFusion();
         _faceSelectionPhase = new BattlePhaseFaceSelection();
+        _monsterModeSelectionPhase = new BattlePhaseMonsterModeSelection();
         _animaSelectionPhase = new BattlePhaseSelectAnima();
         _boardPlaceSelectionPhase = new BattlePhaseBoardPlaceSelection();
         _actionPhase = new BattlePhaseAction();
@@ -57,12 +58,12 @@ public class BattlePhaseStateManager : MonoBehaviour {
     }
     
     public BattleAbstract CurrentPhase => _currentState;
-    
     public BattlePhaseStart BattlePhaseStart => _startPhase;
     public BattlePhaseDraw BattlePhaseDraw => _drawPhase;
     public BattlePhaseCardSelection BattlePhaseCardSelection => _selectionPhase;
     public BattlePhaseFusion BattlePhaseFusion => _fusionPhase;
     public BattlePhaseFaceSelection BattlePhaseFaceSelection => _faceSelectionPhase;
+    public BattlePhaseMonsterModeSelection BattlePhaseMonsterModeSelection => _monsterModeSelectionPhase;
     public BattlePhaseSelectAnima BattlePhaseSelectAnima => _animaSelectionPhase;
     public BattlePhaseBoardPlaceSelection BattleBoardSelectionPhase => _boardPlaceSelectionPhase;
     public BattlePhaseAction BattlePhaseAction => _actionPhase;
@@ -87,6 +88,9 @@ public class BattlePhaseStateManager : MonoBehaviour {
                 break;
             case EStateMachinePhase.Fusion:
                 CURRENTPHASE = "Fusion";
+                break;
+            case EStateMachinePhase.MonsterModeSelection:
+                CURRENTPHASE = "Mons. Mode Sel.";
                 break;
             case EStateMachinePhase.FaceSelection:
                 CURRENTPHASE = "Face Sel.";

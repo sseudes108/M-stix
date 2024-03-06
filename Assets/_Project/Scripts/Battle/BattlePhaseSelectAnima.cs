@@ -23,6 +23,6 @@ public class BattlePhaseSelectAnima : BattleAbstract
     private IEnumerator WaitRoutine(){
         Debug.Log("Waiting Anima Select");
         yield return new WaitForSeconds(3);
-        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.BoardPlaceSelectionPhase);
+        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.MonsterModeSelectionPhase);
     }
 }

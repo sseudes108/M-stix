@@ -1,11 +1,11 @@
 using UnityEngine;
 
 public class HandPlayer : Hand {
-    protected override void GetHand(){
+    protected override void SetHand(){
         _hand = GetComponent<HandPlayer>();
     }
-    protected override void GetDeck(){
-        deck = GetComponentInChildren<Deck>();
+    protected override void SetDeck(){
+        _deck = GetComponentInChildren<Deck>();
     }
 
     protected override void EndDrawPhase(){

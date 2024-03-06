@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class BoardCardPlacement : MonoBehaviour {
-    [SerializeField] protected bool _isFree;
+    protected bool _isFree;
     protected Collider _collider;
     protected Renderer _renderer;
 
@@ -9,17 +10,42 @@ public abstract class BoardCardPlacement : MonoBehaviour {
         _collider = GetComponent<Collider>();
         _renderer = GetComponentInChildren<Renderer>();
     }
+
+    private void Start() {
+        _isFree = true;
+    }
     
     private void OnMouseDown() {
-        string cardPlacement;
+        if(BattleManager.Instance.BattleStateManager.CurrentPhase != BattleManager.Instance.BoardPlaceSelectionPhase){return;}
 
-        if (this is BoardCardMonsterPlace){
-            cardPlacement = "Monster Place";
+        if(_isFree){
+            //is monster place and monster card, or is arcane place and arcane card
+            if(this is BoardCardMonsterPlace && BattleManager.Instance.Fusion.GetResultCard() is CardMonster /* OR */
+                || this is BoardCardArcanePlace && BattleManager.Instance.Fusion.GetResultCard() is CardArcane){
+
+                SetCardInPlace();
+
+            }else{
+                Debug.Log("Incorrect type");
+            }
+
         }else{
-            cardPlacement = "Arcane Place";
+            Debug.Log("Place is not free - Implement fusion");
         }
+    }
 
-        Debug.Log($"Click on {cardPlacement}");
+    private void SetCardInPlace(){
+        StartCoroutine(MoveCardRoutine());
+    }
+    private IEnumerator MoveCardRoutine(){
+        if(BattleManager.Instance.Fusion.GetResultCard().IsOnField() == false){
+
+            BattleManager.Instance.Fusion.GetResultCard().MoveCard(transform);
+            BattleManager.Instance.Fusion.GetResultCard().SetCardOnField();
+
+            yield return new WaitForSeconds(1f);
+            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.ActionPhase);
+        }
     }
 
     public virtual Renderer Renderer => _renderer;

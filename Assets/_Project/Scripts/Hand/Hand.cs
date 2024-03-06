@@ -6,19 +6,21 @@ public abstract class Hand : MonoBehaviour{
     [SerializeField] protected List<Transform> _handPositions;
     protected List<Transform> _freeHandPositions = new();
     protected Hand _hand;
-    public Deck deck;
+    protected Deck _deck;
 
     //Move
     private Movement _movement;
     //
 
     private void Awake() {
-        GetHand();
-        GetDeck();
+        SetHand();
+        SetDeck();
         _movement = GetComponentInChildren<Movement>();
     }
-    protected virtual void GetHand(){}
-    protected virtual void GetDeck(){}
+
+    protected virtual void SetHand(){}
+    protected virtual void SetDeck(){}
+    public Deck GetDeck(){return _deck;}
 
     private void CheckFreePositionsInHand(){
         _freeHandPositions.Clear();
@@ -42,18 +44,18 @@ public abstract class Hand : MonoBehaviour{
             cardsToDraw = _freeHandPositions.Count;
 
             //Card data
-            var randomIndex = Random.Range(0, deck.DeckInUse.Count);
-            var cardData = deck.DeckInUse[randomIndex];
+            var randomIndex = Random.Range(0, _deck.DeckInUse.Count);
+            var cardData = _deck.DeckInUse[randomIndex];
 
             //Spawn Position
-            deck.transform.GetPositionAndRotation(out Vector3 spawnPosition, out Quaternion spawnRotation);
+            _deck.transform.GetPositionAndRotation(out Vector3 spawnPosition, out Quaternion spawnRotation);
 
             //Instance
             var drewCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(cardData), spawnPosition, spawnRotation);
             drewCard.name = drewCard.GetCardName();
 
             //Remove card from deck
-            deck.RemoveCardFromDeck(cardData);
+            _deck.RemoveCardFromDeck(cardData);
 
             //Check card Owner
             if(_hand is HandPlayer){
@@ -75,7 +77,7 @@ public abstract class Hand : MonoBehaviour{
             
         }while(cardsToDraw > 1);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         EndDrawPhase();
     }
 

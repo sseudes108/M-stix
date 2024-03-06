@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Card : MonoBehaviour {
@@ -28,6 +29,7 @@ public class Card : MonoBehaviour {
     [SerializeField] private bool _isOnHand = false;
     [SerializeField] private bool _isOnField = false;
     [SerializeField] private bool _isFaceDown = false;
+    [SerializeField] private bool _isFusioned = false;
 
     private void Awake() {
         SetUpComponents();
@@ -110,6 +112,9 @@ public class Card : MonoBehaviour {
 
     public void SetCardFaceDown(){_isFaceDown = true;}
     public bool IsFaceDown(){return _isFaceDown;}
+
+    public void SetFusionedCard(){_isFusioned = true;}
+    public bool IsFusioned(){return _isFusioned;}
 
     public void DestroyCard(){
         Destroy(gameObject);

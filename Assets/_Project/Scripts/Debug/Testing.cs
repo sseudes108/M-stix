@@ -19,7 +19,11 @@ public class Testing : MonoBehaviour {
         }
         
         if(Input.GetKeyDown(KeyCode.F)){
-            BattleManager.Instance.SelectionPhase.EndSelection();
+            if(BattleManager.Instance.BattleStateManager.CurrentPhase == BattleManager.Instance.SelectionPhase &&
+                BattleManager.Instance.CardSelector.GetSelectedCards().Count > 0){
+                
+                BattleManager.Instance.SelectionPhase.EndSelection();
+            }
         }
     }
 }

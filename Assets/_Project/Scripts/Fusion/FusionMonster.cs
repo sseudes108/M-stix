@@ -73,6 +73,7 @@ public class FusionMonster : Fusion {
             var randomIndex = Random.Range(0, possibleMonsters.Count);
             var fusionedCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(possibleMonsters[randomIndex]));
             fusionedCard.name = $"{fusionedCard.GetCardName()} - Fusioned";
+            fusionedCard.SetFusionedCard();
 
             //make card invisible
             fusionedCard.DisableStatCanvas();
