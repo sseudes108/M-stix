@@ -58,8 +58,8 @@ public class CardShaderController : MonoBehaviour {
         _dissolveShader.MakeCardInvisible();
     }
 
-    public void SetSelectedAnimaShader(int animaSelected){
-        _animaShader.SetAnimaShader(animaSelected);
+    public void SetSelectedAnimaShader(int animaIndex, EAnimaType selectedAnima){
+        _animaShader.SetAnimaShader(animaIndex, selectedAnima);
     }
 
     public Renderer Renderer => _renderer;

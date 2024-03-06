@@ -14,7 +14,7 @@ public class BoardPlaceVisuals : MonoBehaviour {
         _playerArcaneBoardPlaces = BattleManager.Instance.PlayerBoardPlaces.ArcanePlaces;
         _enemyArcaneBoardPlaces = BattleManager.Instance.EnemyBoardPlaces.ArcanePlaces;
     }
-   
+    
     public void LightUpBoard(){
         LightUpAllArcanePlaces();
         LightUpAllMonsterPlaces();
@@ -48,33 +48,25 @@ public class BoardPlaceVisuals : MonoBehaviour {
 
     private IEnumerator LightUpMaterialRoutine(Renderer renderer, Color newColor, float intensityTarget){
         float intensityFactor = 0;
-        // float target = 0.015f;
-        intensityTarget /= 100;
+        intensityTarget *= 2;
 
         do{
             var newBorderMaterial = new Material(renderer.sharedMaterials[1]);
-            //Adjust to controle the brightness of the color (HDR)
-            Color adjustedColor = new(
-                newColor.r * intensityFactor,
-                newColor.g * intensityFactor,
-                newColor.b * intensityFactor,
-                newColor.a
-            );
-        
-            newBorderMaterial.SetColor("_BorderColor", adjustedColor);
-            newBorderMaterial.SetFloat("_Intensity", 1.5f);
+
+            newBorderMaterial.SetColor("_BorderColor", newColor);
+            newBorderMaterial.SetFloat("_Intensity", intensityFactor);
             renderer.materials = new[] { renderer.sharedMaterials[0], newBorderMaterial, renderer.sharedMaterials[2] };
 
-            intensityFactor += 0.001f;
-            yield return new WaitForSeconds(0.03f);
+            intensityFactor += intensityTarget/6;
+            yield return new WaitForSeconds(0.05f);
         }while(intensityFactor < intensityTarget);
     }
 
     //Monsters
     private void LightUpAllMonsterPlaces(){
         //StartUp
-        LightUpPlayerMonsterPlaces(new Color(7, 8, 104), 1.5f);
-        LightUpEnemyMonsterPlaces(new Color(212, 9, 9), 1.5f);
+        LightUpPlayerMonsterPlaces(BattleManager.Instance.ColorManager.DefaultPlayerBoardColor, 1.5f);
+        LightUpEnemyMonsterPlaces(BattleManager.Instance.ColorManager.DefaultEnemyBoardColor, 1.5f);
     }
     private void LightUpPlayerMonsterPlaces(Color color, float intensityTarget){
         ChangeMonsterPlaceMaterial(_playerMosterBoardPlaces, color, intensityTarget);
@@ -86,8 +78,8 @@ public class BoardPlaceVisuals : MonoBehaviour {
     //Arcanes
     private void LightUpAllArcanePlaces(){
         //StartUp
-        LightUpPlayerArcanePlaces(new Color(7, 8, 104), 1.5f);
-        LightUpEnemyArcanePlaces(new Color(212, 9, 9), 1.5f);
+        LightUpPlayerArcanePlaces(BattleManager.Instance.ColorManager.DefaultPlayerBoardColor, 1.5f);
+        LightUpEnemyArcanePlaces(BattleManager.Instance.ColorManager.DefaultEnemyBoardColor, 1.5f);
     }
     private void LightUpPlayerArcanePlaces(Color color, float intensityTarget){
         ChangeArcanePlaceMaterial(_playerArcaneBoardPlaces, color, intensityTarget);
@@ -96,41 +88,61 @@ public class BoardPlaceVisuals : MonoBehaviour {
         ChangeArcanePlaceMaterial(_enemyArcaneBoardPlaces, color, intensityTarget);
     }
 
-
     //Selection Place Phase
-    public void BoarderSelectionPhaseHighlight(Card resultCard, float intensity){
-        if(resultCard is CardMonster){
-            HighlightMonsterPlaces(intensity);
+
+    //Reset
+    public void ResetPlaceHighlightColor(Card resultCard, float intensity){
+        Color newColor = new();
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            newColor = BattleManager.Instance.ColorManager.DefaultPlayerBoardColor;
         }else{
-            HighlightArcanePlaces(intensity);
+            newColor = BattleManager.Instance.ColorManager.DefaultPlayerBoardColor;
+        }
+
+        HighlightMonsterPlaces(intensity, newColor);
+        HighlightArcanePlaces(intensity, newColor);
+    }
+
+    //Highlight
+    public void BoarderSelectionPhaseHighlight(Card resultCard, float intensity){
+        Color newColor = new();
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            if(resultCard is CardMonster){
+                newColor = BattleManager.Instance.ColorManager.PlayerMonsterBoardHighlightColor;
+                HighlightMonsterPlaces(intensity, newColor);
+            }else{
+                newColor = BattleManager.Instance.ColorManager.PlayerArcaneBoardHighlightColor;
+                HighlightArcanePlaces(intensity,newColor);
+            }
+
+        }else{
+            if(resultCard is CardMonster){
+                newColor = BattleManager.Instance.ColorManager.PlayerMonsterBoardHighlightColor;
+                HighlightMonsterPlaces(intensity, newColor);
+            }else{
+                newColor = BattleManager.Instance.ColorManager.PlayerArcaneBoardHighlightColor;
+                HighlightArcanePlaces(intensity,newColor);
+            }
         }
     }
 
-    private void HighlightMonsterPlaces(float intensity){
+    private void HighlightMonsterPlaces(float intensity, Color newColor){
         List<Transform> mosterBoardPlaces;
-        Color monsterBoardPlaceColor;
-
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
             mosterBoardPlaces = _playerMosterBoardPlaces;
-            monsterBoardPlaceColor = new Color(7, 8, 104);
         }else{
             mosterBoardPlaces = _enemyMosterBoardPlaces;
-            monsterBoardPlaceColor = new Color(212, 9, 9);
         }
-        ChangeMonsterPlaceMaterial(mosterBoardPlaces, monsterBoardPlaceColor, intensity);
+        ChangeMonsterPlaceMaterial(mosterBoardPlaces, newColor, intensity);
     }
 
-    private void HighlightArcanePlaces(float intensity){
+    private void HighlightArcanePlaces(float intensity, Color newColor){
         List<Transform> arcaneBoardPlaces;
-        Color arcaneBoardPlaceColor;
-
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
             arcaneBoardPlaces = _playerArcaneBoardPlaces;
-            arcaneBoardPlaceColor = new Color(7, 8, 104);
         }else{
             arcaneBoardPlaces = _enemyArcaneBoardPlaces;
-            arcaneBoardPlaceColor = new Color(212, 9, 9);
         }
-        ChangeArcanePlaceMaterial(arcaneBoardPlaces, arcaneBoardPlaceColor, intensity);
+        ChangeArcanePlaceMaterial(arcaneBoardPlaces, newColor, intensity);
     }
 }

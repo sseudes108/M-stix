@@ -112,7 +112,12 @@ public class Card : MonoBehaviour {
 
     private void OnMouseOver() {
         if(_isPlayerCard || _isOnField && !_isFaceDown){
-            BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(Ilustration);
+            if(this is CardMonster){
+                var card = this as CardMonster;
+                BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(Ilustration, card.GetAnimas());
+            }else{
+                BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(Ilustration);
+            }
         }
     }
 

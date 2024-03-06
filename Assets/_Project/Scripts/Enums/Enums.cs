@@ -39,13 +39,7 @@ public enum EStateMachinePhase{
     Draw,
     CardSelection,
     Fusion,
-
     Selections,
-
-    // MonsterModeSelection,
-    // FaceSelection,
-    // AnimaSelection,
-
     BoardPlaceSelection,
     Action,
     Attack,

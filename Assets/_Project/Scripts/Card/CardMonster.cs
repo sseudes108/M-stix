@@ -8,9 +8,9 @@ public class CardMonster : Card {
     [SerializeField] private TextMeshProUGUI _attack, _defense;
 
     // -- //
-    [HideInInspector] [SerializeField] private int _lvl, _atk, _def;
-    [HideInInspector] [SerializeField] private EMonsterType _monsterType;
-    [HideInInspector] [SerializeField] private List<EAnimaType> _animas;
+    [SerializeField] private int _lvl, _atk, _def;
+    [SerializeField] private EMonsterType _monsterType;
+    [SerializeField] private List<EAnimaType> _animas;
     //Needs to be Serialize Fields (Dont Know Why)//
     [SerializeField] private EAnimaType _anima;
     [SerializeField] private bool _attackMode = true;

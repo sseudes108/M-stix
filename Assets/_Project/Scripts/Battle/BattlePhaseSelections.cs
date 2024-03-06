@@ -82,14 +82,14 @@ public class BattlePhaseSelections : BattleAbstract{
         if(_animaSelected){return;}
         Debug.Log("FirstAnimaSelected");
         _resultCard.GetComponent<CardMonster>().SetAnima(_resultCard.GetComponent<CardMonster>().GetAnimas()[0]);
-        _resultCard.Shader.SetSelectedAnimaShader(0);
+        _resultCard.Shader.SetSelectedAnimaShader(1, _resultCard.GetComponent<CardMonster>().GetAnimas()[0]);
         _animaSelected = true;
     }
     private void SecondAnimaSelected(){
         if(_animaSelected){return;}
         Debug.Log("SecondAnimaSelected");
         _resultCard.GetComponent<CardMonster>().SetAnima(_resultCard.GetComponent<CardMonster>().GetAnimas()[1]);
-        _resultCard.Shader.SetSelectedAnimaShader(1);
+        _resultCard.Shader.SetSelectedAnimaShader(2, _resultCard.GetComponent<CardMonster>().GetAnimas()[1]);
         _animaSelected = true;
     }
 

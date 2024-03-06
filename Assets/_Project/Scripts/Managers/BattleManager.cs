@@ -12,11 +12,15 @@ public class BattleManager : MonoBehaviour {
 
     [SerializeField] private HandPlayer _handPlayer;
     [SerializeField] private HandEnemy _handEnemy;
+    [SerializeField] private ColorManager _colorManager;
 
     //Public Refs//
 
     //UI
     public UIBattleManager UIBattleManager => _uiBattleManager;
+
+    //Colors
+    public ColorManager ColorManager => _colorManager;
 
     //Turn
     public TurnManager TurnManager => _turnManager;
@@ -75,5 +79,6 @@ public class BattleManager : MonoBehaviour {
         _turnManager = GetComponentInChildren<TurnManager>();
         _boardPlaceManager = GetComponentInChildren<BoardPlaceManager>();
         _battleStateManager = GetComponentInChildren<BattlePhaseStateManager>();
+        _colorManager = GetComponentInChildren<ColorManager>();
     }
 }
