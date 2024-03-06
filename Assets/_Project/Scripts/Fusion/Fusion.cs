@@ -69,22 +69,26 @@ public class Fusion : MonoBehaviour {
                 
             }while(selectedCards.Count > 0);
 
-            if(_resultCard is CardMonster){
-                BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.AnimaSelectionPhase);
-            }else{
-                BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.BoardPlaceSelectionPhase);
-            }
+            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionsPhase);
+
+            // if(_resultCard is CardMonster){
+            //     BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.AnimaSelectionPhase);
+            // }else{
+            //     BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.BoardPlaceSelectionPhase);
+            // }
 
         }else{
             //Caso tenha apenas uma carta na lista o resultado será ela
             _resultCard = selectedCards[0];
             _resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion);
 
-            if(_resultCard is CardMonster){
-                BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.AnimaSelectionPhase);
-            }else{
-                BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FaceSelectionPhase);
-            }
+            // if(_resultCard is CardMonster){
+            //     BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.AnimaSelectionPhase);
+            // }else{
+            //     BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FaceSelectionPhase);
+            // }
+
+            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionsPhase);
         }
     }
 

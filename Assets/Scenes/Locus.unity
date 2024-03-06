@@ -2533,6 +2533,10 @@ MonoBehaviour:
   _boardPlaceVisuals: {fileID: 0}
   _playerBoardPlaces: {fileID: 0}
   _enemyBoardPlaces: {fileID: 0}
+  _faceDownCard: {fileID: 0}
+  _faceUpCard: {fileID: 0}
+  _atkModeCard: {fileID: 0}
+  _defModeCard: {fileID: 0}
 --- !u!1 &1129533680
 GameObject:
   m_ObjectHideFlags: 0
@@ -8683,8 +8687,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6605119811118287892}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70710677, y: -0.000000067493396, z: 0.00000004328546, w: 0.7071069}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalRotation: {x: 0.70710677, y: 0.0000002091669, z: -0.00000023337489, w: 0.7071069}
+  m_LocalPosition: {x: 0.0000009536743, y: -0.00000047683682, z: 0.000002002716}
   m_LocalScale: {x: 100, y: 1, z: 160}
   m_ConstrainProportionsScale: 0
   m_Children: []

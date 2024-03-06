@@ -35,6 +35,7 @@ public class BattleManager : MonoBehaviour {
     public FusionEquip FusionEquip => _fusionManager.FusionEquip;
 
     //Board
+    public BoardPlaceManager BoardPlaceManager => _boardPlaceManager;
     public BoardPlaceVisuals BoardPlaceVisuals => _boardPlaceManager.BoardPlaceVisuals;
     public PlayerBoardPlaces PlayerBoardPlaces => _boardPlaceManager.PlayerBoardPlaces;
     public EnemyBoardPlaces EnemyBoardPlaces => _boardPlaceManager.EnemyBoardPlaces;
@@ -46,9 +47,7 @@ public class BattleManager : MonoBehaviour {
     public BattlePhaseDraw DrawPhase => _battleStateManager.BattlePhaseDraw;
     public BattlePhaseCardSelection CardSelectionPhase => _battleStateManager.BattlePhaseCardSelection;
     public BattlePhaseFusion FusionPhase => _battleStateManager.BattlePhaseFusion;
-    public BattlePhaseFaceSelection FaceSelectionPhase => _battleStateManager.BattlePhaseFaceSelection;
-    public BattlePhaseMonsterModeSelection MonsterModeSelectionPhase => _battleStateManager.BattlePhaseMonsterModeSelection;
-    public BattlePhaseSelectAnima AnimaSelectionPhase => _battleStateManager.BattlePhaseSelectAnima;
+    public BattlePhaseSelections SelectionsPhase => _battleStateManager.BattlePhaseSelections;
     public BattlePhaseBoardPlaceSelection BoardPlaceSelectionPhase => _battleStateManager.BattleBoardSelectionPhase;
     public BattlePhaseAction ActionPhase => _battleStateManager.BattlePhaseAction;
 

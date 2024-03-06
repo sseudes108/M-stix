@@ -7,9 +7,7 @@ public class BattlePhaseStateManager : MonoBehaviour {
     private BattlePhaseDraw _drawPhase;
     private BattlePhaseCardSelection _cardSelectionPhase;
     private BattlePhaseFusion _fusionPhase;
-    private BattlePhaseFaceSelection _faceSelectionPhase;
-    private BattlePhaseMonsterModeSelection _monsterModeSelectionPhase;
-    private BattlePhaseSelectAnima _animaSelectionPhase;
+    private BattlePhaseSelections _selectionsPhase;
     private BattlePhaseBoardPlaceSelection _boardPlaceSelectionPhase;
     private BattlePhaseAction _actionPhase;
     private BattlePhaseAttack _attackPhase;
@@ -19,7 +17,7 @@ public class BattlePhaseStateManager : MonoBehaviour {
 
     //DEBUG
     [SerializeField] private string CURRENTPHASE;
-    private EStateMachinePhase _currentPhase;
+    private EStateMachinePhase _currentPhase;    
 
     private void Awake() {
         SetStates();
@@ -46,9 +44,7 @@ public class BattlePhaseStateManager : MonoBehaviour {
         _drawPhase = new BattlePhaseDraw();
         _cardSelectionPhase = new BattlePhaseCardSelection();
         _fusionPhase = new BattlePhaseFusion();
-        _faceSelectionPhase = new BattlePhaseFaceSelection();
-        _monsterModeSelectionPhase = new BattlePhaseMonsterModeSelection();
-        _animaSelectionPhase = new BattlePhaseSelectAnima();
+        _selectionsPhase = new BattlePhaseSelections();
         _boardPlaceSelectionPhase = new BattlePhaseBoardPlaceSelection();
         _actionPhase = new BattlePhaseAction();
         _attackPhase = new BattlePhaseAttack();
@@ -62,9 +58,7 @@ public class BattlePhaseStateManager : MonoBehaviour {
     public BattlePhaseDraw BattlePhaseDraw => _drawPhase;
     public BattlePhaseCardSelection BattlePhaseCardSelection => _cardSelectionPhase;
     public BattlePhaseFusion BattlePhaseFusion => _fusionPhase;
-    public BattlePhaseFaceSelection BattlePhaseFaceSelection => _faceSelectionPhase;
-    public BattlePhaseMonsterModeSelection BattlePhaseMonsterModeSelection => _monsterModeSelectionPhase;
-    public BattlePhaseSelectAnima BattlePhaseSelectAnima => _animaSelectionPhase;
+    public BattlePhaseSelections BattlePhaseSelections => _selectionsPhase;
     public BattlePhaseBoardPlaceSelection BattleBoardSelectionPhase => _boardPlaceSelectionPhase;
     public BattlePhaseAction BattlePhaseAction => _actionPhase;
     public BattlePhaseAttack BattlePhaseAttack => _attackPhase;
@@ -89,14 +83,8 @@ public class BattlePhaseStateManager : MonoBehaviour {
             case EStateMachinePhase.Fusion:
                 CURRENTPHASE = "Fusion";
                 break;
-            case EStateMachinePhase.MonsterModeSelection:
-                CURRENTPHASE = "Mons. Mode Sel.";
-                break;
-            case EStateMachinePhase.FaceSelection:
-                CURRENTPHASE = "Face Sel.";
-                break;
-            case EStateMachinePhase.AnimaSelection:
-                CURRENTPHASE = "Anima Sel.";
+            case EStateMachinePhase.Selections:
+                CURRENTPHASE = "Selections";
                 break;
             case EStateMachinePhase.BoardPlaceSelection:
                 CURRENTPHASE = "Board Place Sel.";

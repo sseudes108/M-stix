@@ -82,6 +82,10 @@ public class Card : MonoBehaviour {
         _movement.SetTargetPosition(targetPosition, targetRotation, moveSpeed);
     }
 
+    public void RotateCard(Quaternion targetRotation){
+        _movement.SetTargetRotation(targetRotation);
+    }
+
     private void OnMouseDown() {
         if(BattleManager.Instance.BattleStateManager.CurrentPhase != BattleManager.Instance.CardSelectionPhase){return;}
 

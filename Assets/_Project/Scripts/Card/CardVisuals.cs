@@ -24,4 +24,6 @@ public class CardVisuals : MonoBehaviour {
     public void MakeCardInvisible(Card card){
         card.Shader.MakeCardCardInvisible();
     }
+
+    
 }

@@ -9,6 +9,9 @@ public class CardShaderController : MonoBehaviour {
     //Dissolve
     private ShaderDissolve _dissolveShader;
 
+    //Anima
+    private AnimaShader _animaShader;
+
     //Border
     private ShaderBorders _bordersShader;
 
@@ -17,6 +20,7 @@ public class CardShaderController : MonoBehaviour {
         _card = GetComponent<Card>();
 
         _dissolveShader = GetComponent<ShaderDissolve>();
+        _animaShader = GetComponent<AnimaShader>();
         _bordersShader = GetComponent<ShaderBorders>();
     }
 
@@ -52,6 +56,10 @@ public class CardShaderController : MonoBehaviour {
     }
     public void MakeCardCardInvisible(){
         _dissolveShader.MakeCardInvisible();
+    }
+
+    public void SetSelectedAnimaShader(int animaSelected){
+        _animaShader.SetAnimaShader(animaSelected);
     }
 
     public Renderer Renderer => _renderer;

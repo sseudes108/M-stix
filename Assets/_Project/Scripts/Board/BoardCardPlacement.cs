@@ -39,8 +39,15 @@ public abstract class BoardCardPlacement : MonoBehaviour {
     }
     private IEnumerator MoveCardRoutine(){
         if(BattleManager.Instance.Fusion.GetResultCard().IsOnField() == false){
+            var resultCard = BattleManager.Instance.Fusion.GetResultCard();
+            resultCard.MoveCard(transform);
 
-            BattleManager.Instance.Fusion.GetResultCard().MoveCard(transform);
+            if(resultCard is CardMonster){
+                SetMonsterCardRotation(resultCard as CardMonster);
+            }else{
+                SetArcaneCardRotation(resultCard as CardArcane);
+            }
+
             BattleManager.Instance.Fusion.GetResultCard().SetCardOnField();
 
             yield return new WaitForSeconds(1f);
@@ -49,4 +56,7 @@ public abstract class BoardCardPlacement : MonoBehaviour {
     }
 
     public virtual Renderer Renderer => _renderer;
+
+    protected virtual void SetMonsterCardRotation(CardMonster resultCard){}
+    protected virtual void SetArcaneCardRotation(CardArcane resultCard){}
 }
