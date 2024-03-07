@@ -13,6 +13,8 @@ public enum EMonsterType{
     Dragon,
     Machina,
     Golem,
+    Magician,
+    Demon,
 
     //
     She,

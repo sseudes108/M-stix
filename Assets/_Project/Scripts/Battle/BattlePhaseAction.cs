@@ -28,7 +28,7 @@ public class BattlePhaseAction : BattleAbstract {
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
             Debug.Log("Waiting Action - Enemy");
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_waitTime);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
     }
 }

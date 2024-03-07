@@ -141,7 +141,7 @@ public class BattlePhaseSelections : BattleAbstract{
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
             Debug.Log("Waiting Selection - Enemy");
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_waitTime);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.BoardPlaceSelectionPhase);
     }
 }

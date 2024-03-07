@@ -6,15 +6,21 @@ public class CardDatabase : MonoBehaviour {
     [SerializeField] private List<CardMonsterSO> _dragon;
     [SerializeField] private List<CardMonsterSO> _golem;
     [SerializeField] private List<CardMonsterSO> _machina;
+    [SerializeField] private List<CardMonsterSO> _demon;
+    [SerializeField] private List<CardMonsterSO> _magician;
 
     //
     [SerializeField] private List<CardMonsterSO> _she;
+
     //
 
     public List<CardMonsterSO> Angels => _angel;
     public List<CardMonsterSO> Dragons => _dragon;
     public List<CardMonsterSO> Golens => _golem;
     public List<CardMonsterSO> Machinas => _machina;
+    public List<CardMonsterSO> Demons => _demon;
+    public List<CardMonsterSO> Magicians => _magician;
+    
 
     //
     public List<CardMonsterSO> She => _she;

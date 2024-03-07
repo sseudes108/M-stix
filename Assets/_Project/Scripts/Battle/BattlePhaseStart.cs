@@ -26,7 +26,7 @@ public class BattlePhaseStart : BattleAbstract{
         yield return new WaitForSeconds(1f);
         BattleManager.Instance.BoardPlaceVisuals.LightUpBoard();
         
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.DrawPhase);
     }
 
@@ -35,13 +35,13 @@ public class BattlePhaseStart : BattleAbstract{
     }
 
     private IEnumerator WaitRoutine(){
-        if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            Debug.Log("Waiting Start - Enemy");
-        }else{
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
             BattleManager.Instance.PlayerHand.MoveHand(BattleManager.Instance.FusionPositions.HandDefaultPosition.position);
+        }else{
+            Debug.Log("Waiting Start - Enemy");
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_waitTime);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.DrawPhase);
     }
 }

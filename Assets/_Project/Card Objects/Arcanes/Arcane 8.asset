@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25951863083db9a44a4de7dc845ae3ff, type: 3}
   m_Name: Arcane 8
   m_EditorClassIdentifier: 
-  ArcaneType: 3
+  ArcaneType: 2
   Ilustration: {fileID: 2800000, guid: 18a40cac981e1974c8a04d5145ac38e7, type: 3}
   Name: Fire Pedant
   Effect: A Mars Monsters Gain 500 Atk
-  AnimaLink: 2
-  AttackModifier: -500
+  AnimaLink: 1
+  AttackModifier: 500
   DefenseModifier: 0
   LevelModifier: 0

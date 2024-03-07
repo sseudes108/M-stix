@@ -2,15 +2,16 @@ using System.Collections;
 using UnityEngine;
 
 public class BattlePhaseFusion : BattleAbstract {
-   public override void EnterState(){
+    public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Fusion);
 
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
             Wait();
         }else{
-            var selectedCards = BattleManager.Instance.CardSelector.GetSelectedCards();
+
+            var selectedlist = BattleManager.Instance.FusionManager.GetFusionList();
             
-            foreach(var card in selectedCards){
+            foreach(var card in selectedlist){
                 card.SetCardOnHand(false);
             }
 
@@ -19,21 +20,8 @@ public class BattlePhaseFusion : BattleAbstract {
                 BattleManager.Instance.PlayerHand.MoveHand(BattleManager.Instance.FusionPositions.HandOffCameraPosition.position);
             }
 
-            BattleManager.Instance.Fusion.StartFusionRoutine(selectedCards);
+            BattleManager.Instance.Fusion.StartFusionRoutine(selectedlist);
         }
-
-        // //Move hand off camera
-        // if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
-        //     BattleManager.Instance.PlayerHand.MoveHand(BattleManager.Instance.FusionPositions.HandOffCameraPosition.position);
-        // }
-
-        // var selectedCards = BattleManager.Instance.CardSelector.GetSelectedCards();
-        
-        // foreach(var card in selectedCards){
-        //     card.SetCardOnHand(false);
-        // }
-        
-        // BattleManager.Instance.Fusion.StartFusionRoutine(selectedCards);
     }
 
     public override void ExitState(){
@@ -52,7 +40,7 @@ public class BattlePhaseFusion : BattleAbstract {
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
             Debug.Log("Waiting Fusion - Enemy");
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_waitTime);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionsPhase);
     }
 }

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649a865fa6bd933409a88f9eef29c96a, type: 3}
   m_Name: Golem 7
   m_EditorClassIdentifier: 
-  MonsterType: 4
-  FirstAnima: 3
-  SecondAnima: 5
-  Ilustration: {fileID: 2800000, guid: c7e2e582e2aefb14f85b020f79cc223d, type: 3}
-  Name: Golem
+  MonsterType: 3
+  FirstAnima: 0
+  SecondAnima: 0
+  Ilustration: {fileID: 2800000, guid: 34ecc9af29304944f8eacbe36815814c, type: 3}
+  Name: 
   Description: 
-  Level: 4
-  Attack: 4100
-  Defense: 4000
+  Level: 7
+  Attack: 6600
+  Defense: 8100

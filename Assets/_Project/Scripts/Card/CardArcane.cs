@@ -20,6 +20,7 @@ public class CardArcane : Card {
 
     public override void SetUpCardVariables(){
         var arcaneData = _cardData as CardArcaneSO;
+
         _arcaneType = arcaneData.ArcaneType;
         _ilustration = arcaneData.Ilustration;
         _name.text = arcaneData.Name;

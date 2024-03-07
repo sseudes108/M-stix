@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BattlePhaseDamage : BattleAbstract {
+public class BattlePhaseDamage : BattleAbstract{
     public override void EnterState(){
         
     }

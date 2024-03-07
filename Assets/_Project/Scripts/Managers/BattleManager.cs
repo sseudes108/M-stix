@@ -32,6 +32,7 @@ public class BattleManager : MonoBehaviour {
     public CardVisuals CardVisuals => _cardManager.CardVisuals;
 
     //Fusion
+    public FusionManager FusionManager => _fusionManager;
     public Fusion Fusion => _fusionManager.Fusion;
     public FusionPositions FusionPositions => _fusionManager.FusionPositions;
     public FusionMonster FusionMonster => _fusionManager.FusionMonster;

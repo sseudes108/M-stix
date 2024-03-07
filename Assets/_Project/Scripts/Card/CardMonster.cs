@@ -28,7 +28,7 @@ public class CardMonster : Card {
         var monsterData = _cardData as CardMonsterSO;
 
         _ilustration = monsterData.Ilustration;
-
+        
         _attack.text = monsterData.Attack.ToString();
         _atk = monsterData.Attack;
 

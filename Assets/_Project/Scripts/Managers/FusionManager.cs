@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FusionManager : MonoBehaviour {
@@ -6,8 +7,7 @@ public class FusionManager : MonoBehaviour {
     [SerializeField] private FusionMonster _fusionMonster;
     [SerializeField] private FusionArcane _fusionArcane;
     [SerializeField] private FusionEquip _fusionEquip;
-    private void OnEnable() {
-    }
+    private List<Card> _fusionList;
 
     private void Awake() {
         _fusion = GetComponent<Fusion>();
@@ -22,4 +22,18 @@ public class FusionManager : MonoBehaviour {
     public FusionMonster FusionMonster => _fusionMonster;
     public FusionArcane FusionArcane => _fusionArcane;
     public FusionEquip FusionEquip => _fusionEquip;
+
+
+    public void SetFusionList(){
+        _fusionList = BattleManager.Instance.CardSelector.GetSelectedCards();
+    }
+
+    //On Demand Fusion (Fusion with board Cards)
+    public void SetFusionList(List<Card> cardsToFusion){
+        _fusionList = cardsToFusion;      
+    }
+
+    public List<Card> GetFusionList(){
+        return _fusionList;
+    }
 }

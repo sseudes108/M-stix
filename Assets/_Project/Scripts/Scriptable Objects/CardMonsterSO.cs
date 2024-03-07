@@ -10,7 +10,7 @@ public class CardMonsterSO : ScriptableObject {
     public string Description;
     
     [Range(1,8)]
-    public int Level;
+    public int Level = 1;
     public int Attack;
     public int Defense;
 }

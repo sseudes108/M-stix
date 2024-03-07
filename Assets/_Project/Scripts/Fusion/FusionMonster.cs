@@ -31,8 +31,10 @@ public class FusionMonster : Fusion {
             EMonsterType strongestMonsterType;
             if(monster1Atk > monster2Atk){
                 strongestMonsterType = monster1.GetMonsterType();
+                Debug.Log($"Monster 1 - {monster1.name} - {strongestMonsterType}");
             }else{
                 strongestMonsterType = monster2.GetMonsterType();
+                Debug.Log($"Monster 2 - {monster2.name} - {strongestMonsterType}");
             }
 
             //Get List of the strongest Monster Type
@@ -49,6 +51,12 @@ public class FusionMonster : Fusion {
                 break;
                 case EMonsterType.Golem:
                     strongestTypeList = BattleManager.Instance.CardsDatabase.Golens;
+                break;
+                case EMonsterType.Demon:
+                    strongestTypeList = BattleManager.Instance.CardsDatabase.Demons;
+                break;
+                case EMonsterType.Magician:
+                    strongestTypeList = BattleManager.Instance.CardsDatabase.Demons;
                 break;
                 case EMonsterType.She:
                     strongestTypeList = BattleManager.Instance.CardsDatabase.She;

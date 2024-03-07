@@ -91,7 +91,7 @@ public class BoardPlaceVisuals : MonoBehaviour {
     //Selection Place Phase
 
     //Reset
-    public void ResetPlaceHighlightColor(Card resultCard, float intensity){
+    public void ResetPlaceHighlightColor(float intensity){
         Color newColor = new();
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
             newColor = BattleManager.Instance.ColorManager.DefaultPlayerBoardColor;
@@ -114,7 +114,6 @@ public class BoardPlaceVisuals : MonoBehaviour {
                 newColor = BattleManager.Instance.ColorManager.PlayerArcaneBoardHighlightColor;
                 HighlightArcanePlaces(intensity,newColor);
             }
-
         }else{
             if(resultCard is CardMonster){
                 newColor = BattleManager.Instance.ColorManager.PlayerMonsterBoardHighlightColor;

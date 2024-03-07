@@ -11,12 +11,8 @@ public class Fusion : MonoBehaviour {
     public void StartFusionRoutine(List<Card> selectedCards){
         StartCoroutine(FusionRoutine(selectedCards));
     }
-    
     private IEnumerator FusionRoutine(List<Card> selectedCards){
         float waitTime = 2f;
-
-        //Disable Card Colliders
-        DisableCardColliders(selectedCards);
 
         //Reset Border card Colors
         BattleManager.Instance.CardVisuals.ResetBorderColors(selectedCards);
@@ -78,11 +74,6 @@ public class Fusion : MonoBehaviour {
         }
     }
 
-    private void DisableCardColliders(List<Card> selectedCards){
-        foreach(var card in selectedCards){
-            card.DisableCollider();
-        }
-    }
 
     private void MonsterFusion(CardMonster monster1, CardMonster monster2){
         BattleManager.Instance.FusionMonster.MonsterFusion(monster1, monster2);
@@ -130,11 +121,6 @@ public class Fusion : MonoBehaviour {
         BattleManager.Instance.CardVisuals.DissolveCard(card1, Color.red);
         yield return new WaitForSeconds(0.5f);
 
-        //Momentaneo, apenas para testar a visualização da card no UI - 
-        //Ativar o colider apenas quando a card for adicionada um board place
-            card2.EnableCollider();
-        //
-
         //Destroy Card
         card1.DisableModelVisual();
         card1.DestroyCard();
@@ -175,11 +161,6 @@ public class Fusion : MonoBehaviour {
             resultCard.SetPlayerCard();
         }
 
-        //Momentaneo, apenas para testar a visualização da card no UI - 
-        //Ativar o colider apenas quando a card for adicionada um board place
-        resultCard.EnableCollider();
-        //
-
         //Move fusioned card to position
         resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion);
 
@@ -218,7 +199,7 @@ public class Fusion : MonoBehaviour {
 
         //Momentaneo, apenas para testar a visualização da card no UI - 
         //Ativar o colider apenas quando a card for adicionada um board place
-            monster.EnableCollider();
+            // monster.EnableCollider();
         //
 
         //Move fusioned card to position
