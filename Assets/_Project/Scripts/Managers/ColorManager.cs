@@ -16,8 +16,6 @@ public class ColorManager : MonoBehaviour {
     [SerializeField] [ColorUsage(false, true)] private Color _sun;
     [SerializeField] [ColorUsage(false, true)] private Color _moon;
 
-    
-
     public Color DefaultPlayerBoardColor => _defaultPlayerBoard;
     public Color DefaultEnemyBoardColor => _defaultEnemyBoard;
     public Color PlayerMonsterBoardHighlightColor => _playerMonsterBoardHighlightColor;

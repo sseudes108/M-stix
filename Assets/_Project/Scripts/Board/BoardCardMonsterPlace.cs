@@ -15,7 +15,6 @@ public class BoardCardMonsterPlace : BoardCardPlacement {
             if(resultCard.IsFaceDown()){
                 resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.DefenseFaceDownRotation);
             }else{
-                Debug.Log("Teste");
                 resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.DefenseFaceUpRotation);
             }
         }

@@ -54,6 +54,7 @@ public class BattleManager : MonoBehaviour {
     public BattlePhaseSelections SelectionsPhase => _battleStateManager.BattlePhaseSelections;
     public BattlePhaseBoardPlaceSelection BoardPlaceSelectionPhase => _battleStateManager.BattleBoardSelectionPhase;
     public BattlePhaseAction ActionPhase => _battleStateManager.BattlePhaseAction;
+    public BattlePhaseEnd EndPhase => _battleStateManager.BattlePhaseEnd;
 
     //Hand
     public HandPlayer PlayerHand => _handPlayer;

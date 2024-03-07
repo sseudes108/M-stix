@@ -3,7 +3,7 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour {
     [SerializeField] private int _turn;
 
-    public void ChangeTurn(){
+    public void EndTurn(){
         _turn++;
     }
 

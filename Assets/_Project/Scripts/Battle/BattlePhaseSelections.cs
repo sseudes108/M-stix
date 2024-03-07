@@ -10,8 +10,20 @@ public class BattlePhaseSelections : BattleAbstract{
 
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Selections);
-        _resultCard = BattleManager.Instance.Fusion.GetResultCard();
-        StartSelection();
+
+        _animaSelected = false;
+        _monsterModeSelected = false;
+        _faceSelected = false;
+
+        if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            Wait();
+        }else{
+            _resultCard = BattleManager.Instance.Fusion.GetResultCard();
+            StartSelection();
+        }
+
+        // _resultCard = BattleManager.Instance.Fusion.GetResultCard();
+        // StartSelection();
     }
 
     public override void ExitState(){
@@ -45,27 +57,15 @@ public class BattlePhaseSelections : BattleAbstract{
                 yield return null;
             }while(!_monsterModeSelected);
             _resultCard.HideOptions();
-
-            //Not Fusioned
-            if(!_resultCard.IsFusioned()){
-                yield return new WaitForSeconds(1f);
-                FaceSelection(button1, button2);
-                do{
-                    yield return null;
-                }while(!_faceSelected);
-                _resultCard.HideOptions();
-            }
-
-        }else{
-            //Not Fusioned
-            if(!_resultCard.IsFusioned()){
-                yield return new WaitForSeconds(1f);
-                FaceSelection(button1, button2);
-                do{
-                    yield return null;
-                }while(!_faceSelected);
-                _resultCard.HideOptions();
-            }
+        }
+        
+        if(!_resultCard.IsFusioned()){
+            yield return new WaitForSeconds(1f);
+            FaceSelection(button1, button2);
+            do{
+                yield return null;
+            }while(!_faceSelected);
+            _resultCard.HideOptions();
         }
 
         SelectionFinished();
@@ -80,14 +80,12 @@ public class BattlePhaseSelections : BattleAbstract{
     }
     private void FirstAnimaSelected(){
         if(_animaSelected){return;}
-        Debug.Log("FirstAnimaSelected");
         _resultCard.GetComponent<CardMonster>().SetAnima(_resultCard.GetComponent<CardMonster>().GetAnimas()[0]);
         _resultCard.Shader.SetSelectedAnimaShader(1, _resultCard.GetComponent<CardMonster>().GetAnimas()[0]);
         _animaSelected = true;
     }
     private void SecondAnimaSelected(){
         if(_animaSelected){return;}
-        Debug.Log("SecondAnimaSelected");
         _resultCard.GetComponent<CardMonster>().SetAnima(_resultCard.GetComponent<CardMonster>().GetAnimas()[1]);
         _resultCard.Shader.SetSelectedAnimaShader(2, _resultCard.GetComponent<CardMonster>().GetAnimas()[1]);
         _animaSelected = true;
@@ -102,13 +100,11 @@ public class BattlePhaseSelections : BattleAbstract{
     }
     private void AttackModeSelected(){
         if(_monsterModeSelected){return;}
-        Debug.Log("AttackModeSelected");
         _resultCard.GetComponent<CardMonster>().SetAttackMode(true);
         _monsterModeSelected = true;
     }
     private void DefenseModeSelected(){
         if(_monsterModeSelected){return;}
-        Debug.Log("DefenseModeSelected");
         _resultCard.GetComponent<CardMonster>().SetAttackMode(false);
         _monsterModeSelected = true;
     }
@@ -132,6 +128,20 @@ public class BattlePhaseSelections : BattleAbstract{
     }
 
     private void SelectionFinished(){
+        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.BoardPlaceSelectionPhase);
+    }
+
+
+
+    public void Wait(){
+        BattleManager.Instance.BattleStateManager.StartCoroutine(WaitRoutine());
+    }
+
+    private IEnumerator WaitRoutine(){
+        if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            Debug.Log("Waiting Selection - Enemy");
+        }
+        yield return new WaitForSeconds(1f);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.BoardPlaceSelectionPhase);
     }
 }

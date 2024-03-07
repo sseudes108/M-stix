@@ -3,17 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Testing : MonoBehaviour {
 
-    public HandPlayer playerHand;
-
-    private void Awake() {
-        playerHand = GetComponent<HandPlayer>();
-    }
-
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.D)){
-            playerHand.DrawCards();
-        }
-        
         if(Input.GetKeyDown(KeyCode.R)){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
@@ -23,6 +13,12 @@ public class Testing : MonoBehaviour {
                 BattleManager.Instance.CardSelector.GetSelectedCards().Count > 0){
                 
                 BattleManager.Instance.CardSelectionPhase.EndSelection();
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.E)){
+            if(BattleManager.Instance.BattleStateManager.CurrentPhase == BattleManager.Instance.ActionPhase){
+                BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
             }
         }
     }

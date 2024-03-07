@@ -20,7 +20,6 @@ public class FusionMonster : Fusion {
         bool equalLevels = true;
         if(monster1Lvl != monster2Lvl){
             //Not equal levels
-            Debug.Log("Fusion Failed - Lvls are not equals");
             BattleManager.Instance.Fusion.FusionFailed(monster1, monster2);
             
             //Block the rest of the routine

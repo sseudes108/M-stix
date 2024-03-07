@@ -14,17 +14,15 @@ public class Fusion : MonoBehaviour {
     
     private IEnumerator FusionRoutine(List<Card> selectedCards){
         float waitTime = 2f;
-        
+
         //Disable Card Colliders
         DisableCardColliders(selectedCards);
 
         //Reset Border card Colors
         BattleManager.Instance.CardVisuals.ResetBorderColors(selectedCards);
 
+        _fusionLine = selectedCards;
         if(selectedCards.Count > 1){
-            _fusionLine.Clear();
-            _fusionLine = selectedCards;
-
             do{
                 _resultCard = null;
 
@@ -71,22 +69,10 @@ public class Fusion : MonoBehaviour {
 
             BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionsPhase);
 
-            // if(_resultCard is CardMonster){
-            //     BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.AnimaSelectionPhase);
-            // }else{
-            //     BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.BoardPlaceSelectionPhase);
-            // }
-
         }else{
             //Caso tenha apenas uma carta na lista o resultado será ela
             _resultCard = selectedCards[0];
             _resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion);
-
-            // if(_resultCard is CardMonster){
-            //     BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.AnimaSelectionPhase);
-            // }else{
-            //     BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FaceSelectionPhase);
-            // }
 
             BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionsPhase);
         }

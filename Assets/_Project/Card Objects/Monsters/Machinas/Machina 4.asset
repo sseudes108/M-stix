@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649a865fa6bd933409a88f9eef29c96a, type: 3}
   m_Name: Machina 4
   m_EditorClassIdentifier: 
-  MonsterType: 3
-  FirstAnima: 4
-  SecondAnima: 6
+  MonsterType: 1
+  FirstAnima: 1
+  SecondAnima: 1
   Ilustration: {fileID: 2800000, guid: f13291c6105041c418bb1ac5e2838e36, type: 3}
   Name: Machina
   Description: 

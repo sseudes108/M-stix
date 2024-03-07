@@ -1,13 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardPlaceManager : MonoBehaviour {
     [SerializeField] private BoardPlaceVisuals _boardPlaceVisuals;
     [SerializeField] private PlayerBoardPlaces _playerBoardPlaces;
     [SerializeField] private EnemyBoardPlaces _enemyBoardPlaces;
-
-    // [SerializeField] private Transform _faceDownCard, _faceUpCard;
-    // [SerializeField] private Transform _atkModeCard, _defModeCard;
 
     private void Awake() {
         _boardPlaceVisuals = GetComponent<BoardPlaceVisuals>();
@@ -25,9 +21,8 @@ public class BoardPlaceManager : MonoBehaviour {
 
     //Monster Cards
     public Quaternion AttackFaceUpRotation => Quaternion.Euler(90, 0, 0);
-    public Quaternion AttackFaceDownRotation => Quaternion.Euler(-90, -180, -90);
+    public Quaternion AttackFaceDownRotation => Quaternion.Euler(-90, -180, 0);
 
-    
-    public Quaternion DefenseFaceUpRotation => Quaternion.Euler(90, 90, 90);
-    public Quaternion DefenseFaceDownRotation => Quaternion.Euler(90, 90, 90);
+    public Quaternion DefenseFaceUpRotation => Quaternion.Euler(90, 0, -90);
+    public Quaternion DefenseFaceDownRotation => Quaternion.Euler(-90, -180, -90);
 }

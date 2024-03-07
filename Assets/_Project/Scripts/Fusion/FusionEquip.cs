@@ -12,7 +12,6 @@ public class FusionEquip : Fusion {
 
             if(arcaneType != EArcaneType.Equip){
                 //Failed - Not an equip card
-                Debug.Log("The arcane card is not an equip card");
                 BattleManager.Instance.Fusion.FusionFailed(monster, arcane);
 
                 //Block the rest of the routine
@@ -31,7 +30,6 @@ public class FusionEquip : Fusion {
 
             if(arcaneType != EArcaneType.Equip){
                 //Failed - Not an equip card
-                Debug.Log("The arcane card is not an equip card");
                 BattleManager.Instance.Fusion.FusionFailed(arcane, monster);
 
                 //Block the rest of the routine
@@ -71,7 +69,6 @@ public class FusionEquip : Fusion {
 
         }else{
             //Equip card not compatible with the monster
-            Debug.Log("The arcane card is not compatible with the monster");
             BattleManager.Instance.Fusion.FusionFailed(arcane, monster);
         }
     }

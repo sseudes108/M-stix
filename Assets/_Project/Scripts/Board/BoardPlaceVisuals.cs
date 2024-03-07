@@ -96,7 +96,7 @@ public class BoardPlaceVisuals : MonoBehaviour {
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
             newColor = BattleManager.Instance.ColorManager.DefaultPlayerBoardColor;
         }else{
-            newColor = BattleManager.Instance.ColorManager.DefaultPlayerBoardColor;
+            newColor = BattleManager.Instance.ColorManager.DefaultEnemyBoardColor;
         }
 
         HighlightMonsterPlaces(intensity, newColor);

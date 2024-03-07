@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Hand : MonoBehaviour{
     [SerializeField] protected List<Transform> _handPositions;
-    protected List<Transform> _freeHandPositions = new();
+    [SerializeField] protected List<Transform> _freeHandPositions;
     protected Hand _hand;
     protected Deck _deck;
 
@@ -31,7 +31,7 @@ public abstract class Hand : MonoBehaviour{
             }
         }
     }
-    
+
     public virtual void DrawCards(){
         StartCoroutine(DrawCardsRoutine());
     }
@@ -40,43 +40,45 @@ public abstract class Hand : MonoBehaviour{
         CheckFreePositionsInHand();
         int cardsToDraw;
 
-        do{
-            cardsToDraw = _freeHandPositions.Count;
+        if(_freeHandPositions.Count > 0){
+            do{
+                cardsToDraw = _freeHandPositions.Count;
 
-            //Card data
-            var randomIndex = Random.Range(0, _deck.DeckInUse.Count);
-            var cardData = _deck.DeckInUse[randomIndex];
+                //Card data
+                var randomIndex = Random.Range(0, _deck.DeckInUse.Count);
+                var cardData = _deck.DeckInUse[randomIndex];
 
-            //Spawn Position
-            _deck.transform.GetPositionAndRotation(out Vector3 spawnPosition, out Quaternion spawnRotation);
+                //Spawn Position
+                _deck.transform.GetPositionAndRotation(out Vector3 spawnPosition, out Quaternion spawnRotation);
 
-            //Instance
-            var drewCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(cardData), spawnPosition, spawnRotation);
-            drewCard.name = drewCard.GetCardName();
+                //Instance
+                var drewCard = Instantiate(BattleManager.Instance.CardCreator.CreateCard(cardData), spawnPosition, spawnRotation);
+                drewCard.name = drewCard.GetCardName();
 
-            //Remove card from deck
-            _deck.RemoveCardFromDeck(cardData);
+                //Remove card from deck
+                _deck.RemoveCardFromDeck(cardData);
 
-            //Check card Owner
-            if(_hand is HandPlayer){
-                drewCard.SetPlayerCard();
-            }
+                //Check card Owner
+                if(_hand is HandPlayer){
+                    drewCard.SetPlayerCard();
+                }
 
-            //Move to hand position
-            drewCard.MoveCard(_freeHandPositions[0].transform);
+                //Move to hand position
+                drewCard.MoveCard(_freeHandPositions[0].transform);
 
-            //Ocupy place in hand
-            _freeHandPositions[0].GetComponent<HandPosition>().SetHandPlaceOccupied();
-            drewCard.SetCardOnHand(true);
+                //Ocupy place in hand
+                _freeHandPositions[0].GetComponent<HandPosition>().SetHandPlaceOccupied();
+                drewCard.SetCardOnHand(true);
 
-            //Refresh positions
-            CheckFreePositionsInHand();
+                //Refresh positions
+                CheckFreePositionsInHand();
 
-            //Wait
-            yield return new WaitForSeconds(0.5f);
-            
-        }while(cardsToDraw > 1);
-
+                //Wait
+                yield return new WaitForSeconds(0.5f);
+                
+            }while(cardsToDraw > 1);
+        }
+        
         yield return new WaitForSeconds(0.5f);
         EndDrawPhase();
     }
@@ -86,6 +88,5 @@ public abstract class Hand : MonoBehaviour{
             _movement.SetTargetPosition(targetPosition, 5); 
         }
     }
-
     protected virtual void EndDrawPhase(){}
 }
