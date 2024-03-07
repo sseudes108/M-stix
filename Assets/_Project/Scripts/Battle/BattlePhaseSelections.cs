@@ -11,19 +11,12 @@ public class BattlePhaseSelections : BattleAbstract{
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Selections);
 
-        _animaSelected = false;
-        _monsterModeSelected = false;
-        _faceSelected = false;
-
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
             Wait();
         }else{
             _resultCard = BattleManager.Instance.Fusion.GetResultCard();
             StartSelection();
         }
-
-        // _resultCard = BattleManager.Instance.Fusion.GetResultCard();
-        // StartSelection();
     }
 
     public override void ExitState(){
@@ -58,7 +51,7 @@ public class BattlePhaseSelections : BattleAbstract{
             }while(!_monsterModeSelected);
             _resultCard.HideOptions();
         }
-        
+
         if(!_resultCard.IsFusioned()){
             yield return new WaitForSeconds(1f);
             FaceSelection(button1, button2);
@@ -66,6 +59,9 @@ public class BattlePhaseSelections : BattleAbstract{
                 yield return null;
             }while(!_faceSelected);
             _resultCard.HideOptions();
+        }else{
+            //make fusioned card always side up
+            _resultCard.SetCardFaceUp();
         }
 
         SelectionFinished();
@@ -73,6 +69,7 @@ public class BattlePhaseSelections : BattleAbstract{
 
     //Anima
     private void AnimaSelection(Button button1, Button button2){
+        _animaSelected = false;
         _resultCard.GetComponent<CardMonster>().ShowAnimaOptions();
 
         button1.onClick.AddListener(FirstAnimaSelected);
@@ -80,19 +77,22 @@ public class BattlePhaseSelections : BattleAbstract{
     }
     private void FirstAnimaSelected(){
         if(_animaSelected){return;}
-        _resultCard.GetComponent<CardMonster>().SetAnima(_resultCard.GetComponent<CardMonster>().GetAnimas()[0]);
-        _resultCard.Shader.SetSelectedAnimaShader(1, _resultCard.GetComponent<CardMonster>().GetAnimas()[0]);
+        var anima = _resultCard.GetComponent<CardMonster>().GetAnimas()[0];
+        _resultCard.GetComponent<CardMonster>().SetAnima(anima);
+        _resultCard.Shader.SetSelectedAnimaShader(1,anima);
         _animaSelected = true;
     }
     private void SecondAnimaSelected(){
         if(_animaSelected){return;}
-        _resultCard.GetComponent<CardMonster>().SetAnima(_resultCard.GetComponent<CardMonster>().GetAnimas()[1]);
-        _resultCard.Shader.SetSelectedAnimaShader(2, _resultCard.GetComponent<CardMonster>().GetAnimas()[1]);
+        var anima = _resultCard.GetComponent<CardMonster>().GetAnimas()[1];
+        _resultCard.GetComponent<CardMonster>().SetAnima(anima);
+        _resultCard.Shader.SetSelectedAnimaShader(2, anima);
         _animaSelected = true;
     }
 
     //Monster Mode
     private void MonsterModeSelection(Button button1, Button button2){
+        _monsterModeSelected = false;
         _resultCard.GetComponent<CardMonster>().ShowMonsterModeOptions();
 
         button1.onClick.AddListener(AttackModeSelected);
@@ -110,15 +110,15 @@ public class BattlePhaseSelections : BattleAbstract{
     }
 
     //Face
-    private void FaceSelection(Button button1, Button button2){        
+    private void FaceSelection(Button button1, Button button2){
+        _faceSelected = false;       
         _resultCard.ShowFaceOptions();
 
         button1.onClick.AddListener(FaceUpSelected);
         button2.onClick.AddListener(FaceDownSelected);
     }
 
-    private void FaceUpSelected(){        
-        SelectionFinished();
+    private void FaceUpSelected(){
         _faceSelected = true;
     }
 
@@ -130,8 +130,6 @@ public class BattlePhaseSelections : BattleAbstract{
     private void SelectionFinished(){
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.BoardPlaceSelectionPhase);
     }
-
-
 
     public void Wait(){
         BattleManager.Instance.BattleStateManager.StartCoroutine(WaitRoutine());

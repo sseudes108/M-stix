@@ -131,6 +131,7 @@ public class Card : MonoBehaviour {
     public bool IsOnField(){return _isOnField;}
 
     public void SetCardFaceDown(){_isFaceDown = true;}
+    public void SetCardFaceUp(){_isFaceDown = false;}
     public bool IsFaceDown(){return _isFaceDown;}
 
     public void SetFusionedCard(){_isFusioned = true;}

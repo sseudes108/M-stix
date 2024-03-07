@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FusionManager : MonoBehaviour {
-    [SerializeField] private FusionPositions _fusionPositions;
     [SerializeField] private Fusion _fusion;
     [SerializeField] private FusionMonster _fusionMonster;
     [SerializeField] private FusionArcane _fusionArcane;
     [SerializeField] private FusionEquip _fusionEquip;
+    [SerializeField] private FusionPositions _fusionPositions;
     private List<Card> _fusionList;
 
     private void Awake() {

@@ -38,11 +38,13 @@ public abstract class BoardCardPlacement : MonoBehaviour {
             }
         }else{
             //Fusion with the monster on place
+            Debug.Log("T");
             List<Card> fusionList = new(){
                 GetComponentInChildren<Card>(),
                 resultCard,
             };
             
+            SetPlaceFree();
             BattleManager.Instance.FusionManager.SetFusionList(fusionList);
             BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FusionPhase);
         }
@@ -64,6 +66,7 @@ public abstract class BoardCardPlacement : MonoBehaviour {
             resultCard.SetCardOnField();
             SetPlaceOcuppied();
 
+
             yield return new WaitForSeconds(1f);
             BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.ActionPhase);
         }
@@ -79,10 +82,14 @@ public abstract class BoardCardPlacement : MonoBehaviour {
 
     public void DisableCardColliderInBoardPhaseSelection(){
         var card = GetComponentInChildren<Card>();
-        card.DisableCollider();
+        if(card != null){
+            card.DisableCollider();
+        }
     }
-    public void EnableCardColliderInBoardPhaseSelection(){
+    public void EnableCardColliderInBoardPhaseSelection(){      
         var card = GetComponentInChildren<Card>();
-        card.EnableCollider();
+        if(card != null){
+            card.EnableCollider();
+        }
     }
 }
