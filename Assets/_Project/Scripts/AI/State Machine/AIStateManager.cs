@@ -10,6 +10,7 @@ public class AIStateManager : MonoBehaviour {
     //Components
     private AICardSelector _AICardSelector;
     private AIAfterFusionSelector _AIAfterFusionSelector;
+    private AIBoardPlaceSelector _AIBoardPlaceSelector;
 
     public string AICurrentState;
 
@@ -40,6 +41,8 @@ public class AIStateManager : MonoBehaviour {
 
     private void SetComponents(){
         _AICardSelector = GetComponent<AICardSelector>();
+        _AIAfterFusionSelector = GetComponentInChildren<AIAfterFusionSelector>();
+        _AIBoardPlaceSelector = GetComponent<AIBoardPlaceSelector>();
     }
 
     //States
@@ -49,4 +52,5 @@ public class AIStateManager : MonoBehaviour {
     //Components
     public AICardSelector CardSelector => _AICardSelector;
     public AIAfterFusionSelector AfterFusionSelector => _AIAfterFusionSelector;
+    public AIBoardPlaceSelector BoardPlaceSelector => _AIBoardPlaceSelector;
 }

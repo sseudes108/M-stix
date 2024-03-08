@@ -9,7 +9,6 @@ public class FusionManager : MonoBehaviour {
     [SerializeField] private FusionAfterSelections _afterFusionSelections;
     [SerializeField] private FusionPositions _fusionPositions;
     private List<Card> _fusionList;
-
     private void Awake() {
         _fusion = GetComponent<Fusion>();
         _fusionPositions = GetComponent<FusionPositions>();
@@ -39,4 +38,6 @@ public class FusionManager : MonoBehaviour {
     public List<Card> GetFusionList(){
         return _fusionList;
     }
+
+    public Card GetResultCard() => BattleManager.Instance.Fusion.GetResultCard();
 }

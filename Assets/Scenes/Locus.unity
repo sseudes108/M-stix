@@ -1204,7 +1204,7 @@ MonoBehaviour:
   _fusionMonster: {fileID: 0}
   _fusionArcane: {fileID: 0}
   _fusionEquip: {fileID: 0}
-  _fusionAfterSelection: {fileID: 0}
+  _afterFusionSelections: {fileID: 0}
   _fusionPositions: {fileID: 0}
 --- !u!114 &393657850
 MonoBehaviour:
@@ -7112,6 +7112,8 @@ GameObject:
   - component: {fileID: 2024802545}
   - component: {fileID: 2024802546}
   - component: {fileID: 2024802547}
+  - component: {fileID: 2024802549}
+  - component: {fileID: 2024802548}
   m_Layer: 0
   m_Name: AIManager
   m_TagString: Untagged
@@ -7157,6 +7159,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee4e869871f859343823d1ce3c36abb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2024802548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024802544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75860cbb1f10464683cf40abd55a6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2024802549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024802544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c831759f5bbf840409b88c78b0e35eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2026863248
@@ -7443,13 +7469,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardsInDeck:
-  - {fileID: 11400000, guid: b9e4de5037da9f14592ba40ef02fb81d, type: 2}
-  - {fileID: 11400000, guid: 8edbb6579d9f58a4696f2984b654bb50, type: 2}
-  - {fileID: 11400000, guid: b960b991ce69ac0499477e2efc4cbc00, type: 2}
-  - {fileID: 11400000, guid: 075b387b33c1ee749ac337eb46c24f9a, type: 2}
-  - {fileID: 11400000, guid: b5bb063a23d92114f82cd42073492c47, type: 2}
-  - {fileID: 11400000, guid: 86ccbd9b6e2260546aba7bae7c54ae3b, type: 2}
-  - {fileID: 11400000, guid: b0fdc7f5e9d3e494d97f8d7d9c52b56b, type: 2}
+  - {fileID: 11400000, guid: d3de69ec8124a654fb9dabf1bdfe64f7, type: 2}
+  - {fileID: 11400000, guid: 0f2005aa94bc28d4daa81b8595151b76, type: 2}
+  - {fileID: 11400000, guid: 6115ad684bec290449be532463a42e7d, type: 2}
+  - {fileID: 11400000, guid: 3b50abc30bb237b48b94043e3236f335, type: 2}
+  - {fileID: 11400000, guid: 9cec8b8caae408549a429ba51b242cc8, type: 2}
+  - {fileID: 11400000, guid: 9645b0244d9d3ea439dfa1afc289672a, type: 2}
+  - {fileID: 11400000, guid: 40544f61beaded842942766931fcaf18, type: 2}
+  - {fileID: 11400000, guid: 8233f264a1453444c9c161bd4a9b17d1, type: 2}
+  - {fileID: 11400000, guid: 2f8c53eab81165543ab4865979614e9e, type: 2}
+  - {fileID: 11400000, guid: e27c9a120cd61cf4b95c70d53c04f432, type: 2}
+  - {fileID: 11400000, guid: 900c1e3a84ce689428348e6535dc592e, type: 2}
+  - {fileID: 11400000, guid: 9ce71584e13b9c84789ddf2b236bbb1d, type: 2}
+  - {fileID: 11400000, guid: 0e04261fab0106246b83d73da7ca44ba, type: 2}
+  - {fileID: 11400000, guid: 5eaaa3ec84a342343b3c53999fa6caba, type: 2}
+  - {fileID: 11400000, guid: 5d8f4c01e22471f4db2b1cdf56d013bf, type: 2}
+  - {fileID: 11400000, guid: aac41c411bfa86543af9a3e91d1c132a, type: 2}
+  - {fileID: 11400000, guid: bc5029d4c86e66c44926eaa35e345ebb, type: 2}
+  - {fileID: 11400000, guid: e86def246622966439b5ee379f0ce0c9, type: 2}
+  - {fileID: 11400000, guid: ea7b3e2667a6b2149a6983352deadd72, type: 2}
+  - {fileID: 11400000, guid: d8ba40ed687fcb94b8f38039a5b6b0d4, type: 2}
+  - {fileID: 11400000, guid: 4828bfd23adef7f47bc71815c004d524, type: 2}
 --- !u!114 &62067139523182964
 MonoBehaviour:
   m_ObjectHideFlags: 0

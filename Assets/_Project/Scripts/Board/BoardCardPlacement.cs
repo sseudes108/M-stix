@@ -25,7 +25,7 @@ public abstract class BoardCardPlacement : MonoBehaviour {
     }
     
     private void OnMouseDown() {
-        var resultCard = BattleManager.Instance.Fusion.GetResultCard();
+        var resultCard = BattleManager.Instance.FusionManager.GetResultCard();
 
         if(BattleManager.Instance.BattleStateManager.CurrentPhase != BattleManager.Instance.BoardPlaceSelectionPhase){return;}
 
@@ -36,23 +36,39 @@ public abstract class BoardCardPlacement : MonoBehaviour {
 
                 SetCardInPlace(resultCard);
             }
-        }else{
+        }else
+        {
             //Fusion with the monster on place
-            Debug.Log("T");
-            List<Card> fusionList = new(){
-                GetComponentInChildren<Card>(),
-                resultCard,
-            };
-            
-            SetPlaceFree();
-            BattleManager.Instance.FusionManager.SetFusionList(fusionList);
-            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FusionPhase);
+            // Debug.Log("T");
+            // List<Card> fusionList = new(){
+            //     GetComponentInChildren<Card>(),
+            //     resultCard,
+            // };
+
+            // SetPlaceFree();
+            // BattleManager.Instance.FusionManager.SetFusionList(fusionList);
+            // BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FusionPhase);
+
+            BoardFusion(resultCard);
         }
     }
 
-    private void SetCardInPlace(Card resultCard){
+    public void BoardFusion(Card resultCard){
+        Debug.Log("T");
+        List<Card> fusionList = new(){
+                GetComponentInChildren<Card>(),
+                resultCard,
+            };
+
+        SetPlaceFree();
+        BattleManager.Instance.FusionManager.SetFusionList(fusionList);
+        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FusionPhase);
+    }
+
+    public void SetCardInPlace(Card resultCard){
         StartCoroutine(MoveCardRoutine(resultCard));
     }
+
     private IEnumerator MoveCardRoutine(Card resultCard){
         if(resultCard.IsOnField() == false){;
             resultCard.MoveCard(transform);

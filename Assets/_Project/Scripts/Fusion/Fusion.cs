@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Fusion : MonoBehaviour {
-    protected Card _resultCard;
-
+    private Card _resultCard;
     [SerializeField] private List<Card> _fusionLine;
 
     public void StartFusionRoutine(List<Card> selectedCards){
         StartCoroutine(FusionRoutine(selectedCards));
     }
     private IEnumerator FusionRoutine(List<Card> selectedCards){
-        // _isPlayerTurn = BattleManager.Instance.TurnManager.IsPlayerTurn();
         float waitTime = 2f;
 
         //Reset Border card Colors
@@ -94,9 +92,6 @@ public class Fusion : MonoBehaviour {
 
     //Fusion Result
     public Card GetResultCard() => _resultCard;
-    public void SetResultCard(Card newResultCard){
-        _resultCard = newResultCard;
-    }
 
     //Fusion process//
     //Fusion Failed

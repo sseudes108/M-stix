@@ -18,17 +18,55 @@ public class BoardPlaceManager : MonoBehaviour {
 
     //Card positions on board
     //Arcane Cards
-    public Quaternion FaceDownRotation => Quaternion.Euler(-90, -180, 0);
-    public Quaternion FaceUpRotation => Quaternion.Euler(90, 0, 0);
+    public Quaternion FaceDownRotation(){
+        return Quaternion.Euler(-90, -180, 0);
+    } 
+    public Quaternion FaceUpRotation(){
+        return Quaternion.Euler(90, 0, 0);
+    } 
 
     //Monster Cards
-    public Quaternion AttackFaceUpRotation => Quaternion.Euler(90, 0, 0);
-    public Quaternion AttackFaceDownRotation => Quaternion.Euler(-90, -180, 0);
+    public Quaternion AttackFaceUpRotation(){
+        Quaternion newRotation;
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            newRotation = Quaternion.Euler(90, 0, 0);
+        }else{
+            newRotation = Quaternion.Euler(90, 0, -180);
+        }
+        return newRotation;
+    }
+    public Quaternion AttackFaceDownRotation(){
+        Quaternion newRotation;
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            newRotation = Quaternion.Euler(-90, -180, 0);
+        }else{
+            newRotation = Quaternion.Euler(-90, -180, -180);
+        }
+        return newRotation;
+    }
+    public Quaternion DefenseFaceUpRotation(){
+        Quaternion newRotation;
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            Debug.Log("T2Atk");
+            newRotation = Quaternion.Euler(90, 0, -90);
+        }else{
+            Debug.Log("TAtk");
+            newRotation = Quaternion.Euler(54, 54, 54);
+        }
+        return newRotation;
+    }
+    public Quaternion DefenseFaceDownRotation(){
+        Quaternion newRotation;
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            newRotation = Quaternion.Euler(-90, -180, -90);
+        }else{
+            Debug.Log("T2Def");
+            Debug.Log("TDef");
+            newRotation = Quaternion.Euler(54, 54, 54);
+        }
+        return newRotation;
+    } 
 
-    public Quaternion DefenseFaceUpRotation => Quaternion.Euler(90, 0, -90);
-    public Quaternion DefenseFaceDownRotation => Quaternion.Euler(-90, -180, -90);
-
-    
     //Check cards on Board
     private List<BoardCardMonsterPlace> CheckMonstersOnField(){
         List<Transform> monsterPlaces;

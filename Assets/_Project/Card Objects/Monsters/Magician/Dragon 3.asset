@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterType: 4
   FirstAnima: 0
-  SecondAnima: 0
+  SecondAnima: 6
   Ilustration: {fileID: 2800000, guid: e00ca71ff366a0041a5a7a304ad3f0df, type: 3}
   Name: 
   Description: 

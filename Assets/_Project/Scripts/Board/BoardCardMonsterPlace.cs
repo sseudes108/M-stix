@@ -7,15 +7,15 @@ public class BoardCardMonsterPlace : BoardCardPlacement {
     protected override void SetMonsterCardRotation(CardMonster resultCard){
         if(resultCard.IsInAttackMode()){
             if(resultCard.IsFaceDown()){
-                resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.AttackFaceDownRotation);
+                resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.AttackFaceDownRotation());
             }else{
-                resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.AttackFaceUpRotation);
+                resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.AttackFaceUpRotation());
             }
         }else{
             if(resultCard.IsFaceDown()){
-                resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.DefenseFaceDownRotation);
+                resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.DefenseFaceDownRotation());
             }else{
-                resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.DefenseFaceUpRotation);
+                resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.DefenseFaceUpRotation());
             }
         }
     }

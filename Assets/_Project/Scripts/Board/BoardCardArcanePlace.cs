@@ -5,9 +5,9 @@ public class BoardCardArcanePlace : BoardCardPlacement {
 
     protected override void SetArcaneCardRotation(CardArcane resultCard){
         if(resultCard.IsFaceDown()){
-            resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.FaceDownRotation);
+            resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.FaceDownRotation());
         }else{
-            resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.FaceUpRotation);
+            resultCard.RotateCard(BattleManager.Instance.BoardPlaceManager.FaceUpRotation());
         }
     }
 }

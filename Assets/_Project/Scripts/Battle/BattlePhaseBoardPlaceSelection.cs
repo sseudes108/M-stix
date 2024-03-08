@@ -6,7 +6,7 @@ public class BattlePhaseBoardPlaceSelection : BattleAbstract{
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.BoardPlaceSelection);
 
-        _resultCard = BattleManager.Instance.Fusion.GetResultCard();
+        _resultCard = BattleManager.Instance.FusionManager.GetResultCard();
 
         BattleManager.Instance.BoardPlaceManager.DisableOnBoardCardColliders();
 
@@ -17,7 +17,7 @@ public class BattlePhaseBoardPlaceSelection : BattleAbstract{
         BattleManager.Instance.FusionPositions.MoveCardToBoardPlaceSelectionPos(_resultCard);
 
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            Wait();
+            BattleManager.Instance.AIManager.BoardPlaceSelector.StartBoardPlaceSelection(_resultCard);
         }
     }
 
@@ -32,17 +32,5 @@ public class BattlePhaseBoardPlaceSelection : BattleAbstract{
 
     public override void Update(){
 
-    }
-
-    public void Wait(){
-        BattleManager.Instance.BattleStateManager.StartCoroutine(WaitRoutine());
-    }
-
-    private IEnumerator WaitRoutine(){
-        if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            Debug.Log("IMPLEMENT AI POSITION");
-        }
-        yield return new WaitForSeconds(10f);
-        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.ActionPhase);
     }
 }
