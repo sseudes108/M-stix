@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 2676180443558989560}
   - component: {fileID: -3240014460662678234}
   m_Layer: 0
-  m_Name: Arcane Card
+  m_Name: Card Arcane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

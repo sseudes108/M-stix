@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MGifShader
-  m_Shader: {fileID: -6465566751694194690, guid: ac82f0ffc8d410b4e8d2c8b73433241f,
+  m_Name: MBattleField
+  m_Shader: {fileID: -6465566751694194690, guid: 135f1b400aa03b942b7b91a40a47db99,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -25,12 +25,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Frame:
-        m_Texture: {fileID: 2800000, guid: 69cedf0541740b24daf9944c3d40100e, type: 3}
+    - _SampleTexture2D_08915f6d9a0742118c90ebfeed899ca2_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 99ca2860446f9ee448a84f9ae9adb3fa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Gif:
-        m_Texture: {fileID: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: 891ac098ed878794490fb4f16ff529d6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -47,12 +47,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _OF: 0.26
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    - _TL: 3.74
+    m_Colors:
+    - _Color: {r: 0.06414928, g: 0.4062015, b: 0.5912889, a: 0}
+    - _Off: {r: 1.27, g: 0.9, b: 0, a: 0}
+    - _Till: {r: 4.3, g: 4.2, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &2085557998327071150
+--- !u!114 &8067455418834855132
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

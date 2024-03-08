@@ -38,6 +38,6 @@ public class GifShader : MonoBehaviour {
     private void SetChangesToMaterial(){
         var faceMat = new Material(_renderer.sharedMaterials[1]);
         faceMat.SetTexture("_Gif", _frame);
-        _renderer.materials = new[] { _renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2] };
+        _renderer.materials = new[] { _renderer.sharedMaterials[0], faceMat};
     }
 }

@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 4180421458946985633}
   - component: {fileID: 5410889027146457495}
   m_Layer: 0
-  m_Name: Monster Card
+  m_Name: Card Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
