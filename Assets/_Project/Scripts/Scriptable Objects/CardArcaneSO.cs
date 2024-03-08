@@ -7,9 +7,13 @@ public class CardArcaneSO : ScriptableObject {
     public string Name;
     public string Effect;
 
-    [Header("If is Equip Card")]
+    [Header("Equip Card")]
     public EAnimaType AnimaLink;
     public int AttackModifier;
     public int DefenseModifier;
     public int LevelModifier;
+
+    [Header("Damage/Heal Player Card")]
+    public int Amount;
+    public bool DamageCard;
 }

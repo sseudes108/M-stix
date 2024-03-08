@@ -51,5 +51,5 @@ public class Movement : MonoBehaviour {
         _canMove = true;
     }
 
-    public (Vector3,Quaternion) GetStartPositionAndRotation() => (_startPosition, _startRotation);
+    public (Vector3, Quaternion) GetStartPositionAndRotation() => (_startPosition, _startRotation);
 }

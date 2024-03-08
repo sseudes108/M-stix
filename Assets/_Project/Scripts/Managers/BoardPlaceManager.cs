@@ -5,6 +5,7 @@ public class BoardPlaceManager : MonoBehaviour {
     [SerializeField] private BoardPlaceVisuals _boardPlaceVisuals;
     [SerializeField] private PlayerBoardPlaces _playerBoardPlaces;
     [SerializeField] private EnemyBoardPlaces _enemyBoardPlaces;
+    private Card _lastCardPlaced;
 
     private void Awake() {
         _boardPlaceVisuals = GetComponent<BoardPlaceVisuals>();
@@ -15,6 +16,15 @@ public class BoardPlaceManager : MonoBehaviour {
     public BoardPlaceVisuals BoardPlaceVisuals => _boardPlaceVisuals;
     public PlayerBoardPlaces PlayerBoardPlaces => _playerBoardPlaces;
     public EnemyBoardPlaces EnemyBoardPlaces => _enemyBoardPlaces;
+
+    public Card GetLastPlacedCard(){
+        return _lastCardPlaced;
+    }
+
+    public void SetLastCardPlaced(Card card){
+        _lastCardPlaced = null;
+        _lastCardPlaced = card;
+    }
 
     //Card positions on board
     //Arcane Cards
@@ -98,9 +108,9 @@ public class BoardPlaceManager : MonoBehaviour {
         }
 
         foreach (var place in arcanePlaces){
-            var monsterPlace = place.GetComponentInChildren<BoardCardArcanePlace>();
-            if (!monsterPlace.IsFree()){
-                arcanesOnField.Add(monsterPlace);
+            var arcanePlace = place.GetComponentInChildren<BoardCardArcanePlace>();
+            if (!arcanePlace.IsFree()){
+                arcanesOnField.Add(arcanePlace);
             }
         }
 
@@ -127,5 +137,38 @@ public class BoardPlaceManager : MonoBehaviour {
         foreach(var arcane in arcanesOnField){
             arcane.EnableCardColliderInBoardPhaseSelection();
         }
+    }
+
+    public List<CardMonster> GetAllMonstersOnTheField(){
+        List<BoardCardMonsterPlace> allMonstersPlacesOccupied = new();
+
+        var playerMonstersPlaces = BattleManager.Instance.PlayerBoardPlaces.MonsterPlaces;
+        foreach (var place in playerMonstersPlaces){
+            var monsterPlace = place.GetComponentInChildren<BoardCardMonsterPlace>();
+            if (!monsterPlace.IsFree()){
+                allMonstersPlacesOccupied.Add(monsterPlace);
+            }
+        }
+
+        var enemyMonstersPlaces = BattleManager.Instance.EnemyBoardPlaces.MonsterPlaces;
+        foreach (var place in enemyMonstersPlaces){
+            var monsterPlace = place.GetComponentInChildren<BoardCardMonsterPlace>();
+            if (!monsterPlace.IsFree()){
+                allMonstersPlacesOccupied.Add(monsterPlace);
+            }
+        }
+        
+        List<CardMonster> allMonstersOnTheField = new();
+        foreach(var place in allMonstersPlacesOccupied){
+            var card = place.GetComponentInChildren<CardMonster>();
+            allMonstersOnTheField.Add(card);
+        }
+
+        return allMonstersOnTheField;
+    }
+
+    public void RemoveCardFromBoard(Card card){
+        var place = card.GetComponentInParent<BoardCardPlacement>();
+        place.SetPlaceFree();
     }
 }

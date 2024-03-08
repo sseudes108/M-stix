@@ -5,6 +5,15 @@ public class BattlePhaseAction : BattleAbstract {
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Action);
 
+        var lastCardPlaced = BattleManager.Instance.BoardPlaceManager.GetLastPlacedCard();
+        if(lastCardPlaced is CardArcane){
+            var arcaneCard = lastCardPlaced as CardArcane;
+            if(!arcaneCard.IsFaceDown()){
+                var effectType = arcaneCard.GetArcaneType();
+                BattleManager.Instance.CardEffect.StartEffectRoutine(arcaneCard, effectType);
+            }
+        }
+
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
             Wait();
         }else{

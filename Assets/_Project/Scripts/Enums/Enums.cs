@@ -21,9 +21,12 @@ public enum EMonsterType{
     //
 }
 public enum EArcaneType{
-    Magic,
     Trap,
     Equip,
+    Field,
+    Destroyer,
+    DamageToPlayer,
+    DamageToMonster,
 }
 
 public enum EAnimaType{

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Golem 1
   m_EditorClassIdentifier: 
   MonsterType: 3
-  FirstAnima: 0
-  SecondAnima: 1
+  FirstAnima: 6
+  SecondAnima: 3
   Ilustration: {fileID: 2800000, guid: ffc0c52b56cf5554999165b95dc52100, type: 3}
   Name: 
   Description: 

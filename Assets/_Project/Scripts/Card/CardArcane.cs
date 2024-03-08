@@ -9,8 +9,15 @@ public class CardArcane : Card {
 
     //
     [SerializeField] private EArcaneType _arcaneType;
+
+    [Header("Equip / Field")]
     [SerializeField] private EAnimaType _animaLink;
     [SerializeField] private int _atkModifier, _defModifier, _lvlModifier;
+
+    [Header("Damage / Heal")]
+    [SerializeField] private int _amount;
+    [SerializeField] private bool _isDamageCard;
+
     //Needs to be Serialize Fields (Dont Know Why)//
 
     public override void SetCardData(ScriptableObject cardData){
@@ -25,14 +32,25 @@ public class CardArcane : Card {
         _ilustration = arcaneData.Ilustration;
         _name.text = arcaneData.Name;
         _effect.text = arcaneData.Effect;
+
+        //Equip
         _animaLink = arcaneData.AnimaLink;
         _atkModifier = arcaneData.AttackModifier;
         _defModifier = arcaneData.DefenseModifier;
         _lvlModifier = arcaneData.LevelModifier;
+
+        //Field
+
+
+        //Heatlh Points
+        _amount = arcaneData.Amount;
+        _isDamageCard = arcaneData.DamageCard;
     }
 
     public override ECardType GetCardType(){return ECardType.Arcane;}
     public EArcaneType GetArcaneType() {return _arcaneType;}
     public EAnimaType GetAnimaLink() {return _animaLink;}
     public (int, int, int) GetModifiers(){return (_atkModifier, _defModifier, _lvlModifier);}
+    public int GetHealOrDamageAmount() => _amount;
+    public bool IsDamageCard() => _isDamageCard;
 }

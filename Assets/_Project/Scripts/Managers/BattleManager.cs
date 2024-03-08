@@ -8,17 +8,22 @@ public class BattleManager : MonoBehaviour {
     [SerializeField] private UIBattleManager _uiBattleManager;
     [SerializeField] private TurnManager _turnManager;
     [SerializeField] private BoardPlaceManager _boardPlaceManager;
+    [SerializeField] private BoardManager _boardManager;
     [SerializeField] private BattlePhaseStateManager _battleStateManager;
     [SerializeField] private CameraManager _cameraManager;
     [SerializeField] private ColorManager _colorManager;
     [SerializeField]private AIStateManager _AIStateManager;
+    [SerializeField]private HealthManager _healthManager;
 
     [Header("")]
     [SerializeField] private HandPlayer _handPlayer;
     [SerializeField] private HandEnemy _handEnemy;
-
+    
 
     //Public Refs//
+
+    //Health
+    public HealthManager HealthManager => _healthManager;
 
     //UI
     public UIBattleManager UIBattleManager => _uiBattleManager;
@@ -33,20 +38,23 @@ public class BattleManager : MonoBehaviour {
     public TurnManager TurnManager => _turnManager;
 
     //Card
+    public CardManager CardManager => _cardManager;
     public CardCreator CardCreator => _cardManager.CardCreator;
     public CardSelector CardSelector => _cardManager.CardSelector;
     public CardDatabase CardsDatabase => _cardManager.CardsDatabase;
     public CardVisuals CardVisuals => _cardManager.CardVisuals;
+    public CardEffect CardEffect => _cardManager.CardEffect;
 
     //Fusion
-    public FusionManager FusionManager => _fusionManager;
     public Fusion Fusion => _fusionManager.Fusion;
+    public FusionManager FusionManager => _fusionManager;
     public FusionPositions FusionPositions => _fusionManager.FusionPositions;
     public FusionMonster FusionMonster => _fusionManager.FusionMonster;
     public FusionArcane FusionArcane => _fusionManager.FusionArcane;
     public FusionEquip FusionEquip => _fusionManager.FusionEquip;
 
     //Board
+    public BoardManager BoardManager => _boardManager;
     public BoardPlaceManager BoardPlaceManager => _boardPlaceManager;
     public BoardPlaceVisuals BoardPlaceVisuals => _boardPlaceManager.BoardPlaceVisuals;
     public PlayerBoardPlaces PlayerBoardPlaces => _boardPlaceManager.PlayerBoardPlaces;
@@ -64,7 +72,7 @@ public class BattleManager : MonoBehaviour {
     public BattlePhaseAction ActionPhase => _battleStateManager.BattlePhaseAction;
     public BattlePhaseEnd EndPhase => _battleStateManager.BattlePhaseEnd;
 
-    //AI
+    //AI State Machine
     public AIStateManager AIManager => _AIStateManager;
     public AIStateStandBy AIStandBy => _AIStateManager.AIStandby;
     public AIStateCardSelection AICardSelection => _AIStateManager.AICardSelection;
@@ -91,10 +99,12 @@ public class BattleManager : MonoBehaviour {
         _fusionManager = GetComponentInChildren<FusionManager>();
         _uiBattleManager = GetComponentInChildren<UIBattleManager>();
         _turnManager = GetComponentInChildren<TurnManager>();
+        _boardManager = GetComponentInChildren<BoardManager>();
         _boardPlaceManager = GetComponentInChildren<BoardPlaceManager>();
         _battleStateManager = GetComponentInChildren<BattlePhaseStateManager>();
         _colorManager = GetComponentInChildren<ColorManager>();
         _cameraManager = GetComponentInChildren<CameraManager>();
         _AIStateManager = GetComponentInChildren<AIStateManager>();
+        _healthManager = GetComponentInChildren<HealthManager>();
     }
 }

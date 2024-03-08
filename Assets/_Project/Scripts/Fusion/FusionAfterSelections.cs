@@ -54,7 +54,7 @@ public class FusionAfterSelections : MonoBehaviour {
                 //make fusioned card always side up
                 _resultCard.SetCardFaceUp();
             }
-            
+
         }else{
 
             if(_resultCard is CardMonster){

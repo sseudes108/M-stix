@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public abstract class BoardCardPlacement : MonoBehaviour {
@@ -68,7 +69,7 @@ public abstract class BoardCardPlacement : MonoBehaviour {
 
             resultCard.SetCardOnField();
             SetPlaceOcuppied();
-
+            BattleManager.Instance.BoardPlaceManager.SetLastCardPlaced(resultCard);
 
             yield return new WaitForSeconds(1f);
             BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.ActionPhase);
