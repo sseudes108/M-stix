@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BattlePhaseStateManager : MonoBehaviour {
 
-    public BattleAbstract _currentState;
+    private BattleAbstract _currentState;
     private BattlePhaseStart _startPhase;
     private BattlePhaseDraw _drawPhase;
     private BattlePhaseCardSelection _cardSelectionPhase;

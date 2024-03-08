@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +11,7 @@ public class Fusion : MonoBehaviour {
         StartCoroutine(FusionRoutine(selectedCards));
     }
     private IEnumerator FusionRoutine(List<Card> selectedCards){
+        // _isPlayerTurn = BattleManager.Instance.TurnManager.IsPlayerTurn();
         float waitTime = 2f;
 
         //Reset Border card Colors
@@ -21,9 +21,10 @@ public class Fusion : MonoBehaviour {
         if(selectedCards.Count > 1){
             do{
                 _resultCard = null;
-
+                
                 //Move cards to fusion line positions
                 BattleManager.Instance.FusionPositions.MoveCardToPosition(selectedCards);
+
                 yield return new WaitForSeconds(waitTime/3);
 
                 var card1 = _fusionLine[0];
@@ -60,20 +61,16 @@ public class Fusion : MonoBehaviour {
                         yield return new WaitForSeconds(waitTime);
                     }
                 }
-                
             }while(selectedCards.Count > 0);
-
-            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionsPhase);
 
         }else{
             //Caso tenha apenas uma carta na lista o resultado será ela
             _resultCard = selectedCards[0];
-            _resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion);
-
-            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionsPhase);
+            _resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion());
         }
-    }
 
+        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionsPhase);
+    }
 
     private void MonsterFusion(CardMonster monster1, CardMonster monster2){
         BattleManager.Instance.FusionMonster.MonsterFusion(monster1, monster2);
@@ -117,6 +114,13 @@ public class Fusion : MonoBehaviour {
         //Move cards
         BattleManager.Instance.FusionPositions.MergeCards(materials);
 
+
+        //Camera eff
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            BattleManager.Instance.CameraManager.FusionFailed();
+        }
+        yield return new WaitForSeconds(0.1f);
+
         //Dissolve the first card
         BattleManager.Instance.CardVisuals.DissolveCard(card1, Color.red);
         yield return new WaitForSeconds(0.5f);
@@ -130,6 +134,7 @@ public class Fusion : MonoBehaviour {
             AddCardToFusionLine(card2);
         }else{
             BattleManager.Instance.FusionPositions.MoveCardToResultPosition(card2);
+
         }
     }
 
@@ -152,17 +157,15 @@ public class Fusion : MonoBehaviour {
         BattleManager.Instance.CardVisuals.DissolveCard(materials, Color.green);
 
         //Destroy Cards
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.7f);
         card1.DestroyCard();
         card2.DestroyCard();
 
         //Set Card Owner
-        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            resultCard.SetPlayerCard();
-        }
+        resultCard.SetPlayerCard();
 
         //Move fusioned card to position
-        resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion);
+        resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion());
 
         //Check if the line is 0
         if(GetCardsInFusionLine() > 0){
@@ -189,21 +192,14 @@ public class Fusion : MonoBehaviour {
         BattleManager.Instance.CardVisuals.DissolveCard(arcane, Color.green);
 
         //Destroy Cards
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.7f);
         arcane.DestroyCard();
 
         //Set Card Owner
-        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            monster.SetPlayerCard();
-        }
-
-        //Momentaneo, apenas para testar a visualização da card no UI - 
-        //Ativar o colider apenas quando a card for adicionada um board place
-            // monster.EnableCollider();
-        //
+        monster.SetPlayerCard();
 
         //Move fusioned card to position
-        monster.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion);
+        monster.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion());
 
         //Check if the line is 0
         if(GetCardsInFusionLine() > 0){

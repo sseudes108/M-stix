@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class AIAbstract : MonoBehaviour {
+public abstract class AIAbstract{
     public abstract void EnterState();
     public abstract void UpdateState();
     public abstract void ExitState();

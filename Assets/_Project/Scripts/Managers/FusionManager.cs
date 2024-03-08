@@ -6,6 +6,7 @@ public class FusionManager : MonoBehaviour {
     [SerializeField] private FusionMonster _fusionMonster;
     [SerializeField] private FusionArcane _fusionArcane;
     [SerializeField] private FusionEquip _fusionEquip;
+    [SerializeField] private FusionAfterSelections _afterFusionSelections;
     [SerializeField] private FusionPositions _fusionPositions;
     private List<Card> _fusionList;
 
@@ -15,6 +16,7 @@ public class FusionManager : MonoBehaviour {
         _fusionMonster = GetComponent<FusionMonster>();
         _fusionArcane = GetComponent<FusionArcane>();
         _fusionEquip = GetComponent<FusionEquip>();
+        _afterFusionSelections = GetComponent<FusionAfterSelections>();
     }
     
     public Fusion Fusion => _fusion;
@@ -22,6 +24,7 @@ public class FusionManager : MonoBehaviour {
     public FusionMonster FusionMonster => _fusionMonster;
     public FusionArcane FusionArcane => _fusionArcane;
     public FusionEquip FusionEquip => _fusionEquip;
+    public FusionAfterSelections AfterFusionSelections => _afterFusionSelections;
 
 
     public void SetFusionList(){

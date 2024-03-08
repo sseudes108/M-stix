@@ -23,6 +23,10 @@ public class BattlePhaseEnd : BattleAbstract {
         Debug.Log("Wainting End phase");
         yield return new WaitForSeconds(3);
 
+        if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            BattleManager.Instance.AIManager.ChangeState(BattleManager.Instance.AIStandBy);
+        }
+        
         BattleManager.Instance.TurnManager.EndTurn();
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.StartPhase);
     }

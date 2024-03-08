@@ -9,15 +9,22 @@ public class BattleManager : MonoBehaviour {
     [SerializeField] private TurnManager _turnManager;
     [SerializeField] private BoardPlaceManager _boardPlaceManager;
     [SerializeField] private BattlePhaseStateManager _battleStateManager;
+    [SerializeField] private CameraManager _cameraManager;
+    [SerializeField] private ColorManager _colorManager;
+    [SerializeField]private AIStateManager _AIStateManager;
 
+    [Header("")]
     [SerializeField] private HandPlayer _handPlayer;
     [SerializeField] private HandEnemy _handEnemy;
-    [SerializeField] private ColorManager _colorManager;
+
 
     //Public Refs//
 
     //UI
     public UIBattleManager UIBattleManager => _uiBattleManager;
+
+    //Camera
+    public CameraManager CameraManager => _cameraManager;
 
     //Colors
     public ColorManager ColorManager => _colorManager;
@@ -57,6 +64,11 @@ public class BattleManager : MonoBehaviour {
     public BattlePhaseAction ActionPhase => _battleStateManager.BattlePhaseAction;
     public BattlePhaseEnd EndPhase => _battleStateManager.BattlePhaseEnd;
 
+    //AI
+    public AIStateManager AIManager => _AIStateManager;
+    public AIStateStandBy AIStandBy => _AIStateManager.AIStandby;
+    public AIStateCardSelection AICardSelection => _AIStateManager.AICardSelection;
+    
     //Hand
     public HandPlayer PlayerHand => _handPlayer;
     public HandEnemy EnemyHand => _handEnemy;
@@ -82,5 +94,7 @@ public class BattleManager : MonoBehaviour {
         _boardPlaceManager = GetComponentInChildren<BoardPlaceManager>();
         _battleStateManager = GetComponentInChildren<BattlePhaseStateManager>();
         _colorManager = GetComponentInChildren<ColorManager>();
+        _cameraManager = GetComponentInChildren<CameraManager>();
+        _AIStateManager = GetComponentInChildren<AIStateManager>();
     }
 }

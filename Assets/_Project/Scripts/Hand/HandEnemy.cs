@@ -1,6 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HandEnemy : Hand {
+    // private List<Card> cardsInEnemyHand = new();
+
     protected override void SetHand(){
         _hand = GetComponent<HandPlayer>();
     }
@@ -13,5 +17,14 @@ public class HandEnemy : Hand {
         if(BattleManager.Instance.TurnManager.GetTurn() != 0 && !BattleManager.Instance.TurnManager.IsPlayerTurn()){
             BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.CardSelectionPhase);
         }
+    }
+    
+    public List<Card> GetCardsInHand(){
+        List<Card> cardsInEnemyHand = new();
+        foreach(var position in _handPositions){
+            var card = position.GetComponentInChildren<Card>();
+            cardsInEnemyHand.Add(card);
+        }
+        return cardsInEnemyHand;
     }
 }

@@ -1,10 +1,9 @@
-using System.Collections;
 using UnityEngine;
 
-public class AIStateCardSelection : AIAbstract
+public class AIStateStandBy : AIAbstract
 {
     public override void EnterState(){
-        BattleManager.Instance.AIManager.CardSelector.StartCardSelection();
+        Debug.Log("Stand by state");
     }
 
     public override void ExitState(){

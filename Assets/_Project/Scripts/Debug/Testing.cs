@@ -21,5 +21,9 @@ public class Testing : MonoBehaviour {
                 BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Y)){
+            BattleManager.Instance.CameraManager.FusionFailed();
+        }
     }
 }

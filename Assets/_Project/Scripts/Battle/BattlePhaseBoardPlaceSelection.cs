@@ -10,14 +10,14 @@ public class BattlePhaseBoardPlaceSelection : BattleAbstract{
 
         BattleManager.Instance.BoardPlaceManager.DisableOnBoardCardColliders();
 
+        //Board material color change
+        BattleManager.Instance.BoardPlaceVisuals.BoarderSelectionPhaseHighlight(_resultCard, 3f);
+
+        //Move result card to board place selection
+        BattleManager.Instance.FusionPositions.MoveCardToBoardPlaceSelectionPos(_resultCard);
+
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
             Wait();
-        }else{
-            //Board material color change
-            BattleManager.Instance.BoardPlaceVisuals.BoarderSelectionPhaseHighlight(_resultCard, 3f);
-
-            //Move result card to board place selection
-            BattleManager.Instance.FusionPositions.MoveCardToBoardPlaceSelectionPos(_resultCard);
         }
     }
 
@@ -40,9 +40,9 @@ public class BattlePhaseBoardPlaceSelection : BattleAbstract{
 
     private IEnumerator WaitRoutine(){
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            Debug.Log("Waiting Selection - Enemy");
+            Debug.Log("IMPLEMENT AI POSITION");
         }
-        yield return new WaitForSeconds(_waitTime);
+        yield return new WaitForSeconds(10f);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.ActionPhase);
     }
 }

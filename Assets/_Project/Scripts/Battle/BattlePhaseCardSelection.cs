@@ -6,8 +6,7 @@ public class BattlePhaseCardSelection : BattleAbstract {
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.CardSelection);
         
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            //Mudar stado da AI
-            Wait();
+            BattleManager.Instance.AIManager.ChangeState(BattleManager.Instance.AICardSelection);
         }
     }
 
@@ -21,16 +20,6 @@ public class BattlePhaseCardSelection : BattleAbstract {
 
     public void EndSelection(){
         BattleManager.Instance.FusionManager.SetFusionList();
-        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FusionPhase);
-    }
-
-    public void Wait(){
-        BattleManager.Instance.BattleStateManager.StartCoroutine(WaitRoutine());
-    }
-
-    private IEnumerator WaitRoutine(){
-        Debug.Log("Waiting Start - Enemy");
-        yield return new WaitForSeconds(_waitTime);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FusionPhase);
     }
 }

@@ -5,23 +5,20 @@ public class BattlePhaseFusion : BattleAbstract {
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Fusion);
 
-        if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            Wait();
-        }else{
+        var selectedlist = BattleManager.Instance.FusionManager.GetFusionList();
 
-            var selectedlist = BattleManager.Instance.FusionManager.GetFusionList();
-            
-            foreach(var card in selectedlist){
-                card.SetCardOnHand(false);
-            }
-
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
             //Move hand off camera
             if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
                 BattleManager.Instance.PlayerHand.MoveHand(BattleManager.Instance.FusionPositions.HandOffCameraPosition.position);
             }
-
-            BattleManager.Instance.Fusion.StartFusionRoutine(selectedlist);
         }
+
+        foreach(var card in selectedlist){
+            card.SetCardOnHand(false);
+        }
+
+        BattleManager.Instance.Fusion.StartFusionRoutine(selectedlist);
     }
 
     public override void ExitState(){
