@@ -9,21 +9,26 @@ public class FusionAfterSelections : MonoBehaviour {
     private bool _monsterModeSelected;
     private bool _faceSelected;
 
-    public void StartSelection(Card resultCard){
-        _resultCard = resultCard;
+    public void StartSelection(){
+        //reset result Card
+        _resultCard = null;
+        _resultCard = BattleManager.Instance.FusionManager.GetResultCard();
+        if(_resultCard is CardMonster){
+            _monsterCard = _resultCard as CardMonster;
+        }
+
         BattleManager.Instance.BattleStateManager.StartCoroutine(SelectionRoutine());
     }
     
     private IEnumerator SelectionRoutine(){
-        // var (button1, button2) = _resultCard.GetOptionButtons();
-
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            if(_resultCard is CardMonster){
-                _monsterCard = _resultCard as CardMonster;
 
+            var (button1, button2) = _resultCard.GetOptionButtons();
+
+            if(_resultCard is CardMonster){
                 //Anima
                 yield return new WaitForSeconds(1f);
-                AnimaSelection(_resultCard);
+                AnimaSelection(button1, button2);
                 do{
                     yield return null;
                 }while(!_animaSelected);
@@ -31,7 +36,7 @@ public class FusionAfterSelections : MonoBehaviour {
 
                 //Mode
                 yield return new WaitForSeconds(1f);
-                MonsterModeSelection(_resultCard);
+                MonsterModeSelection(button1, button2);
                 do{
                     yield return null;
                 }while(!_monsterModeSelected);
@@ -40,7 +45,7 @@ public class FusionAfterSelections : MonoBehaviour {
 
             if(!_resultCard.IsFusioned()){
                 yield return new WaitForSeconds(1f);
-                FaceSelection(_resultCard);
+                FaceSelection(button1, button2);
                 do{
                     yield return null;
                 }while(!_faceSelected);
@@ -49,59 +54,61 @@ public class FusionAfterSelections : MonoBehaviour {
                 //make fusioned card always side up
                 _resultCard.SetCardFaceUp();
             }
+            
         }else{
 
             if(_resultCard is CardMonster){
-                var anima = BattleManager.Instance.AIManager.AfterFusionSelector.AnimaSelection();
-                if(anima == 0){
-                    Debug.Log("1 - Anima 1");
+                //Anima            
+                if(BattleManager.Instance.AIManager.AfterFusionSelector.AnimaSelection() == 0){
                     FirstAnimaSelected();
                 }else{
-                    Debug.Log("2 - Anima 2");
                     SecondAnimaSelected();
                 }
-                yield return new WaitForSeconds(0.3f);
 
-                var monsterMode = BattleManager.Instance.AIManager.AfterFusionSelector.MonsterModeSelection();
-                if(monsterMode == 0){
-                    Debug.Log("1 - Attack Mode");
+                //Monster Mode
+                if(BattleManager.Instance.AIManager.AfterFusionSelector.MonsterModeSelection() == 0){
                     AttackModeSelected();
                 }else{
-                    Debug.Log("2 - Defense Mode");
                     DefenseModeSelected();
                 }
-                yield return new WaitForSeconds(0.3f);
+            }
 
-                var face = BattleManager.Instance.AIManager.AfterFusionSelector.FaceSelection();
-                if(face == 0){
-                    Debug.Log("1 - FaceUp Mode");
+            //Face
+                //Not Fusioned Card
+            if(!_resultCard.IsFusioned()){
+                if(BattleManager.Instance.AIManager.AfterFusionSelector.FaceSelection() == 0){
                     FaceUpSelected();
                 }else{
-                    Debug.Log("2 - FaceDown Mode");
+
                     FaceDownSelected();
                 }
-                yield return new WaitForSeconds(0.3f);
+            }else{
+                _resultCard.SetCardFaceUp();
             }
         }
-
+        
         SelectionFinished();
     }
 
     //Anima
-    private void AnimaSelection(Card _resultCard){
-        var (button1, button2) = _resultCard.GetOptionButtons();
+    private void AnimaSelection(Button button1, Button button2){
+        button1.onClick.RemoveAllListeners();
+        button2.onClick.RemoveAllListeners();
+
         _animaSelected = false;
         _monsterCard.ShowAnimaOptions();
 
         button1.onClick.AddListener(FirstAnimaSelected);
         button2.onClick.AddListener(SecondAnimaSelected);
     }
+
     private void FirstAnimaSelected(){
         var anima = _monsterCard.GetAnimas()[0];
         _monsterCard.SetAnima(anima);
         _resultCard.Shader.SetSelectedAnimaShader(1,anima);
         _animaSelected = true;
     }
+    
     private void SecondAnimaSelected(){
         var anima = _monsterCard.GetAnimas()[1];
         _monsterCard.SetAnima(anima);
@@ -110,26 +117,31 @@ public class FusionAfterSelections : MonoBehaviour {
     }
 
     //Monster Mode
-    private void MonsterModeSelection(Card _resultCard){
-        var (button1, button2) = _resultCard.GetOptionButtons();
+    private void MonsterModeSelection(Button button1, Button button2){
+        button1.onClick.RemoveAllListeners();
+        button2.onClick.RemoveAllListeners();
+
         _monsterModeSelected = false;
         _monsterCard.ShowMonsterModeOptions();
 
         button1.onClick.AddListener(AttackModeSelected);
         button2.onClick.AddListener(DefenseModeSelected);
     }
+
     private void AttackModeSelected(){
-        _monsterCard.SetAttackMode(true);
+        _monsterCard.SetAttackMode();
         _monsterModeSelected = true;
     }
     private void DefenseModeSelected(){
-        _monsterCard.SetAttackMode(false);
+        _monsterCard.SetDefenseMode();
         _monsterModeSelected = true;
     }
 
     //Face
-    private void FaceSelection(Card _resultCard){
-        var (button1, button2) = _resultCard.GetOptionButtons();
+    private void FaceSelection(Button button1, Button button2){
+        button1.onClick.RemoveAllListeners();
+        button2.onClick.RemoveAllListeners();
+
         _faceSelected = false;       
         _resultCard.ShowFaceOptions();
 

@@ -38,7 +38,7 @@ public class BattlePhaseStart : BattleAbstract{
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
             BattleManager.Instance.PlayerHand.MoveHand(BattleManager.Instance.FusionPositions.HandDefaultPosition.position);
         }else{
-            Debug.Log("Waiting Start - Enemy");
+            // Debug.Log("Waiting Start - Enemy");
         }
 
         yield return new WaitForSeconds(_waitTime);

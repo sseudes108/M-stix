@@ -1,9 +1,11 @@
+using UnityEngine;
+
 public class BattlePhaseSelections : BattleAbstract{
 
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Selections);
         
-        BattleManager.Instance.FusionManager.AfterFusionSelections.StartSelection(BattleManager.Instance.FusionManager.GetResultCard());
+        BattleManager.Instance.FusionManager.AfterFusionSelections.StartSelection();
     }
 
     public override void ExitState(){

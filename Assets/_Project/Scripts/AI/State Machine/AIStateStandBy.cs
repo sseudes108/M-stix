@@ -3,7 +3,7 @@ using UnityEngine;
 public class AIStateStandBy : AIAbstract
 {
     public override void EnterState(){
-        Debug.Log("Stand by state");
+        Debug.Log("AI Stand By State");
     }
 
     public override void ExitState(){

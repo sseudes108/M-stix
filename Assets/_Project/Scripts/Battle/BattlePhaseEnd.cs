@@ -20,7 +20,7 @@ public class BattlePhaseEnd : BattleAbstract {
     }
 
     private IEnumerator WaitRoutine(){
-        Debug.Log("Wainting End phase");
+        // Debug.Log("Wainting End phase");
         yield return new WaitForSeconds(3);
 
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){

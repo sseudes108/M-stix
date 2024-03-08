@@ -36,25 +36,12 @@ public abstract class BoardCardPlacement : MonoBehaviour {
 
                 SetCardInPlace(resultCard);
             }
-        }else
-        {
-            //Fusion with the monster on place
-            // Debug.Log("T");
-            // List<Card> fusionList = new(){
-            //     GetComponentInChildren<Card>(),
-            //     resultCard,
-            // };
-
-            // SetPlaceFree();
-            // BattleManager.Instance.FusionManager.SetFusionList(fusionList);
-            // BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FusionPhase);
-
+        }else{
             BoardFusion(resultCard);
         }
     }
 
     public void BoardFusion(Card resultCard){
-        Debug.Log("T");
         List<Card> fusionList = new(){
                 GetComponentInChildren<Card>(),
                 resultCard,

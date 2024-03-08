@@ -28,16 +28,4 @@ public class BattlePhaseFusion : BattleAbstract {
     public override void Update(){
         
     }
-
-    public void Wait(){
-        BattleManager.Instance.BattleStateManager.StartCoroutine(WaitRoutine());
-    }
-
-    private IEnumerator WaitRoutine(){
-        if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            Debug.Log("Waiting Fusion - Enemy");
-        }
-        yield return new WaitForSeconds(_waitTime);
-        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionsPhase);
-    }
 }

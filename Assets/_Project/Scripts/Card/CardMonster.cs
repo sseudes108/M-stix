@@ -70,10 +70,12 @@ public class CardMonster : Card {
     }
     public EAnimaType GetAnima(){return _anima;}
 
-    public void SetAttackMode(bool inAttackMode){
-        _attackMode = inAttackMode;
+    public void SetAttackMode(){
+        _attackMode = true;
     }
-
+    public void SetDefenseMode(){
+        _attackMode = false;
+    }
     public bool IsInAttackMode(){
         return _attackMode;
     }

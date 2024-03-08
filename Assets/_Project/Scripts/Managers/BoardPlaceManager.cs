@@ -47,11 +47,9 @@ public class BoardPlaceManager : MonoBehaviour {
     public Quaternion DefenseFaceUpRotation(){
         Quaternion newRotation;
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            Debug.Log("T2Atk");
             newRotation = Quaternion.Euler(90, 0, -90);
         }else{
-            Debug.Log("TAtk");
-            newRotation = Quaternion.Euler(54, 54, 54);
+            newRotation = Quaternion.Euler(90, 0, 90);
         }
         return newRotation;
     }
@@ -60,9 +58,7 @@ public class BoardPlaceManager : MonoBehaviour {
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
             newRotation = Quaternion.Euler(-90, -180, -90);
         }else{
-            Debug.Log("T2Def");
-            Debug.Log("TDef");
-            newRotation = Quaternion.Euler(54, 54, 54);
+            newRotation = Quaternion.Euler(-90, -180, 90);
         }
         return newRotation;
     } 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Fusion : MonoBehaviour {
-    private Card _resultCard;
+    [SerializeField] private Card _resultCard;
     [SerializeField] private List<Card> _fusionLine;
 
     public void StartFusionRoutine(List<Card> selectedCards){
