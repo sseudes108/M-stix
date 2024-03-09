@@ -24,7 +24,7 @@ public class BattlePhaseStart : BattleAbstract{
 
     private IEnumerator InitializationRoutine(){
         yield return new WaitForSeconds(1f);
-        BattleManager.Instance.BoardPlaceVisuals.LightUpBoard();
+        BattleManager.Instance.BoardPlaceVisuals.LightUpAllPlaces();
         
         yield return new WaitForSeconds(0.8f);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.DrawPhase);

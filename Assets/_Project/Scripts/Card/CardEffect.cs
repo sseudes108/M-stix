@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CardEffect : MonoBehaviour {
 
-    public void StartEffectRoutine(CardArcane arcaneCard, EArcaneType effectType){
-
+    public void ActiveCardEffect(CardArcane arcaneCard){
+        var effectType = arcaneCard.GetArcaneType();
         switch(effectType){
             case EArcaneType.Field:
                 StartCoroutine(FieldEffect(arcaneCard));
@@ -15,33 +15,34 @@ public class CardEffect : MonoBehaviour {
         }
     }
 
-    public IEnumerator FieldEffect(CardArcane arcaneCard){
+    private IEnumerator FieldEffect(CardArcane arcaneCard){
         var animalink = arcaneCard.GetAnimaLink();
         (int atkMod, int defMod, int lvlMod) = arcaneCard.GetModifiers();
 
         var monstersOnField = BattleManager.Instance.BoardPlaceManager.GetAllMonstersOnTheField();
 
-        foreach(var monster in monstersOnField){
-            if(monster.GetAnima() == animalink){
-                (int atkMonster, int defMonster, int lvlMonster) = monster.GetMonsterStats();
+        if(monstersOnField != null){
+            foreach(var monster in monstersOnField){
+                if(monster.GetAnima() == animalink){
+                    (int atkMonster, int defMonster, int lvlMonster) = monster.GetMonsterStats();
 
-                int newAtk = atkMonster + atkMod;
-                int newDef = defMonster + defMod;
-                int newLvl = lvlMonster + lvlMod;
+                    int newAtk = atkMonster + atkMod;
+                    int newDef = defMonster + defMod;
+                    int newLvl = lvlMonster + lvlMod;
 
-                monster.ChangeMonsterStats(newAtk, newDef, newLvl);
-                Debug.Log($"{monster.name} - {monster.GetAnima()} / {atkMod} - {newAtk} / {defMod} - {newDef} / {lvlMod} - {newLvl}");
+                    monster.ChangeMonsterStats(newAtk, newDef, newLvl);
+                }
             }
         }
 
-        DissolveEffectCard(arcaneCard);
+        DissolveEffectCard(arcaneCard, EArcaneType.Field);
 
         yield return new WaitForSeconds(1.1f);
         BattleManager.Instance.BoardManager.ChangeBattleFieldBackground(arcaneCard.Ilustration);
     }
 
-    public IEnumerator DamageOrHealToPlayerEffect(CardArcane arcaneCard){
-        DissolveEffectCard(arcaneCard);
+    private IEnumerator DamageOrHealToPlayerEffect(CardArcane arcaneCard){
+        DissolveEffectCard(arcaneCard, EArcaneType.DamageToPlayer);
         yield return new WaitForSeconds(1.1f);
 
         var amount = arcaneCard.GetHealOrDamageAmount();
@@ -61,12 +62,11 @@ public class CardEffect : MonoBehaviour {
         }
     }
 
-
-    private void DissolveEffectCard(Card card){
-        StartCoroutine(DissolveEffectCardRoutine(card));
+    private void DissolveEffectCard(CardArcane card, EArcaneType arcaneType){
+        StartCoroutine(DissolveEffectCardRoutine(card, arcaneType));
     }
 
-    private IEnumerator DissolveEffectCardRoutine(Card card){
+    private IEnumerator DissolveEffectCardRoutine(CardArcane card, EArcaneType arcaneType){
         BattleManager.Instance.BoardPlaceManager.RemoveCardFromBoard(card);
 
         card.MoveCard(BattleManager.Instance.CardManager.CardEffectPosition);
@@ -75,6 +75,12 @@ public class CardEffect : MonoBehaviour {
         card.Shader.DissolveCard(Color.green);
 
         yield return new WaitForSeconds(0.9f);
+
+        if(arcaneType == EArcaneType.Field){
+            BattleManager.Instance.BattleFieldManager.SetActivatedField(card);
+            yield break;
+        }
+
         card.DestroyCard();
     }
 }

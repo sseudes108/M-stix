@@ -67,7 +67,10 @@ public class BattlePhaseStateManager : MonoBehaviour {
     public BattlePhaseEnd BattlePhaseEnd => _endPhase;
 
     //Debug Label Update//
-    public void SetBattlePhase(EStateMachinePhase _newPhase){_currentPhase = _newPhase;}
+    public void SetBattlePhase(EStateMachinePhase _newPhase){
+        _currentPhase = _newPhase;
+    }
+    
     public string GetCurrentBattlePhase() => CURRENTPHASE;
     private void UpdateCurrentPhase(){
         switch (_currentPhase){
@@ -106,7 +109,8 @@ public class BattlePhaseStateManager : MonoBehaviour {
                 break;
             default:
                 CURRENTPHASE = "Error";
-                break;
+            break;
         }
+        BattleManager.Instance.UIBattleManager.UpdateStateMachineState(CURRENTPHASE);
     }
 }

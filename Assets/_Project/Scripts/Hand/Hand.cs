@@ -56,7 +56,7 @@ public abstract class Hand : MonoBehaviour{
                 drewCard.name = drewCard.GetCardName();
 
                 //Remove card from deck
-                _deck.RemoveCardFromDeck(cardData);
+                _deck.RemoveCardFromDeck(cardData, this);
 
                 //Check card Owner
                 if(_hand is HandPlayer){

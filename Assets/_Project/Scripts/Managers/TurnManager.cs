@@ -7,12 +7,12 @@ public class TurnManager : MonoBehaviour {
     [SerializeField] private int _turn;
 
     private void Start() {
-        BattleManager.Instance.UIBattleManager.UpdateTurn(_turn+1, IsPlayerTurn());
+        //First turn
+        BattleManager.Instance.UIBattleManager.UpdateTurn(true);
     }
 
     public void EndTurn(){
         _turn++;
-        BattleManager.Instance.UIBattleManager.UpdateTurn(_turn+1, IsPlayerTurn());
         OnTurnEnd?.Invoke(IsPlayerTurn());
     }
 

@@ -11,7 +11,7 @@ public class BattlePhaseBoardPlaceSelection : BattleAbstract{
         BattleManager.Instance.BoardPlaceManager.DisableOnBoardCardColliders();
 
         //Board material color change
-        BattleManager.Instance.BoardPlaceVisuals.BoarderSelectionPhaseHighlight(_resultCard, 3f);
+        BattleManager.Instance.BoardPlaceVisuals.HighLightSelectionPhase(_resultCard);
 
         //Move result card to board place selection
         BattleManager.Instance.FusionPositions.MoveCardToBoardPlaceSelectionPos(_resultCard);
@@ -21,11 +21,9 @@ public class BattlePhaseBoardPlaceSelection : BattleAbstract{
         }
     }
 
-    public override void ExitState(){
-        // BattleManager.Instance.BoardPlaceManager.EnableOnBoardCardColliders();
-        
+    public override void ExitState(){       
         //Board material reset color
-        BattleManager.Instance.BoardPlaceVisuals.ResetPlaceHighlightColor(1.5f);
+        BattleManager.Instance.BoardPlaceVisuals.ResetPlaceHighlightColor();
         BattleManager.Instance.CardSelector.ClearSelectedlist();
     }
 

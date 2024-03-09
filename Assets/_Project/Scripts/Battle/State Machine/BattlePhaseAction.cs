@@ -9,8 +9,8 @@ public class BattlePhaseAction : BattleAbstract {
         if(lastCardPlaced is CardArcane){
             var arcaneCard = lastCardPlaced as CardArcane;
             if(!arcaneCard.IsFaceDown()){
-                var effectType = arcaneCard.GetArcaneType();
-                BattleManager.Instance.CardEffect.StartEffectRoutine(arcaneCard, effectType);
+                // var arcaneType = arcaneCard.GetArcaneType();
+                BattleManager.Instance.CardEffect.ActiveCardEffect(arcaneCard);
             }
         }
 

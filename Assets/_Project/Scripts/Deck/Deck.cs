@@ -6,8 +6,8 @@ public class Deck : MonoBehaviour {
 
     public List<ScriptableObject> DeckInUse => _cardsInDeck;
 
-    public void RemoveCardFromDeck(ScriptableObject cardToRemove){
+    public void RemoveCardFromDeck(ScriptableObject cardToRemove, Hand hand){
         _cardsInDeck.Remove(cardToRemove);
-        BattleManager.Instance.UIBattleManager.UpdateDeckCount();
+        BattleManager.Instance.UIBattleManager.UpdateDeckCount(hand);
     }
 }

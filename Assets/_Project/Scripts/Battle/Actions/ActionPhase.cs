@@ -12,8 +12,7 @@ public class ActionPhase : MonoBehaviour {
         BoardCardPlace.OnFlipCard -= FlipCard;
     }
 
-    public void FlipCard(BoardCardPlace boardCardPlace){
-        var card = boardCardPlace.GetCardInThisPlace();
+    public void FlipCard(BoardCardPlace boardCardPlace, Card card){
         Quaternion targetRotation;
 
         if(card is CardMonster){
@@ -23,16 +22,16 @@ public class ActionPhase : MonoBehaviour {
             }else{
                 targetRotation = BattleManager.Instance.BoardPlaceManager.DefenseFaceUpRotation();
             }
+            card.RotateCard(targetRotation);
+            card.SetCardFaceUp();
         }else{
-            targetRotation = BattleManager.Instance.BoardPlaceManager.FaceUpRotation();
+            var arcaneCard = card as CardArcane;
+            BattleManager.Instance.CardEffect.ActiveCardEffect(arcaneCard);
+            card.SetCardFaceUp();
         }
-
-        card.SetCardFaceUp();
-        card.RotateCard(targetRotation);
     }
 
-    public void ChangeMonsterMode(BoardCardMonsterPlace boardCardMonsterPlace){
-        var card = (CardMonster)boardCardMonsterPlace.GetCardInThisPlace();
+    public void ChangeMonsterMode(BoardCardMonsterPlace boardCardMonsterPlace, CardMonster card){
         Quaternion targetRotation;
         if(card.IsInAttackMode()){
             targetRotation = BattleManager.Instance.BoardPlaceManager.DefenseFaceUpRotation();

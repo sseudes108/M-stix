@@ -15,11 +15,12 @@ public class BattleManager : MonoBehaviour {
     [SerializeField] private AIStateManager _AIStateManager;
     [SerializeField] private HealthManager _healthManager;
     [SerializeField] private ActionsManager _actionsManager;
+    [SerializeField] private BattleFieldManager _batteFieldManager;
 
     [Header("")]
     [SerializeField] private HandPlayer _handPlayer;
     [SerializeField] private HandEnemy _handEnemy;
-    
+
 
     //Public Refs//
 
@@ -61,6 +62,8 @@ public class BattleManager : MonoBehaviour {
     public PlayerBoardPlaces PlayerBoardPlaces => _boardPlaceManager.PlayerBoardPlaces;
     public EnemyBoardPlaces EnemyBoardPlaces => _boardPlaceManager.EnemyBoardPlaces;
 
+    //Battle Field
+    public BattleFieldManager BattleFieldManager => _batteFieldManager;
 
     //Battle State Machine
     public BattlePhaseStateManager BattleStateManager => _battleStateManager;
@@ -111,5 +114,6 @@ public class BattleManager : MonoBehaviour {
         _AIStateManager = GetComponentInChildren<AIStateManager>();
         _healthManager = GetComponentInChildren<HealthManager>();
         _actionsManager = GetComponentInChildren<ActionsManager>();
+        _batteFieldManager = GetComponentInChildren<BattleFieldManager>();
     }
 }

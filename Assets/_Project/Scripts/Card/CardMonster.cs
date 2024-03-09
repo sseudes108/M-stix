@@ -12,7 +12,7 @@ public class CardMonster : Card {
     [SerializeField] private List<EAnimaType> _animas;
     [SerializeField] private EAnimaType _anima;
     [SerializeField] private bool _attackMode = true;
-
+    [SerializeField] private bool _isAttacking = false;
 
     private void Start(){
         SetUpCardVariables();
@@ -80,6 +80,14 @@ public class CardMonster : Card {
 
     public bool IsInAttackMode(){
         return _attackMode;
+    }
+
+    public void SetMonsterAttacking(bool isAttacking){
+        _isAttacking = isAttacking;
+    }
+
+    public bool IsAttacking(){
+        return _isAttacking;
     }
  
     public void ShowMonsterModeOptions(){

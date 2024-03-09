@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class BoardCardPlace : MonoBehaviour {
-    public static Action<BoardCardPlace> OnFlipCard;
+    public static Action<BoardCardPlace, Card> OnFlipCard;
+    public static Action<BoardCardPlace, CardMonster> OnMonsterSetOnBoard;
     
     [SerializeField] protected bool _isFree;
     [SerializeField] protected Card _cardInThisPlace;
@@ -31,14 +33,19 @@ public abstract class BoardCardPlace : MonoBehaviour {
             if(currentPhase == BattleManager.Instance.BoardPlaceSelectionPhase){
                 BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(_cardInThisPlace.Ilustration);
             }
-
+            
+            //Show buttons
             if(currentPhase == BattleManager.Instance.ActionBattlePhase && _canvas != null){
                 BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(_cardInThisPlace.Ilustration);
+
+                //Show flip button in the face down cards
                 _canvas.SetActive(true);
                 if(_cardInThisPlace.IsFaceDown()){
                     _flipCard.gameObject.SetActive(true);
+
                     _flipCard.onClick.AddListener(TriggerFlipCardEvent);
                 }else{
+                    //Does not show on face up
                     _flipCard.gameObject.SetActive(false);
                 }
             }
@@ -69,10 +76,6 @@ public abstract class BoardCardPlace : MonoBehaviour {
                 BoardFusion(resultCard);
             }
         }
-    }
-
-    private void TriggerFlipCardEvent(){
-        OnFlipCard?.Invoke(this);
     }
 
     public void BoardFusion(Card resultCard){
@@ -114,16 +117,41 @@ public abstract class BoardCardPlace : MonoBehaviour {
     public void SetPlaceOcuppied(Card card){
         _cardInThisPlace = card;
         _isFree = false;
+
+        if(card is CardMonster){
+            TriggerMonsterSetOnBoardEvent();
+        }
     }
 
-    public Card GetCardInThisPlace(){
-        return _cardInThisPlace;
+    public Card GetCardInThisPlace(){return _cardInThisPlace;}
+
+    public void DisableCardColliderInBoardPhaseSelection(){
+        if(_cardInThisPlace != null){
+            _cardInThisPlace.DisableCollider();
+        }
     }
 
-    public void DisableCardColliderInBoardPhaseSelection(){_cardInThisPlace.DisableCollider();}
-    public void EnableCardColliderInBoardPhaseSelection(){_cardInThisPlace.EnableCollider();}
+    public void EnableCardColliderInBoardPhaseSelection(){
+        if(_cardInThisPlace != null){
+            _cardInThisPlace.EnableCollider();
+        }
+    }
+    
     protected virtual void SetMonsterCardRotation(CardMonster resultCard){}
     protected virtual void SetArcaneCardRotation(CardArcane resultCard){}
     public bool IsFree() => _isFree;
     public virtual Renderer Renderer => _renderer;
+
+    //Events
+    private void TriggerFlipCardEvent(){
+        if(_cardInThisPlace != null){
+            OnFlipCard?.Invoke(this, _cardInThisPlace);
+        }
+    }
+
+    private void TriggerMonsterSetOnBoardEvent(){
+        if(_cardInThisPlace != null){
+            OnMonsterSetOnBoard?.Invoke(this, _cardInThisPlace as CardMonster);
+        }
+    }
 }

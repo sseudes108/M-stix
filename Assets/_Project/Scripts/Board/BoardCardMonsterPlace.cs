@@ -4,11 +4,13 @@ using UnityEngine.UI;
 
 public class BoardCardMonsterPlace : BoardCardPlace {
     [SerializeField] private Button _changeMonsterModeButton;
+    [SerializeField] private Button _attackButton;
     [SerializeField] private Renderer[] _renderers;
     public Renderer[] Renderers => _renderers;
     [SerializeField] private bool _canChangeMode = true;
 
-    public static Action<BoardCardMonsterPlace> OnModeChange;
+    public static Action<BoardCardMonsterPlace, CardMonster> OnModeChange;
+    public static Action<BoardCardMonsterPlace, CardMonster> OnAttack;
 
     protected override void SetMonsterCardRotation(CardMonster resultCard){
         if(resultCard.IsInAttackMode()){
@@ -28,11 +30,13 @@ public class BoardCardMonsterPlace : BoardCardPlace {
 
     protected override void OnMouseOver(){
         base.OnMouseOver();
+        var monsterCard = _cardInThisPlace as CardMonster;
 
+        //Null verifications because the enemy's places does not have buttons
         if(_cardInThisPlace != null){
             if(_cardInThisPlace.IsFaceDown()){return;}
         }
-
+        
         if(_changeMonsterModeButton != null && _canChangeMode){
             _changeMonsterModeButton.gameObject.SetActive(true);
             _changeMonsterModeButton.onClick.AddListener(TriggerChangeMonsterModeEvent);
@@ -41,21 +45,48 @@ public class BoardCardMonsterPlace : BoardCardPlace {
         if(!_canChangeMode){
             _changeMonsterModeButton.gameObject.SetActive(false);
         }
+
+        if(_cardInThisPlace != null && monsterCard.IsInAttackMode()){
+            _attackButton.gameObject.SetActive(true);
+
+            if(!monsterCard.IsAttacking()){
+                _attackButton.onClick.AddListener(TriggerAttackMonsterEvent);
+            }
+        }
     }
+
     protected override void OnMouseExit(){
         if(_changeMonsterModeButton != null){
             _changeMonsterModeButton.onClick.RemoveAllListeners();
+            _attackButton.onClick.RemoveAllListeners();
         }
         base.OnMouseExit();
     }
 
+    public void ResetCanChangeMode(){
+        _canChangeMode = true;
+    }
+
+    //Events
     private void TriggerChangeMonsterModeEvent(){
         if(_canChangeMode == false){return;}
-        OnModeChange?.Invoke(this);
+        var monster = _cardInThisPlace as CardMonster;
+
+        //Changed from attack to def
+        if(monster.IsInAttackMode()){
+            _attackButton.gameObject.SetActive(false);
+        }
+
+        OnModeChange?.Invoke(this, monster);
         _canChangeMode = false;
     }
 
-    public void ResetCanChangeMode(){
-        _canChangeMode = true;
+    private void TriggerAttackMonsterEvent(){
+        var monster = _cardInThisPlace as CardMonster;
+        
+        if(!monster.IsAttacking()){
+            monster.SetMonsterAttacking(true);
+            OnAttack?.Invoke(this, monster);
+        }
     }
 }

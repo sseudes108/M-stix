@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BoardPlaceManager : MonoBehaviour {
     [SerializeField] private BoardPlaceVisuals _boardPlaceVisuals;
+
     [SerializeField] private PlayerBoardPlaces _playerBoardPlaces;
     [SerializeField] private EnemyBoardPlaces _enemyBoardPlaces;
 
@@ -28,11 +29,11 @@ public class BoardPlaceManager : MonoBehaviour {
 
     private void TurnSystem_OnTurnEnd(bool IsPlayerTurn){
         if(IsPlayerTurn){
-            foreach(var place in PlayerBoardPlaces.GetMonstersPlacement()){
+            foreach(var place in PlayerBoardPlaces.MonsterPlacements){
                 place.ResetCanChangeMode();
             }
         }else{
-            foreach(var place in EnemyBoardPlaces.GetMonstersPlacement()){
+            foreach(var place in EnemyBoardPlaces.MonsterPlacements){
                 place.ResetCanChangeMode();
             }
         }
@@ -47,6 +48,129 @@ public class BoardPlaceManager : MonoBehaviour {
         _lastCardPlaced = card;
     }
 
+
+    //Check cards on Board
+    public List<BoardCardMonsterPlace> CheckMonstersOnField(){
+        List<BoardCardMonsterPlace> monstersOnField = new();
+
+        if (BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            var boardCardMonsterPlace = BattleManager.Instance.PlayerBoardPlaces.MonsterPlacements;
+            foreach(var place in boardCardMonsterPlace){
+                if(!place.IsFree()){
+                    monstersOnField.Add(place);
+                }
+            }
+        }else{
+            var boardCardMonsterPlace = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
+            foreach(var place in boardCardMonsterPlace){
+                if(!place.IsFree()){
+                    monstersOnField.Add(place);
+                }
+            }
+        }
+        return monstersOnField;
+    }
+
+    private List<BoardCardArcanePlace> CheckArcanesOnField(){
+        List<BoardCardArcanePlace> arcanePlacesOnField;
+
+        if (BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            arcanePlacesOnField = BattleManager.Instance.PlayerBoardPlaces.ArcanePlacements;
+
+        }else{
+            arcanePlacesOnField = BattleManager.Instance.EnemyBoardPlaces.ArcanePlacements;
+        }
+
+        foreach (var arcanePlace in arcanePlacesOnField){
+            if (!arcanePlace.IsFree()){
+                arcanePlacesOnField.Add(arcanePlace);
+            }
+        }
+
+        return arcanePlacesOnField;
+    }
+    public List<CardMonster> GetAllMonstersOnTheField(){
+        List<BoardCardMonsterPlace> allMonstersPlacesOccupied = new();
+
+        //Player monsters
+        var monstersInPlayerBoard = BattleManager.Instance.PlayerBoardPlaces.MonsterPlacements;
+        if(monstersInPlayerBoard != null){
+            foreach (var monsterPlace in monstersInPlayerBoard){
+                if (!monsterPlace.IsFree()){
+                    allMonstersPlacesOccupied.Add(monsterPlace);
+                }
+            }
+        }
+
+        //Enemy Monsters
+        var monstersInEnemyBoard = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
+        if(monstersInPlayerBoard != null){
+            foreach (var monsterPlace in monstersInEnemyBoard){
+                if (!monsterPlace.IsFree()){
+                    allMonstersPlacesOccupied.Add(monsterPlace);
+                }
+            }
+        }
+        
+        //Merge
+        List<CardMonster> allMonstersOnTheField = new();
+        foreach(var place in allMonstersPlacesOccupied){
+            var card = place.GetCardInThisPlace() as CardMonster;
+            allMonstersOnTheField.Add(card);
+        }
+
+        return allMonstersOnTheField;
+    }
+
+    public List<BoardCardMonsterPlace> GetOcuppiedMonsterPlaces(){
+        List<BoardCardMonsterPlace> ocuppiedMonsterPlaces = new();
+        List<BoardCardMonsterPlace> monsterPlaces;
+
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            monsterPlaces = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
+        }else{
+            monsterPlaces = BattleManager.Instance.PlayerBoardPlaces.MonsterPlacements;
+        }
+
+        foreach(var place in monsterPlaces){
+            if(!place.IsFree()){
+                ocuppiedMonsterPlaces.Add(place);
+            }
+        }
+
+        return ocuppiedMonsterPlaces;
+    }
+
+    public void RemoveCardFromBoard(Card card){
+        var place = card.GetComponentInParent<BoardCardPlace>();
+        place.SetPlaceFree();
+    }
+
+    #region Colliders
+    public void DisableOnBoardCardColliders(){
+        var monstersOnField = CheckMonstersOnField();
+        var arcanesOnField = CheckArcanesOnField();
+        foreach(var monster in monstersOnField){
+            monster.DisableCardColliderInBoardPhaseSelection();
+        }
+        foreach(var arcane in arcanesOnField){
+            arcane.DisableCardColliderInBoardPhaseSelection();
+        }
+    }
+
+    public void EnableOnBoardCardColliders(){
+        var monstersOnField = CheckMonstersOnField();
+        var arcanesOnField = CheckArcanesOnField();
+        foreach(var monster in monstersOnField){
+            monster.EnableCardColliderInBoardPhaseSelection();
+        }
+        foreach(var arcane in arcanesOnField){
+            arcane.EnableCardColliderInBoardPhaseSelection();
+        }
+    }
+    #endregion
+
+    #region Card Rotations
     //Card positions on board
     //Arcane Cards
     public Quaternion FaceDownRotation(){
@@ -78,6 +202,7 @@ public class BoardPlaceManager : MonoBehaviour {
         }
         return newRotation;
     }
+
     public Quaternion AttackFaceDownRotation(){
         Quaternion newRotation;
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
@@ -87,6 +212,7 @@ public class BoardPlaceManager : MonoBehaviour {
         }
         return newRotation;
     }
+
     public Quaternion DefenseFaceUpRotation(){
         Quaternion newRotation;
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
@@ -96,6 +222,7 @@ public class BoardPlaceManager : MonoBehaviour {
         }
         return newRotation;
     }
+    
     public Quaternion DefenseFaceDownRotation(){
         Quaternion newRotation;
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
@@ -104,103 +231,6 @@ public class BoardPlaceManager : MonoBehaviour {
             newRotation = Quaternion.Euler(-90, -180, 90);
         }
         return newRotation;
-    } 
-
-    //Check cards on Board
-    private List<BoardCardMonsterPlace> CheckMonstersOnField(){
-        List<Transform> monsterPlaces;
-        List<BoardCardMonsterPlace> monstersOnField = new();
-
-        if (BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            monsterPlaces = BattleManager.Instance.PlayerBoardPlaces.MonsterPlaces;
-
-        }else{
-            monsterPlaces = BattleManager.Instance.EnemyBoardPlaces.MonsterPlaces;
-        }
-
-        foreach (var place in monsterPlaces){
-            var monsterPlace = place.GetComponentInChildren<BoardCardMonsterPlace>();
-            if (!monsterPlace.IsFree()){
-                monstersOnField.Add(monsterPlace);
-            }
-        }
-        
-        return monstersOnField;
     }
-
-    private List<BoardCardArcanePlace> CheckArcanesOnField(){
-        List<Transform> arcanePlaces;
-        List<BoardCardArcanePlace> arcanesOnField = new();
-
-        if (BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            arcanePlaces = BattleManager.Instance.PlayerBoardPlaces.ArcanePlaces;
-
-        }else{
-            arcanePlaces = BattleManager.Instance.EnemyBoardPlaces.ArcanePlaces;
-
-        }
-
-        foreach (var place in arcanePlaces){
-            var arcanePlace = place.GetComponentInChildren<BoardCardArcanePlace>();
-            if (!arcanePlace.IsFree()){
-                arcanesOnField.Add(arcanePlace);
-            }
-        }
-
-        return arcanesOnField;
-    }
-
-    public void DisableOnBoardCardColliders(){
-        var monstersOnField = CheckMonstersOnField();
-        var arcanesOnField = CheckArcanesOnField();
-        foreach(var monster in monstersOnField){
-            monster.DisableCardColliderInBoardPhaseSelection();
-        }
-        foreach(var arcane in arcanesOnField){
-            arcane.DisableCardColliderInBoardPhaseSelection();
-        }
-    }
-
-    public void EnableOnBoardCardColliders(){
-        var monstersOnField = CheckMonstersOnField();
-        var arcanesOnField = CheckArcanesOnField();
-        foreach(var monster in monstersOnField){
-            monster.EnableCardColliderInBoardPhaseSelection();
-        }
-        foreach(var arcane in arcanesOnField){
-            arcane.EnableCardColliderInBoardPhaseSelection();
-        }
-    }
-
-    public List<CardMonster> GetAllMonstersOnTheField(){
-        List<BoardCardMonsterPlace> allMonstersPlacesOccupied = new();
-
-        //Player monsters
-        foreach (var monsterPlace in BattleManager.Instance.PlayerBoardPlaces.GetMonstersPlacement()){
-            if (!monsterPlace.IsFree()){
-                allMonstersPlacesOccupied.Add(monsterPlace);
-            }
-        }
-
-        //Enemy Monsters
-        foreach (var monsterPlace in BattleManager.Instance.EnemyBoardPlaces.GetMonstersPlacement()){
-            if (!monsterPlace.IsFree()){
-                allMonstersPlacesOccupied.Add(monsterPlace);
-            }
-        }
-        
-        //Merge
-        List<CardMonster> allMonstersOnTheField = new();
-        foreach(var place in allMonstersPlacesOccupied){
-            var card = place.GetCardInThisPlace() as CardMonster;
-            allMonstersOnTheField.Add(card);
-        }
-
-        return allMonstersOnTheField;
-    }
-
-    public void RemoveCardFromBoard(Card card){
-        var place = card.GetComponentInParent<BoardCardPlace>();
-        place.SetPlaceFree();
-    }
+    #endregion
 }
