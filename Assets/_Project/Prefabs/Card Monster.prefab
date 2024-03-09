@@ -186,7 +186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 6000
+  m_text: 2800
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 6000
+  m_text: 3300
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -715,7 +715,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 6
+  m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -845,7 +845,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.05, y: 3.22, z: 0.05}
+  m_Size: {x: 2.05, y: 3.22, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5556612183310882995
 MonoBehaviour:
@@ -876,8 +876,8 @@ MonoBehaviour:
   button2: {fileID: 2375631500630831385}
   _selection1: {fileID: 5591409674409564526}
   _selection2: {fileID: 6403631668945708118}
-  _cardData: {fileID: 11400000, guid: 5c959840b10f28944bfe56f4cff72096, type: 2}
-  _ilustration: {fileID: 2800000, guid: 3c74f6bf72707e546a42d51ea062f135, type: 3}
+  _cardData: {fileID: 11400000, guid: 238d9df5235534246b47aba3aa4b88b4, type: 2}
+  _ilustration: {fileID: 2800000, guid: bd3b8082d9b65e34b987cecf91862f4e, type: 3}
   _cardModel: {fileID: 7706822515368031445}
   _statsCanvas: {fileID: 7187030712878497788}
   _isPlayerCard: 0
@@ -888,11 +888,11 @@ MonoBehaviour:
   _level: {fileID: 6747958113099069938}
   _attack: {fileID: 5433811842320668057}
   _defense: {fileID: 3983618186729299743}
-  _lvl: 6
-  _atk: 6000
-  _def: 6000
-  _monsterType: 5
-  _animas: 0100000002000000
+  _lvl: 3
+  _atk: 3300
+  _def: 2800
+  _monsterType: 6
+  _animas: 0600000000000000
   _anima: 0
   _attackMode: 1
 --- !u!114 &4912674022285877524

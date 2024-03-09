@@ -4,7 +4,7 @@ using UnityEngine;
 public class BattlePhaseAction : BattleAbstract {
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Action);
-
+        
         var lastCardPlaced = BattleManager.Instance.BoardPlaceManager.GetLastPlacedCard();
         if(lastCardPlaced is CardArcane){
             var arcaneCard = lastCardPlaced as CardArcane;
@@ -22,7 +22,7 @@ public class BattlePhaseAction : BattleAbstract {
     }
 
     public override void ExitState(){
-        
+        BattleManager.Instance.BoardPlaceManager.EnableOnBoardCardColliders();
     }
 
     public override void Update(){

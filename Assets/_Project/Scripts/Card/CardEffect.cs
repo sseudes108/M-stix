@@ -34,15 +34,14 @@ public class CardEffect : MonoBehaviour {
             }
         }
 
-        DissolveCard(arcaneCard);
+        DissolveEffectCard(arcaneCard);
 
         yield return new WaitForSeconds(1.1f);
         BattleManager.Instance.BoardManager.ChangeBattleFieldBackground(arcaneCard.Ilustration);
     }
 
-
     public IEnumerator DamageOrHealToPlayerEffect(CardArcane arcaneCard){
-        DissolveCard(arcaneCard);
+        DissolveEffectCard(arcaneCard);
         yield return new WaitForSeconds(1.1f);
 
         var amount = arcaneCard.GetHealOrDamageAmount();
@@ -62,11 +61,12 @@ public class CardEffect : MonoBehaviour {
         }
     }
 
-    private void DissolveCard(Card card){
-        StartCoroutine(DissolveEffectCard(card));
+
+    private void DissolveEffectCard(Card card){
+        StartCoroutine(DissolveEffectCardRoutine(card));
     }
 
-    private IEnumerator DissolveEffectCard(Card card){
+    private IEnumerator DissolveEffectCardRoutine(Card card){
         BattleManager.Instance.BoardPlaceManager.RemoveCardFromBoard(card);
 
         card.MoveCard(BattleManager.Instance.CardManager.CardEffectPosition);

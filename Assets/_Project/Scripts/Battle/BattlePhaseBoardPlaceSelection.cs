@@ -22,11 +22,10 @@ public class BattlePhaseBoardPlaceSelection : BattleAbstract{
     }
 
     public override void ExitState(){
-        BattleManager.Instance.BoardPlaceManager.EnableOnBoardCardColliders();
+        // BattleManager.Instance.BoardPlaceManager.EnableOnBoardCardColliders();
         
         //Board material reset color
         BattleManager.Instance.BoardPlaceVisuals.ResetPlaceHighlightColor(1.5f);
-        
         BattleManager.Instance.CardSelector.ClearSelectedlist();
     }
 
