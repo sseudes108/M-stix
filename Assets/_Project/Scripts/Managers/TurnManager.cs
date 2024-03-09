@@ -1,6 +1,9 @@
+using System;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour {
+    public Action<bool> OnTurnEnd;
+    
     [SerializeField] private int _turn;
 
     private void Start() {
@@ -10,6 +13,7 @@ public class TurnManager : MonoBehaviour {
     public void EndTurn(){
         _turn++;
         BattleManager.Instance.UIBattleManager.UpdateTurn(_turn+1, IsPlayerTurn());
+        OnTurnEnd?.Invoke(IsPlayerTurn());
     }
 
     public int GetTurn() {return _turn + 1;}

@@ -17,7 +17,7 @@ public class Testing : MonoBehaviour {
         }
 
         if(Input.GetKeyDown(KeyCode.E)){
-            if(BattleManager.Instance.BattleStateManager.CurrentPhase == BattleManager.Instance.ActionPhase){
+            if(BattleManager.Instance.BattleStateManager.CurrentPhase == BattleManager.Instance.ActionBattlePhase){
                 BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
             }
         }

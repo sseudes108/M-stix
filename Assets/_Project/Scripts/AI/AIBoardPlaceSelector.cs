@@ -10,7 +10,7 @@ public class AIBoardPlaceSelector : MonoBehaviour {
     private IEnumerator BoardPlaceSelectionRoutine(Card resultCard){
         var monsterPlaces = BattleManager.Instance.EnemyBoardPlaces.MonsterPlaces;
         var arcanePlaces = BattleManager.Instance.EnemyBoardPlaces.ArcanePlaces;
-        BoardCardPlacement boarderPlace;
+        BoardCardPlace boarderPlace;
 
         //Random Placement
         var randomIndex = Random.Range(0,5);

@@ -7,13 +7,12 @@ public class CardMonster : Card {
     [SerializeField] private TextMeshProUGUI _level;
     [SerializeField] private TextMeshProUGUI _attack, _defense;
 
-    // -- //
     [SerializeField] private int _lvl, _atk, _def;
     [SerializeField] private EMonsterType _monsterType;
     [SerializeField] private List<EAnimaType> _animas;
-    //Needs to be Serialize Fields (Dont Know Why)//
     [SerializeField] private EAnimaType _anima;
     [SerializeField] private bool _attackMode = true;
+
 
     private void Start(){
         SetUpCardVariables();
@@ -68,14 +67,17 @@ public class CardMonster : Card {
     public void SetAnima(EAnimaType selectedAnima){
         _anima = selectedAnima;
     }
+
     public EAnimaType GetAnima(){return _anima;}
 
     public void SetAttackMode(){
         _attackMode = true;
     }
+
     public void SetDefenseMode(){
         _attackMode = false;
     }
+
     public bool IsInAttackMode(){
         return _attackMode;
     }

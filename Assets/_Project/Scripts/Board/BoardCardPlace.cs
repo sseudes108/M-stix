@@ -1,17 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class BoardCardPlacement : MonoBehaviour {
+public abstract class BoardCardPlace : MonoBehaviour {
+    public static Action<BoardCardPlace> OnFlipCard;
+    
     [SerializeField] protected bool _isFree;
-    protected Collider _collider;
-    protected Renderer _renderer;
-
+    [SerializeField] protected Card _cardInThisPlace;
     [SerializeField] private GameObject _canvas;
     [SerializeField] private Button _flipCard;
-
-    [SerializeField] private Card _cardInThisPlace;
+    protected Collider _collider;
+    protected Renderer _renderer;
 
     protected void Awake() {
         _collider = GetComponent<Collider>();
@@ -22,12 +23,33 @@ public abstract class BoardCardPlacement : MonoBehaviour {
         SetPlaceFree();
     }
     
-    private void OnMouseOver() {
+    protected virtual void OnMouseOver() {
         //Change ilustration in the ui hold card when the card itself has the collider off;
         var currentPhase = BattleManager.Instance.BattleStateManager.CurrentPhase;
-        if(currentPhase == BattleManager.Instance.BoardPlaceSelectionPhase || currentPhase == BattleManager.Instance.ActionPhase){
-            if(!_isFree){
+
+        if(!_isFree){
+            if(currentPhase == BattleManager.Instance.BoardPlaceSelectionPhase){
                 BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(_cardInThisPlace.Ilustration);
+            }
+
+            if(currentPhase == BattleManager.Instance.ActionBattlePhase && _canvas != null){
+                BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(_cardInThisPlace.Ilustration);
+                _canvas.SetActive(true);
+                if(_cardInThisPlace.IsFaceDown()){
+                    _flipCard.gameObject.SetActive(true);
+                    _flipCard.onClick.AddListener(TriggerFlipCardEvent);
+                }else{
+                    _flipCard.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+
+    protected virtual void OnMouseExit() {
+        if(_canvas != null){
+            _flipCard.onClick.RemoveAllListeners();
+            if(_canvas.activeSelf){
+                _canvas.SetActive(false);
             }
         }
     }
@@ -41,30 +63,16 @@ public abstract class BoardCardPlacement : MonoBehaviour {
                 //is monster place and monster card, or is arcane place and arcane card
                 if(this is BoardCardMonsterPlace && resultCard is CardMonster /* OR */
                     || this is BoardCardArcanePlace && resultCard is CardArcane){
-
                     SetCardInPlace(resultCard);
                 }
             }else{
                 BoardFusion(resultCard);
             }
-        }else if(currentPhase == BattleManager.Instance.ActionPhase){
-            if(!IsFree()){
-                _canvas.SetActive(true);
-                if(_cardInThisPlace.IsFaceDown()){
-                    _flipCard.gameObject.SetActive(true);
-                }else{
-                    _flipCard.gameObject.SetActive(false);
-                }
-            }
         }
     }
 
-    private void OnMouseExit() {
-        if(_canvas != null){
-            if(_canvas.activeSelf){
-                _canvas.SetActive(false);
-            }
-        }
+    private void TriggerFlipCardEvent(){
+        OnFlipCard?.Invoke(this);
     }
 
     public void BoardFusion(Card resultCard){
@@ -90,12 +98,11 @@ public abstract class BoardCardPlacement : MonoBehaviour {
             }
 
             resultCard.SetCardOnField();
-            SetPlaceOcuppied();
-            SetCardInThisPlace(resultCard);
+            SetPlaceOcuppied(resultCard);
             BattleManager.Instance.BoardPlaceManager.SetLastCardPlaced(resultCard);
 
             yield return new WaitForSeconds(1f);
-            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.ActionPhase);
+            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.ActionBattlePhase);
         }
     }
 
@@ -104,32 +111,19 @@ public abstract class BoardCardPlacement : MonoBehaviour {
         _isFree = true;
     }
 
-    public void SetPlaceOcuppied(){_isFree = false;}
-    public bool IsFree() => _isFree;
+    public void SetPlaceOcuppied(Card card){
+        _cardInThisPlace = card;
+        _isFree = false;
+    }
 
-    public virtual Renderer Renderer => _renderer;
+    public Card GetCardInThisPlace(){
+        return _cardInThisPlace;
+    }
+
+    public void DisableCardColliderInBoardPhaseSelection(){_cardInThisPlace.DisableCollider();}
+    public void EnableCardColliderInBoardPhaseSelection(){_cardInThisPlace.EnableCollider();}
     protected virtual void SetMonsterCardRotation(CardMonster resultCard){}
     protected virtual void SetArcaneCardRotation(CardArcane resultCard){}
-
-    private void SetCardInThisPlace(Card card){
-        // _cardInThisPlace = null;
-        _cardInThisPlace = card;
-    }
-
-    public void DisableCardColliderInBoardPhaseSelection(){
-        // var card = GetComponentInChildren<Card>();
-        Debug.Log("DisableCardColliderInBoardPhaseSelection" + _cardInThisPlace.name); 
-        // if(card != null){
-        //     card.DisableCollider();
-        // }
-        _cardInThisPlace.DisableCollider();
-    }
-    public void EnableCardColliderInBoardPhaseSelection(){
-        // var card = GetComponentInChildren<Card>();
-        Debug.Log("EnableCardColliderInBoardPhaseSelection" + _cardInThisPlace.name); 
-        // if(card != null){
-        //     card.EnableCollider();
-        // }
-        _cardInThisPlace.EnableCollider();
-    }
+    public bool IsFree() => _isFree;
+    public virtual Renderer Renderer => _renderer;
 }

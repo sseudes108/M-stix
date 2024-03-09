@@ -12,8 +12,9 @@ public class BattleManager : MonoBehaviour {
     [SerializeField] private BattlePhaseStateManager _battleStateManager;
     [SerializeField] private CameraManager _cameraManager;
     [SerializeField] private ColorManager _colorManager;
-    [SerializeField]private AIStateManager _AIStateManager;
-    [SerializeField]private HealthManager _healthManager;
+    [SerializeField] private AIStateManager _AIStateManager;
+    [SerializeField] private HealthManager _healthManager;
+    [SerializeField] private ActionsManager _actionsManager;
 
     [Header("")]
     [SerializeField] private HandPlayer _handPlayer;
@@ -69,9 +70,12 @@ public class BattleManager : MonoBehaviour {
     public BattlePhaseFusion FusionPhase => _battleStateManager.BattlePhaseFusion;
     public BattlePhaseSelections SelectionsPhase => _battleStateManager.BattlePhaseSelections;
     public BattlePhaseBoardPlaceSelection BoardPlaceSelectionPhase => _battleStateManager.BattleBoardSelectionPhase;
-    public BattlePhaseAction ActionPhase => _battleStateManager.BattlePhaseAction;
+    public BattlePhaseAction ActionBattlePhase => _battleStateManager.BattlePhaseAction;
     public BattlePhaseEnd EndPhase => _battleStateManager.BattlePhaseEnd;
 
+    //Actions
+    public ActionsManager ActionsManager => _actionsManager;
+    
     //AI State Machine
     public AIStateManager AIManager => _AIStateManager;
     public AIStateStandBy AIStandBy => _AIStateManager.AIStandby;
@@ -106,5 +110,6 @@ public class BattleManager : MonoBehaviour {
         _cameraManager = GetComponentInChildren<CameraManager>();
         _AIStateManager = GetComponentInChildren<AIStateManager>();
         _healthManager = GetComponentInChildren<HealthManager>();
+        _actionsManager = GetComponentInChildren<ActionsManager>();
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FusionAfterSelections : MonoBehaviour {
+public class AfterFusionSelections : MonoBehaviour {
     private CardMonster _monsterCard;
     private Card _resultCard;
     private bool _animaSelected;

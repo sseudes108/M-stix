@@ -5,7 +5,20 @@ public class BoardPlaceManager : MonoBehaviour {
     [SerializeField] private BoardPlaceVisuals _boardPlaceVisuals;
     [SerializeField] private PlayerBoardPlaces _playerBoardPlaces;
     [SerializeField] private EnemyBoardPlaces _enemyBoardPlaces;
+
     private Card _lastCardPlaced;
+
+    public BoardPlaceVisuals BoardPlaceVisuals => _boardPlaceVisuals;
+    public PlayerBoardPlaces PlayerBoardPlaces => _playerBoardPlaces;
+    public EnemyBoardPlaces EnemyBoardPlaces => _enemyBoardPlaces;
+
+    private void OnEnable() {
+        BattleManager.Instance.TurnManager.OnTurnEnd += TurnSystem_OnTurnEnd;
+    }
+
+    private void OnDisable() {
+        BattleManager.Instance.TurnManager.OnTurnEnd -= TurnSystem_OnTurnEnd;
+    }
 
     private void Awake() {
         _boardPlaceVisuals = GetComponent<BoardPlaceVisuals>();
@@ -13,9 +26,17 @@ public class BoardPlaceManager : MonoBehaviour {
         _enemyBoardPlaces = GetComponentInChildren<EnemyBoardPlaces>();
     }
 
-    public BoardPlaceVisuals BoardPlaceVisuals => _boardPlaceVisuals;
-    public PlayerBoardPlaces PlayerBoardPlaces => _playerBoardPlaces;
-    public EnemyBoardPlaces EnemyBoardPlaces => _enemyBoardPlaces;
+    private void TurnSystem_OnTurnEnd(bool IsPlayerTurn){
+        if(IsPlayerTurn){
+            foreach(var place in PlayerBoardPlaces.GetMonstersPlacement()){
+                place.ResetCanChangeMode();
+            }
+        }else{
+            foreach(var place in EnemyBoardPlaces.GetMonstersPlacement()){
+                place.ResetCanChangeMode();
+            }
+        }
+    }
 
     public Card GetLastPlacedCard(){
         return _lastCardPlaced;
@@ -29,10 +50,22 @@ public class BoardPlaceManager : MonoBehaviour {
     //Card positions on board
     //Arcane Cards
     public Quaternion FaceDownRotation(){
-        return Quaternion.Euler(-90, -180, 0);
+        Quaternion newRotation;
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            newRotation = Quaternion.Euler(-90, -180, 0);
+        }else{
+            newRotation = Quaternion.Euler(-90, -180, -180);
+        }
+        return newRotation;
     } 
     public Quaternion FaceUpRotation(){
-        return Quaternion.Euler(90, 0, 0);
+        Quaternion newRotation;
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            newRotation = Quaternion.Euler(90, 0, 0);
+        }else{
+            newRotation = Quaternion.Euler(90, 0, -180);
+        }
+        return newRotation;
     } 
 
     //Monster Cards
@@ -91,7 +124,7 @@ public class BoardPlaceManager : MonoBehaviour {
                 monstersOnField.Add(monsterPlace);
             }
         }
-
+        
         return monstersOnField;
     }
 
@@ -142,25 +175,24 @@ public class BoardPlaceManager : MonoBehaviour {
     public List<CardMonster> GetAllMonstersOnTheField(){
         List<BoardCardMonsterPlace> allMonstersPlacesOccupied = new();
 
-        var playerMonstersPlaces = BattleManager.Instance.PlayerBoardPlaces.MonsterPlaces;
-        foreach (var place in playerMonstersPlaces){
-            var monsterPlace = place.GetComponentInChildren<BoardCardMonsterPlace>();
+        //Player monsters
+        foreach (var monsterPlace in BattleManager.Instance.PlayerBoardPlaces.GetMonstersPlacement()){
             if (!monsterPlace.IsFree()){
                 allMonstersPlacesOccupied.Add(monsterPlace);
             }
         }
 
-        var enemyMonstersPlaces = BattleManager.Instance.EnemyBoardPlaces.MonsterPlaces;
-        foreach (var place in enemyMonstersPlaces){
-            var monsterPlace = place.GetComponentInChildren<BoardCardMonsterPlace>();
+        //Enemy Monsters
+        foreach (var monsterPlace in BattleManager.Instance.EnemyBoardPlaces.GetMonstersPlacement()){
             if (!monsterPlace.IsFree()){
                 allMonstersPlacesOccupied.Add(monsterPlace);
             }
         }
         
+        //Merge
         List<CardMonster> allMonstersOnTheField = new();
         foreach(var place in allMonstersPlacesOccupied){
-            var card = place.GetComponentInChildren<CardMonster>();
+            var card = place.GetCardInThisPlace() as CardMonster;
             allMonstersOnTheField.Add(card);
         }
 
@@ -168,7 +200,7 @@ public class BoardPlaceManager : MonoBehaviour {
     }
 
     public void RemoveCardFromBoard(Card card){
-        var place = card.GetComponentInParent<BoardCardPlacement>();
+        var place = card.GetComponentInParent<BoardCardPlace>();
         place.SetPlaceFree();
     }
 }
