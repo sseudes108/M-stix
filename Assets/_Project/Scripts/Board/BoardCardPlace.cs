@@ -20,7 +20,7 @@ public abstract class BoardCardPlace : MonoBehaviour {
         _renderer = GetComponentInChildren<Renderer>();
     }
 
-    private void Start() {
+    protected virtual void Start() {
         SetPlaceFree();
     }
     
@@ -29,16 +29,11 @@ public abstract class BoardCardPlace : MonoBehaviour {
         var currentPhase = BattleManager.Instance.BattleStateManager.CurrentPhase;
 
         if(!_isFree){
-            if(currentPhase == BattleManager.Instance.BoardPlaceSelectionPhase || 
-                currentPhase == BattleManager.Instance.AttackPhase && !_cardInThisPlace.IsFaceDown()){
+            if(!_cardInThisPlace.IsFaceDown() || _cardInThisPlace.IsPlayerCard()){
                 BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(_cardInThisPlace.Ilustration);
             }
-            
-            //Show buttons
-            if(currentPhase == BattleManager.Instance.ActionBattlePhase && _canvas != null){
 
-                BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(_cardInThisPlace.Ilustration);
-
+            if(currentPhase == BattleManager.Instance.ActionBattlePhase || currentPhase == BattleManager.Instance.AttackPhase && _canvas != null){
                 //Show flip button in the face down cards
                 _canvas.SetActive(true);
                 if(_cardInThisPlace.IsFaceDown()){
@@ -119,19 +114,22 @@ public abstract class BoardCardPlace : MonoBehaviour {
     public void SetPlaceOcuppied(Card card){
         _cardInThisPlace = card;
         _isFree = false;
+        card.DisableCollider();
 
         if(card is CardMonster){
+            var place = this as BoardCardMonsterPlace;
+            place._canChangeMode =  false;
             TriggerMonsterSetOnBoardEvent();
         }
     }
 
     public Card GetCardInThisPlace(){return _cardInThisPlace;}
 
-    public void DisableCardColliderInBoardPhaseSelection(){
-        if(_cardInThisPlace != null){
-            _cardInThisPlace.DisableCollider();
-        }
-    }
+    // public void DisableCardColliderInBoardPhaseSelection(){
+    //     if(_cardInThisPlace != null){
+    //         _cardInThisPlace.DisableCollider();
+    //     }
+    // }
 
     public void EnableCardColliderInBoardPhaseSelection(){
         if(_cardInThisPlace != null){

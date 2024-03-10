@@ -30,11 +30,11 @@ public class BoardPlaceManager : MonoBehaviour {
     private void TurnSystem_OnTurnEnd(bool IsPlayerTurn){
         if(IsPlayerTurn){
             foreach(var place in PlayerBoardPlaces.MonsterPlacements){
-                place.ResetCanChangeMode();
+                place.ResetChangeModeAndAttack();
             }
         }else{
             foreach(var place in EnemyBoardPlaces.MonsterPlacements){
-                place.ResetCanChangeMode();
+                place.ResetChangeModeAndAttack();
             }
         }
     }
@@ -72,23 +72,23 @@ public class BoardPlaceManager : MonoBehaviour {
     }
 
     private List<BoardCardArcanePlace> CheckArcanesOnField(){
-        List<BoardCardArcanePlace> arcanePlacesOnField;
+        List<BoardCardArcanePlace> arcanesOnField = new();
 
         if (BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            arcanePlacesOnField = BattleManager.Instance.PlayerBoardPlaces.ArcanePlacements;
-
+            var arcanePlacesOnField = BattleManager.Instance.PlayerBoardPlaces.ArcanePlacements;
         }else{
-            arcanePlacesOnField = BattleManager.Instance.EnemyBoardPlaces.ArcanePlacements;
+            var arcanePlacesOnField = BattleManager.Instance.EnemyBoardPlaces.ArcanePlacements;
         }
 
-        foreach (var arcanePlace in arcanePlacesOnField){
+        foreach (var arcanePlace in arcanesOnField){
             if (!arcanePlace.IsFree()){
-                arcanePlacesOnField.Add(arcanePlace);
+                arcanesOnField.Add(arcanePlace);
             }
         }
 
-        return arcanePlacesOnField;
+        return arcanesOnField;
     }
+
     public List<CardMonster> GetAllMonstersOnTheField(){
         List<BoardCardMonsterPlace> allMonstersPlacesOccupied = new();
 
@@ -147,27 +147,27 @@ public class BoardPlaceManager : MonoBehaviour {
     }
 
     #region Colliders
-    public void DisableOnBoardCardColliders(){
-        var monstersOnField = CheckMonstersOnField();
-        var arcanesOnField = CheckArcanesOnField();
-        foreach(var monster in monstersOnField){
-            monster.DisableCardColliderInBoardPhaseSelection();
-        }
-        foreach(var arcane in arcanesOnField){
-            arcane.DisableCardColliderInBoardPhaseSelection();
-        }
-    }
+    // public void DisableOnBoardCardColliders(){
+    //     var monstersOnField = CheckMonstersOnField();
+    //     var arcanesOnField = CheckArcanesOnField();
+    //     foreach(var monster in monstersOnField){
+    //         monster.DisableCardColliderInBoardPhaseSelection();
+    //     }
+    //     foreach(var arcane in arcanesOnField){
+    //         arcane.DisableCardColliderInBoardPhaseSelection();
+    //     }
+    // }
 
-    public void EnableOnBoardCardColliders(){
-        var monstersOnField = CheckMonstersOnField();
-        var arcanesOnField = CheckArcanesOnField();
-        foreach(var monster in monstersOnField){
-            monster.EnableCardColliderInBoardPhaseSelection();
-        }
-        foreach(var arcane in arcanesOnField){
-            arcane.EnableCardColliderInBoardPhaseSelection();
-        }
-    }
+    // public void EnableOnBoardCardColliders(){
+    //     var monstersOnField = CheckMonstersOnField();
+    //     var arcanesOnField = CheckArcanesOnField();
+    //     foreach(var monster in monstersOnField){
+    //         monster.EnableCardColliderInBoardPhaseSelection();
+    //     }
+    //     foreach(var arcane in arcanesOnField){
+    //         arcane.EnableCardColliderInBoardPhaseSelection();
+    //     }
+    // }
     #endregion
 
     #region Card Rotations

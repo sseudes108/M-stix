@@ -186,7 +186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2800
+  m_text: 4000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3300
+  m_text: 4000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -715,7 +715,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -845,7 +845,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.05, y: 3.22, z: 0.2}
+  m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5556612183310882995
 MonoBehaviour:
@@ -876,8 +876,8 @@ MonoBehaviour:
   button2: {fileID: 2375631500630831385}
   _selection1: {fileID: 5591409674409564526}
   _selection2: {fileID: 6403631668945708118}
-  _cardData: {fileID: 11400000, guid: 238d9df5235534246b47aba3aa4b88b4, type: 2}
-  _ilustration: {fileID: 2800000, guid: bd3b8082d9b65e34b987cecf91862f4e, type: 3}
+  _cardData: {fileID: 11400000, guid: 3149fd378273f7d4cbae56484083ebd7, type: 2}
+  _ilustration: {fileID: 2800000, guid: 22e6f13805364eb47a43c708656c67b4, type: 3}
   _cardModel: {fileID: 7706822515368031445}
   _statsCanvas: {fileID: 7187030712878497788}
   _isPlayerCard: 0
@@ -888,11 +888,11 @@ MonoBehaviour:
   _level: {fileID: 6747958113099069938}
   _attack: {fileID: 5433811842320668057}
   _defense: {fileID: 3983618186729299743}
-  _lvl: 3
-  _atk: 3300
-  _def: 2800
+  _lvl: 4
+  _atk: 4000
+  _def: 4000
   _monsterType: 6
-  _animas: 0600000000000000
+  _animas: 0500000003000000
   _anima: 0
   _attackMode: 1
   _isAttacking: 0
@@ -1197,7 +1197,6 @@ GameObject:
   - component: {fileID: 7706822515368031445}
   - component: {fileID: 7196160880598203949}
   - component: {fileID: 7039157632402986157}
-  - component: {fileID: 7132149262947909228}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -1275,27 +1274,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7132149262947909228
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8785323881695778361}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.02, z: 0.02}
-  m_Center: {x: 0, y: 0, z: -0.0000000037252903}
 --- !u!1 &9115828052556688690
 GameObject:
   m_ObjectHideFlags: 0

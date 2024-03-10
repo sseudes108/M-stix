@@ -7,10 +7,16 @@ public class BoardCardMonsterPlace : BoardCardPlace {
     [SerializeField] private Button _attackButton;
     [SerializeField] private Renderer[] _renderers;
     public Renderer[] Renderers => _renderers;
-    [SerializeField] private bool _canChangeMode = true;
+    public bool _canChangeMode;
+    public bool _canAttack;
 
     public static Action<BoardCardMonsterPlace, CardMonster> OnModeChange;
     public static Action<BoardCardMonsterPlace, CardMonster> OnAttack;
+
+    protected override void Start(){
+        base.Start();
+        _canChangeMode = false;
+    }
 
     protected override void SetMonsterCardRotation(CardMonster resultCard){
         if(resultCard.IsInAttackMode()){
@@ -37,20 +43,23 @@ public class BoardCardMonsterPlace : BoardCardPlace {
         if(monsterCard != null &&  currentPhase != BattleManager.Instance.AttackPhase){
             if(monsterCard.IsFaceDown()){return;}
         }
-        
-        if(_changeMonsterModeButton != null && _canChangeMode){
+
+        //Disable all buttons to make sure that only enables the right ones
+        if(_changeMonsterModeButton != null && _attackButton != null){
+            _changeMonsterModeButton.gameObject.SetActive(false);
+            _attackButton.gameObject.SetActive(false);
+        }
+
+        //Change Mode
+        if(_canChangeMode && _changeMonsterModeButton != null){
             _changeMonsterModeButton.gameObject.SetActive(true);
             _changeMonsterModeButton.onClick.AddListener(TriggerChangeMonsterModeEvent);
         }
 
-        if(!_canChangeMode){
-            _changeMonsterModeButton.gameObject.SetActive(false);
-        }
-        
-        if(monsterCard != null && monsterCard.IsInAttackMode()){
-            if(_attackButton != null){
+        //Attack with other monsters
+        if(currentPhase == BattleManager.Instance.AttackPhase || currentPhase == BattleManager.Instance.ActionBattlePhase){
+            if(_canChangeMode && monsterCard != null && monsterCard.IsInAttackMode() && _attackButton != null){
                 _attackButton.gameObject.SetActive(true);
-
                 if(!monsterCard.IsAttacking()){
                     _attackButton.onClick.AddListener(TriggerAttackMonsterEvent);
                 }
@@ -76,14 +85,15 @@ public class BoardCardMonsterPlace : BoardCardPlace {
         if(currentPhase == BattleManager.Instance.AttackPhase){
             if(monsterCard != null){
                 if(BattleManager.Instance.TurnManager.IsPlayerTurn() && !monsterCard.IsPlayerCard()){
-                    Debug.Log(monsterCard.name);
+                    BattleManager.Instance.ActionsManager.ActionAttack.StartMonsterBattle(monsterCard);
                 }
             }
         }
     }
 
-    public void ResetCanChangeMode(){
+    public void ResetChangeModeAndAttack(){
         _canChangeMode = true;
+        _canAttack = true;
     }
 
     //Events
@@ -102,8 +112,9 @@ public class BoardCardMonsterPlace : BoardCardPlace {
 
     private void TriggerAttackMonsterEvent(){
         var monster = _cardInThisPlace as CardMonster;
-        
+
         if(!monster.IsAttacking()){
+            _canAttack = false;
             monster.SetMonsterAttacking(true);
             OnAttack?.Invoke(this, monster);
         }

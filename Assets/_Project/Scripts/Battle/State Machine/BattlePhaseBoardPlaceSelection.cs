@@ -8,7 +8,7 @@ public class BattlePhaseBoardPlaceSelection : BattleAbstract{
 
         _resultCard = BattleManager.Instance.FusionManager.GetResultCard();
 
-        BattleManager.Instance.BoardPlaceManager.DisableOnBoardCardColliders();
+        // BattleManager.Instance.BoardPlaceManager.DisableOnBoardCardColliders();
 
         //Board material color change
         BattleManager.Instance.BoardPlaceVisuals.HighLightSelectionPhase(_resultCard);

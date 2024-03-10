@@ -22,7 +22,7 @@ public class BattlePhaseAction : BattleAbstract {
     }
 
     public override void ExitState(){
-        BattleManager.Instance.BoardPlaceManager.EnableOnBoardCardColliders();
+        // BattleManager.Instance.BoardPlaceManager.EnableOnBoardCardColliders();
     }
 
     public override void Update(){
