@@ -895,6 +895,7 @@ MonoBehaviour:
   _animas: 0600000000000000
   _anima: 0
   _attackMode: 1
+  _isAttacking: 0
 --- !u!114 &4912674022285877524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,7 +1292,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.02, z: 0.02}
   m_Center: {x: 0, y: 0, z: -0.0000000037252903}

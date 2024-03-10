@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIBattleManager : MonoBehaviour {
     [SerializeField] private UICardPlaceHolder _UICardPlaceHolder;
@@ -13,6 +14,8 @@ public class UIBattleManager : MonoBehaviour {
     [Header("Enemy")]
     [SerializeField] private TextMeshProUGUI _enemyHP;
     [SerializeField] private TextMeshProUGUI _enemyDeck;
+
+    [SerializeField] private Button _endPhaseButton;
 
     private void OnEnable() {
         BattleManager.Instance.TurnManager.OnTurnEnd += UpdateTurn;
@@ -54,6 +57,19 @@ public class UIBattleManager : MonoBehaviour {
         }else{
             _turnOwner.text = "Enemy Turn";
         }
+    }
+
+    public void EndPhaseButton(){
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            _endPhaseButton.gameObject.SetActive(true);
+            _endPhaseButton.onClick.AddListener(TriggerEndPhaseEvent);
+        }
+    }
+
+    private void TriggerEndPhaseEvent(){
+        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
+        _endPhaseButton.onClick.RemoveAllListeners();
+        _endPhaseButton.gameObject.SetActive(false);
     }
 
     public UICardPlaceHolder UICardPlaceHolder => _UICardPlaceHolder;

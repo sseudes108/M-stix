@@ -74,6 +74,7 @@ public class BattleManager : MonoBehaviour {
     public BattlePhaseSelections SelectionsPhase => _battleStateManager.BattlePhaseSelections;
     public BattlePhaseBoardPlaceSelection BoardPlaceSelectionPhase => _battleStateManager.BattleBoardSelectionPhase;
     public BattlePhaseAction ActionBattlePhase => _battleStateManager.BattlePhaseAction;
+    public BattlePhaseAttack AttackPhase => _battleStateManager.BattlePhaseAttack;
     public BattlePhaseEnd EndPhase => _battleStateManager.BattlePhaseEnd;
 
     //Actions

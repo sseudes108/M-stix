@@ -10,9 +10,9 @@ public class ActionAttack : MonoBehaviour {
     }
 
     private void BoardCardMonsterPlace_OnAttack(BoardCardMonsterPlace place, CardMonster monster){
+        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.AttackPhase);
+        
         var oponentTargets = BattleManager.Instance.BoardPlaceManager.GetOcuppiedMonsterPlaces();
         BattleManager.Instance.BoardPlaceVisuals.HighLightAttackTargetPlaces(oponentTargets);
-
-
     }
 }

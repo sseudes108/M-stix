@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HandEnemy : Hand {
-    // private List<Card> cardsInEnemyHand = new();
-
     protected override void SetHand(){
         _hand = GetComponent<HandPlayer>();
     }

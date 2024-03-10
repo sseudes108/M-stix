@@ -7,11 +7,7 @@ public class HealthManager : MonoBehaviour {
     private int _playerHP;
     private int _enemyHP;
 
-    private void Start() {
-        StartFillHPRoutine();
-    }
-
-    private void StartFillHPRoutine(){
+    public void StartFillHPRoutine(){
         StartCoroutine(FillHP());
     }
 

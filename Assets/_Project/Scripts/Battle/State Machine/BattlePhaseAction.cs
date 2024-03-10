@@ -4,12 +4,12 @@ using UnityEngine;
 public class BattlePhaseAction : BattleAbstract {
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Action);
+        BattleManager.Instance.UIBattleManager.EndPhaseButton();
         
         var lastCardPlaced = BattleManager.Instance.BoardPlaceManager.GetLastPlacedCard();
         if(lastCardPlaced is CardArcane){
             var arcaneCard = lastCardPlaced as CardArcane;
-            if(!arcaneCard.IsFaceDown()){
-                // var arcaneType = arcaneCard.GetArcaneType();
+            if(!lastCardPlaced.IsFaceDown()){
                 BattleManager.Instance.CardEffect.ActiveCardEffect(arcaneCard);
             }
         }

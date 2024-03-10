@@ -31,10 +31,11 @@ public class BoardCardMonsterPlace : BoardCardPlace {
     protected override void OnMouseOver(){
         base.OnMouseOver();
         var monsterCard = _cardInThisPlace as CardMonster;
+        var currentPhase = BattleManager.Instance.BattleStateManager.CurrentPhase;
 
         //Null verifications because the enemy's places does not have buttons
-        if(_cardInThisPlace != null){
-            if(_cardInThisPlace.IsFaceDown()){return;}
+        if(monsterCard != null &&  currentPhase != BattleManager.Instance.AttackPhase){
+            if(monsterCard.IsFaceDown()){return;}
         }
         
         if(_changeMonsterModeButton != null && _canChangeMode){
@@ -45,12 +46,14 @@ public class BoardCardMonsterPlace : BoardCardPlace {
         if(!_canChangeMode){
             _changeMonsterModeButton.gameObject.SetActive(false);
         }
+        
+        if(monsterCard != null && monsterCard.IsInAttackMode()){
+            if(_attackButton != null){
+                _attackButton.gameObject.SetActive(true);
 
-        if(_cardInThisPlace != null && monsterCard.IsInAttackMode()){
-            _attackButton.gameObject.SetActive(true);
-
-            if(!monsterCard.IsAttacking()){
-                _attackButton.onClick.AddListener(TriggerAttackMonsterEvent);
+                if(!monsterCard.IsAttacking()){
+                    _attackButton.onClick.AddListener(TriggerAttackMonsterEvent);
+                }
             }
         }
     }
@@ -61,6 +64,22 @@ public class BoardCardMonsterPlace : BoardCardPlace {
             _attackButton.onClick.RemoveAllListeners();
         }
         base.OnMouseExit();
+    }
+
+    protected override void OnMouseDown(){
+        base.OnMouseDown();
+        
+        //Attack
+        var currentPhase = BattleManager.Instance.BattleStateManager.CurrentPhase;
+        var monsterCard = _cardInThisPlace as CardMonster;
+        
+        if(currentPhase == BattleManager.Instance.AttackPhase){
+            if(monsterCard != null){
+                if(BattleManager.Instance.TurnManager.IsPlayerTurn() && !monsterCard.IsPlayerCard()){
+                    Debug.Log(monsterCard.name);
+                }
+            }
+        }
     }
 
     public void ResetCanChangeMode(){

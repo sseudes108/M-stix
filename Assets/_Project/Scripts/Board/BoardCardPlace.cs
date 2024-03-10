@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +10,7 @@ public abstract class BoardCardPlace : MonoBehaviour {
     
     [SerializeField] protected bool _isFree;
     [SerializeField] protected Card _cardInThisPlace;
-    [SerializeField] private GameObject _canvas;
+    [SerializeField] protected GameObject _canvas;
     [SerializeField] private Button _flipCard;
     protected Collider _collider;
     protected Renderer _renderer;
@@ -30,19 +29,20 @@ public abstract class BoardCardPlace : MonoBehaviour {
         var currentPhase = BattleManager.Instance.BattleStateManager.CurrentPhase;
 
         if(!_isFree){
-            if(currentPhase == BattleManager.Instance.BoardPlaceSelectionPhase){
+            if(currentPhase == BattleManager.Instance.BoardPlaceSelectionPhase || 
+                currentPhase == BattleManager.Instance.AttackPhase && !_cardInThisPlace.IsFaceDown()){
                 BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(_cardInThisPlace.Ilustration);
             }
             
             //Show buttons
             if(currentPhase == BattleManager.Instance.ActionBattlePhase && _canvas != null){
+
                 BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(_cardInThisPlace.Ilustration);
 
                 //Show flip button in the face down cards
                 _canvas.SetActive(true);
                 if(_cardInThisPlace.IsFaceDown()){
                     _flipCard.gameObject.SetActive(true);
-
                     _flipCard.onClick.AddListener(TriggerFlipCardEvent);
                 }else{
                     //Does not show on face up
@@ -61,26 +61,28 @@ public abstract class BoardCardPlace : MonoBehaviour {
         }
     }
     
-    private void OnMouseDown() {
-        var resultCard = BattleManager.Instance.FusionManager.GetResultCard();
+    protected virtual void OnMouseDown() {
         var currentPhase = BattleManager.Instance.BattleStateManager.CurrentPhase;
 
-        if(currentPhase == BattleManager.Instance.BoardPlaceSelectionPhase){
-            if(_isFree){
-                //is monster place and monster card, or is arcane place and arcane card
-                if(this is BoardCardMonsterPlace && resultCard is CardMonster /* OR */
-                    || this is BoardCardArcanePlace && resultCard is CardArcane){
-                    SetCardInPlace(resultCard);
+        if(currentPhase != BattleManager.Instance.AttackPhase){
+            var resultCard = BattleManager.Instance.FusionManager.GetResultCard();
+
+            if(currentPhase == BattleManager.Instance.BoardPlaceSelectionPhase){
+                if(_isFree){
+                    //is monster place and monster card, or is arcane place and arcane card
+                    if(this is BoardCardMonsterPlace && resultCard is CardMonster /* OR */
+                        || this is BoardCardArcanePlace && resultCard is CardArcane){
+                        SetCardInPlace(resultCard);
+                    }
+                }else{
+                    BoardFusion(resultCard);
                 }
-            }else{
-                BoardFusion(resultCard);
             }
         }
     }
 
     public void BoardFusion(Card resultCard){
         List<Card> fusionList = new(){_cardInThisPlace, resultCard};
-
         SetPlaceFree();
         BattleManager.Instance.FusionManager.SetFusionList(fusionList);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FusionPhase);

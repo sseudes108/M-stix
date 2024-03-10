@@ -21,6 +21,7 @@ public class AfterFusionSelections : MonoBehaviour {
     }
     
     private IEnumerator SelectionRoutine(){
+        //Player Selections
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
 
             var (button1, button2) = _resultCard.GetOptionButtons();
@@ -56,7 +57,8 @@ public class AfterFusionSelections : MonoBehaviour {
             }
 
         }else{
-
+            
+            //AI Selections
             if(_resultCard is CardMonster){
                 //Anima            
                 if(BattleManager.Instance.AIManager.AfterFusionSelector.AnimaSelection() == 0){
