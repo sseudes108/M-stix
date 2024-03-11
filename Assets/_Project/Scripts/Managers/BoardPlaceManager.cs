@@ -146,30 +146,6 @@ public class BoardPlaceManager : MonoBehaviour {
         place.SetPlaceFree();
     }
 
-    #region Colliders
-    // public void DisableOnBoardCardColliders(){
-    //     var monstersOnField = CheckMonstersOnField();
-    //     var arcanesOnField = CheckArcanesOnField();
-    //     foreach(var monster in monstersOnField){
-    //         monster.DisableCardColliderInBoardPhaseSelection();
-    //     }
-    //     foreach(var arcane in arcanesOnField){
-    //         arcane.DisableCardColliderInBoardPhaseSelection();
-    //     }
-    // }
-
-    // public void EnableOnBoardCardColliders(){
-    //     var monstersOnField = CheckMonstersOnField();
-    //     var arcanesOnField = CheckArcanesOnField();
-    //     foreach(var monster in monstersOnField){
-    //         monster.EnableCardColliderInBoardPhaseSelection();
-    //     }
-    //     foreach(var arcane in arcanesOnField){
-    //         arcane.EnableCardColliderInBoardPhaseSelection();
-    //     }
-    // }
-    #endregion
-
     #region Card Rotations
     //Card positions on board
     //Arcane Cards

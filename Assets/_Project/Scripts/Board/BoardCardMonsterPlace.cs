@@ -56,7 +56,7 @@ public class BoardCardMonsterPlace : BoardCardPlace {
             _changeMonsterModeButton.onClick.AddListener(TriggerChangeMonsterModeEvent);
         }
 
-        //Attack with other monsters
+        //Attack
         if(currentPhase == BattleManager.Instance.AttackPhase || currentPhase == BattleManager.Instance.ActionBattlePhase){
             if(_canChangeMode && monsterCard != null && monsterCard.IsInAttackMode() && _attackButton != null){
                 _attackButton.gameObject.SetActive(true);
@@ -85,7 +85,7 @@ public class BoardCardMonsterPlace : BoardCardPlace {
         if(currentPhase == BattleManager.Instance.AttackPhase){
             if(monsterCard != null){
                 if(BattleManager.Instance.TurnManager.IsPlayerTurn() && !monsterCard.IsPlayerCard()){
-                    BattleManager.Instance.ActionsManager.ActionAttack.StartMonsterBattle(monsterCard);
+                    BattleManager.Instance.ActionsManager.ActionAttack.StartMonstarBattle(this, monsterCard);
                 }
             }
         }

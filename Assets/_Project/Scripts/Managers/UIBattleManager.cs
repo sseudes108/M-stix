@@ -4,8 +4,11 @@ using UnityEngine.UI;
 
 public class UIBattleManager : MonoBehaviour {
     [SerializeField] private UICardPlaceHolder _UICardPlaceHolder;
+    private Vector3 _UICardOriginalPosition;
+    [SerializeField] private Transform _offScenePlaceHolderPosition;
     [SerializeField] private TextMeshProUGUI _turnNumber, _turnOwner;
     [SerializeField] private TextMeshProUGUI _state;
+    [SerializeField] private GameObject _canvas;
 
     [Header("Player")]
     [SerializeField] private TextMeshProUGUI _playerHP;
@@ -23,6 +26,10 @@ public class UIBattleManager : MonoBehaviour {
 
     private void OnDisable() {
         BattleManager.Instance.TurnManager.OnTurnEnd -= UpdateTurn;
+    }
+
+    private void Start() {
+        _UICardOriginalPosition = _UICardPlaceHolder.transform.position;
     }
     
     private void Awake() {
@@ -70,6 +77,16 @@ public class UIBattleManager : MonoBehaviour {
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
         _endPhaseButton.onClick.RemoveAllListeners();
         _endPhaseButton.gameObject.SetActive(false);
+    }
+
+    public void ClearUI(){
+        _canvas.SetActive(false);
+        _UICardPlaceHolder.Movement.SetTargetPosition(_offScenePlaceHolderPosition.position, 5f);
+    }
+
+    public void BringUI(){
+        _canvas.SetActive(true);
+        _UICardPlaceHolder.Movement.SetTargetPosition(_UICardOriginalPosition, 5f);
     }
 
     public UICardPlaceHolder UICardPlaceHolder => _UICardPlaceHolder;

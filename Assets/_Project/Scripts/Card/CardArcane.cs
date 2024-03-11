@@ -39,9 +39,6 @@ public class CardArcane : Card {
         _defModifier = arcaneData.DefenseModifier;
         _lvlModifier = arcaneData.LevelModifier;
 
-        //Field
-
-
         //Heatlh Points
         _amount = arcaneData.Amount;
         _isDamageCard = arcaneData.DamageCard;

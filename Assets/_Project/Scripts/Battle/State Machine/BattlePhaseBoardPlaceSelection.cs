@@ -1,14 +1,9 @@
-using System.Collections;
-using UnityEngine;
-
 public class BattlePhaseBoardPlaceSelection : BattleAbstract{
     Card _resultCard;
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.BoardPlaceSelection);
 
         _resultCard = BattleManager.Instance.FusionManager.GetResultCard();
-
-        // BattleManager.Instance.BoardPlaceManager.DisableOnBoardCardColliders();
 
         //Board material color change
         BattleManager.Instance.BoardPlaceVisuals.HighLightSelectionPhase(_resultCard);

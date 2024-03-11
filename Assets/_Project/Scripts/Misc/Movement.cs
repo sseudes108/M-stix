@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour {
     }
 
     private void Move(){
-        float rotateSpeed = 300.0f;
+        float rotateSpeed = 400.0f;
         transform.position = Vector3.Lerp(transform.position, _targetPosition, _moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, rotateSpeed * Time.deltaTime);
 

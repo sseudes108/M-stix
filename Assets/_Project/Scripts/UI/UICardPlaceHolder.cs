@@ -9,8 +9,11 @@ public class UICardPlaceHolder : MonoBehaviour{
     [SerializeField] private TextMeshProUGUI _anima1;
     [SerializeField] private TextMeshProUGUI _anima2;
 
+    [SerializeField] private Movement _movement;
+
     private void Awake() {
         _renderer = GetComponentInChildren<Renderer>();
+        _movement = GetComponentInChildren<Movement>();
     }
 
     public void ChangeIllustration(Texture2D newIlustration){
@@ -38,4 +41,6 @@ public class UICardPlaceHolder : MonoBehaviour{
         _anima1.text = animas[1].ToString();
         _anima2.text = animas[0].ToString();
     }
+
+    public Movement Movement => _movement;
 }

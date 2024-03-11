@@ -77,7 +77,7 @@ public class Card : MonoBehaviour {
         MoveCard(targetTransform.position, targetTransform.rotation);
     }
 
-    private void MoveCard(Vector3 targetPosition, Quaternion targetRotation){
+    public void MoveCard(Vector3 targetPosition, Quaternion targetRotation){
         float moveSpeed = 5.0f;
         _movement.SetTargetPosition(targetPosition, targetRotation, moveSpeed);
     }

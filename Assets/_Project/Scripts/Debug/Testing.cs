@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class Testing : MonoBehaviour {
 
+    [SerializeField] private Card _card, _card2;
+
     private void Update() {
         if(Input.GetKeyDown(KeyCode.R)){
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -14,10 +16,6 @@ public class Testing : MonoBehaviour {
                 
                 BattleManager.Instance.CardSelectionPhase.EndSelection();
             }
-        }
-
-        if(Input.GetKeyDown(KeyCode.Y)){
-            BattleManager.Instance.CameraManager.FusionFailed();
         }
     }
 }

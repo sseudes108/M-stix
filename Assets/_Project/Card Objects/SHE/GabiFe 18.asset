@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GabiFe 18
   m_EditorClassIdentifier: 
   MonsterType: 6
-  FirstAnima: 3
-  SecondAnima: 2
+  FirstAnima: 0
+  SecondAnima: 0
   Ilustration: {fileID: 2800000, guid: c1df5f3802d70c743a4b0adc8fde8b18, type: 3}
   Name: 
   Description: 
