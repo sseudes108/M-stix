@@ -30,18 +30,27 @@ public abstract class BoardCardPlace : MonoBehaviour {
 
         if(!_isFree){
             if(!_cardInThisPlace.IsFaceDown() || _cardInThisPlace.IsPlayerCard()){
-                BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(_cardInThisPlace.Ilustration);
+                if(_cardInThisPlace is CardMonster){
+                    var card = _cardInThisPlace as CardMonster;
+                    BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(
+                        _cardInThisPlace.Ilustration, card.GetAnimas(), card.GetLevel(), card.GetAttack(), card.GetDefense()
+                    );
+                }else{
+                    BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(_cardInThisPlace.Ilustration);
+                }
             }
 
             if(currentPhase == BattleManager.Instance.ActionBattlePhase || currentPhase == BattleManager.Instance.AttackPhase && _canvas != null){
                 //Show flip button in the face down cards
-                _canvas.SetActive(true);
-                if(_cardInThisPlace.IsFaceDown()){
-                    _flipCard.gameObject.SetActive(true);
-                    _flipCard.onClick.AddListener(TriggerFlipCardEvent);
-                }else{
-                    //Does not show on face up
-                    _flipCard.gameObject.SetActive(false);
+                if(_canvas != null){
+                    _canvas.SetActive(true);
+                    if(_cardInThisPlace.IsFaceDown()){
+                        _flipCard.gameObject.SetActive(true);
+                        _flipCard.onClick.AddListener(TriggerFlipCardEvent);
+                    }else{
+                        //Does not show on face up
+                        _flipCard.gameObject.SetActive(false);
+                    }
                 }
             }
         }

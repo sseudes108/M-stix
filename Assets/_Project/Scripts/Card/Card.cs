@@ -114,7 +114,9 @@ public class Card : MonoBehaviour {
         if(_isPlayerCard || _isOnField && !_isFaceDown){
             if(this is CardMonster){
                 var card = this as CardMonster;
-                BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(Ilustration, card.GetAnimas());
+                BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(
+                    Ilustration, card.GetAnimas(), card.GetLevel(), card.GetAttack(), card.GetDefense()
+                );
             }else{
                 BattleManager.Instance.UIBattleManager.UICardPlaceHolder.ChangeIllustration(Ilustration);
             }
