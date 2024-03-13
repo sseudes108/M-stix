@@ -85,7 +85,11 @@ public class BoardCardMonsterPlace : BoardCardPlace {
         if(currentPhase == BattleManager.Instance.AttackPhase){
             if(monsterCard != null){
                 if(BattleManager.Instance.TurnManager.IsPlayerTurn() && !monsterCard.IsPlayerCard()){
-                    BattleManager.Instance.ActionsManager.ActionAttack.StartMonstarBattle(this, monsterCard);
+                    BattleManager.Instance.ActionsManager.ActionAttack.StartMonsterBattle(this, monsterCard);
+                }
+            }else{
+                if(BattleManager.Instance.BoardPlaceManager.GetOcuppiedMonsterPlaces().Count == 0){
+                    BattleManager.Instance.ActionsManager.ActionAttack.DirectAttack();
                 }
             }
         }

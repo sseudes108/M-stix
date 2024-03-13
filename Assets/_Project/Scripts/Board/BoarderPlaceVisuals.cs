@@ -70,28 +70,28 @@ public class BoardPlaceVisuals : MonoBehaviour {
         LightUpEnemyArcanePlaces();
     }
 
-    private void LightUpPlayerMonsterPlaces(){
+    public void LightUpPlayerMonsterPlaces(){
         var newColor = BattleManager.Instance.ColorManager.DefaultPlayerBoardColor;
         foreach(var place in _playerMonsterPlaces){
             ChangeMonsterCardBorderMaterial(place, newColor, 1.5f);
         }
     }
 
-    private void LightUpEnemyMonsterPlaces(){
+    public void LightUpEnemyMonsterPlaces(){
         var newColor = BattleManager.Instance.ColorManager.DefaultEnemyBoardColor;
         foreach(var place in _enemyMonsterPlaces){
             ChangeMonsterCardBorderMaterial(place, newColor, 1.5f);
         }
     }
 
-    private void LightUpPlayerArcanePlaces(){
+    public void LightUpPlayerArcanePlaces(){
         var newColor = BattleManager.Instance.ColorManager.DefaultPlayerBoardColor;
         foreach(var place in _playerArcanePlaces){
             ChangeArcaneCardBorderMaterial(place, newColor, 1.5f);
         }
     }
 
-    private void LightUpEnemyArcanePlaces(){
+    public void LightUpEnemyArcanePlaces(){
         var newColor = BattleManager.Instance.ColorManager.DefaultEnemyBoardColor;
         foreach(var place in _enemyArcanePlaces){
             ChangeArcaneCardBorderMaterial(place, newColor, 1.5f);
