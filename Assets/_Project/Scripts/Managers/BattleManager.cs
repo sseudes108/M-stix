@@ -16,6 +16,7 @@ public class BattleManager : MonoBehaviour {
     [SerializeField] private HealthManager _healthManager;
     [SerializeField] private ActionsManager _actionsManager;
     [SerializeField] private BattleFieldManager _batteFieldManager;
+    [SerializeField] private VFXManager _vfxManager;
 
     [Header("")]
     [SerializeField] private HandPlayer _handPlayer;
@@ -29,6 +30,9 @@ public class BattleManager : MonoBehaviour {
 
     //UI
     public UIBattleManager UIBattleManager => _uiBattleManager;
+
+    //VFX
+    public VFXManager VFXManager => _vfxManager;
 
     //Camera
     public CameraManager CameraManager => _cameraManager;
@@ -116,5 +120,6 @@ public class BattleManager : MonoBehaviour {
         _healthManager = GetComponentInChildren<HealthManager>();
         _actionsManager = GetComponentInChildren<ActionsManager>();
         _batteFieldManager = GetComponentInChildren<BattleFieldManager>();
+        _vfxManager = GetComponentInChildren<VFXManager>();
     }
 }

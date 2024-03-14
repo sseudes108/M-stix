@@ -8,7 +8,7 @@ public class ActionAttack : MonoBehaviour {
     [SerializeField] private Transform _monsterPos1, _monsterPos2;
     BoardCardMonsterPlace _monsterPlace1, _monsterPlace2;
 
-    private float _monsterMoveWait = 2f;
+    private float _monsterMoveWait = 2.5f;
 
     private void OnEnable() {
         BoardCardMonsterPlace.OnAttack += BoardCardMonsterPlace_OnAttack;
@@ -138,6 +138,8 @@ public class ActionAttack : MonoBehaviour {
         if(monster1Atk > monster2Atk){
             var damage = monster1Atk - monster2Atk;
 
+            // BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster2.transform);
+
             if(damage > 0){
                 if(_monster1.IsPlayerCard()){
                     BattleManager.Instance.HealthManager.DamageEnemy(damage);
@@ -154,6 +156,10 @@ public class ActionAttack : MonoBehaviour {
         }else if(monster2Atk > monster1Atk){
             var damage = monster2Atk - monster1Atk;
 
+            // BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster2.transform);
+            // yield return new WaitForSeconds(1.5f);
+            // BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster1.transform);
+
             if(damage > 0){
                 if(_monster1.IsPlayerCard()){
                     BattleManager.Instance.HealthManager.DamagePlayer(damage);
@@ -168,6 +174,10 @@ public class ActionAttack : MonoBehaviour {
             _monster1.MoveCard(_monster2OriginalPosition);
 
         }else if(monster1Atk == monster2Atk){
+            // BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster2.transform);
+            // yield return new WaitForSeconds(1.5f);
+            // BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster1.transform);
+
             DestroyMonster(_monster1);
             DestroyMonster(_monster2);
             SetPlaceFree(_monsterPlace1);
@@ -180,6 +190,9 @@ public class ActionAttack : MonoBehaviour {
     }
 
     private IEnumerator DestroyMonsterRoutine(CardMonster monster){
+        BattleManager.Instance.VFXManager.VFXLowDamageParticle(monster.transform);
+        yield return new WaitForSeconds(0.9f);
+
         monster.Shader.DissolveCard(Color.red);
         yield return new WaitForSeconds(0.9f);
 

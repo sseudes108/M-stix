@@ -1,9 +1,10 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class VFXManager : MonoBehaviour{
-    [SerializeField] private GameObject _lowDamageParticle, _mediuDemageParticle, _highDamageParticle;
+    [SerializeField] private GameObject _lowDamageParticle, _mediumDemageParticle, _highDamageParticle;
 
-    public void VFXLowDamageParticle(Transform position){
-        Instantiate(_lowDamageParticle, position);
+    public void VFXLowDamageParticle(Transform transform){
+        Instantiate(_lowDamageParticle, transform.position, quaternion.identity);
     }
 }
