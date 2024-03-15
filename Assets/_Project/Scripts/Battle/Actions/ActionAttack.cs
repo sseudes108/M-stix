@@ -8,8 +8,6 @@ public class ActionAttack : MonoBehaviour {
     [SerializeField] private Transform _monsterPos1, _monsterPos2;
     BoardCardMonsterPlace _monsterPlace1, _monsterPlace2;
 
-    private float _monsterMoveWait = 2.5f;
-
     private void OnEnable() {
         BoardCardMonsterPlace.OnAttack += BoardCardMonsterPlace_OnAttack;
     }
@@ -75,6 +73,7 @@ public class ActionAttack : MonoBehaviour {
         _monster1.SetMonsterAttacking(false);
     }
 
+#region Direct Attack
     //Direct Attack
     public void DirectAttack(){
         StartCoroutine(DirectAttackRoutine());
@@ -107,15 +106,17 @@ public class ActionAttack : MonoBehaviour {
             BattleManager.Instance.BoardPlaceVisuals.LightUpPlayerMonsterPlaces();
         }
     }
+#endregion
 
+#region Monster x Monster
     private IEnumerator AttackMonsterInDefenseMode(){
         var monster1Atk = _monster1.GetAttack();
         var monster2Def = _monster2.GetDefense();
 
         if(monster1Atk > monster2Def){
-            yield return new WaitForSeconds(_monsterMoveWait);
             DestroyMonster(_monster2);
             SetPlaceFree(_monsterPlace2);
+            yield return new WaitForSeconds(2.5f);
             _monster1.MoveCard(_monster1OriginalPosition);
 
         }else if(monster1Atk < monster2Def){
@@ -137,9 +138,6 @@ public class ActionAttack : MonoBehaviour {
 
         if(monster1Atk > monster2Atk){
             var damage = monster1Atk - monster2Atk;
-
-            // BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster2.transform);
-
             if(damage > 0){
                 if(_monster1.IsPlayerCard()){
                     BattleManager.Instance.HealthManager.DamageEnemy(damage);
@@ -150,16 +148,12 @@ public class ActionAttack : MonoBehaviour {
 
             DestroyMonster(_monster2);
             SetPlaceFree(_monsterPlace2);
-            yield return new WaitForSeconds(_monsterMoveWait);
+            yield return new WaitForSeconds(2.5f);
             _monster1.MoveCard(_monster1OriginalPosition);
 
+            //Monstro2 mais forte
         }else if(monster2Atk > monster1Atk){
             var damage = monster2Atk - monster1Atk;
-
-            // BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster2.transform);
-            // yield return new WaitForSeconds(1.5f);
-            // BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster1.transform);
-
             if(damage > 0){
                 if(_monster1.IsPlayerCard()){
                     BattleManager.Instance.HealthManager.DamagePlayer(damage);
@@ -170,20 +164,17 @@ public class ActionAttack : MonoBehaviour {
 
             DestroyMonster(_monster1);
             SetPlaceFree(_monsterPlace1);
-            yield return new WaitForSeconds(_monsterMoveWait);
+            yield return new WaitForSeconds(2.5f);
             _monster1.MoveCard(_monster2OriginalPosition);
 
         }else if(monster1Atk == monster2Atk){
-            // BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster2.transform);
-            // yield return new WaitForSeconds(1.5f);
-            // BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster1.transform);
-
             DestroyMonster(_monster1);
             DestroyMonster(_monster2);
             SetPlaceFree(_monsterPlace1);
             SetPlaceFree(_monsterPlace2);
         }
     }
+#endregion
 
     private void DestroyMonster(CardMonster monster){
         StartCoroutine(DestroyMonsterRoutine(monster));
@@ -191,7 +182,7 @@ public class ActionAttack : MonoBehaviour {
 
     private IEnumerator DestroyMonsterRoutine(CardMonster monster){
         BattleManager.Instance.VFXManager.VFXLowDamageParticle(monster.transform);
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(0.5f);
 
         monster.Shader.DissolveCard(Color.red);
         yield return new WaitForSeconds(0.9f);
@@ -211,4 +202,31 @@ public class ActionAttack : MonoBehaviour {
     private void SetPlaceFree(BoardCardMonsterPlace place){
         place.SetPlaceFree();
     }
+
 }
+
+// public class ShotLogic : MonoBehaviour{
+//     bool canShoot = true;
+//     Bullet bulletPrefab;
+//     Transform firePoint;
+//     private void Shot(){
+//         if(Input.GetMouseButtonDown(1) && canShoot){
+//             canShoot = false;
+
+//             madCalculations;
+
+//             var spawnedBullet = bulletPrefab;
+//             spawnedBullet.Init(madCalculationsRotation);
+//             Instantiate(spawnedBullet, firePoint);
+//         }
+//     }
+// }
+// public class Bullet : MonoBehaviour{
+//     float shotSpeed;
+//     public void Init(Quaternion rot){
+//         transform.rotation = rot;
+//     }
+//     private void Update() {
+//         transform.position += Vector3.forward * shotSpeed * Time.deltaTime;
+//     }
+// }

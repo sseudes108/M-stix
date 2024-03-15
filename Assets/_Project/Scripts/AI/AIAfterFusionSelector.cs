@@ -8,11 +8,15 @@ public class AIAfterFusionSelector : MonoBehaviour {
 
     public int MonsterModeSelection(){
         //Seleção aleatoria
-        return Random.Range(0,2);
+        // 0 = atak 1 = def
+        // return Random.Range(0,2);
+        return 0;
     }
 
     public int FaceSelection(){
         //Seleção aleatoria
-        return Random.Range(0,2);
+        // 0 = faceUp 1 = faceDown
+        // return Random.Range(0,2);
+        return 0;
     }
 }
