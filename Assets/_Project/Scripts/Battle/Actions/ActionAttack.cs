@@ -202,31 +202,4 @@ public class ActionAttack : MonoBehaviour {
     private void SetPlaceFree(BoardCardMonsterPlace place){
         place.SetPlaceFree();
     }
-
 }
-
-// public class ShotLogic : MonoBehaviour{
-//     bool canShoot = true;
-//     Bullet bulletPrefab;
-//     Transform firePoint;
-//     private void Shot(){
-//         if(Input.GetMouseButtonDown(1) && canShoot){
-//             canShoot = false;
-
-//             madCalculations;
-
-//             var spawnedBullet = bulletPrefab;
-//             spawnedBullet.Init(madCalculationsRotation);
-//             Instantiate(spawnedBullet, firePoint);
-//         }
-//     }
-// }
-// public class Bullet : MonoBehaviour{
-//     float shotSpeed;
-//     public void Init(Quaternion rot){
-//         transform.rotation = rot;
-//     }
-//     private void Update() {
-//         transform.position += Vector3.forward * shotSpeed * Time.deltaTime;
-//     }
-// }
