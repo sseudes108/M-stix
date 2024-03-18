@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "M-stix.sln"
+    "dotnet.defaultSolution": "M-stix.sln",
+    "dotnet.preferCSharpExtension": true
 }
