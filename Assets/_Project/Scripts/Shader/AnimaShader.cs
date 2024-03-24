@@ -7,11 +7,8 @@ public class AnimaShader : MonoBehaviour {
         _shader = GetComponentInParent<CardShaderController>();
     }
 
-    private void Start() {
-        
-    }
-
     public void SetAnimaShader(int animaIndex, EAnimaType selectedAnima){
+        var sideMat = new Material(_shader.Renderer.sharedMaterials[0]);
         var faceMat = new Material(_shader.Renderer.sharedMaterials[1]);
 
         Color _anima1Color = new();
@@ -27,6 +24,6 @@ public class AnimaShader : MonoBehaviour {
 
         faceMat.SetColor("_Anima1Color", _anima1Color);
         faceMat.SetColor("_Anima2Color", _anima2Color);
-        _shader.SetChangesToMaterial(faceMat);
+        _shader.SetChangesToMaterial(sideMat, faceMat);
     }
 }

@@ -29,15 +29,16 @@ public class CardShaderController : MonoBehaviour {
         ResetBoarderColor();
     }
 
-    public void SetChangesToMaterial(Material faceMat){
-        _renderer.materials = new[] { _renderer.sharedMaterials[0], faceMat, _renderer.sharedMaterials[2] };
+    public void SetChangesToMaterial(Material sideMat, Material faceMat){
+        _renderer.materials = new[] { sideMat, faceMat, _renderer.sharedMaterials[2] };
     }
 
     private void SetCardImage(){
+        var sideMat = new Material(_renderer.sharedMaterials[0]);
         var faceMat = new Material(_renderer.sharedMaterials[1]);
         faceMat.SetTexture("_Ilustration", _card.Ilustration);
 
-        SetChangesToMaterial(faceMat);
+        SetChangesToMaterial(sideMat,faceMat);
     }
     
     public void SetBoarderColor(Color newColor){

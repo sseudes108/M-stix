@@ -128,6 +128,16 @@ public class ActionAttack : MonoBehaviour {
                 }else{
                     BattleManager.Instance.HealthManager.DamageEnemy(damage);
                 }
+
+                BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster1.transform);
+                yield return new WaitForSeconds(1.5f);
+
+                _monster1.MoveCard(_monster1OriginalPosition);
+                _monster2.MoveCard(_monster2OriginalPosition);
+                _monster2.RotateCard(BattleManager.Instance.BoardPlaceManager.DefenseFaceUpRotation(_monster2));
+
+                yield return new WaitForSeconds(0.5f);
+                BattleManager.Instance.UIBattleManager.BringUI();
             }
         }
     }
@@ -165,7 +175,7 @@ public class ActionAttack : MonoBehaviour {
             DestroyMonster(_monster1);
             SetPlaceFree(_monsterPlace1);
             yield return new WaitForSeconds(2.5f);
-            _monster1.MoveCard(_monster2OriginalPosition);
+            _monster2.MoveCard(_monster2OriginalPosition);
 
         }else if(monster1Atk == monster2Atk){
             DestroyMonster(_monster1);

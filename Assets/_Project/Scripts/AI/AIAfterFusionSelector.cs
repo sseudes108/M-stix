@@ -10,7 +10,7 @@ public class AIAfterFusionSelector : MonoBehaviour {
         //Seleção aleatoria
         // 0 = atak 1 = def
         // return Random.Range(0,2);
-        return 0;
+        return 1;
     }
 
     public int FaceSelection(){

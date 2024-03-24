@@ -33,6 +33,7 @@ public class ShaderDissolve : MonoBehaviour {
     }
 
     private void DissolveCardEffect(Color newColor){
+        var sideMat = new Material(_shader.Renderer.sharedMaterials[0]);
         var faceMat = new Material(_shader.Renderer.sharedMaterials[1]);
 
         _cutOff = Mathf.MoveTowards(_cutOff, 0f, _dissolveSpeed * Time.deltaTime);
@@ -48,7 +49,11 @@ public class ShaderDissolve : MonoBehaviour {
 
         faceMat.SetFloat("_CutOff", _cutOff);
         faceMat.SetColor("_EdgeColor", adjustedColor);
-        _shader.SetChangesToMaterial(faceMat);
+
+        //Side
+        sideMat.SetFloat("_CutOff", _cutOff);
+
+        _shader.SetChangesToMaterial(sideMat, faceMat);
 
         if(_cutOff < 0.5f){
             _shader.Card.DisableStatCanvas();
@@ -61,6 +66,7 @@ public class ShaderDissolve : MonoBehaviour {
     }
 
     private void SolidifyCardEffect(Color newColor){
+        var sideMat = new Material(_shader.Renderer.sharedMaterials[0]);
         var faceMat = new Material(_shader.Renderer.sharedMaterials[1]);
 
         _cutOff = Mathf.MoveTowards(_cutOff, 1f, _dissolveSpeed / 2 * Time.deltaTime);
@@ -76,7 +82,11 @@ public class ShaderDissolve : MonoBehaviour {
 
         faceMat.SetFloat("_CutOff", _cutOff);
         faceMat.SetColor("_EdgeColor", adjustedColor);
-        _shader.SetChangesToMaterial(faceMat);
+
+        // //Side
+        sideMat.SetFloat("_CutOff", _cutOff);
+
+        _shader.SetChangesToMaterial(sideMat, faceMat);
 
         if(_cutOff > 0.5f){
             _shader.Card.EnableStatCanvas();
