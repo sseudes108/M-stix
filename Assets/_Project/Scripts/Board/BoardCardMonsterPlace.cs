@@ -7,6 +7,7 @@ public class BoardCardMonsterPlace : BoardCardPlace {
     [SerializeField] private Button _attackButton;
     [SerializeField] private Renderer[] _renderers;
     public Renderer[] Renderers => _renderers;
+
     public bool _canChangeMode;
     public bool _canAttack;
 
@@ -58,7 +59,7 @@ public class BoardCardMonsterPlace : BoardCardPlace {
 
         //Attack
         if(currentPhase == BattleManager.Instance.AttackPhase || currentPhase == BattleManager.Instance.ActionBattlePhase){
-            if(_canChangeMode && monsterCard != null && monsterCard.IsInAttackMode() && _attackButton != null){
+            if(_canChangeMode && monsterCard != null && monsterCard.IsInAttackMode() && _attackButton != null && _canAttack){
                 _attackButton.gameObject.SetActive(true);
                 if(!monsterCard.IsAttacking()){
                     _attackButton.onClick.AddListener(TriggerAttackMonsterEvent);
@@ -99,6 +100,10 @@ public class BoardCardMonsterPlace : BoardCardPlace {
         _canChangeMode = true;
         _canAttack = true;
     }
+    public void BlockChangeModeAndAttack(){
+        _canChangeMode = false;
+        _canAttack = false;
+    }
 
     //Events
     private void TriggerChangeMonsterModeEvent(){
@@ -118,7 +123,7 @@ public class BoardCardMonsterPlace : BoardCardPlace {
         var monster = _cardInThisPlace as CardMonster;
 
         if(!monster.IsAttacking()){
-            _canAttack = false;
+            BlockChangeModeAndAttack();
             monster.SetMonsterAttacking(true);
             OnAttack?.Invoke(this, monster);
         }

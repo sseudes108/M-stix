@@ -17,11 +17,12 @@ public class BattleManager : MonoBehaviour {
     [SerializeField] private ActionsManager _actionsManager;
     [SerializeField] private BattleFieldManager _batteFieldManager;
     [SerializeField] private VFXManager _vfxManager;
+    [SerializeField] private InputManager _inputManager;
+
 
     [Header("")]
     [SerializeField] private HandPlayer _handPlayer;
     [SerializeField] private HandEnemy _handEnemy;
-
 
     //Public Refs//
 
@@ -33,6 +34,9 @@ public class BattleManager : MonoBehaviour {
 
     //VFX
     public VFXManager VFXManager => _vfxManager;
+
+    //Inputs
+    public InputManager InputManager => _inputManager;
 
     //Camera
     public CameraManager CameraManager => _cameraManager;
@@ -100,7 +104,7 @@ public class BattleManager : MonoBehaviour {
 
     private void SetSingleton(){
         if (Instance != null){
-            Debug.Log("More than one instance of BattleManager");
+            Debug.LogError("More than one instance of BattleManager");
             Destroy(gameObject);
         }
         Instance = this;
@@ -121,5 +125,6 @@ public class BattleManager : MonoBehaviour {
         _actionsManager = GetComponentInChildren<ActionsManager>();
         _batteFieldManager = GetComponentInChildren<BattleFieldManager>();
         _vfxManager = GetComponentInChildren<VFXManager>();
+        _inputManager = GetComponentInChildren<InputManager>();
     }
 }

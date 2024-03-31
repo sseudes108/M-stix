@@ -5,7 +5,9 @@ public class BattlePhaseCardSelection : BattleAbstract {
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.CardSelection);
         
-        if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            BattleManager.Instance.UIBattleManager.EndSelectionButton();
+        }else{
             BattleManager.Instance.AIManager.ChangeState(BattleManager.Instance.AICardSelection);
         }
     }

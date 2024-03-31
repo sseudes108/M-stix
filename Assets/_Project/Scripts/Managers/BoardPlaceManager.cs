@@ -189,9 +189,9 @@ public class BoardPlaceManager : MonoBehaviour {
         return newRotation;
     }
 
-    /*when the player1 attacks a player2 monster in defense position the turn is from the player 1
-    that way, the rotation of the monster2 if not destroyed was inverted. This function resolves that checking the card, not the turn
-    Dont implemented in all situations because the sintax is not that elegant (card.RotateCard(card))*/
+    /*when the player1 attacks a player2 monster in defense position the turn is of the player 1
+    that way, the rotation of the monster2, if not destroyed, was inverted. This function resolves that checking the card, not the turn.
+    Dont implemented in all situations because the sintax is not that elegant (card.RotateCard...(card))*/
     public Quaternion DefenseFaceUpRotation(Card card){
         Quaternion newRotation;
         if(card.IsPlayerCard()){

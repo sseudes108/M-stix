@@ -19,6 +19,7 @@ public class UIBattleManager : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI _enemyDeck;
 
     [SerializeField] private Button _endPhaseButton;
+    [SerializeField] private Button _endSelectionButton;
 
     private void OnEnable() {
         BattleManager.Instance.TurnManager.OnTurnEnd += UpdateTurn;
@@ -72,18 +73,31 @@ public class UIBattleManager : MonoBehaviour {
             _endPhaseButton.onClick.AddListener(TriggerEndPhaseEvent);
         }
     }
-
     private void TriggerEndPhaseEvent(){
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
         _endPhaseButton.onClick.RemoveAllListeners();
         _endPhaseButton.gameObject.SetActive(false);
     }
 
+    public void EndSelectionButton(){
+        if(BattleManager.Instance.BattleStateManager.CurrentPhase == BattleManager.Instance.CardSelectionPhase){
+            _endSelectionButton.gameObject.SetActive(true);
+            _endSelectionButton.onClick.AddListener(TriggerEndSelectionEvent);
+        }
+    }
+    public void TriggerEndSelectionEvent(){
+        if(BattleManager.Instance.BattleStateManager.CurrentPhase == BattleManager.Instance.CardSelectionPhase &&
+            BattleManager.Instance.CardSelector.GetSelectedCards().Count > 0){
+            BattleManager.Instance.CardSelectionPhase.EndSelection();
+            _endSelectionButton.onClick.RemoveAllListeners();
+            _endSelectionButton.gameObject.SetActive(false);
+        }
+    }
+
     public void ClearUI(){
         _canvas.SetActive(false);
         _UICardPlaceHolder.Movement.SetTargetPosition(_offScenePlaceHolderPosition.position, 5f);
     }
-
     public void BringUI(){
         _canvas.SetActive(true);
         _UICardPlaceHolder.Movement.SetTargetPosition(_UICardOriginalPosition, 5f);

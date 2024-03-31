@@ -81,11 +81,9 @@ public class CardMonster : Card {
     public bool IsInAttackMode(){
         return _attackMode;
     }
-
     public void SetMonsterAttacking(bool isAttacking){
         _isAttacking = isAttacking;
     }
-
     public bool IsAttacking(){
         return _isAttacking;
     }

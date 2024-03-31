@@ -76,10 +76,12 @@ public abstract class BoardCardPlace : MonoBehaviour {
                     //is monster place and monster card, or is arcane place and arcane card
                     if(this is BoardCardMonsterPlace && resultCard is CardMonster /* OR */
                         || this is BoardCardArcanePlace && resultCard is CardArcane){
-                        SetCardInPlace(resultCard);
+                            SetCardInPlace(resultCard);
                     }
                 }else{
-                    BoardFusion(resultCard);
+                    if(BattleManager.Instance.InputManager.CanClick){
+                        BoardFusion(resultCard);
+                    }
                 }
             }
         }
@@ -97,6 +99,8 @@ public abstract class BoardCardPlace : MonoBehaviour {
     }
 
     private IEnumerator MoveCardRoutine(Card resultCard){
+        BattleManager.Instance.InputManager.BlockClickInput();
+        
         if(resultCard.IsOnField() == false){;
             resultCard.MoveCard(transform);
 
@@ -112,6 +116,7 @@ public abstract class BoardCardPlace : MonoBehaviour {
 
             yield return new WaitForSeconds(1f);
             BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.ActionBattlePhase);
+            BattleManager.Instance.InputManager.AllowClickInput();
         }
     }
 
@@ -133,12 +138,6 @@ public abstract class BoardCardPlace : MonoBehaviour {
     }
 
     public Card GetCardInThisPlace(){return _cardInThisPlace;}
-
-    // public void DisableCardColliderInBoardPhaseSelection(){
-    //     if(_cardInThisPlace != null){
-    //         _cardInThisPlace.DisableCollider();
-    //     }
-    // }
 
     public void EnableCardColliderInBoardPhaseSelection(){
         if(_cardInThisPlace != null){
