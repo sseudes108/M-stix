@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -81,26 +82,38 @@ public class ActionAttack : MonoBehaviour {
 
     public IEnumerator DirectAttackRoutine(){
         _monster1.MoveCard(_monsterPos1);
+        bool isPLayerTurn = BattleManager.Instance.TurnManager.IsPlayerTurn();
 
         yield return new WaitForSeconds(0.5f);
 
         BattleManager.Instance.UIBattleManager.ClearUI();
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.9f);
 
-        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            BattleManager.Instance.HealthManager.DamageEnemy(_monster1.GetAttack());
+        //Particle Effect
+        int damage = _monster1.GetAttack();
+        Transform position;
+        if (isPLayerTurn){
+            position = _monsterPos2;
         }else{
-            BattleManager.Instance.HealthManager.DamagePlayer(_monster1.GetAttack());
+            position = _monsterPos1;
+        }
+        ParticleEffect(position, damage, out float timeBringUI);
+
+        //Damage
+        if(isPLayerTurn){
+            BattleManager.Instance.HealthManager.DamageEnemy(damage);
+        }else{
+            BattleManager.Instance.HealthManager.DamagePlayer(damage);
         }
 
         _monster1.SetMonsterAttacking(false);
         _monster1.MoveCard(_monster1OriginalPosition);
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(timeBringUI);
         BattleManager.Instance.UIBattleManager.BringUI();
 
-        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+        if(isPLayerTurn){
             BattleManager.Instance.BoardPlaceVisuals.LightUpEnemyMonsterPlaces();
         }else{
             BattleManager.Instance.BoardPlaceVisuals.LightUpPlayerMonsterPlaces();
@@ -114,7 +127,7 @@ public class ActionAttack : MonoBehaviour {
         var monster2Def = _monster2.GetDefense();
 
         if(monster1Atk > monster2Def){
-            DestroyMonster(_monster2);
+            DestroyMonster(_monster2, 0);
             SetPlaceFree(_monsterPlace2);
             yield return new WaitForSeconds(2.5f);
             _monster1.MoveCard(_monster1OriginalPosition);
@@ -129,8 +142,8 @@ public class ActionAttack : MonoBehaviour {
                     BattleManager.Instance.HealthManager.DamageEnemy(damage);
                 }
 
-                BattleManager.Instance.VFXManager.VFXLowDamageParticle(_monster1.transform);
-                yield return new WaitForSeconds(1.5f);
+                ParticleEffect(_monster1.transform.transform, damage, out float timeBringUI);
+                yield return new WaitForSeconds(timeBringUI);
 
                 _monster1.MoveCard(_monster1OriginalPosition);
                 _monster2.MoveCard(_monster2OriginalPosition);
@@ -156,7 +169,7 @@ public class ActionAttack : MonoBehaviour {
                 }
             }
 
-            DestroyMonster(_monster2);
+            DestroyMonster(_monster2, damage);
             SetPlaceFree(_monsterPlace2);
             yield return new WaitForSeconds(2.5f);
             _monster1.MoveCard(_monster1OriginalPosition);
@@ -172,26 +185,27 @@ public class ActionAttack : MonoBehaviour {
                 }
             }
 
-            DestroyMonster(_monster1);
+            DestroyMonster(_monster1, damage);
             SetPlaceFree(_monsterPlace1);
             yield return new WaitForSeconds(2.5f);
             _monster2.MoveCard(_monster2OriginalPosition);
 
         }else if(monster1Atk == monster2Atk){
-            DestroyMonster(_monster1);
-            DestroyMonster(_monster2);
+            DestroyMonster(_monster1, 0);
+            DestroyMonster(_monster2, 0);
             SetPlaceFree(_monsterPlace1);
             SetPlaceFree(_monsterPlace2);
         }
     }
 #endregion
 
-    private void DestroyMonster(CardMonster monster){
-        StartCoroutine(DestroyMonsterRoutine(monster));
+    private void DestroyMonster(CardMonster monster, int damage){
+        StartCoroutine(DestroyMonsterRoutine(monster, damage));
     }
 
-    private IEnumerator DestroyMonsterRoutine(CardMonster monster){
-        BattleManager.Instance.VFXManager.VFXLowDamageParticle(monster.transform);
+    private IEnumerator DestroyMonsterRoutine(CardMonster monster, int damage){
+        ParticleEffect(monster.transform, damage, out float timeBringUI);
+
         yield return new WaitForSeconds(0.5f);
 
         monster.Shader.DissolveCard(Color.red);
@@ -199,13 +213,29 @@ public class ActionAttack : MonoBehaviour {
 
         monster.DestroyCard();
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(timeBringUI);
         BattleManager.Instance.UIBattleManager.BringUI();
 
-        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+        if (BattleManager.Instance.TurnManager.IsPlayerTurn()){
             BattleManager.Instance.BoardPlaceVisuals.LightUpEnemyMonsterPlaces();
-        }else{
+        }
+        else{
             BattleManager.Instance.BoardPlaceVisuals.LightUpPlayerMonsterPlaces();
+        }
+    }
+
+    private static void ParticleEffect(Transform monster, int damage, out float timeBringUI){
+        if (damage < 2700){
+            timeBringUI = 1.2f;
+            BattleManager.Instance.VFXManager.VFXLowDamageParticle(monster.transform);
+        }
+        else if (damage >= 2700 && damage < 7200){
+            timeBringUI = 1.8f;
+            BattleManager.Instance.VFXManager.VFXMediumDamageParticle(monster.transform);
+        }
+        else{
+            timeBringUI = 1.8f;
+            //high damage particle
         }
     }
 

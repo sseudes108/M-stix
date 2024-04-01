@@ -29,7 +29,7 @@ public class HealthManager : MonoBehaviour {
     }
 
     public IEnumerator DamagePlayerRoutine(int amount){
-        var targetHP = _playerHP - amount;
+       var targetHP = _playerHP - amount;
         do{
             _playerHP -= 100;
             yield return new WaitForSeconds(0.03f);
@@ -52,7 +52,7 @@ public class HealthManager : MonoBehaviour {
 
     //Enemy
     public void DamageEnemy(int amount){
-        StartCoroutine(DamagePlayerRoutine(amount));
+        StartCoroutine(DamageEnemyRoutine(amount));
     }
 
     public IEnumerator DamageEnemyRoutine(int amount){
@@ -65,7 +65,7 @@ public class HealthManager : MonoBehaviour {
     }
     
     public void HealEnemy(int amount){
-        StartCoroutine(HealPlayerRoutine(amount));
+        StartCoroutine(HealEnemyRoutine(amount));
     }
     
     public IEnumerator HealEnemyRoutine(int amount){
