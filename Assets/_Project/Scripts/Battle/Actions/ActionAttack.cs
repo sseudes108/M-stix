@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -82,30 +81,32 @@ public class ActionAttack : MonoBehaviour {
 
     public IEnumerator DirectAttackRoutine(){
         _monster1.MoveCard(_monsterPos1);
-        bool isPLayerTurn = BattleManager.Instance.TurnManager.IsPlayerTurn();
+        bool isPlayerTurn = BattleManager.Instance.TurnManager.IsPlayerTurn();
 
         yield return new WaitForSeconds(0.5f);
 
         BattleManager.Instance.UIBattleManager.ClearUI();
 
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(1.2f);
 
         //Particle Effect
         int damage = _monster1.GetAttack();
         Transform position;
-        if (isPLayerTurn){
+        if (isPlayerTurn){
             position = _monsterPos2;
         }else{
             position = _monsterPos1;
         }
-        ParticleEffect(position, damage, out float timeBringUI);
 
-        //Damage
-        if(isPLayerTurn){
+        //Damage Health
+        if(isPlayerTurn){
             BattleManager.Instance.HealthManager.DamageEnemy(damage);
         }else{
             BattleManager.Instance.HealthManager.DamagePlayer(damage);
         }
+
+        ParticleEffect(position, damage, out float timeBringUI);
+        yield return new WaitForSeconds(0.3f);
 
         _monster1.SetMonsterAttacking(false);
         _monster1.MoveCard(_monster1OriginalPosition);
@@ -113,7 +114,7 @@ public class ActionAttack : MonoBehaviour {
         yield return new WaitForSeconds(timeBringUI);
         BattleManager.Instance.UIBattleManager.BringUI();
 
-        if(isPLayerTurn){
+        if(isPlayerTurn){
             BattleManager.Instance.BoardPlaceVisuals.LightUpEnemyMonsterPlaces();
         }else{
             BattleManager.Instance.BoardPlaceVisuals.LightUpPlayerMonsterPlaces();
@@ -226,15 +227,15 @@ public class ActionAttack : MonoBehaviour {
 
     private static void ParticleEffect(Transform monster, int damage, out float timeBringUI){
         if (damage < 2700){
-            timeBringUI = 1.2f;
+            timeBringUI = 1.5f;
             BattleManager.Instance.VFXManager.VFXLowDamageParticle(monster.transform);
         }
         else if (damage >= 2700 && damage < 7200){
-            timeBringUI = 1.8f;
+            timeBringUI = 2f;
             BattleManager.Instance.VFXManager.VFXMediumDamageParticle(monster.transform);
         }
         else{
-            timeBringUI = 1.8f;
+            timeBringUI = 2f;
             //high damage particle
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,10 @@ public class UIBattleManager : MonoBehaviour {
 
     [SerializeField] private Button _endPhaseButton;
     [SerializeField] private Button _endSelectionButton;
+
+    [Header("Battle Damage")]
+    [SerializeField] private TextMeshProUGUI _p1Damage;
+    [SerializeField] private TextMeshProUGUI _p2Damage;
 
     private void OnEnable() {
         BattleManager.Instance.TurnManager.OnTurnEnd += UpdateTurn;
@@ -85,13 +90,16 @@ public class UIBattleManager : MonoBehaviour {
             _endSelectionButton.onClick.AddListener(TriggerEndSelectionEvent);
         }
     }
-    public void TriggerEndSelectionEvent(){
+    private void TriggerEndSelectionEvent(){
         if(BattleManager.Instance.BattleStateManager.CurrentPhase == BattleManager.Instance.CardSelectionPhase &&
             BattleManager.Instance.CardSelector.GetSelectedCards().Count > 0){
             BattleManager.Instance.CardSelectionPhase.EndSelection();
             _endSelectionButton.onClick.RemoveAllListeners();
-            _endSelectionButton.gameObject.SetActive(false);
+            DisableEndSelectionButton();
         }
+    }
+    public void DisableEndSelectionButton(){
+        _endSelectionButton.gameObject.SetActive(false);
     }
 
     public void ClearUI(){
@@ -101,6 +109,29 @@ public class UIBattleManager : MonoBehaviour {
     public void BringUI(){
         _canvas.SetActive(true);
         _UICardPlaceHolder.Movement.SetTargetPosition(_UICardOriginalPosition, 5f);
+    }
+
+    //Damage//
+    public void StartDamageUIRoutine(int damage, bool playerDamage){
+        if(playerDamage){
+            StartCoroutine(DamageUIRoutine(_p1Damage, damage));
+        }
+        else{
+            StartCoroutine(DamageUIRoutine(_p2Damage, damage));
+        }
+    }
+    private IEnumerator DamageUIRoutine(TextMeshProUGUI damageText, int damage){
+        yield return new WaitForSeconds(0.3f);
+        damageText.text = damage.ToString();
+        damageText.gameObject.SetActive(true);
+        damageText.alpha = 1;
+
+        do{
+            damageText.alpha -= 0.06f;
+            yield return new WaitForSeconds(0.05f);
+        }while(damageText.alpha > 0);
+
+        damageText.gameObject.SetActive(false);
     }
 
     public UICardPlaceHolder UICardPlaceHolder => _UICardPlaceHolder;

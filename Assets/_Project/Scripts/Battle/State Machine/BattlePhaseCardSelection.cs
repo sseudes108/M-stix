@@ -21,6 +21,7 @@ public class BattlePhaseCardSelection : BattleAbstract {
     }
 
     public void EndSelection(){
+        BattleManager.Instance.UIBattleManager.DisableEndSelectionButton();
         BattleManager.Instance.FusionManager.SetFusionList();
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.FusionPhase);
     }

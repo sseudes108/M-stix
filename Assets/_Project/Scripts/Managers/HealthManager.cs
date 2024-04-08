@@ -29,6 +29,7 @@ public class HealthManager : MonoBehaviour {
     }
 
     public IEnumerator DamagePlayerRoutine(int amount){
+        BattleManager.Instance.UIBattleManager.StartDamageUIRoutine(amount, true);
        var targetHP = _playerHP - amount;
         do{
             _playerHP -= 100;
@@ -56,6 +57,7 @@ public class HealthManager : MonoBehaviour {
     }
 
     public IEnumerator DamageEnemyRoutine(int amount){
+        BattleManager.Instance.UIBattleManager.StartDamageUIRoutine(amount, false);
         var targetHP = _enemyHP - amount;
         do{
             _enemyHP -= 100;

@@ -9,7 +9,7 @@ public class BattlePhaseSelections : BattleAbstract{
     }
 
     public override void ExitState(){
-
+        
     }
 
     public override void Update(){
