@@ -65,7 +65,7 @@ public class AfterFusionSelections : MonoBehaviour {
                 }
 
                 //Monster Mode
-                if(BattleManager.Instance.AIManager.AfterFusionSelector.MonsterModeSelection() == 0){
+                if(BattleManager.Instance.AIManager.AfterFusionSelector.MonsterModeSelection(_resultCard as CardMonster) == 0){
                     AttackModeSelected();
                 }else{
                     DefenseModeSelected();

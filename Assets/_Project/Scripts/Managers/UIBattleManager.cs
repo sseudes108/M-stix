@@ -115,8 +115,7 @@ public class UIBattleManager : MonoBehaviour {
     public void StartDamageUIRoutine(int damage, bool playerDamage){
         if(playerDamage){
             StartCoroutine(DamageUIRoutine(_p1Damage, damage));
-        }
-        else{
+        }else{
             StartCoroutine(DamageUIRoutine(_p2Damage, damage));
         }
     }
