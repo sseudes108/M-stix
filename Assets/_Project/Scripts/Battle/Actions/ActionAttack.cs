@@ -106,13 +106,12 @@ public class ActionAttack : MonoBehaviour {
         }
 
         ParticleEffect(position, damage, out float timeBringUI);
-        yield return new WaitForSeconds(0.3f);
 
+        yield return new WaitForSeconds(timeBringUI + 0.7f);
+
+        BattleManager.Instance.UIBattleManager.BringUI();
         _monster1.SetMonsterAttacking(false);
         _monster1.MoveCard(_monster1OriginalPosition);
-
-        yield return new WaitForSeconds(timeBringUI);
-        BattleManager.Instance.UIBattleManager.BringUI();
 
         if(isPlayerTurn){
             BattleManager.Instance.BoardPlaceVisuals.LightUpEnemyMonsterPlaces();

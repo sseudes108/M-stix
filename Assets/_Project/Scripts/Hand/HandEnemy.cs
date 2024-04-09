@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HandEnemy : Hand {
+    [SerializeField] private List<Card> cardsInEnemyHand;
     protected override void SetHand(){
         _hand = GetComponent<HandPlayer>();
     }
@@ -18,7 +18,7 @@ public class HandEnemy : Hand {
     }
     
     public List<Card> GetCardsInHand(){
-        List<Card> cardsInEnemyHand = new();
+        cardsInEnemyHand = new();
         foreach(var position in _handPositions){
             var card = position.GetComponentInChildren<Card>();
             cardsInEnemyHand.Add(card);

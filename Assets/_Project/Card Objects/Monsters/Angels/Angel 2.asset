@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Angel 2
   m_EditorClassIdentifier: 
   MonsterType: 0
-  FirstAnima: 3
+  FirstAnima: 0
   SecondAnima: 0
   Ilustration: {fileID: 2800000, guid: dc2fe152dc4e4eb4cbbb6b9db25c43be, type: 3}
   Name: 

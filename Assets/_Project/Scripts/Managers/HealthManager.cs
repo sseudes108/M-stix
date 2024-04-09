@@ -30,7 +30,7 @@ public class HealthManager : MonoBehaviour {
 
     public IEnumerator DamagePlayerRoutine(int amount){
         BattleManager.Instance.UIBattleManager.StartDamageUIRoutine(amount, true);
-       var targetHP = _playerHP - amount;
+        var targetHP = _playerHP - amount;
         do{
             _playerHP -= 100;
             yield return new WaitForSeconds(0.03f);

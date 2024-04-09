@@ -157,7 +157,10 @@ public class Fusion : MonoBehaviour {
         card2.DestroyCard();
 
         //Set Card Owner
-        resultCard.SetPlayerCard();
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            resultCard.SetPlayerCard();
+
+        }
 
         //Move fusioned card to position
         resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion());
@@ -191,7 +194,9 @@ public class Fusion : MonoBehaviour {
         arcane.DestroyCard();
 
         //Set Card Owner
-        monster.SetPlayerCard();
+        if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+            monster.SetPlayerCard();
+        }
 
         //Move fusioned card to position
         monster.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion());

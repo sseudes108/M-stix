@@ -20,7 +20,7 @@ public class BattlePhaseDraw : BattleAbstract {
     }
 
     public override void ExitState(){
-        
+        BattleManager.Instance.EnemyHand.GetCardsInHand();
     }
 
     public override void Update(){

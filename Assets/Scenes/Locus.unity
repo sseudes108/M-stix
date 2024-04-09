@@ -488,7 +488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &64774719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11472,7 +11472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1550262644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16066,6 +16066,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 435e200331549d4488ae0efe7831d8e3, type: 2}
   - {fileID: 11400000, guid: ec308f0fc96e604419f539de885decd2, type: 2}
   - {fileID: 11400000, guid: 5f90a5fdc53fec546a9b1b42a983fd66, type: 2}
+  - {fileID: 11400000, guid: 8ed61f1d1ab92b44a833b652c574b581, type: 2}
+  - {fileID: 11400000, guid: 0189cf799c010c64e9921b86e98aae19, type: 2}
+  - {fileID: 11400000, guid: c0a52a02197209148abe02bbf426fb42, type: 2}
+  - {fileID: 11400000, guid: 02a77329b617f624f9e86953aa5e044a, type: 2}
+  - {fileID: 11400000, guid: ce960dbc029d9bd458b4d1084d773b11, type: 2}
+  - {fileID: 11400000, guid: 6ea0afaad5b013148a92ea82cb2cd137, type: 2}
+  - {fileID: 11400000, guid: d9863edab305819458318948187c38b5, type: 2}
+  - {fileID: 11400000, guid: 47e87b8ea1676914a85b9509f34dbc73, type: 2}
+  - {fileID: 11400000, guid: c593acbed9aae8541b7628bcd8bb30dc, type: 2}
+  - {fileID: 11400000, guid: 0189cf799c010c64e9921b86e98aae19, type: 2}
+  - {fileID: 11400000, guid: c0a52a02197209148abe02bbf426fb42, type: 2}
+  - {fileID: 11400000, guid: 02a77329b617f624f9e86953aa5e044a, type: 2}
+  - {fileID: 11400000, guid: ce960dbc029d9bd458b4d1084d773b11, type: 2}
+  - {fileID: 11400000, guid: 6ea0afaad5b013148a92ea82cb2cd137, type: 2}
+  - {fileID: 11400000, guid: d9863edab305819458318948187c38b5, type: 2}
+  - {fileID: 11400000, guid: 47e87b8ea1676914a85b9509f34dbc73, type: 2}
+  - {fileID: 11400000, guid: c593acbed9aae8541b7628bcd8bb30dc, type: 2}
 --- !u!1 &2130235935
 GameObject:
   m_ObjectHideFlags: 0

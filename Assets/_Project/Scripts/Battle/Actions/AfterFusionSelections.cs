@@ -21,9 +21,8 @@ public class AfterFusionSelections : MonoBehaviour {
     }
     
     private IEnumerator SelectionRoutine(){
-        //Player Selections
+        
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
-
             var (button1, button2) = _resultCard.GetOptionButtons();
 
             if(_resultCard is CardMonster){
@@ -57,8 +56,6 @@ public class AfterFusionSelections : MonoBehaviour {
             }
 
         }else{
-            
-            //AI Selections
             if(_resultCard is CardMonster){
                 //Anima            
                 if(BattleManager.Instance.AIManager.AfterFusionSelector.AnimaSelection() == 0){
@@ -92,7 +89,7 @@ public class AfterFusionSelections : MonoBehaviour {
         SelectionFinished();
     }
 
-    //Anima
+#region Anima
     private void AnimaSelection(Button button1, Button button2){
         button1.onClick.RemoveAllListeners();
         button2.onClick.RemoveAllListeners();
@@ -103,22 +100,21 @@ public class AfterFusionSelections : MonoBehaviour {
         button1.onClick.AddListener(FirstAnimaSelected);
         button2.onClick.AddListener(SecondAnimaSelected);
     }
-
     private void FirstAnimaSelected(){
         var anima = _monsterCard.GetAnimas()[0];
         _monsterCard.SetAnima(anima);
         _resultCard.Shader.SetSelectedAnimaShader(1,anima);
         _animaSelected = true;
     }
-    
     private void SecondAnimaSelected(){
         var anima = _monsterCard.GetAnimas()[1];
         _monsterCard.SetAnima(anima);
         _resultCard.Shader.SetSelectedAnimaShader(2, anima);
         _animaSelected = true;
     }
+#endregion
 
-    //Monster Mode
+#region Monster Mode
     private void MonsterModeSelection(Button button1, Button button2){
         button1.onClick.RemoveAllListeners();
         button2.onClick.RemoveAllListeners();
@@ -138,8 +134,9 @@ public class AfterFusionSelections : MonoBehaviour {
         _monsterCard.SetDefenseMode();
         _monsterModeSelected = true;
     }
+#endregion
 
-    //Face
+#region Face
     private void FaceSelection(Button button1, Button button2){
         button1.onClick.RemoveAllListeners();
         button2.onClick.RemoveAllListeners();
@@ -159,6 +156,7 @@ public class AfterFusionSelections : MonoBehaviour {
         _resultCard.SetCardFaceDown();
         _faceSelected = true;
     }
+#endregion
 
     private void SelectionFinished(){
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.BoardPlaceSelectionPhase);

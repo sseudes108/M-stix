@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -90,24 +89,25 @@ public class Card : MonoBehaviour {
         if(BattleManager.Instance.BattleStateManager.CurrentPhase != BattleManager.Instance.CardSelectionPhase){return;}
 
         if(_isPlayerCard && _isOnHand){
-                Vector3 newPos = new();
+            Vector3 newPos = new();
 
-                if(!_isSelected){
-                    BattleManager.Instance.CardSelector.AddCardToSelectedList(this);
-                    newPos = new (0,+0.3f,0);
-                    _shader.SetBoarderColor(_selectedColor);
+            if(!_isSelected){
+                BattleManager.Instance.CardSelector.AddCardToSelectedList(this);
+                newPos = new (0,+0.3f,0);
+                _shader.SetBoarderColor(_selectedColor);
 
-                    _isSelected = true;
-                    
-                }else{
-                    BattleManager.Instance.CardSelector.RemoveCardFromSelectedList(this);
-                    newPos = new (0,-0.3f,0);
-                    _shader.ResetBoarderColor();
-            
-                    _isSelected = false;
-                }
-                transform.position += newPos;
+                _isSelected = true;
+                
+            }else{
+                BattleManager.Instance.CardSelector.RemoveCardFromSelectedList(this);
+                newPos = new (0,-0.3f,0);
+                _shader.ResetBoarderColor();
+        
+                _isSelected = false;
             }
+
+            transform.position += newPos;
+        }
     }
 
     private void OnMouseOver() {

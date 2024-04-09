@@ -84,6 +84,7 @@ public class BoardCardMonsterPlace : BoardCardPlace {
         var monsterCard = _cardInThisPlace as CardMonster;
         
         if(currentPhase == BattleManager.Instance.AttackPhase){
+            // Debug.Log($"{_cardInThisPlace.name}");
             if(monsterCard != null){
                 if(BattleManager.Instance.TurnManager.IsPlayerTurn() && !monsterCard.IsPlayerCard()){
                     BattleManager.Instance.ActionsManager.ActionAttack.StartMonsterBattle(this, monsterCard);
