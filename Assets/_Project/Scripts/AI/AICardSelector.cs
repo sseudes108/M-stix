@@ -7,12 +7,12 @@ public class AICardSelector : MonoBehaviour {
     private List<CardMonster> _lvl1MonstersList;
     private List<CardMonster> _lvl2MonstersList;
     private List<CardMonster> _lvl3MonstersList;
-    private List<CardMonster> faceDownMonsters;
-    private List<CardMonster> faceUpMonsters;
+    private List<CardMonster> _faceDownMonsters;
+    private List<CardMonster> _faceUpMonsters;
     private List<CardArcane> _trapsList;
     private List<CardArcane> _fieldsList;
     private List<CardArcane> _equipsList;
-    private List<Card> cardsInHand;
+    private List<Card> _cardsInHand;
 
     public void StartCardSelection(){
         StartCoroutine(SelectCardsInEnemyHand());
@@ -22,14 +22,7 @@ public class AICardSelector : MonoBehaviour {
         AnalyzeMonstersOnField();
         OrganizeCardsFromHand();
 
-        var monsterslvl1 = _lvl1MonstersList.Count;
-        var monsterslvl2 = _lvl2MonstersList.Count;
-        var monsterslvl3 = _lvl3MonstersList.Count;
-        var traps = _trapsList.Count;
-        var fields = _fieldsList.Count;
-        var equips = _equipsList.Count;
-
-        MakeStrongestFusionPossible(monsterslvl1, monsterslvl2, monsterslvl3);
+        BattleManager.Instance.AIManager.CurrentArchetype.SelectCard(_lvl1MonstersList, _lvl2MonstersList, _lvl3MonstersList, _trapsList, _fieldsList, _equipsList);
 
         yield return new WaitForSeconds(1f);
 
@@ -38,69 +31,20 @@ public class AICardSelector : MonoBehaviour {
 
     private void AnalyzeMonstersOnField(){
         var oponentTargets = BattleManager.Instance.BoardPlaceManager.GetOcuppiedMonsterPlaces();
-        faceDownMonsters = new();
-        faceUpMonsters = new();
+        _faceDownMonsters = new();
+        _faceUpMonsters = new();
         foreach (var place in oponentTargets){
             var monster = place.GetCardInThisPlace() as CardMonster;
             if (monster.IsFaceDown()){
-                faceDownMonsters.Add(monster);
+                _faceDownMonsters.Add(monster);
             }else{
-                faceUpMonsters.Add(monster);
+                _faceUpMonsters.Add(monster);
             }
-        }
-    }
-
-    private void MakeStrongestFusionPossible(int monsterslvl1, int monsterslvl2, int monsterslvl3){
-        //Strongest monster possible to fusion only from hand
-        //mais de 1 nv 3
-        //faz 1 nv 4
-        if (monsterslvl3 > 1){
-            GetTopLevel3Monsters();
-        }
-        else if (monsterslvl3 == 1){
-            //mais de 1 nv 2
-            if (monsterslvl2 > 1){
-                //faz um nv 3
-                GetTopLevel2Monsters();
-            }else{
-                //mais de um nv 1
-                if (monsterslvl1 > 1){
-                    //faz um nv 2
-                    GetTopLevel1Monsters();
-                }
-                //add o nv 2 e faz um nv 3
-                BattleManager.Instance.CardSelector.AddCardToSelectedList(_lvl2MonstersList[0]);
-            }
-            //add o nv 3 e faz um nv 4
-            BattleManager.Instance.CardSelector.AddCardToSelectedList(_lvl3MonstersList[0]);
-
-            //mais de um nv 2
-        }else if (monsterslvl2 > 1){
-            //faz um nv 3
-            GetTopLevel2Monsters();
-        }
-        else if (monsterslvl2 == 1){
-            //mais de um nv 1
-            if (monsterslvl1 > 1){
-                //faz um nv 2
-                GetTopLevel1Monsters();
-            }
-            //add o nv 2 e faz um nv 3
-            BattleManager.Instance.CardSelector.AddCardToSelectedList(_lvl2MonstersList[0]);
-
-            //mais de um nv 1
-        }else if (monsterslvl1 > 1){
-            //faz um nv 2
-            GetTopLevel1Monsters();
-        }else{
-            //Ordena os nv1 por ordem de atq e seleciona o mais forte
-            _lvl1MonstersList.Sort((x, y) => y.GetAttack().CompareTo(x.GetAttack()));
-            BattleManager.Instance.CardSelector.AddCardToSelectedList(_lvl1MonstersList[0]);
         }
     }
 
     private void OrganizeCardsFromHand(){
-        cardsInHand = BattleManager.Instance.EnemyHand.GetCardsInHand();
+        _cardsInHand = BattleManager.Instance.EnemyHand.GetCardsInHand();
 
         _lvl1MonstersList = new();
         _lvl2MonstersList = new();
@@ -109,7 +53,7 @@ public class AICardSelector : MonoBehaviour {
         _fieldsList = new();
         _equipsList = new();
 
-        foreach (var card in cardsInHand){
+        foreach (var card in _cardsInHand){
             if (card is CardMonster){
                 var monster = card as CardMonster;
                 switch (monster.GetLevel()){
@@ -140,20 +84,7 @@ public class AICardSelector : MonoBehaviour {
         }
     }
 
-    private void GetTopLevel3Monsters(){
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(_lvl3MonstersList[0]);
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(_lvl3MonstersList[1]);
-    }
-    private void GetTopLevel2Monsters(){
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(_lvl2MonstersList[0]);
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(_lvl2MonstersList[1]);
-    }
-    private void GetTopLevel1Monsters(){
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(_lvl1MonstersList[0]);
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(_lvl1MonstersList[1]);
-    }
-
     public (List<CardMonster>, List<CardMonster>) GetTargetMonstersOnField(){
-        return (faceDownMonsters, faceUpMonsters);
+        return (_faceDownMonsters, _faceUpMonsters);
     }
 }

@@ -12,6 +12,10 @@ public class AIStateManager : MonoBehaviour {
     private AIAfterFusionSelector _AIAfterFusionSelector;
     private AIBoardPlaceSelector _AIBoardPlaceSelector;
 
+    //Archetype
+    private AIArchetype _currentArchetype;
+    private AIArchetype _agroMonsterFocused;
+
     public string AICurrentState;
 
     private void Awake() {
@@ -22,6 +26,7 @@ public class AIStateManager : MonoBehaviour {
     private void Start() {
         _AICurrentState = _AIStateStandBy;
         _AICurrentState.EnterState();
+        _currentArchetype = _agroMonsterFocused;
     }
 
     private void Update() {
@@ -37,6 +42,8 @@ public class AIStateManager : MonoBehaviour {
     private void SetStates(){
         _AIStateCardSelection = new AIStateCardSelection();
         _AIStateStandBy = new AIStateStandBy();
+
+        _agroMonsterFocused = new AIAgroMonstersFocused();
     }
 
     private void SetComponents(){
@@ -53,4 +60,7 @@ public class AIStateManager : MonoBehaviour {
     public AICardSelector CardSelector => _AICardSelector;
     public AIAfterFusionSelector AfterFusionSelector => _AIAfterFusionSelector;
     public AIBoardPlaceSelector BoardPlaceSelector => _AIBoardPlaceSelector;
+
+    //Archetypes
+    public AIArchetype CurrentArchetype => _currentArchetype;
 }

@@ -39,16 +39,16 @@ public class AIAfterFusionSelector : MonoBehaviour {
             if(monstersInAttack.Count > 0){
                 //Vê qual o monstro mais forte do player em campo e virado para cima
                 faceUpMonsters.Sort((x, y) => y.GetAttack().CompareTo(x.GetAttack()));
-                if(atk > faceUpMonsters[0].GetAttack() || atk > faceUpMonsters[1].GetAttack()){
-                    return 1;
-                }else{
+                if(atk > faceUpMonsters[0].GetAttack()){
                     return 0;
+                }else{
+                    return 1;
                 }
 
             }else if(monstersInDefense.Count > 0){
                 //Vê qual o monstro com def mais forte do player em campo e virado para cima
                 faceUpMonsters.Sort((x, y) => y.GetDefense().CompareTo(x.GetDefense()));
-                if(atk > faceUpMonsters[0].GetDefense() || atk > faceUpMonsters[1].GetDefense()){
+                if(atk > faceUpMonsters[0].GetDefense()){
                     return 1;
                 }else{
                     return 0;

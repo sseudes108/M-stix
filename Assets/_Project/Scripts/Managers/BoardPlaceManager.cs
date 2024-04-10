@@ -104,7 +104,7 @@ public class BoardPlaceManager : MonoBehaviour {
 
         //Enemy Monsters
         var monstersInEnemyBoard = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
-        if(monstersInPlayerBoard != null){
+        if(monstersInEnemyBoard != null){
             foreach (var monsterPlace in monstersInEnemyBoard){
                 if (!monsterPlace.IsFree()){
                     allMonstersPlacesOccupied.Add(monsterPlace);
@@ -120,6 +120,29 @@ public class BoardPlaceManager : MonoBehaviour {
         }
 
         return allMonstersOnTheField;
+    }
+
+    public List<BoardCardMonsterPlace> GetP2MonsterPlaces(){
+        var monstersInP2Board = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
+        if(monstersInP2Board != null){
+            foreach (var monsterPlace in monstersInP2Board){
+                if (!monsterPlace.IsFree()){
+                    monstersInP2Board.Add(monsterPlace);
+                }
+            }
+        }
+        return monstersInP2Board;
+    }
+    public List<BoardCardMonsterPlace> GetP1MonsterPlaces(){
+        var monstersInP1Board = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
+        if(monstersInP1Board != null){
+            foreach (var monsterPlace in monstersInP1Board){
+                if (!monsterPlace.IsFree()){
+                    monstersInP1Board.Add(monsterPlace);
+                }
+            }
+        }
+        return monstersInP1Board;
     }
 
     public List<BoardCardMonsterPlace> GetOcuppiedMonsterPlaces(){
