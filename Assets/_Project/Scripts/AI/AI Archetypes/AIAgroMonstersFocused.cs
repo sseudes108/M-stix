@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 
 public class AIAgroMonstersFocused : AIArchetype {
-    public override void SelectCard(List<CardMonster> lvl1MonstersList,List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList,List<CardArcane> trapsList, List<CardArcane> fieldsList, List<CardArcane> equipsList){
+    public override void SelectCard(List<CardMonster> lvl1MonstersList,List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList,List<CardArcane> trapsList, List<CardArcane> fieldsList, List<CardArcane> equipsList, List<CardMonster> monstersOnField){
 
-        MakeStrongestFusionPossible(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList, trapsList, fieldsList, equipsList);
+        MakeStrongestFusionPossible(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList, trapsList, fieldsList, equipsList, monstersOnField);
+        UnityEngine.Debug.Log("AIAgroMonstersFocused - MakeStrongestFusionPossible");
     }
 
 #region High Fusion Lvl Monster
-    private void MakeStrongestFusionPossible(List<CardMonster> lvl1MonstersList,List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList, List<CardArcane> trapsList, List<CardArcane> fieldsList, List<CardArcane> equipsList){
+    private void MakeStrongestFusionPossible(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList, List<CardArcane> trapsList, List<CardArcane> fieldsList, List<CardArcane> equipsList, List<CardMonster> monstersOnField){
 
         var monsterslvl1 = lvl1MonstersList.Count;
         var monsterslvl2 = lvl2MonstersList.Count;
@@ -15,6 +16,12 @@ public class AIAgroMonstersFocused : AIArchetype {
         var traps = trapsList.Count;
         var fields = fieldsList.Count;
         var equips = equipsList.Count;
+
+        if(monstersOnField.Count == 0){
+            
+        }else{
+
+        }
 
         //Strongest monster possible to fusion only from hand
         //mais de 1 nv 3
@@ -77,5 +84,45 @@ public class AIAgroMonstersFocused : AIArchetype {
         BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl1MonstersList[1]);
     }
 #endregion
+
+
+
+    public override int SelectMonsterMode(int atk, List<CardMonster> faceDownMonsters, List<CardMonster> faceUpMonsters, List<CardMonster> monstersInDefense, List<CardMonster> monstersInAttack){
+        UnityEngine.Debug.Log("AIAgroMonstersFocused - SelectMonsterMode");
+
+        //Se houver monstros virados para cima
+        if (faceUpMonsters.Count > 0){
+            if (monstersInAttack.Count > 0){
+                //Vê qual o monstro mais forte do player em campo e virado para cima
+                faceUpMonsters.Sort((x, y) => y.GetAttack().CompareTo(x.GetAttack()));
+                if (atk >= faceUpMonsters[0].GetAttack()){
+                    return 0;
+                }else{
+                    return 1;
+                }
+
+            }
+            else if (monstersInDefense.Count > 0){
+                //Vê qual o monstro com def mais forte do player em campo e virado para cima
+                faceUpMonsters.Sort((x, y) => y.GetDefense().CompareTo(x.GetDefense()));
+                if (atk >= faceUpMonsters[0].GetDefense()){
+                    return 1;
+                }else{
+                    return 0;
+                }
+            }
+        }
+        else if (faceDownMonsters.Count > 0){
+            if (atk >= 3000){
+                return 0;
+            }else{
+                return 1;
+            }
+        }
+
+        //Se nenhum caso for atendido, retorna atk por padrão
+        return 0;
+    }
+
 
 }

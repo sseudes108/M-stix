@@ -133,18 +133,29 @@ public class BoardPlaceManager : MonoBehaviour {
         }
         return monstersInP2Board;
     }
-    public List<BoardCardMonsterPlace> GetP1MonsterPlaces(){
-        var monstersInP1Board = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
-        if(monstersInP1Board != null){
-            foreach (var monsterPlace in monstersInP1Board){
-                if (!monsterPlace.IsFree()){
-                    monstersInP1Board.Add(monsterPlace);
-                }
+
+    public (List<BoardCardMonsterPlace>, List<BoardCardMonsterPlace>) GetOcuppiedMonsterPlacesAI(){
+        List<BoardCardMonsterPlace> P1MonsterPlaces;
+        List<BoardCardMonsterPlace> P2MonsterPlaces;
+
+        P1MonsterPlaces = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
+        P2MonsterPlaces = BattleManager.Instance.PlayerBoardPlaces.MonsterPlacements;
+
+        foreach(var place in P1MonsterPlaces){
+            if(place.IsFree()){
+                P1MonsterPlaces.Remove(place);
             }
         }
-        return monstersInP1Board;
-    }
 
+        foreach(var place in P2MonsterPlaces){
+            if(place.IsFree()){
+                P2MonsterPlaces.Remove(place);
+            }
+        }
+
+        return (P1MonsterPlaces, P2MonsterPlaces);
+    }
+    
     public List<BoardCardMonsterPlace> GetOcuppiedMonsterPlaces(){
         List<BoardCardMonsterPlace> ocuppiedMonsterPlaces = new();
         List<BoardCardMonsterPlace> monsterPlaces;

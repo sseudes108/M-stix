@@ -19,51 +19,22 @@ public class AIAfterFusionSelector : MonoBehaviour {
         //Organiza os em atq e os em Def
         List<CardMonster> monstersInDefense = new();
         List<CardMonster> monstersInAttack = new();
-        foreach(var card in faceDownMonsters){
-            if(card.IsInAttackMode()){
+        foreach (var card in faceDownMonsters){
+            if (card.IsInAttackMode()){
                 monstersInAttack.Add(card);
             }else{
                 monstersInDefense.Add(card);
             }
         }
-        foreach(var card in faceUpMonsters){
-            if(card.IsInAttackMode()){
+        foreach (var card in faceUpMonsters){
+            if (card.IsInAttackMode()){
                 monstersInAttack.Add(card);
             }else{
                 monstersInDefense.Add(card);
             }
         }
 
-        //Se houver monstros virados para cima
-        if(faceUpMonsters.Count > 0){
-            if(monstersInAttack.Count > 0){
-                //Vê qual o monstro mais forte do player em campo e virado para cima
-                faceUpMonsters.Sort((x, y) => y.GetAttack().CompareTo(x.GetAttack()));
-                if(atk > faceUpMonsters[0].GetAttack()){
-                    return 0;
-                }else{
-                    return 1;
-                }
-
-            }else if(monstersInDefense.Count > 0){
-                //Vê qual o monstro com def mais forte do player em campo e virado para cima
-                faceUpMonsters.Sort((x, y) => y.GetDefense().CompareTo(x.GetDefense()));
-                if(atk > faceUpMonsters[0].GetDefense()){
-                    return 1;
-                }else{
-                    return 0;
-                }
-            }
-        }else if(faceDownMonsters.Count > 0){
-            if(atk >= 3000){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
-
-        //Se nenhum caso for atendido, retorna atk por padrão
-        return 0;
+        return BattleManager.Instance.AIManager.CurrentArchetype.SelectMonsterMode(atk, faceDownMonsters, faceUpMonsters, monstersInDefense, monstersInAttack);
 
         //Seleção aleatoria
         // return Random.Range(0,2);
