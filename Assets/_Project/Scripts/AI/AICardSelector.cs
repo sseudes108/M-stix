@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class AICardSelector : MonoBehaviour {
 
+    //AI Hand
     private List<CardMonster> _lvl1MonstersList;
     private List<CardMonster> _lvl2MonstersList;
     private List<CardMonster> _lvl3MonstersList;
-    private List<CardMonster> _faceDownP1Monsters;
-    private List<CardMonster> _faceUpP1Monsters;
-    private List<CardMonster> _AIMonsters;
     private List<CardArcane> _trapsList;
     private List<CardArcane> _fieldsList;
     private List<CardArcane> _equipsList;
+
+    //On Field
+    // private List<CardMonster> _faceDownP1Monsters;
+    // private List<CardMonster> _faceUpP1Monsters;
+    private List<CardMonster> _AIMonstersOnField;
     private List<Card> _cardsInHand;
 
     public void StartCardSelection(){
@@ -20,34 +23,45 @@ public class AICardSelector : MonoBehaviour {
     }
 
     private IEnumerator SelectCardsInEnemyHand(){
-        AnalyzeMonstersOnField();
         OrganizeCardsFromHand();
+        AnalyzeMonstersOnField();
 
-        BattleManager.Instance.AIManager.CurrentArchetype.SelectCard(_lvl1MonstersList, _lvl2MonstersList, _lvl3MonstersList, _trapsList, _fieldsList, _equipsList, _AIMonsters);
+        BattleManager.Instance.AIManager.CurrentArchetype.SelectCard(_lvl1MonstersList, _lvl2MonstersList, _lvl3MonstersList, _trapsList, _fieldsList, _equipsList, _AIMonstersOnField);
 
         yield return new WaitForSeconds(1f);
-
         BattleManager.Instance.BattleStateManager.BattlePhaseCardSelection.EndSelection();
     }
 
     private void AnalyzeMonstersOnField(){
-        var (p1MonstersPlaces, p2MonstersPlaces) = BattleManager.Instance.BoardPlaceManager.GetOcuppiedMonsterPlacesAI();
-        
-        _faceDownP1Monsters = new();
-        _faceUpP1Monsters = new();
-        foreach (var place in p1MonstersPlaces){
-            var monster = place.GetCardInThisPlace() as CardMonster;
-            if (monster.IsFaceDown()){
-                _faceDownP1Monsters.Add(monster);
+        var (playerMonstersPlaces, aiMonsterPlaces) = BattleManager.Instance.BoardPlaceManager.GetOcuppiedMonsterPlacesAI();
+
+        //Ai monsters on field
+        _AIMonstersOnField = new();
+        List<Card> faceUpAIMonsters = new();
+        List<Card> faceDownAIMonsters = new();
+
+        foreach(var card in aiMonsterPlaces){
+            var monster = card.GetCardInThisPlace() as CardMonster;
+            if(!monster.IsFaceDown()){
+                faceUpAIMonsters.Add(monster);
             }else{
-                _faceUpP1Monsters.Add(monster);
+                faceDownAIMonsters.Add(monster);
             }
+            _AIMonstersOnField.Add(monster);
         }
 
-        _AIMonsters = new();
-        foreach (var place in p2MonstersPlaces){
-            var monster = place.GetCardInThisPlace() as CardMonster;
-            _AIMonsters.Add(monster);
+        //Player monsters on field
+        List<Card> faceUpPlayerMonsters = new();
+        List<Card> faceDownPlayerMonsters = new();
+        foreach(var place in playerMonstersPlaces){
+            var monster = place.GetCardInThisPlace();
+            if(monster != null){
+                if(!monster.IsFaceDown()){
+                    faceUpPlayerMonsters.Add(monster);
+                }else{
+                    faceDownPlayerMonsters.Add(monster);
+                }
+            }
         }
     }
 
@@ -90,12 +104,5 @@ public class AICardSelector : MonoBehaviour {
                 }
             }
         }
-    }
-
-    public (List<CardMonster>, List<CardMonster>) GetTargetMonstersOnField(){
-        return (_faceDownP1Monsters, _faceUpP1Monsters);
-    }
-    public List<CardMonster> GetAIMonstersOnField(){
-        return _AIMonsters;
     }
 }

@@ -1,73 +1,192 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public class AIAgroMonstersFocused : AIArchetype {
     public override void SelectCard(List<CardMonster> lvl1MonstersList,List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList,List<CardArcane> trapsList, List<CardArcane> fieldsList, List<CardArcane> equipsList, List<CardMonster> monstersOnField){
 
-        MakeStrongestFusionPossible(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList, trapsList, fieldsList, equipsList, monstersOnField);
+        CardSelection(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList, trapsList, fieldsList, equipsList, monstersOnField);
         UnityEngine.Debug.Log("AIAgroMonstersFocused - MakeStrongestFusionPossible");
     }
 
 #region High Fusion Lvl Monster
-    private void MakeStrongestFusionPossible(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList, List<CardArcane> trapsList, List<CardArcane> fieldsList, List<CardArcane> equipsList, List<CardMonster> monstersOnField){
+    private void CardSelection(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList, List<CardArcane> trapsList, List<CardArcane> fieldsList, List<CardArcane> equipsList, List<CardMonster> monstersOnAIField){
 
-        var monsterslvl1 = lvl1MonstersList.Count;
-        var monsterslvl2 = lvl2MonstersList.Count;
-        var monsterslvl3 = lvl3MonstersList.Count;
         var traps = trapsList.Count;
         var fields = fieldsList.Count;
         var equips = equipsList.Count;
 
-        if(monstersOnField.Count == 0){
-            
+        if(monstersOnAIField == null){
+            StrongestMonsterFusion(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
         }else{
+            if(monstersOnAIField.Count > 1){
+                //Organiza o maior lvl em campo
+                monstersOnAIField.Sort((x, y) => y.GetLevel().CompareTo(x.GetLevel()));
 
+                var lvl = monstersOnAIField[0].GetLevel();
+                switch (lvl) {
+                    case 1:
+                        if(CanSummomlvl1(lvl1MonstersList)){
+                            UnityEngine.Debug.Log("CanSummonlvl1");
+                            Summomlvl1(lvl1MonstersList);
+                        }else{
+                            StrongestMonsterFusion(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
+                        }
+                    break;
+
+                    case 2:
+                        if(CanSummonlvl2(lvl1MonstersList)){
+                            UnityEngine.Debug.Log("CanSummonlvl2");
+                            Summomlvl2(lvl1MonstersList);
+                        }else{
+                            StrongestMonsterFusion(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
+                        }
+                    break;
+
+                    case 3:
+                        if(CanSummonlvl3(lvl1MonstersList, lvl2MonstersList)){
+                            UnityEngine.Debug.Log("CanSummonlvl3");
+                            Summomlvl3(lvl1MonstersList, lvl2MonstersList);
+                        }else{
+                            StrongestMonsterFusion(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
+                        }
+                    break;
+
+                    case 4:
+                        if(CanSummonlvl4(lvl2MonstersList, lvl3MonstersList)){
+                            UnityEngine.Debug.Log("CanSummonlvl4");
+                            Summomlvl4(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
+                        }else{
+                            StrongestMonsterFusion(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
+                        }
+                    break;
+
+                    case 5:
+                    break;
+
+                    case 6:
+                    break;
+
+                    case 7:
+                    break;
+                }
+            }else{
+                StrongestMonsterFusion(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
+            }
         }
+    }
 
-        //Strongest monster possible to fusion only from hand
-        //mais de 1 nv 3
-        //faz 1 nv 4
-        if (monsterslvl3 > 1){
+    private void StrongestMonsterFusion(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList){
+        if(!Summomlvl4(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList)){
+            if(!Summomlvl3(lvl1MonstersList, lvl2MonstersList)){
+                if(!Summomlvl2(lvl1MonstersList)){
+                    Summomlvl1(lvl1MonstersList);
+                }else{
+                    UnityEngine.Debug.Log("CanMakelvl2");
+                }
+            }else{
+               UnityEngine.Debug.Log("CanMakelvl3"); 
+            }
+        }else{
+            UnityEngine.Debug.Log("CanMakelvl4");
+        }
+    }
+
+    private bool CanSummonlvl4(List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList){
+        if (lvl3MonstersList.Count > 1){
+            return true;
+        }
+        else if (lvl3MonstersList.Count  == 1){
+            if (lvl2MonstersList.Count > 1){
+            }else{
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool CanSummonlvl3(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList){
+        if (lvl2MonstersList.Count > 1){
+            return true;
+        }else if (lvl2MonstersList.Count == 1){
+            if (lvl1MonstersList.Count > 1){
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool CanSummonlvl2(List<CardMonster> lvl1MonstersList){
+        if (lvl1MonstersList.Count > 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    private bool CanSummomlvl1(List<CardMonster> lvl1MonstersList){
+        if(lvl1MonstersList.Count > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private bool Summomlvl4(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList){
+        if (lvl3MonstersList.Count > 1){
             GetTopLevel3Monsters(lvl3MonstersList);
+            return true;
         }
-        else if (monsterslvl3 == 1){
+        else if (lvl3MonstersList.Count  == 1){
             //mais de 1 nv 2
-            if (monsterslvl2 > 1){
+            if (lvl2MonstersList.Count > 1){
                 //faz um nv 3
                 GetTopLevel2Monsters(lvl2MonstersList);
             }else{
                 //mais de um nv 1
-                if (monsterslvl1 > 1){
+                if (lvl1MonstersList.Count > 1){
                     //faz um nv 2
-                    GetTopLevel1Monsters(lvl1MonstersList);
-                }
+                    GetTopLevel1Monsters(lvl1MonstersList);}
                 //add o nv 2 e faz um nv 3
                 BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl2MonstersList[0]);
-            }
-            //add o nv 3 e faz um nv 4
-            BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl3MonstersList[0]);
 
-            //mais de um nv 2
-        }else if (monsterslvl2 > 1){
+                //add o nv 3 e faz um nv 4
+                BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl3MonstersList[0]);
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool Summomlvl3(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList){
+        UnityEngine.Debug.Log("CanMakelvl3");
+        if (lvl2MonstersList.Count > 1){
             //faz um nv 3
             GetTopLevel2Monsters(lvl2MonstersList);
-        }
-        else if (monsterslvl2 == 1){
+            return true;
+        }else if (lvl2MonstersList.Count == 1){
             //mais de um nv 1
-            if (monsterslvl1 > 1){
+            if (lvl1MonstersList.Count > 1){
                 //faz um nv 2
                 GetTopLevel1Monsters(lvl1MonstersList);
-            }
-            //add o nv 2 e faz um nv 3
-            BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl2MonstersList[0]);
 
-            //mais de um nv 1
-        }else if (monsterslvl1 > 1){
+                //add o nv 2 e faz um nv 3
+                BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl2MonstersList[0]);
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool Summomlvl2(List<CardMonster> lvl1MonstersList){
+        if (lvl1MonstersList.Count > 1){
             //faz um nv 2
             GetTopLevel1Monsters(lvl1MonstersList);
+            return true;
         }else{
-            //Ordena os nv1 por ordem de atq e seleciona o mais forte
-            lvl1MonstersList.Sort((x, y) => y.GetAttack().CompareTo(x.GetAttack()));
+            return false;
+        }
+    }
+    private bool Summomlvl1(List<CardMonster> lvl1MonstersList){
+        if(lvl1MonstersList.Count > 0){
             BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl1MonstersList[0]);
+            return true;
+        }else{
+            return false;
         }
     }
 
@@ -83,9 +202,8 @@ public class AIAgroMonstersFocused : AIArchetype {
         BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl1MonstersList[0]);
         BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl1MonstersList[1]);
     }
+
 #endregion
-
-
 
     public override int SelectMonsterMode(int atk, List<CardMonster> faceDownMonsters, List<CardMonster> faceUpMonsters, List<CardMonster> monstersInDefense, List<CardMonster> monstersInAttack){
         UnityEngine.Debug.Log("AIAgroMonstersFocused - SelectMonsterMode");
@@ -123,6 +241,5 @@ public class AIAgroMonstersFocused : AIArchetype {
         //Se nenhum caso for atendido, retorna atk por padrão
         return 0;
     }
-
 
 }

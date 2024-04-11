@@ -122,38 +122,49 @@ public class BoardPlaceManager : MonoBehaviour {
         return allMonstersOnTheField;
     }
 
-    public List<BoardCardMonsterPlace> GetP2MonsterPlaces(){
-        var monstersInP2Board = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
-        if(monstersInP2Board != null){
-            foreach (var monsterPlace in monstersInP2Board){
+    public List<BoardCardMonsterPlace> GetPlayerMonsterPlaces(){
+        var playerMonstersOnBoard = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
+
+        foreach (var monsterPlace in playerMonstersOnBoard){
+            if (!monsterPlace.IsFree()){
+                playerMonstersOnBoard.Add(monsterPlace);
+            }
+        }
+        return playerMonstersOnBoard;
+    }
+    public List<BoardCardMonsterPlace> GetAIMonsterPlaces(){
+        var AIMonstersOnBoard = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
+        if(AIMonstersOnBoard != null){
+            foreach (var monsterPlace in AIMonstersOnBoard){
                 if (!monsterPlace.IsFree()){
-                    monstersInP2Board.Add(monsterPlace);
+                    AIMonstersOnBoard.Add(monsterPlace);
                 }
             }
         }
-        return monstersInP2Board;
+        return AIMonstersOnBoard;
     }
 
+    //Used on the AI only
     public (List<BoardCardMonsterPlace>, List<BoardCardMonsterPlace>) GetOcuppiedMonsterPlacesAI(){
-        List<BoardCardMonsterPlace> P1MonsterPlaces;
-        List<BoardCardMonsterPlace> P2MonsterPlaces;
+        List<BoardCardMonsterPlace> playerMonsterPlaces = BattleManager.Instance.PlayerBoardPlaces.MonsterPlacements;
+        List<BoardCardMonsterPlace> aiMonsterPlaces = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
 
-        P1MonsterPlaces = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
-        P2MonsterPlaces = BattleManager.Instance.PlayerBoardPlaces.MonsterPlacements;
+        List<BoardCardMonsterPlace> playerOcupiedPlaces = new();
+        List<BoardCardMonsterPlace> aiOcupiedPlaces = new();
 
-        foreach(var place in P1MonsterPlaces){
-            if(place.IsFree()){
-                P1MonsterPlaces.Remove(place);
+        foreach(var place in playerMonsterPlaces){
+            if(!place.IsFree()){
+                playerOcupiedPlaces.Add(place);
             }
         }
 
-        foreach(var place in P2MonsterPlaces){
-            if(place.IsFree()){
-                P2MonsterPlaces.Remove(place);
+        foreach(var place in aiMonsterPlaces){
+            if(!place.IsFree()){
+                aiOcupiedPlaces.Add(place);
             }
         }
 
-        return (P1MonsterPlaces, P2MonsterPlaces);
+        return (playerOcupiedPlaces, aiOcupiedPlaces);
     }
     
     public List<BoardCardMonsterPlace> GetOcuppiedMonsterPlaces(){
