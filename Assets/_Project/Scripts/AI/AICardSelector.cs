@@ -8,6 +8,10 @@ public class AICardSelector : MonoBehaviour {
     private List<CardMonster> _lvl1MonstersList;
     private List<CardMonster> _lvl2MonstersList;
     private List<CardMonster> _lvl3MonstersList;
+    private List<CardMonster> _lvl4MonstersList;
+    private List<CardMonster> _lvl5MonstersList;
+    private List<CardMonster> _lvl6MonstersList;
+    private List<CardMonster> _lvl7MonstersList;
     private List<CardArcane> _trapsList;
     private List<CardArcane> _fieldsList;
     private List<CardArcane> _equipsList;
@@ -25,8 +29,10 @@ public class AICardSelector : MonoBehaviour {
     private IEnumerator SelectCardsInEnemyHand(){
         OrganizeCardsFromHand();
         AnalyzeMonstersOnField();
+        
+        SetMonstersList();
 
-        BattleManager.Instance.AIManager.CurrentArchetype.SelectCard(_lvl1MonstersList, _lvl2MonstersList, _lvl3MonstersList, _trapsList, _fieldsList, _equipsList, _AIMonstersOnField);
+        BattleManager.Instance.AIManager.CurrentArchetype.SelectCard(_AIMonstersOnField);
 
         yield return new WaitForSeconds(1f);
         BattleManager.Instance.BattleStateManager.BattlePhaseCardSelection.EndSelection();
@@ -71,6 +77,10 @@ public class AICardSelector : MonoBehaviour {
         _lvl1MonstersList = new();
         _lvl2MonstersList = new();
         _lvl3MonstersList = new();
+        _lvl4MonstersList = new();
+        _lvl5MonstersList = new();
+        _lvl6MonstersList = new();
+        _lvl7MonstersList = new();
         _trapsList = new();
         _fieldsList = new();
         _equipsList = new();
@@ -104,5 +114,9 @@ public class AICardSelector : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private void SetMonstersList(){
+        BattleManager.Instance.AIManager.CurrentArchetype.SetMonstersList(_lvl1MonstersList, _lvl2MonstersList, _lvl3MonstersList, _lvl4MonstersList, _lvl5MonstersList, _lvl6MonstersList, _lvl7MonstersList);
     }
 }
