@@ -16,12 +16,15 @@ public class AICardSelector : MonoBehaviour {
     private List<CardArcane> _fieldsList;
     private List<CardArcane> _equipsList;
 
-    //On Field
-    // private List<CardMonster> _faceDownP1Monsters;
-    // private List<CardMonster> _faceUpP1Monsters;
+    //monsters On Field
     private List<CardMonster> _AIMonstersOnField;
-    private List<Card> _cardsInHand;
+    private List<Card> _faceUpAIMonsters;
+    private List<Card> _faceDownAIMonsters;
 
+    private List<Card> _faceUpPlayerMonsters;
+    private List<Card> _faceDownPlayerMonsters;
+
+    private List<Card> _cardsInHand;
     public void StartCardSelection(){
         StartCoroutine(SelectCardsInEnemyHand());
     }
@@ -31,6 +34,10 @@ public class AICardSelector : MonoBehaviour {
         AnalyzeMonstersOnField();
         
         SetMonstersList();
+
+        //DEBUG//
+        UpdateDebugLists();
+        //DEBUG//
 
         BattleManager.Instance.AIManager.CurrentArchetype.SelectCard(_AIMonstersOnField);
 
@@ -43,29 +50,29 @@ public class AICardSelector : MonoBehaviour {
 
         //Ai monsters on field
         _AIMonstersOnField = new();
-        List<Card> faceUpAIMonsters = new();
-        List<Card> faceDownAIMonsters = new();
+        _faceUpAIMonsters = new();
+        _faceDownAIMonsters = new();
 
         foreach(var card in aiMonsterPlaces){
             var monster = card.GetCardInThisPlace() as CardMonster;
             if(!monster.IsFaceDown()){
-                faceUpAIMonsters.Add(monster);
+                _faceUpAIMonsters.Add(monster);
             }else{
-                faceDownAIMonsters.Add(monster);
+                _faceDownAIMonsters.Add(monster);
             }
             _AIMonstersOnField.Add(monster);
         }
 
         //Player monsters on field
-        List<Card> faceUpPlayerMonsters = new();
-        List<Card> faceDownPlayerMonsters = new();
+        _faceUpPlayerMonsters = new();
+        _faceDownPlayerMonsters = new();
         foreach(var place in playerMonstersPlaces){
             var monster = place.GetCardInThisPlace();
             if(monster != null){
                 if(!monster.IsFaceDown()){
-                    faceUpPlayerMonsters.Add(monster);
+                    _faceUpPlayerMonsters.Add(monster);
                 }else{
-                    faceDownPlayerMonsters.Add(monster);
+                    _faceDownPlayerMonsters.Add(monster);
                 }
             }
         }
@@ -77,10 +84,10 @@ public class AICardSelector : MonoBehaviour {
         _lvl1MonstersList = new();
         _lvl2MonstersList = new();
         _lvl3MonstersList = new();
-        _lvl4MonstersList = new();
-        _lvl5MonstersList = new();
-        _lvl6MonstersList = new();
-        _lvl7MonstersList = new();
+        // _lvl4MonstersList = new();
+        // _lvl5MonstersList = new();
+        // _lvl6MonstersList = new();
+        // _lvl7MonstersList = new();
         _trapsList = new();
         _fieldsList = new();
         _equipsList = new();
@@ -118,5 +125,25 @@ public class AICardSelector : MonoBehaviour {
 
     private void SetMonstersList(){
         BattleManager.Instance.AIManager.CurrentArchetype.SetMonstersList(_lvl1MonstersList, _lvl2MonstersList, _lvl3MonstersList, _lvl4MonstersList, _lvl5MonstersList, _lvl6MonstersList, _lvl7MonstersList);
+    }
+
+    private void UpdateDebugLists(){
+        Testing.Instance.UpdateLists(
+            _lvl1MonstersList, 
+            _lvl2MonstersList, 
+            _lvl3MonstersList, 
+            _lvl4MonstersList, 
+            _lvl5MonstersList, 
+            _lvl6MonstersList, 
+            _lvl7MonstersList, 
+            _trapsList, 
+            _fieldsList,
+            _equipsList,
+            _AIMonstersOnField,
+            _faceUpAIMonsters,
+            _faceDownAIMonsters,
+            _faceUpPlayerMonsters,
+            _faceDownPlayerMonsters
+        );
     }
 }
