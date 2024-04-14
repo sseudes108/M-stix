@@ -60,13 +60,11 @@ public class Fusion : MonoBehaviour {
                     }
                 }
             }while(selectedCards.Count > 0);
-
-        }else{
+        }else if(selectedCards.Count == 1){
             //Caso tenha apenas uma carta na lista o resultado será ela
             _resultCard = selectedCards[0];
             _resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion());
         }
-
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.SelectionsPhase);
     }
 
