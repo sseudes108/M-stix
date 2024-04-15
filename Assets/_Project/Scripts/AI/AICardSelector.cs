@@ -41,7 +41,7 @@ public class AICardSelector : MonoBehaviour {
 
         BattleManager.Instance.AIManager.CurrentArchetype.SelectCard(_AIMonstersOnField);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         BattleManager.Instance.BattleStateManager.BattlePhaseCardSelection.EndSelection();
     }
 
@@ -53,13 +53,51 @@ public class AICardSelector : MonoBehaviour {
         _faceUpAIMonsters = new();
         _faceDownAIMonsters = new();
 
+        _lvl4MonstersList = new();
+        _lvl5MonstersList = new();
+        _lvl6MonstersList = new();
+        _lvl7MonstersList = new();
+
         foreach(var card in aiMonsterPlaces){
             var monster = card.GetCardInThisPlace() as CardMonster;
+            var monsterLvl = monster.GetLevel();
+
             if(!monster.IsFaceDown()){
                 _faceUpAIMonsters.Add(monster);
             }else{
                 _faceDownAIMonsters.Add(monster);
             }
+
+            switch(monsterLvl){
+                case 1:
+                    _lvl1MonstersList.Add(monster);
+                break;
+
+                case 2:
+                    _lvl2MonstersList.Add(monster);
+                break;
+
+                case 3:
+                    _lvl3MonstersList.Add(monster);
+                break;
+
+                case 4:
+                    _lvl4MonstersList.Add(monster);
+                break;
+
+                case 5:
+                    _lvl5MonstersList.Add(monster);
+                break;
+
+                case 6:
+                    _lvl6MonstersList.Add(monster);
+                break;
+
+                case 7:
+                    _lvl7MonstersList.Add(monster);
+                break;
+            }
+
             _AIMonstersOnField.Add(monster);
         }
 
@@ -84,10 +122,7 @@ public class AICardSelector : MonoBehaviour {
         _lvl1MonstersList = new();
         _lvl2MonstersList = new();
         _lvl3MonstersList = new();
-        // _lvl4MonstersList = new();
-        // _lvl5MonstersList = new();
-        // _lvl6MonstersList = new();
-        // _lvl7MonstersList = new();
+        
         _trapsList = new();
         _fieldsList = new();
         _equipsList = new();
@@ -124,7 +159,7 @@ public class AICardSelector : MonoBehaviour {
     }
 
     private void SetMonstersList(){
-        BattleManager.Instance.AIManager.CurrentArchetype.SetMonstersList(_lvl1MonstersList, _lvl2MonstersList, _lvl3MonstersList, _lvl4MonstersList, _lvl5MonstersList, _lvl6MonstersList, _lvl7MonstersList);
+        BattleManager.Instance.AIManager.CurrentArchetype.SetMonstersList(_AIMonstersOnField, _lvl1MonstersList, _lvl2MonstersList, _lvl3MonstersList, _lvl4MonstersList, _lvl5MonstersList, _lvl6MonstersList, _lvl7MonstersList);
     }
 
     private void UpdateDebugLists(){

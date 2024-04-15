@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Testing : MonoBehaviour {
 
     public static Testing Instance;
+    [SerializeField] private int _boardFusionLvl;
 
     [Header("Cards In Hand")]
     [SerializeField] private List<CardMonster> _lvl1MonstersList;
@@ -75,5 +76,9 @@ public class Testing : MonoBehaviour {
         //Player
         _faceUpPlayerMonsters = faceUpPlayerMonsters;
         _faceDownPlayerMonsters = faceDownPlayerMonsters;
+    }
+
+    public void UpdateBoardFusionLvl(int lvl){
+        _boardFusionLvl = lvl;
     }
 }

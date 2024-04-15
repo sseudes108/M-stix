@@ -11,6 +11,7 @@ public class BattlePhaseBoardPlaceSelection : BattleAbstract{
         //Move result card to board place selection
         BattleManager.Instance.FusionPositions.MoveCardToBoardPlaceSelectionPos(_resultCard);
 
+        //AI
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
             BattleManager.Instance.AIManager.BoardPlaceSelector.StartBoardPlaceSelection(_resultCard);
         }

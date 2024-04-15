@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 public class AIAgroMonstersFocused : AIArchetype {
     
@@ -12,86 +11,134 @@ public class AIAgroMonstersFocused : AIArchetype {
         // var fields = fieldsList.Count;
         // var equips = equipsList.Count;
 
+        // StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
+
         if(monstersOnAIField.Count > 1){
-            CheckBoardFusion(monstersOnAIField);
+            CheckBoardFusion(monstersOnAIField, Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
         }else{
             StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
         }
     }
 
-    private void CheckBoardFusion(List<CardMonster> monstersOnAIField){
-        if (monstersOnAIField.Count > 1){
-            //Organiza o maior lvl em campo
-            monstersOnAIField.Sort((x, y) => y.GetLevel().CompareTo(x.GetLevel()));
+    private void CheckBoardFusion(List<CardMonster> monstersOnAIField, List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList){
+        monstersOnAIField.Sort((x, y) => y.GetLevel().CompareTo(x.GetLevel()));
 
-            BoardFusion = false;
-            var lvl = monstersOnAIField[0].GetLevel();
+        List<CardMonster> monstersLvl1 = new();
+        List<CardMonster> monstersLvl2 = new();
+        List<CardMonster> monstersLvl3 = new();
+        List<CardMonster> monstersLvl4 = new();
+        List<CardMonster> monstersLvl5 = new();
+        List<CardMonster> monstersLvl6 = new();
+        List<CardMonster> monstersLvl7 = new();
 
-            switch (lvl){
+        foreach(var card in monstersOnAIField){
+            switch(card.GetLevel()){
                 case 1:
-                    if (CanSummonlvl1(Lvl1MonstersList)){
-                        Debug.Log("CanSummonlvl1");
-                        Summonlvl1(Lvl1MonstersList);
-                        BoardFusion = true;
-                        BoardFusionLvl = lvl;
-                    }else{
-                        StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
-                    }
-                    break;
-
+                    monstersLvl1.Add(card);
+                break;
                 case 2:
-                    if (CanSummonlvl2(Lvl1MonstersList.Count)){
-                        Debug.Log("CanSummonlvl2");
-                        Summonlvl2(Lvl1MonstersList);
-                        BoardFusion = true;
-                        BoardFusionLvl = lvl;
-                    }else{
-                        if (Lvl2MonstersList.Count > 0){
-                            BattleManager.Instance.CardSelector.AddCardToSelectedList(Lvl2MonstersList[0]);
-                        }else
-                        {
-                            StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
-                        }
-                    }
-                    break;
-
+                    monstersLvl2.Add(card);
+                break;
                 case 3:
-                    if (CanSummonlvl3(Lvl1MonstersList.Count, Lvl2MonstersList.Count)){
-                        Debug.Log("CanSummonlvl3");
-                        Summonlvl3(Lvl1MonstersList, Lvl2MonstersList);
-                        BoardFusion = true;
-                        BoardFusionLvl = lvl;
-                    }else{
-                        if (Lvl3MonstersList.Count > 0){
-                            BattleManager.Instance.CardSelector.AddCardToSelectedList(Lvl3MonstersList[0]);
-                        }else{
-                            StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
-                        }
-                    }
-                    break;
-
+                    monstersLvl3.Add(card);
+                break;
                 case 4:
-                    if (CanSummonlvl4(Lvl1MonstersList.Count, Lvl2MonstersList.Count, Lvl3MonstersList.Count)){
-                        Debug.Log("CanSummonlvl4");
-                        Summonlvl4(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
+                    monstersLvl4.Add(card);
+                break;
+                case 5:
+                    monstersLvl5.Add(card);
+                break;
+                case 6:
+                    monstersLvl6.Add(card);
+                break;
+                case 7:
+                    monstersLvl7.Add(card);
+                break;
+            }
+        }
+
+        var highLvlMonster1 = monstersOnAIField[0].GetLevel();
+        var highLvlMonster2 = monstersOnAIField[1].GetLevel();
+        int highLvlMonster3 = 0;
+        int highLvlMonster4 = 0;
+        int highLvlMonster5 = 0;
+
+        if(monstersOnAIField.Count > 2){
+            highLvlMonster3 = monstersOnAIField[2].GetLevel();
+
+            if(monstersOnAIField.Count > 3){
+                highLvlMonster4 = monstersOnAIField[3].GetLevel();
+
+                if(monstersOnAIField.Count > 4){
+                    highLvlMonster5 = monstersOnAIField[4].GetLevel();
+                }   
+            }
+        }
+
+        var strongestFusion = true;
+        
+        //Se o lvl do monstro 1 for igual ao 2 ou o 2 for igual ao 3
+        if(highLvlMonster1 == highLvlMonster2 || highLvlMonster2 == highLvlMonster3){
+            var lvlToSwitch = highLvlMonster2;
+            strongestFusion = false;
+            BoardMonsterLvlSwitch(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList, highLvlMonster2, highLvlMonster3, lvlToSwitch);
+
+            //Se o lvl do monstro 3 for igual ao 4 ou o 4 for igual ao 5
+        }else if(highLvlMonster4 != 0){
+            if(highLvlMonster3 == highLvlMonster4 || highLvlMonster4 == highLvlMonster5){
+                var lvlToSwitch = highLvlMonster4;
+                strongestFusion = false;
+                BoardMonsterLvlSwitch(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList, highLvlMonster2, highLvlMonster3, lvlToSwitch);
+                
+            }
+        }
+        
+        if(strongestFusion){
+            StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
+        }
+    }
+
+    private void BoardMonsterLvlSwitch(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList, int highLvlMonster2, int highLvlMonster3, int lvlToSwitch){
+        switch (lvlToSwitch){
+            case 1:
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:
+                Debug.Log("Here. Two lvl 4 monsters and one more");
+                if (CanSummonlvl4(lvl1MonstersList.Count, lvl2MonstersList.Count, lvl3MonstersList.Count)){
+                    Summonlvl4(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
+                    BoardFusion = true;
+                    BoardFusionLvl = 4;
+                }else if (highLvlMonster3 == 3){
+                    if (CanSummonlvl3(lvl1MonstersList.Count, lvl2MonstersList.Count)){
+                        Summonlvl3(lvl1MonstersList, lvl2MonstersList);
                         BoardFusion = true;
-                        BoardFusionLvl = lvl;
+                        BoardFusionLvl = 3;
                     }else{
                         StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
                     }
-                    break;
+                }else{
+                    StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
+                }
+                break;
 
-                case 5:
-                    break;
+            case 5:
+                break;
 
-                case 6:
-                    break;
+            case 6:
+                break;
 
-                case 7:
-                    break;
-            }
-        }else{
-            StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
+            case 7:
+                break;
+
+            case 8:
+                break;
         }
     }
 
@@ -119,6 +166,25 @@ public class AIAgroMonstersFocused : AIArchetype {
         // If got here, no monsters to summom
         Debug.LogError("No monsters to Summom");
     }
+
+
+    private bool CanSummonlvl8(){
+        Debug.Log("Can Summon lvl 8");
+        return true;
+    }
+    private bool CanSummonlvl7(){
+        Debug.Log("Can Summon lvl 7");
+        return true;
+    }
+    private bool CanSummonlvl6(){
+        Debug.Log("Can Summon lvl 6");
+        return true;
+    }
+    private bool CanSummonlvl5(){
+        Debug.Log("Can Summon lvl 5");
+        return true;
+    }
+    
 
     private bool CanSummonlvl4(int lvl1MonstersList, int lvl2MonstersList, int lvl3MonstersList){
         if(lvl3MonstersList > 1){
@@ -156,6 +222,21 @@ public class AIAgroMonstersFocused : AIArchetype {
             return false;
         }
     }
+
+
+    private void Summonlvl8(){
+
+    }
+    private void Summonlvl7(){
+
+    }
+    private void Summonlvl6(){
+
+    }
+    private void Summonlvl5(){
+        
+    }
+
 
     private void Summonlvl4(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList){
         Debug.Log("Summom Lvl 4");
@@ -254,7 +335,7 @@ public class AIAgroMonstersFocused : AIArchetype {
         return 0;
     }
 
-    public override int SelectMonsterPlaceOnBoard(List<Transform> monsterBoardPlaces){
+    public override int SelectMonsterPlaceOnBoard(List<Transform> monsterBoardPlaces, Card CardToPutOnBoard){
         CardMonster monsterOnBoardToFusion = null;
         List<BoardCardMonsterPlace> monstersOnBoard = new();
 
@@ -271,10 +352,12 @@ public class AIAgroMonstersFocused : AIArchetype {
             positionInBoard = monstersOnBoard.IndexOf(monsterOnBoardToFusion.GetComponentInParent<BoardCardMonsterPlace>());
             BoardFusion = false;
         }else{
+            //Corrigir - Infinite loop if there's no free place in board
             do{
                 positionInBoard = Random.Range(0, monsterBoardPlaces.Count);
             }while(monsterBoardPlaces[positionInBoard].GetComponentInChildren<BoardCardMonsterPlace>().GetCardInThisPlace() != null);
         }
         return positionInBoard;
     }
+
 }

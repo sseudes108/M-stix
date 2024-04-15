@@ -13,7 +13,7 @@ public class AIBoardPlaceSelector : MonoBehaviour {
         BoardCardPlace boarderPlace;
 
         if(resultCard is CardMonster){
-            boarderPlace = monsterPlaces[BattleManager.Instance.AIManager.CurrentArchetype.SelectMonsterPlaceOnBoard(monsterPlaces)].GetComponent<BoardCardMonsterPlace>();
+            boarderPlace = monsterPlaces[BattleManager.Instance.AIManager.CurrentArchetype.SelectMonsterPlaceOnBoard(monsterPlaces, resultCard)].GetComponent<BoardCardMonsterPlace>();
         }else{
             //Random Placement if its not board fusion
             boarderPlace = arcanePlaces[Random.Range(0,5)].GetComponent<BoardCardArcanePlace>();

@@ -13212,6 +13212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42510644259a5bc4dabd542cacde946d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boardFusionLvl: 0
   _lvl1MonstersList: []
   _lvl2MonstersList: []
   _lvl3MonstersList: []
