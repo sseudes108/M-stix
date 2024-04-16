@@ -27,12 +27,14 @@ public class ShaderBorders : MonoBehaviour {
     }
 
     public void ResetBoarderColor(){
-        var sideMat = new Material(_shader.Renderer.sharedMaterials[0]);
-        var faceMat = new Material(_shader.Renderer.sharedMaterials[1]);
+        if(_shader.Renderer.sharedMaterials != null){
+            var sideMat = new Material(_shader.Renderer.sharedMaterials[0]);
+            var faceMat = new Material(_shader.Renderer.sharedMaterials[1]);
 
-        faceMat.SetColor("_SelectedBorderColor", Color.black);
-        faceMat.SetFloat("_Intensity", 0);
+            faceMat.SetColor("_SelectedBorderColor", Color.black);
+            faceMat.SetFloat("_Intensity", 0);
 
-        _shader.SetChangesToMaterial(sideMat, faceMat);
+            _shader.SetChangesToMaterial(sideMat, faceMat);
+        }
     }
 }

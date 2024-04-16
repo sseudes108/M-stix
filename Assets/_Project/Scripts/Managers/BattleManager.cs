@@ -13,6 +13,7 @@ public class BattleManager : MonoBehaviour {
     [SerializeField] private CameraManager _cameraManager;
     [SerializeField] private ColorManager _colorManager;
     [SerializeField] private AIStateManager _AIStateManager;
+    [SerializeField] private AILib _AILib;
     [SerializeField] private HealthManager _healthManager;
     [SerializeField] private ActionsManager _actionsManager;
     [SerializeField] private BattleFieldManager _batteFieldManager;
@@ -92,6 +93,8 @@ public class BattleManager : MonoBehaviour {
     public AIStateManager AIManager => _AIStateManager;
     public AIStateStandBy AIStandBy => _AIStateManager.AIStandby;
     public AIStateCardSelection AICardSelection => _AIStateManager.AICardSelection;
+
+    public AILib AILib => _AILib;
     
     //Hand
     public HandPlayer PlayerHand => _handPlayer;
@@ -120,7 +123,10 @@ public class BattleManager : MonoBehaviour {
         _battleStateManager = GetComponentInChildren<BattlePhaseStateManager>();
         _colorManager = GetComponentInChildren<ColorManager>();
         _cameraManager = GetComponentInChildren<CameraManager>();
+
         _AIStateManager = GetComponentInChildren<AIStateManager>();
+        _AILib = GetComponentInChildren<AILib>();
+        
         _healthManager = GetComponentInChildren<HealthManager>();
         _actionsManager = GetComponentInChildren<ActionsManager>();
         _batteFieldManager = GetComponentInChildren<BattleFieldManager>();

@@ -18,6 +18,6 @@ MonoBehaviour:
   Ilustration: {fileID: 2800000, guid: 929d98ca19246d242a34932a799658c4, type: 3}
   Name: 
   Description: 
-  Level: 5
+  Level: 8
   Attack: 5400
   Defense: 5000

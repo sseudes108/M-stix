@@ -34,11 +34,12 @@ public class CardSelector : MonoBehaviour {
 
     private void FreePlacesOfSelectedCardsFromHand(){
         foreach(var card in _selectedCards){
-            var handPosition = card.GetComponentInParent<HandPosition>();
-            if(handPosition != null){
-                handPosition.SetHandPlaceFree();
+            if(card != null){
+                var handPosition = card.GetComponentInParent<HandPosition>();
+                if(handPosition != null){
+                    handPosition.SetHandPlaceFree();
+                }
             }
         }
     }
-
 }

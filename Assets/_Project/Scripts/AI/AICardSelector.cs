@@ -33,19 +33,13 @@ public class AICardSelector : MonoBehaviour {
         OrganizeCardsFromHand();
         AnalyzeMonstersOnField();
         
-        SetMonstersList();
-
-        //DEBUG//
-        UpdateDebugLists();
-        //DEBUG//
-
         BattleManager.Instance.AIManager.CurrentArchetype.SelectCard(_AIMonstersOnField);
 
         yield return new WaitForSeconds(2f);
         BattleManager.Instance.BattleStateManager.BattlePhaseCardSelection.EndSelection();
     }
 
-    private void AnalyzeMonstersOnField(){
+    public void AnalyzeMonstersOnField(){
         var (playerMonstersPlaces, aiMonsterPlaces) = BattleManager.Instance.BoardPlaceManager.GetOcuppiedMonsterPlacesAI();
 
         //Ai monsters on field
@@ -62,12 +56,14 @@ public class AICardSelector : MonoBehaviour {
             var monster = card.GetCardInThisPlace() as CardMonster;
             var monsterLvl = monster.GetLevel();
 
+            //Face
             if(!monster.IsFaceDown()){
                 _faceUpAIMonsters.Add(monster);
             }else{
                 _faceDownAIMonsters.Add(monster);
             }
 
+            //Organize Levels
             switch(monsterLvl){
                 case 1:
                     _lvl1MonstersList.Add(monster);
@@ -114,6 +110,8 @@ public class AICardSelector : MonoBehaviour {
                 }
             }
         }
+
+        SetMonstersList();
     }
 
     private void OrganizeCardsFromHand(){
@@ -160,6 +158,10 @@ public class AICardSelector : MonoBehaviour {
 
     private void SetMonstersList(){
         BattleManager.Instance.AIManager.CurrentArchetype.SetMonstersList(_AIMonstersOnField, _lvl1MonstersList, _lvl2MonstersList, _lvl3MonstersList, _lvl4MonstersList, _lvl5MonstersList, _lvl6MonstersList, _lvl7MonstersList);
+
+        //DEBUG//
+        UpdateDebugLists();
+        //DEBUG//
     }
 
     private void UpdateDebugLists(){
