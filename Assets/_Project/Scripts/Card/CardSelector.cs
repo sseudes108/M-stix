@@ -35,7 +35,9 @@ public class CardSelector : MonoBehaviour {
     private void FreePlacesOfSelectedCardsFromHand(){
         foreach(var card in _selectedCards){
             var handPosition = card.GetComponentInParent<HandPosition>();
-            handPosition.SetHandPlaceFree();
+            if(handPosition != null){
+                handPosition.SetHandPlaceFree();
+            }
         }
     }
 

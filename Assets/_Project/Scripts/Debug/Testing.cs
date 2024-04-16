@@ -7,7 +7,7 @@ public class Testing : MonoBehaviour {
     public static Testing Instance;
     [SerializeField] private int _boardFusionLvl;
 
-    [Header("Cards In Hand")]
+    [Header("AI Cards In Hand")]
     [SerializeField] private List<CardMonster> _lvl1MonstersList;
     [SerializeField] private List<CardMonster> _lvl2MonstersList;
     [SerializeField] private List<CardMonster> _lvl3MonstersList;
@@ -15,15 +15,18 @@ public class Testing : MonoBehaviour {
     [SerializeField] private List<CardArcane> _fieldsList;
     [SerializeField] private List<CardArcane> _equipsList;
     
-    [Header("Cards On Field")]
+    [Header("AI Cards On Field")]
+    [SerializeField] private List<CardMonster> _AIMonstersOnField;
+    [SerializeField] private List<Card> _faceUpAIMonsters;
+    [SerializeField] private List<Card> _faceDownAIMonsters;
+
+    [Header("AI Monsters On Field")]
     [SerializeField] private List<CardMonster> _lvl4MonstersList;
     [SerializeField] private List<CardMonster> _lvl5MonstersList;
     [SerializeField] private List<CardMonster> _lvl6MonstersList;
     [SerializeField] private List<CardMonster> _lvl7MonstersList;
 
-    [SerializeField] private List<CardMonster> _AIMonstersOnField;
-    [SerializeField] private List<Card> _faceUpAIMonsters;
-    [SerializeField] private List<Card> _faceDownAIMonsters;
+    [Header("Player Cards on Field")]
     [SerializeField] private List<Card> _faceUpPlayerMonsters;
     [SerializeField] private List<Card> _faceDownPlayerMonsters;
 
@@ -38,7 +41,7 @@ public class Testing : MonoBehaviour {
     }
 
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.R)){
+        if(Input.GetKeyDown(KeyCode.R)){    
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         
@@ -66,7 +69,6 @@ public class Testing : MonoBehaviour {
         _lvl5MonstersList = lvl5MonstersList;
         _lvl6MonstersList = lvl6MonstersList;
         _lvl7MonstersList = lvl7MonstersList;
-
 
         //AI
         _AIMonstersOnField = AIMonstersOnField;

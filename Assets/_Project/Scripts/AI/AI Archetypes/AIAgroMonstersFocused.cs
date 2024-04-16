@@ -58,38 +58,43 @@ public class AIAgroMonstersFocused : AIArchetype {
         }
 
         var highLvlMonster1 = monstersOnAIField[0].GetLevel();
-        var highLvlMonster2 = monstersOnAIField[1].GetLevel();
+        var highLvlMonster2 = 0;
         int highLvlMonster3 = 0;
         int highLvlMonster4 = 0;
         int highLvlMonster5 = 0;
+        
+        if(monstersOnAIField.Count > 1){
+            highLvlMonster2 = monstersOnAIField[1].GetLevel();
 
-        if(monstersOnAIField.Count > 2){
-            highLvlMonster3 = monstersOnAIField[2].GetLevel();
+            if(monstersOnAIField.Count > 2){
+                highLvlMonster3 = monstersOnAIField[2].GetLevel();
 
-            if(monstersOnAIField.Count > 3){
-                highLvlMonster4 = monstersOnAIField[3].GetLevel();
+                if(monstersOnAIField.Count > 3){
+                    highLvlMonster4 = monstersOnAIField[3].GetLevel();
 
-                if(monstersOnAIField.Count > 4){
-                    highLvlMonster5 = monstersOnAIField[4].GetLevel();
-                }   
+                    if(monstersOnAIField.Count > 4){
+                        highLvlMonster5 = monstersOnAIField[4].GetLevel();
+                    }   
+                }
             }
         }
 
         var strongestFusion = true;
-        
-        //Se o lvl do monstro 1 for igual ao 2 ou o 2 for igual ao 3
-        if(highLvlMonster1 == highLvlMonster2 || highLvlMonster2 == highLvlMonster3){
-            var lvlToSwitch = highLvlMonster2;
-            strongestFusion = false;
-            BoardMonsterLvlSwitch(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList, highLvlMonster2, highLvlMonster3, lvlToSwitch);
-
-            //Se o lvl do monstro 3 for igual ao 4 ou o 4 for igual ao 5
-        }else if(highLvlMonster4 != 0){
-            if(highLvlMonster3 == highLvlMonster4 || highLvlMonster4 == highLvlMonster5){
-                var lvlToSwitch = highLvlMonster4;
+        if(highLvlMonster2 != 0){
+            //Se o lvl do monstro 1 for igual ao 2 ou o 2 for igual ao 3
+           if(highLvlMonster1 == highLvlMonster2 || highLvlMonster2 == highLvlMonster3){
+                var lvlToSwitch = highLvlMonster2;
                 strongestFusion = false;
                 BoardMonsterLvlSwitch(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList, highLvlMonster2, highLvlMonster3, lvlToSwitch);
-                
+            }else{
+                if(highLvlMonster4 != 0){
+                    //Se o lvl do monstro 3 for igual ao 4 ou o 4 for igual ao 5
+                    if(highLvlMonster3 == highLvlMonster4 || highLvlMonster4 == highLvlMonster5){
+                        var lvlToSwitch = highLvlMonster4;
+                        strongestFusion = false;
+                        BoardMonsterLvlSwitch(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList, highLvlMonster2, highLvlMonster3, lvlToSwitch);
+                    }
+                }
             }
         }
         
@@ -99,6 +104,7 @@ public class AIAgroMonstersFocused : AIArchetype {
     }
 
     private void BoardMonsterLvlSwitch(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList, int highLvlMonster2, int highLvlMonster3, int lvlToSwitch){
+
         switch (lvlToSwitch){
             case 1:
                 break;
@@ -110,16 +116,16 @@ public class AIAgroMonstersFocused : AIArchetype {
                 break;
 
             case 4:
-                Debug.Log("Here. Two lvl 4 monsters and one more");
+                Debug.Log("Two lvl 4 monsters and one more");
                 if (CanSummonlvl4(lvl1MonstersList.Count, lvl2MonstersList.Count, lvl3MonstersList.Count)){
                     Summonlvl4(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
-                    BoardFusion = true;
-                    BoardFusionLvl = 4;
+                    BoardFusionSetUp(true, 4);
+
                 }else if (highLvlMonster3 == 3){
                     if (CanSummonlvl3(lvl1MonstersList.Count, lvl2MonstersList.Count)){
                         Summonlvl3(lvl1MonstersList, lvl2MonstersList);
-                        BoardFusion = true;
-                        BoardFusionLvl = 3;
+                        BoardFusionSetUp(true, 3);
+                        
                     }else{
                         StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
                     }
@@ -150,16 +156,31 @@ public class AIAgroMonstersFocused : AIArchetype {
             Summonlvl4(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
             return;
         }
+
         if(CanSummonlvl3(lvl1MonstersList.Count, lvl2MonstersList.Count)){
             Summonlvl3(lvl1MonstersList, lvl2MonstersList);
             return;
         }
+
         if(CanSummonlvl2(lvl1MonstersList.Count)){
-            Summonlvl2(lvl1MonstersList);
+            if(lvl3MonstersList.Count == 0){
+                Summonlvl2(lvl1MonstersList);
+            }else{
+                BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl3MonstersList[0]);
+            }
             return;
         }
+
         if(CanSummonlvl1(lvl1MonstersList)){
-            Summonlvl1(lvl1MonstersList);
+            if(lvl3MonstersList.Count == 0 && lvl2MonstersList.Count == 0){
+                Summonlvl1(lvl1MonstersList);
+            }else{
+                if(lvl3MonstersList.Count > 0){
+                    BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl3MonstersList[0]);
+                }else if(lvl2MonstersList.Count > 0){
+                    BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl2MonstersList[0]);
+                }
+            }
             return;
         }
 
@@ -335,9 +356,29 @@ public class AIAgroMonstersFocused : AIArchetype {
         return 0;
     }
 
+    private void BoardFusionSetUp(bool boardFusion, int boardFusionLvl){
+        BoardFusion = boardFusion;
+        BoardFusionLvl = boardFusionLvl;
+        Testing.Instance.UpdateBoardFusionLvl(BoardFusionLvl);
+    }
+
     public override int SelectMonsterPlaceOnBoard(List<Transform> monsterBoardPlaces, Card CardToPutOnBoard){
         CardMonster monsterOnBoardToFusion = null;
+        CardMonster monsterToPutOnBoard = CardToPutOnBoard as CardMonster;
         List<BoardCardMonsterPlace> monstersOnBoard = new();
+
+        if(MonstersOnAIField.Count > 1){
+            var monsterLvl = monsterToPutOnBoard.GetLevel();
+
+            List<int> monstersOnAiFieldLvls = new();
+            foreach(var item in MonstersOnAIField){
+                monstersOnAiFieldLvls.Add(item.GetLevel());
+            }
+
+            if(monstersOnAiFieldLvls.Contains(monsterLvl)){
+                CheckBoardFusion(MonstersOnAIField, Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
+            }
+        }
 
         int positionInBoard;
         if (BoardFusion){
@@ -350,7 +391,8 @@ public class AIAgroMonstersFocused : AIArchetype {
                 monstersOnBoard.Add(place);
             }
             positionInBoard = monstersOnBoard.IndexOf(monsterOnBoardToFusion.GetComponentInParent<BoardCardMonsterPlace>());
-            BoardFusion = false;
+            BoardFusionSetUp(false, 0);
+
         }else{
             //Corrigir - Infinite loop if there's no free place in board
             do{

@@ -8,10 +8,6 @@ public abstract class AIArchetype{
 
     protected bool BoardFusion = false;
     protected int BoardFusionLvl;
-
-    // protected bool  strongestFusion = true;
-
-
     
     // List<CardMonster> lvl1MonstersList,List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList, List<CardArcane> trapsList, List<CardArcane> fieldsList, List<CardArcane> equipsList
     public abstract void SelectCard(List<CardMonster> monstersOnField);
