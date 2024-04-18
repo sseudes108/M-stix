@@ -46,7 +46,7 @@ public class CardShaderController : MonoBehaviour {
     }
 
     public void ResetBoarderColor(){
-        _bordersShader.ResetBoarderColor();
+        _bordersShader.ResetBorderColor();
     }
 
     public void DissolveCard(Color newColor){

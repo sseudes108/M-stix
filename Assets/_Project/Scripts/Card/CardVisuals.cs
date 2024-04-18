@@ -4,7 +4,9 @@ using UnityEngine;
 public class CardVisuals : MonoBehaviour {
     public void ResetBorderColors(List<Card> cards){
         foreach(var card in cards){
-            card.Shader.ResetBoarderColor();
+            if(card != null){
+                card.Shader.ResetBoarderColor();
+            }
         }
     }
     
