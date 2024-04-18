@@ -27,5 +27,9 @@ public class AIBoardPlaceSelector : MonoBehaviour {
         }else{
             boarderPlace.BoardFusion(resultCard);
         }
+
+        //Atualiza os montros em campo no debug
+        BattleManager.Instance.AIManager.CardSelector.AnalyzeMonstersOnField();
+        BattleManager.Instance.AIManager.CardSelector.OrganizeCardsFromHand();
     }
 }

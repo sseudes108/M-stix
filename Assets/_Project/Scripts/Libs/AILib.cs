@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class AILib: MonoBehaviour{
@@ -21,7 +22,7 @@ public class AILib: MonoBehaviour{
             if(lvl3MonstersList.Count == 0){
                 Summonlvl2(lvl1MonstersList);
             }else{
-                BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl3MonstersList[0]);
+                CheckIsOnField(lvl3MonstersList);
             }
             return;
         }
@@ -31,9 +32,9 @@ public class AILib: MonoBehaviour{
                 Summonlvl1(lvl1MonstersList);
             }else{
                 if(lvl3MonstersList.Count > 0){
-                    BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl3MonstersList[0]);
+                    CheckIsOnField(lvl3MonstersList);
                 }else if(lvl2MonstersList.Count > 0){
-                    BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl2MonstersList[0]);
+                    CheckIsOnField(lvl2MonstersList);
                 }
             }
             return;
@@ -129,12 +130,13 @@ public class AILib: MonoBehaviour{
                 GetTopLevel1Monsters(lvl1MonstersList);
 
                 //add o lvl 2 para formar o 4
-                BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl2MonstersList[0]);
+                CheckIsOnField(lvl2MonstersList);
             }
             //Add lvl 3 para formar o 4
-            BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl3MonstersList[0]);
+            CheckIsOnField(lvl3MonstersList);
         }
     }
+
     public void Summonlvl3(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList){
         Debug.Log("Summom Lvl 3");
 
@@ -143,7 +145,7 @@ public class AILib: MonoBehaviour{
         }
         if(lvl2MonstersList.Count == 1 && lvl1MonstersList.Count >= 2){
             GetTopLevel1Monsters(lvl1MonstersList);
-            BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl2MonstersList[0]);
+            CheckIsOnField(lvl2MonstersList);
         }
     }
     public void Summonlvl2(List<CardMonster> lvl1MonstersList){
@@ -152,21 +154,42 @@ public class AILib: MonoBehaviour{
     }
     public void Summonlvl1(List<CardMonster> lvl1MonstersList){
         if(lvl1MonstersList.Count > 0){
-            BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl1MonstersList[0]);
+            CheckIsOnField(lvl1MonstersList);
         }
     }
 
     public void GetTopLevel3Monsters(List<CardMonster> lvl3MonstersList){
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl3MonstersList[0]);
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl3MonstersList[1]);
+        GetTopLevelInHandFromList(lvl3MonstersList);
     }
     public void GetTopLevel2Monsters(List<CardMonster> lvl2MonstersList){
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl2MonstersList[0]);
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl2MonstersList[1]);
+        GetTopLevelInHandFromList(lvl2MonstersList);
     }
     public void GetTopLevel1Monsters(List<CardMonster> lvl1MonstersList){
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl1MonstersList[0]);
-        BattleManager.Instance.CardSelector.AddCardToSelectedList(lvl1MonstersList[1]);
+        GetTopLevelInHandFromList(lvl1MonstersList);
+    }
+
+    private void CheckIsOnField(List<CardMonster> monsterList){
+        foreach(var monster in monsterList){
+            if(!monster.IsOnField()){
+                BattleManager.Instance.CardSelector.AddCardToSelectedList(monster);
+                break;
+            }
+        }
+    }
+
+    private void GetTopLevelInHandFromList(List<CardMonster> monsterList){
+        List<CardMonster> topMonstersOnHand = new();
+        foreach(var monster in monsterList){
+            if(!monster.IsOnField()){
+                topMonstersOnHand.Add(monster);
+            }
+        }
+
+        BattleManager.Instance.CardSelector.AddCardToSelectedList(topMonstersOnHand[0]);
+        
+        if(topMonstersOnHand.Count > 1){
+            BattleManager.Instance.CardSelector.AddCardToSelectedList(topMonstersOnHand[1]);
+        }
     }
 
 #endregion

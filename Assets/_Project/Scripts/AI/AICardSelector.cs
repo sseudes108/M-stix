@@ -25,6 +25,8 @@ public class AICardSelector : MonoBehaviour {
     private List<Card> _faceDownPlayerMonsters;
 
     private List<Card> _cardsInHand;
+
+
     public void StartCardSelection(){
         StartCoroutine(SelectCardsInEnemyHand());
     }
@@ -32,7 +34,7 @@ public class AICardSelector : MonoBehaviour {
     private IEnumerator SelectCardsInEnemyHand(){
         OrganizeCardsFromHand();
         AnalyzeMonstersOnField();
-        
+
         BattleManager.Instance.AIManager.CurrentArchetype.SelectCard(_AIMonstersOnField);
 
         yield return new WaitForSeconds(2f);
@@ -111,10 +113,11 @@ public class AICardSelector : MonoBehaviour {
             }
         }
 
+        // yield return new WaitForSeconds(0.5f);
         SetMonstersList();
     }
 
-    private void OrganizeCardsFromHand(){
+    public void OrganizeCardsFromHand(){
         _cardsInHand = BattleManager.Instance.EnemyHand.GetCardsInHand();
 
         _lvl1MonstersList = new();
@@ -126,34 +129,38 @@ public class AICardSelector : MonoBehaviour {
         _equipsList = new();
 
         foreach (var card in _cardsInHand){
-            if (card is CardMonster){
-                var monster = card as CardMonster;
-                switch (monster.GetLevel()){
-                    case 1:
-                        _lvl1MonstersList.Add(monster);
-                        break;
-                    case 2:
-                        _lvl2MonstersList.Add(monster);
-                        break;
-                    case 3:
-                        _lvl3MonstersList.Add(monster);
-                        break;
-                }
-            }else{
-                var arcane = card as CardArcane;
-                switch (arcane.GetArcaneType()){
-                    case EArcaneType.Field:
-                        _equipsList.Add(arcane);
-                        break;
-                    case EArcaneType.Equip:
-                        _equipsList.Add(arcane);
-                        break;
-                    case EArcaneType.Trap:
-                        _trapsList.Add(arcane);
-                        break;
+            if(card != null){
+                if (card is CardMonster){
+                    var monster = card as CardMonster;
+                    switch (monster.GetLevel()){
+                        case 1:
+                            _lvl1MonstersList.Add(monster);
+                            break;
+                        case 2:
+                            _lvl2MonstersList.Add(monster);
+                            break;
+                        case 3:
+                            _lvl3MonstersList.Add(monster);
+                            break;
+                    }
+                }else{
+                    var arcane = card as CardArcane;
+                    switch (arcane.GetArcaneType()){
+                        case EArcaneType.Field:
+                            _equipsList.Add(arcane);
+                            break;
+                        case EArcaneType.Equip:
+                            _equipsList.Add(arcane);
+                            break;
+                        case EArcaneType.Trap:
+                            _trapsList.Add(arcane);
+                            break;
+                    }
                 }
             }
         }
+
+        SetMonstersList();
     }
 
     private void SetMonstersList(){

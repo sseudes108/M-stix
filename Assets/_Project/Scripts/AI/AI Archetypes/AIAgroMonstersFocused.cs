@@ -16,6 +16,7 @@ public class AIAgroMonstersFocused : AIArchetype {
         List<BoardCardMonsterPlace> monstersOnBoard = new();
 
         BattleManager.Instance.AIManager.CardSelector.AnalyzeMonstersOnField();
+
         if(MonstersOnAIField.Count > 1){
             BattleManager.Instance.AILib.CheckBoardFusion(MonstersOnAIField, monsterToPutOnBoard);
         }
@@ -38,7 +39,6 @@ public class AIAgroMonstersFocused : AIArchetype {
                 positionInBoard = Random.Range(0, monsterBoardPlaces.Count);
             }while(monsterBoardPlaces[positionInBoard].GetComponentInChildren<BoardCardMonsterPlace>().GetCardInThisPlace() != null);
         }
-
         return positionInBoard;
     }
 

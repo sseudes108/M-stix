@@ -72,13 +72,8 @@ public class Card : MonoBehaviour {
     public void EnableCollider(){_collider.enabled = true;}
 
     public void MoveCard(Transform targetTransform){
-        if(targetTransform != null){
-            transform.SetParent(targetTransform);
-            MoveCard(targetTransform.position, targetTransform.rotation);
-        }
-
-        // transform.SetParent(targetTransform);
-        // MoveCard(targetTransform.position, targetTransform.rotation);
+        transform.SetParent(targetTransform);
+        MoveCard(targetTransform.position, targetTransform.rotation);
     }
 
     public void MoveCard(Vector3 targetPosition, Quaternion targetRotation){
