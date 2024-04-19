@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 public class AIAgroMonstersFocused : AIArchetype {
     
-    public override void SelectCard(List<CardMonster> monstersOnField){
-        // var traps = trapsList.Count;
-        // var fields = fieldsList.Count;
-        // var equips = equipsList.Count;
-
-        BattleManager.Instance.AILib.StrongestMonsterFusion(Lvl1MonstersList, Lvl2MonstersList, Lvl3MonstersList);
+    public override void SelectCard(){
+        if(CardsList.MonstersOnAIField.Count > 2){
+            BattleManager.Instance.AILib.CheckBoardForLowLevelFusion(CardsList);
+        }else{
+            BattleManager.Instance.AILib.StrongestMonsterFusion(CardsList);
+        }
     }
 
     public override int SelectMonsterPlaceOnBoard(List<Transform> monsterBoardPlaces, Card CardToPutOnBoard){
@@ -17,8 +17,8 @@ public class AIAgroMonstersFocused : AIArchetype {
 
         BattleManager.Instance.AIManager.CardSelector.AnalyzeMonstersOnField();
 
-        if(MonstersOnAIField.Count > 1){
-            BattleManager.Instance.AILib.CheckBoardFusion(MonstersOnAIField, monsterToPutOnBoard);
+        if(CardsList.MonstersOnAIField.Count > 1){
+            BattleManager.Instance.AILib.CheckBoardFusion(CardsList.MonstersOnAIField, monsterToPutOnBoard);
         }
 
         int positionInBoard;
@@ -42,39 +42,21 @@ public class AIAgroMonstersFocused : AIArchetype {
         return positionInBoard;
     }
 
-    public override int SelectMonsterMode(int atk, List<CardMonster> faceDownMonsters, List<CardMonster> faceUpMonsters, List<CardMonster> monstersInDefense, List<CardMonster> monstersInAttack){
-        Debug.Log("AIAgroMonstersFocused - SelectMonsterMode");
+    public override int SelectMonsterMode(CardMonster monster){
+        //0 = atk 1 = def
+        int atk = monster.GetAttack();
 
-        //Se houver monstros virados para cima
-        if (faceUpMonsters.Count > 0){
-            if (monstersInAttack.Count > 0){
-                //Vê qual o monstro mais forte do player em campo e virado para cima
-                faceUpMonsters.Sort((x, y) => y.GetAttack().CompareTo(x.GetAttack()));
-                if (atk >= faceUpMonsters[0].GetAttack()){
-                    return 0;
-                }else{
-                    return 1;
-                }
-
-            }else if (monstersInDefense.Count > 0){
-                //Vê qual o monstro com def mais forte do player em campo e virado para cima
-                faceUpMonsters.Sort((x, y) => y.GetDefense().CompareTo(x.GetDefense()));
-                if (atk >= faceUpMonsters[0].GetDefense()){
-                    return 1;
-                }else{
-                    return 0;
-                }
-            }
-
-        }else if (faceDownMonsters.Count > 0){
-            if (atk >= 3000){
-                return 0;
-            }else{
-                return 1;
-            }
+        if(CardsList.FaceUpPlayerMonsters.Count > 0){
+            CardsList.FaceUpPlayerMonsters.Sort((x,y) => y.GetAttack().CompareTo(x.GetAttack()));
         }
 
-        //Se nenhum caso for atendido, retorna atk por padrão
-        return 0;
+        if(atk >= CardsList.FaceUpPlayerMonsters[0].GetAttack()){
+            return 0;
+        }else{
+            return 1;
+        }
+
+        // //retorno atk padrão
+        // return 0;
     }
 }

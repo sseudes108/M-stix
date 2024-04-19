@@ -17,8 +17,8 @@ public class Testing : MonoBehaviour {
     
     [Header("AI Cards On Field")]
     [SerializeField] private List<CardMonster> _AIMonstersOnField;
-    [SerializeField] private List<Card> _faceUpAIMonsters;
-    [SerializeField] private List<Card> _faceDownAIMonsters;
+    [SerializeField] private List<CardMonster> _faceUpAIMonsters;
+    [SerializeField] private List<CardMonster> _faceDownAIMonsters;
 
     [Header("AI Monsters On Field")]
     [SerializeField] private List<CardMonster> _lvl4MonstersList;
@@ -27,8 +27,8 @@ public class Testing : MonoBehaviour {
     [SerializeField] private List<CardMonster> _lvl7MonstersList;
 
     [Header("Player Cards on Field")]
-    [SerializeField] private List<Card> _faceUpPlayerMonsters;
-    [SerializeField] private List<Card> _faceDownPlayerMonsters;
+    [SerializeField] private List<CardMonster> _faceUpPlayerMonsters;
+    [SerializeField] private List<CardMonster> _faceDownPlayerMonsters;
 
     private void Awake() {
         if(Instance == null){
@@ -54,30 +54,29 @@ public class Testing : MonoBehaviour {
         }
     }
 
-    public void UpdateLists(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList, List<CardMonster> lvl4MonstersList, List<CardMonster> lvl5MonstersList, List<CardMonster> lvl6MonstersList, List<CardMonster> lvl7MonstersList, List<CardArcane> trapsList, List<CardArcane> fieldsList, List<CardArcane> equipsList, List<CardMonster> AIMonstersOnField, List<Card> faceUpAIMonsters, List<Card> faceDownAIMonsters, List<Card> faceUpPlayerMonsters, List<Card> faceDownPlayerMonsters){
-
+    public void UpdateLists(AICardsList cardList){
         //Hand
-        _lvl1MonstersList = lvl1MonstersList;
-        _lvl2MonstersList = lvl2MonstersList;
-        _lvl3MonstersList = lvl3MonstersList;
-        _trapsList = trapsList ;
-        _fieldsList = fieldsList ;
-        _equipsList = equipsList ;
+        _lvl1MonstersList = cardList.Lvl1MonstersList;
+        _lvl2MonstersList = cardList.Lvl2MonstersList;
+        _lvl3MonstersList = cardList.Lvl3MonstersList;
+        _trapsList = cardList.TrapsList ;
+        _fieldsList = cardList.FieldsList ;
+        _equipsList = cardList.EquipsList ;
 
         //Field
-        _lvl4MonstersList = lvl4MonstersList;
-        _lvl5MonstersList = lvl5MonstersList;
-        _lvl6MonstersList = lvl6MonstersList;
-        _lvl7MonstersList = lvl7MonstersList;
+        _lvl4MonstersList = cardList.Lvl4MonstersList;
+        _lvl5MonstersList = cardList.Lvl5MonstersList;
+        _lvl6MonstersList = cardList.Lvl6MonstersList;
+        _lvl7MonstersList = cardList.Lvl7MonstersList;
 
         //AI
-        _AIMonstersOnField = AIMonstersOnField;
-        _faceUpAIMonsters = faceUpAIMonsters;
-        _faceDownAIMonsters = faceDownAIMonsters;
+        _AIMonstersOnField = cardList.MonstersOnAIField;
+        _faceUpAIMonsters = cardList.FaceUpAIMonsters;
+        _faceDownAIMonsters = cardList.FaceDownAIMonsters;
 
         //Player
-        _faceUpPlayerMonsters = faceUpPlayerMonsters;
-        _faceDownPlayerMonsters = faceDownPlayerMonsters;
+        _faceUpPlayerMonsters = cardList.FaceUpPlayerMonsters;
+        _faceDownPlayerMonsters = cardList.FaceDownPlayerMonsters;
     }
 
     public void UpdateBoardFusionLvl(int lvl){

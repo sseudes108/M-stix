@@ -56,6 +56,7 @@ public class AfterFusionSelections : MonoBehaviour {
             }
 
         }else{
+            //AI SELECTIONS
             if(_resultCard is CardMonster){
                 //Anima            
                 if(BattleManager.Instance.AIManager.AfterFusionSelector.AnimaSelection() == 0){

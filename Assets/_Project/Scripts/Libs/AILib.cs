@@ -1,45 +1,36 @@
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class AILib: MonoBehaviour{
+    // AICardsList CardsList;
 
     #region Summom Fusion Monsters
-    public void StrongestMonsterFusion(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList){
-        Debug.Log("StrongestMonsterFusion");
+    public void StrongestMonsterFusion(AICardsList cardsList){
+              
 
-        if(CanSummonlvl4(lvl1MonstersList.Count, lvl2MonstersList.Count, lvl3MonstersList.Count)){
-            Summonlvl4(lvl1MonstersList, lvl2MonstersList, lvl3MonstersList);
+        if(CanSummonlvl5(cardsList.Lvl2MonstersList.Count, cardsList.Lvl3MonstersList.Count, cardsList.Lvl4MonstersList.Count)){
+            Summonlvl5(cardsList.Lvl2MonstersList, cardsList.Lvl3MonstersList, cardsList.Lvl4MonstersList);
             return;
         }
 
-        if(CanSummonlvl3(lvl1MonstersList.Count, lvl2MonstersList.Count)){
-            Summonlvl3(lvl1MonstersList, lvl2MonstersList);
+        if(CanSummonlvl4(cardsList.Lvl1MonstersList.Count, cardsList.Lvl2MonstersList.Count, cardsList.Lvl3MonstersList.Count)){
+            Summonlvl4(cardsList.Lvl1MonstersList, cardsList.Lvl2MonstersList, cardsList.Lvl3MonstersList);
             return;
         }
 
-        if(CanSummonlvl2(lvl1MonstersList.Count)){
-            if(lvl3MonstersList.Count == 0){
-                Summonlvl2(lvl1MonstersList);
+        if(CanSummonlvl3(cardsList.Lvl1MonstersList.Count, cardsList.Lvl2MonstersList.Count)){
+            Summonlvl3(cardsList.Lvl1MonstersList, cardsList.Lvl2MonstersList);
+            return;
+        }
+
+        if(CanSummonlvl2(cardsList.Lvl1MonstersList.Count)){
+            if(cardsList.Lvl3MonstersList.Count == 0){
+                Summonlvl2(cardsList.Lvl1MonstersList);
             }else{
-                CheckIsOnField(lvl3MonstersList);
+                SelectFirstOfTheListInHand(cardsList.Lvl3MonstersList);
             }
             return;
         }
-
-        if(CanSummonlvl1(lvl1MonstersList)){
-            if(lvl3MonstersList.Count == 0 && lvl2MonstersList.Count == 0){
-                Summonlvl1(lvl1MonstersList);
-            }else{
-                if(lvl3MonstersList.Count > 0){
-                    CheckIsOnField(lvl3MonstersList);
-                }else if(lvl2MonstersList.Count > 0){
-                    CheckIsOnField(lvl2MonstersList);
-                }
-            }
-            return;
-        }
-
         // If got here, no monsters to summom
         Debug.LogError("No monsters to Summom");
     }
@@ -55,12 +46,21 @@ public class AILib: MonoBehaviour{
         Debug.Log("Can Summon lvl 6");
         return true;
     }
-    public bool CanSummonlvl5(){
-        Debug.Log("Can Summon lvl 5");
-        return true;
-    }
-    
 
+    public bool CanSummonlvl5(int lvl2MonstersList, int lvl3MonstersList, int lvl4MonstersList){
+        if(lvl4MonstersList > 1){
+            return true;
+        }
+
+        if(lvl4MonstersList == 1){
+            if(lvl3MonstersList >= 2){
+                return true;
+            }else if (lvl3MonstersList == 1 && lvl2MonstersList > 1){
+                return true;
+            }
+        }
+        return false;
+    }
     public bool CanSummonlvl4(int lvl1MonstersList, int lvl2MonstersList, int lvl3MonstersList){
         if(lvl3MonstersList > 1){
             return true;
@@ -105,12 +105,30 @@ public class AILib: MonoBehaviour{
 
     }
     public void Summonlvl6(){
-
-    }
-    public void Summonlvl5(){
         
     }
 
+    public void Summonlvl5(List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList, List<CardMonster> lvl4MonstersList){
+        //2nv4
+        if(lvl4MonstersList.Count > 1){
+            GetTopLevel4Monsters(lvl4MonstersList);
+        }
+        
+        //1 nv4
+        if(lvl4MonstersList.Count == 1){
+            if(lvl3MonstersList.Count >= 2){
+                // + 2nv3 = 1nv 5
+                GetTopLevel3Monsters(lvl3MonstersList);
+            }else if (lvl3MonstersList.Count == 1 && lvl2MonstersList.Count > 1){
+                // + 1nv3 + 2nv2
+                GetTopLevel3Monsters(lvl2MonstersList);
+                SelectFirstOfTheListInHand(lvl3MonstersList);
+            }
+
+            //+ 1nv4 = nv5
+            SelectFirstOfTheListInHand(lvl4MonstersList);
+        }
+    }
     public void Summonlvl4(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList, List<CardMonster> lvl3MonstersList){
         Debug.Log("Summom Lvl 4");
 
@@ -130,13 +148,12 @@ public class AILib: MonoBehaviour{
                 GetTopLevel1Monsters(lvl1MonstersList);
 
                 //add o lvl 2 para formar o 4
-                CheckIsOnField(lvl2MonstersList);
+                SelectFirstOfTheListInHand(lvl2MonstersList);
             }
             //Add lvl 3 para formar o 4
-            CheckIsOnField(lvl3MonstersList);
+            SelectFirstOfTheListInHand(lvl3MonstersList);
         }
     }
-
     public void Summonlvl3(List<CardMonster> lvl1MonstersList, List<CardMonster> lvl2MonstersList){
         Debug.Log("Summom Lvl 3");
 
@@ -145,7 +162,7 @@ public class AILib: MonoBehaviour{
         }
         if(lvl2MonstersList.Count == 1 && lvl1MonstersList.Count >= 2){
             GetTopLevel1Monsters(lvl1MonstersList);
-            CheckIsOnField(lvl2MonstersList);
+            SelectFirstOfTheListInHand(lvl2MonstersList);
         }
     }
     public void Summonlvl2(List<CardMonster> lvl1MonstersList){
@@ -154,10 +171,13 @@ public class AILib: MonoBehaviour{
     }
     public void Summonlvl1(List<CardMonster> lvl1MonstersList){
         if(lvl1MonstersList.Count > 0){
-            CheckIsOnField(lvl1MonstersList);
+            SelectFirstOfTheListInHand(lvl1MonstersList);
         }
     }
-
+     
+    public void GetTopLevel4Monsters(List<CardMonster> lvl4MonstersList){
+        GetTopLevelInHandFromList(lvl4MonstersList);
+    }
     public void GetTopLevel3Monsters(List<CardMonster> lvl3MonstersList){
         GetTopLevelInHandFromList(lvl3MonstersList);
     }
@@ -168,7 +188,7 @@ public class AILib: MonoBehaviour{
         GetTopLevelInHandFromList(lvl1MonstersList);
     }
 
-    private void CheckIsOnField(List<CardMonster> monsterList){
+    public void SelectFirstOfTheListInHand(List<CardMonster> monsterList){
         foreach(var monster in monsterList){
             if(!monster.IsOnField()){
                 BattleManager.Instance.CardSelector.AddCardToSelectedList(monster);
@@ -176,7 +196,6 @@ public class AILib: MonoBehaviour{
             }
         }
     }
-
     private void GetTopLevelInHandFromList(List<CardMonster> monsterList){
         List<CardMonster> topMonstersOnHand = new();
         foreach(var monster in monsterList){
@@ -210,4 +229,51 @@ public class AILib: MonoBehaviour{
         Testing.Instance.UpdateBoardFusionLvl(boardFusionLvl);
     }
 
+    public void CheckBoardForLowLevelFusion(AICardsList cardsList){
+        if (cardsList.OnFieldLevels.Contains(4)){
+            if (cardsList.Lvl4MonstersList.Count > 1){
+                SelectFirstOfTheListInHand(cardsList.Lvl4MonstersList);
+                return;
+            }else if (CanSummonlvl5(cardsList.Lvl2MonstersList.Count, cardsList.Lvl3MonstersList.Count, cardsList.Lvl4MonstersList.Count)){
+                Summonlvl5(cardsList.Lvl2MonstersList, cardsList.Lvl3MonstersList, cardsList.Lvl4MonstersList);
+                return;
+            }
+        }else if (cardsList.OnFieldLevels.Contains(3)){
+            if (cardsList.Lvl3MonstersList.Count > 1){
+                SelectFirstOfTheListInHand(cardsList.Lvl3MonstersList);
+                return;
+            }else if (CanSummonlvl4(cardsList.Lvl1MonstersList.Count, cardsList.Lvl2MonstersList.Count, cardsList.Lvl3MonstersList.Count)){
+                Summonlvl4(cardsList.Lvl1MonstersList, cardsList.Lvl2MonstersList, cardsList.Lvl3MonstersList);
+                return;
+            }
+        }else if (cardsList.OnFieldLevels.Contains(2)){
+            if (cardsList.Lvl2MonstersList.Count > 1){
+                SelectFirstOfTheListInHand(cardsList.Lvl2MonstersList);
+                return;
+            }
+        }
+        StrongestMonsterFusion(cardsList);
+    }
+}
+
+public struct AICardsList{
+    public List<CardMonster> Lvl1MonstersList;
+    public List<CardMonster> Lvl2MonstersList;
+    public List<CardMonster> Lvl3MonstersList;
+    public List<CardMonster> Lvl4MonstersList;
+    public List<CardMonster> Lvl5MonstersList;
+    public List<CardMonster> Lvl6MonstersList;
+    public List<CardMonster> Lvl7MonstersList;
+
+    public List<int> OnFieldLevels;
+
+    public List<CardMonster> MonstersOnAIField;
+    public List<CardMonster> FaceUpAIMonsters;
+    public List<CardMonster> FaceDownAIMonsters;
+    public List<CardMonster> FaceUpPlayerMonsters;
+    public List<CardMonster> FaceDownPlayerMonsters;
+
+    public List<CardArcane> TrapsList;
+    public List<CardArcane> FieldsList;
+    public List<CardArcane> EquipsList;
 }
