@@ -9,9 +9,7 @@ public class AICardSelector : MonoBehaviour {
     private List<CardMonster> _lvl2MonstersList;
     private List<CardMonster> _lvl3MonstersList;
     private List<CardMonster> _lvl4MonstersList;
-    private List<CardMonster> _lvl5MonstersList;
-    private List<CardMonster> _lvl6MonstersList;
-    private List<CardMonster> _lvl7MonstersList;
+
     private List<CardArcane> _trapsList;
     private List<CardArcane> _fieldsList;
     private List<CardArcane> _equipsList;
@@ -19,15 +17,24 @@ public class AICardSelector : MonoBehaviour {
     //monsters On Field
     private List<CardMonster> _AIMonstersOnField;
     private List<int> _OnFieldLevels;
-    private List<CardMonster> _faceUpAIMonsters;
-    private List<CardMonster> _faceDownAIMonsters;
-
-    private List<CardMonster> _faceUpPlayerMonsters;
-    private List<CardMonster> _faceDownPlayerMonsters;
-
     private List<Card> _cardsInHand;
-
     private AICardsList CardsList;
+
+    //AI
+    public List<CardArcane> _aiArcanesFaceDownOnField;
+    public List<CardArcane> _aiArcanesFaceUpOnField;
+    private List<CardMonster> _aiMonstersFaceUp;
+    private List<CardMonster> _aiMonstersFaceDown;
+
+    private List<CardMonster> _lvl5MonstersList;
+    private List<CardMonster> _lvl6MonstersList;
+    private List<CardMonster> _lvl7MonstersList;
+
+    //Player
+    public List<CardArcane> _playerArcanesFaceDownOnField;
+    public List<CardArcane> _playerArcanesFaceUpOnField;
+    private List<CardMonster> _playerMonstersFaceUp;
+    private List<CardMonster> _playerMonstersFaceDown;
 
     public void StartCardSelection(){
         StartCoroutine(SelectCardsInEnemyHand());
@@ -44,15 +51,15 @@ public class AICardSelector : MonoBehaviour {
     }
 
     public void AnalyzeMonstersOnField(){
-        var (playerMonstersPlaces, aiMonsterPlaces) = BattleManager.Instance.BoardPlaceManager.GetOcuppiedMonsterPlacesAI();
+        var (playerMonsterPlaces, aiMonsterPlaces) = BattleManager.Instance.BoardPlaceManager.GetOcuppiedMonsterPlacesAI();
+        var (playerArcanePlaces, aiArcanePlaces) = BattleManager.Instance.BoardPlaceManager.GetOcuppiedArcanePlacesAI();   
 
         //Ai monsters on field
         _AIMonstersOnField = new();
         _OnFieldLevels = new();
-        _faceUpAIMonsters = new();
-        _faceDownAIMonsters = new();
+        _aiMonstersFaceUp = new();
+        _aiMonstersFaceDown = new();
 
-        // _lvl4MonstersList = new();
         _lvl5MonstersList = new();
         _lvl6MonstersList = new();
         _lvl7MonstersList = new();
@@ -64,9 +71,9 @@ public class AICardSelector : MonoBehaviour {
 
             //Face
             if(!monster.IsFaceDown()){
-                _faceUpAIMonsters.Add(monster);
+                _aiMonstersFaceUp.Add(monster);
             }else{
-                _faceDownAIMonsters.Add(monster);
+                _aiMonstersFaceDown.Add(monster);
             }
 
             //Organize Levels
@@ -104,20 +111,32 @@ public class AICardSelector : MonoBehaviour {
         }
 
         //Player monsters on field
-        _faceUpPlayerMonsters = new();
-        _faceDownPlayerMonsters = new();
-        foreach(var place in playerMonstersPlaces){
+        _playerMonstersFaceUp = new();
+        _playerMonstersFaceDown = new();
+        foreach(var place in playerMonsterPlaces){
             var monster = place.GetCardInThisPlace() as CardMonster;
             if(monster != null){
                 if(!monster.IsFaceDown()){
-                    _faceUpPlayerMonsters.Add(monster);
+                    _playerMonstersFaceUp.Add(monster);
                 }else{
-                    _faceDownPlayerMonsters.Add(monster);
+                    _playerMonstersFaceDown.Add(monster);
                 }
             }
         }
 
-        // yield return new WaitForSeconds(0.5f);
+        
+        foreach(var card in playerArcanePlaces){
+            var arcane = card.GetCardInThisPlace() as CardArcane;
+            if(arcane != null){
+                if(arcane.IsFaceDown()){
+                    _playerArcanesFaceDownOnField.Add(arcane);
+                }else{
+                    _playerArcanesFaceUpOnField.Add(arcane);
+                }
+            }
+        }    
+        
+        
         SetMonstersList();
     }
 
@@ -155,7 +174,7 @@ public class AICardSelector : MonoBehaviour {
                     var arcane = card as CardArcane;
                     switch (arcane.GetArcaneType()){
                         case EArcaneType.Field:
-                            _equipsList.Add(arcane);
+                            _fieldsList.Add(arcane);
                             break;
                         case EArcaneType.Equip:
                             _equipsList.Add(arcane);
@@ -183,11 +202,18 @@ public class AICardSelector : MonoBehaviour {
         Lvl6MonstersList = _lvl6MonstersList,
         Lvl7MonstersList = _lvl7MonstersList,
 
-        FaceUpAIMonsters = _faceUpAIMonsters,
-        FaceDownAIMonsters = _faceDownAIMonsters,
-        FaceUpPlayerMonsters = _faceUpPlayerMonsters,
-        FaceDownPlayerMonsters = _faceUpPlayerMonsters,
+        AIMonstersFaceUp = _aiMonstersFaceUp,
+        AIMonstersFaceDown = _aiMonstersFaceDown,
+        AIArcanesFaceUp = _aiArcanesFaceUpOnField,
+        AIArcanesFaceDown = _aiArcanesFaceDownOnField,
+
+        PlayerMonstersFaceUp = _playerMonstersFaceUp,
+        PlayerMonstersFaceDown = _playerMonstersFaceDown,
+        PlayerArcanesFaceDown = _playerArcanesFaceDownOnField,
+        PlayerArcanesFaceUp = _playerArcanesFaceUpOnField,
+
         OnFieldLevels = _OnFieldLevels
+
         };
 
         BattleManager.Instance.AIManager.CurrentArchetype.SetCardList(CardsList);

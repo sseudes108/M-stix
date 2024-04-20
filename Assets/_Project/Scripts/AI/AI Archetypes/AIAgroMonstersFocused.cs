@@ -46,11 +46,15 @@ public class AIAgroMonstersFocused : AIArchetype {
         //0 = atk 1 = def
         int atk = monster.GetAttack();
 
-        if(CardsList.FaceUpPlayerMonsters.Count > 0){
-            CardsList.FaceUpPlayerMonsters.Sort((x,y) => y.GetAttack().CompareTo(x.GetAttack()));
+        if(CardsList.PlayerMonstersFaceUp.Count > 0){
+            CardsList.PlayerMonstersFaceUp.Sort((x,y) => y.GetAttack().CompareTo(x.GetAttack()));
         }
 
-        if(atk >= CardsList.FaceUpPlayerMonsters[0].GetAttack()){
+        //Se o ataq for menor que o tres mais fortes que o do player
+        if(atk >= CardsList.PlayerMonstersFaceUp[0].GetAttack()
+            || atk >= CardsList.PlayerMonstersFaceUp[1].GetAttack()
+            || atk >= CardsList.PlayerMonstersFaceUp[2].GetAttack()
+        ){
             return 0;
         }else{
             return 1;
@@ -58,5 +62,17 @@ public class AIAgroMonstersFocused : AIArchetype {
 
         // //retorno atk padrão
         // return 0;
+    }
+
+    public override int SelectCardFace(Card monster){
+        return 1;
+    }
+
+    public override void CheckAttack(){
+        var cardsOnField = BattleManager.Instance.AILib.GetCardsOnField();
+
+        if(cardsOnField.PlayerFaceUpMonsters.Count > 0 && cardsOnField.AIFaceUpMonsters.Count > 0){
+            Debug.Log("Chegou até aqui");
+        }
     }
 }

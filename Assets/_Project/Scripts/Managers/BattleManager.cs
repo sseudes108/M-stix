@@ -93,6 +93,7 @@ public class BattleManager : MonoBehaviour {
     public AIStateManager AIManager => _AIStateManager;
     public AIStateStandBy AIStandBy => _AIStateManager.AIStandby;
     public AIStateCardSelection AICardSelection => _AIStateManager.AICardSelection;
+    public AIStateAttack AIAttack => _AIStateManager.AIAttack;
 
     public AILib AILib => _AILib;
     

@@ -6,6 +6,7 @@ public class Testing : MonoBehaviour {
 
     public static Testing Instance;
     [SerializeField] private int _boardFusionLvl;
+    [SerializeField] private List<CardMonster> _AIMonstersOnField;
 
     [Header("AI Cards In Hand")]
     [SerializeField] private List<CardMonster> _lvl1MonstersList;
@@ -16,9 +17,11 @@ public class Testing : MonoBehaviour {
     [SerializeField] private List<CardArcane> _equipsList;
     
     [Header("AI Cards On Field")]
-    [SerializeField] private List<CardMonster> _AIMonstersOnField;
-    [SerializeField] private List<CardMonster> _faceUpAIMonsters;
-    [SerializeField] private List<CardMonster> _faceDownAIMonsters;
+
+    [SerializeField] private List<CardMonster> _aiMonstersFaceUp;
+    [SerializeField] private List<CardMonster> _aiMonstersFaceDown;
+    [SerializeField] private List<CardArcane> _aiArcanesFaceUp;
+    [SerializeField] private List<CardArcane> _aiArcanesFaceDown;
 
     [Header("AI Monsters On Field")]
     [SerializeField] private List<CardMonster> _lvl4MonstersList;
@@ -27,8 +30,10 @@ public class Testing : MonoBehaviour {
     [SerializeField] private List<CardMonster> _lvl7MonstersList;
 
     [Header("Player Cards on Field")]
-    [SerializeField] private List<CardMonster> _faceUpPlayerMonsters;
-    [SerializeField] private List<CardMonster> _faceDownPlayerMonsters;
+    [SerializeField] private List<CardMonster> _playerMonstersFaceUp;
+    [SerializeField] private List<CardMonster> _playerMonstersFaceDown;
+    [SerializeField] private List<CardArcane> _playerArcanesFaceUp;
+    [SerializeField] private List<CardArcane> _playerArcanesFaceDown;
 
     private void Awake() {
         if(Instance == null){
@@ -70,13 +75,16 @@ public class Testing : MonoBehaviour {
         _lvl7MonstersList = cardList.Lvl7MonstersList;
 
         //AI
-        _AIMonstersOnField = cardList.MonstersOnAIField;
-        _faceUpAIMonsters = cardList.FaceUpAIMonsters;
-        _faceDownAIMonsters = cardList.FaceDownAIMonsters;
+        _aiMonstersFaceUp = cardList.AIMonstersFaceUp;
+        _aiMonstersFaceDown = cardList.AIMonstersFaceDown;
+        _aiArcanesFaceUp = cardList.AIArcanesFaceUp;
+        _aiArcanesFaceDown = cardList.AIArcanesFaceDown;
 
         //Player
-        _faceUpPlayerMonsters = cardList.FaceUpPlayerMonsters;
-        _faceDownPlayerMonsters = cardList.FaceDownPlayerMonsters;
+        _playerMonstersFaceUp = cardList.PlayerMonstersFaceUp;
+        _playerMonstersFaceDown = cardList.PlayerMonstersFaceDown;
+        _playerArcanesFaceUp = cardList.PlayerArcanesFaceUp;
+        _playerArcanesFaceDown = cardList.PlayerArcanesFaceDown;
     }
 
     public void UpdateBoardFusionLvl(int lvl){

@@ -6,11 +6,13 @@ public class AIStateManager : MonoBehaviour {
     //States
     private AIStateStandBy _AIStateStandBy;
     private AIStateCardSelection _AIStateCardSelection;
+    private AIStateAttack _AIStateAttack;
 
     //Components
     private AICardSelector _AICardSelector;
     private AIAfterFusionSelector _AIAfterFusionSelector;
     private AIBoardPlaceSelector _AIBoardPlaceSelector;
+    private AIAttacker _AIAttacker;
 
     //Archetype
     private AIArchetype _currentArchetype;
@@ -20,6 +22,7 @@ public class AIStateManager : MonoBehaviour {
 
     private void Awake() {
         SetStates();
+        SetArchetypes();
         SetComponents();
     }
     
@@ -42,7 +45,11 @@ public class AIStateManager : MonoBehaviour {
     private void SetStates(){
         _AIStateCardSelection = new AIStateCardSelection();
         _AIStateStandBy = new AIStateStandBy();
+        _AIStateAttack = new AIStateAttack();
 
+    }
+
+    private void SetArchetypes(){
         _agroMonsterFocused = new AIAgroMonstersFocused();
     }
 
@@ -50,17 +57,24 @@ public class AIStateManager : MonoBehaviour {
         _AICardSelector = GetComponent<AICardSelector>();
         _AIAfterFusionSelector = GetComponentInChildren<AIAfterFusionSelector>();
         _AIBoardPlaceSelector = GetComponent<AIBoardPlaceSelector>();
+        _AIAttacker = GetComponent<AIAttacker>();
     }
 
-    //States
+#region Public References
+
+    // States
     public AIStateCardSelection AICardSelection => _AIStateCardSelection;
     public AIStateStandBy AIStandby => _AIStateStandBy;
+    public AIStateAttack AIAttack => _AIStateAttack;
 
-    //Components
+    // Components
     public AICardSelector CardSelector => _AICardSelector;
     public AIAfterFusionSelector AfterFusionSelector => _AIAfterFusionSelector;
     public AIBoardPlaceSelector BoardPlaceSelector => _AIBoardPlaceSelector;
+    public AIAttacker AIAttacker => _AIAttacker;
 
-    //Archetypes
+    // Archetypes
     public AIArchetype CurrentArchetype => _currentArchetype;
+
+#endregion
 }

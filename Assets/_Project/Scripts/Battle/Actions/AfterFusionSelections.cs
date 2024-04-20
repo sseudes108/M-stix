@@ -76,17 +76,16 @@ public class AfterFusionSelections : MonoBehaviour {
             //Face
                 //Not Fusioned Card
             if(!_resultCard.IsFusioned()){
-                if(BattleManager.Instance.AIManager.AfterFusionSelector.FaceSelection() == 0){
+                if(BattleManager.Instance.AIManager.AfterFusionSelector.FaceSelection(_resultCard) == 0){
                     FaceUpSelected();
                 }else{
-
                     FaceDownSelected();
                 }
             }else{
                 _resultCard.SetCardFaceUp();
             }
         }
-        
+
         SelectionFinished();
     }
 

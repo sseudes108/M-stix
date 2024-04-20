@@ -6,7 +6,6 @@ public class AILib: MonoBehaviour{
 
     #region Summom Fusion Monsters
     public void StrongestMonsterFusion(AICardsList cardsList){
-              
 
         if(CanSummonlvl5(cardsList.Lvl2MonstersList.Count, cardsList.Lvl3MonstersList.Count, cardsList.Lvl4MonstersList.Count)){
             Summonlvl5(cardsList.Lvl2MonstersList, cardsList.Lvl3MonstersList, cardsList.Lvl4MonstersList);
@@ -31,6 +30,7 @@ public class AILib: MonoBehaviour{
             }
             return;
         }
+
         // If got here, no monsters to summom
         Debug.LogError("No monsters to Summom");
     }
@@ -212,7 +212,6 @@ public class AILib: MonoBehaviour{
     }
 
 #endregion
-
     public void CheckBoardFusion(List<CardMonster> MonstersOnAIField, Card cardToFusion){
         var monsterLvl = cardToFusion.GetComponent<CardMonster>().GetLevel();
         foreach(var monster in MonstersOnAIField){
@@ -222,13 +221,11 @@ public class AILib: MonoBehaviour{
             }
         }
     }
-
     public void BoardFusionSetUp(bool boardFusion, int boardFusionLvl){
         BattleManager.Instance.AIManager.CurrentArchetype.BoardFusion = boardFusion;
         BattleManager.Instance.AIManager.CurrentArchetype.BoardFusionLvl = boardFusionLvl;
         Testing.Instance.UpdateBoardFusionLvl(boardFusionLvl);
     }
-
     public void CheckBoardForLowLevelFusion(AICardsList cardsList){
         if (cardsList.OnFieldLevels.Contains(4)){
             if (cardsList.Lvl4MonstersList.Count > 1){
@@ -254,26 +251,24 @@ public class AILib: MonoBehaviour{
         }
         StrongestMonsterFusion(cardsList);
     }
-}
 
-public struct AICardsList{
-    public List<CardMonster> Lvl1MonstersList;
-    public List<CardMonster> Lvl2MonstersList;
-    public List<CardMonster> Lvl3MonstersList;
-    public List<CardMonster> Lvl4MonstersList;
-    public List<CardMonster> Lvl5MonstersList;
-    public List<CardMonster> Lvl6MonstersList;
-    public List<CardMonster> Lvl7MonstersList;
+    public CardsOnField GetCardsOnField(){
+        var cards = BattleManager.Instance.AIManager.CurrentArchetype.GetCardsList();
 
-    public List<int> OnFieldLevels;
+        CardsOnField cardsOnField = new(){
+            //Monsters
+            AIFaceUpMonsters = cards.AIMonstersFaceUp,
+            AIFaceDownMonsters = cards.AIMonstersFaceDown,
+            AIFaceDownArcanesOnField = cards.AIArcanesFaceDown,
+            AIFaceUpArcanesOnField = cards.AIArcanesFaceUp,
 
-    public List<CardMonster> MonstersOnAIField;
-    public List<CardMonster> FaceUpAIMonsters;
-    public List<CardMonster> FaceDownAIMonsters;
-    public List<CardMonster> FaceUpPlayerMonsters;
-    public List<CardMonster> FaceDownPlayerMonsters;
+            //Arcanes
+            PlayerArcanesFaceDownOnField = cards.PlayerArcanesFaceDown,
+            PlayerArcanesFaceUpOnField = cards.PlayerArcanesFaceUp,
+            PlayerFaceUpMonsters = cards.PlayerMonstersFaceUp,
+            PlayerFaceDownMonsters = cards.PlayerMonstersFaceDown,
+        };
 
-    public List<CardArcane> TrapsList;
-    public List<CardArcane> FieldsList;
-    public List<CardArcane> EquipsList;
+        return cardsOnField;
+    }
 }

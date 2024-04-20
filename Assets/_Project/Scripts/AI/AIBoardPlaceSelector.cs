@@ -21,7 +21,7 @@ public class AIBoardPlaceSelector : MonoBehaviour {
         //
 
         yield return new WaitForSeconds(1f);
-        
+
         if(boarderPlace.IsFree()){
             boarderPlace.SetCardInPlace(resultCard);
         }else{

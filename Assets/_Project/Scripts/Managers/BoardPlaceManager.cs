@@ -144,7 +144,7 @@ public class BoardPlaceManager : MonoBehaviour {
         return AIMonstersOnBoard;
     }
 
-    //Used on the AI only
+# region Used on the AI only
     public (List<BoardCardMonsterPlace>, List<BoardCardMonsterPlace>) GetOcuppiedMonsterPlacesAI(){
         List<BoardCardMonsterPlace> playerMonsterPlaces = BattleManager.Instance.PlayerBoardPlaces.MonsterPlacements;
         List<BoardCardMonsterPlace> aiMonsterPlaces = BattleManager.Instance.EnemyBoardPlaces.MonsterPlacements;
@@ -166,7 +166,29 @@ public class BoardPlaceManager : MonoBehaviour {
 
         return (playerOcupiedPlaces, aiOcupiedPlaces);
     }
-    
+    public (List<BoardCardArcanePlace>, List<BoardCardArcanePlace>) GetOcuppiedArcanePlacesAI(){
+        List<BoardCardArcanePlace> playerArcanePlaces = BattleManager.Instance.PlayerBoardPlaces.ArcanePlacements;
+        List<BoardCardArcanePlace> aiArcanePlaces = BattleManager.Instance.EnemyBoardPlaces.ArcanePlacements;
+
+        List<BoardCardArcanePlace> playerOcupiedPlaces = new();
+        List<BoardCardArcanePlace> aiOcupiedPlaces = new();
+
+        foreach(var place in playerArcanePlaces){
+            if(!place.IsFree()){
+                playerOcupiedPlaces.Add(place);
+            }
+        }
+
+        foreach(var place in aiArcanePlaces){
+            if(!place.IsFree()){
+                aiOcupiedPlaces.Add(place);
+            }
+        }
+
+        return (playerOcupiedPlaces, aiOcupiedPlaces);
+    }
+#endregion
+
     public List<BoardCardMonsterPlace> GetOcuppiedMonsterPlaces(){
         List<BoardCardMonsterPlace> ocuppiedMonsterPlaces = new();
         List<BoardCardMonsterPlace> monsterPlaces;

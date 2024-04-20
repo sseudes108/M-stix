@@ -15,7 +15,8 @@ public class BattlePhaseAction : BattleAbstract {
         }
 
         if(!BattleManager.Instance.TurnManager.IsPlayerTurn()){
-            Wait();
+            // Wait();
+            BattleManager.Instance.AIManager.ChangeState(BattleManager.Instance.AIAttack);
         }else{
             //
         }
