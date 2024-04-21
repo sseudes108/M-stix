@@ -2,6 +2,6 @@ using UnityEngine;
 
 public class AIAttacker : MonoBehaviour {
     public void StartAttackSelection(){
-        BattleManager.Instance.AIManager.CurrentArchetype.CheckAttack();
+        BattleManager.Instance.AIManager.CurrentArchetype.StartCheckAttackRoutine();
     }
 }

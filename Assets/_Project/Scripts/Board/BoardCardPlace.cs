@@ -25,9 +25,9 @@ public abstract class BoardCardPlace : MonoBehaviour {
     }
     
     protected virtual void OnMouseOver() {
-        //Change ilustration in the ui hold card when the card itself has the collider off;
         var currentPhase = BattleManager.Instance.BattleStateManager.CurrentPhase;
 
+        //Change ilustration in the ui hold card when the card itself has the collider off;
         if(!_isFree){
             if(!_cardInThisPlace.IsFaceDown() || _cardInThisPlace.IsPlayerCard()){
                 if(_cardInThisPlace is CardMonster){
@@ -40,16 +40,20 @@ public abstract class BoardCardPlace : MonoBehaviour {
                 }
             }
 
-            if(currentPhase == BattleManager.Instance.ActionBattlePhase || currentPhase == BattleManager.Instance.AttackPhase && _canvas != null){
-                //Show flip button in the face down cards
-                if(_canvas != null){
-                    _canvas.SetActive(true);
-                    if(_cardInThisPlace.IsFaceDown()){
-                        _flipCard.gameObject.SetActive(true);
-                        _flipCard.onClick.AddListener(TriggerFlipCardEvent);
-                    }else{
-                        //Does not show on face up
-                        _flipCard.gameObject.SetActive(false);
+
+            //Change Mode Options
+            if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+                if(currentPhase == BattleManager.Instance.ActionBattlePhase || currentPhase == BattleManager.Instance.AttackPhase && _canvas != null){
+                    //Show flip button in the face down cards
+                    if(_canvas != null){
+                        _canvas.SetActive(true);
+                        if(_cardInThisPlace.IsFaceDown()){
+                            _flipCard.gameObject.SetActive(true);
+                            _flipCard.onClick.AddListener(TriggerFlipCardEvent);
+                        }else{
+                            //Does not show on face up
+                            _flipCard.gameObject.SetActive(false);
+                        }
                     }
                 }
             }
@@ -132,7 +136,7 @@ public abstract class BoardCardPlace : MonoBehaviour {
 
         if(card is CardMonster){
             var place = this as BoardCardMonsterPlace;
-            place._canChangeMode =  false;
+            place.BlockChangeModeAndAttack();
             TriggerMonsterSetOnBoardEvent();
         }
     }

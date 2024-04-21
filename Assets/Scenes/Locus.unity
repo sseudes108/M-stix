@@ -469,8 +469,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1302269360481372894}
   - {fileID: 1302269359016882064}
-  _canChangeMode: 1
-  _canAttack: 0
 --- !u!1 &64774718
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,8 +685,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1302269359090001321}
   - {fileID: 1302269360450568094}
-  _canChangeMode: 1
-  _canAttack: 0
 --- !u!1 &69887839
 GameObject:
   m_ObjectHideFlags: 0
@@ -4008,8 +4004,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1302269359359437319}
   - {fileID: 1302269360565386288}
-  _canChangeMode: 1
-  _canAttack: 0
 --- !u!1 &552194556
 GameObject:
   m_ObjectHideFlags: 0
@@ -5717,8 +5711,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1302269360496147959}
   - {fileID: 1302269360616670623}
-  _canChangeMode: 1
-  _canAttack: 0
 --- !u!1 &758539147
 GameObject:
   m_ObjectHideFlags: 0
@@ -10658,8 +10650,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1302269360413273332}
   - {fileID: 1302269359542028074}
-  _canChangeMode: 1
-  _canAttack: 0
 --- !u!1 &1490281192
 GameObject:
   m_ObjectHideFlags: 0
@@ -11810,8 +11800,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1302269359934844310}
   - {fileID: 1302269359609009376}
-  _canChangeMode: 1
-  _canAttack: 0
 --- !u!1 &1570567975
 GameObject:
   m_ObjectHideFlags: 0
@@ -13231,21 +13219,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boardFusionLvl: 0
+  _AIMonstersOnField: []
   _lvl1MonstersList: []
   _lvl2MonstersList: []
   _lvl3MonstersList: []
   _trapsList: []
   _fieldsList: []
   _equipsList: []
-  _AIMonstersOnField: []
-  _faceUpAIMonsters: []
-  _faceDownAIMonsters: []
+  _aiMonstersFaceUp: []
+  _aiMonstersFaceDown: []
+  _aiArcanesFaceUp: []
+  _aiArcanesFaceDown: []
   _lvl4MonstersList: []
   _lvl5MonstersList: []
   _lvl6MonstersList: []
   _lvl7MonstersList: []
-  _faceUpPlayerMonsters: []
-  _faceDownPlayerMonsters: []
+  _playerMonstersFaceUp: []
+  _playerMonstersFaceDown: []
+  _playerArcanesFaceUp: []
+  _playerArcanesFaceDown: []
 --- !u!4 &1802154166
 Transform:
   m_ObjectHideFlags: 0
@@ -13384,8 +13376,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1302269360610602458}
   - {fileID: 1302269359148579362}
-  _canChangeMode: 1
-  _canAttack: 0
 --- !u!1 &1856071677
 GameObject:
   m_ObjectHideFlags: 0
@@ -13584,8 +13574,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1302269359269803837}
   - {fileID: 1302269360656711069}
-  _canChangeMode: 1
-  _canAttack: 0
 --- !u!1 &1906227583
 GameObject:
   m_ObjectHideFlags: 0
@@ -14043,8 +14031,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1302269360556892467}
   - {fileID: 1302269360830679879}
-  _canChangeMode: 1
-  _canAttack: 0
 --- !u!1 &1950545270
 GameObject:
   m_ObjectHideFlags: 0
@@ -14952,6 +14938,7 @@ GameObject:
   - component: {fileID: 2024802547}
   - component: {fileID: 2024802549}
   - component: {fileID: 2024802548}
+  - component: {fileID: 2024802551}
   - component: {fileID: 2024802550}
   m_Layer: 0
   m_Name: AIManager
@@ -15000,6 +14987,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4e869871f859343823d1ce3c36abb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _aiArcanesFaceDownOnField: []
+  _aiArcanesFaceUpOnField: []
+  _playerArcanesFaceDownOnField: []
+  _playerArcanesFaceUpOnField: []
 --- !u!114 &2024802548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15034,6 +15025,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a5af9f25b9e697448e334a76136d3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2024802551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024802544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f8b23cd59972354390af27ff8e568a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2026863248
@@ -15745,8 +15748,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1302269358788270974}
   - {fileID: 1302269359167654851}
-  _canChangeMode: 1
-  _canAttack: 0
 --- !u!1 &2106969358
 GameObject:
   m_ObjectHideFlags: 0

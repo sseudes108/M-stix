@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class AIAgroMonstersFocused : AIArchetype {
-    
+
     public override void SelectCard(){
         if(CardsList.MonstersOnAIField.Count > 2){
             BattleManager.Instance.AILib.CheckBoardForLowLevelFusion(CardsList);
@@ -17,7 +18,7 @@ public class AIAgroMonstersFocused : AIArchetype {
 
         BattleManager.Instance.AIManager.CardSelector.AnalyzeMonstersOnField();
 
-        if(CardsList.MonstersOnAIField.Count > 1){
+        if(CardsList.MonstersOnAIField.Count > 2){
             BattleManager.Instance.AILib.CheckBoardFusion(CardsList.MonstersOnAIField, monsterToPutOnBoard);
         }
 
@@ -68,11 +69,70 @@ public class AIAgroMonstersFocused : AIArchetype {
         return 1;
     }
 
-    public override void CheckAttack(){
+    public override IEnumerator CheckAttackRoutine(){
+        CheckMonstersOnField(out List<CardMonster> monstersThatCanAttack, out List<CardMonster> targetsInAttack, out List<CardMonster> targetsInDefense);
+
+        if (monstersThatCanAttack.Count > 0){
+            monstersThatCanAttack.Sort((x, y) => y.GetAttack().CompareTo(x.GetAttack()));
+            targetsInAttack.Sort((x, y) => x.GetAttack().CompareTo(y.GetAttack()));
+
+            var boardPlaceAttacked = targetsInAttack[0].GetComponentInParent<BoardCardMonsterPlace>();
+            var boardPlaceAttacking = monstersThatCanAttack[0].GetComponentInParent<BoardCardMonsterPlace>();
+
+            boardPlaceAttacked.TriggerAttackMonsterEvent();
+
+            do{
+                if (targetsInAttack.Count > 0){
+                    foreach (var targetMonster in targetsInAttack){
+                        if (monstersThatCanAttack[0].GetAttack() > targetMonster.GetAttack()){
+                            BattleManager.Instance.ActionsManager.ActionAttack.StartMonsterBattle(boardPlaceAttacking, monstersThatCanAttack[0]);
+                            break;
+                        }
+                    }
+                }else if (targetsInDefense.Count > 0){
+                    foreach (var targetMonster in targetsInDefense){
+                        if (monstersThatCanAttack[0].GetDefense() > targetMonster.GetDefense()){
+                            BattleManager.Instance.ActionsManager.ActionAttack.StartMonsterBattle(boardPlaceAttacking, monstersThatCanAttack[0]);
+                            break;
+                        }
+                    }
+                }else{
+                    BattleManager.Instance.ActionsManager.ActionAttack.DirectAttack();
+                }
+                yield return new WaitForSeconds(5f);
+                CheckMonstersOnField(out monstersThatCanAttack, out targetsInAttack, out targetsInDefense);
+                yield return new WaitForSeconds(2f);
+            } while (monstersThatCanAttack.Count > 0);
+
+            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
+        }else{
+            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
+        }
+    }
+
+    private static void CheckMonstersOnField(out List<CardMonster> monstersThatCanAttack, out List<CardMonster> targetsInAttack, out List<CardMonster> targetsInDefense){
+
         var cardsOnField = BattleManager.Instance.AILib.GetCardsOnField();
 
-        if(cardsOnField.PlayerFaceUpMonsters.Count > 0 && cardsOnField.AIFaceUpMonsters.Count > 0){
-            Debug.Log("Chegou até aqui");
+        monstersThatCanAttack = new();
+        targetsInAttack = new();
+        targetsInDefense = new();
+
+        foreach (var monster in cardsOnField.AIFaceUpMonsters){
+            var boardPlace = monster.GetComponentInParent<BoardCardMonsterPlace>();
+            if(boardPlace != null){
+                if (boardPlace.CanAttack()){
+                    monstersThatCanAttack.Add(monster);
+                }
+            }
+        }
+
+        foreach (var monster in cardsOnField.PlayerFaceUpMonsters){
+            if (monster.IsInAttackMode()){
+                targetsInAttack.Add(monster);
+            }else{
+                targetsInDefense.Add(monster);
+            }
         }
     }
 }

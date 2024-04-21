@@ -253,6 +253,7 @@ public class AILib: MonoBehaviour{
     }
 
     public CardsOnField GetCardsOnField(){
+        BattleManager.Instance.AIManager.CardSelector.AnalyzeMonstersOnField();
         var cards = BattleManager.Instance.AIManager.CurrentArchetype.GetCardsList();
 
         CardsOnField cardsOnField = new(){
@@ -271,4 +272,6 @@ public class AILib: MonoBehaviour{
 
         return cardsOnField;
     }
+
+
 }
