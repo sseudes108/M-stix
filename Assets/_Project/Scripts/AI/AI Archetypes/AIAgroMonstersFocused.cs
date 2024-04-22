@@ -51,18 +51,13 @@ public class AIAgroMonstersFocused : AIArchetype {
             CardsList.PlayerMonstersFaceUp.Sort((x,y) => y.GetAttack().CompareTo(x.GetAttack()));
         }
 
-        //Se o ataq for menor que o tres mais fortes que o do player
-        if(atk >= CardsList.PlayerMonstersFaceUp[0].GetAttack()
-            || atk >= CardsList.PlayerMonstersFaceUp[1].GetAttack()
-            || atk >= CardsList.PlayerMonstersFaceUp[2].GetAttack()
-        ){
-            return 0;
-        }else{
+        foreach(var card in CardsList.PlayerMonstersFaceUp){
+            if(atk >= card.GetAttack()){
+                return 0;
+            }
             return 1;
         }
-
-        // //retorno atk padrão
-        // return 0;
+        return 0;
     }
 
     public override int SelectCardFace(Card monster){
@@ -72,42 +67,61 @@ public class AIAgroMonstersFocused : AIArchetype {
     public override IEnumerator CheckAttackRoutine(){
         CheckMonstersOnField(out List<CardMonster> monstersThatCanAttack, out List<CardMonster> targetsInAttack, out List<CardMonster> targetsInDefense);
 
-        if (monstersThatCanAttack.Count > 0){
-            monstersThatCanAttack.Sort((x, y) => y.GetAttack().CompareTo(x.GetAttack()));
-            targetsInAttack.Sort((x, y) => x.GetAttack().CompareTo(y.GetAttack()));
+        while(monstersThatCanAttack.Count > 0){
+            BoardCardMonsterPlace boardPlaceAttacking = ChooseAttackerAndTarget(monstersThatCanAttack, targetsInAttack, targetsInDefense);
 
-            var boardPlaceAttacked = targetsInAttack[0].GetComponentInParent<BoardCardMonsterPlace>();
-            var boardPlaceAttacking = monstersThatCanAttack[0].GetComponentInParent<BoardCardMonsterPlace>();
-
-            boardPlaceAttacked.TriggerAttackMonsterEvent();
-
-            do{
-                if (targetsInAttack.Count > 0){
-                    foreach (var targetMonster in targetsInAttack){
-                        if (monstersThatCanAttack[0].GetAttack() > targetMonster.GetAttack()){
-                            BattleManager.Instance.ActionsManager.ActionAttack.StartMonsterBattle(boardPlaceAttacking, monstersThatCanAttack[0]);
-                            break;
-                        }
+            if (targetsInAttack.Count > 0){
+                foreach (var targetMonster in targetsInAttack){
+                    if (monstersThatCanAttack[0].GetAttack() > targetMonster.GetAttack()){
+                        targetsInAttack.Remove(targetMonster);
+                        BattleManager.Instance.ActionsManager.ActionAttack.StartMonsterBattle(boardPlaceAttacking, monstersThatCanAttack[0]);
+                        break;
                     }
-                }else if (targetsInDefense.Count > 0){
-                    foreach (var targetMonster in targetsInDefense){
-                        if (monstersThatCanAttack[0].GetDefense() > targetMonster.GetDefense()){
-                            BattleManager.Instance.ActionsManager.ActionAttack.StartMonsterBattle(boardPlaceAttacking, monstersThatCanAttack[0]);
-                            break;
-                        }
-                    }
-                }else{
-                    BattleManager.Instance.ActionsManager.ActionAttack.DirectAttack();
                 }
-                yield return new WaitForSeconds(5f);
-                CheckMonstersOnField(out monstersThatCanAttack, out targetsInAttack, out targetsInDefense);
-                yield return new WaitForSeconds(2f);
-            } while (monstersThatCanAttack.Count > 0);
-
-            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
-        }else{
-            BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
+            }else if (targetsInDefense.Count > 0){
+                foreach (var targetMonster in targetsInDefense){
+                    if (monstersThatCanAttack[0].GetAttack() > targetMonster.GetDefense()){
+                        targetsInDefense.Remove(targetMonster);
+                        BattleManager.Instance.ActionsManager.ActionAttack.StartMonsterBattle(boardPlaceAttacking, monstersThatCanAttack[0]);
+                        break;
+                    }
+                }
+            }else{
+                BattleManager.Instance.ActionsManager.ActionAttack.DirectAttack();
+            }
+            monstersThatCanAttack.Remove(monstersThatCanAttack[0]);
+            yield return new WaitForSeconds(5f);
         }
+
+        BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.EndPhase);
+    }
+
+    private static BoardCardMonsterPlace ChooseAttackerAndTarget(List<CardMonster> monstersThatCanAttack, List<CardMonster> targetsInAttack, List<CardMonster> targetsInDefense){
+        monstersThatCanAttack.Sort((x, y) => y.GetAttack().CompareTo(x.GetAttack()));
+        targetsInAttack.Sort((x, y) => y.GetAttack().CompareTo(x.GetAttack()));
+        targetsInDefense.Sort((x, y) => y.GetDefense().CompareTo(x.GetDefense()));
+
+        BoardCardMonsterPlace boardPlaceAttacked = null;
+
+        //Nada em atk mais de 0 em def
+        if(targetsInAttack.Count == 0 && targetsInDefense.Count > 0){
+            boardPlaceAttacked = targetsInDefense[0].GetComponentInParent<BoardCardMonsterPlace>();
+
+            //Mais de um em atk
+        }else if(targetsInAttack.Count > 0){
+            boardPlaceAttacked = targetsInAttack[0].GetComponentInParent<BoardCardMonsterPlace>();
+
+            //Direct attack
+        }else if(targetsInAttack.Count == 0 && targetsInDefense.Count == 0){
+            var randPlace = Random.Range(0,BattleManager.Instance.PlayerBoardPlaces.MonsterPlacements.Count);
+            boardPlaceAttacked = BattleManager.Instance.PlayerBoardPlaces.MonsterPlacements[randPlace];
+        }
+        
+        // var boardPlaceAttacked = targetsInAttack[0].GetComponentInParent<BoardCardMonsterPlace>();
+        var boardPlaceAttacking = monstersThatCanAttack[0].GetComponentInParent<BoardCardMonsterPlace>();
+
+        boardPlaceAttacked.TriggerAttackMonsterEvent();
+        return boardPlaceAttacking;
     }
 
     private static void CheckMonstersOnField(out List<CardMonster> monstersThatCanAttack, out List<CardMonster> targetsInAttack, out List<CardMonster> targetsInDefense){

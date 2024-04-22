@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AILib: MonoBehaviour{
-    // AICardsList CardsList;
 
-    #region Summom Fusion Monsters
+    #region Summom && Summom Fusion
     public void StrongestMonsterFusion(AICardsList cardsList){
 
         if(CanSummonlvl5(cardsList.Lvl2MonstersList.Count, cardsList.Lvl3MonstersList.Count, cardsList.Lvl4MonstersList.Count)){
@@ -212,6 +211,8 @@ public class AILib: MonoBehaviour{
     }
 
 #endregion
+    
+    #region Board Fusion
     public void CheckBoardFusion(List<CardMonster> MonstersOnAIField, Card cardToFusion){
         var monsterLvl = cardToFusion.GetComponent<CardMonster>().GetLevel();
         foreach(var monster in MonstersOnAIField){
@@ -251,7 +252,8 @@ public class AILib: MonoBehaviour{
         }
         StrongestMonsterFusion(cardsList);
     }
-
+    
+    #endregion
     public CardsOnField GetCardsOnField(){
         BattleManager.Instance.AIManager.CardSelector.AnalyzeMonstersOnField();
         var cards = BattleManager.Instance.AIManager.CurrentArchetype.GetCardsList();
@@ -272,6 +274,4 @@ public class AILib: MonoBehaviour{
 
         return cardsOnField;
     }
-
-
 }

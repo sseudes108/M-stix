@@ -129,11 +129,13 @@ public class BoardCardMonsterPlace : BoardCardPlace {
 
     public void TriggerAttackMonsterEvent(){
         var monster = _cardInThisPlace as CardMonster;
-
-        if(!monster.IsAttacking()){
-            BlockChangeModeAndAttack();
-            monster.SetMonsterAttacking(true);
-            OnAttack?.Invoke(this, monster);
+        
+        if(monster != null){
+            if(!monster.IsAttacking()){
+                BlockChangeModeAndAttack();
+                monster.SetMonsterAttacking(true);
+                OnAttack?.Invoke(this, monster);
+            }
         }
     }
 }
