@@ -8,6 +8,19 @@ public class FusionPositions : MonoBehaviour {
 
     public Transform HandOffCameraPosition => _handOffCameraPosition;
     public Transform HandDefaultPosition => _defaultHandPosition;
+
+
+    private void OnEnable() {
+        BattlePhaseBoardPlaceSelection.OnBoardPlaceSelection += BattlePhaseBoardPlaceSelection_OnBoardPlaceSelection;
+    }
+
+    private void OnDisable() {
+        BattlePhaseBoardPlaceSelection.OnBoardPlaceSelection += BattlePhaseBoardPlaceSelection_OnBoardPlaceSelection;
+    }
+
+    private void BattlePhaseBoardPlaceSelection_OnBoardPlaceSelection(Card card){
+        MoveCardToBoardPlaceSelectionPos(card);
+    }
     
     public Transform ResultCardPosistion(){
         if(BattleManager.Instance.TurnManager.IsPlayerTurn()){

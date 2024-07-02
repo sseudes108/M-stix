@@ -3,6 +3,18 @@ using UnityEngine;
 
 public class AIBoardPlaceSelector : MonoBehaviour {
 
+    private void OnEnable() {
+        BattlePhaseBoardPlaceSelection.OnBoardPlaceSelection += BattlePhaseBoardPlaceSelection_OnBoardPlaceSelection;
+    }
+
+    private void OnDisable() {
+        BattlePhaseBoardPlaceSelection.OnBoardPlaceSelection += BattlePhaseBoardPlaceSelection_OnBoardPlaceSelection;
+    }
+
+    private void BattlePhaseBoardPlaceSelection_OnBoardPlaceSelection(Card card){
+        StartBoardPlaceSelection(card);
+    }
+
     public void StartBoardPlaceSelection(Card resultCard){
         StartCoroutine(BoardPlaceSelectionRoutine(resultCard));
     }

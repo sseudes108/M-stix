@@ -2,16 +2,24 @@ using System.Collections;
 using UnityEngine;
 
 public class HealthManager : MonoBehaviour {
-    
     [SerializeField] private int _maxHP;
     private int _playerHP;
     private int _enemyHP;
 
-    public void StartFillHPRoutine(){
+    private void OnEnable() {
+        BattlePhaseStart.OnBattleStart += BattlePhaseStart_OnBattleStart;
+    }
+
+    private void OnDisable() {
+        BattlePhaseStart.OnBattleStart -= BattlePhaseStart_OnBattleStart;
+    }
+
+    private void BattlePhaseStart_OnBattleStart(){
         StartCoroutine(FillHP());
     }
 
     private IEnumerator FillHP(){
+        Debug.Log("FillHP()");
         _playerHP = 0;
         _enemyHP = 0;
         do{

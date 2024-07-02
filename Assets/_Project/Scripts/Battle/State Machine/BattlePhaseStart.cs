@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class BattlePhaseStart : BattleAbstract{
+    public static Action OnBattleStart;
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Start);
         
@@ -14,18 +16,15 @@ public class BattlePhaseStart : BattleAbstract{
 
     public override void Update(){}
     
+    public override void ExitState(){}
 
-    public override void ExitState(){
-        
-    }
     public void StartBattle(){
         BattleManager.Instance.BattleStateManager.StartCoroutine(InitializationRoutine());
     }
 
     private IEnumerator InitializationRoutine(){
         yield return new WaitForSeconds(1f);
-        BattleManager.Instance.BoardPlaceVisuals.LightUpAllPlaces();
-        BattleManager.Instance.HealthManager.StartFillHPRoutine();
+        OnBattleStart?.Invoke();
         
         yield return new WaitForSeconds(1.2f);
         BattleManager.Instance.BattleStateManager.ChangeState(BattleManager.Instance.DrawPhase);

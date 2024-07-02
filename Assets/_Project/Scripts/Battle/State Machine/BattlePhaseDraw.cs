@@ -1,16 +1,16 @@
-using System.Collections;
 using UnityEngine;
 
 public class BattlePhaseDraw : BattleAbstract {
     public override void EnterState(){
         BattleManager.Instance.BattleStateManager.SetBattlePhase(EStateMachinePhase.Draw);
-
+        Debug.Log(_currentTurn);
+        Debug.Log(BattleManager.Instance.TurnManager.GetTurn());
         //First Turn
         if(BattleManager.Instance.TurnManager.GetTurn() == 1){
             BattleManager.Instance.PlayerHand.DrawCards();
             BattleManager.Instance.EnemyHand.DrawCards();
 
-        }else if(BattleManager.Instance.TurnManager.IsPlayerTurn()){
+        }else if(_playerTurn){
             //player turn
             BattleManager.Instance.PlayerHand.DrawCards();
         }else{

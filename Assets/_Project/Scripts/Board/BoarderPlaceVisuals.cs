@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class BoardPlaceVisuals : MonoBehaviour {
@@ -8,6 +10,30 @@ public class BoardPlaceVisuals : MonoBehaviour {
 
     List<BoardCardMonsterPlace> _enemyMonsterPlaces;
     List<BoardCardArcanePlace> _enemyArcanePlaces;
+
+    private void OnEnable() {
+        BattlePhaseStart.OnBattleStart += BattlePhaseStart_OnBattleStart;
+        BattlePhaseBoardPlaceSelection.OnBoardPlaceSelection += BattlePhaseBoardPlaceSelection_OnBoardPlaceSelection;
+        BattlePhaseBoardPlaceSelection.OnBoardSelectionEnd += BattlePhaseBoardPlaceSelection_OnBoardSelectionEnd;
+    }
+
+    private void OnDisable() {
+        BattlePhaseStart.OnBattleStart -= BattlePhaseStart_OnBattleStart;
+        BattlePhaseBoardPlaceSelection.OnBoardPlaceSelection += BattlePhaseBoardPlaceSelection_OnBoardPlaceSelection;
+        BattlePhaseBoardPlaceSelection.OnBoardSelectionEnd += BattlePhaseBoardPlaceSelection_OnBoardSelectionEnd;
+    }
+
+    private void BattlePhaseStart_OnBattleStart(){
+        LightUpAllPlaces();
+    }
+
+    private void BattlePhaseBoardPlaceSelection_OnBoardPlaceSelection(Card card){
+        HighLightSelectionPhase(card);
+    }
+
+    private void BattlePhaseBoardPlaceSelection_OnBoardSelectionEnd(){
+        ResetPlaceHighlightColor();
+    }
 
     private void Start() {
         _playerMonsterPlaces = BattleManager.Instance.PlayerBoardPlaces.MonsterPlacements;

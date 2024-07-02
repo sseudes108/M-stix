@@ -24,8 +24,7 @@ public class BattlePhaseStateManager : MonoBehaviour {
     }
 
     private void Start() {
-        _currentState = _startPhase;
-        _currentState.EnterState();
+        ChangeState(_startPhase);
     }
 
     private void Update(){
@@ -33,9 +32,10 @@ public class BattlePhaseStateManager : MonoBehaviour {
     }
 
     public void ChangeState(BattleAbstract newState){
-        _currentState.ExitState();
+        _currentState?.ExitState();
         _currentState = newState;
         _currentState.EnterState();
+        _currentState.SetTurn();
         UpdateCurrentPhase();
     }
 

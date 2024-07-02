@@ -6,6 +6,18 @@ public class CardSelector : MonoBehaviour {
     [SerializeField] private List<Card> _selectedPlayerCards;
     [SerializeField] private List<Card> _selectedEnemyCards;
 
+    private void OnEnable() {
+        BattlePhaseBoardPlaceSelection.OnBoardSelectionEnd += BattlePhaseBoardPlaceSelection_OnBoardSelectionEnd;
+    }
+
+    private void OnDisable() {
+        BattlePhaseBoardPlaceSelection.OnBoardSelectionEnd += BattlePhaseBoardPlaceSelection_OnBoardSelectionEnd;
+    }
+
+    private void BattlePhaseBoardPlaceSelection_OnBoardSelectionEnd(){
+        ClearSelectedlist();
+    }
+
     public void AddCardToSelectedList(Card selectedCard){
         if(selectedCard.IsPlayerCard()){
             _selectedCards = _selectedPlayerCards;
