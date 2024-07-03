@@ -1,0 +1,28 @@
+Start
+Draw
+Card Sel. 
+Fusion
+Selections
+Board Place Sel. 
+Action
+Attack
+Damage
+Action Two
+End        
+
+
+#region Unity Methods
+#endregion
+#region Events Methods
+#endregion
+#region Custom Methods Methods
+#endregion
+
+
+private void OnEnable() {
+
+}
+
+private void OnDisable() {
+
+}
