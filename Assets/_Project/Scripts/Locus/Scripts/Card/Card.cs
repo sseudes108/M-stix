@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Card : MonoBehaviour {
     public static Action<Card> OnCardSelected;
     public static Action<Card> OnCardDeselected;
-
     public static Action<Texture2D> OnMouseOverCard;
 
     public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serielized;. Needs to be public or otherwise it became null at the instatiation moment.
@@ -19,6 +18,9 @@ public abstract class Card : MonoBehaviour {
     private bool _isOnHand = false;
     private bool _isSelected = false;
     public bool FusionedCard { get; private set; } = false;
+
+    public Transform _model;
+    public Transform _status;
 
 #region Unity Methods
 
@@ -35,6 +37,8 @@ public abstract class Card : MonoBehaviour {
     private void Awake() {
         CardVisual = GetComponent<CardVisual>();
         _cardMovement = GetComponent<CardMovement>();
+        _model = transform.Find("Visuals/Model");
+        _status = transform.Find("Canvas");
     }
 
     private void Start(){
@@ -49,12 +53,12 @@ public abstract class Card : MonoBehaviour {
             Vector3 newPos;
             if(!_isSelected){
                 newPos = new (0,+0.3f,0);
-                CardVisual.Shader.SetBorderColor(new Color(191, 162, 57));
+                CardVisual.Border.SetBorderColor(new Color(191, 162, 57));
                 _isSelected = true;
                 OnCardSelected?.Invoke(this);
             }else{
                 newPos = new (0,-0.3f,0);
-                CardVisual.Shader.ResetBorderColor();
+                CardVisual.Border.ResetBorderColor();
                 _isSelected = false;
                 OnCardDeselected?.Invoke(this);
             }
@@ -108,25 +112,29 @@ public abstract class Card : MonoBehaviour {
         FusionedCard = true;
     }
 
+    public void MoveCard(Vector3 position){
+        _cardMovement.SetTargetPosition(position, 5f);
+        _cardMovement.SetTargetRotation(Quaternion.identity);
+    }
+
     public void MoveCard(Transform targetTransform){
         transform.SetParent(targetTransform);
         _cardMovement.AllowMovement(true);
         _cardMovement.SetTargetPosition(targetTransform.position, 5f);
         _cardMovement.SetTargetRotation(targetTransform.rotation);
     }
-
-    public void EnableModelVisual(){
-        CardVisual.Renderer.gameObject.SetActive(true);
-    }
-
-    public void DisableModelVisual(){
-        CardVisual.Renderer.gameObject.SetActive(false);
-    }
-
+    
     public void DestroyCard(){
         Destroy(gameObject);
     }
 
-#endregion
+    public void EnableStatCanvas(){
+        _status.gameObject.SetActive(true);
+    }
+    
+    public void DisableStatCanvas(){
+        _status.gameObject.SetActive(false);
+    }
 
+#endregion
 }

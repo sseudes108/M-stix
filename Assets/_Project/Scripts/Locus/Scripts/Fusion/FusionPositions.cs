@@ -16,49 +16,55 @@ public class FusionPositions : MonoBehaviour {
     private void OnEnable() {
         FusionPhase.OnStartFusion += FusionPhase_OnStartFusion;
         Fusion.OnMergeCards += Fusion_OnMergeCards;
-        Fusion.OnFusionFinished += FusionPhase_OnFusionFinished;
+        Fusion.OnFusionRoutineFinished += Fusion_OnFusionRoutineFinished;
+        Fusion.OnFusionEnd += Fusion_OnFusionEnd;
     }
 
     private void OnDisable() {
         FusionPhase.OnStartFusion -= FusionPhase_OnStartFusion;
         Fusion.OnMergeCards -= Fusion_OnMergeCards;
-        Fusion.OnFusionFinished -= FusionPhase_OnFusionFinished;
+        Fusion.OnFusionRoutineFinished -= Fusion_OnFusionRoutineFinished;
+        Fusion.OnFusionEnd -= Fusion_OnFusionEnd;
     }
 
-    private void FusionPhase_OnFusionFinished(Card card, bool isPlayerTurn){
+    private void Fusion_OnFusionEnd(Card card, bool isPlayerTurn){
+        Debug.Log("Fusion_OnFusionEnd");
+        MoveCardToBoardPlaceSelectionSpot(card, isPlayerTurn);
+    }
+
+    private void MoveCardToBoardPlaceSelectionSpot(Card card, bool isPlayerTurn){
+        if(isPlayerTurn){
+            _boardSelectionPlace = _playerBoardSelectionPlace;
+        }else{
+            _boardSelectionPlace = _enemyBoardSelectionPlace;
+        }
+
+        card.MoveCard(_boardSelectionPlace);
+    }
+
+    private void Fusion_OnFusionRoutineFinished(Card card, bool isPlayerTurn){
+        MoveCardToResultPosition(card, isPlayerTurn);
+    }
+
+    private void MoveCardToResultPosition(Card card, bool isPlayerTurn){
         if(isPlayerTurn){
             _resultCardPosition = _playerResultCardPosition;
         }else{
             _resultCardPosition = _enemyResultCardPosition;
         }
 
-        card.MoveCard(_playerResultCardPosition);
+        card.MoveCard(_resultCardPosition);
     }
 
     private void Fusion_OnMergeCards(List<Card> cards, bool isPlayerTurn){
-        if(isPlayerTurn){
-            _resultCardPosition = _playerResultCardPosition;
-        }else{
-            _resultCardPosition = _enemyResultCardPosition;
-        }
-
-        foreach(var card in cards){
-            card.MoveCard(_resultCardPosition);
-        }
-        // MergeCards(cards, isPlayerTurn);
+        MoveCardsToMergePosition(cards, isPlayerTurn);
     }
 
-    // public void MergeCards(List<Card> cardsToMove, bool isPlayerTurn){
-    //     if(isPlayerTurn){
-    //         _resultCardPosition = _playerResultCardPosition;
-    //     }else{
-    //         _resultCardPosition = _enemyResultCardPosition;
-    //     }
-
-    //     foreach(var card in cardsToMove){
-    //         card.MoveCard(_resultCardPosition);
-    //     }
-    // }
+    private void MoveCardsToMergePosition(List<Card> cards, bool isPlayerTurn){
+        foreach(var card in cards){
+            MoveCardToResultPosition(card, isPlayerTurn);
+        }
+    }
 
     private void FusionPhase_OnStartFusion(List<Card> cards, bool isPlayerTurn){
         MoveCardToFusionPosition(cards, isPlayerTurn);
@@ -75,7 +81,7 @@ public class FusionPositions : MonoBehaviour {
 
         foreach(var card in cards){
             card.MoveCard(_linePositions[cardIndex]);
-            card.CardVisual.Shader.ResetBorderColor();
+            card.CardVisual.Border.ResetBorderColor();
             cardIndex++;
         }
     }

@@ -8917,6 +8917,7 @@ GameObject:
   - component: {fileID: 2111008765}
   - component: {fileID: 2111008767}
   - component: {fileID: 2111008766}
+  - component: {fileID: 2111008768}
   m_Layer: 0
   m_Name: Fusion Manager
   m_TagString: Untagged
@@ -8980,6 +8981,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fusionLine: []
+--- !u!114 &2111008768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111008764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24dd45cf4252bb843a1790447e2f2e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fusionLine: []
+  _strongestTypeList: []
 --- !u!114 &2122399292
 MonoBehaviour:
   m_ObjectHideFlags: 0

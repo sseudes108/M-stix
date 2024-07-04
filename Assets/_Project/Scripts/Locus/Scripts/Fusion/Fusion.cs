@@ -7,10 +7,11 @@ using UnityEngine;
 public class Fusion : MonoBehaviour {
     public static Action<MonsterCard, MonsterCard> OnMonsterFusion;
     public static Action OnEquipFusion;
-    public static Action OnArcaneFusion;
+    public static Action<ArcaneCard, ArcaneCard> OnArcaneFusion;
     public static Action<Card, Card> OnFusionFailed;
     public static Action<Card, Card, Card> OnFusionSucess;
-    public static Action<Card, bool> OnFusionFinished;
+    public static Action<Card, bool> OnFusionRoutineFinished;
+    public static Action<Card, bool> OnFusionEnd;
     public static Action<List<Card>, bool> OnMergeCards;
 
     private bool _isPlayerTurn;
@@ -29,27 +30,19 @@ public class Fusion : MonoBehaviour {
         OnFusionSucess += Fusion_OnFusionSucess;
     }
 
-    
-
     public void FusionPhase_OnStartFusion(List<Card> selectedCardList, bool isPLayerTurn){
         _isPlayerTurn = isPLayerTurn;
         StartCoroutine(FusionRoutine(selectedCardList));
     }
 
     private void Fusion_OnFusionSucess(Card card1, Card card2, Card resultCard){
-        Debug.Log("Fusion_OnFusionSucess Called");
-        if(this != null){
-            StartCoroutine(FusionSucessRoutine(card1, card2, resultCard));
-        }else{
-            Debug.Log($"Destroy Fusion Instance ID <color=yellow>{this.GetInstanceID()}</color=yellow>");
-            Destroy(this);
-        }
-        // StartCoroutine(FusionSucessRoutine(card1, card2, resultCard));
+        if(this == null) { return; }
+        StartCoroutine(FusionSucessRoutine(card1, card2, resultCard));
     }
 
     public void Fusion_OnFusionFailed(Card card1, Card card2){
         Debug.Log("Fusion_OnFusionFailed Called");
-       StartCoroutine(FusionFailedRoutine(card1, card2));
+        StartCoroutine(FusionFailedRoutine(card1, card2));
     }
 
     private IEnumerator FusionRoutine(List<Card> selectedCardList){
@@ -78,32 +71,43 @@ public class Fusion : MonoBehaviour {
                 //Equal types
                 if(cardType1 == cardType2){
                     //Monster x Monster
+                    yield return new WaitForSeconds(2f);
                     if(card1 is MonsterCard){
                         //Fusion Monster
                         OnMonsterFusion?.Invoke(card1 as MonsterCard, card2 as MonsterCard);
                         yield return null;
                         RemoveCardsFromFusionLine(card1, card2);
-
                         //Time for the Monster fusion Coroutine finish
                         yield return new WaitForSeconds(2f);
                     }else{
                         //Arcane Fusion
+                        OnArcaneFusion?.Invoke(card1 as ArcaneCard, card2 as ArcaneCard);
+                        yield return null;
+
+                        RemoveCardsFromFusionLine(card1, card2);
+                        yield return new WaitForSeconds(2f);
                     }
                 }
-            }while(selectedCardList.Count > 0);
-
-        }else{
-
+            }while(selectedCardList.Count > 1);
+        }else if(selectedCardList.Count == 1){
+            _resultCard = selectedCardList[0];
+            yield return null;
+            OnFusionRoutineFinished?.Invoke(_resultCard, _isPlayerTurn);
         }
+        yield return new WaitForSeconds(2f);
+        OnFusionEnd?.Invoke(_resultCard, _isPlayerTurn);
+        yield return null;
     }
 
     private void RemoveCardsFromFusionLine(Card card1, Card card2){
         _fusionLine.Remove(card1);
         _fusionLine.Remove(card2);
     }
-
+    public void AddCardToFusionLine(Card cardToAdd){
+        _fusionLine.Insert(0, cardToAdd);
+    }
+    
     //Fusion Failed
-
     private IEnumerator FusionFailedRoutine(Card card1, Card card2){
         yield return null;
         //Set Result of fusion Card
@@ -137,19 +141,11 @@ public class Fusion : MonoBehaviour {
         if(_fusionLine.Count > 0){
             AddCardToFusionLine(card2);
         }else{
-            OnFusionFinished?.Invoke(card2, _isPlayerTurn);
+            OnFusionRoutineFinished?.Invoke(card2, _isPlayerTurn);
             // BattleManager.Instance.FusionPositions.MoveCardToResultPosition(card2);
         }
     }
 
-    public void AddCardToFusionLine(Card cardToAdd){
-        _fusionLine.Insert(0, cardToAdd);
-    }
-
-    //Monster Fusion Sucess
-    // public void FusionSucess(Card card1, Card card2, Card resultCard){
-    //     StartCoroutine(FusionSucessRoutine(card1, card2, resultCard));
-    // }
     private IEnumerator FusionSucessRoutine(Card card1, Card card2, Card resultCard){
         //Set Result of fusion Card
         _resultCard = resultCard;
@@ -163,18 +159,14 @@ public class Fusion : MonoBehaviour {
         //Dissolve cards used
         yield return new WaitForSeconds(0.3f);
         foreach(var card in materials){
-            card.CardVisual.Shader.DissolveCard(Color.green);
+            card.CardVisual.Dissolve.DissolveCard(Color.green);
         }
-        // card1.Shader.DissolveCard(Color.green);
-        // card2.Shader.DissolveCard(Color.green);
 
         //Destroy Cards
         yield return new WaitForSeconds(0.7f);
         foreach(var card in materials){
             card.DestroyCard();
         }
-        // card1.DestroyCard();
-        // card2.DestroyCard();
 
         //Set Card Owner
         if(_isPlayerTurn){
@@ -182,8 +174,7 @@ public class Fusion : MonoBehaviour {
         }
 
         //Move fusioned card to position
-        OnFusionFinished?.Invoke(resultCard, _isPlayerTurn);
-        // resultCard.MoveCard(BattleManager.Instance.FusionPositions.ResultCardPosistion());
+        OnFusionRoutineFinished?.Invoke(resultCard, _isPlayerTurn);
 
         //Check if the line is 0
         if(_fusionLine.Count > 0){

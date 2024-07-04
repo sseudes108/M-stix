@@ -19,7 +19,7 @@ public class MonsterFusion : Fusion {
         if(this != null){
             StartCoroutine(MonsterFusionRoutine(monster1, monster2));
         }else{
-            Debug.Log($"Destroy MonsterFusion Instance ID <color=yellow>{this.GetInstanceID()}</color=yellow>");
+            // Debug.Log($"Destroy MonsterFusion Instance ID <color=yellow>{this.GetInstanceID()}</color=yellow>");
             Destroy(this);
         }
     }
@@ -64,17 +64,18 @@ public class MonsterFusion : Fusion {
         fusionedCard.name = $"{fusionedCard.Name} - Fusioned";
         fusionedCard.SetFusionedCard();
 
-        //make card invisible
-        fusionedCard.DisableModelVisual();
+        // make card invisible
+        fusionedCard.CardVisual.Dissolve.MakeCardInvisible();
+        fusionedCard.CardVisual.DisableRenderer();
+        fusionedCard.DisableStatCanvas();
 
-        //Fusion
+        // Move to result position
         OnFusionSucess?.Invoke(monster1, monster2, fusionedCard);
 
-        //Make card Visible
-        yield return new WaitForSeconds(2f);
-        fusionedCard.EnableModelVisual();
-        fusionedCard.CardVisual.Shader.SolidifyCard(Color.white);
-        
+        //Make Visibel
+        yield return new WaitForSeconds(3f);
+        fusionedCard.CardVisual.EnableRenderer();
+        fusionedCard.CardVisual.Dissolve.SolidifyCard(Color.white);
         yield return null;
     }
     

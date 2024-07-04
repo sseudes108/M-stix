@@ -7,12 +7,14 @@ public class Battle : StateManager {
     public DrawPhase DrawPhase {get; private set;}
     public CardSelectionPhase CardSelection {get; private set;}
     public FusionPhase Fusion {get; private set;}
+    public CardStatSelectPhase CardStatSelection {get; private set;}
     
     public Battle(){
         StartPhase = new();
         DrawPhase = new();
         CardSelection = new();
         Fusion = new();
+        CardStatSelection = new();
     }
 
     private void Start(){

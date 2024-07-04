@@ -26,5 +26,5 @@ public class CardSelectionPhase : AbstractState{
         Battle.ChangeState(Battle.Fusion);
     }
 
-    public override string ToString(){ return "Card Selection"; }
+    public override string ToString(){ return "Card Sel."; }
 }

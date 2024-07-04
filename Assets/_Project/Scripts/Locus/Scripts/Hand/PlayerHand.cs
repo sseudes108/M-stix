@@ -36,11 +36,11 @@ public class PlayerHand : Hand {
     }
 
     private void UIBattleScene_OnSelectionFinished(){
-        Debug.Log("Player Hand - UIBattleScene_OnSelectionFinished");
+        // Debug.Log("Player Hand - UIBattleScene_OnSelectionFinished");
         if(this != null){
             _movement.SetTargetPosition(_OffCameraHand.position);
         }else{
-            Debug.Log($"Destroy Player Hand Instance ID <color=yellow>{this.GetInstanceID()}</color=yellow>");
+            // Debug.Log($"Destroy Player Hand Instance ID <color=yellow>{this.GetInstanceID()}</color=yellow>");
             Destroy(this);
         }
     }
