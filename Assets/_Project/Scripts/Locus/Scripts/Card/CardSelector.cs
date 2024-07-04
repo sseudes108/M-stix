@@ -32,13 +32,11 @@ public class CardSelector : MonoBehaviour {
     }
 
     private void Card_OnCardSelected(Card selectedCard){
-        Debug.Log("Card Selector - Card_OnCardSelected");
         if(SelectedList.Count == 0) { OnSomeCardSelected?.Invoke(); }
         AddToSelectedList(selectedCard);
     }
 
     private void Card_OnCardDeselected(Card selectedCard){
-        Debug.Log("Card Selector - Card_OnCardDeselected");
         RemoveFromSelectedList(selectedCard);
         if(SelectedList.Count == 0){ OnNoneCardSelected?.Invoke(); }
     }

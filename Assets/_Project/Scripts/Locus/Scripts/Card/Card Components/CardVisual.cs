@@ -2,13 +2,13 @@ using UnityEngine;
 
 [RequireComponent(typeof(Card))]
 public class CardVisual : MonoBehaviour {
-    private MeshRenderer _renderer;
+    public MeshRenderer Renderer  { get; private set; }
     public CardShader Shader { get; private set; }
 
     public void Awake() {
-        _renderer = GetComponentInChildren<MeshRenderer>();
+        Renderer = GetComponentInChildren<MeshRenderer>();
         Shader = GetComponentInChildren<CardShader>();
-        Shader.SetRenderer(_renderer);
+        Shader.SetRenderer(Renderer);
     }
 
     public void SetVisuals(Texture2D illustration){

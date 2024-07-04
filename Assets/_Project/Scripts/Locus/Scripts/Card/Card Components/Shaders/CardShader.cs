@@ -13,6 +13,9 @@ public class CardShader : MonoBehaviour {
 
         _animaShader = GetComponent<ShaderAnima>();
         _animaShader.SetController(this);
+
+        _dissolveShader = GetComponent<ShaderDissolve>();
+        _dissolveShader.SetController(this);
     }
 
     public void SetRenderer(Renderer renderer){
@@ -43,6 +46,14 @@ public class CardShader : MonoBehaviour {
 
     public void SetAnimaColors(){
         _animaShader.SetAnimaColors();
+    }
+
+    public void DissolveCard(Color newColor){
+        _dissolveShader.DissolveCard(newColor);
+    }
+    
+    public void SolidifyCard(Color newColor){
+        _dissolveShader.SolidifyCard(newColor);
     }
 
     // private void Awake() {

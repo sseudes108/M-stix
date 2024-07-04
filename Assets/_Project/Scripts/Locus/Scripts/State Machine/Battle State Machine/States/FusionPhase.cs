@@ -9,14 +9,15 @@ public class FusionPhase : AbstractState{
 
     public override void Enter(){
         SubscribeEvents();
-        Battle.StartCoroutine(FusionPhaseRoutine());
+        if(Battle != null){
+            Battle.StartCoroutine(FusionPhaseRoutine());
+        }
     }
 
     public override void Exit(){
         UnsubscribeEvents();
     }
-
-
+    
     public IEnumerator FusionPhaseRoutine(){
         yield return null;
         OnStartFusion?.Invoke(_selectedCards, IsPLayerTurn);

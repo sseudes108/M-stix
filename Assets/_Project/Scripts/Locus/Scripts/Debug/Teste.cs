@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Teste : MonoBehaviour {
     public static Teste Instance;
@@ -12,7 +13,12 @@ public class Teste : MonoBehaviour {
 
     private void Update() {
         if(Input.GetKeyDown(KeyCode.D)) {
-            Instantiate(cardCreator.CreateCard(cardData));
+            var newcard = Instantiate(cardCreator.CreateCard(cardData));
+            newcard.transform.position = new Vector3(0, 3, 0);
+        }
+        if(Input.GetKeyDown(KeyCode.R)) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            System.GC.Collect();
         }
     }
 }

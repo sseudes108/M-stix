@@ -6,16 +6,12 @@ public class CardCreator : MonoBehaviour {
 
     public Card CreateCard(ScriptableObject cardData){
         Card newCard;
-
-        if(cardData is MonsterCardSO){
+        if (cardData is MonsterCardSO){
             newCard = _monsterCardPrefab;
-            
         }else{
             newCard = _arcaneCardPrefab;
         }
-
         newCard.SetCardData(cardData);
-                
         return newCard;
     }
 }

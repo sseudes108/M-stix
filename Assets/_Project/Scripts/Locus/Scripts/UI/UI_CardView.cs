@@ -5,16 +5,17 @@ public class UI_CardView : MonoBehaviour{
     public Transform _offCam;
     private Vector3 StartPosition;
 
+    private float _moveSpeed = 3f;
+
     [SerializeField] private Renderer _renderer;
-    private readonly float _moveSpeed = 3f;
 
     private void OnEnable() {
-        // UIBattleScene.OnSelectionFinished += UIBattleScene_OnSelectionFinished;
+        UIBattleScene.OnSelectionFinished += UIBattleScene_OnSelectionFinished;
         Card.OnMouseOverCard += Card_OnMouseOverCard;
     }
 
     private void OnDisable() {
-        // UIBattleScene.OnSelectionFinished -= UIBattleScene_OnSelectionFinished;
+        UIBattleScene.OnSelectionFinished -= UIBattleScene_OnSelectionFinished;
         Card.OnMouseOverCard -= Card_OnMouseOverCard;
     }
 
@@ -22,9 +23,9 @@ public class UI_CardView : MonoBehaviour{
         ChangeIllustration(illustration);
     }
 
-    // private void UIBattleScene_OnSelectionFinished(){
-    //     _movement.SetTargetPosition(_offCam.position, Quaternion.identity, _moveSpeed);
-    // }
+    private void UIBattleScene_OnSelectionFinished(){
+        _movement.SetTargetPosition(_offCam.position, Quaternion.identity, _moveSpeed);
+    }
 
     private void Awake() {
         _movement = GetComponent<CardMovement>();
