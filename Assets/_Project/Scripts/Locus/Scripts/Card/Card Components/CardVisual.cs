@@ -7,7 +7,6 @@ public class CardVisual : MonoBehaviour {
 
     public void Awake() {
         _renderer = GetComponentInChildren<MeshRenderer>();
-
         Shader = GetComponentInChildren<CardShader>();
         Shader.SetRenderer(_renderer);
     }

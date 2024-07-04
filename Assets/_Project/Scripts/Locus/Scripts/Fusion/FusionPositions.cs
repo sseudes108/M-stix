@@ -7,15 +7,14 @@ public class FusionPositions : MonoBehaviour {
     [SerializeField] private List<Transform> _enemyFusionPositions;
 
     private void OnEnable() {
-        FusionPhase.OnMoveCardsToPosition += FusionPhase_OnMoveCardsToPosition;
+        FusionPhase.OnStartFusion += FusionPhase_OnMoveCardsToPosition;
     }
 
     private void OnDisable() {
-        FusionPhase.OnMoveCardsToPosition -= FusionPhase_OnMoveCardsToPosition;
+        FusionPhase.OnStartFusion -= FusionPhase_OnMoveCardsToPosition;
     }
 
     private void FusionPhase_OnMoveCardsToPosition(List<Card> cards, bool isPlayerTurn){
-        LogHelper.Instance.YellowLog("FusionPhase_OnMoveCardsToPosition - isPlayerTurn", isPlayerTurn.ToString());
         MoveCardToFusionPosition(cards, isPlayerTurn);
     }
 
@@ -30,6 +29,7 @@ public class FusionPositions : MonoBehaviour {
 
         foreach(var card in cards){
             card.MoveCard(_linePositions[cardIndex]);
+            card.CardVisual.Shader.ResetBorderColor();
             cardIndex++;
         }
     }

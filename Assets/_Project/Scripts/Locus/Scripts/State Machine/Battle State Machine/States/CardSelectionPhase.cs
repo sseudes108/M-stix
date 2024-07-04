@@ -14,8 +14,6 @@ public class CardSelectionPhase : AbstractState{
         OnCardSelectionEnd?.Invoke();
     }
 
-    public override void LogicUpdate(){}
-
     public override void SubscribeEvents(){
         UIBattleScene.OnSelectionFinished += UIBattleScene_OnSelectionFinished;
     }

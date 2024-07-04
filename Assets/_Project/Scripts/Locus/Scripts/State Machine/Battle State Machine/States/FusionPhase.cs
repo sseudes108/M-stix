@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class FusionPhase : AbstractState{
-    public static Action<List<Card>, bool> OnMoveCardsToPosition;
+    // public static Action OnStartFusion;
+    public static Action<List<Card>, bool> OnStartFusion;
     private List<Card> _selectedCards = new();
 
     public override void Enter(){
@@ -15,11 +16,13 @@ public class FusionPhase : AbstractState{
         UnsubscribeEvents();
     }
 
-    public override void LogicUpdate(){}
 
     public IEnumerator FusionPhaseRoutine(){
         yield return null;
-        OnMoveCardsToPosition?.Invoke(_selectedCards, IsPLayerTurn);
+        OnStartFusion?.Invoke(_selectedCards, IsPLayerTurn);
+
+        // yield return null;
+        // OnStartFusion?.Invoke(_selectedCards, IsPLayerTurn);
     }
 
     public override void SubscribeEvents(){

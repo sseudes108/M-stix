@@ -13,8 +13,6 @@ public class DrawPhase : AbstractState{
         UnsubscribeEvents();
     }
 
-    public override void LogicUpdate(){}
-
     private void DrawCards(){
         if(CurrentTurn == 1){
             OnPlayerDraw?.Invoke();

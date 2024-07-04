@@ -4,7 +4,7 @@
             <ui:VisualElement name="Debug" style="flex-grow: 0; background-color: rgba(46, 3, 3, 0.67); flex-shrink: 0; height: 30%; width: 70%; align-self: flex-end; margin-right: 54px; margin-top: 54px;">
                 <ui:Label text="Battle Phase : Off" name="BattleState" style="color: rgb(255, 255, 255); -unity-text-align: middle-center; -unity-font-style: bold; font-size: 42px;" />
             </ui:VisualElement>
-            <ui:Button text="Button" name="PhaseButton" style="width: 30%; height: 6%; border-top-left-radius: 27px; border-top-right-radius: 27px; border-bottom-right-radius: 27px; border-bottom-left-radius: 27px; font-size: 54px; -unity-font-style: bold; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; align-self: flex-end; justify-content: flex-start; bottom: auto; right: auto; margin-bottom: 54px; margin-right: 54px; opacity: 0;" />
+            <ui:Button text="Button" name="PhaseButton" style="width: 30%; height: 6%; border-top-left-radius: 27px; border-top-right-radius: 27px; border-bottom-right-radius: 27px; border-bottom-left-radius: 27px; font-size: 54px; -unity-font-style: bold; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; align-self: flex-end; justify-content: flex-start; bottom: auto; right: auto; margin-bottom: 54px; margin-right: 54px; opacity: 0; display: flex;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

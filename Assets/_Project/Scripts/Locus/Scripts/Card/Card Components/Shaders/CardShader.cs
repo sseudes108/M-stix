@@ -7,7 +7,6 @@ public class CardShader : MonoBehaviour {
     private ShaderAnima _animaShader;
     private ShaderBorder _borderShader;
 
-
     private void Awake(){
         _borderShader = GetComponent<ShaderBorder>();
         _borderShader.SetController(this);
@@ -32,11 +31,13 @@ public class CardShader : MonoBehaviour {
         SetChangesToMaterial(sideMat, faceMat);
     }
 
-    public void SetBoarderColor(Color newColor){
-        _borderShader.SetBorderColor(newColor);
+    public void SetBorderColor(Color newColor){
+        if(_borderShader != null){
+            _borderShader.SetBorderColor(newColor);
+        }
     }
 
-    public void ResetBoarderColor(){
+    public void ResetBorderColor(){
         _borderShader.ResetBorderColor();
     }
 

@@ -22,13 +22,12 @@ public class PlayerHand : Hand {
 #region Events Methods
 
     public override void StartPhase_OnStartPhase(){
-        Debug.Log("Player Hand - StartPhase_OnStartPhase");
         base.StartPhase_OnStartPhase();
         // _movement.SetTargetPosition(_movement.StartPosition);
     }
 
     private void UIBattleScene_OnSelectionFinished(){
-        Debug.Log("Player Hand - UIBattleScene_OnSelectionFinished");
+        // Debug.Log("Player Hand - UIBattleScene_OnSelectionFinished");
         _movement.SetTargetPosition(_OffCameraHand.position);
     }
 

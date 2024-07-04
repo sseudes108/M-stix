@@ -10,8 +10,7 @@ public class StartPhase : AbstractState{
     }
 
     public override void Exit(){}
-    public override void LogicUpdate(){}
-
+    
     public IEnumerator BattlePhaseStartRoutine(){
         OnStartPhase?.Invoke();
         yield return new WaitForSeconds(3f);

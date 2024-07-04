@@ -7,7 +7,6 @@ public abstract class AbstractState {
 
     public abstract void Enter();
     public abstract void Exit();
-    public abstract void LogicUpdate();
     
     public void SetController(StateManager controller){
         if(controller is Battle){

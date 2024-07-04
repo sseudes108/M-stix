@@ -8,13 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MCardFrontPlaceHolder
-  m_Shader: {fileID: -6465566751694194690, guid: 25959a121aecd714686a4f820b32d4a0,
+  m_Shader: {fileID: -6465566751694194690, guid: 96f68950dbd3e794faf9171d164edca6,
     type: 3}
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 2100000, guid: a83b38393153ea34fb873573abe2fad6, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -25,44 +25,33 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Anima1Mask:
+        m_Texture: {fileID: 2800000, guid: 3c749f159da832143942cd324257ae14, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Anima2Mask:
+        m_Texture: {fileID: 2800000, guid: a527086d54aee8440924edc98438d13b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BorderMask:
-        m_Texture: {fileID: 2800000, guid: 69cedf0541740b24daf9944c3d40100e, type: 3}
+        m_Texture: {fileID: 2800000, guid: e046453bd0f00c449bbe66eef4823942, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Frame:
-        m_Texture: {fileID: 2800000, guid: d02e9ed5cdb4a4b488ec715330acaaae, type: 3}
+        m_Texture: {fileID: 2800000, guid: f4ee4f44932d1484596538c991fbf89d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ilustration:
         m_Texture: {fileID: 2800000, guid: 002984bee330dcf4cb9603855e55d95d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _IlustrationMask:
+    - _Ilustration_Mask:
         m_Texture: {fileID: 2800000, guid: 163fbf5b8d10bf94594c94fca8f4d02a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats:
-    - _CutOff: 1
-    - _Intensity: 1.5
-    - _NoiseScale: 54
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    m_Colors:
-    - _Color: {r: 0, g: 0.13333368, b: 1, a: 1}
-    - _SelectedBorderColor: {r: 0, g: 0, b: 0, a: 0}
+    m_Floats: []
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6718502134703101076

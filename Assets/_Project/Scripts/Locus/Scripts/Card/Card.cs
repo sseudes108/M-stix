@@ -5,15 +5,17 @@ using UnityEngine;
 public abstract class Card : MonoBehaviour {
     public static Action<Card> OnCardSelected;
     public static Action<Card> OnCardDeselected;
+    public static Action<Texture2D> OnMouseOverCard;
 
     public CardSO Data;
     public Texture2D _illustration;
-    protected CardVisual _cardVisual;
+    public CardVisual CardVisual { get; private set; }
     protected CardMovement _cardMovement;
     private bool _isPlayerCard = false;
     private bool _canBeSelected = false;
     private bool _isOnHand = false;
     private bool _isSelected = false;
+    public bool FusionedCard { get; private set; } = false;
 
 #region Unity Methods
 
@@ -28,13 +30,13 @@ public abstract class Card : MonoBehaviour {
     }
     
     private void Awake() {
-        _cardVisual = GetComponent<CardVisual>();
+        CardVisual = GetComponent<CardVisual>();
         _cardMovement = GetComponent<CardMovement>();
     }
 
     private void Start(){
         SetCardInfo();
-        _cardVisual.SetVisuals(_illustration);
+        CardVisual.SetVisuals(_illustration);
         SetCardText();
     }
 
@@ -45,19 +47,26 @@ public abstract class Card : MonoBehaviour {
             
             if(!_isSelected){
                 newPos = new (0,+0.3f,0);
-                _cardVisual.Shader.SetBoarderColor(new Color(191, 162, 57));
+                CardVisual.Shader.SetBorderColor(new Color(191, 162, 57));
                 _isSelected = true;
                 OnCardSelected?.Invoke(this);
 
             }else{
 
                 newPos = new (0,-0.3f,0);
-                _cardVisual.Shader.ResetBoarderColor();
+                CardVisual.Shader.ResetBorderColor();
                 _isSelected = false;
                 OnCardDeselected?.Invoke(this);
             }
 
             transform.position += newPos;
+        }
+    }
+
+    private void OnMouseOver(){
+        //If is face Up or if face up
+        if(_isPlayerCard){
+            OnMouseOverCard?.Invoke(_illustration);
         }
     }
 
@@ -95,11 +104,23 @@ public abstract class Card : MonoBehaviour {
         _isOnHand = isOnHand;
     }
 
+    public void SetFusionedCard(){
+        FusionedCard = true;
+    }
+
     public void MoveCard(Transform targetTransform){
         transform.SetParent(targetTransform);
         _cardMovement.AllowMovement(true);
         _cardMovement.SetTargetPosition(targetTransform.position, 5f);
         _cardMovement.SetTargetRotation(targetTransform.rotation);
+    }
+
+    public void DisableModelVisual(){
+        gameObject.SetActive(false);
+    }
+    
+    public void DestroyCard(){
+        Destroy(gameObject);
     }
 
 #endregion
