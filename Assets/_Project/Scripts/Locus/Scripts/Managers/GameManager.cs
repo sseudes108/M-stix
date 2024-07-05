@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public CardManager CardManager { get; private set; }
     public Battle BattleStateManager { get; private set; }
     public FusionManager Fusion { get; private set; }
+    public UIManager UI { get; private set; }
 
     private void Awake() {
         SetInstance();
@@ -28,5 +29,6 @@ public class GameManager : MonoBehaviour {
         CardManager = GetComponentInChildren<CardManager>();
         BattleStateManager = GetComponentInChildren<Battle>();   
         Fusion = GetComponentInChildren<FusionManager>();
+        UI = GetComponentInChildren<UIManager>();
     }
 }

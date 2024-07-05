@@ -12,26 +12,50 @@ public class UICardStatSel : UIManager{
 
 
     private void OnEnable() {
-        Fusion.OnFusionEnd += Fusion_OnFusionEnd;
-        Card.OnStatSelection += Card_OnStatSelection;
+        // Fusion.OnFusionEnd += Fusion_OnFusionEnd;
+        // Card.OnStatSelection += Card_OnStatSelection;
+        // CardStatSelectPhase.OnStatSelectStart += CardStatSelectPhase_OnStatSelectStart;
         StatSelections.OnSelectAnother += StatSelections_OnSelectAnother;
+        StatSelections.OnSelectionsEnd += StatSelections_OnSelectionsEnd;
     }
 
     private void OnDisable() {
-        Fusion.OnFusionEnd -= Fusion_OnFusionEnd;
-        Card.OnStatSelection -= Card_OnStatSelection;
+        // Fusion.OnFusionEnd -= Fusion_OnFusionEnd;
+        // Card.OnStatSelection -= Card_OnStatSelection;
+        // CardStatSelectPhase.OnStatSelectStart -= CardStatSelectPhase_OnStatSelectStart;
         StatSelections.OnSelectAnother -= StatSelections_OnSelectAnother;
+        StatSelections.OnSelectionsEnd -= StatSelections_OnSelectionsEnd;
+    }
+
+    // private void CardStatSelectPhase_OnStatSelectStart(Card card){
+    //     Debug.Log("UICardStatSel - CardStatSelectPhase_OnStatSelectStart");
+    //     ShowOptions();
+    //     SetButtonText(card);
+    // }
+
+    private void StatSelections_OnSelectionsEnd(){
+        Debug.Log("StatSelections - StatSelections_OnSelectionsEnd");
+        HideOptions();
     }
 
     private void StatSelections_OnSelectAnother(Card card){
+        Debug.Log("StatSelections - StatSelections_OnSelectAnother");
         SetButtonText(card);
     }
 
-    private void Card_OnStatSelection(Card card){
-        Debug.Log($"{card.Name}");
-    }
+    // private void Card_OnStatSelection(Card card){
+    //     Debug.Log($"{card.Name}");
+    // }
 
-    private void Fusion_OnFusionEnd(Card card){
+    // private void Fusion_OnFusionEnd(Card card){
+    //     Debug.Log("UICardStatSel - Fusion_OnFusionEnd");
+    //     if(card != null){
+    //         ShowOptions();
+    //         SetButtonText(card);
+    //     }
+    // }
+
+    public void FusionEnded(Card card){
         ShowOptions();
         SetButtonText(card);
     }
@@ -77,12 +101,18 @@ public class UICardStatSel : UIManager{
         SetElements();
         if(card is MonsterCard){
             var monsterCard = card as MonsterCard;
-            if(!card.AnimaSelected){
-                Option1.text = $"{monsterCard.FirstAnima.ToString()}";
-                Option2.text = $"{monsterCard.SecondAnima.ToString()}";
-            }else{
-                Option1.text = $"Outra Opção 1";
-                Option2.text = $"Outra Opção 2";
+            if(!monsterCard.AnimaSelected){
+                //Anima
+                Option1.text = $"{monsterCard.FirstAnima}";
+                Option2.text = $"{monsterCard.SecondAnima}";
+            }else if(!monsterCard.ModeSelected){
+                //Mode
+                Option1.text = $"Attack";
+                Option2.text = $"Deffense";
+            }else if(!monsterCard.FusionedCard){
+                //Face
+                Option1.text = $"Face Up";
+                Option2.text = $"Face Down";
             }
         }
     }

@@ -11,8 +11,22 @@ public class FusionPositions : MonoBehaviour {
     
     [SerializeField] private List<Transform> _enemyFusionPositions;
     [SerializeField] private Transform _enemyResultCardPosition, _enemyBoardSelectionPlace;
-    
-    private void Fusion_OnFusionEnd(Card card, bool isPlayerTurn){
+
+    private void OnEnable() {
+        CardStatSelectPhase.OnStatSelectEnd += StatSelections_OnSelectionsEnd;
+        // FusionPhase.OnStartFusion += FusionPhase_OnStartFusion;
+    }
+
+    private void OnDisable() {
+        CardStatSelectPhase.OnStatSelectEnd += StatSelections_OnSelectionsEnd;
+        // FusionPhase.OnStartFusion -= FusionPhase_OnStartFusion;
+    }
+
+    // private void FusionPhase_OnStartFusion(List<Card> list, bool isPlayerTurn){
+    //     MoveCardsToFusionPosition(list, isPlayerTurn);
+    // }
+
+    private void StatSelections_OnSelectionsEnd(Card card, bool isPlayerTurn){
         MoveCardToBoardPlaceSelectionSpot(card, isPlayerTurn);
     }
 
@@ -42,7 +56,8 @@ public class FusionPositions : MonoBehaviour {
         }
     }
 
-    public void MoveCardToFusionPosition(List<Card> cards, bool isPlayerTurn){
+    public void MoveCardsToFusionPosition(List<Card> cards, bool isPlayerTurn){
+        Debug.Log("Fusion Positions - MoveCardsToFusionPosition");
         var cardIndex = 0;
 
         if(isPlayerTurn){
@@ -53,7 +68,7 @@ public class FusionPositions : MonoBehaviour {
 
         foreach(var card in cards){
             card.MoveCard(_linePositions[cardIndex]);
-            card.CardVisual.Border.ResetBorderColor();
+            card.Visuals.Border.ResetBorderColor();
             cardIndex++;
         }
     }

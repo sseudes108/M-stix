@@ -7,21 +7,21 @@ public class MonsterFusion : Fusion {
     public static Action<MonsterFusion, EMonsterType> OnCheckCardsBase;
     public List<MonsterCardSO> _strongestTypeList = new();
 
-    private void OnEnable() {
-        OnMonsterFusion += Fusion_OnMonsterFusion;
-    }
+    // private void OnEnable() {
+    //     OnMonsterFusion += Fusion_OnMonsterFusion;
+    // }
 
-    private void OnDisable() {
-        OnMonsterFusion += Fusion_OnMonsterFusion;
-    }
+    // private void OnDisable() {
+    //     OnMonsterFusion += Fusion_OnMonsterFusion;
+    // }
 
-    private void Fusion_OnMonsterFusion(MonsterCard monster1, MonsterCard monster2){
-        if(this != null){
-            StartFusionRoutine(monster1, monster2);
-        }else{
-            Destroy(this);
-        }
-    }
+    // private void Fusion_OnMonsterFusion(MonsterCard monster1, MonsterCard monster2){
+    //     if(this != null){
+    //         StartFusionRoutine(monster1, monster2);
+    //     }else{
+    //         Destroy(this);
+    //     }
+    // }
 
     public void StartFusionRoutine(MonsterCard monster1, MonsterCard monster2){
         StartCoroutine(MonsterFusionRoutine(monster1, monster2));
@@ -37,12 +37,11 @@ public class MonsterFusion : Fusion {
         yield return null;
 
         //Fusion Failed
-        // bool equalLevels = true;
         if(monster1Lvl != monster2Lvl){
             Debug.Log("Fusion Failed - Lvls are not equals");
             //Not equal levels
 
-            OnFusionFailed?.Invoke(monster1, monster2);
+            // OnFusionFailed?.Invoke(monster1, monster2);
             yield break;
         }
 
@@ -57,6 +56,7 @@ public class MonsterFusion : Fusion {
         yield return null;
 
         //List of the possible monsters (Correct lvl)
+        Debug.Log("MonsterFusion - OnCheckCardsBase Invoked");
         OnCheckCardsBase?.Invoke(this, strongestMonsterType);
         yield return null;
 
@@ -69,18 +69,20 @@ public class MonsterFusion : Fusion {
         fusionedCard.SetFusionedCard();
 
         // make card invisible
-        fusionedCard.CardVisual.Dissolve.MakeCardInvisible();
-        fusionedCard.CardVisual.DisableRenderer();
+        fusionedCard.Visuals.Dissolve.MakeCardInvisible();
+        fusionedCard.Visuals.DisableRenderer();
         fusionedCard.DisableStatCanvas();
 
-        // Move to result position
+        // Fusion
         GameManager.Instance.Fusion.Fusion.FusionSucess(monster1, monster2, fusionedCard);
 
         //Make Visibel
-        yield return new WaitForSeconds(1f);
-        fusionedCard.CardVisual.EnableRenderer();
-        fusionedCard.CardVisual.Dissolve.SolidifyCard(Color.white);
+        yield return new WaitForSeconds(2f);
+        fusionedCard.Visuals.EnableRenderer();
+        fusionedCard.Visuals.Dissolve.SolidifyCard(Color.white);
         yield return null;
+
+        Debug.Log("Fusion - MonsterFusionRoutine End");
     }
     
     public void SetStrongestTypeList(List<MonsterCardSO> strongestMonsterList){

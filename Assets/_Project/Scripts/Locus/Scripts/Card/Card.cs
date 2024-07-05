@@ -6,20 +6,19 @@ public abstract class Card : MonoBehaviour {
     public static Action<Card> OnCardSelected;
     public static Action<Card> OnCardDeselected;
     public static Action<Texture2D> OnMouseOverCard;
-    public static Action<Card> OnStatSelection;
+    // public static Action<Card> OnStatSelection;
 
     public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serielized;. Needs to be public or otherwise it became null at the instatiation moment.
 
     public string Name {get; private set;}
     public Texture2D _illustration {get; private set;}
-    public CardVisual CardVisual {get; private set;}
+    public CardVisual Visuals {get; private set;}
     protected CardMovement _cardMovement {get; private set;}
     private bool _isPlayerCard = false;
     private bool _canBeSelected = false;
     private bool _isOnHand = false;
     private bool _isSelected = false;
     public bool FusionedCard { get; private set; } = false;
-    public bool AnimaSelected { get; private set; } = false;
 
     public Transform _model;
     public Transform _status;
@@ -37,7 +36,7 @@ public abstract class Card : MonoBehaviour {
     }
     
     private void Awake() {
-        CardVisual = GetComponent<CardVisual>();
+        Visuals = GetComponent<CardVisual>();
         _cardMovement = GetComponent<CardMovement>();
         _model = transform.Find("Visuals/Model");
         _status = transform.Find("Canvas");
@@ -45,25 +44,25 @@ public abstract class Card : MonoBehaviour {
 
     private void Start(){
         SetCardInfo();
-        CardVisual.SetVisuals(_illustration);
+        Visuals.SetVisuals(_illustration);
         SetCardText();
     }
 
     private void OnMouseDown() {
-        if(GameManager.Instance.BattleStateManager.CurrentState is CardStatSelectPhase && _isPlayerCard) { 
-            OnStatSelection?.Invoke(this);
-        }
+        // if(GameManager.Instance.BattleStateManager.CurrentState is CardStatSelectPhase && _isPlayerCard) { 
+        //     OnStatSelection?.Invoke(this);
+        // }
         if(!_canBeSelected) { return; }
         if(_isPlayerCard && _isOnHand){
             Vector3 newPos;
             if(!_isSelected){
                 newPos = new (0,+0.3f,0);
-                CardVisual.Border.SetBorderColor(new Color(191, 162, 57));
+                Visuals.Border.SetBorderColor(new Color(191, 162, 57));
                 _isSelected = true;
                 OnCardSelected?.Invoke(this);
             }else{
                 newPos = new (0,-0.3f,0);
-                CardVisual.Border.ResetBorderColor();
+                Visuals.Border.ResetBorderColor();
                 _isSelected = false;
                 OnCardDeselected?.Invoke(this);
             }
@@ -94,11 +93,6 @@ public abstract class Card : MonoBehaviour {
 #endregion
 
 #region Custom Methods Methods
-
-    public void SelectAnima(){
-        AnimaSelected = true;
-    }
-
     public void SetCardData(ScriptableObject cardData){
         Data = cardData as CardSO;
     }
@@ -136,9 +130,7 @@ public abstract class Card : MonoBehaviour {
     }
     
     public void DestroyCard(){
-        if(this != null){
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
     public void EnableStatCanvas(){

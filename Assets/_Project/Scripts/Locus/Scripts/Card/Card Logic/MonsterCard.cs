@@ -8,6 +8,8 @@ public class MonsterCard : Card {
     public int Level { get; set; }
     public int Attack { get; set; }
     public int Deffense { get; set; }
+    public bool AnimaSelected { get; private set; } = false;
+    public bool ModeSelected { get; private set; } = false;
 
     [SerializeField] private TextMeshProUGUI _levelLabel;
     [SerializeField] private TextMeshProUGUI _attackLabel;
@@ -29,5 +31,13 @@ public class MonsterCard : Card {
         _levelLabel.text = Level.ToString();
         _attackLabel.text = Attack.ToString();
         _deffenseLabel.text = Deffense.ToString();
+    }
+
+    public void SelectAnima(){
+        AnimaSelected = true;
+    }
+
+    public void SelectMode(){
+        ModeSelected = true;
     }
 }

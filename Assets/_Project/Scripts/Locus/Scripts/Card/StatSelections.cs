@@ -3,12 +3,9 @@ using UnityEngine;
 
 public class StatSelections : MonoBehaviour {
     public static Action<Card> OnSelectAnother;
+    public static Action OnSelectionsEnd;
     private MonsterCard _monsterCard;
     private Card _resultCard;
-    private bool _animaSelected;
-    private bool _monsterModeSelected;
-    private bool _faceSelected;
-    private bool _isPlayerTurn;
 
     private void OnEnable() {
         CardStatSelectPhase.OnStatSelectStart += CardStatSelectPhase_OnStatSelectStart;
@@ -29,7 +26,7 @@ public class StatSelections : MonoBehaviour {
         Option2_Clicked();
     }
 
-    private void CardStatSelectPhase_OnStatSelectStart(Card card, bool IsPlayerTurn){
+    private void CardStatSelectPhase_OnStatSelectStart(Card card){
         StartSelection(card);
     }
 
@@ -42,14 +39,40 @@ public class StatSelections : MonoBehaviour {
     }
 
     public void Option1_Clicked(){
-        if(!_resultCard.AnimaSelected){
-            Debug.Log("Anima 1 Selected");
-            _resultCard.SelectAnima();
-            OnSelectAnother?.Invoke(_resultCard);
+        if(_resultCard is MonsterCard){
+            if(!_monsterCard.AnimaSelected){
+                Debug.Log("Anima 1 Selected");
+                _monsterCard.SelectAnima();
+                OnSelectAnother?.Invoke(_resultCard);
+            }else if(!_monsterCard.ModeSelected){
+                Debug.Log("Face 1 Selected");
+                _monsterCard.SelectMode();
+                if(!_monsterCard.FusionedCard){
+                    OnSelectAnother?.Invoke(_resultCard);
+                }else{
+                    Debug.Log("OnSelectionsEnd");
+                    OnSelectionsEnd?.Invoke();
+                }
+            }
         }
     }
 
     public void Option2_Clicked(){
         Debug.Log("Option2_Clicked()");
+        if(_resultCard is MonsterCard){
+            if(!_monsterCard.AnimaSelected){
+                Debug.Log("Anima 2 Selected");
+                _monsterCard.SelectAnima();
+                OnSelectAnother?.Invoke(_resultCard);
+            }else if(!_monsterCard.ModeSelected){
+                Debug.Log("Face 2 Selected");
+                _monsterCard.SelectMode();
+                if(!_monsterCard.FusionedCard){
+                    OnSelectAnother?.Invoke(_resultCard);
+                }else{
+                    OnSelectionsEnd?.Invoke();
+                }
+            }
+        }
     }
 }
