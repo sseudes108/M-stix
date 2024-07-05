@@ -25,6 +25,7 @@ public class MonsterCard : Card {
     }
     
     public override void SetCardText(){
+        base.SetCardText();
         _levelLabel.text = Level.ToString();
         _attackLabel.text = Attack.ToString();
         _deffenseLabel.text = Deffense.ToString();

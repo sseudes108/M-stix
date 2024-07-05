@@ -12,23 +12,7 @@ public class FusionPositions : MonoBehaviour {
     [SerializeField] private List<Transform> _enemyFusionPositions;
     [SerializeField] private Transform _enemyResultCardPosition, _enemyBoardSelectionPlace;
     
-
-    private void OnEnable() {
-        FusionPhase.OnStartFusion += FusionPhase_OnStartFusion;
-        Fusion.OnMergeCards += Fusion_OnMergeCards;
-        Fusion.OnFusionRoutineFinished += Fusion_OnFusionRoutineFinished;
-        Fusion.OnFusionEnd += Fusion_OnFusionEnd;
-    }
-
-    private void OnDisable() {
-        FusionPhase.OnStartFusion -= FusionPhase_OnStartFusion;
-        Fusion.OnMergeCards -= Fusion_OnMergeCards;
-        Fusion.OnFusionRoutineFinished -= Fusion_OnFusionRoutineFinished;
-        Fusion.OnFusionEnd -= Fusion_OnFusionEnd;
-    }
-
     private void Fusion_OnFusionEnd(Card card, bool isPlayerTurn){
-        Debug.Log("Fusion_OnFusionEnd");
         MoveCardToBoardPlaceSelectionSpot(card, isPlayerTurn);
     }
 
@@ -42,11 +26,7 @@ public class FusionPositions : MonoBehaviour {
         card.MoveCard(_boardSelectionPlace);
     }
 
-    private void Fusion_OnFusionRoutineFinished(Card card, bool isPlayerTurn){
-        MoveCardToResultPosition(card, isPlayerTurn);
-    }
-
-    private void MoveCardToResultPosition(Card card, bool isPlayerTurn){
+    public void MoveCardToResultPosition(Card card, bool isPlayerTurn){
         if(isPlayerTurn){
             _resultCardPosition = _playerResultCardPosition;
         }else{
@@ -56,21 +36,13 @@ public class FusionPositions : MonoBehaviour {
         card.MoveCard(_resultCardPosition);
     }
 
-    private void Fusion_OnMergeCards(List<Card> cards, bool isPlayerTurn){
-        MoveCardsToMergePosition(cards, isPlayerTurn);
-    }
-
-    private void MoveCardsToMergePosition(List<Card> cards, bool isPlayerTurn){
+    public void MoveCardsToMergePosition(List<Card> cards, bool isPlayerTurn){
         foreach(var card in cards){
             MoveCardToResultPosition(card, isPlayerTurn);
         }
     }
 
-    private void FusionPhase_OnStartFusion(List<Card> cards, bool isPlayerTurn){
-        MoveCardToFusionPosition(cards, isPlayerTurn);
-    }
-
-    private void MoveCardToFusionPosition(List<Card> cards, bool isPlayerTurn){
+    public void MoveCardToFusionPosition(List<Card> cards, bool isPlayerTurn){
         var cardIndex = 0;
 
         if(isPlayerTurn){

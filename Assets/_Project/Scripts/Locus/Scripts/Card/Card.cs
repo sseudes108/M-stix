@@ -6,6 +6,7 @@ public abstract class Card : MonoBehaviour {
     public static Action<Card> OnCardSelected;
     public static Action<Card> OnCardDeselected;
     public static Action<Texture2D> OnMouseOverCard;
+    public static Action<Card> OnStatSelection;
 
     public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serielized;. Needs to be public or otherwise it became null at the instatiation moment.
 
@@ -18,6 +19,7 @@ public abstract class Card : MonoBehaviour {
     private bool _isOnHand = false;
     private bool _isSelected = false;
     public bool FusionedCard { get; private set; } = false;
+    public bool AnimaSelected { get; private set; } = false;
 
     public Transform _model;
     public Transform _status;
@@ -48,6 +50,9 @@ public abstract class Card : MonoBehaviour {
     }
 
     private void OnMouseDown() {
+        if(GameManager.Instance.BattleStateManager.CurrentState is CardStatSelectPhase && _isPlayerCard) { 
+            OnStatSelection?.Invoke(this);
+        }
         if(!_canBeSelected) { return; }
         if(_isPlayerCard && _isOnHand){
             Vector3 newPos;
@@ -90,6 +95,10 @@ public abstract class Card : MonoBehaviour {
 
 #region Custom Methods Methods
 
+    public void SelectAnima(){
+        AnimaSelected = true;
+    }
+
     public void SetCardData(ScriptableObject cardData){
         Data = cardData as CardSO;
     }
@@ -98,7 +107,9 @@ public abstract class Card : MonoBehaviour {
         _illustration = Data.Illustration;
     }
     
-    public virtual void SetCardText(){}
+    public virtual void SetCardText(){
+        Name = Data.Name;
+    }
 
     public void IsPlayeCard(){
         _isPlayerCard = true;
@@ -125,7 +136,9 @@ public abstract class Card : MonoBehaviour {
     }
     
     public void DestroyCard(){
-        Destroy(gameObject);
+        if(this != null){
+            Destroy(gameObject);
+        }
     }
 
     public void EnableStatCanvas(){

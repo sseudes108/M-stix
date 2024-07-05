@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     public TurnManager TurnManager { get; private set; }
     public CardManager CardManager { get; private set; }
     public Battle BattleStateManager { get; private set; }
+    public FusionManager Fusion { get; private set; }
 
     private void Awake() {
         SetInstance();
@@ -26,5 +27,6 @@ public class GameManager : MonoBehaviour {
         TurnManager = GetComponentInChildren<TurnManager>();
         CardManager = GetComponentInChildren<CardManager>();
         BattleStateManager = GetComponentInChildren<Battle>();   
+        Fusion = GetComponentInChildren<FusionManager>();
     }
 }

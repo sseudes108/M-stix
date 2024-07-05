@@ -33,8 +33,7 @@ public class FusionPhase : AbstractState{
         Fusion.OnFusionEnd += Fusion_OnFusionEnd;
     }
 
-    private void Fusion_OnFusionEnd(Card card, bool arg2){
-        Debug.Log("FusionPhase - Fusion_OnFusionEnd");
+    private void Fusion_OnFusionEnd(Card card){
         Battle.ChangeState(Battle.CardStatSelection);
     }
 

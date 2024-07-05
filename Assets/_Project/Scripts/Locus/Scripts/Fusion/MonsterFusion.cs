@@ -17,14 +17,17 @@ public class MonsterFusion : Fusion {
 
     private void Fusion_OnMonsterFusion(MonsterCard monster1, MonsterCard monster2){
         if(this != null){
-            StartCoroutine(MonsterFusionRoutine(monster1, monster2));
+            StartFusionRoutine(monster1, monster2);
         }else{
-            // Debug.Log($"Destroy MonsterFusion Instance ID <color=yellow>{this.GetInstanceID()}</color=yellow>");
             Destroy(this);
         }
     }
 
-    public IEnumerator MonsterFusionRoutine(MonsterCard monster1, MonsterCard monster2){
+    public void StartFusionRoutine(MonsterCard monster1, MonsterCard monster2){
+        StartCoroutine(MonsterFusionRoutine(monster1, monster2));
+    }
+
+    private IEnumerator MonsterFusionRoutine(MonsterCard monster1, MonsterCard monster2){
         var monster1Lvl = monster1.Level;
         var monster2Lvl = monster2.Level;
 
@@ -38,6 +41,7 @@ public class MonsterFusion : Fusion {
         if(monster1Lvl != monster2Lvl){
             Debug.Log("Fusion Failed - Lvls are not equals");
             //Not equal levels
+
             OnFusionFailed?.Invoke(monster1, monster2);
             yield break;
         }
@@ -61,7 +65,7 @@ public class MonsterFusion : Fusion {
         //Instantiate fusioned card
         var randomIndex = UnityEngine.Random.Range(0, possibleMonsters.Count - 1);
         var fusionedCard = Instantiate(GameManager.Instance.CardManager.CardCreator.CreateCard(possibleMonsters[randomIndex]));
-        fusionedCard.name = $"{fusionedCard.Name} - Fusioned";
+        fusionedCard.name = $"{fusionedCard.Name} - ID {fusionedCard.GetInstanceID()} - Fusioned";
         fusionedCard.SetFusionedCard();
 
         // make card invisible
@@ -70,10 +74,10 @@ public class MonsterFusion : Fusion {
         fusionedCard.DisableStatCanvas();
 
         // Move to result position
-        OnFusionSucess?.Invoke(monster1, monster2, fusionedCard);
+        GameManager.Instance.Fusion.Fusion.FusionSucess(monster1, monster2, fusionedCard);
 
         //Make Visibel
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         fusionedCard.CardVisual.EnableRenderer();
         fusionedCard.CardVisual.Dissolve.SolidifyCard(Color.white);
         yield return null;

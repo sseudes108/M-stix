@@ -8,7 +8,8 @@ public class StateManager : MonoBehaviour {
         CurrentState?.Exit();
         CurrentState = newState;
         CurrentState.SetController(this);
-        CurrentState.SetTurnOwner(GameManager.Instance.TurnManager.GetCurrentTurn());
+        CurrentState.SetTurnOwner();
+        CurrentState.SetResultCard();
         CurrentState.Enter();
     }
 }

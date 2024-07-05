@@ -18,7 +18,7 @@ public abstract class ArcaneCard : Card {
     }
 
     public override void SetCardText(){
-        _Name.text = Name;
+        base.SetCardText();
         _effect.text = Effect;
     }
 }

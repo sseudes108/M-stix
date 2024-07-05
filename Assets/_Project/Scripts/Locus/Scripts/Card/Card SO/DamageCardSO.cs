@@ -4,4 +4,5 @@ using UnityEngine;
 public class DamageCardSO : ArcaneCardSO {
     [Header("Damage/Heal")]
     public int Amount;
+    public EAnimaType AnimaType;
 }
