@@ -6,12 +6,12 @@ public class CardSelectionPhase : AbstractState{
 
     public override void Enter(){
         SubscribeEvents();
-        OnCardSelectionStart?.Invoke();
+        OnCardSelectionStart?.Invoke(); // Unlock card selection
     }
     
     public override void Exit(){
         UnsubscribeEvents();
-        OnCardSelectionEnd?.Invoke();
+        OnCardSelectionEnd?.Invoke(); // lock card selection
     }
 
     public override void SubscribeEvents(){

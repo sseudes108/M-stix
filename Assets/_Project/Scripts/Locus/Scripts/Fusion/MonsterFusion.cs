@@ -7,22 +7,6 @@ public class MonsterFusion : Fusion {
     public static Action<MonsterFusion, EMonsterType> OnCheckCardsBase;
     public List<MonsterCardSO> _strongestTypeList = new();
 
-    // private void OnEnable() {
-    //     OnMonsterFusion += Fusion_OnMonsterFusion;
-    // }
-
-    // private void OnDisable() {
-    //     OnMonsterFusion += Fusion_OnMonsterFusion;
-    // }
-
-    // private void Fusion_OnMonsterFusion(MonsterCard monster1, MonsterCard monster2){
-    //     if(this != null){
-    //         StartFusionRoutine(monster1, monster2);
-    //     }else{
-    //         Destroy(this);
-    //     }
-    // }
-
     public void StartFusionRoutine(MonsterCard monster1, MonsterCard monster2){
         StartCoroutine(MonsterFusionRoutine(monster1, monster2));
     }
@@ -38,10 +22,8 @@ public class MonsterFusion : Fusion {
 
         //Fusion Failed
         if(monster1Lvl != monster2Lvl){
-            Debug.Log("Fusion Failed - Lvls are not equals");
             //Not equal levels
-
-            // OnFusionFailed?.Invoke(monster1, monster2);
+            GameManager.Instance.Fusion.Fusion.FusionFailed(monster1, monster2);
             yield break;
         }
 
@@ -56,7 +38,6 @@ public class MonsterFusion : Fusion {
         yield return null;
 
         //List of the possible monsters (Correct lvl)
-        Debug.Log("MonsterFusion - OnCheckCardsBase Invoked");
         OnCheckCardsBase?.Invoke(this, strongestMonsterType);
         yield return null;
 
@@ -64,7 +45,7 @@ public class MonsterFusion : Fusion {
 
         //Instantiate fusioned card
         var randomIndex = UnityEngine.Random.Range(0, possibleMonsters.Count - 1);
-        var fusionedCard = Instantiate(GameManager.Instance.CardManager.CardCreator.CreateCard(possibleMonsters[randomIndex]));
+        var fusionedCard = Instantiate(GameManager.Instance.CardManager.Creator.CreateCard(possibleMonsters[randomIndex]));
         fusionedCard.name = $"{fusionedCard.Name} - ID {fusionedCard.GetInstanceID()} - Fusioned";
         fusionedCard.SetFusionedCard();
 
@@ -81,8 +62,6 @@ public class MonsterFusion : Fusion {
         fusionedCard.Visuals.EnableRenderer();
         fusionedCard.Visuals.Dissolve.SolidifyCard(Color.white);
         yield return null;
-
-        Debug.Log("Fusion - MonsterFusionRoutine End");
     }
     
     public void SetStrongestTypeList(List<MonsterCardSO> strongestMonsterList){

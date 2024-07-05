@@ -7,7 +7,7 @@ public class ShaderDissolve : MonoBehaviour {
     private Card _card;
     public float CutOff {get; private set;} = 1f;
     private float _duration = 1f;
-    private float _intensityFactor = 2f;
+    private float _intensityFactor = 5f;
 
     public void SetController(Renderer renderer, CardVisual controller, Card card){
         _renderer = renderer;

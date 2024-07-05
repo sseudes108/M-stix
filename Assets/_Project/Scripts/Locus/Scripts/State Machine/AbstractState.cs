@@ -8,8 +8,10 @@ public abstract class AbstractState {
 
     public abstract void Enter();
     public abstract void Exit();
-    
+        
     public void SetController(StateManager controller){
+        Battle = null;
+        AI = null;
         if(controller is Battle){
             Battle = controller as Battle;
         }else if(controller is AI){

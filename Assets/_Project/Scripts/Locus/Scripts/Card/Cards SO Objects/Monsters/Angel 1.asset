@@ -15,7 +15,7 @@ MonoBehaviour:
   Illustration: {fileID: 2800000, guid: 609ed9d217055704bada924958c28cda, type: 3}
   Name: Bruna
   MonsterType: 0
-  FirstAnima: 1
+  FirstAnima: 2
   SecondAnima: 0
   Description: 
   Level: 2

@@ -12,25 +12,20 @@ public class FusionPositions : MonoBehaviour {
     [SerializeField] private List<Transform> _enemyFusionPositions;
     [SerializeField] private Transform _enemyResultCardPosition, _enemyBoardSelectionPlace;
 
+
     private void OnEnable() {
-        CardStatSelectPhase.OnStatSelectEnd += StatSelections_OnSelectionsEnd;
-        // FusionPhase.OnStartFusion += FusionPhase_OnStartFusion;
+        BoardPlaceSelection.OnBoardPlaceSelectionStart += BoardPlaceSelection_OnBoardPlaceSelectionStart;
     }
 
     private void OnDisable() {
-        CardStatSelectPhase.OnStatSelectEnd += StatSelections_OnSelectionsEnd;
-        // FusionPhase.OnStartFusion -= FusionPhase_OnStartFusion;
+        BoardPlaceSelection.OnBoardPlaceSelectionStart -= BoardPlaceSelection_OnBoardPlaceSelectionStart;
     }
 
-    // private void FusionPhase_OnStartFusion(List<Card> list, bool isPlayerTurn){
-    //     MoveCardsToFusionPosition(list, isPlayerTurn);
-    // }
-
-    private void StatSelections_OnSelectionsEnd(Card card, bool isPlayerTurn){
-        MoveCardToBoardPlaceSelectionSpot(card, isPlayerTurn);
+    private void BoardPlaceSelection_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn){
+        MoveToBoardPlaceSelection(card, isPlayerTurn);
     }
 
-    private void MoveCardToBoardPlaceSelectionSpot(Card card, bool isPlayerTurn){
+    private void MoveToBoardPlaceSelection(Card card, bool isPlayerTurn){
         if(isPlayerTurn){
             _boardSelectionPlace = _playerBoardSelectionPlace;
         }else{
@@ -57,7 +52,6 @@ public class FusionPositions : MonoBehaviour {
     }
 
     public void MoveCardsToFusionPosition(List<Card> cards, bool isPlayerTurn){
-        Debug.Log("Fusion Positions - MoveCardsToFusionPosition");
         var cardIndex = 0;
 
         if(isPlayerTurn){

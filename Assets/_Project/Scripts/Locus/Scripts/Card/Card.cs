@@ -5,8 +5,6 @@ using UnityEngine;
 public abstract class Card : MonoBehaviour {
     public static Action<Card> OnCardSelected;
     public static Action<Card> OnCardDeselected;
-    public static Action<Texture2D> OnMouseOverCard;
-    // public static Action<Card> OnStatSelection;
 
     public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serielized;. Needs to be public or otherwise it became null at the instatiation moment.
 
@@ -19,6 +17,7 @@ public abstract class Card : MonoBehaviour {
     private bool _isOnHand = false;
     private bool _isSelected = false;
     public bool FusionedCard { get; private set; } = false;
+    public bool FaceSelected { get; private set; } = false;
 
     public Transform _model;
     public Transform _status;
@@ -49,9 +48,6 @@ public abstract class Card : MonoBehaviour {
     }
 
     private void OnMouseDown() {
-        // if(GameManager.Instance.BattleStateManager.CurrentState is CardStatSelectPhase && _isPlayerCard) { 
-        //     OnStatSelection?.Invoke(this);
-        // }
         if(!_canBeSelected) { return; }
         if(_isPlayerCard && _isOnHand){
             Vector3 newPos;
@@ -59,24 +55,24 @@ public abstract class Card : MonoBehaviour {
                 newPos = new (0,+0.3f,0);
                 Visuals.Border.SetBorderColor(new Color(191, 162, 57));
                 _isSelected = true;
-                OnCardSelected?.Invoke(this);
+                GameManager.Instance.CardManager.Selector.AddToSelectedList(this);
             }else{
                 newPos = new (0,-0.3f,0);
                 Visuals.Border.ResetBorderColor();
                 _isSelected = false;
-                OnCardDeselected?.Invoke(this);
+                GameManager.Instance.CardManager.Selector.RemoveFromSelectedList(this);
             }
 
             transform.position += newPos;
         }
     }
 
-    private void OnMouseOver(){
-        //If is face Up or if face up
-        if(_isPlayerCard){
-            OnMouseOverCard?.Invoke(_illustration);
-        }
-    }
+    // private void OnMouseOver(){
+    //     //If is face Up or if face up
+    //     if(_isPlayerCard){
+    //         OnMouseOverCard?.Invoke(_illustration);
+    //     }
+    // }
 
 #endregion
 
@@ -115,6 +111,10 @@ public abstract class Card : MonoBehaviour {
 
     public void SetFusionedCard(){
         FusionedCard = true;
+    }
+
+    public void SelectFace(){
+        FaceSelected = true;
     }
 
     public void MoveCard(Vector3 position){

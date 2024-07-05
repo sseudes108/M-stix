@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class Battle : StateManager {
     public static Action<AbstractState> OnStateChange;
@@ -10,7 +11,7 @@ public class Battle : StateManager {
     public CardStatSelectPhase CardStatSelection {get; private set;}
     public BoardPlaceSelection BoardPlaceSelection {get; private set;}
 
-    
+
     public Battle(){
         StartPhase = new();
         DrawPhase = new();
@@ -27,5 +28,15 @@ public class Battle : StateManager {
     public override void ChangeState(AbstractState newState){
         base.ChangeState(newState);
         OnStateChange?.Invoke(newState);
+    }
+
+    public override void ResetStates(){
+        Debug.Log("ResetStates Called");
+        StartPhase = null;
+        DrawPhase = null;
+        CardSelection = null;
+        Fusion = null;
+        CardStatSelection = null;
+        BoardPlaceSelection = null; 
     }
 }

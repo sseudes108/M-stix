@@ -1,11 +1,13 @@
 using System;
 
+
 public class CardStatSelectPhase : AbstractState{
     public static Action<Card> OnStatSelectStart;
     public static Action<Card, bool>  OnStatSelectEnd;
 
     public override void Enter(){
         SubscribeEvents();
+        GameManager.Instance.UI.CardStats.FusionEnded(ResultCard);
         OnStatSelectStart?.Invoke(ResultCard);
     }
 
@@ -15,11 +17,11 @@ public class CardStatSelectPhase : AbstractState{
     }
 
     public override void SubscribeEvents(){
-        StatSelections.OnSelectionsEnd += StatSelections_OnSelectionEnd;
+        CardStatSelections.OnSelectionsEnd += StatSelections_OnSelectionEnd;
     }
 
     public override void UnsubscribeEvents(){
-        StatSelections.OnSelectionsEnd -= StatSelections_OnSelectionEnd;
+        CardStatSelections.OnSelectionsEnd -= StatSelections_OnSelectionEnd;
     }
 
     private void StatSelections_OnSelectionEnd(){

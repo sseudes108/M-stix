@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour {
     public Battle BattleStateManager { get; private set; }
     public FusionManager Fusion { get; private set; }
     public UIManager UI { get; private set; }
+    public HandManager Hand { get; private set; }
+    public CameraManager Camera { get; private set; }
+    public VisualEffectManager Visual { get; private set; }
 
     private void Awake() {
         SetInstance();
@@ -30,5 +33,8 @@ public class GameManager : MonoBehaviour {
         BattleStateManager = GetComponentInChildren<Battle>();   
         Fusion = GetComponentInChildren<FusionManager>();
         UI = GetComponentInChildren<UIManager>();
+        Hand = GetComponentInChildren<HandManager>();
+        Camera = GetComponentInChildren<CameraManager>();
+        Visual = GetComponentInChildren<VisualEffectManager>();
     }
 }

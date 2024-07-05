@@ -12,4 +12,6 @@ public class StateManager : MonoBehaviour {
         CurrentState.SetResultCard();
         CurrentState.Enter();
     }
+
+    public virtual void ResetStates(){}
 }

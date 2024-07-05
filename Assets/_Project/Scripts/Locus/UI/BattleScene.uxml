@@ -7,10 +7,10 @@
             <ui:Button text="Card Selection" name="PhaseButton" style="width: 33%; height: 7%; align-self: flex-end; margin-right: 54px; margin-bottom: 54px; font-size: 54px; -unity-font-style: bold; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; border-left-color: rgb(29, 29, 29); border-right-color: rgb(29, 29, 29); border-top-color: rgb(29, 29, 29); border-bottom-color: rgb(29, 29, 29); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="OptionsCanvas" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0); display: none; opacity: 1;">
+    <ui:VisualElement name="OptionsCanvas" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0); display: flex; opacity: 1;">
         <ui:VisualElement name="OptionBox" style="flex-grow: 1; align-self: auto; align-content: stretch; justify-content: flex-end; border-bottom-right-radius: 0; display: flex; visibility: visible;">
             <ui:Button text="Option 1" name="Option1" style="width: 20%; align-self: center; justify-content: flex-start; align-content: center; height: 10%; -unity-font-style: bold; font-size: 42px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px;" />
-            <ui:Button text="Option 2" name="Option2" style="width: 20%; align-self: center; justify-content: flex-start; align-content: center; height: 10%; -unity-font-style: bold; font-size: 42px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; margin-top: 27px; margin-bottom: 216px;" />
+            <ui:Button text="Option 2" name="Option2" style="width: 20%; align-self: center; justify-content: flex-start; align-content: center; height: 10%; -unity-font-style: bold; font-size: 42px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; margin-top: 27px; margin-bottom: 142px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

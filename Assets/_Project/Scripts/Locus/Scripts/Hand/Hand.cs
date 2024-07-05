@@ -51,7 +51,7 @@ public abstract class Hand : MonoBehaviour {
             _deck.RemoveCardFromDeck(randomCardData);
             yield return null;
 
-            var newCard = Instantiate(GameManager.Instance.CardManager.CardCreator.CreateCard(randomCardData));
+            var newCard = Instantiate(GameManager.Instance.CardManager.Creator.CreateCard(randomCardData));
             newCard.transform.SetPositionAndRotation(_deck.transform.position, _deck.transform.rotation);
             if(this is PlayerHand) { newCard.IsPlayeCard(); }
             newCard.SetCardOnHand(true);

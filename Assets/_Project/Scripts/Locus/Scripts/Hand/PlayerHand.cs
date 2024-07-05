@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerHand : Hand {
@@ -7,7 +6,6 @@ public class PlayerHand : Hand {
 #region Unity Methods
 
     public override void OnEnable() {
-        // Debug.Log("OnEnable() from player Hand Called");
         base.OnEnable();
         DrawPhase.OnPlayerDraw += DrawPhase_OnPlayerDraw;
         UIBattleScene.OnSelectionFinished += UIBattleScene_OnSelectionFinished;
@@ -20,8 +18,6 @@ public class PlayerHand : Hand {
     }
 
     public override void Awake() {
-        // Debug.Log($"Player Hand Instance ID <color=red>{this.GetInstanceID()}</color=red>");
-        // Debug.Log("Awake from player Hand Called");
         base.Awake();
         _OffCameraHand = transform.Find("OffCam");
     }
@@ -36,13 +32,15 @@ public class PlayerHand : Hand {
     }
 
     private void UIBattleScene_OnSelectionFinished(){
-        // Debug.Log("Player Hand - UIBattleScene_OnSelectionFinished");
         if(this != null){
-            _movement.SetTargetPosition(_OffCameraHand.position);
+            MoveCameraOffView();
         }else{
-            // Debug.Log($"Destroy Player Hand Instance ID <color=yellow>{this.GetInstanceID()}</color=yellow>");
             Destroy(this);
         }
+    }
+
+    private void MoveCameraOffView(){
+        _movement.SetTargetPosition(_OffCameraHand.position);
     }
 
     private void DrawPhase_OnPlayerDraw(){

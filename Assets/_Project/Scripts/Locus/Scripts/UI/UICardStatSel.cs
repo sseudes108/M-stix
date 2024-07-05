@@ -12,48 +12,25 @@ public class UICardStatSel : UIManager{
 
 
     private void OnEnable() {
-        // Fusion.OnFusionEnd += Fusion_OnFusionEnd;
-        // Card.OnStatSelection += Card_OnStatSelection;
-        // CardStatSelectPhase.OnStatSelectStart += CardStatSelectPhase_OnStatSelectStart;
-        StatSelections.OnSelectAnother += StatSelections_OnSelectAnother;
-        StatSelections.OnSelectionsEnd += StatSelections_OnSelectionsEnd;
+        CardStatSelections.OnSelectAnother += CardStatSelections_OnSelectAnother;
+        CardStatSelections.OnSelectionsEnd += CardStatSelections_OnSelectionsEnd;
     }
 
     private void OnDisable() {
-        // Fusion.OnFusionEnd -= Fusion_OnFusionEnd;
-        // Card.OnStatSelection -= Card_OnStatSelection;
-        // CardStatSelectPhase.OnStatSelectStart -= CardStatSelectPhase_OnStatSelectStart;
-        StatSelections.OnSelectAnother -= StatSelections_OnSelectAnother;
-        StatSelections.OnSelectionsEnd -= StatSelections_OnSelectionsEnd;
+        CardStatSelections.OnSelectAnother -= CardStatSelections_OnSelectAnother;
+        CardStatSelections.OnSelectionsEnd -= CardStatSelections_OnSelectionsEnd;
     }
 
-    // private void CardStatSelectPhase_OnStatSelectStart(Card card){
-    //     Debug.Log("UICardStatSel - CardStatSelectPhase_OnStatSelectStart");
-    //     ShowOptions();
-    //     SetButtonText(card);
-    // }
 
-    private void StatSelections_OnSelectionsEnd(){
+    private void CardStatSelections_OnSelectionsEnd(){
         Debug.Log("StatSelections - StatSelections_OnSelectionsEnd");
         HideOptions();
     }
 
-    private void StatSelections_OnSelectAnother(Card card){
-        Debug.Log("StatSelections - StatSelections_OnSelectAnother");
+    private void CardStatSelections_OnSelectAnother(Card card){
+        // Debug.Log("StatSelections - StatSelections_OnSelectAnother");
         SetButtonText(card);
     }
-
-    // private void Card_OnStatSelection(Card card){
-    //     Debug.Log($"{card.Name}");
-    // }
-
-    // private void Fusion_OnFusionEnd(Card card){
-    //     Debug.Log("UICardStatSel - Fusion_OnFusionEnd");
-    //     if(card != null){
-    //         ShowOptions();
-    //         SetButtonText(card);
-    //     }
-    // }
 
     public void FusionEnded(Card card){
         ShowOptions();
@@ -74,6 +51,8 @@ public class UICardStatSel : UIManager{
     }
 
     private void HideOptions(){
+        Option1.clicked -= Option1_Clicked;
+        Option2.clicked -= Option2_Clicked;
         OptionsCanvas.style.display = DisplayStyle.None;
     }
 
