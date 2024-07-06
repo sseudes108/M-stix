@@ -317,6 +317,8 @@ GameObject:
   m_Component:
   - component: {fileID: 60300844}
   - component: {fileID: 60300846}
+  - component: {fileID: 60300848}
+  - component: {fileID: 60300847}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -361,6 +363,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &60300847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60300843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 0
+  <IsMonsterPlace>k__BackingField: 0
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &60300848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60300843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &70086701
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +627,8 @@ GameObject:
   m_Component:
   - component: {fileID: 103250464}
   - component: {fileID: 103250466}
+  - component: {fileID: 103250468}
+  - component: {fileID: 103250467}
   m_Layer: 0
   m_Name: Far Right
   m_TagString: Untagged
@@ -637,6 +673,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &103250467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103250463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 0
+  <IsMonsterPlace>k__BackingField: 0
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &103250468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103250463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &108885023
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +760,8 @@ GameObject:
   m_Component:
   - component: {fileID: 119582075}
   - component: {fileID: 119582077}
+  - component: {fileID: 119582079}
+  - component: {fileID: 119582078}
   m_Layer: 0
   m_Name: Far Right
   m_TagString: Untagged
@@ -737,6 +807,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &119582078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119582074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 0
+  <IsMonsterPlace>k__BackingField: 1
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &119582079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119582074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &156115709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,6 +1636,8 @@ GameObject:
   m_Component:
   - component: {fileID: 326970413}
   - component: {fileID: 326970415}
+  - component: {fileID: 326970417}
+  - component: {fileID: 326970416}
   m_Layer: 0
   m_Name: Center
   m_TagString: Untagged
@@ -1578,6 +1682,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &326970416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326970412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 0
+  <IsMonsterPlace>k__BackingField: 0
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &326970417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326970412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &341933451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,6 +1913,8 @@ GameObject:
   m_Component:
   - component: {fileID: 351780635}
   - component: {fileID: 351780636}
+  - component: {fileID: 351780638}
+  - component: {fileID: 351780637}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -1821,6 +1959,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &351780637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351780634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 1
+  <IsMonsterPlace>k__BackingField: 0
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &351780638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351780634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &355532263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +2001,8 @@ GameObject:
   m_Component:
   - component: {fileID: 355532264}
   - component: {fileID: 355532265}
+  - component: {fileID: 355532267}
+  - component: {fileID: 355532266}
   m_Layer: 0
   m_Name: Far Left
   m_TagString: Untagged
@@ -1876,6 +2048,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &355532266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355532263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 1
+  <IsMonsterPlace>k__BackingField: 1
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &355532267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355532263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &377285070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1886,6 +2090,8 @@ GameObject:
   m_Component:
   - component: {fileID: 377285071}
   - component: {fileID: 377285073}
+  - component: {fileID: 377285075}
+  - component: {fileID: 377285074}
   m_Layer: 0
   m_Name: Far Left
   m_TagString: Untagged
@@ -1930,6 +2136,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &377285074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377285070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 0
+  <IsMonsterPlace>k__BackingField: 0
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &377285075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377285070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &390077724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,6 +2412,8 @@ GameObject:
   m_Component:
   - component: {fileID: 418998012}
   - component: {fileID: 418998014}
+  - component: {fileID: 418998016}
+  - component: {fileID: 418998015}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -2219,6 +2459,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &418998015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418998011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 0
+  <IsMonsterPlace>k__BackingField: 1
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &418998016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418998011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &427852078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,6 +2637,8 @@ GameObject:
   m_Component:
   - component: {fileID: 543213782}
   - component: {fileID: 543213783}
+  - component: {fileID: 543213785}
+  - component: {fileID: 543213784}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -2410,6 +2684,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &543213784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543213781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 1
+  <IsMonsterPlace>k__BackingField: 1
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &543213785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543213781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &546674703
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,6 +2725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 546674704}
+  - component: {fileID: 546674705}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -2444,6 +2751,48 @@ Transform:
   - {fileID: 1592139253}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &546674705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546674703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b577b2a8ff38f44c805b81121d8afcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IntensityFactor>k__BackingField: 2.5
+  <LightUpColor>k__BackingField: {r: 0.9433962, g: 0.9092466, b: 0.6096476, a: 1}
+  <PlayerDefaultColor>k__BackingField: {r: 0.70980394, g: 0.035294108, b: 0.43585798,
+    a: 1}
+  <EnemyDefaultColor>k__BackingField: {r: 0.1732024, g: 0.70980394, b: 0.035294108,
+    a: 1}
+  <PlayerMonsterPlaces>k__BackingField:
+  - {fileID: 1071389277}
+  - {fileID: 1158520201}
+  - {fileID: 637230715}
+  - {fileID: 543213785}
+  - {fileID: 355532267}
+  <PlayerArcanePlaces>k__BackingField:
+  - {fileID: 1049708139}
+  - {fileID: 1884829979}
+  - {fileID: 4283873112261418143}
+  - {fileID: 351780638}
+  - {fileID: 836039548}
+  <EnemyMonsterPlaces>k__BackingField:
+  - {fileID: 119582079}
+  - {fileID: 1344077296}
+  - {fileID: 1791220974}
+  - {fileID: 418998016}
+  - {fileID: 1443069446}
+  <EnemyArcanePlaces>k__BackingField:
+  - {fileID: 103250468}
+  - {fileID: 1781544187}
+  - {fileID: 326970417}
+  - {fileID: 60300848}
+  - {fileID: 377285075}
 --- !u!1 &557776136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,6 +2936,8 @@ GameObject:
   m_Component:
   - component: {fileID: 637230712}
   - component: {fileID: 637230713}
+  - component: {fileID: 637230715}
+  - component: {fileID: 637230714}
   m_Layer: 0
   m_Name: Center
   m_TagString: Untagged
@@ -2632,6 +2983,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &637230714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637230711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 1
+  <IsMonsterPlace>k__BackingField: 1
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &637230715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637230711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &645521319
 GameObject:
   m_ObjectHideFlags: 0
@@ -3234,6 +3617,8 @@ GameObject:
   m_Component:
   - component: {fileID: 836039545}
   - component: {fileID: 836039546}
+  - component: {fileID: 836039548}
+  - component: {fileID: 836039547}
   m_Layer: 0
   m_Name: Far Left
   m_TagString: Untagged
@@ -3278,6 +3663,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &836039547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836039544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 1
+  <IsMonsterPlace>k__BackingField: 0
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &836039548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836039544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
+  IntensityFactor: 2.5
 --- !u!1001 &839756431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3992,6 +4409,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1049708136}
   - component: {fileID: 1049708137}
+  - component: {fileID: 1049708139}
+  - component: {fileID: 1049708138}
   m_Layer: 0
   m_Name: Far Right
   m_TagString: Untagged
@@ -4036,6 +4455,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1049708138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049708135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 1
+  <IsMonsterPlace>k__BackingField: 0
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &1049708139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049708135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
+  IntensityFactor: 2.5
 --- !u!114 &1062403921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4070,6 +4521,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1071389274}
   - component: {fileID: 1071389275}
+  - component: {fileID: 1071389277}
+  - component: {fileID: 1071389276}
   m_Layer: 0
   m_Name: Far Right
   m_TagString: Untagged
@@ -4115,6 +4568,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1071389276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071389273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 1
+  <IsMonsterPlace>k__BackingField: 1
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &1071389277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071389273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &1076624589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4314,6 +4799,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1158520198}
   - component: {fileID: 1158520199}
+  - component: {fileID: 1158520201}
+  - component: {fileID: 1158520200}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -4359,6 +4846,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1158520200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158520197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 1
+  <IsMonsterPlace>k__BackingField: 1
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &1158520201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158520197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &1160234425
 GameObject:
   m_ObjectHideFlags: 0
@@ -5067,6 +5586,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1344077292}
   - component: {fileID: 1344077294}
+  - component: {fileID: 1344077296}
+  - component: {fileID: 1344077295}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -5112,6 +5633,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1344077295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344077291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 0
+  <IsMonsterPlace>k__BackingField: 1
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &1344077296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344077291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
+  IntensityFactor: 2.5
 --- !u!1001 &1344332294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5761,6 +6314,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1443069442}
   - component: {fileID: 1443069444}
+  - component: {fileID: 1443069446}
+  - component: {fileID: 1443069445}
   m_Layer: 0
   m_Name: Far Left
   m_TagString: Untagged
@@ -5806,6 +6361,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1443069445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443069441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 0
+  <IsMonsterPlace>k__BackingField: 1
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &1443069446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443069441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &1482027815
 GameObject:
   m_ObjectHideFlags: 0
@@ -5822,7 +6409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1482027816
 Transform:
   m_ObjectHideFlags: 0
@@ -5852,8 +6439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e465899fbfe144c89fbdec678146bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  Enemy: {fileID: 0}
 --- !u!1 &1495235096
 GameObject:
   m_ObjectHideFlags: 0
@@ -6495,13 +7080,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1954676943}
   - {fileID: 1663341987}
   - {fileID: 2111008765}
   - {fileID: 1679196288}
   - {fileID: 1528214225}
   - {fileID: 1334440472}
   - {fileID: 1482027816}
-  - {fileID: 1954676943}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1664148454
@@ -6900,6 +7485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa818ba782b950642ba6cd697a772988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _monsterCard: {fileID: 0}
+  _resultCard: {fileID: 0}
 --- !u!1 &1700633314
 GameObject:
   m_ObjectHideFlags: 0
@@ -7295,6 +7882,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1781544183}
   - component: {fileID: 1781544185}
+  - component: {fileID: 1781544187}
+  - component: {fileID: 1781544186}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -7339,6 +7928,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1781544186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781544182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 0
+  <IsMonsterPlace>k__BackingField: 0
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &1781544187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781544182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &1787081399
 GameObject:
   m_ObjectHideFlags: 0
@@ -7437,6 +8058,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1791220970}
   - component: {fileID: 1791220972}
+  - component: {fileID: 1791220974}
+  - component: {fileID: 1791220973}
   m_Layer: 0
   m_Name: Center
   m_TagString: Untagged
@@ -7482,6 +8105,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1791220973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791220969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 0
+  <IsMonsterPlace>k__BackingField: 1
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &1791220974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791220969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &1806700421
 GameObject:
   m_ObjectHideFlags: 0
@@ -7824,6 +8479,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1884829976}
   - component: {fileID: 1884829977}
+  - component: {fileID: 1884829979}
+  - component: {fileID: 1884829978}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -7868,6 +8525,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1884829978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884829975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 1
+  <IsMonsterPlace>k__BackingField: 0
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &1884829979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884829975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &1954676942
 GameObject:
   m_ObjectHideFlags: 0
@@ -7877,8 +8566,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1954676943}
-  - component: {fileID: 1954676945}
   - component: {fileID: 1954676944}
+  - component: {fileID: 1954676945}
   m_Layer: 0
   m_Name: Visual Effect Manager
   m_TagString: Untagged
@@ -7925,7 +8614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5add32a1b4440540bf862a57d02455d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mars: {r: 0.745283, g: 0, b: 0.04081737, a: 1}
+  Mars: {r: 1, g: 0, b: 0.052631855, a: 1}
   Venus: {r: 0.9245283, g: 0.21368816, b: 0.8420429, a: 1}
   Jupiter: {r: 1, g: 0.62435436, b: 0.12156862, a: 1}
   Saturn: {r: 0.104396574, g: 0.4339623, b: 0.27369487, a: 1}
@@ -9478,6 +10167,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3012175273053263131}
   - component: {fileID: 4283873112261418141}
+  - component: {fileID: 4283873112261418143}
+  - component: {fileID: 4283873112261418142}
   m_Layer: 0
   m_Name: Center
   m_TagString: Untagged
@@ -9506,6 +10197,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4283873112261418142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283873112261418140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPlayerPlace>k__BackingField: 1
+  <IsMonsterPlace>k__BackingField: 0
+  <IsFree>k__BackingField: 0
+  _canBeSelected: 0
+  _resultCard: {fileID: 0}
+--- !u!114 &4283873112261418143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283873112261418140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
+  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
+  IntensityFactor: 2.5
 --- !u!1 &4283873112560019203
 GameObject:
   m_ObjectHideFlags: 0

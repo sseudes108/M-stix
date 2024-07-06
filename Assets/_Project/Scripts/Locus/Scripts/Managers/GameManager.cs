@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     public HandManager Hand { get; private set; }
     public CameraManager Camera { get; private set; }
     public VisualEffectManager Visual { get; private set; }
+    public BoardPlaceManager Board { get; private set; }
 
     private void Awake() {
         SetInstance();
@@ -36,5 +37,6 @@ public class GameManager : MonoBehaviour {
         Hand = GetComponentInChildren<HandManager>();
         Camera = GetComponentInChildren<CameraManager>();
         Visual = GetComponentInChildren<VisualEffectManager>();
+        Board = GetComponentInChildren<BoardPlaceManager>();
     }
 }

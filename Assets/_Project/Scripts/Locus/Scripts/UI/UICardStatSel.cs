@@ -23,7 +23,6 @@ public class UICardStatSel : UIManager{
 
 
     private void CardStatSelections_OnSelectionsEnd(){
-        Debug.Log("StatSelections - StatSelections_OnSelectionsEnd");
         HideOptions();
     }
 

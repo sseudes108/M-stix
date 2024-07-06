@@ -45,6 +45,7 @@ public class CardStatSelections : MonoBehaviour {
             if(monster.FusionedCard){
                 // fusioned Card
                 if(!monster.AnimaSelected){ // Anima note selected
+                    monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
                     OnSelectAnother?.Invoke(monster);
                 }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
@@ -54,12 +55,14 @@ public class CardStatSelections : MonoBehaviour {
             }else{
                 // normal card
                 if(!monster.AnimaSelected){ // Anima note selected
+                    monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
                     OnSelectAnother?.Invoke(monster);
                 }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
                     monster.SelectMode();
                     OnSelectAnother?.Invoke(monster);
                 }else if(!monster.FaceSelected){ //Anima selected, Mode seletec and Face not selected
+                    monster.SetFaceDown();
                     monster.SelectFace();
                     OnSelectionsEnd?.Invoke();
                 }
@@ -73,21 +76,26 @@ public class CardStatSelections : MonoBehaviour {
             if(monster.FusionedCard){
                 // fusioned Card
                 if(!monster.AnimaSelected){ // Anima note selected
+                    monster.Visuals.Anima.Anima2Selected();
                     monster.SelectAnima();
                     OnSelectAnother?.Invoke(monster);
                 }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
+                    monster.SelectDeffenseMode();
                     monster.SelectMode();
                     OnSelectionsEnd?.Invoke();
                 }
             }else{
                 // normal card
                 if(!monster.AnimaSelected){ // Anima note selected
+                    monster.Visuals.Anima.Anima2Selected();
                     monster.SelectAnima();
                     OnSelectAnother?.Invoke(monster);
                 }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
+                    monster.SelectDeffenseMode();
                     monster.SelectMode();
                     OnSelectAnother?.Invoke(monster);
                 }else if(!monster.FaceSelected){ //Anima selected, Mode seletec and Face not selected
+                    monster.SetFaceDown();
                     monster.SelectFace();
                     OnSelectionsEnd?.Invoke();
                 }

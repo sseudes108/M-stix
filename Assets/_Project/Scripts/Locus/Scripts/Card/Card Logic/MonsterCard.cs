@@ -10,6 +10,7 @@ public class MonsterCard : Card {
     public int Deffense { get; set; }
     public bool AnimaSelected { get; private set; } = false;
     public bool ModeSelected { get; private set; } = false;
+    public bool IsInAttackMode { get; private set; } = true;
 
     [SerializeField] private TextMeshProUGUI _levelLabel;
     [SerializeField] private TextMeshProUGUI _attackLabel;
@@ -39,5 +40,9 @@ public class MonsterCard : Card {
 
     public void SelectMode(){
         ModeSelected = true;
+    }
+
+    public void SelectDeffenseMode(){
+        IsInAttackMode = false;
     }
 }

@@ -18,6 +18,7 @@ public abstract class Card : MonoBehaviour {
     private bool _isSelected = false;
     public bool FusionedCard { get; private set; } = false;
     public bool FaceSelected { get; private set; } = false;
+    public bool IsFaceDown { get; private set; } = false;
 
     public Transform _model;
     public Transform _status;
@@ -115,6 +116,10 @@ public abstract class Card : MonoBehaviour {
 
     public void SelectFace(){
         FaceSelected = true;
+    }
+
+    public void SetFaceDown(){
+        IsFaceDown = true;
     }
 
     public void MoveCard(Vector3 position){

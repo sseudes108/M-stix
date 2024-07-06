@@ -9,47 +9,70 @@ public class ShaderAnima : MonoBehaviour{
         _controller = controller;
     }
 
-    public void SetAnimaColors(){
+    public void Anima1Selected(){
+        Color anima1Color = SetAnimaColor(GetComponentInParent<MonsterCard>().FirstAnima);
+        Color anima2Color = Color.black;
+        SetAnimaColors(anima1Color, anima2Color);
+    }
+    
+    public void Anima2Selected(){
+        Color anima1Color = Color.black;
+        Color anima2Color = SetAnimaColor(GetComponentInParent<MonsterCard>().SecondAnima);
+        SetAnimaColors(anima1Color, anima2Color);
+    }
+
+    public void AnimaNotSelectedColors(){
+        // Debug.Log("AnimaNotSelectedColors");
+        Color anima1Color = SetAnimaColor(GetComponentInParent<MonsterCard>().FirstAnima);
+        Color anima2Color = SetAnimaColor(GetComponentInParent<MonsterCard>().SecondAnima);
+        SetAnimaColors(anima1Color, anima2Color);
+    }
+
+    public void SetAnimaColors(Color anima1Color, Color anima2Color){
         var sideMat = new Material(_renderer.sharedMaterials[0]);
         var faceMat = new Material(_renderer.sharedMaterials[1]);
 
-        // var card = _controller.Card as MonsterCard;
-        Color _anima1Color = SetAnimaColor((_controller.Card as MonsterCard).FirstAnima);
-        Color _anima2Color = SetAnimaColor((_controller.Card as MonsterCard).SecondAnima);
-        
-        faceMat.SetColor("_Anima1Color", _anima1Color);
-        faceMat.SetColor("_Anima2Color", _anima2Color);
+        faceMat.SetColor("_Anima1Color", anima1Color);
+        faceMat.SetColor("_Anima2Color", anima2Color);
 
         _controller.SetChangesToMaterial(sideMat, faceMat);
     }
 
     private Color SetAnimaColor(EAnimaType animaType){
-        Color _newColor = new();
+        Color newColor = new();
+        float intensityFactor = 10f;
 
         switch (animaType){
             case EAnimaType.Mars:
-                _newColor = GameManager.Instance.Visual.Color.Mars;
+                newColor = GameManager.Instance.Visual.Color.Mars;
             break;
             case EAnimaType.Venus:
-                _newColor = GameManager.Instance.Visual.Color.Venus;
+                newColor = GameManager.Instance.Visual.Color.Venus;
             break;
             case EAnimaType.Jupiter:
-                _newColor = GameManager.Instance.Visual.Color.Jupiter;
+                newColor = GameManager.Instance.Visual.Color.Jupiter;
             break;
             case EAnimaType.Saturn:
-                _newColor = GameManager.Instance.Visual.Color.Saturn;
+                newColor = GameManager.Instance.Visual.Color.Saturn;
             break;
             case EAnimaType.Mercury:
-                _newColor = GameManager.Instance.Visual.Color.Mercury;
+                newColor = GameManager.Instance.Visual.Color.Mercury;
             break;
             case EAnimaType.Sun:
-                _newColor = GameManager.Instance.Visual.Color.Sun;
+                newColor = GameManager.Instance.Visual.Color.Sun;
             break;
             case EAnimaType.Moon:
-                _newColor = GameManager.Instance.Visual.Color.Moon;
+                newColor = GameManager.Instance.Visual.Color.Moon;
             break;
         }
 
-        return _newColor;
+        Color adjustedColor = new(
+            newColor.r * intensityFactor, 
+            newColor.g * intensityFactor, 
+            newColor.b * intensityFactor,
+            newColor.a
+        );
+
+        return adjustedColor;
     }
 }

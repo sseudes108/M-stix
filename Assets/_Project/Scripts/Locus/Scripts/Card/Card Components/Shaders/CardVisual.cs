@@ -1,4 +1,4 @@
-    using UnityEngine;
+using UnityEngine;
 
 public class CardVisual : MonoBehaviour {
     public Renderer Renderer { get; private set; }
@@ -18,7 +18,7 @@ public class CardVisual : MonoBehaviour {
 
         SetChangesToMaterial(sideMat,faceMat);
         if(Card is MonsterCard){
-            Anima.SetAnimaColors();
+            Anima.AnimaNotSelectedColors();
         }
     }
 

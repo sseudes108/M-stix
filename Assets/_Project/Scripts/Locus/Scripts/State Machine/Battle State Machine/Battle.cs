@@ -9,7 +9,7 @@ public class Battle : StateManager {
     public CardSelectionPhase CardSelection {get; private set;}
     public FusionPhase Fusion {get; private set;}
     public CardStatSelectPhase CardStatSelection {get; private set;}
-    public BoardPlaceSelection BoardPlaceSelection {get; private set;}
+    public BoardPlaceSelectionPhase BoardPlaceSelection {get; private set;}
 
 
     public Battle(){

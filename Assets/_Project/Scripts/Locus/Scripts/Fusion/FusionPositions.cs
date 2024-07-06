@@ -14,11 +14,11 @@ public class FusionPositions : MonoBehaviour {
 
 
     private void OnEnable() {
-        BoardPlaceSelection.OnBoardPlaceSelectionStart += BoardPlaceSelection_OnBoardPlaceSelectionStart;
+        BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelection_OnBoardPlaceSelectionStart;
     }
 
     private void OnDisable() {
-        BoardPlaceSelection.OnBoardPlaceSelectionStart -= BoardPlaceSelection_OnBoardPlaceSelectionStart;
+        BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart -= BoardPlaceSelection_OnBoardPlaceSelectionStart;
     }
 
     private void BoardPlaceSelection_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn){
