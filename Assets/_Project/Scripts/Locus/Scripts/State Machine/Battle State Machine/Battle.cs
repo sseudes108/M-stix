@@ -10,6 +10,7 @@ public class Battle : StateManager {
     public FusionPhase Fusion {get; private set;}
     public CardStatSelectPhase CardStatSelection {get; private set;}
     public BoardPlaceSelectionPhase BoardPlaceSelection {get; private set;}
+    public ActionPhase Action {get; private set;}
 
 
     public Battle(){
@@ -19,6 +20,7 @@ public class Battle : StateManager {
         Fusion = new();
         CardStatSelection = new();
         BoardPlaceSelection = new();
+        Action = new();
     }
 
     private void Start(){

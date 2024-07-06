@@ -25,14 +25,14 @@ public class BoardPlaceVisuals : MonoBehaviour {
 
     public void LightUp(){
         if(_place.IsPlayerPlace){
-            StartCoroutine(SetColorRoutine(new Color(9f, 9f, 181f), 0.3f, false));
+            StartCoroutine(SetColorRoutine(new Color(9f, 9f, 181f), 0.2f, false));
         }else{
-            StartCoroutine(SetColorRoutine(new Color(181f, 9f, 9f), 0.3f, false));
+            StartCoroutine(SetColorRoutine(new Color(181f, 9f, 9f), 0.2f, false));
         }
     }
 
     public void HighLight(){
-        StartCoroutine(SetColorRoutine(new Color(216, 216, 27), 0.15f, false));
+        StartCoroutine(SetColorRoutine(new Color(216, 216, 27), 0.1f, false));
     }
 
     public IEnumerator SetColorRoutine(Color newColor, float intensity, bool imediate){

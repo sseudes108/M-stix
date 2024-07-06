@@ -12,13 +12,13 @@ public abstract class Card : MonoBehaviour {
     public Texture2D _illustration {get; private set;}
     public CardVisual Visuals {get; private set;}
     protected CardMovement _cardMovement {get; private set;}
-    private bool _isPlayerCard = false;
-    private bool _canBeSelected = false;
-    private bool _isOnHand = false;
-    private bool _isSelected = false;
-    public bool FusionedCard { get; private set; } = false;
-    public bool FaceSelected { get; private set; } = false;
-    public bool IsFaceDown { get; private set; } = false;
+    public bool _isPlayerCard = false;
+    public bool _canBeSelected = false;
+    public bool _isOnHand = false;
+    public bool _isSelected = false;
+    public bool FusionedCard = false;
+    public bool FaceSelected = false;
+    public bool IsFaceDown = false;
 
     public Transform _model;
     public Transform _status;
@@ -132,6 +132,13 @@ public abstract class Card : MonoBehaviour {
         _cardMovement.AllowMovement(true);
         _cardMovement.SetTargetPosition(targetTransform.position, 5f);
         _cardMovement.SetTargetRotation(targetTransform.rotation);
+    }
+
+    public void MoveCard(Transform targetTransform, Quaternion rotation){
+        transform.SetParent(targetTransform);
+        _cardMovement.AllowMovement(true);
+        _cardMovement.SetTargetPosition(targetTransform.position, 5f);
+        _cardMovement.SetTargetRotation(rotation);
     }
     
     public void DestroyCard(){

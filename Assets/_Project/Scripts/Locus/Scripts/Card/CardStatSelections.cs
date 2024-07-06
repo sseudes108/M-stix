@@ -62,7 +62,6 @@ public class CardStatSelections : MonoBehaviour {
                     monster.SelectMode();
                     OnSelectAnother?.Invoke(monster);
                 }else if(!monster.FaceSelected){ //Anima selected, Mode seletec and Face not selected
-                    monster.SetFaceDown();
                     monster.SelectFace();
                     OnSelectionsEnd?.Invoke();
                 }

@@ -8,9 +8,9 @@ public class MonsterCard : Card {
     public int Level { get; set; }
     public int Attack { get; set; }
     public int Deffense { get; set; }
-    public bool AnimaSelected { get; private set; } = false;
-    public bool ModeSelected { get; private set; } = false;
-    public bool IsInAttackMode { get; private set; } = true;
+    public bool AnimaSelected = false;
+    public bool ModeSelected = false;
+    public bool IsInAttackMode = true;
 
     [SerializeField] private TextMeshProUGUI _levelLabel;
     [SerializeField] private TextMeshProUGUI _attackLabel;

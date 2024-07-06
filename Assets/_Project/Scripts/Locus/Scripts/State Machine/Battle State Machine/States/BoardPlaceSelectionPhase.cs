@@ -23,7 +23,7 @@ public class BoardPlaceSelectionPhase : AbstractState{
 
     private void BoardPlace_OnBoardPlaceSelected(){
         OnBoardPlaceSelectionEnd.Invoke(ResultCard, IsPLayerTurn);
-        // Battle.ChangeState()
+        Battle.ChangeState(Battle.Action);
     }
 
     public override string ToString(){

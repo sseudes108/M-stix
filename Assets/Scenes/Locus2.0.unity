@@ -335,7 +335,7 @@ Transform:
   m_GameObject: {fileID: 60300843}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5, y: 0, z: 0}
+  m_LocalPosition: {x: -1.7, y: 0, z: -0.00000023245815}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -378,8 +378,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &60300848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,7 +644,7 @@ Transform:
   m_GameObject: {fileID: 103250463}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 3.4, y: 0, z: -0.000000011920861}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -688,8 +687,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &103250468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,7 +776,7 @@ Transform:
   m_GameObject: {fileID: 119582074}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 3.3999999, y: 0, z: 0.00000022649743}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -822,8 +820,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &119582079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1697,8 +1694,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &326970417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,7 +1927,7 @@ Transform:
   m_GameObject: {fileID: 351780634}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5, y: 0, z: 0}
+  m_LocalPosition: {x: -1.7, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1974,8 +1970,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &351780638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2019,7 +2014,7 @@ Transform:
   m_GameObject: {fileID: 355532263}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalPosition: {x: -3.3999999, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2063,8 +2058,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &355532267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2108,7 +2102,7 @@ Transform:
   m_GameObject: {fileID: 377285070}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalPosition: {x: -3.4, y: 0, z: 0.000000011920861}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2151,8 +2145,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &377285075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2430,7 +2423,7 @@ Transform:
   m_GameObject: {fileID: 418998011}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5, y: 0, z: 0}
+  m_LocalPosition: {x: -1.7, y: 0, z: 0.0000000059604304}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2474,8 +2467,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &418998016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2655,7 +2647,7 @@ Transform:
   m_GameObject: {fileID: 543213781}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5, y: 0, z: 0}
+  m_LocalPosition: {x: -1.7, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2699,8 +2691,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &543213785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2998,8 +2989,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &637230715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3567,7 +3557,7 @@ Transform:
   m_GameObject: {fileID: 828513530}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4.5, y: 1.1999998, z: 4.5}
+  m_LocalPosition: {x: -4.8, y: 1.1999998, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 18}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3635,7 +3625,7 @@ Transform:
   m_GameObject: {fileID: 836039544}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalPosition: {x: -3.4, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3678,8 +3668,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &836039548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4427,7 +4416,7 @@ Transform:
   m_GameObject: {fileID: 1049708135}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 3.4, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4470,8 +4459,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &1049708139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4539,7 +4527,7 @@ Transform:
   m_GameObject: {fileID: 1071389273}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 3.3999999, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4583,8 +4571,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &1071389277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4817,7 +4804,7 @@ Transform:
   m_GameObject: {fileID: 1158520197}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalPosition: {x: 1.7, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4861,8 +4848,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &1158520201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5088,7 +5074,7 @@ Transform:
   m_GameObject: {fileID: 1225927159}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0.00000006749339, z: 0.000000043285453, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0022}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 159.99998}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5604,7 +5590,7 @@ Transform:
   m_GameObject: {fileID: 1344077291}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalPosition: {x: 1.7, y: 0, z: 0.00000023245815}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5648,8 +5634,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &1344077296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6332,7 +6317,7 @@ Transform:
   m_GameObject: {fileID: 1443069441}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalPosition: {x: -3.4, y: 0, z: 0.000000011920861}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6376,8 +6361,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &1443069446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6409,7 +6393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1482027816
 Transform:
   m_ObjectHideFlags: 0
@@ -7591,7 +7575,7 @@ Transform:
   m_GameObject: {fileID: 1740953789}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000004109317, y: -0.7071068, z: -0.70710677, w: 0.00000041093173}
-  m_LocalPosition: {x: 4.5, y: 1.1999998, z: -4.5}
+  m_LocalPosition: {x: 4.8, y: 1.1999998, z: -4.5000005}
   m_LocalScale: {x: 1, y: 1, z: 18}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7900,7 +7884,7 @@ Transform:
   m_GameObject: {fileID: 1781544182}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalPosition: {x: 1.7, y: 0, z: -0.00000024437904}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7943,8 +7927,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &1781544187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8120,8 +8103,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &1791220974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8164,7 +8146,7 @@ Transform:
   m_GameObject: {fileID: 1806700421}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0.00000006749339, z: 0.000000043285453, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0022}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 159.99998}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8497,7 +8479,7 @@ Transform:
   m_GameObject: {fileID: 1884829975}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalPosition: {x: 1.7, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8540,8 +8522,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &1884829979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10212,8 +10193,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _canBeSelected: 0
-  _resultCard: {fileID: 0}
+  _cardInPlace: {fileID: 0}
 --- !u!114 &4283873112261418143
 MonoBehaviour:
   m_ObjectHideFlags: 0
