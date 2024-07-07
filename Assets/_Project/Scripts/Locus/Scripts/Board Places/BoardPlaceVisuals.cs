@@ -7,6 +7,7 @@ public class BoardPlaceVisuals : MonoBehaviour {
     public Color LightUpColor;
     public Color DefaultColor;
     public float IntensityFactor;
+    public bool IsFree => _place.IsFree;
 
     private void Awake() {
         _renderers = GetComponentsInChildren<Renderer>();
@@ -32,6 +33,7 @@ public class BoardPlaceVisuals : MonoBehaviour {
     }
 
     public void HighLight(){
+        Debug.Log($"HighLight - {_place.Location}");
         StartCoroutine(SetColorRoutine(new Color(216, 216, 27), 0.1f, false));
     }
 

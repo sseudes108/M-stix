@@ -15,7 +15,7 @@ public class FusionPhase : AbstractState{
     }
     
     public IEnumerator FusionPhaseRoutine(List<Card> selectedCards){
-        GameManager.Instance.Fusion.Fusion.StartFusionRoutine(selectedCards, IsPLayerTurn);
+        GameManager.Instance.Fusion.Fusion.StartFusionRoutine(selectedCards, IsPlayerTurn);
         yield return null;
     }
 

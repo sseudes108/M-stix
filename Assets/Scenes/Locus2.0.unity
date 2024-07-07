@@ -375,12 +375,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &60300848
 MonoBehaviour:
@@ -687,12 +686,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &103250468
 MonoBehaviour:
@@ -824,12 +822,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &119582079
 MonoBehaviour:
@@ -1722,12 +1719,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &326970417
 MonoBehaviour:
@@ -2001,12 +1997,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 1
+  <Location>k__BackingField: 1
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &351780638
 MonoBehaviour:
@@ -2093,12 +2088,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 4
   Card: {fileID: 0}
 --- !u!114 &355532267
 MonoBehaviour:
@@ -2204,12 +2198,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &377285075
 MonoBehaviour:
@@ -2530,12 +2523,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   Card: {fileID: 0}
 --- !u!114 &418998016
 MonoBehaviour:
@@ -2779,12 +2771,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 1
+  <Location>k__BackingField: 1
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 3
   Card: {fileID: 0}
 --- !u!114 &543213785
 MonoBehaviour:
@@ -2847,7 +2838,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546674703}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2855,7 +2846,7 @@ Transform:
   - {fileID: 7248998565020580770}
   - {fileID: 1206467418}
   - {fileID: 1592139253}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1664148453}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &546674705
 MonoBehaviour:
@@ -2944,6 +2935,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee08a352621872b419e551a50efe9a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &581714429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 581714430}
+  - component: {fileID: 581714432}
+  - component: {fileID: 581714431}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &581714430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581714429}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1664148453}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &581714431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581714429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc0bfc542baa034f8ab7fbac5a34ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &581714432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581714429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &608982933
 GameObject:
   m_ObjectHideFlags: 0
@@ -3102,12 +3191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 2
+  <Location>k__BackingField: 2
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 2
   Card: {fileID: 0}
 --- !u!114 &637230715
 MonoBehaviour:
@@ -3810,12 +3898,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &836039548
 MonoBehaviour:
@@ -4619,12 +4706,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 4
+  <Location>k__BackingField: 4
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &1049708139
 MonoBehaviour:
@@ -4735,12 +4821,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 4
+  <Location>k__BackingField: 4
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &1071389277
 MonoBehaviour:
@@ -5037,12 +5122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 3
+  <Location>k__BackingField: 3
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 1
   Card: {fileID: 0}
 --- !u!114 &1158520201
 MonoBehaviour:
@@ -5700,7 +5784,7 @@ GameObject:
   - component: {fileID: 1334440472}
   - component: {fileID: 1334440473}
   m_Layer: 0
-  m_Name: Turn Manager
+  m_Name: Turn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5848,12 +5932,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   Card: {fileID: 0}
 --- !u!114 &1344077296
 MonoBehaviour:
@@ -6600,12 +6683,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &1443069446
 MonoBehaviour:
@@ -6894,7 +6976,7 @@ GameObject:
   - component: {fileID: 1528214230}
   - component: {fileID: 1528214231}
   m_Layer: 0
-  m_Name: UI Battle Manager
+  m_Name: UI Battle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7278,7 +7360,7 @@ GameObject:
   - component: {fileID: 1663341987}
   - component: {fileID: 1663341988}
   m_Layer: 0
-  m_Name: Battle State Manager
+  m_Name: Battle State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7321,8 +7403,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1664148453}
   - component: {fileID: 1664148454}
-  - component: {fileID: 1664148456}
-  - component: {fileID: 1664148455}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7349,6 +7429,8 @@ Transform:
   - {fileID: 1679196288}
   - {fileID: 1528214225}
   - {fileID: 1334440472}
+  - {fileID: 581714430}
+  - {fileID: 546674704}
   - {fileID: 1482027816}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7364,71 +7446,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c018238fe99b75418186f51943fe636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1664148455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664148452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc0bfc542baa034f8ab7fbac5a34ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1664148456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664148452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_ImpulseShape: 3
-    m_CustomImpulseShape:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ImpulseDuration: 0.2
-    m_ImpulseType: 0
-    m_DissipationRate: 0.25
-    m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 100
-    m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0.02, y: 0.02, z: 0.02}
+  UIManager: {fileID: 0}
+  TurnManager: {fileID: 0}
+  CardManager: {fileID: 0}
+  BattleStateManager: {fileID: 0}
+  Fusion: {fileID: 0}
+  UI: {fileID: 0}
+  Hand: {fileID: 0}
+  Camera: {fileID: 0}
+  Visual: {fileID: 0}
+  Board: {fileID: 0}
 --- !u!1 &1668197583 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4283873113797143607, guid: 3db8f4a7e0d4afa428832ac493781739,
@@ -7651,7 +7678,7 @@ GameObject:
   - component: {fileID: 1679196292}
   - component: {fileID: 1679196293}
   m_Layer: 0
-  m_Name: CardManager
+  m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8203,12 +8230,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &1781544187
 MonoBehaviour:
@@ -8383,12 +8409,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 0
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &1791220974
 MonoBehaviour:
@@ -8826,12 +8851,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 3
+  <Location>k__BackingField: 3
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &1884829979
 MonoBehaviour:
@@ -8860,7 +8884,7 @@ GameObject:
   - component: {fileID: 1954676944}
   - component: {fileID: 1954676945}
   m_Layer: 0
-  m_Name: Visual Effect Manager
+  m_Name: Visual Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9642,7 +9666,7 @@ GameObject:
   - component: {fileID: 2111008767}
   - component: {fileID: 2111008766}
   m_Layer: 0
-  m_Name: Fusion Manager
+  m_Name: Fusion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10505,12 +10529,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardPlace: 2
+  <Location>k__BackingField: 2
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  <ID>k__BackingField: 0
   Card: {fileID: 0}
 --- !u!114 &4283873112261418143
 MonoBehaviour:
@@ -11095,5 +11118,4 @@ SceneRoots:
   - {fileID: 297174385}
   - {fileID: 1160234427}
   - {fileID: 1664148453}
-  - {fileID: 546674704}
   - {fileID: 284903921}

@@ -18,7 +18,7 @@ public class DrawPhase : AbstractState{
             OnPlayerDraw?.Invoke();
             OnEnemyDraw?.Invoke();
 
-        }else if(IsPLayerTurn){
+        }else if(IsPlayerTurn){
             OnPlayerDraw?.Invoke();
         }else{
             OnEnemyDraw?.Invoke();

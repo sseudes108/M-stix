@@ -19,6 +19,7 @@ public abstract class Card : MonoBehaviour {
     public bool FusionedCard = false;
     public bool FaceSelected = false;
     public bool IsFaceDown = false;
+    public bool CanFlip = false;
 
     public Transform _model;
     public Transform _status;
@@ -82,52 +83,24 @@ public abstract class Card : MonoBehaviour {
 
 #region Events Methods
 
-    private void CardSelectionPhase_OnCardSelectionStart(){
-        _canBeSelected = true;
-    }
+    private void CardSelectionPhase_OnCardSelectionStart() { _canBeSelected = true; }
 
-    private void CardSelectionPhase_OnCardSelectionEnd(){
-        _canBeSelected = false;
-    }
+    private void CardSelectionPhase_OnCardSelectionEnd() { _canBeSelected = false; }
 
 #endregion
 
 #region Custom Methods Methods
-    public void SetCardData(ScriptableObject cardData){
-        Data = cardData as CardSO;
-    }
 
-    public virtual void SetCardInfo(){
-        _illustration = Data.Illustration;
-    }
-    
-    public virtual void SetCardText(){
-        Name = Data.Name;
-    }
-
-    public void IsPlayeCard(){
-        _isPlayerCard = true;
-    }
-
-    public void SetCardOnHand(bool isOnHand){
-        _isOnHand = isOnHand;
-    }
-
-    public void SetFusionedCard(){
-        FusionedCard = true;
-    }
-
-    public void DeselectCard(){
-        _isSelected = false;
-    }
-
-    public void SelectFace(){
-        FaceSelected = true;
-    }
-
-    public void SetFaceDown(){
-        IsFaceDown = true;
-    }
+    public void SetCardData(ScriptableObject cardData) { Data = cardData as CardSO; }
+    public virtual void SetCardInfo() { _illustration = Data.Illustration; }
+    public virtual void SetCardText() { Name = Data.Name; }
+    public void IsPlayeCard() { _isPlayerCard = true; }
+    public void SetCardOnHand(bool isOnHand) { _isOnHand = isOnHand; }
+    public void SetFusionedCard() { FusionedCard = true; }
+    public void DeselectCard() { _isSelected = false; }
+    public void SelectFace() { FaceSelected = true; }
+    public void SetFaceDown() { IsFaceDown = true; }
+    public void SetCanFlip() { CanFlip = true; }
 
     public void MoveCard(Vector3 position){
         _cardMovement.SetTargetPosition(position, 5f);
@@ -148,22 +121,10 @@ public abstract class Card : MonoBehaviour {
         _cardMovement.SetTargetRotation(rotation);
     }
     
-    public void DestroyCard(){
-        Destroy(gameObject);
-    }
-
-    public void EnableStatCanvas(){
-        _status.gameObject.SetActive(true);
-    }
-    
-    public void DisableStatCanvas(){
-        _status.gameObject.SetActive(false);
-    }
-
-    public void DisableCollider(){
-        Debug.Log("DisableCollider");
-        Collider.enabled = false;
-    }
+    public void DestroyCard() { Destroy(gameObject); }
+    public void EnableStatCanvas() { _status.gameObject.SetActive(true); }
+    public void DisableStatCanvas() { _status.gameObject.SetActive(false); }
+    public void DisableCollider() { Collider.enabled = false; }
 
 #endregion
 }

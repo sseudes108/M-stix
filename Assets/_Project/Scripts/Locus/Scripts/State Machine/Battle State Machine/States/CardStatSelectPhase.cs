@@ -13,7 +13,7 @@ public class CardStatSelectPhase : AbstractState{
 
     public override void Exit(){
         UnsubscribeEvents();
-        OnStatSelectEnd?.Invoke(ResultCard, IsPLayerTurn);
+        OnStatSelectEnd?.Invoke(ResultCard, IsPlayerTurn);
     }
 
     public override void SubscribeEvents(){

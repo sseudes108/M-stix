@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using UnityEngine.UIElements;
 
 public class UICardStatSel : UIManager{
@@ -6,8 +7,8 @@ public class UICardStatSel : UIManager{
     public static Action OnOption1Clicked;
     public static Action OnOption2Clicked;
 
-    public Button Option1, Option2;
-    public VisualElement OptionsCanvas;
+    private Button _option1, _option2;
+    private VisualElement _optionsCanvas;
 
 
     private void OnEnable() {
@@ -26,7 +27,6 @@ public class UICardStatSel : UIManager{
     }
 
     private void CardStatSelections_OnSelectAnother(Card card){
-        // Debug.Log("StatSelections - StatSelections_OnSelectAnother");
         SetButtonText(card);
     }
 
@@ -45,13 +45,13 @@ public class UICardStatSel : UIManager{
     }
 
     private void ShowOptions(){
-        OptionsCanvas.style.display = DisplayStyle.Flex;
+        _optionsCanvas.style.display = DisplayStyle.Flex;
     }
 
     private void HideOptions(){
-        Option1.clicked -= Option1_Clicked;
-        Option2.clicked -= Option2_Clicked;
-        OptionsCanvas.style.display = DisplayStyle.None;
+        _option1.clicked -= Option1_Clicked;
+        _option2.clicked -= Option2_Clicked;
+        _optionsCanvas.style.display = DisplayStyle.None;
     }
 
     private void Option1_Clicked(){
@@ -63,15 +63,15 @@ public class UICardStatSel : UIManager{
     }
 
     private void SetElements(){
-        Option1 = Root.Q<Button>("Option1");
-        Option2 = Root.Q<Button>("Option2");
-        OptionsCanvas = Root.Q("OptionsCanvas");
+        _option1 = Root.Q<Button>("Option1");
+        _option2 = Root.Q<Button>("Option2");
+        _optionsCanvas = Root.Q("OptionsCanvas");
 
-        Option1.clicked -= Option1_Clicked;
-        Option2.clicked -= Option2_Clicked;
+        _option1.clicked -= Option1_Clicked;
+        _option2.clicked -= Option2_Clicked;
 
-        Option1.clicked += Option1_Clicked;
-        Option2.clicked += Option2_Clicked;
+        _option1.clicked += Option1_Clicked;
+        _option2.clicked += Option2_Clicked;
     }
 
     private void SetButtonText(Card card){
@@ -80,16 +80,16 @@ public class UICardStatSel : UIManager{
             var monsterCard = card as MonsterCard;
             if(!monsterCard.AnimaSelected){
                 //Anima
-                Option1.text = $"{monsterCard.FirstAnima}";
-                Option2.text = $"{monsterCard.SecondAnima}";
+                _option1.text = $"{monsterCard.FirstAnima}";
+                _option2.text = $"{monsterCard.SecondAnima}";
             }else if(!monsterCard.ModeSelected){
                 //Mode
-                Option1.text = $"Attack";
-                Option2.text = $"Deffense";
+                _option1.text = $"Attack";
+                _option2.text = $"Deffense";
             }else if(!monsterCard.FusionedCard){
                 //Face
-                Option1.text = $"Face Up";
-                Option2.text = $"Face Down";
+                _option1.text = $"Face Up";
+                _option2.text = $"Face Down";
             }
         }
     }

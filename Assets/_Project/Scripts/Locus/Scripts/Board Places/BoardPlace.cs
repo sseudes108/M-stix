@@ -4,19 +4,17 @@ using UnityEngine;
 [RequireComponent(typeof(BoardPlaceVisuals))]
 public class BoardPlace : MonoBehaviour {
     public static Action OnBoardPlaceSelected;
-    public static Action<EBoardPlace> OnShowOptions;
+    public static Action<BoardPlace> OnShowOptions;
     public static Action OnHideOptions;
-    public EBoardPlace boardPlace;
-    
+
+    [field:SerializeField] public EBoardPlace Location { get; private set; }
     [field:SerializeField] public Collider[] Colliders { get; private set; }
     [field:SerializeField] public bool IsPlayerPlace { get; private set; }
     [field:SerializeField] public bool IsMonsterPlace { get; private set; }
     [field:SerializeField] public bool IsFree { get; private set; }
-    [field:SerializeField] public int ID { get; private set; }
     private bool _canBeSelected;
     private Card _resultCard;
     public Card Card;
-
     private bool _isOptShowing;
 
     private void OnEnable() {
@@ -55,7 +53,7 @@ public class BoardPlace : MonoBehaviour {
     private void OnMouseOver(){
         if(Card == null) { return; }
         if(_isOptShowing) { return; }
-        OnShowOptions?.Invoke(boardPlace);
+        OnShowOptions?.Invoke(this);
         _isOptShowing = true;
     }
 
@@ -79,11 +77,9 @@ public class BoardPlace : MonoBehaviour {
             var monsterCard = card as MonsterCard;
             if(monsterCard.IsInAttackMode){//In attacK
                 if(monsterCard.IsFaceDown){// In Attack Face Down
-                Debug.Log("Attack Face Down");
                     Quaternion rotation = Quaternion.Euler(-90, -90, -90);
                     card.MoveCard(transform, rotation);
                 }else{ // In Attack Face Up
-                    Debug.Log("Attack Face Up");
                     card.MoveCard(transform);
                 }
             }else{ // In Deffense
@@ -95,11 +91,12 @@ public class BoardPlace : MonoBehaviour {
                     card.MoveCard(transform, rotation);
                 }
             }
+            monsterCard.SetCanChangeMode(true);
+            monsterCard.SetCanAttack(true);
+            // monsterCard.SetCanFlip();
         }else{// Arcane Card
 
         }
-
-        Debug.Log($"BoardID Selected {ID}");
 
         Card = card;
         card.SetCardOnHand(false);

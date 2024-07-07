@@ -3,16 +3,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set;}
 
-    public UIManager UIManager { get; private set; }
-    public TurnManager TurnManager { get; private set; }
-    public CardManager CardManager { get; private set; }
-    public Battle BattleStateManager { get; private set; }
-    public FusionManager Fusion { get; private set; }
-    public UIManager UI { get; private set; }
-    public HandManager Hand { get; private set; }
-    public CameraManager Camera { get; private set; }
-    public VisualEffectManager Visual { get; private set; }
-    public BoardPlaceManager Board { get; private set; }
+    public UIManager UIManager;
+    public TurnManager TurnManager;
+    public CardManager CardManager;
+    public Battle BattleStateManager;
+    public FusionManager Fusion;
+    public UIManager UI;
+    public HandManager Hand;
+    public CameraManager Camera;
+    public VisualEffectManager Visual;
+    public BoardPlaceManager Board;
 
     private void Awake() {
         SetInstance();

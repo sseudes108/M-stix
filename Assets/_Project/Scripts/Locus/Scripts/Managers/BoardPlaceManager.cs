@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,12 +17,32 @@ public class BoardPlaceManager : MonoBehaviour {
         StartPhase.OnStartPhase += StartPhase_OnStartPhase;
         BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelection_OnBoardPlaceSelectionStart;
         BoardPlaceSelectionPhase.OnBoardPlaceSelectionEnd += BoardPlaceSelection_OnBoardPlaceSelectionEnd;
+        // UIActionPhase.OnAttackSelected += UIActionPhase_OnAttackSelected;
     }
 
     private void OnDisable() {
         StartPhase.OnStartPhase -= StartPhase_OnStartPhase;
         BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart -= BoardPlaceSelection_OnBoardPlaceSelectionStart;
         BoardPlaceSelectionPhase.OnBoardPlaceSelectionEnd -= BoardPlaceSelection_OnBoardPlaceSelectionEnd;
+        // UIActionPhase.OnAttackSelected += UIActionPhase_OnAttackSelected;
+    }
+
+    // private void UIActionPhase_OnAttackSelected(Card card, bool isPlayerTurn){
+    //     Debug.Log("UIActionPhase_OnAttackSelected");
+    //     if(isPlayerTurn){
+    //         HighLightEnemyOcuppiedPlaces(card);
+    //     }else{
+    //         HighLightPlayerOcuppiedPlaces(card);
+    //     }
+    // }
+
+    public void AttackSelected(Card card, bool isPlayerTurn){
+        Debug.Log("AttackSelected");
+        if(isPlayerTurn){
+            HighLightEnemyOcuppiedPlaces(card);
+        }else{
+            HighLightPlayerOcuppiedPlaces(card);
+        }
     }
 
     private void BoardPlaceSelection_OnBoardPlaceSelectionEnd(Card card, bool isPlayerTurn){
@@ -40,7 +61,43 @@ public class BoardPlaceManager : MonoBehaviour {
         }
     }
 
-    public void HighLightPlayerPlaces(Card card){
+    private void HighLightPlayerOcuppiedPlaces(Card card){
+        Debug.Log("HighLightPlayerOcuppiedPlaces");
+        List<BoardPlaceVisuals> list;
+
+        if(card is MonsterCard){
+            list = PlayerMonsterPlaces;
+        }else{
+            list = PlayerArcanePlaces;
+        }
+
+        foreach (BoardPlaceVisuals place in list){
+            if(!place.IsFree){
+                place.HighLight();
+            }
+        }
+    }
+    private void HighLightEnemyOcuppiedPlaces(Card card){
+        Debug.Log("HighLightEnemyOcuppiedPlaces");
+        List<BoardPlaceVisuals> list;
+
+        if(card is MonsterCard){
+            list = EnemyMonsterPlaces;
+        }else{
+            list = EnemyArcanePlaces;
+        }
+
+        foreach (BoardPlaceVisuals place in list){
+            if(!place.IsFree){
+                Debug.Log("!place.IsFree");
+                place.HighLight();
+            }else{
+                Debug.Log("place.IsFree");
+            }
+        }
+    }
+
+    private void HighLightPlayerPlaces(Card card){
         if(card is MonsterCard){
             foreach (BoardPlaceVisuals place in PlayerMonsterPlaces){
                 place.HighLight();
@@ -52,7 +109,7 @@ public class BoardPlaceManager : MonoBehaviour {
         }
     }
 
-    public void HighLightEnemyPlaces(Card card){
+    private void HighLightEnemyPlaces(Card card){
         if(card is MonsterCard){
             foreach (BoardPlaceVisuals place in EnemyMonsterPlaces){
                 place.HighLight();

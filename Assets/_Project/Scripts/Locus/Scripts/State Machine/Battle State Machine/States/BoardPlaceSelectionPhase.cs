@@ -6,7 +6,7 @@ public class BoardPlaceSelectionPhase : AbstractState{
 
     public override void Enter(){
         SubscribeEvents();
-        OnBoardPlaceSelectionStart?.Invoke(ResultCard, IsPLayerTurn);
+        OnBoardPlaceSelectionStart?.Invoke(ResultCard, IsPlayerTurn);
     }
 
     public override void Exit(){
@@ -22,7 +22,7 @@ public class BoardPlaceSelectionPhase : AbstractState{
     }
 
     private void BoardPlace_OnBoardPlaceSelected(){
-        OnBoardPlaceSelectionEnd.Invoke(ResultCard, IsPLayerTurn);
+        OnBoardPlaceSelectionEnd.Invoke(ResultCard, IsPlayerTurn);
         Battle.ChangeState(Battle.Action);
     }
 

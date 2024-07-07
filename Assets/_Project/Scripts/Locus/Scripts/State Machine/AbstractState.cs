@@ -1,6 +1,6 @@
 
 public abstract class AbstractState {
-    public bool IsPLayerTurn { get; private set; }
+    public bool IsPlayerTurn { get; private set; }
     public Card ResultCard  { get; private set; }
     public int CurrentTurn { get; private set; }
     public Battle Battle { get; private set; }
@@ -24,12 +24,11 @@ public abstract class AbstractState {
     }
 
     public void SetTurnOwner(){
-        // CurrentTurn = currentTurn;
         CurrentTurn = GameManager.Instance.TurnManager.GetCurrentTurn();
         if(CurrentTurn % 2 != 0){
-            IsPLayerTurn = true;
+            IsPlayerTurn = true;
         }else{
-            IsPLayerTurn = false;
+            IsPlayerTurn = false;
         }
     }
 

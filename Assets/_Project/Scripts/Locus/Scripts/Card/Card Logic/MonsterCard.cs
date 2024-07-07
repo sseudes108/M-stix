@@ -11,6 +11,8 @@ public class MonsterCard : Card {
     public bool AnimaSelected = false;
     public bool ModeSelected = false;
     public bool IsInAttackMode = true;
+    public bool CanAttack;
+    public bool CanChangeMode;
 
     [SerializeField] private TextMeshProUGUI _levelLabel;
     [SerializeField] private TextMeshProUGUI _attackLabel;
@@ -44,5 +46,13 @@ public class MonsterCard : Card {
 
     public void SelectDeffenseMode(){
         IsInAttackMode = false;
+    }
+    
+    public void SetCanChangeMode(bool canChangeMode) { 
+        CanChangeMode = canChangeMode; 
+    }
+
+    public void SetCanAttack(bool canAttack) { 
+        CanAttack = canAttack;
     }
 }
