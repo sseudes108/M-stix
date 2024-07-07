@@ -4,9 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoardPlaceVisuals))]
 public class BoardPlace : MonoBehaviour {
     public static Action OnBoardPlaceSelected;
-    public static Action<BoardPlace> OnShowOptions;
+    public static Action<EBoardPlace> OnShowOptions;
     public static Action OnHideOptions;
-
+    public EBoardPlace boardPlace;
+    
+    [field:SerializeField] public Collider[] Colliders { get; private set; }
     [field:SerializeField] public bool IsPlayerPlace { get; private set; }
     [field:SerializeField] public bool IsMonsterPlace { get; private set; }
     [field:SerializeField] public bool IsFree { get; private set; }
@@ -14,6 +16,8 @@ public class BoardPlace : MonoBehaviour {
     private bool _canBeSelected;
     private Card _resultCard;
     public Card Card;
+
+    private bool _isOptShowing;
 
     private void OnEnable() {
         BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelectionPhase_OnBoardPlaceSelectionStart;
@@ -27,6 +31,10 @@ public class BoardPlace : MonoBehaviour {
 
     private void This_OnBoardPlaceSelected(){
         _canBeSelected = false;
+    }
+
+    private void Awake() {
+        Colliders = GetComponents<Collider>();
     }
 
     private void Start(){
@@ -46,12 +54,14 @@ public class BoardPlace : MonoBehaviour {
 
     private void OnMouseOver(){
         if(Card == null) { return; }
-        Debug.Log($"BoardID Selected {ID}");
-        OnShowOptions?.Invoke(this);
+        if(_isOptShowing) { return; }
+        OnShowOptions?.Invoke(boardPlace);
+        _isOptShowing = true;
     }
 
     private void OnMouseExit(){
         OnHideOptions?.Invoke();
+        _isOptShowing = false;
     }
 
     private void OnMouseDown() {
@@ -94,6 +104,7 @@ public class BoardPlace : MonoBehaviour {
         Card = card;
         card.SetCardOnHand(false);
         card.DeselectCard();
+        card.DisableCollider();
         
         _canBeSelected = false;
         IsFree = false;

@@ -375,6 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
@@ -685,6 +687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
@@ -820,6 +824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
@@ -1716,6 +1722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
@@ -1993,6 +2001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 1
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
@@ -2083,6 +2093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
@@ -2192,6 +2204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
@@ -2516,6 +2530,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
@@ -2763,6 +2779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 1
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
@@ -3084,6 +3102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 2
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
@@ -3596,6 +3616,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Center
       objectReference: {fileID: 0}
+    - target: {fileID: 520824548740040386, guid: b2f4c7bb3876c0840bc9bf7f78061169,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3368601584235680238, guid: b2f4c7bb3876c0840bc9bf7f78061169,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3785,6 +3810,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
@@ -3816,6 +3843,11 @@ PrefabInstance:
     - target: {fileID: 8452009165434958, guid: b2f4c7bb3876c0840bc9bf7f78061169, type: 3}
       propertyPath: m_Name
       value: Far Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 520824548740040386, guid: b2f4c7bb3876c0840bc9bf7f78061169,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3368601584235680238, guid: b2f4c7bb3876c0840bc9bf7f78061169,
         type: 3}
@@ -4291,6 +4323,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right
       objectReference: {fileID: 0}
+    - target: {fileID: 520824548740040386, guid: b2f4c7bb3876c0840bc9bf7f78061169,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3368601584235680238, guid: b2f4c7bb3876c0840bc9bf7f78061169,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4454,6 +4491,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left
       objectReference: {fileID: 0}
+    - target: {fileID: 520824548740040386, guid: b2f4c7bb3876c0840bc9bf7f78061169,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3368601584235680238, guid: b2f4c7bb3876c0840bc9bf7f78061169,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4577,6 +4619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 4
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
@@ -4691,6 +4735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 4
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
@@ -4991,6 +5037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 3
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
@@ -5800,6 +5848,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
@@ -6550,6 +6600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
@@ -7501,7 +7553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1670624734
 Transform:
   m_ObjectHideFlags: 0
@@ -8151,6 +8203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
@@ -8329,6 +8383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 0
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
@@ -8524,7 +8580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1836025440
 Transform:
   m_ObjectHideFlags: 0
@@ -8770,6 +8826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 3
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
@@ -9753,6 +9811,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Far Left
       objectReference: {fileID: 0}
+    - target: {fileID: 520824548740040386, guid: b2f4c7bb3876c0840bc9bf7f78061169,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3368601584235680238, guid: b2f4c7bb3876c0840bc9bf7f78061169,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10442,6 +10505,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardPlace: 2
+  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
@@ -10660,7 +10725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6605119811360596598
 GameObject:
   m_ObjectHideFlags: 0
@@ -10679,7 +10744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6605119811399466628
 GameObject:
   m_ObjectHideFlags: 0
@@ -10716,7 +10781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6605119812106924386
 GameObject:
   m_ObjectHideFlags: 0
@@ -10735,7 +10800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6605119812188540169
 GameObject:
   m_ObjectHideFlags: 0
@@ -10772,7 +10837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7248998565020580770
 Transform:
   m_ObjectHideFlags: 0

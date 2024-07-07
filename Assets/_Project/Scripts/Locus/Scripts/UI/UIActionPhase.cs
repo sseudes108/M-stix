@@ -1,11 +1,7 @@
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class UIActionPhase : UIManager {
-
-    private Dictionary<int, VisualElement> PlayerMonsterCards = new();
-
     private VisualElement _monsterFarLeftCard;
     private VisualElement _monsterLeftCard;
     private VisualElement _monsterCenterCard;
@@ -37,8 +33,48 @@ public class UIActionPhase : UIManager {
         HideOptions();
     }
 
-    private void BoardPlace_OnShowOptions(BoardPlace place){
-        ShowOptions(place);
+    /// <summary>
+    /// UpdateElements set the opacity to zero for all elements other than the index
+    /// </summary>
+    private void UpdateElements(int index, List<VisualElement> elementList){
+        for(int i = 0; i < elementList.Count; i++ ){
+            if(i != index){
+                elementList[i].style.opacity = 0;
+            }else{
+                elementList[i].style.opacity = 1;
+            }
+        }
+    }
+
+    private void BoardPlace_OnShowOptions(EBoardPlace place){
+        switch(place){
+            case EBoardPlace.MonsterFarLeft:
+                UpdateElements(0, _playerMonsterCardsElements);
+            break;
+            case EBoardPlace.MonsterLeft:
+                UpdateElements(1, _playerMonsterCardsElements);
+            break;
+            case EBoardPlace.MonsterCenter:
+                UpdateElements(2, _playerMonsterCardsElements);;
+            break;
+            case EBoardPlace.MonsterRight:
+                UpdateElements(3, _playerMonsterCardsElements);
+            break;
+            case EBoardPlace.MonsterFarRight:
+                UpdateElements(4, _playerMonsterCardsElements);
+            break;
+
+            case EBoardPlace.ArcaneFarLeft:
+            break;
+            case EBoardPlace.ArcaneLeft:
+            break;
+            case EBoardPlace.ArcaneCenter:
+            break;
+            case EBoardPlace.ArcaneRight:
+            break;
+            case EBoardPlace.ArcaneFarRight:
+            break;
+        }
     }
 
     private void HideOptions(){
@@ -49,9 +85,9 @@ public class UIActionPhase : UIManager {
 
     private void ShowOptions(BoardPlace place){
         if(place.IsPlayerPlace){
-            if(PlayerMonsterCards.ContainsKey(place.ID)){
-                PlayerMonsterCards[place.ID].style.opacity = 1;
-            }
+            // if(PlayerMonsterCards.ContainsKey(place.ID)){
+            //     PlayerMonsterCards[place.ID].style.opacity = 1;
+            // }
         }
     }
 
@@ -76,11 +112,11 @@ public class UIActionPhase : UIManager {
 
         _actionCanvas.style.display = DisplayStyle.None;
 
-        var index = 0;
-        foreach(var element in _playerMonsterCardsElements){
-            PlayerMonsterCards.Add(index, element);
-            index ++;
-        }
+        // var index = 0;
+        // foreach(var element in _playerMonsterCardsElements){
+        //     PlayerMonsterCards.Add(index, element);
+        //     index ++;
+        // }
     }
 
     private void SetElements(){

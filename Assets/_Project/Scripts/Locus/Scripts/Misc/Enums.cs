@@ -1,44 +1,20 @@
-using System.Drawing;
-
 public enum ECardType{
-    Arcane,
-    Monster,
+    Arcane, Monster,
 }
 public enum EMonsterType{
-    Angel,
-    Dragon,
-    Machina,
-    Golem,
-    Magician,
-    Demon,
+    Angel, Dragon, Machina, Golem,
+    Magician, Demon,
 }
 public enum EArcaneType{
-    Trap,
-    Equip,
-    Field,
-    Damage
+    Trap, Equip, Field, Damage
 }
 
 public enum EAnimaType{
-    Venus,
-    Mars,
-    Saturn,
-    Jupiter,
-    Mercury ,
-    Sun,
-    Moon,
+    Venus, Mars, Saturn, Jupiter,
+    Mercury , Sun,  Moon,
 }
 
-// public enum EStateMachinePhase{
-//     Start,
-//     Draw,
-//     CardSelection,
-//     Fusion,
-//     Selections,
-//     BoardPlaceSelection,
-//     Action,
-//     Attack,
-//     Damage,
-//     ActionTwo,
-//     End
-// }
+public enum EBoardPlace{
+    MonsterFarLeft, MonsterLeft, MonsterCenter, MonsterRight, MonsterFarRight, 
+    ArcaneFarLeft, ArcaneLeft, ArcaneCenter, ArcaneRight, ArcaneFarRight, 
+}

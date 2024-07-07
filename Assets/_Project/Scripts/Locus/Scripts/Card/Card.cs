@@ -9,19 +9,21 @@ public abstract class Card : MonoBehaviour {
     public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serielized;. Needs to be public or otherwise it became null at the instatiation moment.
 
     public string Name {get; private set;}
-    public Texture2D _illustration {get; private set;}
+    private Texture2D _illustration;
     public CardVisual Visuals {get; private set;}
     protected CardMovement _cardMovement {get; private set;}
-    public bool _isPlayerCard = false;
-    public bool _canBeSelected = false;
-    public bool _isOnHand = false;
-    public bool _isSelected = false;
+    private bool _isPlayerCard = false;
+    private bool _canBeSelected = false;
+    private bool _isOnHand = false;
+    private bool _isSelected = false;
     public bool FusionedCard = false;
     public bool FaceSelected = false;
     public bool IsFaceDown = false;
 
     public Transform _model;
     public Transform _status;
+
+    public Collider Collider;
 
 #region Unity Methods
 
@@ -40,6 +42,7 @@ public abstract class Card : MonoBehaviour {
         _cardMovement = GetComponent<CardMovement>();
         _model = transform.Find("Visuals/Model");
         _status = transform.Find("Canvas");
+        Collider = GetComponent<Collider>();
     }
 
     private void Start(){
@@ -155,6 +158,11 @@ public abstract class Card : MonoBehaviour {
     
     public void DisableStatCanvas(){
         _status.gameObject.SetActive(false);
+    }
+
+    public void DisableCollider(){
+        Debug.Log("DisableCollider");
+        Collider.enabled = false;
     }
 
 #endregion
