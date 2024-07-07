@@ -114,6 +114,10 @@ public abstract class Card : MonoBehaviour {
         FusionedCard = true;
     }
 
+    public void DeselectCard(){
+        _isSelected = false;
+    }
+
     public void SelectFace(){
         FaceSelected = true;
     }

@@ -378,7 +378,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &60300848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,7 +688,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &103250468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,6 +760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 119582075}
   - component: {fileID: 119582077}
+  - component: {fileID: 119582080}
   - component: {fileID: 119582079}
   - component: {fileID: 119582078}
   m_Layer: 0
@@ -820,7 +823,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &119582079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,6 +840,27 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
   IntensityFactor: 2.5
+--- !u!65 &119582080
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119582074}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.247542, y: 1.9950652, z: 0.1366036}
+  m_Center: {x: 0.00086665154, y: -0.011959672, z: -0.015155271}
 --- !u!1 &156115709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,7 +1719,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &326970417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1970,7 +1996,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &351780638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1996,6 +2023,7 @@ GameObject:
   m_Component:
   - component: {fileID: 355532264}
   - component: {fileID: 355532265}
+  - component: {fileID: 355532268}
   - component: {fileID: 355532267}
   - component: {fileID: 355532266}
   m_Layer: 0
@@ -2058,7 +2086,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 4
+  Card: {fileID: 0}
 --- !u!114 &355532267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2074,6 +2103,27 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
   IntensityFactor: 2.5
+--- !u!65 &355532268
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355532263}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.247542, y: 1.9950652, z: 0.1366036}
+  m_Center: {x: 0.00086665154, y: -0.011959672, z: -0.015155271}
 --- !u!1 &377285070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,7 +2195,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &377285075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2405,6 +2456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418998012}
   - component: {fileID: 418998014}
+  - component: {fileID: 418998017}
   - component: {fileID: 418998016}
   - component: {fileID: 418998015}
   m_Layer: 0
@@ -2467,7 +2519,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &418998016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2483,6 +2536,27 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
   IntensityFactor: 2.5
+--- !u!65 &418998017
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418998011}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.247542, y: 1.9950652, z: 0.1366036}
+  m_Center: {x: 0.00086665154, y: -0.011959672, z: -0.015155271}
 --- !u!1 &427852078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2629,6 +2703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543213782}
   - component: {fileID: 543213783}
+  - component: {fileID: 543213786}
   - component: {fileID: 543213785}
   - component: {fileID: 543213784}
   m_Layer: 0
@@ -2691,7 +2766,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 3
+  Card: {fileID: 0}
 --- !u!114 &543213785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2707,6 +2783,27 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
   IntensityFactor: 2.5
+--- !u!65 &543213786
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543213781}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.247542, y: 1.9950652, z: 0.1366036}
+  m_Center: {x: 0.00086665154, y: -0.011959672, z: -0.015155271}
 --- !u!1 &546674703
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,6 +3024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637230712}
   - component: {fileID: 637230713}
+  - component: {fileID: 637230716}
   - component: {fileID: 637230715}
   - component: {fileID: 637230714}
   m_Layer: 0
@@ -2989,7 +3087,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 2
+  Card: {fileID: 0}
 --- !u!114 &637230715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3005,6 +3104,27 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
   IntensityFactor: 2.5
+--- !u!65 &637230716
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637230711}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.247542, y: 1.9950652, z: 0.1366036}
+  m_Center: {x: 0.00086665154, y: -0.011959672, z: -0.015155271}
 --- !u!1 &645521319
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,7 +3788,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &836039548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4459,7 +4580,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &1049708139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4509,6 +4631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071389274}
   - component: {fileID: 1071389275}
+  - component: {fileID: 1071389278}
   - component: {fileID: 1071389277}
   - component: {fileID: 1071389276}
   m_Layer: 0
@@ -4571,7 +4694,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &1071389277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4587,6 +4711,27 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
   IntensityFactor: 2.5
+--- !u!65 &1071389278
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071389273}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.247542, y: 1.9950652, z: 0.1366036}
+  m_Center: {x: 0.00086665154, y: -0.011959672, z: -0.015155271}
 --- !u!1 &1076624589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4786,6 +4931,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158520198}
   - component: {fileID: 1158520199}
+  - component: {fileID: 1158520202}
   - component: {fileID: 1158520201}
   - component: {fileID: 1158520200}
   m_Layer: 0
@@ -4848,7 +4994,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 1
+  Card: {fileID: 0}
 --- !u!114 &1158520201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4864,6 +5011,27 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
   IntensityFactor: 2.5
+--- !u!65 &1158520202
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158520197}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.247542, y: 1.9950652, z: 0.1366036}
+  m_Center: {x: 0.00086665154, y: -0.011959672, z: -0.015155271}
 --- !u!1 &1160234425
 GameObject:
   m_ObjectHideFlags: 0
@@ -5572,6 +5740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1344077292}
   - component: {fileID: 1344077294}
+  - component: {fileID: 1344077297}
   - component: {fileID: 1344077296}
   - component: {fileID: 1344077295}
   m_Layer: 0
@@ -5634,7 +5803,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &1344077296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5650,6 +5820,27 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
   IntensityFactor: 2.5
+--- !u!65 &1344077297
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344077291}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.247542, y: 1.9950652, z: 0.1366036}
+  m_Center: {x: 0.00086665154, y: -0.011959672, z: -0.015155271}
 --- !u!1001 &1344332294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6299,6 +6490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1443069442}
   - component: {fileID: 1443069444}
+  - component: {fileID: 1443069447}
   - component: {fileID: 1443069446}
   - component: {fileID: 1443069445}
   m_Layer: 0
@@ -6361,7 +6553,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &1443069446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6377,6 +6570,27 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
   IntensityFactor: 2.5
+--- !u!65 &1443069447
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443069441}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.247542, y: 1.9950652, z: 0.1366036}
+  m_Center: {x: 0.00086665154, y: -0.011959672, z: -0.015155271}
 --- !u!1 &1482027815
 GameObject:
   m_ObjectHideFlags: 0
@@ -6626,6 +6840,7 @@ GameObject:
   - component: {fileID: 1528214226}
   - component: {fileID: 1528214229}
   - component: {fileID: 1528214230}
+  - component: {fileID: 1528214231}
   m_Layer: 0
   m_Name: UI Battle Manager
   m_TagString: Untagged
@@ -6712,6 +6927,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3de7ccde3b3a9a4280e691fa2575eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1528214231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528214224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65acb831460aecf40a5d9dcc315bc57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1563189048
@@ -7927,7 +8154,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &1781544187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8041,6 +8269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1791220970}
   - component: {fileID: 1791220972}
+  - component: {fileID: 1791220975}
   - component: {fileID: 1791220974}
   - component: {fileID: 1791220973}
   m_Layer: 0
@@ -8103,7 +8332,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &1791220974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8119,6 +8349,27 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
   IntensityFactor: 2.5
+--- !u!65 &1791220975
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791220969}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.247542, y: 1.9950652, z: 0.1366036}
+  m_Center: {x: 0.00086665154, y: -0.011959672, z: -0.015155271}
 --- !u!1 &1806700421
 GameObject:
   m_ObjectHideFlags: 0
@@ -8522,7 +8773,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &1884829979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10193,7 +10445,8 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  _cardInPlace: {fileID: 0}
+  <ID>k__BackingField: 0
+  Card: {fileID: 0}
 --- !u!114 &4283873112261418143
 MonoBehaviour:
   m_ObjectHideFlags: 0

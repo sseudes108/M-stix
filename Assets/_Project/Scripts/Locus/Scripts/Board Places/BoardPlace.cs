@@ -4,13 +4,16 @@ using UnityEngine;
 [RequireComponent(typeof(BoardPlaceVisuals))]
 public class BoardPlace : MonoBehaviour {
     public static Action OnBoardPlaceSelected;
+    public static Action<BoardPlace> OnShowOptions;
+    public static Action OnHideOptions;
 
     [field:SerializeField] public bool IsPlayerPlace { get; private set; }
     [field:SerializeField] public bool IsMonsterPlace { get; private set; }
     [field:SerializeField] public bool IsFree { get; private set; }
+    [field:SerializeField] public int ID { get; private set; }
     private bool _canBeSelected;
     private Card _resultCard;
-    public Card _cardInPlace;
+    public Card Card;
 
     private void OnEnable() {
         BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelectionPhase_OnBoardPlaceSelectionStart;
@@ -41,6 +44,16 @@ public class BoardPlace : MonoBehaviour {
         }
     }
 
+    private void OnMouseOver(){
+        if(Card == null) { return; }
+        Debug.Log($"BoardID Selected {ID}");
+        OnShowOptions?.Invoke(this);
+    }
+
+    private void OnMouseExit(){
+        OnHideOptions?.Invoke();
+    }
+
     private void OnMouseDown() {
         if(!_canBeSelected) { return; }
         if(IsFree){
@@ -49,6 +62,7 @@ public class BoardPlace : MonoBehaviour {
             //Fusion Logic with the monster in This Place
         }
     }
+
 
     public void SetCardInPlace(Card card){
         if(card is MonsterCard){
@@ -75,7 +89,12 @@ public class BoardPlace : MonoBehaviour {
 
         }
 
-        _cardInPlace = card;
+        Debug.Log($"BoardID Selected {ID}");
+
+        Card = card;
+        card.SetCardOnHand(false);
+        card.DeselectCard();
+        
         _canBeSelected = false;
         IsFree = false;
         OnBoardPlaceSelected?.Invoke();

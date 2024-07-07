@@ -1,7 +1,11 @@
-public class ActionPhase : AbstractState
-{
+using System;
+
+public class ActionPhase : AbstractState{
+
+    public static Action OnActionPhaseStart;
+
     public override void Enter(){
-        
+        OnActionPhaseStart?.Invoke();
     }
 
     public override void Exit(){

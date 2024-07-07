@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[RequireComponent(typeof(UIBattleScene), typeof(UICardStatSel))]
+[RequireComponent(typeof(UIBattleScene), typeof(UICardStatSel), typeof(UIActionPhase))]
 public class UIManager : MonoBehaviour {
     public UIDocument Document {get; private set;}
     public VisualElement Root {get; private set;}
