@@ -3,8 +3,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(CardVisual), typeof(CardMovement))]
 public abstract class Card : MonoBehaviour {
-    public static Action<Card> OnCardSelected;
-    public static Action<Card> OnCardDeselected;
+    public BattleEventHandlerSO _battleManager;
+    // public CardEventHandlerSO _cardManager;
+    // public static Action<Card> OnCardSelected;
+    // public static Action<Card> OnCardDeselected;
 
     public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serielized;. Needs to be public or otherwise it became null at the instatiation moment.
 
@@ -29,16 +31,22 @@ public abstract class Card : MonoBehaviour {
 #region Unity Methods
 
     private void OnEnable() {
-        CardSelectionPhase.OnCardSelectionStart += CardSelectionPhase_OnCardSelectionStart;
-        CardSelectionPhase.OnCardSelectionEnd += CardSelectionPhase_OnCardSelectionEnd;
+        // CardSelectionPhase.OnCardSelectionStart += CardSelectionPhase_OnCardSelectionStart;
+        // CardSelectionPhase.OnCardSelectionEnd += CardSelectionPhase_OnCardSelectionEnd;
+        _battleManager.OnCardSelectionStart.AddListener(BattleManager_OnCardSelectionStart);
+        _battleManager.OnCardSelectionEnd.AddListener(BattleManager_OnCardSelectionEnd);
     }
 
     private void OnDisable() {
-        CardSelectionPhase.OnCardSelectionStart -= CardSelectionPhase_OnCardSelectionStart;
-        CardSelectionPhase.OnCardSelectionEnd -= CardSelectionPhase_OnCardSelectionEnd;
+        // CardSelectionPhase.OnCardSelectionStart -= CardSelectionPhase_OnCardSelectionStart;
+        // CardSelectionPhase.OnCardSelectionEnd -= CardSelectionPhase_OnCardSelectionEnd;
+        _battleManager.OnCardSelectionStart.RemoveListener(BattleManager_OnCardSelectionStart);
+        _battleManager.OnCardSelectionEnd.RemoveListener(BattleManager_OnCardSelectionEnd);
     }
     
     private void Awake() {
+        _battleManager = GameManager.Instance.BattleManager;
+
         Visuals = GetComponent<CardVisual>();
         _cardMovement = GetComponent<CardMovement>();
         _model = transform.Find("Visuals/Model");
@@ -49,7 +57,6 @@ public abstract class Card : MonoBehaviour {
     private void Start(){
         SetCardInfo();
         Visuals.SetVisuals(_illustration);
-        SetCardText();
     }
 
     private void OnMouseDown() {
@@ -83,9 +90,8 @@ public abstract class Card : MonoBehaviour {
 
 #region Events Methods
 
-    private void CardSelectionPhase_OnCardSelectionStart() { _canBeSelected = true; }
-
-    private void CardSelectionPhase_OnCardSelectionEnd() { _canBeSelected = false; }
+    private void BattleManager_OnCardSelectionStart() { _canBeSelected = true; }
+    private void BattleManager_OnCardSelectionEnd() { _canBeSelected = false; }
 
 #endregion
 

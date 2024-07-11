@@ -7,13 +7,15 @@ public class PlayerHand : Hand {
 
     public override void OnEnable() {
         base.OnEnable();
-        DrawPhase.OnPlayerDraw += DrawPhase_OnPlayerDraw;
+        // DrawPhase.OnPlayerDraw += DrawPhase_OnPlayerDraw;
+        BattleManager.OnPlayerDraw.AddListener(BattleManager_OnPlayerDraw);
         UIBattleScene.OnSelectionFinished += UIBattleScene_OnSelectionFinished;
     }
 
     public override void OnDisable() {
         base.OnDisable();
-        DrawPhase.OnPlayerDraw -= DrawPhase_OnPlayerDraw;
+        // DrawPhase.OnPlayerDraw -= DrawPhase_OnPlayerDraw;
+        BattleManager.OnPlayerDraw.RemoveListener(BattleManager_OnPlayerDraw);
         UIBattleScene.OnSelectionFinished += UIBattleScene_OnSelectionFinished;
     }
 
@@ -26,8 +28,8 @@ public class PlayerHand : Hand {
 
 #region Events Methods
 
-    public override void StartPhase_OnStartPhase(){
-        base.StartPhase_OnStartPhase();
+    public override void BattleManager_OnStartPhase(){
+        base.BattleManager_OnStartPhase();
         _movement.SetTargetPosition(_movement.StartPosition);
     }
 
@@ -43,7 +45,7 @@ public class PlayerHand : Hand {
         _movement.SetTargetPosition(_OffCameraHand.position);
     }
 
-    private void DrawPhase_OnPlayerDraw(){
+    private void BattleManager_OnPlayerDraw(){
         Draw();
     }
 

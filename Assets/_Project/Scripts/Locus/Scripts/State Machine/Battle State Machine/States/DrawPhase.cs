@@ -1,8 +1,6 @@
-using System;
-
 public class DrawPhase : AbstractState{
-    public static Action OnPlayerDraw;
-    public static Action OnEnemyDraw;
+    // public static Action OnPlayerDraw;
+    // public static Action OnEnemyDraw;
 
     public override void Enter(){
         SubscribeEvents();
@@ -15,13 +13,17 @@ public class DrawPhase : AbstractState{
 
     private void DrawCards(){
         if(CurrentTurn == 1){
-            OnPlayerDraw?.Invoke();
-            OnEnemyDraw?.Invoke();
+            Battle.BattleManager.PlayerDraw();
+            Battle.BattleManager.EnemyDraw();
+            // OnPlayerDraw?.Invoke();
+            // OnEnemyDraw?.Invoke();
 
         }else if(IsPlayerTurn){
-            OnPlayerDraw?.Invoke();
+            Battle.BattleManager.PlayerDraw();
+            // OnPlayerDraw?.Invoke();
         }else{
-            OnEnemyDraw?.Invoke();
+            Battle.BattleManager.EnemyDraw();
+            // OnEnemyDraw?.Invoke();
         }
     }
 

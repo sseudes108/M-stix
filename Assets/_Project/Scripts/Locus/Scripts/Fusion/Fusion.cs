@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Fusion : MonoBehaviour {
+    [SerializeField]private FusionEventHandlerSO FusionManager;
 
-    public static Action OnFusionEnd;
-
+    // public static Action OnFusionEnd;
     public bool _isPlayerTurn;
     public List<Card> _fusionLine;
     public List<Card> _selectedCardList;
@@ -69,7 +68,8 @@ public class Fusion : MonoBehaviour {
         }
         yield return new WaitForSeconds(1f);
         // Open UI Select options
-        OnFusionEnd?.Invoke();
+        FusionManager.FusionEnd();
+        // OnFusionEnd?.Invoke();
     }
 
     private void RemoveCardsFromFusionLine(Card card1, Card card2){

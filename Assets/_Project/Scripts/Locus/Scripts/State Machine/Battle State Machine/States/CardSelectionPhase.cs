@@ -1,17 +1,19 @@
 using System;
 
 public class CardSelectionPhase : AbstractState{
-    public static Action OnCardSelectionStart;
-    public static Action OnCardSelectionEnd;
+    // public static Action OnCardSelectionStart;
+    // public static Action OnCardSelectionEnd;
 
     public override void Enter(){
         SubscribeEvents();
-        OnCardSelectionStart?.Invoke(); // Unlock card selection
+        Battle.BattleManager.CardSelectionStart(); // Unlock card selection
+        // OnCardSelectionStart?.Invoke(); 
     }
     
     public override void Exit(){
         UnsubscribeEvents();
-        OnCardSelectionEnd?.Invoke(); // lock card selection
+        Battle.BattleManager.CardSelectionEnd();// lock card selection
+        // OnCardSelectionEnd?.Invoke(); // lock card selection
     }
 
     public override void SubscribeEvents(){

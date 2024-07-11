@@ -5,7 +5,8 @@ using UnityEngine.UIElements;
 
 public class UIActionPhase : UIManager {
     // public static Action<Card, bool> OnAttackSelected;
-
+    [SerializeField] private BoardPlaceEventHandlerSO BoardManager;
+    
     private VisualElement _monsterFarLeftCard;
     private VisualElement _monsterLeftCard;
     private VisualElement _monsterCenterCard;
@@ -23,14 +24,18 @@ public class UIActionPhase : UIManager {
 
     private void OnEnable() {
         ActionPhase.OnActionPhaseStart += ActionPhase_OnActionPhaseStart;
-        BoardPlace.OnShowOptions += BoardPlace_OnShowOptions;
-        BoardPlace.OnHideOptions += BoardPlace_OnHideOptions;
+        // BoardPlace.OnShowOptions += BoardPlace_OnShowOptions;
+        // BoardPlace.OnHideOptions += BoardPlace_OnHideOptions;
+        BoardManager.OnShowOptions.AddListener(BoardManager_OnShowOptions);
+        BoardManager.OnHideOptions.AddListener(BoardManager_OnHideOptions);
     }
 
     private void OnDisable() {
         ActionPhase.OnActionPhaseStart -= ActionPhase_OnActionPhaseStart;
-        BoardPlace.OnShowOptions -= BoardPlace_OnShowOptions;
-        BoardPlace.OnHideOptions -= BoardPlace_OnHideOptions;
+        // BoardPlace.OnShowOptions -= BoardPlace_OnShowOptions;
+        // BoardPlace.OnHideOptions -= BoardPlace_OnHideOptions;
+        BoardManager.OnShowOptions.RemoveListener(BoardManager_OnShowOptions);
+        BoardManager.OnHideOptions.RemoveListener(BoardManager_OnHideOptions);
 
         if(_button1 != null){
             _button1.clicked -= Option1Clicked;
@@ -46,11 +51,11 @@ public class UIActionPhase : UIManager {
         ShowCanvas();
     }
 
-    private void BoardPlace_OnHideOptions(){
+    private void BoardManager_OnHideOptions(){
         HideOptions();
     }
 
-    private void BoardPlace_OnShowOptions(BoardPlace place){
+    private void BoardManager_OnShowOptions(BoardPlace place){
         if(place.IsMonsterPlace){
             ShowMonsterOptions(place.Location, place.Card as MonsterCard);
         }else{

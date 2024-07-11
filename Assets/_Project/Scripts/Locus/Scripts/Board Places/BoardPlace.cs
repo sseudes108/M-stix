@@ -3,9 +3,12 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoardPlaceVisuals))]
 public class BoardPlace : MonoBehaviour {
-    public static Action OnBoardPlaceSelected;
-    public static Action<BoardPlace> OnShowOptions;
-    public static Action OnHideOptions;
+    [SerializeField] private BattleEventHandlerSO BattleManager;
+    [SerializeField] private BoardPlaceEventHandlerSO BoardManager;
+
+    // public static Action OnBoardPlaceSelected;
+    // public static Action<BoardPlace> OnShowOptions;
+    // public static Action OnHideOptions;
 
     [field:SerializeField] public EBoardPlace Location { get; private set; }
     [field:SerializeField] public Collider[] Colliders { get; private set; }
@@ -18,16 +21,20 @@ public class BoardPlace : MonoBehaviour {
     private bool _isOptShowing;
 
     private void OnEnable() {
-        BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelectionPhase_OnBoardPlaceSelectionStart;
-        OnBoardPlaceSelected += This_OnBoardPlaceSelected;
+        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelectionPhase_OnBoardPlaceSelectionStart;
+        BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
+        BoardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
+        // OnBoardPlaceSelected += This_OnBoardPlaceSelected;
     }
     
     private void OnDisable() {
-        BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart -= BoardPlaceSelectionPhase_OnBoardPlaceSelectionStart;
-        OnBoardPlaceSelected -= This_OnBoardPlaceSelected;
+        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart -= BoardPlaceSelectionPhase_OnBoardPlaceSelectionStart;
+        BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart);
+        BoardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
+        // OnBoardPlaceSelected -= This_OnBoardPlaceSelected;
     }
 
-    private void This_OnBoardPlaceSelected(){
+    private void BoardManager_OnBoardPlaceSelected(){
         _canBeSelected = false;
     }
 
@@ -39,7 +46,7 @@ public class BoardPlace : MonoBehaviour {
         IsFree = true;
     }
 
-    private void BoardPlaceSelectionPhase_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn){
+    private void BattleManager_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn){
         if(IsPlayerPlace && isPlayerTurn){
             _resultCard = card;
             if(IsMonsterPlace && _resultCard is MonsterCard){
@@ -53,12 +60,14 @@ public class BoardPlace : MonoBehaviour {
     private void OnMouseOver(){
         if(Card == null) { return; }
         if(_isOptShowing) { return; }
-        OnShowOptions?.Invoke(this);
+        BoardManager.ShowOptions(this);
+        // OnShowOptions?.Invoke(this);
         _isOptShowing = true;
     }
 
     private void OnMouseExit(){
-        OnHideOptions?.Invoke();
+        BoardManager.HideOptions();
+        // OnHideOptions?.Invoke();
         _isOptShowing = false;
     }
 
@@ -105,6 +114,7 @@ public class BoardPlace : MonoBehaviour {
         
         _canBeSelected = false;
         IsFree = false;
-        OnBoardPlaceSelected?.Invoke();
+        BoardManager.BoardPlaceSelected();
+        // OnBoardPlaceSelected?.Invoke();
     }
 }

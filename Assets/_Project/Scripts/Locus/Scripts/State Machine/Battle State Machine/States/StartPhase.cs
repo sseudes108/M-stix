@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class StartPhase : AbstractState{
-    public static Action OnStartPhase;
+    // public static Action OnStartPhase;
 
     public override void Enter(){
         if(Battle != null){
@@ -15,7 +14,8 @@ public class StartPhase : AbstractState{
     
     public IEnumerator BattlePhaseStartRoutine(){
         yield return new WaitForSeconds(1f);
-        OnStartPhase?.Invoke();
+        Battle.BattleManager.StartPhase();
+        // OnStartPhase?.Invoke();
 
         yield return new WaitForSeconds(2f);
         Battle.ChangeState(Battle.DrawPhase);

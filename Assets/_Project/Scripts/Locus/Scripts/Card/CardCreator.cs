@@ -12,6 +12,7 @@ public class CardCreator : MonoBehaviour {
             newCard = _arcaneCardPrefab;
         }
         newCard.SetCardData(cardData);
+
         return newCard;
     }
 }

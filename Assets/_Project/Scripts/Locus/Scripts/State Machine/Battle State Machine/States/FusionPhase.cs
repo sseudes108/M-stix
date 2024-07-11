@@ -20,14 +20,17 @@ public class FusionPhase : AbstractState{
     }
 
     public override void SubscribeEvents(){
-        Fusion.OnFusionEnd += Fusion_OnFusionEnd;
+        // Battle.FusionManager.FusionEnd();
+        Battle.FusionManager.OnFusionEnd.AddListener(FusionManager_OnFusionEnd);
+        // Fusion.OnFusionEnd += Fusion_OnFusionEnd;
     }
 
     public override void UnsubscribeEvents(){
-        Fusion.OnFusionEnd -= Fusion_OnFusionEnd;
+        Battle.FusionManager.OnFusionEnd.RemoveListener(FusionManager_OnFusionEnd);
+        // Fusion.OnFusionEnd -= Fusion_OnFusionEnd;
     }
 
-    private void Fusion_OnFusionEnd(){
+    private void FusionManager_OnFusionEnd(){
         Battle.ChangeState(Battle.CardStatSelection);
     }
 

@@ -1,8 +1,9 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardPlaceManager : MonoBehaviour {
+    [SerializeField] private BattleEventHandlerSO BattleManager;
+
     [field:SerializeField] public float IntensityFactor{ get; private set; }
     [field:SerializeField] public Color LightUpColor{ get; private set; }
     [field:SerializeField] public Color PlayerDefaultColor{ get; private set; }
@@ -14,16 +15,22 @@ public class BoardPlaceManager : MonoBehaviour {
     [field:SerializeField] public List<BoardPlaceVisuals> EnemyArcanePlaces{ get; private set; }
 
     private void OnEnable() {
-        StartPhase.OnStartPhase += StartPhase_OnStartPhase;
-        BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelection_OnBoardPlaceSelectionStart;
-        BoardPlaceSelectionPhase.OnBoardPlaceSelectionEnd += BoardPlaceSelection_OnBoardPlaceSelectionEnd;
+        BattleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
+        // StartPhase.OnStartPhase += StartPhase_OnStartPhase;
+        BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_BoardPlaceSelectionStart);
+        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelection_OnBoardPlaceSelectionStart;
+        BattleManager.OnBoardPlaceSelectionEnd.AddListener(BattleManager_BoardPlaceSelectionEnd);
+        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionEnd += BoardPlaceSelection_OnBoardPlaceSelectionEnd;
         // UIActionPhase.OnAttackSelected += UIActionPhase_OnAttackSelected;
     }
 
     private void OnDisable() {
-        StartPhase.OnStartPhase -= StartPhase_OnStartPhase;
-        BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart -= BoardPlaceSelection_OnBoardPlaceSelectionStart;
-        BoardPlaceSelectionPhase.OnBoardPlaceSelectionEnd -= BoardPlaceSelection_OnBoardPlaceSelectionEnd;
+        BattleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
+        // StartPhase.OnStartPhase -= StartPhase_OnStartPhase;
+        BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_BoardPlaceSelectionStart);
+        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart -= BoardPlaceSelection_OnBoardPlaceSelectionStart;
+        BattleManager.OnBoardPlaceSelectionEnd.RemoveListener(BattleManager_BoardPlaceSelectionEnd);
+        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionEnd -= BoardPlaceSelection_OnBoardPlaceSelectionEnd;
         // UIActionPhase.OnAttackSelected += UIActionPhase_OnAttackSelected;
     }
 
@@ -45,7 +52,7 @@ public class BoardPlaceManager : MonoBehaviour {
         }
     }
 
-    private void BoardPlaceSelection_OnBoardPlaceSelectionEnd(Card card, bool isPlayerTurn){
+    private void BattleManager_BoardPlaceSelectionEnd(Card card, bool isPlayerTurn){
         if(isPlayerTurn){
             LightUpPlayerPlaces();
         }else{
@@ -53,7 +60,7 @@ public class BoardPlaceManager : MonoBehaviour {
         }
     }
 
-    private void BoardPlaceSelection_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn){
+    private void BattleManager_BoardPlaceSelectionStart(Card card, bool isPlayerTurn){
         if(isPlayerTurn){
             HighLightPlayerPlaces(card);
         }else{
@@ -121,7 +128,7 @@ public class BoardPlaceManager : MonoBehaviour {
         }
     }
 
-    private void StartPhase_OnStartPhase(){
+    private void BattleManager_OnStartPhase(){
         LightUpPlayerPlaces();
         LightUpEnemyPlaces();
     }

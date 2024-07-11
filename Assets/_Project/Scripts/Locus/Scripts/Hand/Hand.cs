@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(HandMovement))]
 public abstract class Hand : MonoBehaviour {
     public static Action OnCardsDrew;
+    public BattleEventHandlerSO BattleManager;
 
     [SerializeField] private Transform[] _handPositions;
     [SerializeField] private List<Transform> _freePositionsInHand;
@@ -14,14 +15,16 @@ public abstract class Hand : MonoBehaviour {
     protected HandMovement _movement;
 
     public virtual void OnEnable() {
-        StartPhase.OnStartPhase += StartPhase_OnStartPhase;
+        // StartPhase.OnStartPhase += StartPhase_OnStartPhase;
+        BattleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
     }
 
     public virtual void OnDisable() {
-        StartPhase.OnStartPhase -= StartPhase_OnStartPhase;
+        // StartPhase.OnStartPhase -= StartPhase_OnStartPhase;
+        BattleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
     }
 
-    public virtual void StartPhase_OnStartPhase(){
+    public virtual void BattleManager_OnStartPhase(){
         CheckFreeHandPositions();
     }
 
@@ -56,7 +59,7 @@ public abstract class Hand : MonoBehaviour {
             if(this is PlayerHand) { newCard.IsPlayeCard(); }
             newCard.SetCardOnHand(true);
             yield return null;
-
+            newCard._battleManager = BattleManager;
             newCard.MoveCard(position);
             yield return new WaitForSeconds(0.5f);
             yield return null;

@@ -2,19 +2,22 @@ using System;
 using UnityEngine;
 
 public class CardStatSelections : MonoBehaviour {
+    [SerializeField] private BattleEventHandlerSO BattleManager;
     public static Action<Card> OnSelectAnother;
     public static Action OnSelectionsEnd;
     public MonsterCard _monsterCard;
     public Card _resultCard;
 
     private void OnEnable() {
-        CardStatSelectPhase.OnStatSelectStart += CardStatSelectPhase_OnStatSelectStart;
+        // CardStatSelectPhase.OnStatSelectStart += CardStatSelectPhase_OnStatSelectStart;
+        BattleManager.OnStatSelectStart.AddListener(BattleManager_OnStatSelectStart);
         UICardStatSel.OnOption1Clicked += UICardStatSel_OnOption1Clicked;
         UICardStatSel.OnOption2Clicked += UICardStatSel_OnOption2Clicked;
     }
 
     private void OnDisable() {
-        CardStatSelectPhase.OnStatSelectStart -= CardStatSelectPhase_OnStatSelectStart;
+        // CardStatSelectPhase.OnStatSelectStart -= CardStatSelectPhase_OnStatSelectStart;
+        BattleManager.OnStatSelectStart.RemoveListener(BattleManager_OnStatSelectStart);
         UICardStatSel.OnOption1Clicked -= UICardStatSel_OnOption1Clicked;
         UICardStatSel.OnOption2Clicked -= UICardStatSel_OnOption2Clicked;
     }
@@ -27,7 +30,7 @@ public class CardStatSelections : MonoBehaviour {
         Option2_Clicked();
     }
 
-    private void CardStatSelectPhase_OnStatSelectStart(Card card){
+    private void BattleManager_OnStatSelectStart(Card card){
         StartSelection(card);
     }
 

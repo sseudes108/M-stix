@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+    public BattleEventHandlerSO BattleManager;
     public static GameManager Instance { get; private set;}
 
     public UIManager UIManager;

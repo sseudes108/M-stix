@@ -1,12 +1,12 @@
-using System;
 public class BoardPlaceSelectionPhase : AbstractState{   
 
-    public static Action<Card, bool> OnBoardPlaceSelectionStart;
-    public static Action<Card, bool> OnBoardPlaceSelectionEnd;
+    // public static Action<Card, bool> OnBoardPlaceSelectionStart;
+    // public static Action<Card, bool> OnBoardPlaceSelectionEnd;
 
     public override void Enter(){
         SubscribeEvents();
-        OnBoardPlaceSelectionStart?.Invoke(ResultCard, IsPlayerTurn);
+        Battle.BattleManager.BoardPlaceSelectionStart(ResultCard, IsPlayerTurn);
+        // OnBoardPlaceSelectionStart?.Invoke(ResultCard, IsPlayerTurn);
     }
 
     public override void Exit(){
@@ -14,15 +14,18 @@ public class BoardPlaceSelectionPhase : AbstractState{
     }
 
     public override void SubscribeEvents(){
-        BoardPlace.OnBoardPlaceSelected += BoardPlace_OnBoardPlaceSelected;
+        Battle.BoardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
+        // BoardPlace.OnBoardPlaceSelected += BoardPlace_OnBoardPlaceSelected;
     }
 
     public override void UnsubscribeEvents(){
-        BoardPlace.OnBoardPlaceSelected -= BoardPlace_OnBoardPlaceSelected;
+        Battle.BoardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
+        // BoardPlace.OnBoardPlaceSelected -= BoardPlace_OnBoardPlaceSelected;
     }
 
-    private void BoardPlace_OnBoardPlaceSelected(){
-        OnBoardPlaceSelectionEnd.Invoke(ResultCard, IsPlayerTurn);
+    private void BoardManager_OnBoardPlaceSelected(){
+        Battle.BattleManager.BoardPlaceSelectionEnd(ResultCard, IsPlayerTurn);
+        // OnBoardPlaceSelectionEnd.Invoke(ResultCard, IsPlayerTurn);
         Battle.ChangeState(Battle.Action);
     }
 

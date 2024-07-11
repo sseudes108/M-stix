@@ -375,6 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -686,6 +688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -822,6 +826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -1015,6 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01554cf8a0d94f94e97446cd109207db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _handPositions:
   - {fileID: 3012175272749557841}
   - {fileID: 3012175274048785799}
@@ -1719,6 +1726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -1997,7 +2006,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Location>k__BackingField: 1
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
@@ -2088,6 +2099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -2198,6 +2211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -2523,6 +2538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -2771,6 +2788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 1
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -2860,6 +2879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b577b2a8ff38f44c805b81121d8afcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   <IntensityFactor>k__BackingField: 2.5
   <LightUpColor>k__BackingField: {r: 0.9433962, g: 0.9092466, b: 0.6096476, a: 1}
   <PlayerDefaultColor>k__BackingField: {r: 0.70980394, g: 0.035294108, b: 0.43585798,
@@ -3191,6 +3211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 2
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -3898,6 +3920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -4706,7 +4730,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Location>k__BackingField: 4
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
@@ -4821,6 +4847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 4
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -5122,6 +5150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 3
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -5932,6 +5962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -6302,6 +6334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f539deaa010476c43849f74816b7cce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _handPositions:
   - {fileID: 1405960327}
   - {fileID: 1077423730}
@@ -6683,6 +6716,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -7010,6 +7045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2196e1c7826b74893f04e60a4bed44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
 --- !u!114 &1528214227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7075,6 +7111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65acb831460aecf40a5d9dcc315bc57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
 --- !u!1 &1563189048
 GameObject:
   m_ObjectHideFlags: 0
@@ -7393,6 +7430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3941d06d57e4a468e804d682a97044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  FusionManager: {fileID: 0}
+  BoardManager: {fileID: 0}
 --- !u!1 &1664148452
 GameObject:
   m_ObjectHideFlags: 0
@@ -7446,6 +7486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c018238fe99b75418186f51943fe636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   UIManager: {fileID: 0}
   TurnManager: {fileID: 0}
   CardManager: {fileID: 0}
@@ -7775,6 +7816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa818ba782b950642ba6cd697a772988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _monsterCard: {fileID: 0}
   _resultCard: {fileID: 0}
 --- !u!1 &1700633314
@@ -8190,7 +8232,7 @@ Transform:
   m_GameObject: {fileID: 1781544182}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.7, y: 0, z: -0.00000024437904}
+  m_LocalPosition: {x: 1.7, y: 0, z: -0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8230,6 +8272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -8409,6 +8453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -8851,7 +8897,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Location>k__BackingField: 3
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
@@ -9711,6 +9759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24dd45cf4252bb843a1790447e2f2e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
   _isPlayerTurn: 0
   _fusionLine: []
   _selectedCardList: []
@@ -9728,6 +9777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59eae305e03bcec4882155255a61fc07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _playerFusionPositions:
   - {fileID: 3012175273687063293}
   - {fileID: 3012175272823294441}
@@ -9756,6 +9806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55f6054a82eb7d4c84483f8844563a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FusionManager: {fileID: 0}
   _isPlayerTurn: 0
   _fusionLine: []
   _selectedCardList: []
@@ -10529,7 +10580,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0647039362977046bbcb65b96bbdab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Location>k__BackingField: 2
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0

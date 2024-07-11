@@ -70,9 +70,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc738afb18fe3d4ca6a02b5f14ece5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: b616ed0f04b805548908f5dca2e3a28e, type: 2}
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  Data: {fileID: 11400000, guid: 5ef064a6d4ea0e340a679e0e9b606124, type: 2}
+  FusionedCard: 0
+  FaceSelected: 0
+  IsFaceDown: 0
+  CanFlip: 0
   _model: {fileID: 0}
   _status: {fileID: 0}
+  Collider: {fileID: 0}
+  AnimaSelected: 0
+  ModeSelected: 0
+  IsInAttackMode: 1
+  CanAttack: 0
+  CanChangeMode: 0
   _levelLabel: {fileID: 4215302757009945003}
   _attackLabel: {fileID: 854108542203466186}
   _deffenseLabel: {fileID: 6724656198405140279}
@@ -100,10 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce94cc2a20a3c749a685e4d501e3d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Renderer: {fileID: 0}
-  Anima: {fileID: 0}
-  Border: {fileID: 0}
-  Dissolve: {fileID: 0}
 --- !u!1 &1493613847702119502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,6 +1310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57f7c92d478388488c9885f30c30073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _controller: {fileID: 0}
 --- !u!114 &4698692322337364568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1315,6 +1324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12edda3c60d41ae489409e036b8fd508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _controller: {fileID: 0}
 --- !u!114 &3534393246776283951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1327,4 +1338,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47e909b4311b024e90e9dbad372051f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cutOff: 1
