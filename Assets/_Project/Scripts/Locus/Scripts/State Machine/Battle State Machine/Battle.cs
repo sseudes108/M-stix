@@ -1,11 +1,11 @@
-using System;
-
 public class Battle : StateManager {
     public BattleEventHandlerSO BattleManager;
     public FusionEventHandlerSO FusionManager;
     public BoardPlaceEventHandlerSO BoardManager;
-
-    // public static Action<AbstractState> OnStateChange;
+    public CardStatEventHandlerSO CardStatSelManager;
+    public HandEventHandlerSO HandManager;
+    public UIEventHandlerSO UIManager;
+    
     
     public StartPhase StartPhase {get; private set;}
     public DrawPhase DrawPhase {get; private set;}
@@ -33,6 +33,5 @@ public class Battle : StateManager {
     public override void ChangeState(AbstractState newState){
         base.ChangeState(newState);
         BattleManager.ChangeState(newState);
-        // OnStateChange?.Invoke(newState);
     }
 }

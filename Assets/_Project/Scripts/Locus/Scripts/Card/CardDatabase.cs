@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CardDatabase : MonoBehaviour {
+    public FusionEventHandlerSO FusionManager;
+    
     [field:SerializeField] public List<MonsterCardSO> Angels { get; private set; }
     
     private void OnEnable() {
-        MonsterFusion.OnCheckCardsBase += MonstersFusion_OnCheckCardsBase;
+        FusionManager.OnCheckCardsBase.AddListener(FusionManager_OnCheckCardsBase);
     }
 
     private void OnDisable() {
-        MonsterFusion.OnCheckCardsBase -= MonstersFusion_OnCheckCardsBase;
+        FusionManager.OnCheckCardsBase.RemoveListener(FusionManager_OnCheckCardsBase);
     }
 
-    private void MonstersFusion_OnCheckCardsBase(MonsterFusion fusion, EMonsterType type){
+    private void FusionManager_OnCheckCardsBase(MonsterFusion fusion, EMonsterType type){
         var list = new List<MonsterCardSO>();
         switch(type){
             case EMonsterType.Angel:

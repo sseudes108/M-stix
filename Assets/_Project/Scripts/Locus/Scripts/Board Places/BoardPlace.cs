@@ -1,14 +1,10 @@
-using System;
+
 using UnityEngine;
 
 [RequireComponent(typeof(BoardPlaceVisuals))]
 public class BoardPlace : MonoBehaviour {
     [SerializeField] private BattleEventHandlerSO BattleManager;
     [SerializeField] private BoardPlaceEventHandlerSO BoardManager;
-
-    // public static Action OnBoardPlaceSelected;
-    // public static Action<BoardPlace> OnShowOptions;
-    // public static Action OnHideOptions;
 
     [field:SerializeField] public EBoardPlace Location { get; private set; }
     [field:SerializeField] public Collider[] Colliders { get; private set; }
@@ -21,17 +17,13 @@ public class BoardPlace : MonoBehaviour {
     private bool _isOptShowing;
 
     private void OnEnable() {
-        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelectionPhase_OnBoardPlaceSelectionStart;
         BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
         BoardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
-        // OnBoardPlaceSelected += This_OnBoardPlaceSelected;
     }
     
     private void OnDisable() {
-        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart -= BoardPlaceSelectionPhase_OnBoardPlaceSelectionStart;
         BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart);
         BoardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
-        // OnBoardPlaceSelected -= This_OnBoardPlaceSelected;
     }
 
     private void BoardManager_OnBoardPlaceSelected(){
@@ -61,13 +53,11 @@ public class BoardPlace : MonoBehaviour {
         if(Card == null) { return; }
         if(_isOptShowing) { return; }
         BoardManager.ShowOptions(this);
-        // OnShowOptions?.Invoke(this);
         _isOptShowing = true;
     }
 
     private void OnMouseExit(){
         BoardManager.HideOptions();
-        // OnHideOptions?.Invoke();
         _isOptShowing = false;
     }
 
@@ -102,7 +92,7 @@ public class BoardPlace : MonoBehaviour {
             }
             monsterCard.SetCanChangeMode(true);
             monsterCard.SetCanAttack(true);
-            // monsterCard.SetCanFlip();
+
         }else{// Arcane Card
 
         }
@@ -115,6 +105,5 @@ public class BoardPlace : MonoBehaviour {
         _canBeSelected = false;
         IsFree = false;
         BoardManager.BoardPlaceSelected();
-        // OnBoardPlaceSelected?.Invoke();
     }
 }

@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterFusion : Fusion {
-    public static Action<MonsterFusion, EMonsterType> OnCheckCardsBase;
     public List<MonsterCardSO> _strongestTypeList = new();
 
     public void StartFusionRoutine(MonsterCard monster1, MonsterCard monster2){
@@ -38,7 +36,8 @@ public class MonsterFusion : Fusion {
         yield return null;
 
         //List of the possible monsters (Correct lvl)
-        OnCheckCardsBase?.Invoke(this, strongestMonsterType);
+        FusionManager.CheckCardsBase(this, strongestMonsterType);
+
         yield return null;
 
         var possibleMonsters = SetPossibleMonstersList(monster1Lvl);

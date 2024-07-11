@@ -1,32 +1,29 @@
-using System;
-using System.Diagnostics;
 using UnityEngine.UIElements;
 
 public class UICardStatSel : UIManager{
-
-    public static Action OnOption1Clicked;
-    public static Action OnOption2Clicked;
+    public BattleEventHandlerSO BattleManager;
+    public CardStatEventHandlerSO CardStatSelManager;
 
     private Button _option1, _option2;
     private VisualElement _optionsCanvas;
 
 
     private void OnEnable() {
-        CardStatSelections.OnSelectAnother += CardStatSelections_OnSelectAnother;
-        CardStatSelections.OnSelectionsEnd += CardStatSelections_OnSelectionsEnd;
+        CardStatSelManager.OnSelectAnother.AddListener(CardStatSelManager_OnSelectAnother);
+        CardStatSelManager.OnSelectionsEnd.AddListener(CardStatSelManager_OnSelectionsEnd);
     }
 
-    private void OnDisable() {
-        CardStatSelections.OnSelectAnother -= CardStatSelections_OnSelectAnother;
-        CardStatSelections.OnSelectionsEnd -= CardStatSelections_OnSelectionsEnd;
+    private void OnDisable() {     
+        CardStatSelManager.OnSelectAnother.RemoveListener(CardStatSelManager_OnSelectAnother);
+        CardStatSelManager.OnSelectionsEnd.RemoveListener(CardStatSelManager_OnSelectionsEnd);
     }
 
 
-    private void CardStatSelections_OnSelectionsEnd(){
+    private void CardStatSelManager_OnSelectionsEnd(){
         HideOptions();
     }
 
-    private void CardStatSelections_OnSelectAnother(Card card){
+    private void CardStatSelManager_OnSelectAnother(Card card){
         SetButtonText(card);
     }
 
@@ -55,11 +52,11 @@ public class UICardStatSel : UIManager{
     }
 
     private void Option1_Clicked(){
-        OnOption1Clicked?.Invoke();
+        CardStatSelManager.Option1Clicked();
     }
 
     private void Option2_Clicked(){
-        OnOption2Clicked?.Invoke();
+        CardStatSelManager.Option2Clicked();
     }
 
     private void SetElements(){

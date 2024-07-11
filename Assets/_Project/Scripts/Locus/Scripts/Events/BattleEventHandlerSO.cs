@@ -19,6 +19,8 @@ public class BattleEventHandlerSO : ScriptableObject {
     public UnityEvent<Card, bool> OnBoardPlaceSelectionStart;
     public UnityEvent<Card, bool> OnBoardPlaceSelectionEnd;
 
+    public UnityEvent OnActionPhaseStart;
+
     private void OnEnable() {
         OnStateChange ??= new UnityEvent<AbstractState>();
 
@@ -35,6 +37,8 @@ public class BattleEventHandlerSO : ScriptableObject {
 
         OnBoardPlaceSelectionStart ??= new UnityEvent<Card, bool>();
         OnBoardPlaceSelectionEnd ??= new UnityEvent<Card, bool>();
+
+        OnActionPhaseStart ??=new UnityEvent();
     }
 
     public void ChangeState(AbstractState newState) { OnStateChange?.Invoke(newState); }
@@ -45,6 +49,7 @@ public class BattleEventHandlerSO : ScriptableObject {
     public void CardSelectionEnd() { OnCardSelectionEnd?.Invoke(); }
     public void StatSelectStart(Card card) { OnStatSelectStart?.Invoke(card); }
     public void StatSelectEnd(Card card, bool isPlayerTurn) { OnStatSelectEnd?.Invoke(card, isPlayerTurn); }
-    public void BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { OnStatSelectEnd?.Invoke(card, isPlayerTurn); }
-    public void BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { OnStatSelectEnd?.Invoke(card, isPlayerTurn); }
+    public void BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { OnBoardPlaceSelectionStart?.Invoke(card, isPlayerTurn); }
+    public void BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { OnBoardPlaceSelectionEnd?.Invoke(card, isPlayerTurn); }
+    public void ActionPhaseStart() { OnActionPhaseStart?.Invoke(); }
 }

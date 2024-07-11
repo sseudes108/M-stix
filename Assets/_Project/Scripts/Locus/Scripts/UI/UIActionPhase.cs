@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class UIActionPhase : UIManager {
-    // public static Action<Card, bool> OnAttackSelected;
     [SerializeField] private BoardPlaceEventHandlerSO BoardManager;
+    [SerializeField] private BattleEventHandlerSO BattleManager;
+    [SerializeField] private UIEventHandlerSO UIManager;
     
     private VisualElement _monsterFarLeftCard;
     private VisualElement _monsterLeftCard;
@@ -23,17 +23,13 @@ public class UIActionPhase : UIManager {
     private Card _card;
 
     private void OnEnable() {
-        ActionPhase.OnActionPhaseStart += ActionPhase_OnActionPhaseStart;
-        // BoardPlace.OnShowOptions += BoardPlace_OnShowOptions;
-        // BoardPlace.OnHideOptions += BoardPlace_OnHideOptions;
+        BattleManager.OnActionPhaseStart.AddListener(BattleManager_OnActionPhaseStart);
         BoardManager.OnShowOptions.AddListener(BoardManager_OnShowOptions);
         BoardManager.OnHideOptions.AddListener(BoardManager_OnHideOptions);
     }
 
     private void OnDisable() {
-        ActionPhase.OnActionPhaseStart -= ActionPhase_OnActionPhaseStart;
-        // BoardPlace.OnShowOptions -= BoardPlace_OnShowOptions;
-        // BoardPlace.OnHideOptions -= BoardPlace_OnHideOptions;
+        BattleManager.OnActionPhaseStart.RemoveListener(BattleManager_OnActionPhaseStart);
         BoardManager.OnShowOptions.RemoveListener(BoardManager_OnShowOptions);
         BoardManager.OnHideOptions.RemoveListener(BoardManager_OnHideOptions);
 
@@ -47,7 +43,7 @@ public class UIActionPhase : UIManager {
         }
     }
 
-    private void ActionPhase_OnActionPhaseStart(){
+    private void BattleManager_OnActionPhaseStart(){
         ShowCanvas();
     }
 
@@ -184,17 +180,12 @@ public class UIActionPhase : UIManager {
     }
 
     private void AttackButtonClicked(){
-        // Debug.Log("AttackButtonClicked");
-        Debug.Log(_card);
-        Debug.Log(GameManager.Instance.BattleStateManager.CurrentState.IsPlayerTurn);
         if(GameManager.Instance.Board != null){
-            GameManager.Instance.Board.AttackSelected(_card, GameManager.Instance.BattleStateManager.CurrentState.IsPlayerTurn);
+            UIManager.MonsterAttack(_card, GameManager.Instance.BattleStateManager.CurrentState.IsPlayerTurn);
+            // GameManager.Instance.Board.AttackSelected(_card, GameManager.Instance.BattleStateManager.CurrentState.IsPlayerTurn);
         }else{
             Debug.Log("GameManager.Instance.Board == null");
         }
-        // GameManager.Instance.Board.AttackSelected(_card, GameManager.Instance.BattleStateManager.CurrentState.IsPlayerTurn);
-        // GameManager.Instance.Board.AttackSelected(_card, GameManager.Instance.BattleStateManager.CurrentState.IsPlayerTurn);
-        // OnAttackSelected?.Invoke(_card, GameManager.Instance.BattleStateManager.CurrentState.IsPlayerTurn);
     }
 
     private void Option1Clicked(){
@@ -217,7 +208,6 @@ public class UIActionPhase : UIManager {
         _actionCanvas.style.display = DisplayStyle.Flex;
         foreach(var element in _playerMonsterCardsElements){
             element.style.display = DisplayStyle.None;
-            // element.style.opacity = 0;
         }
     }
 

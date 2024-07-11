@@ -3,30 +3,28 @@ using UnityEngine;
 
 public class CardStatSelections : MonoBehaviour {
     [SerializeField] private BattleEventHandlerSO BattleManager;
-    public static Action<Card> OnSelectAnother;
-    public static Action OnSelectionsEnd;
+    public CardStatEventHandlerSO CardStatSelManager;
+
     public MonsterCard _monsterCard;
     public Card _resultCard;
 
     private void OnEnable() {
-        // CardStatSelectPhase.OnStatSelectStart += CardStatSelectPhase_OnStatSelectStart;
         BattleManager.OnStatSelectStart.AddListener(BattleManager_OnStatSelectStart);
-        UICardStatSel.OnOption1Clicked += UICardStatSel_OnOption1Clicked;
-        UICardStatSel.OnOption2Clicked += UICardStatSel_OnOption2Clicked;
+        CardStatSelManager.OnOption1Clicked.AddListener(CardStatSelManager_OnOption1Clicked);
+        CardStatSelManager.OnOption2Clicked.AddListener(CardStatSelManager_OnOption2Clicked);
     }
 
     private void OnDisable() {
-        // CardStatSelectPhase.OnStatSelectStart -= CardStatSelectPhase_OnStatSelectStart;
         BattleManager.OnStatSelectStart.RemoveListener(BattleManager_OnStatSelectStart);
-        UICardStatSel.OnOption1Clicked -= UICardStatSel_OnOption1Clicked;
-        UICardStatSel.OnOption2Clicked -= UICardStatSel_OnOption2Clicked;
+        CardStatSelManager.OnOption1Clicked.RemoveListener(CardStatSelManager_OnOption1Clicked);
+        CardStatSelManager.OnOption2Clicked.RemoveListener(CardStatSelManager_OnOption2Clicked);
     }
 
-    private void UICardStatSel_OnOption1Clicked(){
+    private void CardStatSelManager_OnOption1Clicked(){
         Option1_Clicked();
     }
 
-    private void UICardStatSel_OnOption2Clicked(){
+    private void CardStatSelManager_OnOption2Clicked(){
         Option2_Clicked();
     }
 
@@ -50,23 +48,23 @@ public class CardStatSelections : MonoBehaviour {
                 if(!monster.AnimaSelected){ // Anima note selected
                     monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
-                    OnSelectAnother?.Invoke(monster);
+                    CardStatSelManager.SelectAnother(monster);
                 }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
                     monster.SelectMode();
-                    OnSelectionsEnd?.Invoke();
+                    CardStatSelManager.SelectionsEnd();
                 }
             }else{
                 // normal card
                 if(!monster.AnimaSelected){ // Anima note selected
                     monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
-                    OnSelectAnother?.Invoke(monster);
+                    CardStatSelManager.SelectAnother(monster);
                 }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
                     monster.SelectMode();
-                    OnSelectAnother?.Invoke(monster);
+                    CardStatSelManager.SelectAnother(monster);
                 }else if(!monster.FaceSelected){ //Anima selected, Mode seletec and Face not selected
                     monster.SelectFace();
-                    OnSelectionsEnd?.Invoke();
+                    CardStatSelManager.SelectionsEnd();
                 }
             }
         }
@@ -80,26 +78,26 @@ public class CardStatSelections : MonoBehaviour {
                 if(!monster.AnimaSelected){ // Anima note selected
                     monster.Visuals.Anima.Anima2Selected();
                     monster.SelectAnima();
-                    OnSelectAnother?.Invoke(monster);
+                    CardStatSelManager.SelectAnother(monster);
                 }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
                     monster.SelectDeffenseMode();
                     monster.SelectMode();
-                    OnSelectionsEnd?.Invoke();
+                    CardStatSelManager.SelectionsEnd();
                 }
             }else{
                 // normal card
                 if(!monster.AnimaSelected){ // Anima note selected
                     monster.Visuals.Anima.Anima2Selected();
                     monster.SelectAnima();
-                    OnSelectAnother?.Invoke(monster);
+                    CardStatSelManager.SelectAnother(monster);
                 }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
                     monster.SelectDeffenseMode();
                     monster.SelectMode();
-                    OnSelectAnother?.Invoke(monster);
+                    CardStatSelManager.SelectionsEnd();
                 }else if(!monster.FaceSelected){ //Anima selected, Mode seletec and Face not selected
                     monster.SetFaceDown();
                     monster.SelectFace();
-                    OnSelectionsEnd?.Invoke();
+                    CardStatSelManager.SelectionsEnd();
                 }
             }
         }

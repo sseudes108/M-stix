@@ -7,12 +7,10 @@ public class UIDebuger : UIManager {
     private Label _battleStateLabel;
     
     private void OnEnable() {
-        // Battle.OnStateChange += Battle_OnStateChange;
         BattleManager.OnStateChange.AddListener(BattleManager_OnStateChange);
     }
 
     private void OnDisable() {
-        // Battle.OnStateChange -= Battle_OnStateChange;
         BattleManager.OnStateChange.RemoveListener(BattleManager_OnStateChange);
     }
 

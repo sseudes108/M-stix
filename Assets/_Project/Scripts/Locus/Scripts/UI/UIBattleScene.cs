@@ -1,19 +1,19 @@
-using System;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class UIBattleScene : UIManager {
-
-    public static Action OnSelectionFinished;
+    [SerializeField] private CardEventHandlerSO CardManager;
+    [SerializeField] private UIEventHandlerSO UIManager;
     private Button _phaseButton;
 
     private void OnEnable() {
-        CardSelector.OnSomeCardSelected += CardSelector_OnSomeCardSelected;
-        CardSelector.OnNoneCardSelected += CardSelector_OnNoneCardSelected;
+        CardManager.OnSomeCardSelected.AddListener(CardManager_OnSomeCardSelected);
+        CardManager.OnNoneCardSelected.AddListener(CardManager_OnNoneCardSelected);
     }
 
     private void OnDisable() {
-        CardSelector.OnSomeCardSelected -= CardSelector_OnSomeCardSelected;
-        CardSelector.OnNoneCardSelected -= CardSelector_OnNoneCardSelected;
+        CardManager.OnSomeCardSelected.RemoveListener(CardManager_OnSomeCardSelected);
+        CardManager.OnNoneCardSelected.RemoveListener(CardManager_OnNoneCardSelected);
     }
 
     public override void Awake() {
@@ -22,7 +22,7 @@ public class UIBattleScene : UIManager {
         _phaseButton.style.display = DisplayStyle.None;
     }
 
-    private void CardSelector_OnSomeCardSelected(){
+    private void CardManager_OnSomeCardSelected(){
         SetElements();
         _phaseButton.text = "End Selection";
         _phaseButton.style.display = DisplayStyle.Flex;
@@ -30,12 +30,12 @@ public class UIBattleScene : UIManager {
         _phaseButton.clicked += SelectionFinished;
     }
 
-    private void CardSelector_OnNoneCardSelected(){
+    private void CardManager_OnNoneCardSelected(){
         _phaseButton.style.display = DisplayStyle.None;
     }
 
     private void SelectionFinished(){
-        OnSelectionFinished?.Invoke();
+        UIManager.CardSelectionFinished();
         _phaseButton.style.display = DisplayStyle.None;
         _phaseButton.clicked -= SelectionFinished;
     }

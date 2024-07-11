@@ -2,21 +2,20 @@ using UnityEngine;
 
 public class PlayerHand : Hand {
 [SerializeField] private Transform _OffCameraHand;
+[SerializeField] private UIEventHandlerSO UIManager;
 
 #region Unity Methods
 
     public override void OnEnable() {
         base.OnEnable();
-        // DrawPhase.OnPlayerDraw += DrawPhase_OnPlayerDraw;
         BattleManager.OnPlayerDraw.AddListener(BattleManager_OnPlayerDraw);
-        UIBattleScene.OnSelectionFinished += UIBattleScene_OnSelectionFinished;
+        UIManager.OnCardSelectionFinished.AddListener(UIManager_OnCardSelectionFinished);
     }
 
     public override void OnDisable() {
         base.OnDisable();
-        // DrawPhase.OnPlayerDraw -= DrawPhase_OnPlayerDraw;
         BattleManager.OnPlayerDraw.RemoveListener(BattleManager_OnPlayerDraw);
-        UIBattleScene.OnSelectionFinished += UIBattleScene_OnSelectionFinished;
+        UIManager.OnCardSelectionFinished.RemoveListener(UIManager_OnCardSelectionFinished);
     }
 
     public override void Awake() {
@@ -33,7 +32,7 @@ public class PlayerHand : Hand {
         _movement.SetTargetPosition(_movement.StartPosition);
     }
 
-    private void UIBattleScene_OnSelectionFinished(){
+    private void UIManager_OnCardSelectionFinished(){
         if(this != null){
             MoveCameraOffView();
         }else{

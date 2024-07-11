@@ -1,30 +1,23 @@
-using System;
-
 public class CardSelectionPhase : AbstractState{
-    // public static Action OnCardSelectionStart;
-    // public static Action OnCardSelectionEnd;
-
     public override void Enter(){
         SubscribeEvents();
         Battle.BattleManager.CardSelectionStart(); // Unlock card selection
-        // OnCardSelectionStart?.Invoke(); 
     }
     
     public override void Exit(){
         UnsubscribeEvents();
         Battle.BattleManager.CardSelectionEnd();// lock card selection
-        // OnCardSelectionEnd?.Invoke(); // lock card selection
     }
 
     public override void SubscribeEvents(){
-        UIBattleScene.OnSelectionFinished += UIBattleScene_OnSelectionFinished;
+        Battle.UIManager.OnCardSelectionFinished.AddListener(UIManager_OnCardSelectionFinished);
     }
 
     public override void UnsubscribeEvents(){
-        UIBattleScene.OnSelectionFinished -= UIBattleScene_OnSelectionFinished;
+        Battle.UIManager.OnCardSelectionFinished.RemoveListener(UIManager_OnCardSelectionFinished);
     }
 
-    private void UIBattleScene_OnSelectionFinished(){
+    private void UIManager_OnCardSelectionFinished(){
         Battle.ChangeState(Battle.Fusion);
     }
 

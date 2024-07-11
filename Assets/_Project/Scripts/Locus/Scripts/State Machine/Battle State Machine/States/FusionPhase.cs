@@ -20,14 +20,11 @@ public class FusionPhase : AbstractState{
     }
 
     public override void SubscribeEvents(){
-        // Battle.FusionManager.FusionEnd();
         Battle.FusionManager.OnFusionEnd.AddListener(FusionManager_OnFusionEnd);
-        // Fusion.OnFusionEnd += Fusion_OnFusionEnd;
     }
 
     public override void UnsubscribeEvents(){
         Battle.FusionManager.OnFusionEnd.RemoveListener(FusionManager_OnFusionEnd);
-        // Fusion.OnFusionEnd -= Fusion_OnFusionEnd;
     }
 
     private void FusionManager_OnFusionEnd(){

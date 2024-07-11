@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,18 +14,17 @@ public class FusionPositions : MonoBehaviour {
     [SerializeField] private Transform _enemyResultCardPosition, _enemyBoardSelectionPlace;
 
 
-    private void OnEnable() {
-        BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
-        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelection_OnBoardPlaceSelectionStart;
+    private void OnEnable() { 
+        BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart); 
     }
 
-    private void OnDisable() {
-        BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart);
-        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart -= BoardPlaceSelection_OnBoardPlaceSelectionStart;
+    private void OnDisable() { 
+        BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart); 
     }
 
-    private void BattleManager_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn){
-        MoveToBoardPlaceSelection(card, isPlayerTurn);
+    private void BattleManager_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn) {
+        Debug.Log($"FusionPositions - BattleManager_OnBoardPlaceSelectionStart() Called");
+        MoveToBoardPlaceSelection(card, isPlayerTurn); 
     }
 
     private void MoveToBoardPlaceSelection(Card card, bool isPlayerTurn){

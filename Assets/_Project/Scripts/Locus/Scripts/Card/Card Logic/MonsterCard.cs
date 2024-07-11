@@ -2,12 +2,12 @@ using TMPro;
 using UnityEngine;
 
 public class MonsterCard : Card {
-    public EMonsterType MonsterType { get; set; }
-    public EAnimaType FirstAnima { get; set; }
-    public EAnimaType SecondAnima { get; set; }
-    public int Level { get; set; }
-    public int Attack { get; set; }
-    public int Deffense { get; set; }
+    public EMonsterType MonsterType;
+    public EAnimaType FirstAnima;
+    public EAnimaType SecondAnima;
+    public int Level;
+    public int Attack;
+    public int Deffense;
     public bool AnimaSelected = false;
     public bool ModeSelected = false;
     public bool IsInAttackMode = true;
@@ -27,6 +27,8 @@ public class MonsterCard : Card {
         Level = CardData.Level;
         Attack = CardData.Attack;
         Deffense = CardData.Deffense;
+
+        SetCardText();
     }
     
     public override void SetCardText(){

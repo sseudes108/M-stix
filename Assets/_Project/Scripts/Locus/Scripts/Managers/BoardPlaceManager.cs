@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BoardPlaceManager : MonoBehaviour {
     [SerializeField] private BattleEventHandlerSO BattleManager;
+    [SerializeField] private UIEventHandlerSO UIManager;
 
     [field:SerializeField] public float IntensityFactor{ get; private set; }
     [field:SerializeField] public Color LightUpColor{ get; private set; }
@@ -16,34 +17,19 @@ public class BoardPlaceManager : MonoBehaviour {
 
     private void OnEnable() {
         BattleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
-        // StartPhase.OnStartPhase += StartPhase_OnStartPhase;
         BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_BoardPlaceSelectionStart);
-        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart += BoardPlaceSelection_OnBoardPlaceSelectionStart;
         BattleManager.OnBoardPlaceSelectionEnd.AddListener(BattleManager_BoardPlaceSelectionEnd);
-        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionEnd += BoardPlaceSelection_OnBoardPlaceSelectionEnd;
-        // UIActionPhase.OnAttackSelected += UIActionPhase_OnAttackSelected;
+        UIManager.OnMonsterAttack.AddListener(UIManager_OnMonsterAttack);
     }
 
     private void OnDisable() {
         BattleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
-        // StartPhase.OnStartPhase -= StartPhase_OnStartPhase;
         BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_BoardPlaceSelectionStart);
-        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionStart -= BoardPlaceSelection_OnBoardPlaceSelectionStart;
         BattleManager.OnBoardPlaceSelectionEnd.RemoveListener(BattleManager_BoardPlaceSelectionEnd);
-        // BoardPlaceSelectionPhase.OnBoardPlaceSelectionEnd -= BoardPlaceSelection_OnBoardPlaceSelectionEnd;
-        // UIActionPhase.OnAttackSelected += UIActionPhase_OnAttackSelected;
+        UIManager.OnMonsterAttack.RemoveListener(UIManager_OnMonsterAttack);
     }
 
-    // private void UIActionPhase_OnAttackSelected(Card card, bool isPlayerTurn){
-    //     Debug.Log("UIActionPhase_OnAttackSelected");
-    //     if(isPlayerTurn){
-    //         HighLightEnemyOcuppiedPlaces(card);
-    //     }else{
-    //         HighLightPlayerOcuppiedPlaces(card);
-    //     }
-    // }
-
-    public void AttackSelected(Card card, bool isPlayerTurn){
+    public void UIManager_OnMonsterAttack(Card card, bool isPlayerTurn){
         Debug.Log("AttackSelected");
         if(isPlayerTurn){
             HighLightEnemyOcuppiedPlaces(card);

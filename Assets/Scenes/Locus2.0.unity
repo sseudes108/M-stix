@@ -1022,6 +1022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  HandManager: {fileID: 11400000, guid: cf0721a864681b44489a398a0c1b49d2, type: 2}
   _handPositions:
   - {fileID: 3012175272749557841}
   - {fileID: 3012175274048785799}
@@ -1030,6 +1031,7 @@ MonoBehaviour:
   - {fileID: 3012175273423897516}
   _freePositionsInHand: []
   _OffCameraHand: {fileID: 2083090077}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
 --- !u!114 &185057574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2880,6 +2882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <IntensityFactor>k__BackingField: 2.5
   <LightUpColor>k__BackingField: {r: 0.9433962, g: 0.9092466, b: 0.6096476, a: 1}
   <PlayerDefaultColor>k__BackingField: {r: 0.70980394, g: 0.035294108, b: 0.43585798,
@@ -6335,6 +6338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  HandManager: {fileID: 11400000, guid: cf0721a864681b44489a398a0c1b49d2, type: 2}
   _handPositions:
   - {fileID: 1405960327}
   - {fileID: 1077423730}
@@ -7087,6 +7091,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fb01acca38be8478db1dc43f95a9a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardManager: {fileID: 11400000, guid: 3fb3454184b963e49808ec1e9d6fad2d, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
 --- !u!114 &1528214230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7099,6 +7105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3de7ccde3b3a9a4280e691fa2575eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  CardStatSelManager: {fileID: 11400000, guid: 4812d7f682b27d041abf0ca7eecf6165, type: 2}
 --- !u!114 &1528214231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7112,6 +7120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
 --- !u!1 &1563189048
 GameObject:
   m_ObjectHideFlags: 0
@@ -7431,8 +7441,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  FusionManager: {fileID: 0}
-  BoardManager: {fileID: 0}
+  FusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
+  BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  CardStatSelManager: {fileID: 11400000, guid: 4812d7f682b27d041abf0ca7eecf6165, type: 2}
+  HandManager: {fileID: 11400000, guid: cf0721a864681b44489a398a0c1b49d2, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
 --- !u!1 &1664148452
 GameObject:
   m_ObjectHideFlags: 0
@@ -7780,6 +7793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7a466be44649b41a11c29ff38118db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardManager: {fileID: 11400000, guid: 3fb3454184b963e49808ec1e9d6fad2d, type: 2}
   <SelectedList>k__BackingField: []
 --- !u!114 &1679196292
 MonoBehaviour:
@@ -7793,6 +7807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e2b6d402641fa4daac6447d591ef5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
   <Angels>k__BackingField:
   - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
   - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
@@ -7817,6 +7832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  CardStatSelManager: {fileID: 11400000, guid: 4812d7f682b27d041abf0ca7eecf6165, type: 2}
   _monsterCard: {fileID: 0}
   _resultCard: {fileID: 0}
 --- !u!1 &1700633314
@@ -8202,7 +8218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cde802c9e804f0428befa3090aaa983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _offCam: {fileID: 100509181}
   _renderer: {fileID: 1302269359412169667}
 --- !u!1 &1781544182
 GameObject:
@@ -9806,7 +9821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55f6054a82eb7d4c84483f8844563a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FusionManager: {fileID: 0}
+  FusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
   _isPlayerTurn: 0
   _fusionLine: []
   _selectedCardList: []

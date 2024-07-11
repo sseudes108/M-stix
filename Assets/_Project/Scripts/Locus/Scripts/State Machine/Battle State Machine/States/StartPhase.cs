@@ -2,8 +2,6 @@ using System.Collections;
 using UnityEngine;
 
 public class StartPhase : AbstractState{
-    // public static Action OnStartPhase;
-
     public override void Enter(){
         if(Battle != null){
             Battle.StartCoroutine(BattlePhaseStartRoutine());
@@ -15,7 +13,6 @@ public class StartPhase : AbstractState{
     public IEnumerator BattlePhaseStartRoutine(){
         yield return new WaitForSeconds(1f);
         Battle.BattleManager.StartPhase();
-        // OnStartPhase?.Invoke();
 
         yield return new WaitForSeconds(2f);
         Battle.ChangeState(Battle.DrawPhase);

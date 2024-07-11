@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(HandMovement))]
 public abstract class Hand : MonoBehaviour {
-    public static Action OnCardsDrew;
     public BattleEventHandlerSO BattleManager;
+    public HandEventHandlerSO HandManager;
 
     [SerializeField] private Transform[] _handPositions;
     [SerializeField] private List<Transform> _freePositionsInHand;
@@ -15,12 +14,10 @@ public abstract class Hand : MonoBehaviour {
     protected HandMovement _movement;
 
     public virtual void OnEnable() {
-        // StartPhase.OnStartPhase += StartPhase_OnStartPhase;
         BattleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
     }
 
     public virtual void OnDisable() {
-        // StartPhase.OnStartPhase -= StartPhase_OnStartPhase;
         BattleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
     }
 
@@ -66,6 +63,6 @@ public abstract class Hand : MonoBehaviour {
         }
         yield return new WaitForSeconds(1f);
         yield return null;
-        OnCardsDrew?.Invoke();
+        HandManager.CardsDrew();
     }
 }
