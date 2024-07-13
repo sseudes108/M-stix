@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class UIBattleScene : UIManager {
-    [SerializeField] private CardEventHandlerSO CardManager;
+    [SerializeField] private CardManagerSO CardManager;
     [SerializeField] private UIEventHandlerSO UIManager;
-    [SerializeField] private BattleEventHandlerSO BattleManager;
+    [SerializeField] private BattleManagerSO BattleManager;
 
     private Button _phaseButton, _phaseEndButton;
 
@@ -42,7 +41,7 @@ public class UIBattleScene : UIManager {
     }
 
     private void EndActionPhase(){
-        Debug.Log("UIBattleScene - EndActionPhase()");
+        // Debug.Log("UIBattleScene - EndActionPhase()");
         BattleManager.EndActionPhase();
         _phaseEndButton.style.display = DisplayStyle.None;
 
@@ -52,6 +51,7 @@ public class UIBattleScene : UIManager {
     }
 
     private void CardManager_OnSomeCardSelected(){
+        // Debug.Log("UIBattleScene - CardManager_OnSomeCardSelected()");
         SetElements();
         _phaseButton.text = "End Selection";
         _phaseButton.style.display = DisplayStyle.Flex;

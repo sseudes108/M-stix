@@ -70,8 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc738afb18fe3d4ca6a02b5f14ece5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  Data: {fileID: 11400000, guid: 5ef064a6d4ea0e340a679e0e9b606124, type: 2}
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
+  Data: {fileID: 11400000, guid: c454e47e09e99c649a226b81fde5adc9, type: 2}
   FusionedCard: 0
   FaceSelected: 0
   IsFaceDown: 0
@@ -79,6 +80,12 @@ MonoBehaviour:
   _model: {fileID: 0}
   _status: {fileID: 0}
   Collider: {fileID: 0}
+  MonsterType: 0
+  FirstAnima: 0
+  SecondAnima: 0
+  Level: 0
+  Attack: 0
+  Deffense: 0
   AnimaSelected: 0
   ModeSelected: 0
   IsInAttackMode: 1

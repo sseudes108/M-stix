@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class UIActionPhase : UIManager {
     [SerializeField] private BoardPlaceEventHandlerSO BoardManager;
-    [SerializeField] private BattleEventHandlerSO BattleManager;
+    [SerializeField] private BattleManagerSO BattleManager;
     [SerializeField] private UIEventHandlerSO UIManager;
     
     private VisualElement _monsterFarLeftCard;
@@ -128,9 +128,9 @@ public class UIActionPhase : UIManager {
                 _button1.clicked += Option1Clicked;
             }
         }else{// if is face up
-            Debug.Log("Is Face Up");
+            // Debug.Log("Is Face Up");
             if (cardInPlace.IsInAttackMode){// if face up and attack mode
-                Debug.Log("Is In Attack Mode");
+                // Debug.Log("Is In Attack Mode");
                 if (cardInPlace.CanAttack && cardInPlace.CanChangeMode){ // if can change mode and can attack
                     _button1 = null;
                     _button2 = null;

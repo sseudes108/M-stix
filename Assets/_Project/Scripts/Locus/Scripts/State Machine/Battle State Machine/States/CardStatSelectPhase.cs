@@ -1,8 +1,11 @@
+using UnityEngine;
+
 public class CardStatSelectPhase : AbstractState{
 
     public override void Enter(){
         SubscribeEvents();
-        GameManager.Instance.UI.CardStats.FusionEnded(ResultCard);
+        Debug.Log("CardStatSelectPhase - Enter() <color=red>1</color=red> "); 
+        GameManager.Instance.UI.CardStats.FusionEnded(ResultCard); //**** Result Card Nao definido ****//
         Battle.BattleManager.StatSelectStart(ResultCard);
     }
 

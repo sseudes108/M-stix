@@ -36,15 +36,15 @@ public class MonsterFusion : Fusion {
         yield return null;
 
         //List of the possible monsters (Correct lvl)
-        FusionManager.CheckCardsBase(this, strongestMonsterType);
+        _fusionManager.CheckCardsBase(this, strongestMonsterType);
 
         yield return null;
 
         var possibleMonsters = SetPossibleMonstersList(monster1Lvl);
 
         //Instantiate fusioned card
-        var randomIndex = UnityEngine.Random.Range(0, possibleMonsters.Count - 1);
-        var fusionedCard = Instantiate(GameManager.Instance.CardManager.Creator.CreateCard(possibleMonsters[randomIndex]));
+        var randomIndex = Random.Range(0, possibleMonsters.Count - 1);
+        var fusionedCard = Instantiate(_cardManager.Creator.CreateCard(possibleMonsters[randomIndex]));
         fusionedCard.name = $"{fusionedCard.Name} - ID {fusionedCard.GetInstanceID()} - Fusioned";
         fusionedCard.SetFusionedCard();
 

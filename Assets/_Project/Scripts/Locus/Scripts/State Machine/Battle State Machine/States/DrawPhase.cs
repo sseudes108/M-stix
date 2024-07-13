@@ -9,7 +9,7 @@ public class DrawPhase : AbstractState{
     }
 
     private void DrawCards(){
-        if(CurrentTurn == 1){
+        if(Battle.TurnManager.CurrentTurn == 1){
             Battle.BattleManager.PlayerDraw();
             Battle.BattleManager.EnemyDraw();
         }else if(IsPlayerTurn){
@@ -20,13 +20,19 @@ public class DrawPhase : AbstractState{
     }
 
     public override void SubscribeEvents(){
-        Battle.HandManager.OnCardsDrew.AddListener(HandManager_OnCardsDrew);
-        // Hand.OnCardsDrew += Hand_OnCardsDrew;
+        if(Battle.TurnManager.IsPlayerTurn()){
+            Battle.PlayerHandManager.OnCardsDrew.AddListener(HandManager_OnCardsDrew);
+        }else{
+            Battle.EnemyHandManager.OnCardsDrew.AddListener(HandManager_OnCardsDrew);
+        }
     }
     
     public override void UnsubscribeEvents(){
-        Battle.HandManager.OnCardsDrew.RemoveListener(HandManager_OnCardsDrew);
-        // Hand.OnCardsDrew -= Hand_OnCardsDrew;
+        if(Battle.TurnManager.IsPlayerTurn()){
+            Battle.PlayerHandManager.OnCardsDrew.RemoveListener(HandManager_OnCardsDrew);
+        }else{
+            Battle.EnemyHandManager.OnCardsDrew.RemoveListener(HandManager_OnCardsDrew);
+        }
     }
 
     private void HandManager_OnCardsDrew(){

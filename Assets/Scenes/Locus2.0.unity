@@ -1005,9 +1005,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1740953790}
   - {fileID: 1568197190}
   - {fileID: 2083090077}
-  - {fileID: 1740953790}
   - {fileID: 1715822503}
   - {fileID: 1640693141}
   m_Father: {fileID: 1482027816}
@@ -1024,17 +1024,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01554cf8a0d94f94e97446cd109207db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  HandManager: {fileID: 11400000, guid: cf0721a864681b44489a398a0c1b49d2, type: 2}
+  _handManager: {fileID: 11400000, guid: b2a332859e0c41844a4ca94ddc78eb49, type: 2}
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _handPositions:
   - {fileID: 3012175272749557841}
   - {fileID: 3012175274048785799}
   - {fileID: 3012175273905874379}
   - {fileID: 3012175274467747710}
   - {fileID: 3012175273423897516}
-  _freePositionsInHand: []
+  _deck: {fileID: 1740953791}
   _OffCameraHand: {fileID: 2083090077}
   UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
 --- !u!114 &185057574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,7 +1504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0e8722ff2cda04aa6f793a73423f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCreator: {fileID: 1679196290}
+  CardManager: {fileID: 0}
   cardData: {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
 --- !u!114 &284903923
 MonoBehaviour:
@@ -3808,7 +3809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 828513531}
-  - component: {fileID: 828513533}
+  - component: {fileID: 828513532}
   m_Layer: 0
   m_Name: 'Deck '
   m_TagString: Untagged
@@ -3832,7 +3833,7 @@ Transform:
   - {fileID: 1981089401}
   m_Father: {fileID: 1404176564}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &828513533
+--- !u!114 &828513532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3845,16 +3846,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DeckInUse>k__BackingField:
-  - {fileID: 11400000, guid: 1c8676a080c420f4ba33a8026813a118, type: 2}
-  - {fileID: 11400000, guid: 8ab4608f8b2df6b40bfea1c714db2173, type: 2}
-  - {fileID: 11400000, guid: ddb7867ac9a24e24981b7e173e6f8363, type: 2}
-  - {fileID: 11400000, guid: 7ca222fc1504ea24591bcb7b885649f8, type: 2}
-  - {fileID: 11400000, guid: 6c50eb2bfe8760941bbea7b248a7b932, type: 2}
-  - {fileID: 11400000, guid: a6e60d41c8d0452438407eb6be84b462, type: 2}
-  - {fileID: 11400000, guid: 04f5d33dbe628c74991401cc7a802c8b, type: 2}
-  - {fileID: 11400000, guid: 133c8ea09b0f71342ad7c377742cc928, type: 2}
-  - {fileID: 11400000, guid: f0327b3d0123787458f9e4f83c8316dc, type: 2}
-  - {fileID: 11400000, guid: 67c44e0d0fa1a69489033b17e984647f, type: 2}
+  - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
+  - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
+  - {fileID: 11400000, guid: c454e47e09e99c649a226b81fde5adc9, type: 2}
+  - {fileID: 11400000, guid: d0ad6252c3099164d98142ec5ae6f66e, type: 2}
+  - {fileID: 11400000, guid: 1046a6422999f204998739def862bc46, type: 2}
+  - {fileID: 11400000, guid: b616ed0f04b805548908f5dca2e3a28e, type: 2}
+  - {fileID: 11400000, guid: 6fe9986450aa63043a710ab8602ca86b, type: 2}
   - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
   - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
   - {fileID: 11400000, guid: c454e47e09e99c649a226b81fde5adc9, type: 2}
@@ -3864,7 +3862,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6fe9986450aa63043a710ab8602ca86b, type: 2}
   - {fileID: 11400000, guid: 9f14752fff836c94994b3ba15538b2a6, type: 2}
   - {fileID: 11400000, guid: 5ef064a6d4ea0e340a679e0e9b606124, type: 2}
-  - {fileID: 11400000, guid: a0ee8b89f1aa2c3418fcd7e1c40abca4, type: 2}
+  - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
+  - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
+  - {fileID: 11400000, guid: c454e47e09e99c649a226b81fde5adc9, type: 2}
+  - {fileID: 11400000, guid: d0ad6252c3099164d98142ec5ae6f66e, type: 2}
 --- !u!1 &836039544
 GameObject:
   m_ObjectHideFlags: 0
@@ -5820,50 +5821,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e5d29848d829845b31e8f0d891b00a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1334440471
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1334440472}
-  - component: {fileID: 1334440473}
-  m_Layer: 0
-  m_Name: Turn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1334440472
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334440471}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1664148453}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1334440473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334440471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c834a201e7a76b84c96ef183b3986049, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1344037203
 GameObject:
   m_ObjectHideFlags: 0
@@ -6214,6 +6171,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358489397}
   m_Mesh: {fileID: -5495902117074765545, guid: e50ec8c8aae66734e918540d3528b4c0, type: 3}
+--- !u!1 &1396675612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1396675613}
+  - component: {fileID: 1396675614}
+  m_Layer: 0
+  m_Name: AI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1396675613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396675612}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1664148453}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1396675614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396675612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07875a427ab097844a6cd1c26bdc7134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Manager: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3, type: 2}
+  Actor: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9, type: 2}
 --- !u!1 &1400343844
 GameObject:
   m_ObjectHideFlags: 0
@@ -6333,11 +6336,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 828513531}
   - {fileID: 29177988}
   - {fileID: 393946135}
   - {fileID: 1583559600}
   - {fileID: 645521320}
-  - {fileID: 828513531}
   m_Father: {fileID: 1482027816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1404176565
@@ -6352,15 +6355,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f539deaa010476c43849f74816b7cce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  HandManager: {fileID: 11400000, guid: cf0721a864681b44489a398a0c1b49d2, type: 2}
+  _handManager: {fileID: 11400000, guid: ec6dfd3e1f97e5c4991676762160f466, type: 2}
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _handPositions:
   - {fileID: 1405960327}
   - {fileID: 1077423730}
   - {fileID: 225313709}
   - {fileID: 1750413888}
   - {fileID: 7496333}
-  _freePositionsInHand: []
+  _deck: {fileID: 828513532}
+  _aiManager: {fileID: 0}
 --- !u!114 &1404176566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7065,7 +7069,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2196e1c7826b74893f04e60a4bed44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
+  _aiManager: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3, type: 2}
 --- !u!114 &1528214227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7107,7 +7113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fb01acca38be8478db1dc43f95a9a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardManager: {fileID: 11400000, guid: 3fb3454184b963e49808ec1e9d6fad2d, type: 2}
+  CardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
   UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
 --- !u!114 &1528214230
@@ -7123,7 +7129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  CardStatSelManager: {fileID: 11400000, guid: 4812d7f682b27d041abf0ca7eecf6165, type: 2}
+  CardStatSelManager: {fileID: 11400000, guid: aa8ab951e89f4c2499567975eb284d0e, type: 2}
 --- !u!114 &1528214231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7460,9 +7466,12 @@ MonoBehaviour:
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   FusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
-  CardStatSelManager: {fileID: 11400000, guid: 4812d7f682b27d041abf0ca7eecf6165, type: 2}
-  HandManager: {fileID: 11400000, guid: cf0721a864681b44489a398a0c1b49d2, type: 2}
+  CardStatSelManager: {fileID: 11400000, guid: aa8ab951e89f4c2499567975eb284d0e, type: 2}
+  PlayerHandManager: {fileID: 11400000, guid: b2a332859e0c41844a4ca94ddc78eb49, type: 2}
+  EnemyHandManager: {fileID: 11400000, guid: ec6dfd3e1f97e5c4991676762160f466, type: 2}
   UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
+  CardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
+  TurnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
 --- !u!1 &1664148452
 GameObject:
   m_ObjectHideFlags: 0
@@ -7494,11 +7503,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1954676943}
+  - {fileID: 1396675613}
   - {fileID: 1663341987}
   - {fileID: 2111008765}
   - {fileID: 1679196288}
   - {fileID: 1528214225}
-  - {fileID: 1334440472}
   - {fileID: 581714430}
   - {fileID: 546674704}
   - {fileID: 1482027816}
@@ -7518,8 +7527,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   UIManager: {fileID: 0}
-  TurnManager: {fileID: 0}
-  CardManager: {fileID: 0}
   BattleStateManager: {fileID: 0}
   Fusion: {fileID: 0}
   UI: {fileID: 0}
@@ -7743,9 +7750,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1679196288}
-  - component: {fileID: 1679196290}
-  - component: {fileID: 1679196289}
-  - component: {fileID: 1679196291}
   - component: {fileID: 1679196292}
   - component: {fileID: 1679196293}
   m_Layer: 0
@@ -7770,48 +7774,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1664148453}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1679196289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679196287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c25aae8cc41f1a4d957a428d96480c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1679196290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679196287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b747f16669b55d41b5a47d455b34f93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _monsterCardPrefab: {fileID: 4656803753756370345, guid: f5a879319a3717246bae1de30c3a5d29,
-    type: 3}
-  _arcaneCardPrefab: {fileID: 6569281006682968886, guid: 53341672514af1c4780e37ae727e9609,
-    type: 3}
---- !u!114 &1679196291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679196287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba7a466be44649b41a11c29ff38118db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardManager: {fileID: 11400000, guid: 3fb3454184b963e49808ec1e9d6fad2d, type: 2}
-  <SelectedList>k__BackingField: []
 --- !u!114 &1679196292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7849,7 +7811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  CardStatSelManager: {fileID: 11400000, guid: 4812d7f682b27d041abf0ca7eecf6165, type: 2}
+  CardStatSelManager: {fileID: 11400000, guid: aa8ab951e89f4c2499567975eb284d0e, type: 2}
   _monsterCard: {fileID: 0}
   _resultCard: {fileID: 0}
 --- !u!1 &1700633314
@@ -7982,24 +7944,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d0ad6252c3099164d98142ec5ae6f66e, type: 2}
   - {fileID: 11400000, guid: 1046a6422999f204998739def862bc46, type: 2}
   - {fileID: 11400000, guid: b616ed0f04b805548908f5dca2e3a28e, type: 2}
+  - {fileID: 11400000, guid: 6fe9986450aa63043a710ab8602ca86b, type: 2}
   - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
   - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
   - {fileID: 11400000, guid: c454e47e09e99c649a226b81fde5adc9, type: 2}
   - {fileID: 11400000, guid: d0ad6252c3099164d98142ec5ae6f66e, type: 2}
   - {fileID: 11400000, guid: 1046a6422999f204998739def862bc46, type: 2}
   - {fileID: 11400000, guid: b616ed0f04b805548908f5dca2e3a28e, type: 2}
+  - {fileID: 11400000, guid: 6fe9986450aa63043a710ab8602ca86b, type: 2}
+  - {fileID: 11400000, guid: 9f14752fff836c94994b3ba15538b2a6, type: 2}
+  - {fileID: 11400000, guid: 5ef064a6d4ea0e340a679e0e9b606124, type: 2}
   - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
   - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
   - {fileID: 11400000, guid: c454e47e09e99c649a226b81fde5adc9, type: 2}
   - {fileID: 11400000, guid: d0ad6252c3099164d98142ec5ae6f66e, type: 2}
-  - {fileID: 11400000, guid: 1046a6422999f204998739def862bc46, type: 2}
-  - {fileID: 11400000, guid: b616ed0f04b805548908f5dca2e3a28e, type: 2}
-  - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
-  - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
-  - {fileID: 11400000, guid: c454e47e09e99c649a226b81fde5adc9, type: 2}
-  - {fileID: 11400000, guid: d0ad6252c3099164d98142ec5ae6f66e, type: 2}
-  - {fileID: 11400000, guid: 1046a6422999f204998739def862bc46, type: 2}
-  - {fileID: 11400000, guid: b616ed0f04b805548908f5dca2e3a28e, type: 2}
 --- !u!1001 &1750413887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9794,7 +9752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24dd45cf4252bb843a1790447e2f2e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
+  _fusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
+  _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
   _isPlayerTurn: 0
   _fusionLine: []
   _selectedCardList: []
@@ -9841,7 +9800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55f6054a82eb7d4c84483f8844563a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
+  _fusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
+  _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
   _isPlayerTurn: 0
   _fusionLine: []
   _selectedCardList: []

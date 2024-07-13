@@ -3,7 +3,7 @@ using UnityEngine;
 public class HandPosition : MonoBehaviour {
     public bool IsFree {get; private set;} = true;
 
-    public void IsPlaceFree(bool isfree){
+    public void SetPlaceFree(bool isfree){
         IsFree = isfree;
     }
 }

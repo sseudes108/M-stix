@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoardPlaceVisuals))]
 public class BoardPlace : MonoBehaviour {
-    [SerializeField] private BattleEventHandlerSO BattleManager;
+    [SerializeField] private BattleManagerSO BattleManager;
     [SerializeField] private BoardPlaceEventHandlerSO BoardManager;
     [SerializeField] private UIEventHandlerSO UIManager;
 

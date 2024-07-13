@@ -1,7 +1,8 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class UICardStatSel : UIManager{
-    public BattleEventHandlerSO BattleManager;
+    public BattleManagerSO BattleManager;
     public CardStatEventHandlerSO CardStatSelManager;
 
     private Button _option1, _option2;
@@ -28,6 +29,7 @@ public class UICardStatSel : UIManager{
     }
 
     public void FusionEnded(Card card){
+        Debug.Log($"UICardStateSel - FusionEnded(Card {card}) <color=red>2</color=red>");
         ShowOptions();
         SetButtonText(card);
     }
@@ -42,6 +44,7 @@ public class UICardStatSel : UIManager{
     }
 
     private void ShowOptions(){
+        Debug.Log($"UICardStateSel - ShowOptions() <color=red>3</color=red>");
         _optionsCanvas.style.display = DisplayStyle.Flex;
     }
 

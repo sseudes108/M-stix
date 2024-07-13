@@ -1,8 +1,13 @@
 using UnityEngine;
 
-public class CardCreator : MonoBehaviour {
-    [SerializeField] private MonsterCard _monsterCardPrefab;
-    [SerializeField] private ArcaneCard _arcaneCardPrefab;
+public class CardCreator {
+    private MonsterCard _monsterCardPrefab;
+    private ArcaneCard _arcaneCardPrefab;
+
+    public CardCreator(MonsterCard monsterCardPrefab, ArcaneCard arcaneCardPrefab){
+        _monsterCardPrefab = monsterCardPrefab;
+        _arcaneCardPrefab = arcaneCardPrefab;
+    }
 
     public Card CreateCard(ScriptableObject cardData){
         Card newCard;

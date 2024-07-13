@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(CardVisual), typeof(CardMovement))]
+// [RequireComponent(typeof(CardVisual), typeof(CardMovement))]
 public abstract class Card : MonoBehaviour {
-    public BattleEventHandlerSO _battleManager;
-    // public CardEventHandlerSO _cardManager;
+    [SerializeField] private BattleManagerSO _battleManager;
+    [SerializeField] private CardManagerSO _cardManager;
 
     public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serielized;. Needs to be public or otherwise it became null at the instatiation moment.
 
@@ -61,12 +61,14 @@ public abstract class Card : MonoBehaviour {
                 newPos = new (0,+0.3f,0);
                 Visuals.Border.SetBorderColor(new Color(191, 162, 57));
                 _isSelected = true;
-                GameManager.Instance.CardManager.Selector.AddToSelectedList(this);
+                _cardManager.Selector.AddToSelectedList(this);
+                // GameManager.Instance.CardManager.Selector.AddToSelectedList(this);
             }else{
                 newPos = new (0,-0.3f,0);
                 Visuals.Border.ResetBorderColor();
                 _isSelected = false;
-                GameManager.Instance.CardManager.Selector.RemoveFromSelectedList(this);
+                _cardManager.Selector.RemoveFromSelectedList(this);
+                // GameManager.Instance.CardManager.Selector.RemoveFromSelectedList(this);
             }
 
             transform.position += newPos;

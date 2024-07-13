@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "BoardPlaceManager", menuName = "Mistix/Managers/BoardPlace", order = 0)]
+[CreateAssetMenu(fileName = "BoardPlaceManager", menuName = "Mistix/Manager/BoardPlace", order = 0)]
 public class BoardPlaceEventHandlerSO : ScriptableObject {   
     [HideInInspector] public UnityEvent OnBoardPlaceSelected;
     [HideInInspector] public UnityEvent<BoardPlace> OnShowOptions;

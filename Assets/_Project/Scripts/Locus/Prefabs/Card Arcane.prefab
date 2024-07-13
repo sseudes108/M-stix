@@ -70,8 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a5dc32e1b9ac443983a7d56a2d07b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  Data: {fileID: 11400000, guid: a6e60d41c8d0452438407eb6be84b462, type: 2}
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
+  Data: {fileID: 11400000, guid: 6c50eb2bfe8760941bbea7b248a7b932, type: 2}
   FusionedCard: 0
   FaceSelected: 0
   IsFaceDown: 0

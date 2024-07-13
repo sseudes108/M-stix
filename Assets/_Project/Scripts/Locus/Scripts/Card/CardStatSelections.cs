@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 
 public class CardStatSelections : MonoBehaviour {
-    [SerializeField] private BattleEventHandlerSO BattleManager;
+    [SerializeField] private BattleManagerSO BattleManager;
     public CardStatEventHandlerSO CardStatSelManager;
 
     public MonsterCard _monsterCard;
@@ -29,10 +28,12 @@ public class CardStatSelections : MonoBehaviour {
     }
 
     private void BattleManager_OnStatSelectStart(Card card){
+        Debug.Log($"CardStatSelections - BattleManager_OnStatSelectStart(Card {card}) <color=red>5</color=red> ");
         StartSelection(card);
     }
 
     public void StartSelection(Card card){
+        Debug.Log($"CardStatSelections - StartSelection(Card {card}) <color=red>6</color=red> ");
         _resultCard = null;
         _resultCard = card;
         if(_resultCard is MonsterCard){
@@ -41,11 +42,13 @@ public class CardStatSelections : MonoBehaviour {
     }
 
     public void Option1_Clicked(){
+        Debug.Log($"CardStatSelections - Option1_Clicked() <color=red>7</color=red> ");
         if(_resultCard is MonsterCard){
             var monster = _resultCard as MonsterCard;
             if(monster.FusionedCard){
                 // fusioned Card
                 if(!monster.AnimaSelected){ // Anima note selected
+                    Debug.Log($"CardStatSelections - Option1_Clicked() !monster.AnimaSelected <color=red>9</color=red> ");
                     monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
                     CardStatSelManager.SelectAnother(monster);
@@ -56,6 +59,7 @@ public class CardStatSelections : MonoBehaviour {
             }else{
                 // normal card
                 if(!monster.AnimaSelected){ // Anima note selected
+                    Debug.Log($"CardStatSelections - Option1_Clicked() !monster.AnimaSelected <color=red>10</color=red> ");
                     monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
                     CardStatSelManager.SelectAnother(monster);
@@ -71,6 +75,7 @@ public class CardStatSelections : MonoBehaviour {
     }
 
     public void Option2_Clicked(){
+        Debug.Log($"CardStatSelections - Option2_Clicked() <color=red>8</color=red> ");
         if(_resultCard is MonsterCard){
             var monster = _resultCard as MonsterCard;
             if(monster.FusionedCard){

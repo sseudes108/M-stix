@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FusionPositions : MonoBehaviour {
-    [SerializeField] private BattleEventHandlerSO BattleManager;
+    [SerializeField] private BattleManagerSO BattleManager;
 
     private List<Transform> _linePositions;
     private Transform _resultCardPosition, _boardSelectionPlace;

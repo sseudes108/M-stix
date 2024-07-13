@@ -1,13 +1,18 @@
 public class Battle : StateManager {
-    public BattleEventHandlerSO BattleManager;
+    public BattleManagerSO BattleManager;
     public FusionEventHandlerSO FusionManager;
     public BoardPlaceEventHandlerSO BoardManager;
     public CardStatEventHandlerSO CardStatSelManager;
-    public HandEventHandlerSO HandManager;
+
+    public PlayerHandManagerSO PlayerHandManager;
+    public EnemyHandManagerSO EnemyHandManager;
+
     public UIEventHandlerSO UIManager;
-    public BattleHelperSO Helper;
-    
-    
+    public CardManagerSO CardManager;
+    public TurnManagerSO TurnManager;
+
+    public AbstractState CurrentState {get; private set;}
+        
     public StartPhase StartPhase {get; private set;}
     public DrawPhase DrawPhase {get; private set;}
     public CardSelectionPhase CardSelection {get; private set;}
@@ -36,8 +41,16 @@ public class Battle : StateManager {
         ChangeState(StartPhase);
     }
 
-    public override void ChangeState(AbstractState newState){
-        base.ChangeState(newState);
-        BattleManager.ChangeState(newState);
+    public void ChangeState(AbstractState newState){
+        CurrentState?.Exit();
+        CurrentState = newState;
+        BattleManager.ChangeState(CurrentState);
+
+        if(CurrentState.Battle == null){
+            CurrentState.SetController(this);
+        }
+
+        CurrentState.SetTurnOwner();
+        CurrentState.Enter();
     }
 }

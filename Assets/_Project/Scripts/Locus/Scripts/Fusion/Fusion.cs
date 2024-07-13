@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Fusion : MonoBehaviour {
-    public FusionEventHandlerSO FusionManager;
+    [SerializeField] protected FusionEventHandlerSO _fusionManager;
+    [SerializeField] protected CardManagerSO _cardManager;
     
     public bool _isPlayerTurn;
     public List<Card> _fusionLine;
@@ -67,7 +68,7 @@ public class Fusion : MonoBehaviour {
         }
         yield return new WaitForSeconds(1f);
         // Open UI Select options
-        FusionManager.FusionEnd();
+        _fusionManager.FusionEnd();
     }
 
     private void RemoveCardsFromFusionLine(Card card1, Card card2){

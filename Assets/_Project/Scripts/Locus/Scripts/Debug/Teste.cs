@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Teste : MonoBehaviour {
+    public CardManagerSO CardManager;
     public static Teste Instance;
-    public CardCreator cardCreator;
     
     public CardSO cardData;
 
@@ -13,7 +13,7 @@ public class Teste : MonoBehaviour {
 
     private void Update() {
         if(Input.GetKeyDown(KeyCode.D)) {
-            var newcard = Instantiate(cardCreator.CreateCard(cardData));
+            var newcard = Instantiate(CardManager.Creator.CreateCard(cardData));
             newcard.transform.position = new Vector3(0, 3, 0);
         }
         if(Input.GetKeyDown(KeyCode.R)) {

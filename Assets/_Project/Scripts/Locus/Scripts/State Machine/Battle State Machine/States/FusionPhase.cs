@@ -4,9 +4,17 @@ using System.Collections.Generic;
 public class FusionPhase : AbstractState{
     public override void Enter(){
         SubscribeEvents();
-        var selectedCard = GameManager.Instance.CardManager.Selector.SelectedList;
+        // var selectedCard = GameManager.Instance.CardManager.Selector.SelectedList;
+
+        List<Card> selectedCardList;
+        if(IsPlayerTurn){
+            selectedCardList = Battle.CardManager.Selector.SelectedList;
+        }else{
+            selectedCardList = AI.Actor.CardSelector.SelectedList;
+        }
+
         if(Battle!= null){
-            Battle.StartCoroutine(FusionPhaseRoutine(selectedCard));
+            Battle.StartCoroutine(FusionPhaseRoutine(selectedCardList));
         }
     }
 

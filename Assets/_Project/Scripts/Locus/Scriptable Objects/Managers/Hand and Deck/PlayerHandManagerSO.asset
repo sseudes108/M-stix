@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8de49f03c5460a448f9dc51523a86e8, type: 3}
+  m_Name: PlayerHandManagerSO
+  m_EditorClassIdentifier: 
+  OnCardsDrew:
+    m_PersistentCalls:
+      m_Calls: []
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
+  _handPositions: []
+  _freePositionsInHand: []
+  _hand: {fileID: 0}
+  _deck: {fileID: 11400000, guid: 8fdbf655bfc3e994a8115d781d3678f5, type: 2}
+  _deckTransform: {fileID: 0}

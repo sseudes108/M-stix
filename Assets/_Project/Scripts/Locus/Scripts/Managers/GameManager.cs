@@ -1,12 +1,12 @@
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-    public BattleEventHandlerSO BattleManager;
+    public BattleManagerSO BattleManager;
     public static GameManager Instance { get; private set;}
 
     public UIManager UIManager;
-    public TurnManager TurnManager;
-    public CardManager CardManager;
+    // public TurnManager TurnManager;
+    // public CardManager CardManager;
     public Battle BattleStateManager;
     public FusionManager Fusion;
     public UIManager UI;
@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour {
 
     private void SetComponents(){
         UIManager = GetComponentInChildren<UIManager>();
-        TurnManager = GetComponentInChildren<TurnManager>();
-        CardManager = GetComponentInChildren<CardManager>();
+        // TurnManager = GetComponentInChildren<TurnManager>();
+        // CardManager = GetComponentInChildren<CardManager>();
         BattleStateManager = GetComponentInChildren<Battle>();   
         Fusion = GetComponentInChildren<FusionManager>();
         UI = GetComponentInChildren<UIManager>();

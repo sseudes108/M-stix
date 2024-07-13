@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardPlaceManager : MonoBehaviour {
-    [SerializeField] private BattleEventHandlerSO BattleManager;
+    [SerializeField] private BattleManagerSO BattleManager;
     [SerializeField] private UIEventHandlerSO UIManager;
 
     [field:SerializeField] public float IntensityFactor{ get; private set; }

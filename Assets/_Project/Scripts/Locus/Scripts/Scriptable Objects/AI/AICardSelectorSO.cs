@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AICardSelectorSO {
+    private AIActorSO _actor;
+    public AICardSelectorSO(AIActorSO actor){
+        _actor = actor;
+    }
+
+    private List<Card> _selectedList;
+    public List<Card> SelectedList => _selectedList;
+
+    public IEnumerator SelectCardRoutine(List<Card> cardsInHand){
+        SelectRandomCard(cardsInHand);
+        yield return new WaitForSeconds(Random.Range(3f, 5f));
+        _actor.CardSelectionFinished();
+        yield return null;
+    }
+
+    public void SelectRandomCard(List<Card> cardsInHand){
+        var randomCard = cardsInHand[Random.Range(0, cardsInHand.Count)];
+        AddToSelectedList(randomCard);
+        Debug.Log($"Selected Card {randomCard.name}");
+    }
+
+    public void AddToSelectedList(Card card){
+        _selectedList.Add(card);
+    }
+}
