@@ -377,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -690,6 +691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -828,6 +830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -1730,6 +1733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -2010,6 +2014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -2103,6 +2108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -2215,6 +2221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -2542,6 +2549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -2792,6 +2800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 1
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -3216,6 +3225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 2
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -3925,6 +3935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -4735,6 +4746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -4852,6 +4864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 4
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -5155,6 +5168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 3
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -5967,6 +5981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -6722,6 +6737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -7093,6 +7109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardManager: {fileID: 11400000, guid: 3fb3454184b963e49808ec1e9d6fad2d, type: 2}
   UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
 --- !u!114 &1528214230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8289,6 +8306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -8470,6 +8488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
@@ -8914,6 +8933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
@@ -10597,6 +10617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   BoardManager: {fileID: 11400000, guid: 379080862871b4944a621631f9ea062c, type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1

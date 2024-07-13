@@ -33,7 +33,6 @@ public class BoardPlaceVisuals : MonoBehaviour {
     }
 
     public void HighLight(){
-        Debug.Log($"HighLight - {_place.Location}");
         StartCoroutine(SetColorRoutine(new Color(216, 216, 27), 0.1f, false));
     }
 

@@ -19,14 +19,12 @@ public class BoardPlaceManager : MonoBehaviour {
         BattleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
         BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_BoardPlaceSelectionStart);
         BattleManager.OnBoardPlaceSelectionEnd.AddListener(BattleManager_BoardPlaceSelectionEnd);
-        UIManager.OnMonsterAttack.AddListener(UIManager_OnMonsterAttack);
     }
 
     private void OnDisable() {
         BattleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
         BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_BoardPlaceSelectionStart);
         BattleManager.OnBoardPlaceSelectionEnd.RemoveListener(BattleManager_BoardPlaceSelectionEnd);
-        UIManager.OnMonsterAttack.RemoveListener(UIManager_OnMonsterAttack);
     }
 
     public void UIManager_OnMonsterAttack(Card card, bool isPlayerTurn){
@@ -55,7 +53,6 @@ public class BoardPlaceManager : MonoBehaviour {
     }
 
     private void HighLightPlayerOcuppiedPlaces(Card card){
-        Debug.Log("HighLightPlayerOcuppiedPlaces");
         List<BoardPlaceVisuals> list;
 
         if(card is MonsterCard){
@@ -71,7 +68,7 @@ public class BoardPlaceManager : MonoBehaviour {
         }
     }
     private void HighLightEnemyOcuppiedPlaces(Card card){
-        Debug.Log("HighLightEnemyOcuppiedPlaces");
+        // Debug.Log("HighLightEnemyOcuppiedPlaces");
         List<BoardPlaceVisuals> list;
 
         if(card is MonsterCard){
@@ -82,10 +79,10 @@ public class BoardPlaceManager : MonoBehaviour {
 
         foreach (BoardPlaceVisuals place in list){
             if(!place.IsFree){
-                Debug.Log("!place.IsFree");
+                // Debug.Log("!place.IsFree");
                 place.HighLight();
             }else{
-                Debug.Log("place.IsFree");
+                // Debug.Log("place.IsFree");
             }
         }
     }

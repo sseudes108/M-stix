@@ -1,10 +1,12 @@
 
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(BoardPlaceVisuals))]
 public class BoardPlace : MonoBehaviour {
     [SerializeField] private BattleEventHandlerSO BattleManager;
     [SerializeField] private BoardPlaceEventHandlerSO BoardManager;
+    [SerializeField] private UIEventHandlerSO UIManager;
 
     [field:SerializeField] public EBoardPlace Location { get; private set; }
     [field:SerializeField] public Collider[] Colliders { get; private set; }
@@ -19,11 +21,21 @@ public class BoardPlace : MonoBehaviour {
     private void OnEnable() {
         BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
         BoardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
+        // UIManager.OnMonsterAttack.AddListener(UIManager_OnMonsterAttack);
     }
     
     private void OnDisable() {
         BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart);
         BoardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
+        // UIManager.OnMonsterAttack.RemoveListener(UIManager_OnMonsterAttack);
+    }
+
+    private void UIManager_OnMonsterAttack(Card card, bool isPlayerTurn){
+        if(isPlayerTurn && !IsPlayerPlace){
+            if(!IsFree){
+                _canBeSelected = true;
+            }
+        }
     }
 
     private void BoardManager_OnBoardPlaceSelected(){
@@ -63,11 +75,29 @@ public class BoardPlace : MonoBehaviour {
 
     private void OnMouseDown() {
         if(!_canBeSelected) { return; }
-        if(IsFree){
-            SetCardInPlace(_resultCard);
-        }else{
-            //Fusion Logic with the monster in This Place
+
+        switch (BattleManager.CurrentPhase){
+            case BoardPlaceSelectionPhase:
+                if(IsFree){
+                    SetCardInPlace(_resultCard);
+                }else{
+                    //Fusion Logic with the monster in This Place
+                }
+            break;
+
+            case ActionPhase:
+                Debug.Log("Attacked");
+            break;
+            
+            default:
+            break;
         }
+    
+        // if(IsFree){
+        //     SetCardInPlace(_resultCard);
+        // }else{
+        //     //Fusion Logic with the monster in This Place
+        // }
     }
 
 

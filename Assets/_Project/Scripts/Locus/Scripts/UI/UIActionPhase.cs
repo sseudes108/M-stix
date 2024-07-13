@@ -24,12 +24,14 @@ public class UIActionPhase : UIManager {
 
     private void OnEnable() {
         BattleManager.OnActionPhaseStart.AddListener(BattleManager_OnActionPhaseStart);
+        BattleManager.OnActionPhaseTwoStart.AddListener(BattleManager_OnActionPhaseTwoStart);
         BoardManager.OnShowOptions.AddListener(BoardManager_OnShowOptions);
         BoardManager.OnHideOptions.AddListener(BoardManager_OnHideOptions);
     }
 
     private void OnDisable() {
         BattleManager.OnActionPhaseStart.RemoveListener(BattleManager_OnActionPhaseStart);
+        BattleManager.OnActionPhaseTwoStart.RemoveListener(BattleManager_OnActionPhaseTwoStart);
         BoardManager.OnShowOptions.RemoveListener(BoardManager_OnShowOptions);
         BoardManager.OnHideOptions.RemoveListener(BoardManager_OnHideOptions);
 
@@ -43,6 +45,10 @@ public class UIActionPhase : UIManager {
         }
     }
 
+    private void BattleManager_OnActionPhaseTwoStart(){
+        ShowCanvas();
+    }
+    
     private void BattleManager_OnActionPhaseStart(){
         ShowCanvas();
     }
@@ -181,8 +187,7 @@ public class UIActionPhase : UIManager {
 
     private void AttackButtonClicked(){
         if(GameManager.Instance.Board != null){
-            UIManager.MonsterAttack(_card, GameManager.Instance.BattleStateManager.CurrentState.IsPlayerTurn);
-            // GameManager.Instance.Board.AttackSelected(_card, GameManager.Instance.BattleStateManager.CurrentState.IsPlayerTurn);
+
         }else{
             Debug.Log("GameManager.Instance.Board == null");
         }

@@ -5,6 +5,7 @@ public class Battle : StateManager {
     public CardStatEventHandlerSO CardStatSelManager;
     public HandEventHandlerSO HandManager;
     public UIEventHandlerSO UIManager;
+    public BattleHelperSO Helper;
     
     
     public StartPhase StartPhase {get; private set;}
@@ -14,6 +15,8 @@ public class Battle : StateManager {
     public CardStatSelectPhase CardStatSelection {get; private set;}
     public BoardPlaceSelectionPhase BoardPlaceSelection {get; private set;}
     public ActionPhase Action {get; private set;}
+    public ActionPhaseTwo ActionTwo {get; private set;}
+    public EndPhase EndPhase {get; private set;}
 
 
     public Battle(){
@@ -24,9 +27,12 @@ public class Battle : StateManager {
         CardStatSelection = new();
         BoardPlaceSelection = new();
         Action = new();
+        ActionTwo = new();
+        EndPhase = new();
     }
 
     private void Start(){
+        BattleManager.SetBattle(this);
         ChangeState(StartPhase);
     }
 
