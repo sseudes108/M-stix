@@ -25,9 +25,13 @@ public class BattleManagerSO : ScriptableObject {
     [HideInInspector] public UnityEvent OnActionPhaseTwoStart;
 
     [HideInInspector] public UnityEvent OnEndPhaseStart;
-    public Battle _battle;
-    public AbstractState CurrentPhase => _battle.CurrentState;
 
+    public TurnManagerSO TurnManager;
+    public bool IsPlayerTurn => TurnManager.IsPlayerTurn();
+
+    public AbstractState CurrentPhase;
+    private Battle _battle;
+    
 #endregion
 
     private void OnEnable() {
@@ -59,23 +63,25 @@ public class BattleManagerSO : ScriptableObject {
 
 #region Events
     public void ChangeState(AbstractState newState) { // Used for hold the current phase ref and notify the UI
+        CurrentPhase = newState;
+        _battle = CurrentPhase.GetBattleController();
         OnStateChange?.Invoke(newState); //UI notification
     }
     
     public void StartPhase() { OnStartPhase?.Invoke(); }
 
     public void PlayerDraw() { OnPlayerDraw?.Invoke(); }
-    // public void PlayerDraw() { Debug.Log("BattleManagerSO - PlayerDraw()"); OnPlayerDraw?.Invoke(); }
     public void EnemyDraw() { OnEnemyDraw?.Invoke(); }
-    // public void EnemyDraw() { Debug.Log("BattleManagerSO - EnemyDraw()"); OnEnemyDraw?.Invoke(); }
 
     public void CardSelectionStart() { OnCardSelectionStart?.Invoke(); }
     public void CardSelectionEnd() { OnCardSelectionEnd?.Invoke(); }
 
-    public void StatSelectStart(Card card) { Debug.Log($"BattleManagerSO - StatSelectStart(Card {card}) <color=red>4</color=red>"); OnStatSelectStart?.Invoke(card); }
+    public void StatSelectStart(Card card) { OnStatSelectStart?.Invoke(card); }
     public void StatSelectEnd(Card card, bool isPlayerTurn) { OnStatSelectEnd?.Invoke(card, isPlayerTurn); }
 
-    public void BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { OnBoardPlaceSelectionStart?.Invoke(card, isPlayerTurn); }
+    public void BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { 
+        OnBoardPlaceSelectionStart?.Invoke(card, isPlayerTurn); 
+    }
     public void BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { OnBoardPlaceSelectionEnd?.Invoke(card, isPlayerTurn); }
 
     public void ActionPhaseStart() { OnActionPhaseStart?.Invoke(); }
@@ -87,13 +93,9 @@ public class BattleManagerSO : ScriptableObject {
 
 #region Helper
 
-    public void SetBattle(Battle battle) { 
-        _battle = battle;
-    }
-
-    public IEnumerator ChangeStateRoutine(float wait, AbstractState newState){
+    public IEnumerator ChangeStateRoutine(float wait, Battle battle, AbstractState newState){
         yield return new WaitForSeconds(wait);
-        _battle.ChangeState(newState);
+        battle.ChangeState(newState);
         yield return null;
     }
     

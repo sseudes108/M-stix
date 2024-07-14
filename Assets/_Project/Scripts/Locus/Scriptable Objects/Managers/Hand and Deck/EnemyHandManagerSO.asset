@@ -17,6 +17,28 @@ MonoBehaviour:
       m_Calls: []
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
+  _aiManager: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3, type: 2}
+  _freePositionsInHand:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CardsInHand:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _hand: {fileID: 0}
-  _deck: {fileID: 11400000, guid: a4ea7de61cb130f4eb3a051eb91be847, type: 2}
-  _deckTransform: {fileID: 0}
+  _deck: {fileID: 0}

@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class AI : StateManager {
+public class AI : MonoBehaviour {
     public AIManagerSO Manager;
+    public BattleManagerSO BattleManager;
     public AIActorSO Actor;
+    // public GameManagerSO Game
     
     public AI_IdleState Idle;
     public AI_BoardPlaceSel BoardPlaceSelection;
@@ -33,11 +35,7 @@ public class AI : StateManager {
     public void ChangeState(AbstractState newState){
         AICurrentState?.Exit();
         AICurrentState = newState;
-
-        if(AICurrentState.AI == null){
-            AICurrentState.SetController(this);
-        }
-
+        Manager.ChangeState(this);
         AICurrentState.Enter();
     }
 }

@@ -36,11 +36,16 @@ public class ShaderDissolve : MonoBehaviour {
             newColor.a
         );
 
+        // float randomNoiseScale = Random.Range(-35, 35);
+        // float randomEdgeSize = Random.Range(0.1f, 0.2f);
+
         do{
             elapsedTime += Time.deltaTime;
             float interpolation = Mathf.Clamp01(elapsedTime / _duration);
             CutOff = Mathf.Lerp(1, 0, interpolation);
 
+            // faceMat.SetFloat("_NoiseScale", randomNoiseScale);
+            // faceMat.SetFloat("_EdgeSize", randomEdgeSize);
             faceMat.SetFloat("_CutOff", CutOff);
             faceMat.SetColor("_EdgeColor", adjustedColor);
 
@@ -74,11 +79,16 @@ public class ShaderDissolve : MonoBehaviour {
             newColor.a
         );
 
+        // float randomNoiseScale = Random.Range(-35, 35);
+        // float randomEdgeSize = Random.Range(0.1f, 0.2f);
+
         do{
             elapsedTime += Time.deltaTime;
             float interpolation = Mathf.Clamp01(elapsedTime / _duration);
             CutOff = Mathf.Lerp(0, 1, interpolation);
 
+            // faceMat.SetFloat("_NoiseScale", randomNoiseScale);
+            // faceMat.SetFloat("_EdgeSize", randomEdgeSize);
             faceMat.SetFloat("_CutOff", CutOff);
             faceMat.SetColor("_EdgeColor", adjustedColor);
 

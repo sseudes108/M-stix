@@ -5,6 +5,7 @@ public class UIBattleScene : UIManager {
     [SerializeField] private CardManagerSO CardManager;
     [SerializeField] private UIEventHandlerSO UIManager;
     [SerializeField] private BattleManagerSO BattleManager;
+    // [SerializeField] private BattleManagerSO BattleManager;
 
     private Button _phaseButton, _phaseEndButton;
 
@@ -24,6 +25,9 @@ public class UIBattleScene : UIManager {
         base.Awake();
         SetElements();
         _phaseButton.style.display = DisplayStyle.None;
+        // if(_phaseButton != null){
+        //     _phaseButton.style.display = DisplayStyle.None;
+        // }
     }
 
     private void BattleManager_OnActionPhaseStart(){
@@ -31,9 +35,10 @@ public class UIBattleScene : UIManager {
         _phaseEndButton.text = "End Phase";
         _phaseEndButton.style.display = DisplayStyle.Flex;
         
-        if(_phaseButton != null){
-            _phaseButton.clicked -= EndActionPhase;
-        }
+        // if(_phaseButton != null){
+        //     _phaseButton.clicked -= EndActionPhase;
+        // }
+        _phaseButton.clicked -= EndActionPhase;
 
         _phaseEndButton.clicked -= EndActionPhase;
         _phaseEndButton.clicked += EndActionPhase;
@@ -43,16 +48,30 @@ public class UIBattleScene : UIManager {
     private void EndActionPhase(){
         // Debug.Log("UIBattleScene - EndActionPhase()");
         BattleManager.EndActionPhase();
+        // if(_phaseEndButton != null){
+        //     _phaseEndButton.style.display = DisplayStyle.None;
+        //     _phaseEndButton.clicked -= EndActionPhase;
+        // }
         _phaseEndButton.style.display = DisplayStyle.None;
+        _phaseEndButton.clicked -= EndActionPhase;
 
-        if(_phaseEndButton != null){
-            _phaseEndButton.clicked -= EndActionPhase;
-        }
     }
 
     private void CardManager_OnSomeCardSelected(){
         // Debug.Log("UIBattleScene - CardManager_OnSomeCardSelected()");
         SetElements();
+        // if(_phaseButton != null){
+        //     _phaseButton.clicked -= EndActionPhase;
+
+        //     _phaseButton.text = "End Selection";
+        //     _phaseButton.style.display = DisplayStyle.Flex;
+
+        //     _phaseEndButton.clicked -= SelectionFinished;
+        //     _phaseEndButton.clicked += SelectionFinished;
+        // }
+
+        _phaseButton.clicked -= EndActionPhase;
+
         _phaseButton.text = "End Selection";
         _phaseButton.style.display = DisplayStyle.Flex;
 
@@ -61,11 +80,19 @@ public class UIBattleScene : UIManager {
     }
 
     private void CardManager_OnNoneCardSelected(){
+        // if(_phaseButton != null){
+        //     _phaseButton.style.display = DisplayStyle.None;
+        // }
         _phaseButton.style.display = DisplayStyle.None;
+
     }
 
     private void SelectionFinished(){
         UIManager.CardSelectionFinished();
+        // if(_phaseButton != null){
+        //     _phaseButton.style.display = DisplayStyle.None;
+        //     _phaseButton.clicked -= SelectionFinished;
+        // }
         _phaseButton.style.display = DisplayStyle.None;
         _phaseButton.clicked -= SelectionFinished;
     }
@@ -77,5 +104,10 @@ public class UIBattleScene : UIManager {
 
         _phaseButton.clicked -= SelectionFinished;
         _phaseButton.clicked += SelectionFinished;
+
+        // if(_phaseButton != null){
+        //     _phaseButton.clicked -= SelectionFinished;
+        //     _phaseButton.clicked += SelectionFinished;
+        // }
     }
 }

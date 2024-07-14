@@ -12,7 +12,7 @@ public class DrawPhase : AbstractState{
         if(Battle.TurnManager.CurrentTurn == 1){
             Battle.BattleManager.PlayerDraw();
             Battle.BattleManager.EnemyDraw();
-        }else if(IsPlayerTurn){
+        }else if(Battle.BattleManager.IsPlayerTurn){
             Battle.BattleManager.PlayerDraw();
         }else{
             Battle.BattleManager.EnemyDraw();

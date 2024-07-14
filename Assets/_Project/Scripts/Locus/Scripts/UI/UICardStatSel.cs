@@ -3,20 +3,24 @@ using UnityEngine.UIElements;
 
 public class UICardStatSel : UIManager{
     public BattleManagerSO BattleManager;
+    public FusionEventHandlerSO FusionManager;
     public CardStatEventHandlerSO CardStatSelManager;
 
     private Button _option1, _option2;
     private VisualElement _optionsCanvas;
 
+    Card ResultCard;
 
     private void OnEnable() {
         CardStatSelManager.OnSelectAnother.AddListener(CardStatSelManager_OnSelectAnother);
         CardStatSelManager.OnSelectionsEnd.AddListener(CardStatSelManager_OnSelectionsEnd);
+        FusionManager.OnFusionEnd.AddListener(FusionManager_OnFusionEnd);
     }
 
     private void OnDisable() {     
         CardStatSelManager.OnSelectAnother.RemoveListener(CardStatSelManager_OnSelectAnother);
         CardStatSelManager.OnSelectionsEnd.RemoveListener(CardStatSelManager_OnSelectionsEnd);
+        FusionManager.OnFusionEnd.RemoveListener(FusionManager_OnFusionEnd);
     }
 
 
@@ -28,9 +32,9 @@ public class UICardStatSel : UIManager{
         SetButtonText(card);
     }
 
-    public void FusionEnded(Card card){
-        Debug.Log($"UICardStateSel - FusionEnded(Card {card}) <color=red>2</color=red>");
+    public void FusionManager_OnFusionEnd(Card card){
         ShowOptions();
+        ResultCard = card;
         SetButtonText(card);
     }
 
@@ -44,7 +48,6 @@ public class UICardStatSel : UIManager{
     }
 
     private void ShowOptions(){
-        Debug.Log($"UICardStateSel - ShowOptions() <color=red>3</color=red>");
         _optionsCanvas.style.display = DisplayStyle.Flex;
     }
 
@@ -55,11 +58,11 @@ public class UICardStatSel : UIManager{
     }
 
     private void Option1_Clicked(){
-        CardStatSelManager.Option1Clicked();
+        CardStatSelManager.Option1Clicked(ResultCard);
     }
 
     private void Option2_Clicked(){
-        CardStatSelManager.Option2Clicked();
+        CardStatSelManager.Option2Clicked(ResultCard);
     }
 
     private void SetElements(){

@@ -51,4 +51,4 @@ MonoBehaviour:
   OnEndPhaseStart:
     m_PersistentCalls:
       m_Calls: []
-  _battle: {fileID: 0}
+  TurnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}

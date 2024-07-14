@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AICardSelectorSO {
+public class AICardSelector {
     private AIActorSO _actor;
-    public AICardSelectorSO(AIActorSO actor){
+    public AICardSelector(AIActorSO actor){
         _actor = actor;
     }
 
-    private List<Card> _selectedList;
+    public List<Card> _selectedList = new();
     public List<Card> SelectedList => _selectedList;
 
     public IEnumerator SelectCardRoutine(List<Card> cardsInHand){
@@ -19,9 +19,9 @@ public class AICardSelectorSO {
     }
 
     public void SelectRandomCard(List<Card> cardsInHand){
+        Debug.Log($"{cardsInHand.Count}");
         var randomCard = cardsInHand[Random.Range(0, cardsInHand.Count)];
         AddToSelectedList(randomCard);
-        Debug.Log($"Selected Card {randomCard.name}");
     }
 
     public void AddToSelectedList(Card card){

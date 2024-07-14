@@ -1,4 +1,6 @@
-public class Battle : StateManager {
+using UnityEngine;
+
+public class Battle : MonoBehaviour {
     public BattleManagerSO BattleManager;
     public FusionEventHandlerSO FusionManager;
     public BoardPlaceEventHandlerSO BoardManager;
@@ -10,6 +12,9 @@ public class Battle : StateManager {
     public UIEventHandlerSO UIManager;
     public CardManagerSO CardManager;
     public TurnManagerSO TurnManager;
+
+    public AIManagerSO AIManager;
+
 
     public AbstractState CurrentState {get; private set;}
         
@@ -37,20 +42,16 @@ public class Battle : StateManager {
     }
 
     private void Start(){
-        BattleManager.SetBattle(this);
+
         ChangeState(StartPhase);
     }
 
     public void ChangeState(AbstractState newState){
         CurrentState?.Exit();
         CurrentState = newState;
+        CurrentState.SetController(this);
+        CurrentState.SetController(AIManager.AI);
         BattleManager.ChangeState(CurrentState);
-
-        if(CurrentState.Battle == null){
-            CurrentState.SetController(this);
-        }
-
-        CurrentState.SetTurnOwner();
         CurrentState.Enter();
     }
 }

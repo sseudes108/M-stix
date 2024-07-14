@@ -4,18 +4,15 @@ using System.Collections.Generic;
 public class FusionPhase : AbstractState{
     public override void Enter(){
         SubscribeEvents();
-        // var selectedCard = GameManager.Instance.CardManager.Selector.SelectedList;
 
         List<Card> selectedCardList;
-        if(IsPlayerTurn){
+        if(Battle.BattleManager.IsPlayerTurn){
             selectedCardList = Battle.CardManager.Selector.SelectedList;
         }else{
             selectedCardList = AI.Actor.CardSelector.SelectedList;
         }
-
-        if(Battle!= null){
-            Battle.StartCoroutine(FusionPhaseRoutine(selectedCardList));
-        }
+        //***Delay??***//
+        Battle.StartCoroutine(FusionPhaseRoutine(selectedCardList));
     }
 
     public override void Exit(){
@@ -23,7 +20,7 @@ public class FusionPhase : AbstractState{
     }
     
     public IEnumerator FusionPhaseRoutine(List<Card> selectedCards){
-        GameManager.Instance.Fusion.Fusion.StartFusionRoutine(selectedCards, IsPlayerTurn);
+        GameManager.Instance.Fusion.Fusion.StartFusionRoutine(selectedCards, Battle.BattleManager.IsPlayerTurn);
         yield return null;
     }
 
@@ -35,7 +32,7 @@ public class FusionPhase : AbstractState{
         Battle.FusionManager.OnFusionEnd.RemoveListener(FusionManager_OnFusionEnd);
     }
 
-    private void FusionManager_OnFusionEnd(){
+    private void FusionManager_OnFusionEnd(Card ResultCard){
         Battle.ChangeState(Battle.CardStatSelection);
     }
 

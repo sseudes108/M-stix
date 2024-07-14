@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     public UIManager UI;
     public HandManager Hand;
     public CameraManager Camera;
-    public VisualEffectManager Visual;
+    // public VisualEffectManager Visual;
     public BoardPlaceManager Board;
 
     private void Awake() {
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
         UI = GetComponentInChildren<UIManager>();
         Hand = GetComponentInChildren<HandManager>();
         Camera = GetComponentInChildren<CameraManager>();
-        Visual = GetComponentInChildren<VisualEffectManager>();
+        // Visual = GetComponentInChildren<VisualEffectManager>();
         Board = GetComponentInChildren<BoardPlaceManager>();
     }
 }

@@ -1,15 +1,13 @@
+using UnityEngine;
+
 public abstract class AbstractState {
-    public bool IsPlayerTurn { get; private set; }
-    public Card ResultCard  { get; private set; }
     public Battle Battle { get; private set; }
     public AI AI { get; private set; }
 
     public abstract void Enter();
     public abstract void Exit();
         
-    public void SetController(StateManager controller){
-        Battle = null;
-        AI = null;
+    public void SetController(MonoBehaviour controller){
         if(controller is Battle){
             Battle = controller as Battle;
         }else if(controller is AI){
@@ -17,14 +15,9 @@ public abstract class AbstractState {
         }
     }
 
-    public void SetResultCard(){
-        ResultCard = GameManager.Instance.Fusion.Fusion.ResultCard;
-    }
-
-    public void SetTurnOwner(){
-        IsPlayerTurn = Battle.TurnManager.IsPlayerTurn();
-    }
-
     public virtual void SubscribeEvents(){}
     public virtual void UnsubscribeEvents(){}
+    public Battle GetBattleController(){
+        return Battle;
+    }
 }

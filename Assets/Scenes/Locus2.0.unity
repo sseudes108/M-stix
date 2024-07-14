@@ -1504,8 +1504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0e8722ff2cda04aa6f793a73423f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Helper: {fileID: 11400000, guid: 6bbcff4a2a3f0bf499cea717f485f590, type: 2}
   CardManager: {fileID: 0}
-  cardData: {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
+  ColorManager: {fileID: 0}
+  Cards: []
 --- !u!114 &284903923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6216,6 +6218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Manager: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3, type: 2}
+  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   Actor: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9, type: 2}
 --- !u!1 &1400343844
 GameObject:
@@ -6364,7 +6367,7 @@ MonoBehaviour:
   - {fileID: 1750413888}
   - {fileID: 7496333}
   _deck: {fileID: 828513532}
-  _aiManager: {fileID: 0}
+  _aiManager: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3, type: 2}
 --- !u!114 &1404176566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7129,6 +7132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  FusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
   CardStatSelManager: {fileID: 11400000, guid: aa8ab951e89f4c2499567975eb284d0e, type: 2}
 --- !u!114 &1528214231
 MonoBehaviour:
@@ -7472,6 +7476,7 @@ MonoBehaviour:
   UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   CardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
   TurnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
+  AIManager: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3, type: 2}
 --- !u!1 &1664148452
 GameObject:
   m_ObjectHideFlags: 0
@@ -7502,7 +7507,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1954676943}
   - {fileID: 1396675613}
   - {fileID: 1663341987}
   - {fileID: 2111008765}
@@ -7532,7 +7536,6 @@ MonoBehaviour:
   UI: {fileID: 0}
   Hand: {fileID: 0}
   Camera: {fileID: 0}
-  Visual: {fileID: 0}
   Board: {fileID: 0}
 --- !u!1 &1668197583 stripped
 GameObject:
@@ -8913,70 +8916,6 @@ MonoBehaviour:
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
   IntensityFactor: 2.5
---- !u!1 &1954676942
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1954676943}
-  - component: {fileID: 1954676944}
-  - component: {fileID: 1954676945}
-  m_Layer: 0
-  m_Name: Visual Effect
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1954676943
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954676942}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1664148453}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1954676944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954676942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d13feb5f49bb6747989ac26afda9f99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1954676945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954676942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5add32a1b4440540bf862a57d02455d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mars: {r: 1, g: 0, b: 0.052631855, a: 1}
-  Venus: {r: 0.9245283, g: 0.21368816, b: 0.8420429, a: 1}
-  Jupiter: {r: 1, g: 0.62435436, b: 0.12156862, a: 1}
-  Saturn: {r: 0.104396574, g: 0.4339623, b: 0.27369487, a: 1}
-  Mercury: {r: 0.7924528, g: 0.36304182, b: 0.018689923, a: 1}
-  Sun: {r: 1, g: 0.80166054, b: 0, a: 1}
-  Moon: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
 --- !u!1 &1981089400
 GameObject:
   m_ObjectHideFlags: 0
@@ -9703,9 +9642,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2111008765}
   - component: {fileID: 2111008769}
-  - component: {fileID: 2111008768}
   - component: {fileID: 2111008767}
   - component: {fileID: 2111008766}
+  - component: {fileID: 2111008770}
   m_Layer: 0
   m_Name: Fusion
   m_TagString: Untagged
@@ -9753,13 +9692,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  _isPlayerTurn: 0
-  _fusionLine: []
-  _selectedCardList: []
-  ResultCard: {fileID: 0}
   _strongestTypeList: []
---- !u!114 &2111008768
+--- !u!114 &2111008769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111008764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55f6054a82eb7d4c84483f8844563a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
+--- !u!114 &2111008770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9771,7 +9722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59eae305e03bcec4882155255a61fc07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  _fusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
   _playerFusionPositions:
   - {fileID: 3012175273687063293}
   - {fileID: 3012175272823294441}
@@ -9788,24 +9741,6 @@ MonoBehaviour:
   - {fileID: 1700633315}
   _enemyResultCardPosition: {fileID: 393946135}
   _enemyBoardSelectionPlace: {fileID: 645521320}
---- !u!114 &2111008769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111008764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f55f6054a82eb7d4c84483f8844563a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fusionManager: {fileID: 11400000, guid: fea8cfed9736b7d409eb10a4ba99d480, type: 2}
-  _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  _isPlayerTurn: 0
-  _fusionLine: []
-  _selectedCardList: []
-  ResultCard: {fileID: 0}
 --- !u!114 &2122399292
 MonoBehaviour:
   m_ObjectHideFlags: 0

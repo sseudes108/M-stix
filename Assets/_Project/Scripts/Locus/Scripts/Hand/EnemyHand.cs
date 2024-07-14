@@ -14,7 +14,5 @@ public class EnemyHand : Hand {
 
     private void BattleManager_OnEnemyDraw(){
         _handManager.Draw(this);
-        // _aiManager.SetCardsInHand()
-        // .SetCardsInHand()
     }
 }

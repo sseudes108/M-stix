@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class CardVisual : MonoBehaviour {
+    [SerializeField] protected ColorSO _colorManager;
     public Renderer Renderer { get; private set; }
     public ShaderAnima Anima { get; private set; }
     public ShaderBorder Border { get; private set; }
@@ -39,7 +40,7 @@ public class CardVisual : MonoBehaviour {
         Renderer = GetComponentInChildren<Renderer>();
 
         Anima = GetComponentInChildren<ShaderAnima>();
-        Anima.SetController(Renderer, this);
+        Anima.SetController(Renderer, this, _colorManager);
 
         Border = GetComponentInChildren<ShaderBorder>();
         Border.SetController(Renderer, this);

@@ -2,7 +2,7 @@ public class BoardPlaceSelectionPhase : AbstractState{
 
     public override void Enter(){
         SubscribeEvents();
-        Battle.BattleManager.BoardPlaceSelectionStart(ResultCard, IsPlayerTurn);
+        Battle.BattleManager.BoardPlaceSelectionStart(Battle.FusionManager.resultedCard, Battle.BattleManager.IsPlayerTurn);
     }
 
     public override void Exit(){
@@ -18,7 +18,7 @@ public class BoardPlaceSelectionPhase : AbstractState{
     }
 
     private void BoardManager_OnBoardPlaceSelected(){
-        Battle.BattleManager.BoardPlaceSelectionEnd(ResultCard, IsPlayerTurn);
+        Battle.BattleManager.BoardPlaceSelectionEnd(Battle.FusionManager.resultedCard, Battle.BattleManager.IsPlayerTurn);
         Battle.ChangeState(Battle.Action);
     }
 

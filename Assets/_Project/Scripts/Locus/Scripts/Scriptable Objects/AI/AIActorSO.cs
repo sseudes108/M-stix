@@ -1,21 +1,25 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// AIActorSO Is used to manage all the Ai Actions during the battle. All the events of the actions should be invocked from here, since the actions are not monobehaviours
+/// </summary>
+
 [CreateAssetMenu(fileName = "AIActor", menuName = "Mistix/AI/Actor", order = 0)]
 public class AIActorSO : ScriptableObject {
-    [HideInInspector] public UnityEvent OnSelectionFinished;
+    //Actions
+    public AICardSelector CardSelector { get; private set; }
 
-    public AICardSelectorSO CardSelector { get; private set; }
+    //Events
+    [HideInInspector] public UnityEvent CardSelector_OnSelectionFinished;
     
     private void OnEnable() {
-        Debug.Log("AIActorSO OnEnable()");
         CardSelector ??= new(this);
 
-        OnSelectionFinished ??= new UnityEvent();
+        CardSelector_OnSelectionFinished ??= new UnityEvent();
     }
 
     public void CardSelectionFinished(){
-        Debug.Log("CardSelectionFinished()");
-        OnSelectionFinished?.Invoke();
+        CardSelector_OnSelectionFinished?.Invoke();
     }
 }

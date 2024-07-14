@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FusionPositions))]
 public class Fusion : MonoBehaviour {
     [SerializeField] protected FusionEventHandlerSO _fusionManager;
+    [SerializeField] protected BattleManagerSO _battleManager;
     [SerializeField] protected CardManagerSO _cardManager;
     
-    public bool _isPlayerTurn;
-    public List<Card> _fusionLine;
-    public List<Card> _selectedCardList;
-    public Card ResultCard;
+    private bool _isPlayerTurn;
+    private List<Card> _fusionLine;
+    private Card _resultCard;
 
     public void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
         StartCoroutine(FusionRoutine(selectedCards, isPlayerTurn));
@@ -18,13 +19,13 @@ public class Fusion : MonoBehaviour {
     private IEnumerator FusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
         _isPlayerTurn = isPlayerTurn;
         _fusionLine = selectedCards;
-        GameManager.Instance.Fusion.Positions.MoveCardsToFusionPosition(_fusionLine, _isPlayerTurn);
+        _fusionManager.Positions.MoveCardsToFusionPosition(_fusionLine, _isPlayerTurn);
 
         if(_fusionLine.Count > 1){
             do{
-                ResultCard = null;
-                GameManager.Instance.Fusion.Positions.MoveCardsToFusionPosition(_fusionLine, _isPlayerTurn);
-
+                _resultCard = null;
+                _fusionManager.Positions.MoveCardsToFusionPosition(_fusionLine, _isPlayerTurn);
+    
                 yield return new WaitForSeconds(1f);
 
                 var card1 = _fusionLine[0];
@@ -61,14 +62,15 @@ public class Fusion : MonoBehaviour {
                 }
             }while(_fusionLine.Count > 0);
         }else if(_fusionLine.Count == 1){
-            ResultCard = null;
-            ResultCard = _fusionLine[0];
+            _resultCard = null;
+            _resultCard = _fusionLine[0];
             yield return null;
-            GameManager.Instance.Fusion.Positions.MoveCardToResultPosition(ResultCard, _isPlayerTurn);
+            _fusionManager.Positions.MoveCardToResultPosition(_resultCard, _isPlayerTurn);
         }
         yield return new WaitForSeconds(1f);
         // Open UI Select options
-        _fusionManager.FusionEnd();
+        _fusionManager.SetResultedCard(_resultCard);
+        _fusionManager.FusionEnd(_resultCard);
     }
 
     private void RemoveCardsFromFusionLine(Card card1, Card card2){
@@ -87,14 +89,14 @@ public class Fusion : MonoBehaviour {
     private IEnumerator FusionFailedRoutine(Card card1, Card card2){
         yield return null;
         //Set Result of fusion Card
-        ResultCard = null;
-        ResultCard = card2;
+        _resultCard = null;
+        _resultCard = card2;
 
         //Cards used in fusion
         var materials = new List<Card>() {card1, card2};
 
         //Move cards
-        GameManager.Instance.Fusion.Positions.MoveCardsToMergePosition(materials, _isPlayerTurn);
+        _fusionManager.Positions.MoveCardsToMergePosition(materials, _isPlayerTurn);
 
         //Camera Shake
         if(_isPlayerTurn){
@@ -129,14 +131,14 @@ public class Fusion : MonoBehaviour {
 
     private IEnumerator FusionSucessRoutine(Card card1, Card card2, Card resultCard){
         //Set Result of fusion Card
-        ResultCard = null;
-        ResultCard = resultCard;
+        _resultCard = null;
+        _resultCard = resultCard;
 
         //Cards used in fusion
         var materials = new List<Card>() {card1, card2};
 
         //Move cards
-        GameManager.Instance.Fusion.Positions.MoveCardsToMergePosition(materials, _isPlayerTurn);
+        _fusionManager.Positions.MoveCardsToMergePosition(materials, _isPlayerTurn);
 
         //Dissolve cards used
         yield return new WaitForSeconds(0.3f);
@@ -156,7 +158,7 @@ public class Fusion : MonoBehaviour {
         }
 
         //Move fusioned card to position
-        GameManager.Instance.Fusion.Positions.MoveCardToResultPosition(resultCard, _isPlayerTurn);
+        _fusionManager.Positions.MoveCardToResultPosition(resultCard, _isPlayerTurn);
 
         //Check if the line is 0
         if(_fusionLine.Count > 0){

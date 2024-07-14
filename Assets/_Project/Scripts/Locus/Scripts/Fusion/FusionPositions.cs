@@ -1,33 +1,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FusionPositions : MonoBehaviour {
-    [SerializeField] private BattleManagerSO BattleManager;
-
+public class FusionPositions: Fusion {
     private List<Transform> _linePositions;
     private Transform _resultCardPosition, _boardSelectionPlace;
 
+    [Header("Player")]
     [SerializeField] private List<Transform> _playerFusionPositions;
     [SerializeField] private Transform _playerResultCardPosition, _playerBoardSelectionPlace;
     
+    [Header("Enemy")]
     [SerializeField] private List<Transform> _enemyFusionPositions;
     [SerializeField] private Transform _enemyResultCardPosition, _enemyBoardSelectionPlace;
 
 
     private void OnEnable() { 
-        BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart); 
+        _battleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart); 
     }
 
     private void OnDisable() { 
-        BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart); 
+        _battleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart); 
+    }
+
+    private void Start() {
+        _fusionManager.SetPositions(this);
     }
 
     private void BattleManager_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn) {
-        Debug.Log($"FusionPositions - BattleManager_OnBoardPlaceSelectionStart() Called");
         MoveToBoardPlaceSelection(card, isPlayerTurn); 
     }
 
     private void MoveToBoardPlaceSelection(Card card, bool isPlayerTurn){
+        if(card == null){
+            Debug.Log("Card is Null in FusionPositions at MoveToBoardPlaceSelection()");
+        }
+
         if(isPlayerTurn){
             _boardSelectionPlace = _playerBoardSelectionPlace;
         }else{

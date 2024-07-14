@@ -10,13 +10,18 @@ public class AIManagerSO : ScriptableObject {
     public AbstractState CurrentState => _ai.AICurrentState;
     public List<Card> CardsInHand = new();
     private AI _ai;
+    public AI AI => _ai;
 
     private void OnEnable() {
         OnStateChange ??= new();
     }
 
-    public void ChangeState(){
-        Debug.Log($"AiManagerSO - ChangeState()");
+    public void OnDisable(){
+        CardsInHand.Clear();
+    }
+
+    public void ChangeState(AI ai){
+        SetAI(ai);
         OnStateChange?.Invoke();
     }
 
@@ -33,5 +38,4 @@ public class AIManagerSO : ScriptableObject {
     public void SetCardsInHand(List<Card> cardsInHand){
         CardsInHand = cardsInHand;
     }
-
 }

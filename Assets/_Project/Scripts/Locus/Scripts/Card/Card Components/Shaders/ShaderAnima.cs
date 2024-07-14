@@ -1,12 +1,14 @@
 using UnityEngine;
 
 public class ShaderAnima : MonoBehaviour{
+    private ColorSO _colorManager;
     public Renderer _renderer;
     public CardVisual _controller;
 
-    public void SetController(Renderer renderer, CardVisual controller){
+    public void SetController(Renderer renderer, CardVisual controller, ColorSO colorManager){
         _renderer = renderer;
         _controller = controller;
+        _colorManager = colorManager;
     }
 
     public void Anima1Selected(){
@@ -44,25 +46,32 @@ public class ShaderAnima : MonoBehaviour{
 
         switch (animaType){
             case EAnimaType.Mars:
-                newColor = GameManager.Instance.Visual.Color.Mars;
+                newColor = _colorManager.Mars;
+                // newColor = GameManager.Instance.Visual.Color.Mars;
             break;
             case EAnimaType.Venus:
-                newColor = GameManager.Instance.Visual.Color.Venus;
+                newColor = _colorManager.Venus;
+                // newColor = GameManager.Instance.Visual.Color.Venus;
             break;
             case EAnimaType.Jupiter:
-                newColor = GameManager.Instance.Visual.Color.Jupiter;
+                newColor = _colorManager.Jupiter;
+                // newColor = GameManager.Instance.Visual.Color.Jupiter;
             break;
             case EAnimaType.Saturn:
-                newColor = GameManager.Instance.Visual.Color.Saturn;
+                newColor = _colorManager.Saturn;
+                // newColor = GameManager.Instance.Visual.Color.Saturn;
             break;
             case EAnimaType.Mercury:
-                newColor = GameManager.Instance.Visual.Color.Mercury;
+                newColor = _colorManager.Mercury;
+                // newColor = GameManager.Instance.Visual.Color.Mercury;
             break;
             case EAnimaType.Sun:
-                newColor = GameManager.Instance.Visual.Color.Sun;
+                newColor = _colorManager.Sun;
+                // newColor = GameManager.Instance.Visual.Color.Sun;
             break;
             case EAnimaType.Moon:
-                newColor = GameManager.Instance.Visual.Color.Moon;
+                newColor = _colorManager.Moon;
+                // newColor = GameManager.Instance.Visual.Color.Moon;
             break;
         }
 

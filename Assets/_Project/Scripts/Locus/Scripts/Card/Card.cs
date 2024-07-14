@@ -39,7 +39,7 @@ public abstract class Card : MonoBehaviour {
     }
     
     private void Awake() {
-        _battleManager = GameManager.Instance.BattleManager;
+        // _battleManager = GameManager.Instance.BattleManager;
 
         Visuals = GetComponent<CardVisual>();
         _cardMovement = GetComponent<CardMovement>();

@@ -9,6 +9,7 @@ public class HandManagerSO : ScriptableObject {
     
     [SerializeField] protected BattleManagerSO _battleManager;
     [SerializeField] private CardManagerSO _cardManager;
+    [SerializeField] private AIManagerSO _aiManager;
 
     private Transform[] _handPositions;
     public List<Transform> _freePositionsInHand = new();
@@ -25,11 +26,14 @@ public class HandManagerSO : ScriptableObject {
 
     public void CheckFreeHandPositions(){
         _freePositionsInHand.Clear();
+        CardsInHand.Clear();
         foreach(var position in _handPositions){
             var handPosition = position.GetComponent<HandPosition>();
             if(handPosition.IsFree){
                 _freePositionsInHand.Add(position);
                 // handPosition.SetPlaceFree(false);
+            }else{
+                // CardsInHand.Add(handPosition)
             }
         }
     }
@@ -61,6 +65,7 @@ public class HandManagerSO : ScriptableObject {
         yield return new WaitForSeconds(1f);
         yield return null;
         CardsDrew();
+        _aiManager.SetCardsInHand(CardsInHand);
     }
 
     public void SetHand(Hand hand){

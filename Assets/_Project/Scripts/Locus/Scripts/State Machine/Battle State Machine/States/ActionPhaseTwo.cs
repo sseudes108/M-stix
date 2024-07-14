@@ -3,7 +3,7 @@ using UnityEngine;
 public class ActionPhaseTwo : AbstractState{
     public override void Enter(){
         Debug.Log("ActionPhaseTwo - Enter()");
-        Battle.StartCoroutine(Battle.BattleManager.ChangeStateRoutine(2f, Battle.EndPhase));
+        Battle.StartCoroutine(Battle.BattleManager.ChangeStateRoutine(2f, Battle, Battle.EndPhase));
     }
 
     public override void Exit(){
