@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class CardVisual : MonoBehaviour {
-    [SerializeField] protected ColorSO _colorManager;
+    [SerializeField] protected ColorManagerSO _colorManager;
     public Renderer Renderer { get; private set; }
     public ShaderAnima Anima { get; private set; }
     public ShaderBorder Border { get; private set; }

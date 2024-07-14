@@ -5,10 +5,12 @@ public class BoardPlaceManager : MonoBehaviour {
     [SerializeField] private BattleManagerSO BattleManager;
     [SerializeField] private UIEventHandlerSO UIManager;
 
+    [SerializeField] private ColorManagerSO _colorManager;
+
     [field:SerializeField] public float IntensityFactor{ get; private set; }
-    [field:SerializeField] public Color LightUpColor{ get; private set; }
-    [field:SerializeField] public Color PlayerDefaultColor{ get; private set; }
-    [field:SerializeField] public Color EnemyDefaultColor{ get; private set; }
+    // [field:SerializeField] public Color LightUpColor{ get; private set; }
+    // [field:SerializeField] public Color PlayerDefaultColor{ get; private set; }
+    // [field:SerializeField] public Color EnemyDefaultColor{ get; private set; }
 
     [field:SerializeField] public List<BoardPlaceVisuals> PlayerMonsterPlaces{ get; private set; }
     [field:SerializeField] public List<BoardPlaceVisuals> PlayerArcanePlaces{ get; private set; }
@@ -68,7 +70,6 @@ public class BoardPlaceManager : MonoBehaviour {
         }
     }
     private void HighLightEnemyOcuppiedPlaces(Card card){
-        // Debug.Log("HighLightEnemyOcuppiedPlaces");
         List<BoardPlaceVisuals> list;
 
         if(card is MonsterCard){

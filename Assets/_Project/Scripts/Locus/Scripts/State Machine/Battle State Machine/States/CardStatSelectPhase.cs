@@ -4,12 +4,12 @@ public class CardStatSelectPhase : AbstractState{
     public override void Enter(){
         SubscribeEvents();
         // Battle.BattleManager.StatSelectStart(ResultCard);
-        Battle.BattleManager.StatSelectStart(Battle.FusionManager.resultedCard);
+        Battle.BattleManager.StatSelectStart(Battle.FusionManager.ResultCard);
     }
 
     public override void Exit(){
         UnsubscribeEvents();
-        Battle.BattleManager.StatSelectEnd(Battle.FusionManager.resultedCard, Battle.BattleManager.IsPlayerTurn);
+        Battle.BattleManager.StatSelectEnd(Battle.FusionManager.ResultCard, Battle.BattleManager.IsPlayerTurn);
         // Battle.BattleManager.StatSelectEnd(ResultCard, IsPlayerTurn);
     }
 

@@ -8,7 +8,7 @@ public class CardSelectionPhase : AbstractState{
         
         if(!Battle.BattleManager.IsPlayerTurn){
             // AI.Actor.CardSelector.SelectRandomCard(AI.Manager.CardsInHand);
-            Battle.StartCoroutine(AiRoutine(3f));
+            Battle.StartCoroutine(AiRoutine());
         }
     }
     
@@ -41,11 +41,8 @@ public class CardSelectionPhase : AbstractState{
         Battle.ChangeState(Battle.Fusion);
     }
 
-    public IEnumerator AiRoutine(float wait){
-        yield return new WaitForSeconds(wait);
-        Debug.Log("Picking Card");
-        Battle.StartCoroutine(AI.Actor.CardSelector.SelectCardRoutine(AI.Manager.CardsInHand));
-        // AI.Actor.CardSelector.SelectRandomCard(AI.Manager.CardsInHand);
+    public IEnumerator AiRoutine(){
+        yield return Battle.StartCoroutine(AI.Actor.CardSelector.SelectCardRoutine(AI.Manager.CardsInHand));
         yield return null;
     }
 

@@ -1,16 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(FusionPositions))]
 public class Fusion : MonoBehaviour {
-    [SerializeField] protected FusionEventHandlerSO _fusionManager;
+    [SerializeField] protected FusionManager _fusionManager;
     [SerializeField] protected BattleManagerSO _battleManager;
     [SerializeField] protected CardManagerSO _cardManager;
+    [SerializeField] protected CameraManagerSO _cameraManager;
     
     private bool _isPlayerTurn;
     private List<Card> _fusionLine;
     private Card _resultCard;
+
+    private void OnEnable() {
+        _fusionManager.OnFusionStart.AddListener(FusionManager_OnFusionStart);
+        _fusionManager.OnFusionSucess.AddListener(FusionManager_OnFusionSucess);
+    }
+
+    private void OnDisable() {
+        _fusionManager.OnFusionStart.RemoveListener(FusionManager_OnFusionStart);
+        _fusionManager.OnFusionSucess.RemoveListener(FusionManager_OnFusionSucess);
+    }
+
+    private void FusionManager_OnFusionStart(List<Card> selectedCards, bool isPlayerTurn){
+        StartFusionRoutine(selectedCards, isPlayerTurn);
+    }
+
+    private void FusionManager_OnFusionSucess(Card card1, Card card2, Card resultCard){
+        FusionSucess(card1, card2, resultCard);
+    }
 
     public void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
         StartCoroutine(FusionRoutine(selectedCards, isPlayerTurn));
@@ -19,7 +39,6 @@ public class Fusion : MonoBehaviour {
     private IEnumerator FusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
         _isPlayerTurn = isPlayerTurn;
         _fusionLine = selectedCards;
-        _fusionManager.Positions.MoveCardsToFusionPosition(_fusionLine, _isPlayerTurn);
 
         if(_fusionLine.Count > 1){
             do{
@@ -48,7 +67,7 @@ public class Fusion : MonoBehaviour {
                     yield return new WaitForSeconds(2f);
                     if(card1 is MonsterCard){
                         //Fusion Monster
-                        GameManager.Instance.Fusion.Monster.StartFusionRoutine(card1 as MonsterCard, card2 as MonsterCard);
+                        _fusionManager.StartMonsterFusionRoutine(card1 as MonsterCard, card2 as MonsterCard);
                         yield return null;
                         RemoveCardsFromFusionLine(card1, card2);
                         //Time for the Monster fusion Coroutine finish
@@ -98,9 +117,9 @@ public class Fusion : MonoBehaviour {
         //Move cards
         _fusionManager.Positions.MoveCardsToMergePosition(materials, _isPlayerTurn);
 
-        //Camera Shake
+        // Camera Shake
         if(_isPlayerTurn){
-            GameManager.Instance.Camera.Shake();
+            _cameraManager.CamShake();
         }
 
         yield return new WaitForSeconds(0.05f);
@@ -154,7 +173,7 @@ public class Fusion : MonoBehaviour {
 
         //Set Card Owner
         if(_isPlayerTurn){
-            resultCard.IsPlayeCard();
+            resultCard.IsPlayerCard();
         }
 
         //Move fusioned card to position

@@ -1,56 +1,45 @@
+using System;
+using Cinemachine.Editor;
 using UnityEngine;
 
 public class PlayerHand : Hand {
-[SerializeField] private Transform _OffCameraHand;
-[SerializeField] private UIEventHandlerSO UIManager;
-[SerializeField] private TurnManagerSO _turnManager;
+    [SerializeField] private Transform _OffCameraHand;
+    private Vector3 _startPosition;
+    private HandMovement _movement;
 
-
-#region Unity Methods
-
-    public override void OnEnable() {
-        _battleManager.OnPlayerDraw.AddListener(BattleManager_OnPlayerDraw);
-        UIManager.OnCardSelectionFinished.AddListener(UIManager_OnCardSelectionFinished);
-        _battleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
-    }
-
-    public override void OnDisable() {
-        _battleManager.OnPlayerDraw.RemoveListener(BattleManager_OnPlayerDraw);
-        UIManager.OnCardSelectionFinished.RemoveListener(UIManager_OnCardSelectionFinished);
-        _battleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
-    }
-
-    public override void Awake() {
-        base.Awake();
+    private void Awake() {
+        _movement = GetComponent<HandMovement>();
         _OffCameraHand = transform.Find("OffCam");
     }
 
-// 37338
-#endregion
-
-#region Events Methods
-
-    public override void BattleManager_OnStartPhase(){
-        base.BattleManager_OnStartPhase();
-        if(_turnManager.IsPlayerTurn()){
-            _movement.SetTargetPosition(_movement.StartPosition);
-        }
+    private void Start() {
+        _startPosition = transform.position;
+    }
+    
+    public override void OnEnable() {
+        base.OnEnable();
+        BattleManager.OnPlayerDraw.AddListener(BattleManager_OnPlayerDraw);
+        BattleManager.OnCardSelectionEnd.AddListener(BattleManager_OnCardSelectionEnd);
     }
 
-    private void UIManager_OnCardSelectionFinished(){
-        if(this != null){
-            MoveCameraOffView();
-        }
+    public override void OnDisable() {
+        base.OnDisable();
+        BattleManager.OnPlayerDraw.AddListener(BattleManager_OnPlayerDraw);
+        BattleManager.OnCardSelectionEnd.AddListener(BattleManager_OnCardSelectionEnd);
     }
 
-    private void BattleManager_OnPlayerDraw(){
-        _handManager.Draw(this);
+
+    private void BattleManager_OnPlayerDraw() { Draw(); }
+
+    private void BattleManager_OnCardSelectionEnd(){
+        MoveHandOffScreen();
     }
 
-    private void MoveCameraOffView(){
+    private void MoveHandOffScreen(){
         _movement.SetTargetPosition(_OffCameraHand.position);
     }
 
-#endregion
-    
+    private void MoveHandOnScreen(){
+        _movement.SetTargetPosition(_startPosition);
+    }
 }

@@ -11,7 +11,7 @@ public class FusionPhase : AbstractState{
         }else{
             selectedCardList = AI.Actor.CardSelector.SelectedList;
         }
-        //***Delay??***//
+
         Battle.StartCoroutine(FusionPhaseRoutine(selectedCardList));
     }
 
@@ -20,7 +20,7 @@ public class FusionPhase : AbstractState{
     }
     
     public IEnumerator FusionPhaseRoutine(List<Card> selectedCards){
-        GameManager.Instance.Fusion.Fusion.StartFusionRoutine(selectedCards, Battle.BattleManager.IsPlayerTurn);
+        Battle.FusionManager.StartFusionRoutine(selectedCards, Battle.BattleManager.IsPlayerTurn);
         yield return null;
     }
 

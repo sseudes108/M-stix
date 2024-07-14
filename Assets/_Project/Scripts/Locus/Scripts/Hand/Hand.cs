@@ -1,35 +1,74 @@
-// using System.Collections;
-// using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(HandMovement))]
 public class Hand : MonoBehaviour {
-    [SerializeField] protected HandManagerSO _handManager;
-    [SerializeField] protected BattleManagerSO _battleManager;
-    [SerializeField] protected Transform[] _handPositions;
+    [SerializeField] protected BattleManagerSO BattleManager;
+    [SerializeField] protected HandManagerSO HandManager;
+    [SerializeField] protected CardManagerSO CardManager;
+
+
+    [SerializeField] private Transform[] _handPositions;
+    [SerializeField] List<Transform> _freePositionsInHand;
+    [SerializeField] private List<Card> _cardsInHand;
+
     [SerializeField] private Deck _deck;
-    protected HandMovement _movement;
 
     public virtual void OnEnable() {
-        _battleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
+        BattleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
     }
 
     public virtual void OnDisable() {
-        _battleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
+        BattleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
     }
 
-    public virtual void BattleManager_OnStartPhase(){
-        // Debug.Log($"Hand {this} - BattleManager_OnStartPhase()");
-        _handManager.CheckFreeHandPositions();
+    private void BattleManager_OnStartPhase() {
+        CheckPositionsInHand(); 
     }
 
-    public virtual void Awake() {
-        _movement = GetComponent<HandMovement>();
+    private void CheckPositionsInHand(){
+        _cardsInHand.Clear();
+        _freePositionsInHand.Clear();
+
+        foreach(var position in _handPositions){
+            var handPosition = position.GetComponent<HandPosition>();
+            if(handPosition.IsFree){
+                _freePositionsInHand.Add(position);
+            }else{
+                _cardsInHand.Add(handPosition.CardInPosition);
+            }
+        }
     }
 
-    private void Start(){
-        _handManager.SetHand(this);
-        _handManager.SetDeck(_deck);
-        _handManager.SetHandPositions(_handPositions);
+    public void Draw() { StartCoroutine(DrawCardsRoutine()); }
+
+    private IEnumerator DrawCardsRoutine(){
+        foreach(var position in _freePositionsInHand){
+            //Random card data
+            var randomIndex = Random.Range(0, _deck.DeckInUse.Count);
+            var cardData = _deck.DeckInUse[randomIndex];
+
+            //Instantiate
+            var drewCard = Instantiate(CardManager.Creator.CreateCard(cardData), _deck.transform.position, _deck.transform.rotation);
+
+            //Remove from Deck
+            _deck.RemoveCardFromDeck(cardData);
+
+            //Card Owner
+            if(BattleManager.IsPlayerTurn){
+                drewCard.IsPlayerCard();
+            }
+
+            //Move to position
+            drewCard.MoveCard(position);
+
+            //Occupy place position
+            _cardsInHand.Add(drewCard);
+            drewCard.SetCardOnHand(true);
+            position.GetComponent<HandPosition>().OccupyPlace(drewCard);
+            yield return new WaitForSeconds(0.5f);
+        }
+        yield return null;
+        HandManager.CardDrew();
     }
 }

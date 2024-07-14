@@ -32,7 +32,6 @@ public class UIDebuger : UIManager {
     }
 
     private void AIManager_OnStateChange(){
-        Debug.Log("UIDebuger - AIManager_OnStateChange()");
         UpdateAiStateLabel();
     }
 
@@ -48,7 +47,6 @@ public class UIDebuger : UIManager {
     }
 
     private void UpdateAiStateLabel(){
-        Debug.Log($"UIDebuger - UpdateAiStateLabel() - CurrentState {_aiManager.CurrentState}");
         SetElements();
         _AIStateLabel.text = $"AI State: {_aiManager.CurrentState}";
     }

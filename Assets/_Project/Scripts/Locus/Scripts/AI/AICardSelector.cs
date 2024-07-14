@@ -3,28 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AICardSelector {
-    private AIActorSO _actor;
     public AICardSelector(AIActorSO actor){
         _actor = actor;
     }
+
+    private AIActorSO _actor;
 
     public List<Card> _selectedList = new();
     public List<Card> SelectedList => _selectedList;
 
     public IEnumerator SelectCardRoutine(List<Card> cardsInHand){
+        Debug.Log("Routine Started");
         SelectRandomCard(cardsInHand);
         yield return new WaitForSeconds(Random.Range(3f, 5f));
         _actor.CardSelectionFinished();
         yield return null;
+        Debug.Log("Routine Ended");
     }
 
-    public void SelectRandomCard(List<Card> cardsInHand){
+    private void SelectRandomCard(List<Card> cardsInHand){
         Debug.Log($"{cardsInHand.Count}");
         var randomCard = cardsInHand[Random.Range(0, cardsInHand.Count)];
         AddToSelectedList(randomCard);
     }
 
-    public void AddToSelectedList(Card card){
+    private void AddToSelectedList(Card card){
         _selectedList.Add(card);
     }
 }

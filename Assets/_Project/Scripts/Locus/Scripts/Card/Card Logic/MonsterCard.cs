@@ -2,18 +2,25 @@ using TMPro;
 using UnityEngine;
 
 public class MonsterCard : Card {
-    public EMonsterType MonsterType;
-    public EAnimaType FirstAnima;
-    public EAnimaType SecondAnima;
-    public int Level;
-    public int Attack;
-    public int Deffense;
-    public bool AnimaSelected = false;
-    public bool ModeSelected = false;
-    public bool IsInAttackMode = true;
-    public bool CanAttack;
-    public bool CanChangeMode;
 
+    [Header("Monster Specifications")]
+    public EMonsterType MonsterType; // {get; private set;}
+    public EAnimaType FirstAnima; // {get; private set;}
+    public EAnimaType SecondAnima; // {get; private set;}
+
+    [Header("Stats")]
+    public int Level; // {get; private set;}
+    public int Attack; // {get; private set;}
+    public int Deffense; // {get; private set;}
+
+    [Header("Card Settings")]
+    public bool AnimaSelected = false; // {get; private set;}
+    public bool ModeSelected = false; // {get; private set;}
+    public bool IsInAttackMode = true; // {get; private set;}
+    public bool CanAttack; // {get; private set;}
+    public bool CanChangeMode; // {get; private set;}
+
+    [Header("Labels")]
     [SerializeField] private TextMeshProUGUI _levelLabel;
     [SerializeField] private TextMeshProUGUI _attackLabel;
     [SerializeField] private TextMeshProUGUI _deffenseLabel;

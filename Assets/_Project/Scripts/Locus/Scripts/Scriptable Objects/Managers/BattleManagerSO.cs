@@ -79,9 +79,7 @@ public class BattleManagerSO : ScriptableObject {
     public void StatSelectStart(Card card) { OnStatSelectStart?.Invoke(card); }
     public void StatSelectEnd(Card card, bool isPlayerTurn) { OnStatSelectEnd?.Invoke(card, isPlayerTurn); }
 
-    public void BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { 
-        OnBoardPlaceSelectionStart?.Invoke(card, isPlayerTurn); 
-    }
+    public void BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { OnBoardPlaceSelectionStart?.Invoke(card, isPlayerTurn); }
     public void BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { OnBoardPlaceSelectionEnd?.Invoke(card, isPlayerTurn); }
 
     public void ActionPhaseStart() { OnActionPhaseStart?.Invoke(); }

@@ -5,6 +5,18 @@ using UnityEngine;
 public class MonsterFusion : Fusion {
     public List<MonsterCardSO> _strongestTypeList = new();
 
+    private void OnEnable() {
+        _fusionManager.OnMonsterFusionStart.AddListener(FusionManager_OnMonsterFusionStart);
+    }
+
+    private void OnDisable() {
+        _fusionManager.OnMonsterFusionStart.RemoveListener(FusionManager_OnMonsterFusionStart);
+    }
+
+    private void FusionManager_OnMonsterFusionStart(MonsterCard monster1, MonsterCard monster2){
+        StartFusionRoutine(monster1, monster2);
+    }
+
     public void StartFusionRoutine(MonsterCard monster1, MonsterCard monster2){
         StartCoroutine(MonsterFusionRoutine(monster1, monster2));
     }
@@ -21,7 +33,7 @@ public class MonsterFusion : Fusion {
         //Fusion Failed
         if(monster1Lvl != monster2Lvl){
             //Not equal levels
-            GameManager.Instance.Fusion.Fusion.FusionFailed(monster1, monster2);
+            _fusionManager.FusionFailed(monster1, monster2);
             yield break;
         }
 
@@ -54,7 +66,7 @@ public class MonsterFusion : Fusion {
         fusionedCard.DisableStatCanvas();
 
         // Fusion
-        GameManager.Instance.Fusion.Fusion.FusionSucess(monster1, monster2, fusionedCard);
+        _fusionManager.FusionSucess(monster1, monster2, fusionedCard);
 
         //Make Visibel
         yield return new WaitForSeconds(2f);

@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 public class UICardStatSel : UIManager{
     public BattleManagerSO BattleManager;
-    public FusionEventHandlerSO FusionManager;
+    public FusionManager FusionManager;
     public CardStatEventHandlerSO CardStatSelManager;
 
     private Button _option1, _option2;

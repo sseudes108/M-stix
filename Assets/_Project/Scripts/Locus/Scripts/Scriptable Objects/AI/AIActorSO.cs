@@ -22,4 +22,5 @@ public class AIActorSO : ScriptableObject {
     public void CardSelectionFinished(){
         CardSelector_OnSelectionFinished?.Invoke();
     }
+
 }

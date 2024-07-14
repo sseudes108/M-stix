@@ -1,18 +1,13 @@
-
 public class EnemyHand : Hand {
-    public AIManagerSO _aiManager;
-
     public override void OnEnable() {
-        _battleManager.OnEnemyDraw.AddListener(BattleManager_OnEnemyDraw);
-        _battleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
+        base.OnEnable();
+        BattleManager.OnPlayerDraw.AddListener(BattleManager_EnemyDraw);
     }
 
     public override void OnDisable() {
-        _battleManager.OnEnemyDraw.RemoveListener(BattleManager_OnEnemyDraw);
-        _battleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
+        base.OnDisable();
+        BattleManager.OnPlayerDraw.AddListener(BattleManager_EnemyDraw);
     }
 
-    private void BattleManager_OnEnemyDraw(){
-        _handManager.Draw(this);
-    }
+    private void BattleManager_EnemyDraw(){ Draw(); }
 }

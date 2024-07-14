@@ -8,7 +8,7 @@ public class Tester : MonoBehaviour {
     public HelperSO Helper;
 
     public CardManagerSO CardManager;
-    public ColorSO ColorManager;
+    public ColorManagerSO ColorManager;
     public List<CardSO> Cards;
 
     private void Awake() {

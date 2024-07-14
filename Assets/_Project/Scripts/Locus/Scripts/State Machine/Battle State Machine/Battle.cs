@@ -1,19 +1,22 @@
 using UnityEngine;
 
 public class Battle : MonoBehaviour {
+    [Header("Battle System")]
     public BattleManagerSO BattleManager;
-    public FusionEventHandlerSO FusionManager;
+    public FusionManager FusionManager;
     public BoardPlaceEventHandlerSO BoardManager;
-    public CardStatEventHandlerSO CardStatSelManager;
+    public AIManagerSO AIManager;
+    public TurnManagerSO TurnManager;
+    public UIEventHandlerSO UIManager;
 
+    [Header("Hands")]
     public PlayerHandManagerSO PlayerHandManager;
     public EnemyHandManagerSO EnemyHandManager;
-
-    public UIEventHandlerSO UIManager;
+    
+    [Header("Card")]
+    public CardStatEventHandlerSO CardStatSelManager;
     public CardManagerSO CardManager;
-    public TurnManagerSO TurnManager;
 
-    public AIManagerSO AIManager;
 
 
     public AbstractState CurrentState {get; private set;}

@@ -186,11 +186,7 @@ public class UIActionPhase : UIManager {
     }
 
     private void AttackButtonClicked(){
-        if(GameManager.Instance.Board != null){
-
-        }else{
-            Debug.Log("GameManager.Instance.Board == null");
-        }
+        Debug.LogWarning("Implement AttackButtonClicked() on UIActionPhase");
     }
 
     private void Option1Clicked(){

@@ -9,7 +9,6 @@ public class TurnManagerSO : ScriptableObject {
     public UnityEvent OnTurnEnd;
 
     private void OnDisable() {
-        Debug.Log("TurnManagerSO - OnDisable()");
         ResetTurnStats();
     }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyHandManagerSO", menuName = "Mistix/Manager/Hand/EnemyHand", order = 0)]
+[CreateAssetMenu(fileName = "EnemyHandManagerSO", menuName = "Mistix/Manager/Hand/Enemy")]
 public class EnemyHandManagerSO : HandManagerSO {
     
 }
