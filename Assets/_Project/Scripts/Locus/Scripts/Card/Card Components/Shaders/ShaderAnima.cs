@@ -1,11 +1,11 @@
 using UnityEngine;
 
 public class ShaderAnima : MonoBehaviour{
-    private ColorManagerSO _colorManager;
+    private ColorDatabaseSO _colorManager;
     public Renderer _renderer;
     public CardVisual _controller;
 
-    public void SetController(Renderer renderer, CardVisual controller, ColorManagerSO colorManager){
+    public void SetController(Renderer renderer, CardVisual controller, ColorDatabaseSO colorManager){
         _renderer = renderer;
         _controller = controller;
         _colorManager = colorManager;

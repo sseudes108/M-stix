@@ -23,7 +23,7 @@ public class CardManagerSO : ScriptableObject {
         OnSomeCardSelected ??= new UnityEvent();
         OnNoneCardSelected ??= new UnityEvent();
     }
-
+    
     public void CardSelected(Card card) { OnCardSelected?.Invoke(card); }
     public void CardDeselected(Card card) { OnCardDeselected?.Invoke(card); }
     public void SomeCardSelected() { OnSomeCardSelected?.Invoke();}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MonsterFusion : Fusion {
     public List<MonsterCardSO> _strongestTypeList = new();
+    [SerializeField] CardDatabaseSO _cardDatabase;
 
     private void OnEnable() {
         _fusionManager.OnMonsterFusionStart.AddListener(FusionManager_OnMonsterFusionStart);
@@ -48,14 +49,13 @@ public class MonsterFusion : Fusion {
         yield return null;
 
         //List of the possible monsters (Correct lvl)
-        _fusionManager.CheckCardsBase(this, strongestMonsterType);
-
+        _strongestTypeList = _cardDatabase.GetStrongestTypeList(strongestMonsterType);
         yield return null;
 
         var possibleMonsters = SetPossibleMonstersList(monster1Lvl);
 
         //Instantiate fusioned card
-        var randomIndex = Random.Range(0, possibleMonsters.Count - 1);
+        var randomIndex = Random.Range(0, possibleMonsters.Count);
         var fusionedCard = Instantiate(_cardManager.Creator.CreateCard(possibleMonsters[randomIndex]));
         fusionedCard.name = $"{fusionedCard.Name} - ID {fusionedCard.GetInstanceID()} - Fusioned";
         fusionedCard.SetFusionedCard();
@@ -75,10 +75,6 @@ public class MonsterFusion : Fusion {
         yield return null;
     }
     
-    public void SetStrongestTypeList(List<MonsterCardSO> strongestMonsterList){
-        _strongestTypeList = strongestMonsterList;
-    }
-
     private List<MonsterCardSO> SetPossibleMonstersList(int monsterLvl){
         List<MonsterCardSO> possibleMonsters = new();
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,7 +23,7 @@ public class AIActorSO : ScriptableObject {
     private void OnEnable() {
         CardSelector ??= new(this);
         CardStatSelector ??= new(this);
-        BoardPlaceSelector??= new(this);
+        BoardPlaceSelector ??= new(this);
 
         CardSelector_OnSelectionFinished ??= new UnityEvent();
         CardStatSelector_OnCardStatSelectionFinished ??= new UnityEvent();
@@ -38,5 +39,9 @@ public class AIActorSO : ScriptableObject {
 
     public void BoardPlaceSelected(){
         BoardPlaceSelector_OnBoardPlaceSelected?.Invoke();
+    }
+
+    public void SetBoardPlaces(List<BoardPlace> monsterPlaces, List<BoardPlace> arcanePlaces){
+        BoardPlaceSelector.SetBoardPlaces(monsterPlaces, arcanePlaces);
     }
 }

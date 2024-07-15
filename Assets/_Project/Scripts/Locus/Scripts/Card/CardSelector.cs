@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class CardSelector {
-    private CardManagerSO _cardManager;
-    [field:SerializeField] public List<Card> SelectedList { get; private set; }
+    public CardManagerSO _cardManager;
+    public List<Card> SelectedList { get; private set; }
 
     public CardSelector(CardManagerSO cardManager){
         _cardManager = cardManager;
@@ -18,5 +17,9 @@ public class CardSelector {
     public void RemoveFromSelectedList(Card selectedCard){
         SelectedList.Remove(selectedCard);
         if(SelectedList.Count == 0){ _cardManager.NoneCardSelected();}
+    }
+
+    public void ClearList(){
+        SelectedList.Clear();
     }
 }

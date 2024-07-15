@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a13c47142e81bc428733dc28cfb7ab8, type: 3}
   m_Name: TurnManagerSO
   m_EditorClassIdentifier: 
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   CurrentTurn: 1
-  _isPlayerTurn: 1
   OnTurnEnd:
     m_PersistentCalls:
       m_Calls: []

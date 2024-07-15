@@ -10,11 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7459217760209807623}
   - component: {fileID: 864538159433830016}
-  - component: {fileID: 6569281006682968886}
-  - component: {fileID: 2851005520365423335}
-  - component: {fileID: 4639750040134897582}
   m_Layer: 0
-  m_Name: Card Arcane
+  m_Name: Card UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,53 +55,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.05, y: 3.22, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6569281006682968886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660690684030056973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2a5dc32e1b9ac443983a7d56a2d07b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
-  Data: {fileID: 11400000, guid: 6c50eb2bfe8760941bbea7b248a7b932, type: 2}
-  FusionedCard: 0
-  FaceSelected: 0
-  IsFaceDown: 0
-  CanFlip: 0
-  _Name: {fileID: 2549659502993122174}
-  _effect: {fileID: 4755791446475554514}
---- !u!114 &2851005520365423335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660690684030056973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 287978e26652c944ab9ca7b97ac5e867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4639750040134897582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660690684030056973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ce94cc2a20a3c749a685e4d501e3d8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
 --- !u!1 &3342364173133275586
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,212 +1,140 @@
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
-public class UIActionPhase : UI {
+public class UIActionPhase : MonoBehaviour {
     [SerializeField] private BoardManagerSO _boardManager;
-    [SerializeField] private BattleManagerSO _battleManager;
+    [SerializeField] private BattleManagerSO _battleManager;    
     [SerializeField] private UIEventHandlerSO _uIManager;
-    
-    // private VisualElement _monsterFarLeftCard;
-    // private VisualElement _monsterLeftCard;
-    // private VisualElement _monsterCenterCard;
-    // private VisualElement _monsterRightCard;
-    // private VisualElement _monsterFarRightCard;
-    private VisualElement _actionCanvas;
-    private VisualElement _monsterCards;
-    private VisualElement _arcaneCards;
+    [SerializeField] private TurnManagerSO _turnManager;
 
-    private BoardPlaces _monsterPlaces;
-
-    public List<VisualElement> _playerMonsterCardsElements = new();
-
+    private GameObject _buttonsContainer;
     private Button _button1, _button2;
+    private TextMeshProUGUI _button1Text, _button2Text;
 
     private void OnEnable() {
-        _battleManager.OnActionPhaseStart.AddListener(BattleManager_OnActionPhaseStart);
         _boardManager.OnShowOptions.AddListener(BoardManager_OnShowOptions);
         _boardManager.OnHideOptions.AddListener(BoardManager_OnHideOptions);
     }
 
     private void OnDisable() {
-        _battleManager.OnActionPhaseStart.RemoveListener(BattleManager_OnActionPhaseStart);
         _boardManager.OnShowOptions.RemoveListener(BoardManager_OnShowOptions);
         _boardManager.OnHideOptions.RemoveListener(BoardManager_OnHideOptions);
 
-        if(_button1 != null){
-            _button1.clicked -= Option1Clicked;
-            _button1.clicked -= AttackButtonClicked;
-        }
-
-        if(_button2 != null){
-            _button2.clicked -= Option2Clicked;
-        }
+        _button1.onClick.RemoveAllListeners();
+        _button2.onClick.RemoveAllListeners();
     }
 
-    public override void Awake() {
-        base.Awake();
-        SetElements();
+    private void Awake() {
+        _buttonsContainer = transform.Find("Canvas/ActionPhaseOptionsButton").gameObject;
+        _button1 = _buttonsContainer.transform.Find("ActionButton1").GetComponent<Button>();
+        _button2 = _buttonsContainer.transform.Find("ActionButton2").GetComponent<Button>();
+        _button1Text = _button1.GetComponentInChildren<TextMeshProUGUI>();
+        _button2Text = _button2.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    private void Start() {
-        // _playerMonsterCardsElements.Add(_monsterFarLeftCard);
-        // _playerMonsterCardsElements.Add(_monsterLeftCard);
-        // _playerMonsterCardsElements.Add(_monsterCenterCard);
-        // _playerMonsterCardsElements.Add(_monsterRightCard);
-        // _playerMonsterCardsElements.Add(_monsterFarRightCard);
-        _playerMonsterCardsElements.Add(_monsterPlaces.FarLeft);
-        _playerMonsterCardsElements.Add(_monsterPlaces.Left);
-        _playerMonsterCardsElements.Add(_monsterPlaces.Center);
-        _playerMonsterCardsElements.Add(_monsterPlaces.Right);
-        _playerMonsterCardsElements.Add(_monsterPlaces.FarRight);
-
-        _actionCanvas.style.display = DisplayStyle.None;
-        _monsterCards.style.display = DisplayStyle.None;
-        _arcaneCards.style.display = DisplayStyle.None;
-    }
-
-    private void BattleManager_OnActionPhaseStart() {ShowCanvas(); }
     private void BoardManager_OnHideOptions() {HideOptions(); }
-
     private void BoardManager_OnShowOptions(BoardPlace place){
-        if(_battleManager.CurrentPhase != _battleManager.Battle.Action) { return; }
+        // if(_battleManager.CurrentPhase != _battleManager.Battle.Action) { return; }
 
         //Options for the player cards on field
-        if(_battleManager.IsPlayerTurn && place.IsPlayerPlace){
+        if(_turnManager.IsPlayerTurn && place.IsPlayerPlace){
+
             if(place.IsMonsterPlace){
-                ShowMonsterOptions(place.Location, place.Card as MonsterCard);
+                // ShowButtons(place.Location);
+                SetMonsterOptions(place.Card as MonsterCard, place);
                 return;
             }
 
-            ShowArcaneOptions(place.Location, place.Card as ArcaneCard);
+            //Arcane Card
         }
-        
+
         //Options to show on enemy cards on field
     }
 
-    private void HideOptions(){
-        foreach(var element in _playerMonsterCardsElements){
-            element.style.display = DisplayStyle.None;
-        }
-
-        // foreach(var element in _monsterPlaces){
-        //     element.style.display = DisplayStyle.None;
-        // }
-
-        if(_button1 != null){
-            _button1.clicked -= Option1Clicked;
-        }
-
-        if(_button2 != null){
-            _button1.clicked -= Option2Clicked;
-        }
-    }
-
-    /// <summary>
-    /// UpdateElements set the opacity to zero for all elements other than the index
-    /// </summary>
-    private void UpdateElements(int index, List<VisualElement> elementList){
-        for(int i = 0; i < elementList.Count; i++ ){
-            if(i != index){
-                elementList[i].style.display = DisplayStyle.None;
-            }else{
-                elementList[i].style.display = DisplayStyle.Flex;
-            }
-        }
-    }
-
-    private void ShowMonsterOptions(EBoardPlace place, MonsterCard cardInPlace){
-        _arcaneCards.style.display = DisplayStyle.None;
-        _monsterCards.style.display = DisplayStyle.Flex;
-
+    private void ShowButtons(EBoardPlace place){
+        Vector2 position = new();
         switch(place){
             case EBoardPlace.MonsterFarLeft:
-                SetButtons(0, "MonsterFarLeft", cardInPlace);
+                position = new Vector2(-368f, 42f);
             break;
+
             case EBoardPlace.MonsterLeft:
-                SetButtons(1, "MonsterLeft", cardInPlace);
+                position = new Vector2(-191, 42f);
             break;
+
             case EBoardPlace.MonsterCenter:
-                SetButtons(2, "MonsterCenter", cardInPlace);
+                position = new Vector2(-2, 42f);
             break;
+
             case EBoardPlace.MonsterRight:
-                SetButtons(3, "MonsterRight", cardInPlace);
+                position = new Vector2(191, 42f);
             break;
+
             case EBoardPlace.MonsterFarRight:
-                SetButtons(4, "MonsterFarRight", cardInPlace);
+                position = new Vector2(368, 42f);
             break;
         }
+        _buttonsContainer.GetComponent<RectTransform>().anchoredPosition = position;
+        _buttonsContainer.SetActive(true);
     }
 
-    private void SetButtons(int placeIndex, string placeName, MonsterCard cardInPlace){
-        if (!cardInPlace.IsFaceDown && !cardInPlace.CanChangeMode) { return; }
-        UpdateElements(placeIndex, _playerMonsterCardsElements);
+    private void HideOptions(){
+        _buttonsContainer.SetActive(false);
+        _button1.onClick.RemoveAllListeners();
+        _button2.onClick.RemoveAllListeners();
+    }
 
-        if (cardInPlace.IsFaceDown){ // is face down and can flip
-            if(cardInPlace.CanFlip){
-                _button1 = GetButton(1, "Flip", placeName);
-                _button1.clicked -= Option1Clicked;
-                _button1.clicked += Option1Clicked;
+    private void SetMonsterOptions(MonsterCard cardInPlace, BoardPlace place){
+        //Face Down
+        if(cardInPlace.IsPlayerCard){
+            if (cardInPlace.IsFaceDown){ // is face down and can flip
+                if(cardInPlace.CanFlip){
+                    ShowButtons(place.Location);
+
+                    _button1Text.text = "Flip";
+                    _button1.onClick.AddListener(Option1Clicked);
+                }
+                return;
             }
-        }else{// if is face up
+
+            //Face Up
             if (cardInPlace.IsInAttackMode){// if face up and attack mode
                 if (cardInPlace.CanAttack && cardInPlace.CanChangeMode){ // if can change mode and can attack
-                    _button1 = null;
-                    _button2 = null;
-                    _button1 = GetButton(1, "Attack!", placeName);
-                    _button2 = GetButton(2, "DEF", placeName);
+                    ShowButtons(place.Location);
 
-                    _button1.clicked -= AttackButtonClicked;
-                    _button1.clicked += AttackButtonClicked;
+                    _button1Text.text = "Attack!";
+                    _button2Text.text = "DEF";
 
-                    _button2.clicked -= Option2Clicked;
-                    _button2.clicked += Option2Clicked;
-
-                }else if (cardInPlace.CanAttack){ // only can attack
-                    _button1 = null;
-                    _button1 = GetButton(1, "Attack!", placeName);
-                    _button1.clicked -= AttackButtonClicked;
-                    _button1.clicked += AttackButtonClicked;
-
-                }else if (cardInPlace.CanChangeMode){ // only can change mode
-                    _button1 = null;
-                    _button1 = GetButton(1, "DEF!", placeName);
-                    _button1.clicked -= Option1Clicked;
-                    _button1.clicked += Option1Clicked;
+                    _button1.onClick.AddListener(Option1Clicked);
+                    _button2.onClick.AddListener(Option2Clicked);
+                    return;
                 }
 
+                if (cardInPlace.CanAttack){ // only can attack
+                    ShowButtons(place.Location);
+
+                    _button1Text.text = "Attack!";
+                    _button1.onClick.AddListener(Option1Clicked);
+                    _button2.gameObject.SetActive(false);
+                    return;
+                }
+                
+                if (cardInPlace.CanChangeMode){ // only can change mode
+                    ShowButtons(place.Location);
+
+                    _button1Text.text = "DEF";
+                    _button1.onClick.AddListener(Option1Clicked);
+                    _button2.gameObject.SetActive(false);
+                }
             }else{// if face up and deffense mode
-                if (cardInPlace.CanChangeMode){ // if can change mode
-                    _button1 = null;
-                    _button1 = GetButton(1, "ATK", placeName);
-                    _button1.clicked -= Option1Clicked;
-                    _button1.clicked += Option1Clicked;
-                }
+                ShowButtons(place.Location);
+                
+                _button1Text.text = "ATK";
+                _button1.onClick.AddListener(Option1Clicked);
+                _button2.gameObject.SetActive(false);
             }
         }
-    }
-
-    private void ShowArcaneOptions(EBoardPlace place, ArcaneCard cardInPlace){
-        _monsterCards.style.display = DisplayStyle.None;
-        _arcaneCards.style.display = DisplayStyle.Flex;
-
-        switch(place){
-            case EBoardPlace.ArcaneFarLeft:
-            break;
-            case EBoardPlace.ArcaneLeft:
-            break;
-            case EBoardPlace.ArcaneCenter:
-            break;
-            case EBoardPlace.ArcaneRight:
-            break;
-            case EBoardPlace.ArcaneFarRight:
-            break;
-        }
-    }
-
-    private void AttackButtonClicked(){
-        Debug.LogWarning("Implement AttackButtonClicked() on UIActionPhase");
     }
 
     private void Option1Clicked(){
@@ -217,43 +145,4 @@ public class UIActionPhase : UI {
         Debug.Log("Option2Clicked");
     }
 
-    private Button GetButton(int index, string text, string visualElement){
-        var element = _monsterCards.Q<VisualElement>($"{visualElement}");
-        var button = element.Q<Button>($"Opt{index}");
-        button.style.display = DisplayStyle.Flex;
-        button.text = text;
-        return button;
-    }
-
-    private void ShowCanvas(){
-        _actionCanvas.style.display = DisplayStyle.Flex;
-        foreach(var element in _playerMonsterCardsElements){
-            element.style.display = DisplayStyle.None;
-        }
-    }
-
-    private void SetElements(){
-        _actionCanvas = Root.Q("ActionCanvas");
-        _monsterCards = Root.Q("MonsterCards");
-        _arcaneCards = Root.Q("ArcaneCards");
-
-        _monsterPlaces.FarLeft = Root.Q("MonsterFarLeft");
-        _monsterPlaces.Left = Root.Q("MonsterLeft");
-        _monsterPlaces.Center = Root.Q("MonsterCenter");
-        _monsterPlaces.Right = Root.Q("MonsterRight");
-        _monsterPlaces.FarRight = Root.Q("MonsterFarRight");
-        // _monsterFarLeftCard = Root.Q("MonsterFarLeft");
-        // _monsterLeftCard = Root.Q("MonsterLeft");
-        // _monsterCenterCard = Root.Q("MonsterCenter");
-        // _monsterRightCard = Root.Q("MonsterRight");
-        // _monsterFarRightCard = Root.Q("MonsterFarRight");
-    }
-}
-
-public struct BoardPlaces{
-    public VisualElement FarLeft;
-    public VisualElement Left;
-    public VisualElement Center;
-    public VisualElement Right;
-    public VisualElement FarRight;
 }

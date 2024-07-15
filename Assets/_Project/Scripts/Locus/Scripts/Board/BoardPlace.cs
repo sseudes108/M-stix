@@ -2,9 +2,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoardPlaceVisual))]
 public class BoardPlace : MonoBehaviour {
-    [SerializeField] private BattleManagerSO BattleManager;
-    [SerializeField] private BoardManagerSO BoardManager;
-    [SerializeField] private UIEventHandlerSO UIManager;
+    [SerializeField] private BattleManagerSO _battleManager;
+    [SerializeField] private BoardManagerSO _boardManager;
+    [SerializeField] private UIEventHandlerSO _uIManager;
 
     [field:SerializeField] public EBoardPlace Location { get; private set; }
     [field:SerializeField] public Collider[] Colliders { get; private set; }
@@ -19,13 +19,13 @@ public class BoardPlace : MonoBehaviour {
     public BoardPlaceVisual Visual;
 
     private void OnEnable() {
-        BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
-        BoardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
+        _battleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
+        _boardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
     }
     
     private void OnDisable() {
-        BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart);
-        BoardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
+        _battleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart);
+        _boardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
     }
 
     private void BoardManager_OnBoardPlaceSelected(){
@@ -41,6 +41,11 @@ public class BoardPlace : MonoBehaviour {
         IsFree = true;
     }
 
+    /// <summary>
+    /// Allow a card be selected
+    /// </summary>
+    /// <param name="card"></param>
+    /// <param name="isPlayerTurn"></param>
     private void BattleManager_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn){
         if(IsPlayerPlace && isPlayerTurn){
             _resultCard = card;
@@ -55,26 +60,27 @@ public class BoardPlace : MonoBehaviour {
     private void OnMouseOver(){
         if(this == null) { return; }
         if(Card == null) { return; }
+        if(_battleManager.CurrentPhase != _battleManager.Battle.Action) { return; }
         if(_isOptShowing) { return; }
-        BoardManager.ShowOptions(this);
+        _boardManager.ShowOptions(this);
         _isOptShowing = true;
     }
 
     private void OnMouseExit(){
-        BoardManager.HideOptions();
+        _boardManager.HideOptions();
         _isOptShowing = false;
     }
 
     private void OnMouseDown() {
         if(!_canBeSelected) { return; }
 
-        switch (BattleManager.CurrentPhase){
+        switch (_battleManager.CurrentPhase){
             case BoardPlaceSelectionPhase:
                 if(IsFree){
                     SetCardInPlace(_resultCard);
-                }else{
-                    //Fusion Logic with the monster in This Place
+                    return;
                 }
+                //Fusion Logic with the monster in This Place
             break;
 
             case ActionPhase:
@@ -84,14 +90,8 @@ public class BoardPlace : MonoBehaviour {
             default:
             break;
         }
-    
-        // if(IsFree){
-        //     SetCardInPlace(_resultCard);
-        // }else{
-        //     //Fusion Logic with the monster in This Place
-        // }
-    }
 
+    }
 
     public void SetCardInPlace(Card card){
         if(card is MonsterCard){
@@ -112,8 +112,8 @@ public class BoardPlace : MonoBehaviour {
                     card.MoveCard(transform, rotation);
                 }
             }
-            monsterCard.SetCanChangeMode(true);
-            monsterCard.SetCanAttack(true);
+            // monsterCard.SetCanChangeMode(true);
+            // monsterCard.SetCanAttack(true);
 
         }else{// Arcane Card
 
@@ -126,6 +126,6 @@ public class BoardPlace : MonoBehaviour {
         
         _canBeSelected = false;
         IsFree = false;
-        BoardManager.BoardPlaceSelected();
+        _boardManager.BoardPlaceSelected();
     }
 }

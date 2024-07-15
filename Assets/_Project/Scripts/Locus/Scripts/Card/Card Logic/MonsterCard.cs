@@ -45,23 +45,9 @@ public class MonsterCard : Card {
         _deffenseLabel.text = Deffense.ToString();
     }
 
-    public void SelectAnima(){
-        AnimaSelected = true;
-    }
-
-    public void SelectMode(){
-        ModeSelected = true;
-    }
-
-    public void SelectDeffenseMode(){
-        IsInAttackMode = false;
-    }
-    
-    public void SetCanChangeMode(bool canChangeMode) { 
-        CanChangeMode = canChangeMode; 
-    }
-
-    public void SetCanAttack(bool canAttack) { 
-        CanAttack = canAttack;
-    }
+    public void SelectAnima() { AnimaSelected = true; }
+    public void SelectMode() { ModeSelected = true; }
+    public void SelectDeffenseMode() { IsInAttackMode = false; }
+    public void SetCanChangeMode(bool canChangeMode) { CanChangeMode = canChangeMode; }
+    public void SetCanAttack(bool canAttack) { CanAttack = canAttack; }
 }

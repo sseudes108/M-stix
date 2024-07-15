@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b4d02b4a065f24eac758e3cda7d893, type: 3}
   m_Name: Angel 10
   m_EditorClassIdentifier: 
-  Illustration: {fileID: 2800000, guid: 47b3fe09bdfc14748b79a267f95444cb, type: 3}
+  Illustration: {fileID: 2800000, guid: 45033a43b2a30bb418bf8dc3784f35ef, type: 3}
   Name: Bruna
   MonsterType: 0
-  FirstAnima: 5
-  SecondAnima: 6
+  FirstAnima: 0
+  SecondAnima: 0
   Description: 
-  Level: 4
-  Attack: 3300
+  Level: 5
+  Attack: 5400
   Deffense: 3300

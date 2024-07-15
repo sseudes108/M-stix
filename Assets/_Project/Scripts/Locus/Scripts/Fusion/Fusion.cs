@@ -50,7 +50,7 @@ public class Fusion : MonoBehaviour {
     private IEnumerator FusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
         _isPlayerTurn = isPlayerTurn;
         _fusionLine = selectedCards;
-        ResetCardsBorderColor(_fusionLine);
+        ResetCards(_fusionLine);
 
         if(_fusionLine.Count > 1){
             do{
@@ -91,6 +91,7 @@ public class Fusion : MonoBehaviour {
                         yield return new WaitForSeconds(2f);
                     }
                 }
+                yield return new WaitForSeconds(1f);
             }while(_fusionLine.Count > 0);
         }else if(_fusionLine.Count == 1){
             _resultCard = null;
@@ -192,7 +193,7 @@ public class Fusion : MonoBehaviour {
 
         //Set Card Owner
         if(_isPlayerTurn){
-            resultCard.IsPlayerCard();
+            resultCard.SetPlayerCard();
         }
 
         //Move fusioned card to position
@@ -206,8 +207,9 @@ public class Fusion : MonoBehaviour {
 
 #endregion
 
-    private void ResetCardsBorderColor(List<Card> selectedcards){
+    private void ResetCards(List<Card> selectedcards){
         foreach(var card in selectedcards){
+            card.SetHandPositionFree();
             card.Visuals.Border.ResetBorderColor();
         }
     }

@@ -54,8 +54,8 @@ public class Hand : MonoBehaviour {
             _deck.RemoveCardFromDeck(cardData);
 
             //Card Owner
-            if(BattleManager.IsPlayerTurn){
-                drewCard.IsPlayerCard();
+            if(this is PlayerHand){
+                drewCard.SetPlayerCard();
             }
 
             //Move to position

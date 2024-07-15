@@ -2,30 +2,35 @@ using UnityEngine;
 
 public class PlayerHand : Hand {
     private Transform _OffCameraHand;
-    private Vector3 _startPosition;
+    private Transform _OnCameraHand;
     private HandMovement _movement;
+    [SerializeField] private TurnManagerSO _turnManager;
 
     private void Awake() {
         _movement = GetComponent<HandMovement>();
         _OffCameraHand = transform.Find("OffCam");
+        _OnCameraHand = transform.Find("OnCam");
     }
 
-    private void Start() {
-        _startPosition = transform.position;
-    }
-    
     public override void OnEnable() {
         base.OnEnable();
         BattleManager.OnPlayerDraw.AddListener(BattleManager_OnPlayerDraw);
         BattleManager.OnCardSelectionEnd.AddListener(BattleManager_OnCardSelectionEnd);
+        BattleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
     }
 
     public override void OnDisable() {
         base.OnDisable();
-        BattleManager.OnPlayerDraw.AddListener(BattleManager_OnPlayerDraw);
-        BattleManager.OnCardSelectionEnd.AddListener(BattleManager_OnCardSelectionEnd);
+        BattleManager.OnPlayerDraw.RemoveListener(BattleManager_OnPlayerDraw);
+        BattleManager.OnCardSelectionEnd.RemoveListener(BattleManager_OnCardSelectionEnd);
+        BattleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
     }
 
+    private void BattleManager_OnStartPhase(){
+        if(_turnManager.CurrentTurn != 1 && _turnManager.IsPlayerTurn){
+            MoveHandOnScreen();
+        }
+    }
 
     private void BattleManager_OnPlayerDraw() { Draw(); }
 
@@ -38,6 +43,6 @@ public class PlayerHand : Hand {
     }
 
     private void MoveHandOnScreen(){
-        _movement.SetTargetPosition(_startPosition);
+        _movement.SetTargetPosition(_OnCameraHand.position);
     }
 }

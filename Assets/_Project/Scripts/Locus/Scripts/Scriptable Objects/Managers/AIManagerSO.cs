@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "AIManagerSO", menuName = "Mistix/Manager/AI", order = 0)]
 public class AIManagerSO : ScriptableObject {
+    [SerializeField] public BattleManagerSO BattleManager;
     [HideInInspector] public UnityEvent OnStateChange;
 
-    public AbstractState CurrentState => _ai.AICurrentState;
-    public List<Card> CardsInHand = new();
-    private AI _ai;
-    public AI AI => _ai;
+    public List<Card> CardsInHand = new(){};
+
+    public List<BoardPlace> MonsterPlaces { get; private set; }
+    public List<BoardPlace> ArcanePlaces { get; private set; }
+
+    public AI AI { get; private set; }
+    public Board Board { get; private set;}
 
     private void OnEnable() {
         OnStateChange ??= new();
@@ -25,14 +30,8 @@ public class AIManagerSO : ScriptableObject {
         OnStateChange?.Invoke();
     }
 
-    public IEnumerator ChangeStateRoutine(float wait, AbstractState newState){
-        yield return new WaitForSeconds(wait);
-        _ai.ChangeState(newState);
-        yield return null;
-    }
-
     public void SetAI(AI ai) { 
-        _ai = ai;
+        AI = ai;
     }
 
     public void SetCardsInHand(List<Card> cardsInHand){

@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Bruna
   MonsterType: 0
   FirstAnima: 0
-  SecondAnima: 3
+  SecondAnima: 0
   Description: 
   Level: 2
   Attack: 3300
