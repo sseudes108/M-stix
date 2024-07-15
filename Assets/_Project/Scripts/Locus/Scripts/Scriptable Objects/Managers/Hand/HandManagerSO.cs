@@ -8,7 +8,7 @@ public class HandManagerSO : ScriptableObject {
         OnCardsDrew ??= new();
     }
 
-    public void CardDrew(){
+    public void CardsDrew(){
         OnCardsDrew?.Invoke();
     }
 }

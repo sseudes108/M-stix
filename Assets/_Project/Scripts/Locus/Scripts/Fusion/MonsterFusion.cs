@@ -14,10 +14,10 @@ public class MonsterFusion : Fusion {
     }
 
     private void FusionManager_OnMonsterFusionStart(MonsterCard monster1, MonsterCard monster2){
-        StartFusionRoutine(monster1, monster2);
+        StartMonsterFusionRoutine(monster1, monster2);
     }
 
-    public void StartFusionRoutine(MonsterCard monster1, MonsterCard monster2){
+    public void StartMonsterFusionRoutine(MonsterCard monster1, MonsterCard monster2){
         StartCoroutine(MonsterFusionRoutine(monster1, monster2));
     }
 

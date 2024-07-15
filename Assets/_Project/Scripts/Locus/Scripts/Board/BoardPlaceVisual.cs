@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class BoardPlaceVisuals : MonoBehaviour {
-    private BoardPlace _place;
-    private Renderer[] _renderers;
+public class BoardPlaceVisual : MonoBehaviour {
+    public BoardPlace _place;
+    public Renderer[] _renderers;
     public Color LightUpColor;
     public Color DefaultColor;
     public float IntensityFactor;

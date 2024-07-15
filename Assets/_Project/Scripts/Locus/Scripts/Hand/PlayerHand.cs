@@ -1,9 +1,7 @@
-using System;
-using Cinemachine.Editor;
 using UnityEngine;
 
 public class PlayerHand : Hand {
-    [SerializeField] private Transform _OffCameraHand;
+    private Transform _OffCameraHand;
     private Vector3 _startPosition;
     private HandMovement _movement;
 

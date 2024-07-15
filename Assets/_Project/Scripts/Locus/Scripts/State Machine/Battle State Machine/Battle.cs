@@ -3,8 +3,8 @@ using UnityEngine;
 public class Battle : MonoBehaviour {
     [Header("Battle System")]
     public BattleManagerSO BattleManager;
-    public FusionManager FusionManager;
-    public BoardPlaceEventHandlerSO BoardManager;
+    public FusionManagerSO FusionManager;
+    public BoardManagerSO BoardManager;
     public AIManagerSO AIManager;
     public TurnManagerSO TurnManager;
     public UIEventHandlerSO UIManager;

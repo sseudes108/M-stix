@@ -7,20 +7,36 @@ using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "AIActor", menuName = "Mistix/AI/Actor", order = 0)]
 public class AIActorSO : ScriptableObject {
+    [SerializeField] protected AIManagerSO _aIManager;
+
     //Actions
     public AICardSelector CardSelector { get; private set; }
+    public AICardStatSelector CardStatSelector { get; private set; }
+    public AIBoardPlaceSelector BoardPlaceSelector { get; private set; }
 
     //Events
     [HideInInspector] public UnityEvent CardSelector_OnSelectionFinished;
+    [HideInInspector] public UnityEvent CardStatSelector_OnCardStatSelectionFinished;
+    [HideInInspector] public UnityEvent BoardPlaceSelector_OnBoardPlaceSelected;
     
     private void OnEnable() {
         CardSelector ??= new(this);
+        CardStatSelector ??= new(this);
+        BoardPlaceSelector??= new(this);
 
         CardSelector_OnSelectionFinished ??= new UnityEvent();
+        CardStatSelector_OnCardStatSelectionFinished ??= new UnityEvent();
     }
 
     public void CardSelectionFinished(){
         CardSelector_OnSelectionFinished?.Invoke();
     }
 
+    public void CardStatSelectionFinished(){
+        CardStatSelector_OnCardStatSelectionFinished?.Invoke();
+    }
+
+    public void BoardPlaceSelected(){
+        BoardPlaceSelector_OnBoardPlaceSelected?.Invoke();
+    }
 }

@@ -6,7 +6,7 @@ public class TurnManagerSO : ScriptableObject {
     public int CurrentTurn = 1;
     public bool _isPlayerTurn = true;
 
-    public UnityEvent OnTurnEnd;
+    [HideInInspector] public UnityEvent OnTurnEnd;
 
     private void OnDisable() {
         ResetTurnStats();

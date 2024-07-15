@@ -4,9 +4,9 @@ using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "BattleManagerSO", menuName = "Mistix/Manager/Battle")]
 public class BattleManagerSO : ScriptableObject {
-    [HideInInspector] public UnityEvent <AbstractState> OnStateChange;
 
 #region Events
+    [HideInInspector] public UnityEvent <AbstractState> OnStateChange;
     [HideInInspector] public UnityEvent OnStartPhase;
 
     [HideInInspector] public UnityEvent OnPlayerDraw;
@@ -22,15 +22,19 @@ public class BattleManagerSO : ScriptableObject {
     [HideInInspector] public UnityEvent<Card, bool> OnBoardPlaceSelectionEnd;
 
     [HideInInspector] public UnityEvent OnActionPhaseStart;
-    [HideInInspector] public UnityEvent OnActionPhaseTwoStart;
+    // [HideInInspector] public UnityEvent OnActionPhaseEnd;
+
+    // [HideInInspector] public UnityEvent OnActionPhaseTwoStart;
 
     [HideInInspector] public UnityEvent OnEndPhaseStart;
 
     public TurnManagerSO TurnManager;
     public bool IsPlayerTurn => TurnManager.IsPlayerTurn();
 
-    public AbstractState CurrentPhase;
+    private AbstractState _currentPhase;
+    public AbstractState CurrentPhase => _currentPhase;
     private Battle _battle;
+    public Battle Battle => _battle;
     
 #endregion
 
@@ -52,7 +56,9 @@ public class BattleManagerSO : ScriptableObject {
         OnBoardPlaceSelectionEnd ??= new UnityEvent<Card, bool>();
 
         OnActionPhaseStart ??=new UnityEvent();
-        OnActionPhaseTwoStart ??=new UnityEvent();
+        // OnActionPhaseEnd ??=new UnityEvent();
+
+        // OnActionPhaseTwoStart ??=new UnityEvent();
         
         OnEndPhaseStart ??= new UnityEvent();
     }
@@ -63,7 +69,7 @@ public class BattleManagerSO : ScriptableObject {
 
 #region Events
     public void ChangeState(AbstractState newState) { // Used for hold the current phase ref and notify the UI
-        CurrentPhase = newState;
+        _currentPhase = newState;
         _battle = CurrentPhase.GetBattleController();
         OnStateChange?.Invoke(newState); //UI notification
     }
@@ -83,7 +89,9 @@ public class BattleManagerSO : ScriptableObject {
     public void BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { OnBoardPlaceSelectionEnd?.Invoke(card, isPlayerTurn); }
 
     public void ActionPhaseStart() { OnActionPhaseStart?.Invoke(); }
-    public void ActionPhaseTwoStart() { OnActionPhaseTwoStart?.Invoke(); }
+    // public void ActionPhaseEnd() { OnActionPhaseEnd?.Invoke(); }
+
+    // public void ActionPhaseTwoStart() { OnActionPhaseTwoStart?.Invoke(); }
 
     public void EndPhaseStart() { OnEndPhaseStart?.Invoke(); }
 

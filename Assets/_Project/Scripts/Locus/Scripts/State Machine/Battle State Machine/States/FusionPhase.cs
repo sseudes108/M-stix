@@ -12,7 +12,9 @@ public class FusionPhase : AbstractState{
             selectedCardList = AI.Actor.CardSelector.SelectedList;
         }
 
-        Battle.StartCoroutine(FusionPhaseRoutine(selectedCardList));
+        if(Battle != null){
+            Battle.StartCoroutine(FusionPhaseRoutine(selectedCardList));
+        }
     }
 
     public override void Exit(){

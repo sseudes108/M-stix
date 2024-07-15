@@ -7,8 +7,7 @@ public class CardSelectionPhase : AbstractState{
         Battle.BattleManager.CardSelectionStart(); // Unlock card selection
         
         if(!Battle.BattleManager.IsPlayerTurn){
-            // AI.Actor.CardSelector.SelectRandomCard(AI.Manager.CardsInHand);
-            Battle.StartCoroutine(AiRoutine());
+            Battle.StartCoroutine(AIRoutine());
         }
     }
     
@@ -20,28 +19,26 @@ public class CardSelectionPhase : AbstractState{
     public override void SubscribeEvents(){
         if(Battle.BattleManager.IsPlayerTurn){
             Battle.UIManager.OnCardSelectionFinished.AddListener(UIManager_OnCardSelectionFinished);
-        }else{
-            AI.Actor.CardSelector_OnSelectionFinished.AddListener(AI_Actor_CardSelector_OnCardsSelected);
+            return;
         }
+
+        AI.Actor.CardSelector_OnSelectionFinished.AddListener(AI_Actor_CardSelector_OnCardsSelected);
     }
 
     public override void UnsubscribeEvents(){
         if(Battle.BattleManager.IsPlayerTurn){
             Battle.UIManager.OnCardSelectionFinished.RemoveListener(UIManager_OnCardSelectionFinished);
-        }else{
-            AI.Actor.CardSelector_OnSelectionFinished.AddListener(AI_Actor_CardSelector_OnCardsSelected);
+            return;
         }
+        
+        AI.Actor.CardSelector_OnSelectionFinished.AddListener(AI_Actor_CardSelector_OnCardsSelected);
     }
 
-    private void UIManager_OnCardSelectionFinished(){
-        Battle.ChangeState(Battle.Fusion);
-    }
+    private void UIManager_OnCardSelectionFinished() { ChangePhase(); }
+    private void AI_Actor_CardSelector_OnCardsSelected() { ChangePhase(); }
+    private void ChangePhase(){ Battle.ChangeState(Battle.Fusion); }
 
-    private void AI_Actor_CardSelector_OnCardsSelected(){
-        Battle.ChangeState(Battle.Fusion);
-    }
-
-    public IEnumerator AiRoutine(){
+    public IEnumerator AIRoutine(){
         yield return Battle.StartCoroutine(AI.Actor.CardSelector.SelectCardRoutine(AI.Manager.CardsInHand));
         yield return null;
     }

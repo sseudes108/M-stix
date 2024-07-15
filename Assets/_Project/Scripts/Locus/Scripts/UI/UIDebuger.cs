@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UIDebuger : UIManager {
+public class UIDebuger : UI {
     [SerializeField] private BattleManagerSO _battleManager;
     [SerializeField] private TurnManagerSO _turnManager;
-    [SerializeField] private AIManagerSO _aiManager;
-
+    [SerializeField] private AIManagerSO _aIManager;
+    
     private Label _battleStateLabel;
     private Label _turnInfoLabel;
     private Label _AIStateLabel;
@@ -13,13 +13,13 @@ public class UIDebuger : UIManager {
     private void OnEnable() {
         _battleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
         _battleManager.OnStateChange.AddListener(BattleManager_OnStateChange);
-        _aiManager.OnStateChange.AddListener(AIManager_OnStateChange);
+        _aIManager.OnStateChange.AddListener(AIManager_OnStateChange);
     }
 
     private void OnDisable() {
         _battleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
         _battleManager.OnStateChange.RemoveListener(BattleManager_OnStateChange);
-        _aiManager.OnStateChange.AddListener(AIManager_OnStateChange);
+        _aIManager.OnStateChange.AddListener(AIManager_OnStateChange);
     }
 
     private void BattleManager_OnStateChange(AbstractState state){
@@ -48,6 +48,6 @@ public class UIDebuger : UIManager {
 
     private void UpdateAiStateLabel(){
         SetElements();
-        _AIStateLabel.text = $"AI State: {_aiManager.CurrentState}";
+        _AIStateLabel.text = $"AI State: {_aIManager.CurrentState}";
     }
 }

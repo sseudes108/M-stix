@@ -11,6 +11,17 @@ public class Tester : MonoBehaviour {
     public ColorManagerSO ColorManager;
     public List<CardSO> Cards;
 
+    public void CheckNullRef(Object obj){
+        if(obj == null){
+            Debug.Log($"{obj.name} is <color=red>Null</color=red>");
+        }else{
+            Debug.Log($"{obj.name} is <color=green>Is Not Null</color=green>");
+        }
+    }
+    public void CheckCall(string obj, string funcionName, string color){
+        Debug.Log($"<color=white><b>{obj}</b></color=white> - <color={color}>{funcionName}</color={color}>");
+    }
+
     private void Awake() {
         if(Instance != null){
             Helper.RedDebug("More than one instance of", "Tester");

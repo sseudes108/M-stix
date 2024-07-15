@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "FusionEventHandlerSO", menuName = "Mistix/Events/Fusion", order = 0)]
-public class FusionManager : ScriptableObject {
+[CreateAssetMenu(fileName = "FusionManagerSO", menuName = "Mistix/Manager/Fusion", order = 0)]
+public class FusionManagerSO : ScriptableObject {
     [HideInInspector] public UnityEvent<List<Card>, bool> OnFusionStart;
     [HideInInspector] public UnityEvent<Card> OnFusionEnd;
 
@@ -28,30 +28,19 @@ public class FusionManager : ScriptableObject {
         OnFusionFailed ??=new UnityEvent<Card, Card>();
     }
 
+    public void SetPositions(FusionPositions positions) { Positions = positions; }
+    public void SetResultedCard(Card card) {
+        Tester.Instance.CheckCall(name, $"SetResultedCard{ card.name }", "blue");
+        ResultCard = card; 
+    }
+
+    public void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn) { OnFusionStart?.Invoke(selectedCards, isPlayerTurn); }
+
+    public void StartMonsterFusionRoutine(MonsterCard monster1, MonsterCard monster2) { OnMonsterFusionStart?.Invoke(monster1, monster2); }
     public void CheckCardsBase(MonsterFusion fusion, EMonsterType monsterType) { OnCheckCardsBase?.Invoke(fusion, monsterType); }
+
+    public void FusionSucess(Card card1, Card card2, Card resultCard) { OnFusionSucess?.Invoke(card1, card2, resultCard); }
+    public void FusionFailed(Card card1, Card card2) { OnFusionFailed?.Invoke(card1, card2); }
+
     public void FusionEnd(Card ResultCard) { OnFusionEnd?.Invoke(ResultCard); }
-
-    public void SetPositions(FusionPositions positions){
-        Positions = positions;
-    }
-
-    public void SetResultedCard(Card card){
-        ResultCard = card;
-    }
-
-    public void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
-        OnFusionStart?.Invoke(selectedCards, isPlayerTurn);
-    }
-
-    public void StartMonsterFusionRoutine(MonsterCard monster1, MonsterCard monster2){
-        OnMonsterFusionStart?.Invoke(monster1, monster2);
-    }
-
-    public void FusionSucess(Card card1, Card card2, Card resultCard){
-        OnFusionSucess?.Invoke(card1, card2, resultCard);
-    }
-    
-    public void FusionFailed(Card card1, Card card2){
-        OnFusionFailed?.Invoke(card1, card2);
-    }
 }

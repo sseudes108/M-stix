@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(FusionPositions))]
 public class Fusion : MonoBehaviour {
-    [SerializeField] protected FusionManager _fusionManager;
+    [SerializeField] protected FusionManagerSO _fusionManager;
     [SerializeField] protected BattleManagerSO _battleManager;
     [SerializeField] protected CardManagerSO _cardManager;
     [SerializeField] protected CameraManagerSO _cameraManager;
@@ -17,12 +16,16 @@ public class Fusion : MonoBehaviour {
     private void OnEnable() {
         _fusionManager.OnFusionStart.AddListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionSucess.AddListener(FusionManager_OnFusionSucess);
+        _fusionManager.OnFusionFailed.AddListener(FusionManager_OnFusionFailed);
     }
 
     private void OnDisable() {
         _fusionManager.OnFusionStart.RemoveListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionSucess.RemoveListener(FusionManager_OnFusionSucess);
+        _fusionManager.OnFusionFailed.RemoveListener(FusionManager_OnFusionFailed);
     }
+
+#region Events
 
     private void FusionManager_OnFusionStart(List<Card> selectedCards, bool isPlayerTurn){
         StartFusionRoutine(selectedCards, isPlayerTurn);
@@ -32,13 +35,22 @@ public class Fusion : MonoBehaviour {
         FusionSucess(card1, card2, resultCard);
     }
 
-    public void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
+    private void FusionManager_OnFusionFailed(Card card1, Card card2){
+        FusionFailed(card1, card2);
+    }
+
+#endregion
+
+#region Fusion
+
+    private void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
         StartCoroutine(FusionRoutine(selectedCards, isPlayerTurn));
     }
 
     private IEnumerator FusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
         _isPlayerTurn = isPlayerTurn;
         _fusionLine = selectedCards;
+        ResetCardsBorderColor(_fusionLine);
 
         if(_fusionLine.Count > 1){
             do{
@@ -96,12 +108,16 @@ public class Fusion : MonoBehaviour {
         _fusionLine.Remove(card1);
         _fusionLine.Remove(card2);
     }
-    public void AddCardToFusionLine(Card cardToAdd){
+
+    private void AddCardToFusionLine(Card cardToAdd){
         _fusionLine.Insert(0, cardToAdd);
     }
-    
-    //Fusion Failed
-    public void FusionFailed(Card card1, Card card2){
+
+#endregion
+
+#region Fusion Failed
+
+    private void FusionFailed(Card card1, Card card2){
         StartCoroutine(FusionFailedRoutine(card1, card2));
     }
 
@@ -144,7 +160,10 @@ public class Fusion : MonoBehaviour {
         }
     }
 
-    public void FusionSucess(Card card1, Card card2, Card resultCard){
+#endregion
+
+#region Fusion Sucess
+    private void FusionSucess(Card card1, Card card2, Card resultCard){
         StartCoroutine(FusionSucessRoutine(card1, card2, resultCard));
     }
 
@@ -182,6 +201,14 @@ public class Fusion : MonoBehaviour {
         //Check if the line is 0
         if(_fusionLine.Count > 0){
             AddCardToFusionLine(resultCard);
+        }
+    }
+
+#endregion
+
+    private void ResetCardsBorderColor(List<Card> selectedcards){
+        foreach(var card in selectedcards){
+            card.Visuals.Border.ResetBorderColor();
         }
     }
 }

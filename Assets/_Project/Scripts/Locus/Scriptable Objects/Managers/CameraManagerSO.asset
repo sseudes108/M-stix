@@ -9,15 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f61736a117922e46acb588768b35cf2, type: 3}
-  m_Name: BoardPlaceEventHandler
+  m_Script: {fileID: 11500000, guid: ceb515addfa09e74d987c14f65ade045, type: 3}
+  m_Name: CameraManagerSO
   m_EditorClassIdentifier: 
-  OnBoardPlaceSelected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnShowOptions:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHideOptions:
+  OnCamShake:
     m_PersistentCalls:
       m_Calls: []

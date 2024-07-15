@@ -1,11 +1,9 @@
-
-using System;
 using UnityEngine;
 
-[RequireComponent(typeof(BoardPlaceVisuals))]
+[RequireComponent(typeof(BoardPlaceVisual))]
 public class BoardPlace : MonoBehaviour {
     [SerializeField] private BattleManagerSO BattleManager;
-    [SerializeField] private BoardPlaceEventHandlerSO BoardManager;
+    [SerializeField] private BoardManagerSO BoardManager;
     [SerializeField] private UIEventHandlerSO UIManager;
 
     [field:SerializeField] public EBoardPlace Location { get; private set; }
@@ -18,24 +16,16 @@ public class BoardPlace : MonoBehaviour {
     public Card Card;
     private bool _isOptShowing;
 
+    public BoardPlaceVisual Visual;
+
     private void OnEnable() {
         BattleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
         BoardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
-        // UIManager.OnMonsterAttack.AddListener(UIManager_OnMonsterAttack);
     }
     
     private void OnDisable() {
         BattleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart);
         BoardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
-        // UIManager.OnMonsterAttack.RemoveListener(UIManager_OnMonsterAttack);
-    }
-
-    private void UIManager_OnMonsterAttack(Card card, bool isPlayerTurn){
-        if(isPlayerTurn && !IsPlayerPlace){
-            if(!IsFree){
-                _canBeSelected = true;
-            }
-        }
     }
 
     private void BoardManager_OnBoardPlaceSelected(){
@@ -44,6 +34,7 @@ public class BoardPlace : MonoBehaviour {
 
     private void Awake() {
         Colliders = GetComponents<Collider>();
+        Visual = GetComponent<BoardPlaceVisual>();
     }
 
     private void Start(){
@@ -62,6 +53,7 @@ public class BoardPlace : MonoBehaviour {
     }
 
     private void OnMouseOver(){
+        if(this == null) { return; }
         if(Card == null) { return; }
         if(_isOptShowing) { return; }
         BoardManager.ShowOptions(this);

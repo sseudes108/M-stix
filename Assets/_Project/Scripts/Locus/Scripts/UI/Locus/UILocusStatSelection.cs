@@ -1,13 +1,16 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
-public class UICardStatSel : UI {
+public class UILocusStatSelection : UILocus{
     [SerializeField] private BattleManagerSO _battleManager;
     [SerializeField] private FusionManagerSO _fusionManager;
     [SerializeField] private CardStatEventHandlerSO _cardStatSelManager;
 
-    private Button _option1, _option2;
-    private VisualElement _optionsCanvas;
+    [SerializeField] private GameObject _statSelButtonsContainer;
+    [SerializeField] private TextMeshProUGUI _statText1, _statText2;
+    [SerializeField] private Button _statButton1, _statButton2;
+    
     private void OnEnable() {
         _cardStatSelManager.OnSelectAnother.AddListener(CardStatSelManager_OnSelectAnother);
         _cardStatSelManager.OnSelectionsEnd.AddListener(CardStatSelManager_OnSelectionsEnd);
@@ -20,7 +23,6 @@ public class UICardStatSel : UI {
         _fusionManager.OnFusionEnd.RemoveListener(FusionManager_OnFusionEnd);
     }
 
-
     private void CardStatSelManager_OnSelectionsEnd(){
         HideOptions();
     }
@@ -29,72 +31,49 @@ public class UICardStatSel : UI {
         SetButtonText(card);
     }
 
-    private void CardStatSelManager_OnSelectAnother(){
-        SetButtonText(_fusionManager.ResultCard);
-    }
-
     public void FusionManager_OnFusionEnd(Card card){
         if(!_battleManager.IsPlayerTurn) { return; }
-        
         ShowOptions();
         SetButtonText(card);
     }
 
-    public override void Awake() {
-        base.Awake();
-        SetElements();
+    public void ShowOptions(){
+        _statSelButtonsContainer.SetActive(true);
+        _statButton1.onClick.AddListener(Option1_Clicked);
+        _statButton2.onClick.AddListener(Option2_Clicked);
     }
 
-    private void Start() {
-        HideOptions();
-    }
-
-    private void ShowOptions(){
-        _optionsCanvas.style.display = DisplayStyle.Flex;
-    }
-
-    private void HideOptions(){
-        _option1.clicked -= Option1_Clicked;
-        _option2.clicked -= Option2_Clicked;
-        _optionsCanvas.style.display = DisplayStyle.None;
+    public void HideOptions(){
+        _statSelButtonsContainer.SetActive(false);
+        _statButton1.onClick.RemoveListener(Option1_Clicked);
+        _statButton2.onClick.RemoveListener(Option2_Clicked);
     }
 
     private void Option1_Clicked(){
+        Tester.Instance.CheckCall(name, "Option1_Clicked", "yellow");
         _cardStatSelManager.Option1Clicked();
     }
 
     private void Option2_Clicked(){
+        Tester.Instance.CheckCall(name, "Option2_Clicked", "yellow");
         _cardStatSelManager.Option2Clicked();
     }
 
-    private void SetElements(){
-        _option1 = Root.Q<Button>("Option1");
-        _option2 = Root.Q<Button>("Option2");
-        _optionsCanvas = Root.Q("OptionsCanvas");
-
-        _option1.clicked -= Option1_Clicked;
-        _option2.clicked -= Option2_Clicked;
-
-        _option1.clicked += Option1_Clicked;
-        _option2.clicked += Option2_Clicked;
-    }
-
     private void SetButtonText(Card card){
-        SetElements();
         if(card is MonsterCard){
             var monsterCard = card as MonsterCard;
             if(!monsterCard.AnimaSelected){
                 //Anima
-                _option1.text = $"{monsterCard.FirstAnima}";
-                _option2.text = $"{monsterCard.SecondAnima}";
+                _statText1.text = $"{monsterCard.FirstAnima}";
+                _statText2.text = $"{monsterCard.SecondAnima}";
             }else if(!monsterCard.ModeSelected){
                 //Mode
-                _option1.text = $"Attack";
-                _option2.text = $"Deffense";
+                _statText1.text = $"Attack";
+                _statText2.text = $"Deffense";
             }else if(!monsterCard.FusionedCard){
                 //Face
-                _option1.text = $"Face Up";
-                _option2.text = $"Face Down";
+                _statText1.text = $"Face Up";
+                _statText2.text = $"Face Down";
             }
         }
     }

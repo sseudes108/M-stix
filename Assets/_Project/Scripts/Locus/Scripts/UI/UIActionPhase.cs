@@ -1,39 +1,38 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UIActionPhase : UIManager {
-    [SerializeField] private BoardPlaceEventHandlerSO BoardManager;
-    [SerializeField] private BattleManagerSO BattleManager;
-    [SerializeField] private UIEventHandlerSO UIManager;
+public class UIActionPhase : UI {
+    [SerializeField] private BoardManagerSO _boardManager;
+    [SerializeField] private BattleManagerSO _battleManager;
+    [SerializeField] private UIEventHandlerSO _uIManager;
     
-    private VisualElement _monsterFarLeftCard;
-    private VisualElement _monsterLeftCard;
-    private VisualElement _monsterCenterCard;
-    private VisualElement _monsterRightCard;
-    private VisualElement _monsterFarRightCard;
-    public VisualElement _actionCanvas;
-    public VisualElement _monsterCards;
-    public VisualElement _arcaneCards;
+    // private VisualElement _monsterFarLeftCard;
+    // private VisualElement _monsterLeftCard;
+    // private VisualElement _monsterCenterCard;
+    // private VisualElement _monsterRightCard;
+    // private VisualElement _monsterFarRightCard;
+    private VisualElement _actionCanvas;
+    private VisualElement _monsterCards;
+    private VisualElement _arcaneCards;
+
+    private BoardPlaces _monsterPlaces;
 
     public List<VisualElement> _playerMonsterCardsElements = new();
 
     private Button _button1, _button2;
 
-    private Card _card;
-
     private void OnEnable() {
-        BattleManager.OnActionPhaseStart.AddListener(BattleManager_OnActionPhaseStart);
-        BattleManager.OnActionPhaseTwoStart.AddListener(BattleManager_OnActionPhaseTwoStart);
-        BoardManager.OnShowOptions.AddListener(BoardManager_OnShowOptions);
-        BoardManager.OnHideOptions.AddListener(BoardManager_OnHideOptions);
+        _battleManager.OnActionPhaseStart.AddListener(BattleManager_OnActionPhaseStart);
+        _boardManager.OnShowOptions.AddListener(BoardManager_OnShowOptions);
+        _boardManager.OnHideOptions.AddListener(BoardManager_OnHideOptions);
     }
 
     private void OnDisable() {
-        BattleManager.OnActionPhaseStart.RemoveListener(BattleManager_OnActionPhaseStart);
-        BattleManager.OnActionPhaseTwoStart.RemoveListener(BattleManager_OnActionPhaseTwoStart);
-        BoardManager.OnShowOptions.RemoveListener(BoardManager_OnShowOptions);
-        BoardManager.OnHideOptions.RemoveListener(BoardManager_OnHideOptions);
+        _battleManager.OnActionPhaseStart.RemoveListener(BattleManager_OnActionPhaseStart);
+        _boardManager.OnShowOptions.RemoveListener(BoardManager_OnShowOptions);
+        _boardManager.OnHideOptions.RemoveListener(BoardManager_OnHideOptions);
 
         if(_button1 != null){
             _button1.clicked -= Option1Clicked;
@@ -45,30 +44,55 @@ public class UIActionPhase : UIManager {
         }
     }
 
-    private void BattleManager_OnActionPhaseTwoStart(){
-        ShowCanvas();
-    }
-    
-    private void BattleManager_OnActionPhaseStart(){
-        ShowCanvas();
+    public override void Awake() {
+        base.Awake();
+        SetElements();
     }
 
-    private void BoardManager_OnHideOptions(){
-        HideOptions();
+    private void Start() {
+        // _playerMonsterCardsElements.Add(_monsterFarLeftCard);
+        // _playerMonsterCardsElements.Add(_monsterLeftCard);
+        // _playerMonsterCardsElements.Add(_monsterCenterCard);
+        // _playerMonsterCardsElements.Add(_monsterRightCard);
+        // _playerMonsterCardsElements.Add(_monsterFarRightCard);
+        _playerMonsterCardsElements.Add(_monsterPlaces.FarLeft);
+        _playerMonsterCardsElements.Add(_monsterPlaces.Left);
+        _playerMonsterCardsElements.Add(_monsterPlaces.Center);
+        _playerMonsterCardsElements.Add(_monsterPlaces.Right);
+        _playerMonsterCardsElements.Add(_monsterPlaces.FarRight);
+
+        _actionCanvas.style.display = DisplayStyle.None;
+        _monsterCards.style.display = DisplayStyle.None;
+        _arcaneCards.style.display = DisplayStyle.None;
     }
+
+    private void BattleManager_OnActionPhaseStart() {ShowCanvas(); }
+    private void BoardManager_OnHideOptions() {HideOptions(); }
 
     private void BoardManager_OnShowOptions(BoardPlace place){
-        if(place.IsMonsterPlace){
-            ShowMonsterOptions(place.Location, place.Card as MonsterCard);
-        }else{
+        if(_battleManager.CurrentPhase != _battleManager.Battle.Action) { return; }
+
+        //Options for the player cards on field
+        if(_battleManager.IsPlayerTurn && place.IsPlayerPlace){
+            if(place.IsMonsterPlace){
+                ShowMonsterOptions(place.Location, place.Card as MonsterCard);
+                return;
+            }
+
             ShowArcaneOptions(place.Location, place.Card as ArcaneCard);
         }
+        
+        //Options to show on enemy cards on field
     }
 
     private void HideOptions(){
         foreach(var element in _playerMonsterCardsElements){
             element.style.display = DisplayStyle.None;
         }
+
+        // foreach(var element in _monsterPlaces){
+        //     element.style.display = DisplayStyle.None;
+        // }
 
         if(_button1 != null){
             _button1.clicked -= Option1Clicked;
@@ -93,8 +117,6 @@ public class UIActionPhase : UIManager {
     }
 
     private void ShowMonsterOptions(EBoardPlace place, MonsterCard cardInPlace){
-        _card = null;
-        _card = cardInPlace;
         _arcaneCards.style.display = DisplayStyle.None;
         _monsterCards.style.display = DisplayStyle.Flex;
 
@@ -128,9 +150,7 @@ public class UIActionPhase : UIManager {
                 _button1.clicked += Option1Clicked;
             }
         }else{// if is face up
-            // Debug.Log("Is Face Up");
             if (cardInPlace.IsInAttackMode){// if face up and attack mode
-                // Debug.Log("Is In Attack Mode");
                 if (cardInPlace.CanAttack && cardInPlace.CanChangeMode){ // if can change mode and can attack
                     _button1 = null;
                     _button2 = null;
@@ -212,32 +232,28 @@ public class UIActionPhase : UIManager {
         }
     }
 
-    public override void Awake() {
-        base.Awake();
-        SetElements();
-    }
-
-    private void Start() {
-        _playerMonsterCardsElements.Add(_monsterFarLeftCard);
-        _playerMonsterCardsElements.Add(_monsterLeftCard);
-        _playerMonsterCardsElements.Add(_monsterCenterCard);
-        _playerMonsterCardsElements.Add(_monsterRightCard);
-        _playerMonsterCardsElements.Add(_monsterFarRightCard);
-
-        _actionCanvas.style.display = DisplayStyle.None;
-        _monsterCards.style.display = DisplayStyle.None;
-        _arcaneCards.style.display = DisplayStyle.None;
-    }
-
     private void SetElements(){
         _actionCanvas = Root.Q("ActionCanvas");
         _monsterCards = Root.Q("MonsterCards");
         _arcaneCards = Root.Q("ArcaneCards");
 
-        _monsterFarLeftCard = Root.Q("MonsterFarLeft");
-        _monsterLeftCard = Root.Q("MonsterLeft");
-        _monsterCenterCard = Root.Q("MonsterCenter");
-        _monsterRightCard = Root.Q("MonsterRight");
-        _monsterFarRightCard = Root.Q("MonsterFarRight");
+        _monsterPlaces.FarLeft = Root.Q("MonsterFarLeft");
+        _monsterPlaces.Left = Root.Q("MonsterLeft");
+        _monsterPlaces.Center = Root.Q("MonsterCenter");
+        _monsterPlaces.Right = Root.Q("MonsterRight");
+        _monsterPlaces.FarRight = Root.Q("MonsterFarRight");
+        // _monsterFarLeftCard = Root.Q("MonsterFarLeft");
+        // _monsterLeftCard = Root.Q("MonsterLeft");
+        // _monsterCenterCard = Root.Q("MonsterCenter");
+        // _monsterRightCard = Root.Q("MonsterRight");
+        // _monsterFarRightCard = Root.Q("MonsterFarRight");
     }
+}
+
+public struct BoardPlaces{
+    public VisualElement FarLeft;
+    public VisualElement Left;
+    public VisualElement Center;
+    public VisualElement Right;
+    public VisualElement FarRight;
 }

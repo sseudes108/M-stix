@@ -7,10 +7,9 @@ public class Hand : MonoBehaviour {
     [SerializeField] protected HandManagerSO HandManager;
     [SerializeField] protected CardManagerSO CardManager;
 
-
     [SerializeField] private Transform[] _handPositions;
     [SerializeField] List<Transform> _freePositionsInHand;
-    [SerializeField] private List<Card> _cardsInHand;
+    [SerializeField] protected List<Card> _cardsInHand;
 
     [SerializeField] private Deck _deck;
 
@@ -69,6 +68,10 @@ public class Hand : MonoBehaviour {
             yield return new WaitForSeconds(0.5f);
         }
         yield return null;
-        HandManager.CardDrew();
+        CardsDrew();
+    }
+
+    public virtual void CardsDrew(){ //The Enemy has some aditional logic before call the event
+        HandManager.CardsDrew();
     }
 }

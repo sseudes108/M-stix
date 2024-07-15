@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class CardStatSelections : MonoBehaviour {
-    [SerializeField] private BattleManagerSO BattleManager;
+    [SerializeField] private BattleManagerSO _battleManager;
+    [SerializeField] private FusionManagerSO _fusionManager;
     public CardStatEventHandlerSO CardStatSelManager;
 
     private void OnEnable() {
@@ -14,16 +15,22 @@ public class CardStatSelections : MonoBehaviour {
         CardStatSelManager.OnOption2Clicked.RemoveListener(CardStatSelManager_OnOption2Clicked);
     }
 
-    private void CardStatSelManager_OnOption1Clicked(Card card){
-        Option1_Clicked(card);
+    private void CardStatSelManager_OnOption1Clicked(){
+        Option1_Clicked(_fusionManager.ResultCard);
     }
 
-    private void CardStatSelManager_OnOption2Clicked(Card card){
-        Option2_Clicked(card);
+    private void CardStatSelManager_OnOption2Clicked(){
+        Option2_Clicked(_fusionManager.ResultCard);
     }
+    // private void CardStatSelManager_OnOption1Clicked(Card card){
+    //     Option1_Clicked(card);
+    // }
+
+    // private void CardStatSelManager_OnOption2Clicked(Card card){
+    //     Option2_Clicked(card);
+    // }
 
     public void Option1_Clicked(Card card){
-        // if(_resultCard is MonsterCard){
         if(card is MonsterCard){
             var monster = card as MonsterCard;
             if(monster.FusionedCard){
@@ -58,7 +65,6 @@ public class CardStatSelections : MonoBehaviour {
     }
 
     public void Option2_Clicked(Card card){
-        // if(_resultCard is MonsterCard){
         if(card is MonsterCard){
             var monster = card as MonsterCard;
             if(monster.FusionedCard){

@@ -1,0 +1,60 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Canvas" style="flex-grow: 1;">
+        <ui:VisualElement name="Debug" style="flex-grow: 0; width: 20%; height: 15%; flex-shrink: 0; align-self: flex-end; margin-top: 54px; margin-right: 54px; background-color: rgba(69, 23, 166, 0.55);" />
+        <ui:VisualElement name="Center" style="flex-grow: 1; height: 75%; display: flex; visibility: visible;">
+            <ui:VisualElement name="BoardPlaceCardButtons" style="flex-grow: 1; flex-direction: column; align-items: flex-start; justify-content: space-between; font-size: 42px; -unity-font-style: bold; height: 95%; align-self: stretch; display: flex;">
+                <ui:VisualElement name="MonsterPlaces" style="flex-grow: 1; flex-direction: row; align-self: center; align-content: auto; justify-content: space-between; align-items: center; width: 1300px; top: 76px; opacity: 1; display: flex;">
+                    <ui:VisualElement name="MonsterFarLeft" style="flex-grow: 0; width: 200px; height: 150px; background-color: rgba(176, 16, 16, 0); flex-shrink: 0; justify-content: flex-start; align-self: center; align-items: center; align-content: auto; left: -2px; top: 135px; display: flex; opacity: 1;">
+                        <ui:Button text="Button" name="Button" style="align-self: auto;" />
+                        <ui:Button text="Button" style="align-self: auto; justify-content: space-around; align-items: auto; align-content: auto;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="MonsterLeft" style="flex-grow: 0; width: 200px; height: 150px; background-color: rgba(176, 16, 16, 0); flex-shrink: 0; top: 135px;">
+                        <ui:Button text="Button" name="Button" style="align-self: auto;" />
+                        <ui:Button text="Button" style="align-self: auto; justify-content: space-around; align-items: auto; align-content: auto;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="MonsterCenter" style="flex-grow: 0; width: 200px; height: 150px; background-color: rgba(176, 16, 16, 0); flex-shrink: 0; top: 135px;">
+                        <ui:Button text="Button" name="Button" style="align-self: auto;" />
+                        <ui:Button text="Button" style="align-self: auto; justify-content: space-around; align-items: auto; align-content: auto;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="MonsterRight" style="flex-grow: 0; width: 200px; height: 150px; background-color: rgba(176, 16, 16, 0); flex-shrink: 0; top: 135px;">
+                        <ui:Button text="Button" name="Button" style="align-self: auto;" />
+                        <ui:Button text="Button" style="align-self: auto; justify-content: space-around; align-items: auto; align-content: auto;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="MonsterFarRight" style="flex-grow: 0; width: 200px; height: 150px; background-color: rgba(176, 16, 16, 0); flex-shrink: 0; top: 135px;">
+                        <ui:Button text="Button" name="Button" style="align-self: auto;" />
+                        <ui:Button text="Button" style="align-self: auto; justify-content: space-around; align-items: auto; align-content: auto;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="ArcanePlaces" style="flex-grow: 1; flex-direction: row; align-self: center; align-content: auto; justify-content: space-between; align-items: center; width: 1300px; top: 77px;">
+                    <ui:VisualElement name="CardPlace1" style="flex-grow: 0; width: 200px; height: 150px; background-color: rgba(176, 16, 16, 0); flex-shrink: 0; justify-content: flex-start; align-self: center; align-items: center; align-content: auto; top: auto; left: -114px;">
+                        <ui:Button text="Button" name="Button" style="align-self: auto;" />
+                        <ui:Button text="Button" style="align-self: auto; justify-content: space-around; align-items: auto; align-content: auto;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CardPlace2" style="flex-grow: 0; width: 200px; height: 150px; background-color: rgba(176, 16, 16, 0); flex-shrink: 0; left: -60px;">
+                        <ui:Button text="Button" name="Button" style="align-self: auto;" />
+                        <ui:Button text="Button" style="align-self: auto; justify-content: space-around; align-items: auto; align-content: auto;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CardPlace3" style="flex-grow: 0; width: 200px; height: 150px; background-color: rgba(176, 16, 16, 0); flex-shrink: 0;">
+                        <ui:Button text="Button" name="Button" style="align-self: auto;" />
+                        <ui:Button text="Button" style="align-self: auto; justify-content: space-around; align-items: auto; align-content: auto;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CardPlace4" style="flex-grow: 0; width: 200px; height: 150px; background-color: rgba(176, 16, 16, 0); flex-shrink: 0; right: -57px;">
+                        <ui:Button text="Button" name="Button" style="align-self: auto;" />
+                        <ui:Button text="Button" style="align-self: auto; justify-content: space-around; align-items: auto; align-content: auto;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CardPlace5" style="flex-grow: 0; width: 200px; height: 150px; background-color: rgba(176, 16, 16, 0); flex-shrink: 0; right: -116px;">
+                        <ui:Button text="Button" name="Button" style="align-self: auto;" />
+                        <ui:Button text="Button" style="align-self: auto; justify-content: space-around; align-items: auto; align-content: auto;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="CardStatSelectionButtons" style="flex-grow: 0; justify-content: flex-end; flex-direction: column; margin-bottom: 54px; display: flex; width: auto; flex-shrink: 0; height: 25%;">
+                <ui:Button text="Button" name="StatButton1" style="width: 15%; height: 45%; align-self: center; -unity-font-style: bold; font-size: 42px;" />
+                <ui:Button text="Button" name="StatButton2" style="width: 15%; height: 45%; align-self: center; -unity-font-style: bold; font-size: 42px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Bottom" style="height: 10%; flex-direction: column-reverse; display: flex; max-height: 10%; visibility: visible;">
+            <ui:Button text="Button" name="ActionButton" style="width: 15%; height: 50%; align-content: flex-end; align-self: flex-end; margin-right: 54px; margin-bottom: 54px; font-size: 42px; -unity-font-style: bold; display: flex;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

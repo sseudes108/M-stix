@@ -10,8 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3c6a1e0d50a214e844c50c24f6229e, type: 3}
-  m_Name: FusionEventHandler
+  m_Name: FusionManagerSO
   m_EditorClassIdentifier: 
+  OnFusionStart:
+    m_PersistentCalls:
+      m_Calls: []
   OnFusionEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCheckCardsBase:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMonsterFusionStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFusionSucess:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFusionFailed:
     m_PersistentCalls:
       m_Calls: []

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CardDatabase : MonoBehaviour {
-    public FusionManager FusionManager;
+    public FusionManagerSO FusionManager;
     
     [field:SerializeField] public List<MonsterCardSO> Angels { get; private set; }
     
