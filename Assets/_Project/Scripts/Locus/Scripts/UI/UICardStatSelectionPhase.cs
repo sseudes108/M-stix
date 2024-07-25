@@ -59,12 +59,10 @@ public class UICardStatSelectionPhase : MonoBehaviour{
     }
 
     private void Option1_Clicked(){
-        Tester.Instance.CheckCall(name, "Option1_Clicked", "yellow");
         _cardStatSelManager.Option1Clicked();
     }
 
     private void Option2_Clicked(){
-        Tester.Instance.CheckCall(name, "Option2_Clicked", "yellow");
         _cardStatSelManager.Option2Clicked();
     }
 

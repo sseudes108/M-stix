@@ -42,7 +42,7 @@ public class UIActionPhase : MonoBehaviour {
 
             if(place.IsMonsterPlace){
                 // ShowButtons(place.Location);
-                SetMonsterOptions(place.Card as MonsterCard, place);
+                SetMonsterOptions(place.CardInPlace as MonsterCard, place);
                 return;
             }
 

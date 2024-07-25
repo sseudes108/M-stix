@@ -14,11 +14,10 @@ public class DrawPhase : AbstractState{
         }
 
         if(Battle.TurnManager.IsPlayerTurn){
-            Tester.Instance.CheckCall("DrawPhase",$"Should be True: {Battle.TurnManager.IsPlayerTurn}", "blue");
+
             Battle.BattleManager.PlayerDraw();
             return;
         }
-        Tester.Instance.CheckCall("DrawPhase","Should be False: {Battle.TurnManager.IsPlayerTurn}", "blue");
         Battle.BattleManager.EnemyDraw();
     }
 

@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 
 public class CardSelector {
-    public CardManagerSO _cardManager;
+    private CardManagerSO _cardManager;
+    private BattleManagerSO _battleManager;
     public List<Card> SelectedList { get; private set; }
 
-    public CardSelector(CardManagerSO cardManager){
+    public CardSelector(CardManagerSO cardManager, BattleManagerSO battleManager){
         _cardManager = cardManager;
+        _battleManager = battleManager;
         SelectedList = new();
     }
 
@@ -19,7 +21,15 @@ public class CardSelector {
         if(SelectedList.Count == 0){ _cardManager.NoneCardSelected();}
     }
 
-    public void ClearList(){
-        SelectedList.Clear();
+    public void RegisterEvents(){
+        _battleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
+    }
+    
+    public void UnregisterEvents(){
+        _battleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
+    }
+
+    private void BattleManager_OnStartPhase(){
+       SelectedList.Clear();
     }
 }

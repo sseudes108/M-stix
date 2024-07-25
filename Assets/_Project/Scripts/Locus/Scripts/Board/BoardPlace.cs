@@ -13,7 +13,7 @@ public class BoardPlace : MonoBehaviour {
     [field:SerializeField] public bool IsFree { get; private set; }
     private bool _canBeSelected;
     private Card _resultCard;
-    public Card Card;
+    public Card CardInPlace;
     private bool _isOptShowing;
 
     public BoardPlaceVisual Visual;
@@ -59,9 +59,13 @@ public class BoardPlace : MonoBehaviour {
 
     private void OnMouseOver(){
         if(this == null) { return; }
-        if(Card == null) { return; }
+
+        if(CardInPlace == null) { return; }
+        CardInPlace.OnMouseOver(); //Update the illustration in UICard
+
         if(_battleManager.CurrentPhase != _battleManager.Battle.Action) { return; }
         if(_isOptShowing) { return; }
+
         _boardManager.ShowOptions(this);
         _isOptShowing = true;
     }
@@ -90,7 +94,6 @@ public class BoardPlace : MonoBehaviour {
             default:
             break;
         }
-
     }
 
     public void SetCardInPlace(Card card){
@@ -119,7 +122,7 @@ public class BoardPlace : MonoBehaviour {
 
         }
 
-        Card = card;
+        CardInPlace = card;
         card.SetCardOnHand(false);
         card.DeselectCard();
         card.DisableCollider();

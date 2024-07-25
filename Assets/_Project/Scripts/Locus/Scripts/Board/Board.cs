@@ -35,10 +35,10 @@ public class Board : MonoBehaviour {
             // Tester.Instance.CheckCall("Board", "foreach(var place in places) - Before if(place.IsFree){continue;}", "yellow");
             if(place.IsFree){continue;}
             // Tester.Instance.CheckCall("Board", "foreach(var place in places) - After if(place.IsFree){continue;}", "yellow");
-            if(place.Card is MonsterCard){
-                var monster = place.Card as MonsterCard;
-                if(place.Card.IsFaceDown){
-                    place.Card.SetCanFlip();
+            if(place.CardInPlace is MonsterCard){
+                var monster = place.CardInPlace as MonsterCard;
+                if(place.CardInPlace.IsFaceDown){
+                    place.CardInPlace.SetCanFlip();
                 }
                 monster.SetCanChangeMode(true);
                 monster.SetCanAttack(true);

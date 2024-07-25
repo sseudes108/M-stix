@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 
-// [RequireComponent(typeof(CardVisual), typeof(CardMovement))]
 public abstract class Card : MonoBehaviour {
     [Header("Managers")]
     [SerializeField] private BattleManagerSO _battleManager;
@@ -72,7 +70,7 @@ public abstract class Card : MonoBehaviour {
         }
     }
 
-    private void OnMouseOver(){
+    public void OnMouseOver(){
         if(!IsPlayerCard && _isOnHand) {return;} //Not player card, on hand
 
         if(IsPlayerCard){
