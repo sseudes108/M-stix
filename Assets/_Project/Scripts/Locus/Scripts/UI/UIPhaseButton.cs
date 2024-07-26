@@ -38,7 +38,6 @@ public class UIPhaseButton : MonoBehaviour{
     }
 
     private void CardManager_OnSomeCardSelected(){
-        Debug.Log("T");
         _actionButtonText.text = "End Selection";
         _actionButtonContainer.SetActive(true);
         _actionButton.onClick.AddListener(EndSelection);

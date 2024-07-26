@@ -541,7 +541,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &60300848
 MonoBehaviour:
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &103250468
 MonoBehaviour:
@@ -1189,7 +1189,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &119582079
 MonoBehaviour:
@@ -2675,7 +2675,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &326970417
 MonoBehaviour:
@@ -2959,7 +2959,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &351780638
 MonoBehaviour:
@@ -3158,7 +3158,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &355532267
 MonoBehaviour:
@@ -3412,7 +3412,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &377285075
 MonoBehaviour:
@@ -3880,7 +3880,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 1
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &418998016
 MonoBehaviour:
@@ -4136,7 +4136,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &543213785
 MonoBehaviour:
@@ -4697,7 +4697,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &637230715
 MonoBehaviour:
@@ -5538,7 +5538,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &836039548
 MonoBehaviour:
@@ -6473,7 +6473,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1049708139
 MonoBehaviour:
@@ -6632,7 +6632,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1071389277
 MonoBehaviour:
@@ -6971,7 +6971,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1158520201
 MonoBehaviour:
@@ -7827,7 +7827,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 1
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1344077296
 MonoBehaviour:
@@ -8956,7 +8956,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1443069446
 MonoBehaviour:
@@ -10525,7 +10525,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1781544187
 MonoBehaviour:
@@ -10710,7 +10710,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1791220974
 MonoBehaviour:
@@ -11438,7 +11438,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1884829979
 MonoBehaviour:
@@ -14607,7 +14607,7 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Card: {fileID: 0}
+  CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &4283873112261418143
 MonoBehaviour:

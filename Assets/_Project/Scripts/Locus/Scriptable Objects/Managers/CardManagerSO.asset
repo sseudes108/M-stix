@@ -16,6 +16,7 @@ MonoBehaviour:
     type: 3}
   _arcaneCardPrefab: {fileID: 6569281006682968886, guid: 53341672514af1c4780e37ae727e9609,
     type: 3}
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   OnCardSelected:
     m_PersistentCalls:
       m_Calls: []

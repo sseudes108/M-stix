@@ -35,13 +35,9 @@ public class UIActionPhase : MonoBehaviour {
 
     private void BoardManager_OnHideOptions() {HideOptions(); }
     private void BoardManager_OnShowOptions(BoardPlace place){
-        // if(_battleManager.CurrentPhase != _battleManager.Battle.Action) { return; }
-
         //Options for the player cards on field
         if(_turnManager.IsPlayerTurn && place.IsPlayerPlace){
-
             if(place.IsMonsterPlace){
-                // ShowButtons(place.Location);
                 SetMonsterOptions(place.CardInPlace as MonsterCard, place);
                 return;
             }
@@ -86,54 +82,35 @@ public class UIActionPhase : MonoBehaviour {
     }
 
     private void SetMonsterOptions(MonsterCard cardInPlace, BoardPlace place){
-        //Face Down
-        if(cardInPlace.IsPlayerCard){
-            if (cardInPlace.IsFaceDown){ // is face down and can flip
-                if(cardInPlace.CanFlip){
-                    ShowButtons(place.Location);
+        if(!cardInPlace.IsFaceDown){//card face Up
+            if(cardInPlace.CanChangeMode && cardInPlace.IsInAttackMode){//is in attack mode and can change
+                ShowButtons(place.Location);
 
-                    _button1Text.text = "Flip";
-                    _button1.onClick.AddListener(Option1Clicked);
-                }
+                _button1Text.text = "Attack!";
+                _button1.onClick.AddListener(Option1Clicked);
+
+                _button2Text.text = "DEF";
+                _button2.onClick.AddListener(Option2Clicked);
                 return;
             }
 
-            //Face Up
-            if (cardInPlace.IsInAttackMode){// if face up and attack mode
-                if (cardInPlace.CanAttack && cardInPlace.CanChangeMode){ // if can change mode and can attack
-                    ShowButtons(place.Location);
-
-                    _button1Text.text = "Attack!";
-                    _button2Text.text = "DEF";
-
-                    _button1.onClick.AddListener(Option1Clicked);
-                    _button2.onClick.AddListener(Option2Clicked);
-                    return;
-                }
-
-                if (cardInPlace.CanAttack){ // only can attack
-                    ShowButtons(place.Location);
-
-                    _button1Text.text = "Attack!";
-                    _button1.onClick.AddListener(Option1Clicked);
-                    _button2.gameObject.SetActive(false);
-                    return;
-                }
-                
-                if (cardInPlace.CanChangeMode){ // only can change mode
-                    ShowButtons(place.Location);
-
-                    _button1Text.text = "DEF";
-                    _button1.onClick.AddListener(Option1Clicked);
-                    _button2.gameObject.SetActive(false);
-                }
-            }else{// if face up and deffense mode
+            if(cardInPlace.CanChangeMode && !cardInPlace.IsInAttackMode){//is in deffense mode and can change
                 ShowButtons(place.Location);
-                
-                _button1Text.text = "ATK";
-                _button1.onClick.AddListener(Option1Clicked);
-                _button2.gameObject.SetActive(false);
+
+                _button2Text.text = "ATK"; //button two is used for aesthetic reasons
+                _button2.onClick.AddListener(Option1Clicked);
+                _button1.gameObject.SetActive(false);
+                return;
             }
+        }
+
+        if(cardInPlace.IsFaceDown && cardInPlace.CanFlip){ //Face down and can flip
+            ShowButtons(place.Location);
+
+            _button2Text.text = "Flip";
+            _button2.onClick.AddListener(Option1Clicked);
+            _button1.gameObject.SetActive(false);
+            return;
         }
     }
 
@@ -144,5 +121,4 @@ public class UIActionPhase : MonoBehaviour {
     private void Option2Clicked(){
         Debug.Log("Option2Clicked");
     }
-
 }

@@ -22,6 +22,7 @@ public class CardStatSelections : MonoBehaviour {
     private void CardStatSelManager_OnOption2Clicked(){
         Option2_Clicked(_fusionManager.ResultCard);
     }
+
     // private void CardStatSelManager_OnOption1Clicked(Card card){
     //     Option1_Clicked(card);
     // }
@@ -39,26 +40,34 @@ public class CardStatSelections : MonoBehaviour {
                     monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
                     CardStatSelManager.SelectAnother(monster);
-                    
-                }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
+                    return;                    
+                }
+
+                if(!monster.ModeSelected){ //Anima selected and Mode not seletec
                     monster.SelectMode();
                     CardStatSelManager.SelectionsEnd();
+                    return;
                 }
+                
             }else{
-                // normal card
 
-                if(!monster.AnimaSelected){ // Anima not selected
+                if(!monster.AnimaSelected){ //Anima not Selected
                     monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
                     CardStatSelManager.SelectAnother(monster);
+                    return;
+                }
 
-                }else if(!monster.ModeSelected){ //Anima selected and Mode not selected
+                if(!monster.ModeSelected){ //Mode not selected
                     monster.SelectMode();
                     CardStatSelManager.SelectAnother(monster);
+                    return;
+                }
 
-                }else if(!monster.FaceSelected){ //Anima selected, Mode seletec and Face not selected
+                if(!monster.FaceSelected){ //Face not selected
                     monster.SelectFace();
                     CardStatSelManager.SelectionsEnd();
+                    return;
                 }
             }
         }
@@ -68,30 +77,42 @@ public class CardStatSelections : MonoBehaviour {
         if(card is MonsterCard){
             var monster = card as MonsterCard;
             if(monster.FusionedCard){
-                // fusioned Card
-                if(!monster.AnimaSelected){ // Anima note selected
+
+                if(!monster.AnimaSelected){
                     monster.Visuals.Anima.Anima2Selected();
                     monster.SelectAnima();
                     CardStatSelManager.SelectAnother(monster);
-                }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
-                    monster.SelectDeffenseMode();
-                    monster.SelectMode();
-                    CardStatSelManager.SelectionsEnd();
+                    return;
                 }
+
+                if(!monster.ModeSelected){
+                    monster.SelectMode();
+                    monster.SelectDeffenseMode();
+                    CardStatSelManager.SelectionsEnd();
+                    return;
+                }
+
             }else{
-                // normal card
-                if(!monster.AnimaSelected){ // Anima note selected
+
+                if(!monster.AnimaSelected){ //Anima not Selected
                     monster.Visuals.Anima.Anima2Selected();
                     monster.SelectAnima();
                     CardStatSelManager.SelectAnother(monster);
-                }else if(!monster.ModeSelected){ //Anima selected and Mode not seletec
-                    monster.SelectDeffenseMode();
+                    return;
+                }
+
+                if(!monster.ModeSelected){ //Mode not selected
                     monster.SelectMode();
-                    CardStatSelManager.SelectionsEnd();
-                }else if(!monster.FaceSelected){ //Anima selected, Mode seletec and Face not selected
-                    monster.SetFaceDown();
+                    monster.SelectDeffenseMode();
+                    CardStatSelManager.SelectAnother(monster);
+                    return;
+                }
+
+                if(!monster.FaceSelected){ //Face not selected
                     monster.SelectFace();
+                    monster.SetFaceDown();
                     CardStatSelManager.SelectionsEnd();
+                    return;
                 }
             }
         }
