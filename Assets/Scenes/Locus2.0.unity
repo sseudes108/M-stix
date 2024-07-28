@@ -535,6 +535,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -1040,6 +1042,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -1183,6 +1187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -2669,6 +2675,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -2953,6 +2961,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -3152,6 +3162,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -3406,6 +3418,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -3874,6 +3888,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -4130,8 +4146,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
-  <Location>k__BackingField: 1
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
@@ -4691,8 +4709,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
-  <Location>k__BackingField: 2
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
@@ -5532,6 +5552,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -6467,6 +6489,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -6626,8 +6650,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
-  <Location>k__BackingField: 4
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
@@ -6965,8 +6991,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
-  <Location>k__BackingField: 3
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
@@ -7821,6 +7849,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -8950,6 +8980,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -10519,6 +10551,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -10704,6 +10738,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -11432,6 +11468,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
@@ -14601,6 +14639,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
+  _fusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   <Location>k__BackingField: 0
   <Colliders>k__BackingField: []

@@ -29,7 +29,7 @@ public class FusionManagerSO : ScriptableObject {
     }
 
     public void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn) { OnFusionStart?.Invoke(selectedCards, isPlayerTurn); }
-
+    
     public void StartMonsterFusionRoutine(MonsterCard monster1, MonsterCard monster2) { OnMonsterFusionStart?.Invoke(monster1, monster2); }
 
     public void FusionSucess(Card card1, Card card2, Card resultCard) { OnFusionSucess?.Invoke(card1, card2, resultCard); }

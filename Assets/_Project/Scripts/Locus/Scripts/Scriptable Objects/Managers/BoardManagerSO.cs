@@ -10,12 +10,12 @@ public class BoardManagerSO : ScriptableObject {
     [SerializeField] private BattleManagerSO _battleManager;
     [SerializeField] private UIEventHandlerSO _uIManager;
 
-    private BoardPlaceVisualController _boardVisualController;
+    public BoardPlaceVisualController BoardVisualController {get; private set;}
     
     private void OnEnable() {
         OnBoardPlaceSelected ??= new UnityEvent();
         OnShowOptions ??= new UnityEvent<BoardPlace>();
-        OnHideOptions ??= new UnityEvent();   
+        OnHideOptions ??= new UnityEvent();
 
         _battleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
         _battleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_BoardPlaceSelectionStart);
@@ -31,18 +31,18 @@ public class BoardManagerSO : ScriptableObject {
     }
 
     //listen Events
-    private void BattleManager_OnStartPhase() { _boardVisualController.OnStartPhase(); }
-    private void BattleManager_BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { _boardVisualController.OnBoardPlaceSelectionStart(card, isPlayerTurn); }
-    private void BattleManager_BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { _boardVisualController.OnBoardPlaceSelectionEnd(isPlayerTurn); }
-    private void UIManager_OnMonsterAttack(Card card, bool isPlayerTurn) { _boardVisualController.OnMonsterAttack(card, isPlayerTurn); }
+    private void BattleManager_OnStartPhase() { BoardVisualController.OnStartPhase(); }
+    private void BattleManager_BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { BoardVisualController.OnBoardPlaceSelectionStart(card, isPlayerTurn); }
+    private void BattleManager_BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { BoardVisualController.OnBoardPlaceSelectionEnd(isPlayerTurn); }
+    private void UIManager_OnMonsterAttack(Card card, bool isPlayerTurn) { BoardVisualController.OnMonsterAttack(card, isPlayerTurn); }
 
-    //Broad Events
+    //Board Events
     public void BoardPlaceSelected() { OnBoardPlaceSelected?.Invoke(); }
     public void ShowOptions(BoardPlace place) { OnShowOptions?.Invoke(place); }
     public void HideOptions() { OnHideOptions?.Invoke(); }
 
     //Custom Methods
     public void SetBoardPlaceVisualController(BoardPlaceVisualController boardPlaces){
-        _boardVisualController = boardPlaces;
+        BoardVisualController = boardPlaces;
     }
 }

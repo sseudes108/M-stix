@@ -30,7 +30,6 @@ public class Battle : MonoBehaviour {
     public ActionPhaseTwo ActionTwo {get; private set;}
     public EndPhase EndPhase {get; private set;}
 
-
     public Battle(){
         StartPhase = new();
         DrawPhase = new();
@@ -50,8 +49,10 @@ public class Battle : MonoBehaviour {
     public void ChangeState(AbstractState newState){
         CurrentState?.Exit();
         CurrentState = newState;
+
         CurrentState.SetController(this);
         CurrentState.SetController(AIManager.AI);
+        
         BattleManager.ChangeState(CurrentState);
         CurrentState.Enter();
 

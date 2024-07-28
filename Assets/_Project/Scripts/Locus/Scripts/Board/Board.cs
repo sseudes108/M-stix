@@ -32,9 +32,8 @@ public class Board : MonoBehaviour {
 
     private void CheckCardsOnBoard(List<BoardPlace> places){
         foreach(var place in places){
-            // Tester.Instance.CheckCall("Board", "foreach(var place in places) - Before if(place.IsFree){continue;}", "yellow");
             if(place.IsFree){continue;}
-            // Tester.Instance.CheckCall("Board", "foreach(var place in places) - After if(place.IsFree){continue;}", "yellow");
+
             if(place.CardInPlace is MonsterCard){
                 var monster = place.CardInPlace as MonsterCard;
                 if(place.CardInPlace.IsFaceDown){
@@ -42,7 +41,7 @@ public class Board : MonoBehaviour {
                 }
                 monster.SetCanChangeMode(true);
                 monster.SetCanAttack(true);
-                // Tester.Instance.CheckCall("Board", "foreach(var place in places) - place.Card is MonsterCard", "red");
+
                 continue;
             }
         }
