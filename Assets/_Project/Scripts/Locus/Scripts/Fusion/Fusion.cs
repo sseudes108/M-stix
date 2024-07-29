@@ -13,6 +13,8 @@ public class Fusion : MonoBehaviour {
     private List<Card> _fusionLine;
     private Card _resultCard;
 
+    // private IEnumerator _fusionRoutine;
+
     private void OnEnable() {
         _fusionManager.OnFusionStart.AddListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionSucess.AddListener(FusionManager_OnFusionSucess);
@@ -44,17 +46,21 @@ public class Fusion : MonoBehaviour {
 #region Fusion
 
     private void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
+        // if(_fusionRoutine == null){
+        //     _fusionRoutine = FusionRoutine(selectedCards, isPlayerTurn);
+        //     StartCoroutine(_fusionRoutine);
+        // }
         StartCoroutine(FusionRoutine(selectedCards, isPlayerTurn));
     }
 
     private IEnumerator FusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
         _isPlayerTurn = isPlayerTurn;
         _fusionLine = selectedCards;
+
         ResetCards(_fusionLine);
 
         if(_fusionLine.Count > 1){
             do{
-                _resultCard = null;
                 _fusionManager.Positions.MoveCardsToFusionPosition(_fusionLine, _isPlayerTurn);
     
                 yield return new WaitForSeconds(1f);
@@ -92,17 +98,24 @@ public class Fusion : MonoBehaviour {
                     }
                 }
                 yield return new WaitForSeconds(1f);
+
             }while(_fusionLine.Count > 0);
+
         }else if(_fusionLine.Count == 1){
-            _resultCard = null;
+
             _resultCard = _fusionLine[0];
             yield return null;
             _fusionManager.Positions.MoveCardToResultPosition(_resultCard, _isPlayerTurn);
         }
+    
         yield return new WaitForSeconds(1f);
         // Open UI Select options
         _fusionManager.SetResultedCard(_resultCard);
         _fusionManager.FusionEnd(_resultCard);
+
+        _fusionLine.Clear();
+        // _resultCard = null;
+        // _fusionRoutine = null;
     }
 
     private void RemoveCardsFromFusionLine(Card card1, Card card2){

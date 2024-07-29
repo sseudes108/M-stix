@@ -5,9 +5,10 @@ using UnityEngine;
 public class BoardPlace : MonoBehaviour {
     [SerializeField] private BattleManagerSO _battleManager;
     [SerializeField] private BoardManagerSO _boardManager;
-    [SerializeField] private FusionManagerSO _fusionManager;
-    [SerializeField] private TurnManagerSO _turnManager;
-    [SerializeField] private UIEventHandlerSO _uIManager;
+    // [SerializeField] private FusionManagerSO _fusionManager;
+    // [SerializeField] private TurnManagerSO _turnManager;
+    [SerializeField] private CardManagerSO _cardManager;
+    // [SerializeField] private UIEventHandlerSO _uIManager;
 
     [field:SerializeField] public EBoardPlace Location { get; private set; }
     [field:SerializeField] public Collider[] Colliders { get; private set; }
@@ -71,10 +72,12 @@ public class BoardPlace : MonoBehaviour {
                     return;
                 }
                 
+                _cardManager.Selector.SetCardsToBoardFusion(new List<Card>{CardInPlace, _resultCard});
                 _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
+
                 // _boardManager.BoardVisualController.OnBoardPlaceSelectionEnd(_turnManager.IsPlayerTurn);
-                var cards = new List<Card>{CardInPlace, _resultCard};
-                _fusionManager.StartFusionRoutine(cards, _turnManager.IsPlayerTurn); //Fusion with monster on board
+                // var cards = new List<Card>{CardInPlace, _resultCard};
+                // _fusionManager.StartFusionRoutine(cards, _turnManager.IsPlayerTurn); //Fusion with monster on board
 
             break;
 

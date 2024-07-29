@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,12 +16,16 @@ public class UICardStatSelectionPhase : MonoBehaviour{
     private void OnEnable() {
         _cardStatSelManager.OnSelectAnother.AddListener(CardStatSelManager_OnSelectAnother);
         _cardStatSelManager.OnSelectionsEnd.AddListener(CardStatSelManager_OnSelectionsEnd);
+
+        _fusionManager.OnFusionStart.AddListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionEnd.AddListener(FusionManager_OnFusionEnd);
     }
 
     private void OnDisable() {     
         _cardStatSelManager.OnSelectAnother.RemoveListener(CardStatSelManager_OnSelectAnother);
         _cardStatSelManager.OnSelectionsEnd.RemoveListener(CardStatSelManager_OnSelectionsEnd);
+        
+        _fusionManager.OnFusionStart.RemoveListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionEnd.RemoveListener(FusionManager_OnFusionEnd);
     }
 
@@ -40,7 +45,14 @@ public class UICardStatSelectionPhase : MonoBehaviour{
         SetButtonText(card);
     }
 
+    public void FusionManager_OnFusionStart(List<Card> cards, bool isPlayerTurn){
+        Debug.Log("UICardStatSelectionPhase - FusionManager_OnFusionStart");
+        if(!_turnManager.IsPlayerTurn) { return; }
+        HideOptions();
+    }
+
     public void FusionManager_OnFusionEnd(Card card){
+        Debug.Log("UICardStatSelectionPhase - FusionManager_OnFusionEnd");
         if(!_turnManager.IsPlayerTurn) { return; }
         ShowOptions();
         SetButtonText(card);

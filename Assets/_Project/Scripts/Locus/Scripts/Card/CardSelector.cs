@@ -32,4 +32,9 @@ public class CardSelector {
     private void BattleManager_OnStartPhase(){
        SelectedList.Clear();
     }
+
+    public void SetCardsToBoardFusion(List<Card> selectedCards){
+        SelectedList.Clear();
+        SelectedList = selectedCards;
+    }
 }

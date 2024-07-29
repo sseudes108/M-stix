@@ -131,6 +131,11 @@ public abstract class Card : MonoBehaviour {
     public void DisableCollider() { _collider.enabled = false; }
 
     public void SetHandPosition(HandPosition handPosition) { _handPosition = handPosition; }
-    public void SetHandPositionFree() { _handPosition.SetPlaceFree(); }
+
+    public void SetHandPositionFree() {
+        if(_handPosition == null) { return; }
+        _handPosition.SetPlaceFree();
+    }
+
 #endregion
 }

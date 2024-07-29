@@ -29,6 +29,8 @@ public class ShaderBorder : MonoBehaviour {
     }
 
     public void ResetBorderColor(){
+        if(_renderer == null) { return; }
+        
         var sideMat = new Material(_renderer.sharedMaterials[0]);
         var faceMat = new Material(_renderer.sharedMaterials[1]);
 
