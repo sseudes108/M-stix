@@ -2,9 +2,10 @@ using System.Collections;
 using UnityEngine;
 
 public class StartPhase : AbstractState{
+    public StartPhase(StateMachine stateMachine) : base(stateMachine){}
     public override void Enter(){
-        if(Battle != null){
-            Battle.StartCoroutine(BattlePhaseStartRoutine());
+        if(StateMachine.Battle != null){
+            StateMachine.Battle.StartCoroutine(BattlePhaseStartRoutine());
         }
     }
 
@@ -12,10 +13,10 @@ public class StartPhase : AbstractState{
     
     public IEnumerator BattlePhaseStartRoutine(){
         yield return new WaitForSeconds(1f);
-        Battle.BattleManager.StartPhase();
+        StateMachine.Battle.BattleManager.StartPhase();
 
         yield return new WaitForSeconds(2f);
-        Battle.ChangeState(Battle.DrawPhase);
+        StateMachine.Battle.ChangeState(StateMachine.Battle.DrawPhase);
 
         yield return null;
     }

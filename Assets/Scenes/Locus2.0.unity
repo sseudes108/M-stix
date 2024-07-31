@@ -8363,7 +8363,7 @@ GameObject:
   - component: {fileID: 1396675613}
   - component: {fileID: 1396675614}
   m_Layer: 0
-  m_Name: AI State
+  m_Name: AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8396,9 +8396,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07875a427ab097844a6cd1c26bdc7134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Manager: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3, type: 2}
-  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  Actor: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9, type: 2}
+  <BattleManager>k__BackingField: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd,
+    type: 2}
+  <AIManager>k__BackingField: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3,
+    type: 2}
+  <TurnManager>k__BackingField: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd,
+    type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
+  <Manager>k__BackingField: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3,
+    type: 2}
+  <Actor>k__BackingField: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9,
+    type: 2}
+  CURRENTSTATE: 
 --- !u!1 &1400343844
 GameObject:
   m_ObjectHideFlags: 0
@@ -9607,12 +9616,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3941d06d57e4a468e804d682a97044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
+  <BattleManager>k__BackingField: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd,
+    type: 2}
+  <AIManager>k__BackingField: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3,
+    type: 2}
+  <TurnManager>k__BackingField: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd,
+    type: 2}
+  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   FusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
   BoardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
-  AIManager: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3, type: 2}
-  TurnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
-  UIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
   PlayerHandManager: {fileID: 11400000, guid: b2a332859e0c41844a4ca94ddc78eb49, type: 2}
   EnemyHandManager: {fileID: 11400000, guid: ec6dfd3e1f97e5c4991676762160f466, type: 2}
   CardStatSelManager: {fileID: 11400000, guid: aa8ab951e89f4c2499567975eb284d0e, type: 2}

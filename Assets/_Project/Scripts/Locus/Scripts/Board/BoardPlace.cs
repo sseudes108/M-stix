@@ -74,11 +74,7 @@ public class BoardPlace : MonoBehaviour {
                 
                 _cardManager.Selector.SetCardsToBoardFusion(new List<Card>{CardInPlace, _resultCard});
                 _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
-
-                // _boardManager.BoardVisualController.OnBoardPlaceSelectionEnd(_turnManager.IsPlayerTurn);
-                // var cards = new List<Card>{CardInPlace, _resultCard};
-                // _fusionManager.StartFusionRoutine(cards, _turnManager.IsPlayerTurn); //Fusion with monster on board
-
+                CardInPlace = null;
             break;
 
             case ActionPhase:

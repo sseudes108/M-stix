@@ -1,7 +1,8 @@
 public class ActionPhase : AbstractState{
+    public ActionPhase(StateMachine controller) : base(controller){}
 
     public override void Enter(){
-        Battle.BattleManager.ActionPhaseStart();
+        StateMachine.BattleManager.ActionPhaseStart();
     }
 
     public override void Exit() {}

@@ -1,13 +1,12 @@
-using System.Collections;
-
-public class BoardPlaceSelectionPhase : AbstractState{   
+public class BoardPlaceSelectionPhase : AbstractState{
+    public BoardPlaceSelectionPhase(StateMachine stateMachine) : base(stateMachine){}
 
     public override void Enter(){
         SubscribeEvents();
-        Battle.BattleManager.BoardPlaceSelectionStart(Battle.FusionManager.ResultCard, Battle.TurnManager.IsPlayerTurn);
+        StateMachine.Battle.BattleManager.BoardPlaceSelectionStart(StateMachine.Battle.FusionManager.ResultCard, StateMachine.Battle.TurnManager.IsPlayerTurn);
 
-        if(!Battle.TurnManager.IsPlayerTurn){
-            Battle.StartCoroutine(AIRoutine(Battle.FusionManager.ResultCard));
+        if(!StateMachine.Battle.TurnManager.IsPlayerTurn){
+            StateMachine.AI.ChangeState(StateMachine.AI.BoardPlaceSelect);
         }
     }
 
@@ -16,20 +15,16 @@ public class BoardPlaceSelectionPhase : AbstractState{
     }
 
     public override void SubscribeEvents(){
-        Battle.BoardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
+        StateMachine.Battle.BoardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
     }
 
     public override void UnsubscribeEvents(){
-        Battle.BoardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
+        StateMachine.Battle.BoardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
     }
 
     private void BoardManager_OnBoardPlaceSelected(){
-        Battle.BattleManager.BoardPlaceSelectionEnd(Battle.FusionManager.ResultCard, Battle.TurnManager.IsPlayerTurn);
-        Battle.ChangeState(Battle.Action);
-    }
-    public IEnumerator AIRoutine(Card cardToPlace){
-        yield return Battle.StartCoroutine(AI.Actor.BoardPlaceSelector.BoardSelectionRoutine(cardToPlace));
-        yield return null;
+        StateMachine.Battle.BattleManager.BoardPlaceSelectionEnd(StateMachine.Battle.FusionManager.ResultCard, StateMachine.Battle.TurnManager.IsPlayerTurn);
+        StateMachine.Battle.ChangeState(StateMachine.Battle.Action);
     }
 
     public override string ToString(){

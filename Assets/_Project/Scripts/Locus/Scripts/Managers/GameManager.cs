@@ -7,4 +7,8 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         _turnManager.ResetTurnStats();
     }
+
+    private void UnsubscribeAllEvents(){
+        
+    }
 }

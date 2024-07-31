@@ -28,9 +28,6 @@ public class BattleManagerSO : ScriptableObject {
 
     [HideInInspector] public UnityEvent OnEndPhaseStart;
 
-    // public TurnManagerSO TurnManager;
-    // public bool IsPlayerTurn => TurnManager.CheckPlayerTurn();
-
     private AbstractState _currentPhase;
     public AbstractState CurrentPhase => _currentPhase;
     public Battle Battle {get; private set;}
@@ -63,13 +60,17 @@ public class BattleManagerSO : ScriptableObject {
     }
 
     public void EndActionPhase(){
+        Debug.Log("EndPhase");
         Battle.ChangeState(Battle.EndPhase);
+    }
+
+    public void SetBattleController(StateMachine battle){
+        Battle = battle as Battle;
     }
 
 #region Events
     public void ChangeState(AbstractState newState) { // Used for hold the current phase ref and notify the UI
         _currentPhase = newState;
-        Battle = CurrentPhase.GetBattleController();
         OnStateChange?.Invoke(newState); //UI notification
     }
     

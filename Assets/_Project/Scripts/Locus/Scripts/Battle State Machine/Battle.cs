@@ -1,13 +1,9 @@
 using UnityEngine;
 
-public class Battle : MonoBehaviour {
+public class Battle : StateMachine {
     [Header("Battle System")]
-    public BattleManagerSO BattleManager;
     public FusionManagerSO FusionManager;
     public BoardManagerSO BoardManager;
-    public AIManagerSO AIManager;
-    public TurnManagerSO TurnManager;
-    public UIEventHandlerSO UIManager;
 
     [Header("Hands")]
     public PlayerHandManagerSO PlayerHandManager;
@@ -31,27 +27,25 @@ public class Battle : MonoBehaviour {
     public EndPhase EndPhase {get; private set;}
 
     public Battle(){
-        StartPhase = new();
-        DrawPhase = new();
-        CardSelection = new();
-        Fusion = new();
-        CardStatSelection = new();
-        BoardPlaceSelection = new();
-        Action = new();
-        ActionTwo = new();
-        EndPhase = new();
+        StartPhase = new(this);
+        DrawPhase = new(this);
+        CardSelection = new(this);
+        Fusion = new(this);
+        CardStatSelection = new(this);
+        BoardPlaceSelection = new(this);
+        Action = new(this);
+        ActionTwo = new(this);
+        EndPhase = new(this);
     }
 
     private void Start(){
+        BattleManager.SetBattleController(this);
         ChangeState(StartPhase);
     }
 
     public void ChangeState(AbstractState newState){
         CurrentState?.Exit();
         CurrentState = newState;
-
-        CurrentState.SetController(this);
-        CurrentState.SetController(AIManager.AI);
         
         BattleManager.ChangeState(CurrentState);
         CurrentState.Enter();

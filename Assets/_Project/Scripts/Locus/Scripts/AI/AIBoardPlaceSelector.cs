@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIBoardPlaceSelector : AIAction {
-    public AIBoardPlaceSelector(AIActorSO actor){
-        _actor = actor;
-    }
+    public AIBoardPlaceSelector(AIActorSO actor){_actor = actor;}
 
     private List<BoardPlace> _monsterPlaces;
     private List<BoardPlace> _arcanePlaces;
@@ -18,8 +16,8 @@ public class AIBoardPlaceSelector : AIAction {
     public IEnumerator BoardSelectionRoutine(Card cardToPlace){
         Debug.Log("Placing Card");
         yield return new WaitForSeconds(2f);
-        SelectFirstFreePlace(cardToPlace);
-        // SelectRandomFreePlace(cardToPlace);
+        // SelectFirstFreePlace(cardToPlace);
+        SelectRandomFreePlace(cardToPlace);
         yield return null;
     }
 

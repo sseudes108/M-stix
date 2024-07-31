@@ -1,10 +1,12 @@
 public class EndPhase : AbstractState{
+    public EndPhase(StateMachine stateMachine) : base(stateMachine){}
+
     public override void Enter(){
-        Battle.StartCoroutine(Battle.BattleManager.ChangeStateRoutine(3f, Battle, Battle.StartPhase));
+        StateMachine.Battle.StartCoroutine(StateMachine.Battle.BattleManager.ChangeStateRoutine(3f, StateMachine.Battle, StateMachine.Battle.StartPhase));
     }
 
     public override void Exit(){
-        Battle.TurnManager.EndTurn();
+        StateMachine.Battle.TurnManager.EndTurn();
     }
 
     public override string ToString(){
