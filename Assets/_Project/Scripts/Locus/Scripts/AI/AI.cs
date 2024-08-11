@@ -16,8 +16,6 @@ public class AI : StateMachine {
         BoardPlaceSelect = new(this);
     }
 
-    public string CURRENTSTATE;
-
     private void Start(){
         Manager.SetAI(this);
     }
@@ -26,6 +24,7 @@ public class AI : StateMachine {
         CurrentState?.Exit();
         CurrentState = newState;
         CurrentState?.Enter();
-        CURRENTSTATE = CurrentState.ToString();
+        
+        TesterUI.Instance.UpdateAIStateText(CurrentState.ToString());
     }
 }

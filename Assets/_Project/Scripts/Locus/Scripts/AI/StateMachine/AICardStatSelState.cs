@@ -12,4 +12,8 @@ public class AICardStatSelState : AbstractState{
         yield return StateMachine.Battle.StartCoroutine(StateMachine.AI.Actor.CardStatSelector.SelectCardStats(resultCard));
         yield return null;
     }
+
+    public override string ToString(){
+        return "Select Card Stats";
+    }
 }
