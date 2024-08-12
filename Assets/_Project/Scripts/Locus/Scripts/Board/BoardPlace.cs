@@ -72,10 +72,13 @@ public class BoardPlace : MonoBehaviour {
                     return;
                 }
                 
-                _cardManager.Selector.SetCardsToBoardFusion(new List<Card>{CardInPlace, _resultCard});
-                _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
-                CardInPlace = null;
-                IsFree = true;
+                //Board Fusion
+                StartBoardFusion();
+
+                // _cardManager.Selector.SetCardsToBoardFusion(new List<Card>{CardInPlace, _resultCard});
+                // _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
+                // CardInPlace = null;
+                // IsFree = true;
             break;
 
             case ActionPhase:
@@ -157,6 +160,13 @@ public class BoardPlace : MonoBehaviour {
         _boardManager.BoardPlaceSelected();
     }
 
+    private void StartBoardFusion(){
+        _cardManager.Selector.SetCardsToBoardFusion(new List<Card>{CardInPlace, _resultCard});
+        _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
+        CardInPlace = null;
+        IsFree = true;
+    }
+
 #endregion
 
 #region Events
@@ -164,8 +174,6 @@ public class BoardPlace : MonoBehaviour {
     /// <summary>
     /// Allow a card be selected
     /// </summary>
-    /// <param name="card"></param>
-    /// <param name="isPlayerTurn"></param>
     private void BattleManager_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn){
         if(IsPlayerPlace && isPlayerTurn){
             _resultCard = card;

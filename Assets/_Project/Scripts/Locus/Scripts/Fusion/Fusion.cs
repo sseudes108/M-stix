@@ -222,10 +222,8 @@ public class Fusion : MonoBehaviour {
 
     private void ResetCards(List<Card> selectedcards){
         foreach(var card in selectedcards){
-            if(card != null){
-                card.SetHandPositionFree();
-                card.Visuals.Border.ResetBorderColor();
-            }
+            card.SetHandPositionFree();
+            card.Visuals.Border.ResetBorderColor();
         }
     }
 }

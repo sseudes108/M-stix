@@ -32,7 +32,7 @@ public class AICardStatSelector : AIAction {
         }
 
         card.SelectAnima();
-        Debug.Log("AnimaSelected");
+        // Debug.Log("AnimaSelected");
     }
 
     private void ModeSelection(MonsterCard card){
@@ -42,7 +42,7 @@ public class AICardStatSelector : AIAction {
         }
 
         card.SelectMode();
-        Debug.Log("ModeSelected");
+        // Debug.Log("ModeSelected");
     }
 
     private void FaceSelection(MonsterCard card){
@@ -52,6 +52,6 @@ public class AICardStatSelector : AIAction {
         }
 
         card.SelectFace();
-        Debug.Log("FaceSelected");
+        // Debug.Log("FaceSelected");
     }
 }
