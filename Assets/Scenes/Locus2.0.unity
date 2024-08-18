@@ -8407,7 +8407,6 @@ MonoBehaviour:
     type: 2}
   <Actor>k__BackingField: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9,
     type: 2}
-  CURRENTSTATE: 
 --- !u!1 &1400343844
 GameObject:
   m_ObjectHideFlags: 0
@@ -13316,6 +13315,7 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
   _cameraManager: {fileID: 11400000, guid: 1108024303e207549bc3962a150bd757, type: 2}
+  _boardManager: {fileID: 0}
   _strongestTypeList: []
   _cardDatabase: {fileID: 11400000, guid: 2f75b87eb20934545bb4f689cf07efd6, type: 2}
 --- !u!114 &2111008769
@@ -13334,6 +13334,7 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
   _cameraManager: {fileID: 11400000, guid: 1108024303e207549bc3962a150bd757, type: 2}
+  _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
 --- !u!114 &2111008770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13350,6 +13351,7 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
   _cameraManager: {fileID: 11400000, guid: 1108024303e207549bc3962a150bd757, type: 2}
+  _boardManager: {fileID: 0}
   _playerFusionPositions:
   - {fileID: 3012175273687063293}
   - {fileID: 3012175272823294441}

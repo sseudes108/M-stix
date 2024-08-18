@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
 public class CardSelector {
-    private CardManagerSO _cardManager;
-    private BattleManagerSO _battleManager;
+    private readonly CardManagerSO _cardManager;
+    private readonly BattleManagerSO _battleManager;
     public List<Card> SelectedList { get; private set; }
 
     public CardSelector(CardManagerSO cardManager, BattleManagerSO battleManager){

@@ -4,21 +4,21 @@ using UnityEngine;
 public class MonsterCard : Card {
 
     [Header("Monster Specifications")]
-    public EMonsterType MonsterType; // {get; private set;}
-    public EAnimaType FirstAnima; // {get; private set;}
-    public EAnimaType SecondAnima; // {get; private set;}
+    public EMonsterType MonsterType {get; private set;}
+    public EAnimaType FirstAnima {get; private set;}
+    public EAnimaType SecondAnima {get; private set;}
 
     [Header("Stats")]
-    public int Level; // {get; private set;}
-    public int Attack; // {get; private set;}
-    public int Deffense; // {get; private set;}
+    public int Level {get; private set;}
+    public int Attack {get; private set;}
+    public int Deffense {get; private set;}
 
     [Header("Card Settings")]
-    public bool AnimaSelected = false; // {get; private set;}
-    public bool ModeSelected = false; // {get; private set;}
-    public bool IsInAttackMode = true; // {get; private set;}
-    public bool CanAttack; // {get; private set;}
-    public bool CanChangeMode; // {get; private set;}
+    public bool AnimaSelected {get; private set;} = false;
+    public bool ModeSelected {get; private set;} = false;
+    public bool IsInAttackMode {get; private set;} = true;
+    public bool CanAttack {get; private set;}
+    public bool CanChangeMode {get; private set;}
 
     [Header("Labels")]
     [SerializeField] private TextMeshProUGUI _levelLabel;
@@ -50,4 +50,11 @@ public class MonsterCard : Card {
     public void SelectDeffenseMode() { IsInAttackMode = false; }
     public void SetCanChangeMode(bool canChangeMode) { CanChangeMode = canChangeMode; }
     public void SetCanAttack(bool canAttack) { CanAttack = canAttack; }
+
+    public override void ResetCardStats(){
+        base.ResetCardStats();
+        AnimaSelected = false;   
+        ModeSelected = false;
+        Visuals.ResetAnimaColors();
+    }
 }

@@ -23,35 +23,31 @@ public class CardStatSelections : MonoBehaviour {
         Option2_Clicked(_fusionManager.ResultCard);
     }
 
-    // private void CardStatSelManager_OnOption1Clicked(Card card){
-    //     Option1_Clicked(card);
-    // }
-
-    // private void CardStatSelManager_OnOption2Clicked(Card card){
-    //     Option2_Clicked(card);
-    // }
-
     public void Option1_Clicked(Card card){
         if(card is MonsterCard){
             var monster = card as MonsterCard;
             if(monster.FusionedCard){
                 // fusioned Card
                 if(!monster.AnimaSelected){ // Anima not selected
+                    Debug.Log("Anima not selected");
                     monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
                     CardStatSelManager.SelectAnother(monster);
                     return;                    
                 }
 
-                if(!monster.ModeSelected){ //Anima selected and Mode not seletec
+                if(!monster.ModeSelected){ //Anima selected and Mode not selected
+                    Debug.Log("Anima selected and Mode not selected");
                     monster.SelectMode();
                     CardStatSelManager.SelectionsEnd();
                     return;
                 }
+
+                // monster.SelectFace(); //Always face up
                 
             }else{
-
                 if(!monster.AnimaSelected){ //Anima not Selected
+                    Debug.Log("Anima not selected");
                     monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
                     CardStatSelManager.SelectAnother(monster);
@@ -59,12 +55,14 @@ public class CardStatSelections : MonoBehaviour {
                 }
 
                 if(!monster.ModeSelected){ //Mode not selected
+                    Debug.Log("Mode not selected");
                     monster.SelectMode();
                     CardStatSelManager.SelectAnother(monster);
                     return;
                 }
 
                 if(!monster.FaceSelected){ //Face not selected
+                    Debug.Log("Face not selected");
                     monster.SelectFace();
                     CardStatSelManager.SelectionsEnd();
                     return;

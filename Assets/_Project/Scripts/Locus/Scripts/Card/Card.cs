@@ -16,10 +16,11 @@ public abstract class Card : MonoBehaviour {
     public bool _canBeSelected = false;
     public bool _isOnHand = false;
     public bool _isSelected = false;
-    public bool FusionedCard = false; // {get; private set;}
-    public bool FaceSelected = false; // {get; private set;}
-    public bool IsFaceDown = false; // {get; private set;}
-    public bool CanFlip = false; // {get; private set;}
+
+    public bool FusionedCard {get; private set;} = false;
+    public bool FaceSelected {get; private set;} = false;
+    public bool IsFaceDown {get; private set;} = false;
+    public bool CanFlip {get; private set;} = false;
     
     private Transform _status;
     private Collider _collider;
@@ -135,6 +136,14 @@ public abstract class Card : MonoBehaviour {
     public void SetHandPositionFree() {
         if(_handPosition == null) { return; }
         _handPosition.SetPlaceFree();
+    }
+
+    public void SetCardAsFusioned(){
+        FusionedCard = true;
+    }
+
+    public virtual void ResetCardStats(){
+        FaceSelected = false;
     }
 
 #endregion

@@ -74,11 +74,6 @@ public class BoardPlace : MonoBehaviour {
                 
                 //Board Fusion
                 StartBoardFusion();
-
-                // _cardManager.Selector.SetCardsToBoardFusion(new List<Card>{CardInPlace, _resultCard});
-                // _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
-                // CardInPlace = null;
-                // IsFree = true;
             break;
 
             case ActionPhase:
@@ -161,6 +156,7 @@ public class BoardPlace : MonoBehaviour {
     }
 
     private void StartBoardFusion(){
+        _boardManager.BoardFusion();
         _cardManager.Selector.SetCardsToBoardFusion(new List<Card>{CardInPlace, _resultCard});
         _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
         CardInPlace = null;

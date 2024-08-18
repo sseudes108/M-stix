@@ -13,7 +13,6 @@ public class Battle : StateMachine {
     public CardStatEventHandlerSO CardStatSelManager;
     public CardManagerSO CardManager;
 
-
     public AbstractState CurrentState {get; private set;}
         
     public StartPhase StartPhase {get; private set;}
@@ -23,7 +22,7 @@ public class Battle : StateMachine {
     public CardStatSelectPhase CardStatSelection {get; private set;}
     public BoardPlaceSelectionPhase BoardPlaceSelection {get; private set;}
     public ActionPhase Action {get; private set;}
-    public ActionPhaseTwo ActionTwo {get; private set;}
+    // public ActionPhaseTwo ActionTwo {get; private set;}
     public EndPhase EndPhase {get; private set;}
 
     public Battle(){
@@ -34,7 +33,7 @@ public class Battle : StateMachine {
         CardStatSelection = new(this);
         BoardPlaceSelection = new(this);
         Action = new(this);
-        ActionTwo = new(this);
+        // ActionTwo = new(this);
         EndPhase = new(this);
     }
 
@@ -45,7 +44,6 @@ public class Battle : StateMachine {
 
     public void ChangeState(AbstractState newState){
         if(newState == CurrentState) { return;}
-        Debug.Log($"ChangeState({newState})");
 
         CurrentState?.Exit();
         CurrentState = newState;

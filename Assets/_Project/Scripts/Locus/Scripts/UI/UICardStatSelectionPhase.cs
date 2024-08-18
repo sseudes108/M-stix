@@ -77,17 +77,22 @@ public class UICardStatSelectionPhase : MonoBehaviour{
     }
 
     private void SetButtonText(Card card){
+        Debug.Log("SetButtonText");
         if(card is MonsterCard){
+            Debug.Log($"Card is MonsterCard");
             var monsterCard = card as MonsterCard;
             if(!monsterCard.AnimaSelected){
+                Debug.Log($"!monsterCard.AnimaSelected");
                 //Anima
                 _statText1.text = $"{monsterCard.FirstAnima}";
                 _statText2.text = $"{monsterCard.SecondAnima}";
             }else if(!monsterCard.ModeSelected){
+                Debug.Log($"!monsterCard.ModeSelected");
                 //Mode
                 _statText1.text = $"Attack";
                 _statText2.text = $"Deffense";
             }else if(!monsterCard.FusionedCard){
+                Debug.Log($"!monsterCard.FusionedCard");
                 //Face
                 _statText1.text = $"Face Up";
                 _statText2.text = $"Face Down";

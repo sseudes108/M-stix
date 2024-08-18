@@ -8,21 +8,25 @@ public class Fusion : MonoBehaviour {
     [SerializeField] protected BattleManagerSO _battleManager;
     [SerializeField] protected CardManagerSO _cardManager;
     [SerializeField] protected CameraManagerSO _cameraManager;
+    [SerializeField] protected BoardManagerSO _boardManager;
     
     private bool _isPlayerTurn;
     private List<Card> _fusionLine;
     private Card _resultCard;
+    private bool _isBoardFusion;
 
     private void OnEnable() {
         _fusionManager.OnFusionStart.AddListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionSucess.AddListener(FusionManager_OnFusionSucess);
         _fusionManager.OnFusionFailed.AddListener(FusionManager_OnFusionFailed);
+        _boardManager.OnBoardFusion.AddListener(BoardManager_IsBoardFusion);
     }
 
     private void OnDisable() {
         _fusionManager.OnFusionStart.RemoveListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionSucess.RemoveListener(FusionManager_OnFusionSucess);
         _fusionManager.OnFusionFailed.RemoveListener(FusionManager_OnFusionFailed);
+        _boardManager.OnBoardFusion.AddListener(BoardManager_IsBoardFusion);
     }
 
 #region Events
@@ -37,6 +41,10 @@ public class Fusion : MonoBehaviour {
 
     private void FusionManager_OnFusionFailed(Card card1, Card card2){
         FusionFailed(card1, card2);
+    }
+
+    private void BoardManager_IsBoardFusion(){
+        _isBoardFusion = true;
     }
 
 #endregion
@@ -103,6 +111,13 @@ public class Fusion : MonoBehaviour {
         }
     
         yield return new WaitForSeconds(1f);
+
+        if(_isBoardFusion){
+            _resultCard.SetCardAsFusioned();
+            _resultCard.ResetCardStats();
+            _isBoardFusion = false;
+        }
+
         // Open UI Select options
         _fusionManager.SetResultedCard(_resultCard);
         _fusionManager.FusionEnd(_resultCard);
@@ -217,4 +232,8 @@ public class Fusion : MonoBehaviour {
             card.Visuals.Border.ResetBorderColor();
         }
     }
+
+    // public void IsBoardFusion(bool isBoardFusion){
+    //     _isBoardFusion = isBoardFusion;
+    // }
 }

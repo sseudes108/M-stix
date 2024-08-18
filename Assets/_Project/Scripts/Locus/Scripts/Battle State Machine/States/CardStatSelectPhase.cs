@@ -36,6 +36,6 @@ public class CardStatSelectPhase : AbstractState{
     private void CardStatSelManager_OnSelectionsEnd() { ChangePhase(); }
     private void AI_Actor_CardStatSelectior_OnCardStatSelectionFinished() { ChangePhase(); }
     private void ChangePhase() { StateMachine.Battle.ChangeState(StateMachine.Battle.BoardPlaceSelection); }
-
+    
     public override string ToString() { return "Card Stats Sel."; }
 }

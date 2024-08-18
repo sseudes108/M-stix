@@ -19,7 +19,7 @@ public class CardVisual : MonoBehaviour {
 
         SetChangesToMaterial(sideMat,faceMat);
         if(Card is MonsterCard){
-            Anima.AnimaNotSelectedColors();
+            ResetAnimaColors();
         }
     }
 
@@ -51,5 +51,9 @@ public class CardVisual : MonoBehaviour {
 
     public float GetCutoff(){
         return Dissolve.CutOff;
+    }
+
+    public void ResetAnimaColors(){
+        Anima.AnimaNotSelectedColors();
     }
 }
