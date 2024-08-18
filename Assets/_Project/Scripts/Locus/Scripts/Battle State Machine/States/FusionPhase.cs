@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class FusionPhase : AbstractState{
     public FusionPhase(StateMachine stateMachine) : base(stateMachine){}
@@ -16,6 +17,8 @@ public class FusionPhase : AbstractState{
 
         if(StateMachine.Battle != null){
             StateMachine.Battle.StartCoroutine(FusionPhaseRoutine(selectedCardList));
+        }else{
+            Debug.LogError("StateMachine.Battle == null");
         }
     }
 

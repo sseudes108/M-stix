@@ -44,6 +44,9 @@ public class Battle : StateMachine {
     }
 
     public void ChangeState(AbstractState newState){
+        if(newState == CurrentState) { return;}
+        Debug.Log($"ChangeState({newState})");
+
         CurrentState?.Exit();
         CurrentState = newState;
         

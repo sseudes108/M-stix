@@ -7,7 +7,7 @@ public class AICardSelector : AIAction {
         _actor = actor;
     }
     
-    public List<Card> _selectedList = new();
+    private List<Card> _selectedList = new();
     public List<Card> SelectedList => _selectedList;
 
     public IEnumerator SelectCardRoutine(List<Card> cardsInHand){

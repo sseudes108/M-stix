@@ -14,7 +14,6 @@ public class AIBoardPlaceSelector : AIAction {
     }
 
     public IEnumerator BoardSelectionRoutine(Card cardToPlace){
-        Debug.Log("Placing Card");
         yield return new WaitForSeconds(2f);
         SelectFirstFreePlace(cardToPlace);
         // SelectRandomFreePlace(cardToPlace);

@@ -60,7 +60,6 @@ public class BattleManagerSO : ScriptableObject {
     }
 
     public void EndActionPhase(){
-        Debug.Log("EndPhase");
         Battle.ChangeState(Battle.EndPhase);
     }
 
@@ -80,7 +79,8 @@ public class BattleManagerSO : ScriptableObject {
     public void EnemyDraw() { OnEnemyDraw?.Invoke(); }
 
     public void CardSelectionStart() { OnCardSelectionStart?.Invoke(); }
-    public void CardSelectionEnd() { OnCardSelectionEnd?.Invoke(); }
+    public void CardSelectionEnd() { 
+        OnCardSelectionEnd?.Invoke(); }
 
     public void StatSelectStart(Card card) { OnStatSelectStart?.Invoke(card); }
     public void StatSelectEnd(Card card, bool isPlayerTurn) { OnStatSelectEnd?.Invoke(card, isPlayerTurn); }

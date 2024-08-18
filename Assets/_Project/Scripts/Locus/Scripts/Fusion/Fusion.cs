@@ -13,8 +13,6 @@ public class Fusion : MonoBehaviour {
     private List<Card> _fusionLine;
     private Card _resultCard;
 
-    // private IEnumerator _fusionRoutine;
-
     private void OnEnable() {
         _fusionManager.OnFusionStart.AddListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionSucess.AddListener(FusionManager_OnFusionSucess);
@@ -46,10 +44,6 @@ public class Fusion : MonoBehaviour {
 #region Fusion
 
     private void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
-        // if(_fusionRoutine == null){
-        //     _fusionRoutine = FusionRoutine(selectedCards, isPlayerTurn);
-        //     StartCoroutine(_fusionRoutine);
-        // }
         StartCoroutine(FusionRoutine(selectedCards, isPlayerTurn));
     }
 
@@ -114,8 +108,6 @@ public class Fusion : MonoBehaviour {
         _fusionManager.FusionEnd(_resultCard);
 
         _fusionLine.Clear();
-        // _resultCard = null;
-        // _fusionRoutine = null;
     }
 
     private void RemoveCardsFromFusionLine(Card card1, Card card2){
@@ -162,7 +154,6 @@ public class Fusion : MonoBehaviour {
         //Destroy Card
         card1.Visuals.DisableRenderer();
         yield return null;
-        // card1.DestroyCard();
         card1.DestroyCard();
 
         //Check if the line is 0
