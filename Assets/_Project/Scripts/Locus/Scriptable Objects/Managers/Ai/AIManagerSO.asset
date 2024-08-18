@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ca2eaf52f9fc747ab244e5752b6a8a, type: 3}
   m_Name: AIManagerSO
   m_EditorClassIdentifier: 
-  OnStateChange:
-    m_PersistentCalls:
-      m_Calls: []
   CardsInHand: []
+  <Actor>k__BackingField: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9,
+    type: 2}

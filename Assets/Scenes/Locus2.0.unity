@@ -536,11 +536,11 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 6
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &60300848
@@ -1041,11 +1041,11 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 9
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &103250468
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &119582079
@@ -2670,11 +2670,11 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 7
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &326970417
@@ -2958,7 +2958,7 @@ MonoBehaviour:
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &351780638
@@ -3091,8 +3091,8 @@ GameObject:
   - component: {fileID: 355532264}
   - component: {fileID: 355532265}
   - component: {fileID: 355532268}
-  - component: {fileID: 355532267}
   - component: {fileID: 355532266}
+  - component: {fileID: 355532267}
   m_Layer: 0
   m_Name: Far Left
   m_TagString: Untagged
@@ -3157,7 +3157,7 @@ MonoBehaviour:
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &355532267
@@ -3407,11 +3407,11 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 5
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &377285075
@@ -4069,8 +4069,8 @@ GameObject:
   - component: {fileID: 543213782}
   - component: {fileID: 543213783}
   - component: {fileID: 543213786}
-  - component: {fileID: 543213785}
   - component: {fileID: 543213784}
+  - component: {fileID: 543213785}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -4131,11 +4131,11 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 1
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &543213785
@@ -4225,7 +4225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  _aIActor: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9, type: 2}
+  _aIManager: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3, type: 2}
   PlayerMonsterPlaces:
   - {fileID: 1071389276}
   - {fileID: 1158520200}
@@ -4630,8 +4630,8 @@ GameObject:
   - component: {fileID: 637230712}
   - component: {fileID: 637230713}
   - component: {fileID: 637230716}
-  - component: {fileID: 637230715}
   - component: {fileID: 637230714}
+  - component: {fileID: 637230715}
   m_Layer: 0
   m_Name: Center
   m_TagString: Untagged
@@ -4692,11 +4692,11 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 2
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &637230715
@@ -5537,7 +5537,7 @@ MonoBehaviour:
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &836039548
@@ -6472,7 +6472,7 @@ MonoBehaviour:
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1049708139
@@ -6627,11 +6627,11 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 4
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1071389277
@@ -6904,8 +6904,8 @@ GameObject:
   - component: {fileID: 1158520198}
   - component: {fileID: 1158520199}
   - component: {fileID: 1158520202}
-  - component: {fileID: 1158520201}
   - component: {fileID: 1158520200}
+  - component: {fileID: 1158520201}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -6966,11 +6966,11 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 3
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1158520201
@@ -8402,11 +8402,14 @@ MonoBehaviour:
     type: 2}
   <TurnManager>k__BackingField: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd,
     type: 2}
-  <UIManager>k__BackingField: {fileID: 0}
+  <UIManager>k__BackingField: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a,
+    type: 2}
   <Manager>k__BackingField: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3,
     type: 2}
   <Actor>k__BackingField: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9,
     type: 2}
+  _cardsOnAIField: []
+  _cardsOnPlayerField: []
 --- !u!1 &1400343844
 GameObject:
   m_ObjectHideFlags: 0
@@ -8963,7 +8966,7 @@ MonoBehaviour:
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1443069446
@@ -10532,11 +10535,11 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 8
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1781544187
@@ -10721,7 +10724,7 @@ MonoBehaviour:
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1791220974
@@ -11449,7 +11452,7 @@ MonoBehaviour:
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &1884829979
@@ -14621,7 +14624,7 @@ MonoBehaviour:
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
+  <IsFree>k__BackingField: 1
   CardInPlace: {fileID: 0}
   Visual: {fileID: 0}
 --- !u!114 &4283873112261418143

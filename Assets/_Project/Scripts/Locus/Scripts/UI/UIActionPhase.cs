@@ -83,6 +83,7 @@ public class UIActionPhase : MonoBehaviour {
 
     private void SetMonsterOptions(MonsterCard cardInPlace, BoardPlace place){
         if(!cardInPlace.IsFaceDown){//card face Up
+
             if(cardInPlace.CanChangeMode && cardInPlace.IsInAttackMode){//is in attack mode and can change
                 ShowButtons(place.Location);
 

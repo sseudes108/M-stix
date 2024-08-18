@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AI : StateMachine {
@@ -9,6 +10,12 @@ public class AI : StateMachine {
     public AISelectCardState CardSelect {get; private set;}
     public AICardStatSelState CardStatSelect {get; private set;}
     public AIBoardPlaceSelState BoardPlaceSelect {get; private set;}
+
+    private List<Card> _cardsOnAIField = new();
+    private List<Card> _cardsOnPlayerField = new();
+
+    public List<Card> CardsOnPlayerField => _cardsOnPlayerField;
+    public List<Card> CardsOnAIField => _cardsOnAIField;
 
     public AI(){
         CardSelect = new(this);
@@ -26,5 +33,13 @@ public class AI : StateMachine {
         CurrentState?.Enter();
         
         TesterUI.Instance.UpdateAIStateText(CurrentState.ToString());
+    }
+
+    public void SetPlayerCardsOnField(List<Card> aICardsOnField){
+        _cardsOnAIField = aICardsOnField;
+    }
+
+    public void SetAICardsOnField(List<Card> playerCardsOnField){
+        _cardsOnPlayerField = playerCardsOnField;
     }
 }

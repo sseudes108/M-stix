@@ -1,4 +1,5 @@
 using System.Collections;
+
 public class AICardStatSelState : AbstractState{
     public AICardStatSelState(StateMachine stateMachine) : base(stateMachine){}
 

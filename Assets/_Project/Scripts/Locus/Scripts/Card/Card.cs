@@ -138,13 +138,8 @@ public abstract class Card : MonoBehaviour {
         _handPosition.SetPlaceFree();
     }
 
-    public void SetCardAsFusioned(){
-        FusionedCard = true;
-    }
-
-    public virtual void ResetCardStats(){
-        FaceSelected = false;
-    }
+    public void SetCardAsFusioned() { FusionedCard = true; }
+    public virtual void ResetCardStats(){ FaceSelected = false; }
 
 #endregion
 }

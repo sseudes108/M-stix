@@ -37,13 +37,9 @@ public class UICardStatSelectionPhase : MonoBehaviour{
         _statText2 = _statButton2.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    private void CardStatSelManager_OnSelectionsEnd(){
-        HideOptions();
-    }
+    private void CardStatSelManager_OnSelectionsEnd() { HideOptions(); }
 
-    private void CardStatSelManager_OnSelectAnother(Card card){
-        SetButtonText(card);
-    }
+    private void CardStatSelManager_OnSelectAnother(Card card) { SetButtonText(card); }
 
     private void FusionManager_OnFusionStart(List<Card> cards, bool isPlayerTurn){
         if(!_turnManager.IsPlayerTurn) { return; }
@@ -68,31 +64,26 @@ public class UICardStatSelectionPhase : MonoBehaviour{
         _statButton2.onClick.RemoveListener(Option2_Clicked);
     }
 
-    private void Option1_Clicked(){
-        _cardStatSelManager.Option1Clicked();
-    }
+    private void Option1_Clicked() { _cardStatSelManager.Option1Clicked(); }
 
-    private void Option2_Clicked(){
-        _cardStatSelManager.Option2Clicked();
-    }
+    private void Option2_Clicked() { _cardStatSelManager.Option2Clicked(); }
 
     private void SetButtonText(Card card){
-        Debug.Log("SetButtonText");
         if(card is MonsterCard){
-            Debug.Log($"Card is MonsterCard");
+
             var monsterCard = card as MonsterCard;
             if(!monsterCard.AnimaSelected){
-                Debug.Log($"!monsterCard.AnimaSelected");
+    
                 //Anima
                 _statText1.text = $"{monsterCard.FirstAnima}";
                 _statText2.text = $"{monsterCard.SecondAnima}";
             }else if(!monsterCard.ModeSelected){
-                Debug.Log($"!monsterCard.ModeSelected");
+    
                 //Mode
                 _statText1.text = $"Attack";
                 _statText2.text = $"Deffense";
             }else if(!monsterCard.FusionedCard){
-                Debug.Log($"!monsterCard.FusionedCard");
+                
                 //Face
                 _statText1.text = $"Face Up";
                 _statText2.text = $"Face Down";

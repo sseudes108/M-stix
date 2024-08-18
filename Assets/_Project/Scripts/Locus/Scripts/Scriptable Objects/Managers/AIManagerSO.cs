@@ -10,7 +10,7 @@ public class AIManagerSO : ScriptableObject {
     public List<BoardPlace> ArcanePlaces { get; private set; }
 
     public AI AI { get; private set; }
-    public Board Board { get; private set;}
+    [field:SerializeField] public AIActorSO Actor { get; private set; }
 
     public void OnDisable(){
         CardsInHand.Clear();

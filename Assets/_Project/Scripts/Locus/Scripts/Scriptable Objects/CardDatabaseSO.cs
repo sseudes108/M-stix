@@ -4,14 +4,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CardDatabaseSO", menuName = "Mistix/Card/Database")]
 public class CardDatabaseSO : ScriptableObject {
     [SerializeField] private List<MonsterCardSO> _angels;
+    private List<MonsterCardSO> _monsterList = new();
+    // private List<ArcaneCardSO> _arcaneList;
 
     public List<MonsterCardSO> GetStrongestTypeList(EMonsterType type){
-        var list = new List<MonsterCardSO>();
+        _monsterList = null;
         switch(type){
             case EMonsterType.Angel:
-                list = _angels;
+                _monsterList = _angels;
             break;
         }
-        return list;
+        return _monsterList;
     }
 }

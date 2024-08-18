@@ -226,14 +226,13 @@ public class Fusion : MonoBehaviour {
 
 #endregion
 
+#region Custom Methods
     private void ResetCards(List<Card> selectedcards){
         foreach(var card in selectedcards){
             card.SetHandPositionFree();
             card.Visuals.Border.ResetBorderColor();
         }
     }
+#endregion
 
-    // public void IsBoardFusion(bool isBoardFusion){
-    //     _isBoardFusion = isBoardFusion;
-    // }
 }

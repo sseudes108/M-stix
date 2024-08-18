@@ -51,7 +51,7 @@ public class MonsterCard : Card {
     public void SetCanChangeMode(bool canChangeMode) { CanChangeMode = canChangeMode; }
     public void SetCanAttack(bool canAttack) { CanAttack = canAttack; }
 
-    public override void ResetCardStats(){
+    public override void ResetCardStats(){ // Used to reset stats on board fusions
         base.ResetCardStats();
         AnimaSelected = false;   
         ModeSelected = false;

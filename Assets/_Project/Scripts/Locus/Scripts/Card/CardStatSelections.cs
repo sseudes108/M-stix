@@ -29,7 +29,6 @@ public class CardStatSelections : MonoBehaviour {
             if(monster.FusionedCard){
                 // fusioned Card
                 if(!monster.AnimaSelected){ // Anima not selected
-                    Debug.Log("Anima not selected");
                     monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
                     CardStatSelManager.SelectAnother(monster);
@@ -37,17 +36,15 @@ public class CardStatSelections : MonoBehaviour {
                 }
 
                 if(!monster.ModeSelected){ //Anima selected and Mode not selected
-                    Debug.Log("Anima selected and Mode not selected");
                     monster.SelectMode();
                     CardStatSelManager.SelectionsEnd();
                     return;
                 }
 
-                // monster.SelectFace(); //Always face up
+                monster.SelectFace(); //Always face up
                 
             }else{
                 if(!monster.AnimaSelected){ //Anima not Selected
-                    Debug.Log("Anima not selected");
                     monster.Visuals.Anima.Anima1Selected();
                     monster.SelectAnima();
                     CardStatSelManager.SelectAnother(monster);
@@ -55,14 +52,12 @@ public class CardStatSelections : MonoBehaviour {
                 }
 
                 if(!monster.ModeSelected){ //Mode not selected
-                    Debug.Log("Mode not selected");
                     monster.SelectMode();
                     CardStatSelManager.SelectAnother(monster);
                     return;
                 }
 
                 if(!monster.FaceSelected){ //Face not selected
-                    Debug.Log("Face not selected");
                     monster.SelectFace();
                     CardStatSelManager.SelectionsEnd();
                     return;
