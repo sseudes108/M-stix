@@ -8,8 +8,6 @@ using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "AIActor", menuName = "Mistix/AI/Actor", order = 0)]
 public class AIActorSO : ScriptableObject {
-    [SerializeField] protected AIManagerSO _aIManager;
-
     //Actions
     public AICardSelector CardSelector { get; private set; }
     public AICardStatSelector CardStatSelector { get; private set; }

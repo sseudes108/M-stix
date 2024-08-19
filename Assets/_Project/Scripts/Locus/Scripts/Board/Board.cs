@@ -5,7 +5,7 @@ using UnityEngine;
 public class Board : MonoBehaviour {
     [SerializeField] private BoardManagerSO _boardManager;
     [SerializeField] private BattleManagerSO _battleManager;
-    // [SerializeField] private AIActorSO _aIActor;
+
     [SerializeField] private AIManagerSO _aIManager;
 
     public List<BoardPlace> PlayerMonsterPlaces;
@@ -54,8 +54,7 @@ public class Board : MonoBehaviour {
             if(place.IsFree) {continue;}
 
             SetCardOptions(place, place.CardInPlace);
-            AddCardToInBoardList(place,  place.CardInPlace);
-            continue;
+            AddCardToInBoardList(place, place.CardInPlace);
         }
     }
 
@@ -74,6 +73,7 @@ public class Board : MonoBehaviour {
 
     private void AddCardToInBoardList(BoardPlace place, Card card){
         if(place.IsPlayerPlace){
+            Debug.Log("place.IsPlayerPlace");
             _playerCardsOnField.Add(card);
         }else{
             _aICardsOnField.Add(card);

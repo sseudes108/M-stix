@@ -14,7 +14,7 @@ public class AISelectCardState : AbstractState{
     private CardsOnField _cardsOnField;
 
     public override void Enter(){
-        SplitCardsOnBoardByType();
+        SplitCardsOnBoardByType(); //Verifica quais as cartas em campo
         StateMachine.AI.StartCoroutine(AIRoutine());
     }
 
@@ -53,6 +53,8 @@ public class AISelectCardState : AbstractState{
             MonstersOnAIField = _monstersOnAIField
             // ArcanesOnAIField
         };
+        Debug.Log($"MonstersOnAIField - {_cardsOnField.MonstersOnAIField.Count}");
+        Debug.Log(_cardsOnField.MonstersOnPlayerField.Count);
     }
 }
 

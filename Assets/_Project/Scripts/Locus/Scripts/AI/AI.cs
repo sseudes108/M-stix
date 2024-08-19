@@ -7,6 +7,7 @@ public class AI : StateMachine {
 
     public AbstractState CurrentState;
 
+    //Actions
     public AISelectCardState CardSelect {get; private set;}
     public AICardStatSelState CardStatSelect {get; private set;}
     public AIBoardPlaceSelState BoardPlaceSelect {get; private set;}
