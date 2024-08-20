@@ -36,11 +36,11 @@ public class AI : StateMachine {
         TesterUI.Instance.UpdateAIStateText(CurrentState.ToString());
     }
 
-    public void SetPlayerCardsOnField(List<Card> aICardsOnField){
-        _cardsOnAIField = aICardsOnField;
+    public void SetPlayerCardsOnField(List<Card> playerCardsOnField){
+        _cardsOnPlayerField = playerCardsOnField;
     }
 
-    public void SetAICardsOnField(List<Card> playerCardsOnField){
-        _cardsOnPlayerField = playerCardsOnField;
+    public void SetAICardsOnField(List<Card> aICardsOnField){
+        _cardsOnAIField = aICardsOnField;
     }
 }

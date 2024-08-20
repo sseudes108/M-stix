@@ -47,21 +47,28 @@ public class AISelectCardState : AbstractState{
             }
         }
 
-        _cardsOnField = new(){
-            MonstersOnPlayerField = _monsterOnPlayerField,
-            // ArcanesOnPlayerField = _arcanesOnPlayerField,
-            MonstersOnAIField = _monstersOnAIField
-            // ArcanesOnAIField
-        };
+        _cardsOnField = null;
+        _cardsOnField = new(
+            _monsterOnPlayerField, 
+            _monstersOnAIField
+        );
+
         Debug.Log($"MonstersOnAIField - {_cardsOnField.MonstersOnAIField.Count}");
         Debug.Log(_cardsOnField.MonstersOnPlayerField.Count);
     }
 }
 
-public struct CardsOnField{
+public class CardsOnField{
     public List<MonsterCard> MonstersOnPlayerField;
     // public List<MonsterCard> ArcanesOnPlayerField;
 
     public List<MonsterCard> MonstersOnAIField;
     // public List<MonsterCard> ArcanesOnAIField;
+    public CardsOnField(
+        List<MonsterCard> monstersOnPlayerField,
+        List<MonsterCard> monstersOnAIField
+    ){
+        MonstersOnPlayerField = monstersOnPlayerField;
+        MonstersOnAIField = monstersOnAIField;
+    }
 }
