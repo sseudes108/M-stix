@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Card : MonoBehaviour {
@@ -26,6 +27,7 @@ public abstract class Card : MonoBehaviour {
     private Collider _collider;
 
     private HandPosition _handPosition;
+    private BoardPlace _boardPlace;
 
 #region Unity Methods
 
@@ -141,5 +143,13 @@ public abstract class Card : MonoBehaviour {
     public void SetCardAsFusioned() { FusionedCard = true; }
     public virtual void ResetCardStats(){ FaceSelected = false; }
 
-#endregion
+    public void SetBoardPlace(BoardPlace boardPlace){
+        _boardPlace = boardPlace;
+    }
+
+    public BoardPlace GetBoardPlace(){
+        return _boardPlace;
+    }
+
+    #endregion
 }

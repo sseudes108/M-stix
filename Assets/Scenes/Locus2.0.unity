@@ -5444,24 +5444,25 @@ MonoBehaviour:
   <DeckInUse>k__BackingField:
   - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
   - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
-  - {fileID: 11400000, guid: c454e47e09e99c649a226b81fde5adc9, type: 2}
-  - {fileID: 11400000, guid: d0ad6252c3099164d98142ec5ae6f66e, type: 2}
-  - {fileID: 11400000, guid: 1046a6422999f204998739def862bc46, type: 2}
-  - {fileID: 11400000, guid: b616ed0f04b805548908f5dca2e3a28e, type: 2}
-  - {fileID: 11400000, guid: 6fe9986450aa63043a710ab8602ca86b, type: 2}
+  - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
+  - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
+  - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
+  - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
+  - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
+  - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
+  - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
+  - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
+  - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
+  - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
+  - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
+  - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
+  - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
+  - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
   - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
   - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
   - {fileID: 11400000, guid: c454e47e09e99c649a226b81fde5adc9, type: 2}
-  - {fileID: 11400000, guid: d0ad6252c3099164d98142ec5ae6f66e, type: 2}
-  - {fileID: 11400000, guid: 1046a6422999f204998739def862bc46, type: 2}
-  - {fileID: 11400000, guid: b616ed0f04b805548908f5dca2e3a28e, type: 2}
-  - {fileID: 11400000, guid: 6fe9986450aa63043a710ab8602ca86b, type: 2}
-  - {fileID: 11400000, guid: 9f14752fff836c94994b3ba15538b2a6, type: 2}
-  - {fileID: 11400000, guid: 5ef064a6d4ea0e340a679e0e9b606124, type: 2}
   - {fileID: 11400000, guid: b7795c6f135235a4d9a31e134ab2dbf9, type: 2}
   - {fileID: 11400000, guid: ad2ed3690623ec14eb0f609203b36382, type: 2}
-  - {fileID: 11400000, guid: c454e47e09e99c649a226b81fde5adc9, type: 2}
-  - {fileID: 11400000, guid: d0ad6252c3099164d98142ec5ae6f66e, type: 2}
 --- !u!1 &836039544
 GameObject:
   m_ObjectHideFlags: 0
@@ -8408,8 +8409,6 @@ MonoBehaviour:
     type: 2}
   <Actor>k__BackingField: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9,
     type: 2}
-  _cardsOnAIField: []
-  _cardsOnPlayerField: []
 --- !u!1 &1400343844
 GameObject:
   m_ObjectHideFlags: 0

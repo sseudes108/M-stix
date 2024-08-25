@@ -73,7 +73,6 @@ public class Board : MonoBehaviour {
 
     private void AddCardToInBoardList(BoardPlace place, Card card){
         if(place.IsPlayerPlace){
-            Debug.Log("place.IsPlayerPlace");
             _playerCardsOnField.Add(card);
         }else{
             _aICardsOnField.Add(card);

@@ -20,154 +20,224 @@ public class AICardSelector : AIAction {
         if(cardsOnField.MonstersOnAIField.Count == 0){
             StrongestFusionInHand();
         }else{
-            OrganizeAIMonsterCardsOnField(cardsOnField.MonstersOnAIField);
-
-            if(_lvl7OnAIField.Count > 0){
-                //Can make another lvl7 to make a 8?
-            }
-
-            if(_lvl6OnAIField.Count > 0){
-                //Can make another lvl6 to make a 7?
-            }
-
-            if(_lvl5OnAIField.Count > 0){
-                //Can make another lvl5 to make a 6?
-            }
-
-            if(_lvl4OnAIField.Count > 0){
-                //Can make another lvl4 to make a 5?
-            }
-
-            if(_lvl3OnAIField.Count > 0){
-                //Can make another lvl3 to make a 4?
-            }
-
-            if(_lvl2OnAIField.Count > 0){
-                //Can make another lvl2 to make a 3?
-            }
+            StrongestFusionInBoard(cardsOnField.MonstersOnAIField);
         }
+
+
+        // if(cardsOnField.MonstersOnAIField.Count == 0){
+        //     StrongestFusionInHand();
+        // }else{
+        //     OrganizeAIMonsterCardsOnField(cardsOnField.MonstersOnAIField);
+
+        //     if(_lvl7OnAIField.Count > 0){
+        //         //Can make another lvl7 to make a 8?
+        //     }
+
+        //     if(_lvl6OnAIField.Count > 0){
+        //         //Can make another lvl6 to make a 7?
+        //     }
+
+        //     if(_lvl5OnAIField.Count > 0){
+        //         //Can make another lvl5 to make a 6?
+        //     }
+
+        //     if(_lvl4OnAIField.Count > 0){
+                
+        //     }
+
+        //     if(_lvl3OnAIField.Count > 0){
+        //         //Can make another lvl3 to make a 4?
+        //     }
+
+        //     if(_lvl2OnAIField.Count > 0){
+        //         //Can make another lvl2 to make a 3?
+        //     }
+        // }
 
         // SelectRandomCard(cardsInHand);
         yield return new WaitForSeconds(Random.Range(3f, 5f));
-        _actor.CardSelectionFinished();
+        Actor.CardSelectionFinished();
         yield return null;
     }
 
     private void StrongestFusionInHand(){
-        if(CanMakeALvl5()){
-            return;
-        }
+        // if(CanMakeALvl5()){
+        //     TryMakeALvl5();
+        //     return; 
+        // }
 
-        if(CanMakeALvl4()){
-            return;
-        }
-
+        // if(CanMakeALvl4()){
+        //     TryMakeALvl4();
+        //     return;
+        // }
+        
         if(CanMakeALvl3()){
+            TryMakeALvl3();
             return;
         }
 
         AddToSelectedList(_lvl2OnHand[0]);
-
-        // if (_lvl4OnHand.Count >= 2){
-
-        //     AddToSelectedList(_lvl4OnHand[0]);
-        //     AddToSelectedList(_lvl4OnHand[1]);
-        //     //Fusion 2 lvl 4 to form a lvl 5
-
-        // }else if (_lvl3OnHand.Count >= 2){
-
-        //     //Fusion 2 lvl 3 to form a lvl 4
-        //     AddToSelectedList(_lvl3OnHand[0]);
-        //     AddToSelectedList(_lvl3OnHand[1]);
-
-        //     //Add a lvl 4 to make a lvl 5
-        //     if (_lvl4OnHand.Count == 1){
-        //         AddToSelectedList(_lvl4OnHand[0]);
-        //     }
-        // }else if (_lvl2OnHand.Count >= 2){
-
-        //     //Fusion 2 lvl 2 to form a lvl 3
-        //     AddToSelectedList(_lvl2OnHand[0]);
-        //     AddToSelectedList(_lvl2OnHand[1]);
-
-        //     //Add a lvl 3 to make a lvl 4
-        //     if (_lvl3OnHand.Count == 1)
-        //     {
-        //         AddToSelectedList(_lvl3OnHand[0]);
-        //     }
-        // }
     }
 
-    private bool CanMakeALvl8(){
-        if(_lvl7OnAIField.Count > 0 && _lvl6OnAIField.Count > 0){// Tem um 7 e um 6 no campo
-            if(CanMakeALvl7()){ // make the lvl 7 using the lvl 6 on field
-                //Initiate board fusion with the new lvl 7
+    private void StrongestFusionInBoard(List<MonsterCard> monstersOnAIField){
+        OrganizeAIMonsterCardsOnField(monstersOnAIField);
+
+        //lvl8
+        //lvl7
+        //lvl6
+        //lvl5
+
+        if(_lvl3OnAIField.Count > 0){ //lvl4
+            if(CanMakeALvl3()){
+                TryMakeALvl3();
+                BoardFusion(_lvl3OnAIField[0]);
+                return;
             }
         }
 
-        return false;
+        //lvl3
+
+        StrongestFusionInHand();
     }
 
-    private bool CanMakeALvl7(){
-        if(_lvl6OnAIField.Count > 0 && _lvl5OnAIField.Count > 0){ // tem um 6 no campo e um 5
-            if(CanMakeALvl5()){ //Add all cards to select list to make a lvl 5
-                //Initiate board fusion with the lvl 5 on field and then, with the lvl 6 to make a lvl 7
-                return true;
-            }
-        }
+#region Level 8
+    // private bool CanMakeLvl8(){
+    //     if(_lvl7OnAIField.Count > 0 && _lvl6OnAIField.Count > 0){
+    //         if(CanMakeALvl7()){
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
-        return false;
-    }
+    // private void TryMakeLvl8(){
+    //     BoardFusion(_lvl6OnAIField[0]);
+    //     // if(_lvl7OnAIField.Count > 0 && _lvl6OnAIField.Count > 0){// Tem um 7 e um 6 no campo
+    //     //     if(CanMakeALvl7()){ // make the lvl 7 using the lvl 6 on field
+    //     //         BoardFusion(_lvl6OnAIField[0]);
+    //     //         //Initiate board fusion with the new lvl 7
+    //     //     }
+    //     // }
+    // }
+#endregion
 
+#region Level 7
+    // private bool CanMakeALvl7(){
+    //     if(_lvl6OnAIField.Count > 0 && _lvl5OnAIField.Count > 0){ // tem um 6 no campo e um 5
+    //         if(CanMakeALvl5()){ //Add all cards to select list to make a lvl 5
+    //             BoardFusion(_lvl5OnAIField[0]);
+    //             //Initiate board fusion with the lvl 5 on field and then, with the lvl 6 to make a lvl 7
+    //         }
+    //     }
+    // }
+
+    // private void TryMakeLvl7(){
+    //     if(_lvl6OnAIField.Count > 0 && _lvl5OnAIField.Count > 0){ // tem um 6 no campo e um 5
+    //         if(CanMakeALvl5()){ //Add all cards to select list to make a lvl 5
+    //             BoardFusion(_lvl5OnAIField[0]);
+    //             //Initiate board fusion with the lvl 5 on field and then, with the lvl 6 to make a lvl 7
+    //         }
+    //     }
+    // }
+#endregion
+
+#region Level 6
     private bool CanMakeALvl6(){
         if(_lvl5OnAIField.Count > 0 && CanMakeALvl5()){// Tem um nv5 no campo e é possivel fazer outro da mão
             //Initiate Board fusion with the lvl 5 on field and the new one made from hand
         }
         return false;
     }
+#endregion
 
+#region Level 5
     private bool CanMakeALvl5(){
+        if(_lvl4OnHand.Count > 1){
+            // AddToSelectedList(_lvl4OnHand[0]);
+            // AddToSelectedList(_lvl4OnHand[1]);
+            return true;
+        }
+
+        if(_lvl3OnHand.Count >= 2 && _lvl4OnHand.Count == 1){
+            // AddToSelectedList(_lvl3OnHand[0]);
+            // AddToSelectedList(_lvl3OnHand[1]);
+            // AddToSelectedList(_lvl4OnHand[0]);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void TryMakeALvl5(){
         if(_lvl4OnHand.Count > 1){
             AddToSelectedList(_lvl4OnHand[0]);
             AddToSelectedList(_lvl4OnHand[1]);
-            return true;
+            return;
         }
 
         if(_lvl3OnHand.Count >= 2 && _lvl4OnHand.Count == 1){
             AddToSelectedList(_lvl3OnHand[0]);
             AddToSelectedList(_lvl3OnHand[1]);
             AddToSelectedList(_lvl4OnHand[0]);
+            return;
+        }
+    }
+
+#endregion
+
+#region Level 4
+    private bool CanMakeALvl4(){
+        if(_lvl3OnHand.Count > 1){
+            return true;
+        }
+
+        if(_lvl2OnHand.Count >= 2 && _lvl3OnHand.Count == 1){
             return true;
         }
 
         return false;
     }
 
-    private bool CanMakeALvl4(){
+    private void TryMakeALvl4(){
         if(_lvl3OnHand.Count > 1){
             AddToSelectedList(_lvl3OnHand[0]);
             AddToSelectedList(_lvl3OnHand[1]);
-            return true;
+            return;
         }
 
         if(_lvl2OnHand.Count >= 2 && _lvl3OnHand.Count == 1){
             AddToSelectedList(_lvl2OnHand[0]);
             AddToSelectedList(_lvl2OnHand[1]);
             AddToSelectedList(_lvl3OnHand[0]);
+            return;
+        }
+    }
+#endregion
+
+#region Level 3
+    private bool CanMakeALvl3(){
+        if(_lvl2OnHand.Count > 1){
             return true;
         }
-
-        return false;
+        return true;
     }
 
-    private bool CanMakeALvl3(){
+    private void TryMakeALvl3(){
         if(_lvl2OnHand.Count > 1){
             AddToSelectedList(_lvl2OnHand[0]);
             AddToSelectedList(_lvl2OnHand[1]);
-            return true;
+            return;
         }
+    }
+#endregion
 
-        return false;
+    private void BoardFusion(Card cardToFusion){
+        Actor.MakeABoardFusion = true;
+        Actor.CardOnBoardToFusion = cardToFusion;
+        Debug.Log($"MakeABoardFusion - {Actor.MakeABoardFusion}");
+        // _makeABoardFusion = true;
+        // _cardOnBoardToFusion = cardToFusion;
+        // Debug.Log($"MakeABoardFusion - {_makeABoardFusion}");
     }
 
     private void OrganizeCardsInHand(List<Card> cardsInHand){

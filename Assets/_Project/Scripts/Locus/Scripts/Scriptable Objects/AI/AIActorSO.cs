@@ -17,6 +17,15 @@ public class AIActorSO : ScriptableObject {
     [HideInInspector] public UnityEvent CardSelector_OnSelectionFinished;
     [HideInInspector] public UnityEvent CardStatSelector_OnCardStatSelectionFinished;
     [HideInInspector] public UnityEvent BoardPlaceSelector_OnBoardPlaceSelected;
+
+    public bool MakeABoardFusion;
+    public Card CardOnBoardToFusion;
+
+    public void ResetBoardFusion(){
+        Debug.Log("Reset Board Fusion");
+        MakeABoardFusion = false;
+        CardOnBoardToFusion = null;
+    }
     
     private void OnEnable() {
         CardSelector ??= new(this);

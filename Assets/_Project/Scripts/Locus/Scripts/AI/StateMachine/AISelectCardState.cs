@@ -52,9 +52,6 @@ public class AISelectCardState : AbstractState{
             _monsterOnPlayerField, 
             _monstersOnAIField
         );
-
-        Debug.Log($"MonstersOnAIField - {_cardsOnField.MonstersOnAIField.Count}");
-        Debug.Log(_cardsOnField.MonstersOnPlayerField.Count);
     }
 }
 
