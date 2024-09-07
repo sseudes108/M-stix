@@ -14,12 +14,11 @@ public class AIBoardPlaceSelector : AIAction {
     }
 
     public IEnumerator BoardSelectionRoutine(Card cardToPlace){
-        Debug.Log($"MakeABoardFusion - {Actor.MakeABoardFusion}");
-        if(Actor.MakeABoardFusion){
-            BoardPlace boardPlace = Actor.CardOnBoardToFusion.GetBoardPlace();
+        if(_actor.MakeABoardFusion){
+            BoardPlace boardPlace = _actor.CardOnBoardToFusion.GetBoardPlace();
             boardPlace.SetCardInPlace(cardToPlace);
 
-            Actor.ResetBoardFusion();
+            _actor.ResetBoardFusion();
             yield return null;
 
         }else{
@@ -27,7 +26,7 @@ public class AIBoardPlaceSelector : AIAction {
             SelectFirstFreePlace(cardToPlace);
             // SelectRandomFreePlace(cardToPlace);
             yield return null;
-        }        
+        }
     }
 
     private void SelectFirstFreePlace(Card cardToPlace){

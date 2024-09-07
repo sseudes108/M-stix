@@ -18,7 +18,7 @@ public class AICardStatSelector : AIAction {
             }
         }
         yield return null;
-        Actor.CardStatSelectionFinished();
+        _actor.CardStatSelectionFinished();
     }
 
     private void AnimaSelection(MonsterCard card){

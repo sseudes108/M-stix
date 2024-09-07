@@ -23,40 +23,8 @@ public class AICardSelector : AIAction {
             StrongestFusionInBoard(cardsOnField.MonstersOnAIField);
         }
 
-
-        // if(cardsOnField.MonstersOnAIField.Count == 0){
-        //     StrongestFusionInHand();
-        // }else{
-        //     OrganizeAIMonsterCardsOnField(cardsOnField.MonstersOnAIField);
-
-        //     if(_lvl7OnAIField.Count > 0){
-        //         //Can make another lvl7 to make a 8?
-        //     }
-
-        //     if(_lvl6OnAIField.Count > 0){
-        //         //Can make another lvl6 to make a 7?
-        //     }
-
-        //     if(_lvl5OnAIField.Count > 0){
-        //         //Can make another lvl5 to make a 6?
-        //     }
-
-        //     if(_lvl4OnAIField.Count > 0){
-                
-        //     }
-
-        //     if(_lvl3OnAIField.Count > 0){
-        //         //Can make another lvl3 to make a 4?
-        //     }
-
-        //     if(_lvl2OnAIField.Count > 0){
-        //         //Can make another lvl2 to make a 3?
-        //     }
-        // }
-
-        // SelectRandomCard(cardsInHand);
         yield return new WaitForSeconds(Random.Range(3f, 5f));
-        Actor.CardSelectionFinished();
+        _actor.CardSelectionFinished();
         yield return null;
     }
 
@@ -85,11 +53,18 @@ public class AICardSelector : AIAction {
         //lvl8
         //lvl7
         //lvl6
-        //lvl5
+
+        if(_lvl4OnAIField.Count > 0){ //lvl5
+            if(CanMakeALvl5()){
+                TryMakeALvl5();
+                BoardFusion(_lvl4OnAIField[0]);
+                return;
+            }
+        }
 
         if(_lvl3OnAIField.Count > 0){ //lvl4
-            if(CanMakeALvl3()){
-                TryMakeALvl3();
+            if(CanMakeALvl4()){
+                TryMakeALvl4();
                 BoardFusion(_lvl3OnAIField[0]);
                 return;
             }
@@ -175,10 +150,10 @@ public class AICardSelector : AIAction {
             return;
         }
 
-        if(_lvl3OnHand.Count >= 2 && _lvl4OnHand.Count == 1){
+        if(_lvl3OnHand.Count >= 2 && _lvl4OnAIField.Count == 1){
             AddToSelectedList(_lvl3OnHand[0]);
             AddToSelectedList(_lvl3OnHand[1]);
-            AddToSelectedList(_lvl4OnHand[0]);
+            AddToSelectedList(_lvl4OnAIField[0]);
             return;
         }
     }
@@ -191,7 +166,7 @@ public class AICardSelector : AIAction {
             return true;
         }
 
-        if(_lvl2OnHand.Count >= 2 && _lvl3OnHand.Count == 1){
+        if(_lvl2OnHand.Count >= 2 && _lvl3OnAIField.Count == 1){
             return true;
         }
 
@@ -205,10 +180,10 @@ public class AICardSelector : AIAction {
             return;
         }
 
-        if(_lvl2OnHand.Count >= 2 && _lvl3OnHand.Count == 1){
+        if(_lvl2OnHand.Count >= 2 && _lvl3OnAIField.Count == 1){
             AddToSelectedList(_lvl2OnHand[0]);
             AddToSelectedList(_lvl2OnHand[1]);
-            AddToSelectedList(_lvl3OnHand[0]);
+            AddToSelectedList(_lvl3OnAIField[0]);
             return;
         }
     }
@@ -219,7 +194,12 @@ public class AICardSelector : AIAction {
         if(_lvl2OnHand.Count > 1){
             return true;
         }
-        return true;
+
+        if(_lvl2OnAIField.Count > 0 && _lvl2OnHand.Count > 0){
+            return true;
+        }
+
+        return false;
     }
 
     private void TryMakeALvl3(){
@@ -228,16 +208,19 @@ public class AICardSelector : AIAction {
             AddToSelectedList(_lvl2OnHand[1]);
             return;
         }
+
+        if(_lvl2OnHand.Count > 0 && _lvl2OnAIField.Count > 0){
+            AddToSelectedList(_lvl2OnHand[0]);
+            AddToSelectedList(_lvl2OnAIField[1]);
+            return;
+        }
     }
 #endregion
 
     private void BoardFusion(Card cardToFusion){
-        Actor.MakeABoardFusion = true;
-        Actor.CardOnBoardToFusion = cardToFusion;
-        Debug.Log($"MakeABoardFusion - {Actor.MakeABoardFusion}");
-        // _makeABoardFusion = true;
-        // _cardOnBoardToFusion = cardToFusion;
-        // Debug.Log($"MakeABoardFusion - {_makeABoardFusion}");
+        Debug.Log($"BoardFusion(Card {cardToFusion})");
+        _actor.MakeABoardFusion = true;
+        _actor.CardOnBoardToFusion = cardToFusion;
     }
 
     private void OrganizeCardsInHand(List<Card> cardsInHand){
@@ -262,38 +245,46 @@ public class AICardSelector : AIAction {
         }
     }
     private void OrganizeAIMonsterCardsOnField(List<MonsterCard> monstersOnAIField){
+        ClearAICardListsOnField();
+        
+        foreach (var card in monstersOnAIField){
+            int lvl = card.Level;
+
+            switch (lvl){
+                case 2:
+                    _lvl2OnAIField.Add(card);
+                break;
+
+                case 3:
+                    _lvl3OnAIField.Add(card);
+                break;
+
+                case 4:
+                    _lvl4OnAIField.Add(card);
+                break;
+
+                case 5:
+                    _lvl5OnAIField.Add(card);
+                break;
+
+                case 6:
+                    _lvl6OnAIField.Add(card);
+                break;
+
+                case 7:
+                    _lvl7OnAIField.Add(card);
+                break;
+            }
+        }
+    }
+
+    private void ClearAICardListsOnField(){
         _lvl2OnAIField.Clear();
         _lvl3OnAIField.Clear();
         _lvl4OnAIField.Clear();
         _lvl5OnAIField.Clear();
         _lvl6OnAIField.Clear();
         _lvl7OnAIField.Clear();
-
-        foreach (var card in monstersOnAIField){
-            if (card.Level == 2){
-                _lvl2OnAIField.Add(card);
-            }
-
-            if (card.Level == 3){
-                _lvl3OnAIField.Add(card);
-            }
-
-            if (card.Level == 4){
-                _lvl4OnAIField.Add(card);
-            }
-
-            if (card.Level == 5){
-                _lvl5OnAIField.Add(card);
-            }
-
-            if (card.Level == 6){
-                _lvl6OnAIField.Add(card);
-            }
-
-            if (card.Level == 7){
-                _lvl7OnAIField.Add(card);
-            }
-        }
     }
 
     private void SelectRandomCard(List<Card> cardsInHand){
