@@ -17,11 +17,39 @@ public class AICardSelector : AIAction {
     public IEnumerator SelectCardRoutine(List<Card> cardsInHand, CardsOnField cardsOnField){
         OrganizeCardsInHand(cardsInHand); //Organiza os lvls dos monstros na mão
 
-        if(cardsOnField.MonstersOnAIField.Count == 0){
-            StrongestFusionInHand();
+        /*
+            if(boardfusion){
+                add fusioned card to selected list;
+                add card on board to selected list;
+            }else{
+                if(cardsOnField.MonstersOnAIField.Count == 0){
+                    StrongestFusionInHand();
+                }else{
+                    StrongestFusionInBoard(cardsOnField.MonstersOnAIField);
+                }
+            }
+        */
+
+        if(_actor.MakeABoardFusion){
+            // add fusioned card to selected list;
+            AddToSelectedList(_actor.AIManager.GetFusionedCard());
+            // add card on board to selected list;
+            AddToSelectedList(_actor.CardOnBoardToFusion);
+
+            _actor.ResetBoardFusion();
         }else{
-            StrongestFusionInBoard(cardsOnField.MonstersOnAIField);
+            if(cardsOnField.MonstersOnAIField.Count == 0){
+                StrongestFusionInHand();
+            }else{
+                StrongestFusionInBoard(cardsOnField.MonstersOnAIField);
+            }
         }
+
+        // if(cardsOnField.MonstersOnAIField.Count == 0){
+        //     StrongestFusionInHand();
+        // }else{
+        //     StrongestFusionInBoard(cardsOnField.MonstersOnAIField);
+        // }
 
         yield return new WaitForSeconds(Random.Range(3f, 5f));
         _actor.CardSelectionFinished();
@@ -183,7 +211,7 @@ public class AICardSelector : AIAction {
         if(_lvl2OnHand.Count >= 2 && _lvl3OnAIField.Count == 1){
             AddToSelectedList(_lvl2OnHand[0]);
             AddToSelectedList(_lvl2OnHand[1]);
-            AddToSelectedList(_lvl3OnAIField[0]);
+            // AddToSelectedList(_lvl3OnAIField[0]);
             return;
         }
     }

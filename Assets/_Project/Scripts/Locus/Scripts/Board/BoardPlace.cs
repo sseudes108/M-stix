@@ -156,9 +156,10 @@ public class BoardPlace : MonoBehaviour {
         _boardManager.BoardPlaceSelected();
     }
 
-    private void StartBoardFusion(){
+    public void StartBoardFusion(){
         _boardManager.BoardFusion();
-        _cardManager.Selector.SetCardsToBoardFusion(new List<Card>{CardInPlace, _resultCard});
+        var newCardList = new List<Card>{CardInPlace, _resultCard};
+        _cardManager.Selector.SetCardsToBoardFusion(newCardList);
         _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
         CardInPlace = null;
         IsFree = true;
@@ -172,14 +173,21 @@ public class BoardPlace : MonoBehaviour {
     /// Allow a card be selected
     /// </summary>
     private void BattleManager_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn){
-        if(IsPlayerPlace && isPlayerTurn){
-            _resultCard = card;
-            if(IsMonsterPlace && _resultCard is MonsterCard){
-                _canBeSelected = true;
-            }else if(!IsMonsterPlace && _resultCard is ArcaneCard){
-                _canBeSelected = true;
-            }
+        _resultCard = card;
+        if(IsMonsterPlace && _resultCard is MonsterCard){
+            _canBeSelected = true;
+        }else if(!IsMonsterPlace && _resultCard is ArcaneCard){
+            _canBeSelected = true;
         }
+
+        // if(IsPlayerPlace && isPlayerTurn){
+        //     _resultCard = card;
+        //     if(IsMonsterPlace && _resultCard is MonsterCard){
+        //         _canBeSelected = true;
+        //     }else if(!IsMonsterPlace && _resultCard is ArcaneCard){
+        //         _canBeSelected = true;
+        //     }
+        // }
     }
 
     private void BoardManager_OnBoardPlaceSelected(){

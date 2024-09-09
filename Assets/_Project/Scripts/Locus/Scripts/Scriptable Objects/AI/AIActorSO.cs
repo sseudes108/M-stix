@@ -13,6 +13,8 @@ public class AIActorSO : ScriptableObject {
     public AICardStatSelector CardStatSelector { get; private set; }
     public AIBoardPlaceSelector BoardPlaceSelector { get; private set; }
 
+    public AIManagerSO AIManager;
+    
     //Events
     [HideInInspector] public UnityEvent CardSelector_OnSelectionFinished;
     [HideInInspector] public UnityEvent CardStatSelector_OnCardStatSelectionFinished;
@@ -22,7 +24,6 @@ public class AIActorSO : ScriptableObject {
     public Card CardOnBoardToFusion;
 
     public void ResetBoardFusion(){
-        Debug.Log("Reset Board Fusion");
         MakeABoardFusion = false;
         CardOnBoardToFusion = null;
     }

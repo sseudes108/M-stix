@@ -9,6 +9,7 @@ public class Fusion : MonoBehaviour {
     [SerializeField] protected CardManagerSO _cardManager;
     [SerializeField] protected CameraManagerSO _cameraManager;
     [SerializeField] protected BoardManagerSO _boardManager;
+    [SerializeField] protected AIManagerSO _aIManager;
     
     private bool _isPlayerTurn;
     private List<Card> _fusionLine;
@@ -106,6 +107,11 @@ public class Fusion : MonoBehaviour {
         }else if(_fusionLine.Count == 1){
 
             _resultCard = _fusionLine[0];
+
+            if(!_isPlayerTurn){
+                _aIManager.SetFusionedCard(_resultCard);
+            }
+
             yield return null;
             _fusionManager.Positions.MoveCardToResultPosition(_resultCard, _isPlayerTurn);
         }
@@ -119,7 +125,7 @@ public class Fusion : MonoBehaviour {
         }
 
         // Open UI Select options
-        _fusionManager.SetResultedCard(_resultCard);
+        _fusionManager.SetResultCard(_resultCard);
         _fusionManager.FusionEnd(_resultCard);
 
         _fusionLine.Clear();

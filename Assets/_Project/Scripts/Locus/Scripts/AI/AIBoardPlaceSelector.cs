@@ -8,6 +8,8 @@ public class AIBoardPlaceSelector : AIAction {
     private List<BoardPlace> _monsterPlaces;
     private List<BoardPlace> _arcanePlaces;
 
+    private BoardPlace _boardPlace;
+
     public void SetBoardPlaces(List<BoardPlace> monsterPlaces, List<BoardPlace> arcanePlaces){
         _monsterPlaces = monsterPlaces;
         _arcanePlaces = arcanePlaces;
@@ -15,16 +17,16 @@ public class AIBoardPlaceSelector : AIAction {
 
     public IEnumerator BoardSelectionRoutine(Card cardToPlace){
         if(_actor.MakeABoardFusion){
-            BoardPlace boardPlace = _actor.CardOnBoardToFusion.GetBoardPlace();
-            boardPlace.SetCardInPlace(cardToPlace);
+            _boardPlace = _actor.CardOnBoardToFusion.GetBoardPlace();
+            _actor.AIManager.AI.ChangeState(_actor.AIManager.AI.CardSelect);
+            yield break;
+        }
 
-            _actor.ResetBoardFusion();
-            yield return null;
-
+        yield return new WaitForSeconds(2f);
+        if(_boardPlace != null){ //If was a board fusion
+            _boardPlace.SetCardInPlace(cardToPlace); 
         }else{
-            yield return new WaitForSeconds(2f);
             SelectFirstFreePlace(cardToPlace);
-            // SelectRandomFreePlace(cardToPlace);
             yield return null;
         }
     }

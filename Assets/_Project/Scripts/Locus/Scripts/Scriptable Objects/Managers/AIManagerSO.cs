@@ -6,6 +6,8 @@ public class AIManagerSO : ScriptableObject {
 
     public List<Card> CardsInHand = new(){};
 
+    private Card _fusionedCard;
+
     public List<BoardPlace> MonsterPlaces { get; private set; }
     public List<BoardPlace> ArcanePlaces { get; private set; }
 
@@ -22,5 +24,14 @@ public class AIManagerSO : ScriptableObject {
 
     public void SetCardsInHand(List<Card> cardsInHand){
         CardsInHand = cardsInHand;
+    }
+
+    public void SetFusionedCard(Card fusionedCard){
+        _fusionedCard = null;
+        _fusionedCard = fusionedCard;
+    }
+
+    public Card GetFusionedCard(){
+        return _fusionedCard;
     }
 }

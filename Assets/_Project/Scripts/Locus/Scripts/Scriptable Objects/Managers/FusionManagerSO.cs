@@ -24,7 +24,7 @@ public class FusionManagerSO : ScriptableObject {
     }
 
     public void SetPositions(FusionPositions positions) { Positions = positions; }
-    public void SetResultedCard(Card card) { ResultCard = card; }
+    public void SetResultCard(Card card) { ResultCard = card; }
 
     public void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn) { OnFusionStart?.Invoke(selectedCards, isPlayerTurn); }
     

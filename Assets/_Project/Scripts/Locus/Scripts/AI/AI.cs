@@ -26,6 +26,7 @@ public class AI : StateMachine {
 
     private void Start(){
         Manager.SetAI(this);
+        Actor.ResetBoardFusion();
     }
 
     public void ChangeState(AbstractState newState){
