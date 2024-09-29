@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BoardPlaceVisualController {
@@ -47,28 +48,36 @@ public class BoardPlaceVisualController {
     private void HighLightPlayerOcuppiedPlaces(Card card){
         List<BoardPlace> list;
 
-        if(card is MonsterCard){
-            list = _playerMonsterPlaces;
-        }else{
-            list = _playerArcanePlaces;
-        }
+        list = card is MonsterCard ? _playerMonsterPlaces : _playerArcanePlaces;
+        
+        // if(card is MonsterCard){
+        //     list = _playerMonsterPlaces;
+        // }else{
+        //     list = _playerArcanePlaces;
+        // }
 
-        foreach (BoardPlace place in list){
-            if(!place.IsFree){
-                place.Visual.HighLight();
-            }
+        foreach (var place in list.Where(place => !place.IsFree)){
+            place.Visual.HighLight();
         }
+        
+        // foreach (BoardPlace place in list){
+        //     if(!place.IsFree){
+        //         place.Visual.HighLight();
+        //     }
+        // }
     }
 
     private void HighLightEnemyOcuppiedPlaces(Card card){
         List<BoardPlace> list;
 
-        if(card is MonsterCard){
-            list = _enemyMonsterPlaces;
-        }else{
-            list = _enemyArcanePlaces;
-        }
-
+        list = card is MonsterCard ? _enemyMonsterPlaces : _enemyArcanePlaces;
+        
+        // if(card is MonsterCard){
+        //     list = _enemyMonsterPlaces;
+        // }else{
+        //     list = _enemyArcanePlaces;
+        // }
+        
         foreach (BoardPlace place in list){
             if(!place.IsFree){
                 // Debug.Log("!place.IsFree");

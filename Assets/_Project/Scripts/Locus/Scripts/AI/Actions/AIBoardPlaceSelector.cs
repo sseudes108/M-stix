@@ -16,19 +16,36 @@ public class AIBoardPlaceSelector : AIAction {
     }
 
     public IEnumerator BoardSelectionRoutine(Card cardToPlace){
+        yield return new WaitForSeconds(2f);
+
         if(_actor.MakeABoardFusion){
+            _boardPlace = null;
             _boardPlace = _actor.CardOnBoardToFusion.GetBoardPlace();
+            
             _actor.AIManager.AI.ChangeState(_actor.AIManager.AI.CardSelect);
-            yield break;
+        }else{
+            if(_boardPlace != null){ //If was a board fusion
+                _boardPlace.SetCardInPlace(cardToPlace); 
+            }else{
+                SelectFirstFreePlace(cardToPlace);
+                yield return null;
+            }
         }
 
-        yield return new WaitForSeconds(2f);
-        if(_boardPlace != null){ //If was a board fusion
-            _boardPlace.SetCardInPlace(cardToPlace); 
-        }else{
-            SelectFirstFreePlace(cardToPlace);
-            yield return null;
-        }
+
+        // if(_actor.MakeABoardFusion){
+        //     _boardPlace = _actor.CardOnBoardToFusion.GetBoardPlace();
+        //     _actor.AIManager.AI.ChangeState(_actor.AIManager.AI.CardSelect);
+        //     yield break;
+        // }
+
+        // yield return new WaitForSeconds(2f);
+        // if(_boardPlace != null){ //If was a board fusion
+        //     _boardPlace.SetCardInPlace(cardToPlace); 
+        // }else{
+        //     SelectFirstFreePlace(cardToPlace);
+        //     yield return null;
+        // }
     }
 
     private void SelectFirstFreePlace(Card cardToPlace){

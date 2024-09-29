@@ -1,8 +1,8 @@
 using UnityEngine;
 
 public class CardCreator {
-    private MonsterCard _monsterCardPrefab;
-    private ArcaneCard _arcaneCardPrefab;
+    private readonly MonsterCard _monsterCardPrefab;
+    private readonly ArcaneCard _arcaneCardPrefab;
 
     public CardCreator(MonsterCard monsterCardPrefab, ArcaneCard arcaneCardPrefab){
         _monsterCardPrefab = monsterCardPrefab;

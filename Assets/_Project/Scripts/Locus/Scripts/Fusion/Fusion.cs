@@ -57,6 +57,8 @@ public class Fusion : MonoBehaviour {
     }
 
     private IEnumerator FusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
+        _fusionLine?.Clear();
+        
         _isPlayerTurn = isPlayerTurn;
         _fusionLine = selectedCards;
 
@@ -102,7 +104,7 @@ public class Fusion : MonoBehaviour {
                 }
                 yield return new WaitForSeconds(1f);
 
-            }while(_fusionLine.Count > 0);
+            }while(_fusionLine.Count > 1);
 
         }else if(_fusionLine.Count == 1){
 

@@ -8,10 +8,12 @@ using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "AIActor", menuName = "Mistix/AI/Actor", order = 0)]
 public class AIActorSO : ScriptableObject {
+
     //Actions
     public AICardSelector CardSelector { get; private set; }
     public AICardStatSelector CardStatSelector { get; private set; }
     public AIBoardPlaceSelector BoardPlaceSelector { get; private set; }
+    public AIFieldChecker FieldChecker { get; private set; }
 
     public AIManagerSO AIManager;
     
@@ -29,6 +31,7 @@ public class AIActorSO : ScriptableObject {
     }
     
     private void OnEnable() {
+        FieldChecker??= new(this);
         CardSelector ??= new(this);
         CardStatSelector ??= new(this);
         BoardPlaceSelector ??= new(this);
@@ -51,5 +54,9 @@ public class AIActorSO : ScriptableObject {
 
     public void SetBoardPlaces(List<BoardPlace> monsterPlaces, List<BoardPlace> arcanePlaces){
         BoardPlaceSelector.SetBoardPlaces(monsterPlaces, arcanePlaces);
+    }
+
+    public void SetAIMAnager(AIManagerSO aimanager){
+        AIManager = aimanager;
     }
 }

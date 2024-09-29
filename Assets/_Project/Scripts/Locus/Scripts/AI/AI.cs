@@ -7,7 +7,7 @@ public class AI : StateMachine {
 
     public AbstractState CurrentState;
 
-    //Actions
+    //States
     public AISelectCardState CardSelect {get; private set;}
     public AICardStatSelState CardStatSelect {get; private set;}
     public AIBoardPlaceSelState BoardPlaceSelect {get; private set;}
@@ -19,13 +19,14 @@ public class AI : StateMachine {
     public List<Card> CardsOnAIField => _cardsOnAIField;
 
     public AI(){
-        CardSelect = new(this);
-        CardStatSelect = new(this);
-        BoardPlaceSelect = new(this);
+        CardSelect??= new(this);
+        CardStatSelect??= new(this);
+        BoardPlaceSelect??= new(this);
     }
 
     private void Start(){
         Manager.SetAI(this);
+        Actor.SetAIMAnager(Manager);
         Actor.ResetBoardFusion();
     }
 
