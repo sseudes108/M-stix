@@ -15,13 +15,8 @@ public class AICardSelector : AIAction{
         _actor.FieldChecker.OrganizeCardsOnHand(cardsInHand);
 
         if(_actor.MakeABoardFusion){
-            if(!_actor.AIManager.GetFusionedCard()){
-                Debug.LogError("_actor.AIManager.GetFusionedCard() is null"); //ISNULL
-            }else{
-                Debug.LogWarning("_actor.AIManager.GetFusionedCard() is not null");
-                AddToSelectedList(_actor.AIManager.GetFusionedCard());
-            }
-            AddToSelectedList(_actor.CardOnBoardToFusion); //Where is setted ?
+            AddToSelectedList(_actor.AIManager.GetFusionedCard());
+            AddToSelectedList(_actor.CardOnBoardToFusion);
 
             _actor.ResetBoardFusion();
         }else{
@@ -60,6 +55,7 @@ public class AICardSelector : AIAction{
     /// </summary>
     private void BoardFusion(Card cardToFusion){
         Debug.Log($"BoardFusion(Card {cardToFusion})");
+        _actor.BoardManager.BoardFusion();
         _actor.MakeABoardFusion = true;
         _actor.CardOnBoardToFusion = cardToFusion;
     }

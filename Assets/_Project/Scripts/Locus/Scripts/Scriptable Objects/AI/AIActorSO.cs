@@ -15,7 +15,8 @@ public class AIActorSO : ScriptableObject {
     public AIBoardPlaceSelector BoardPlaceSelector { get; private set; }
     public AIFieldChecker FieldChecker { get; private set; }
 
-    public AIManagerSO AIManager;
+    [field:SerializeField] public AIManagerSO AIManager { get; private set; }
+    [field:SerializeField] public BoardManagerSO BoardManager { get; private set; }
     
     //Events
     [HideInInspector] public UnityEvent CardSelector_OnSelectionFinished;

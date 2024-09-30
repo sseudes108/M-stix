@@ -27,7 +27,7 @@ public class Fusion : MonoBehaviour {
         _fusionManager.OnFusionStart.RemoveListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionSucess.RemoveListener(FusionManager_OnFusionSucess);
         _fusionManager.OnFusionFailed.RemoveListener(FusionManager_OnFusionFailed);
-        _boardManager.OnBoardFusion.AddListener(BoardManager_IsBoardFusion);
+        _boardManager.OnBoardFusion.RemoveListener(BoardManager_IsBoardFusion);
     }
 
 #region Events
@@ -45,6 +45,7 @@ public class Fusion : MonoBehaviour {
     }
 
     private void BoardManager_IsBoardFusion(){
+        Debug.Log("Fusion.cs - BoardManager_IsBoardFusion()");
         _isBoardFusion = true;
     }
 
@@ -110,12 +111,12 @@ public class Fusion : MonoBehaviour {
 
             _resultCard = _fusionLine[0];
 
-            if(!_isPlayerTurn){
-                _aIManager.SetFusionedCard(_resultCard);
-            }
-
             yield return null;
             _fusionManager.Positions.MoveCardToResultPosition(_resultCard, _isPlayerTurn);
+        }
+
+        if(!_isPlayerTurn){
+            _aIManager.SetFusionedCard(_resultCard);
         }
     
         yield return new WaitForSeconds(1f);
