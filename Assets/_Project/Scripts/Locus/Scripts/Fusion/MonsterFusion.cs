@@ -57,7 +57,7 @@ public class MonsterFusion : Fusion {
         //Instantiate fusioned card
         var randomIndex = Random.Range(0, possibleMonsters.Count);
         var fusionedCard = Instantiate(_cardManager.Creator.CreateCard(possibleMonsters[randomIndex]));
-        fusionedCard.name = $"{fusionedCard.Name} - ID {fusionedCard.GetInstanceID()} - Fusioned";
+        fusionedCard.name = $"ID {fusionedCard.GetInstanceID()} - Fusioned";
         fusionedCard.SetFusionedCard();
 
         // make card invisible

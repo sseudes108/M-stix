@@ -45,8 +45,7 @@ public class BoardManagerSO : ScriptableObject {
     public void HideOptions() { OnHideOptions?.Invoke(); }
 
     public void BoardFusion() {
-        Debug.Log("OnBoardFusion?.Invoke()");
-        OnBoardFusion?.Invoke(); 
+        OnBoardFusion?.Invoke();
     }
 
     //Custom Methods
