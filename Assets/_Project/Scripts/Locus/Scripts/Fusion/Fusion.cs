@@ -45,6 +45,7 @@ public class Fusion : MonoBehaviour {
     }
 
     private void BoardManager_IsBoardFusion(){
+        Debug.Log("Fusion.cs - BoardManager_IsBoardFusion");
         _isBoardFusion = true;
     }
 

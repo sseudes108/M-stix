@@ -13,6 +13,7 @@ public class AICardSelector : AIAction{
     public IEnumerator SelectCardRoutine(List<Card> cardsInHand, CardsOnField cardsOnField){
         _selectedList.Clear();
         _actor.FieldChecker.OrganizeCardsOnHand(cardsInHand);
+        _actor.FieldChecker.OrganizeAIMonsterCardsOnField(cardsOnField.MonstersOnAIField);
 
         if(_actor.MakeABoardFusion){
             AddToSelectedList(_actor.AIManager.GetFusionedCard());
@@ -54,39 +55,36 @@ public class AICardSelector : AIAction{
     /// cardToFusion is the card on the field the will be used after the fusion from hand
     /// </summary>
     private void BoardFusion(Card cardToFusion){
-        Debug.Log($"BoardFusion(Card {cardToFusion})");
         _actor.BoardManager.BoardFusion();
         _actor.MakeABoardFusion = true;
         _actor.CardOnBoardToFusion = cardToFusion;
     }
 
     private void StrongestFusionInBoard(List<MonsterCard> monstersOnAIField){
-        _actor.FieldChecker.OrganizeAIMonsterCardsOnField(monstersOnAIField);
+        if(CanMakeALvl8()){
+            TryMakeALvl8();
+            return;
+        }
 
-        // if(CanMakeALvl8()){
-        //     TryMakeALvl8();
-        //     return;
-        // }
+        if(CanMakeALvl7()){
+            TryMakeALvl7();
+            return;
+        }
 
-        // if(CanMakeALvl7()){
-        //     TryMakeALvl7();
-        //     return;
-        // }
+        if(CanMakeALvl6()){
+            TryMakeALvl6();
+            return;
+        }
 
-        // if(CanMakeALvl6()){
-        //     TryMakeALvl6();
-        //     return;
-        // }
-
-        // if(CanMakeALvl5()){
-        //     TryMakeALvl5();
-        //     return;
-        // }else{
-        //     if(CanMakeALvl5FromHand()){
-        //         TryMakeALvl5FromHand();
-        //         return;
-        //     }
-        // }
+        if(CanMakeALvl5()){
+            TryMakeALvl5();
+            return;
+        }else{
+            if(CanMakeALvl5FromHand()){
+                TryMakeALvl5FromHand();
+                return;
+            }
+        }
 
         if(CanMakeALvl4()){
             TryMakeALvl4();
@@ -98,15 +96,15 @@ public class AICardSelector : AIAction{
             }
         }
 
-        // if(CanMakeALvl3()){
-        //     TryMakeALvl3();
-        //     return;
-        // }else{
-        //     if(CanMakeALvl3FromHand()){
-        //         TryMakeALvl3FromHand();
-        //         return;
-        //     }
-        // }
+        if(CanMakeALvl3()){
+            TryMakeALvl3();
+            return;
+        }else{
+            if(CanMakeALvl3FromHand()){
+                TryMakeALvl3FromHand();
+                return;
+            }
+        }
 
         /*
             Organizar as cartas da AI em campo. - OK
