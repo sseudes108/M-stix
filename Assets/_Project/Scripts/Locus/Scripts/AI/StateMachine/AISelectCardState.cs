@@ -12,17 +12,25 @@ public class AISelectCardState : AbstractState{
     // private List<ArcaneCard> _arcanesOnPlayerField = new();
 
     private CardsOnField _cardsOnField;
+    // public CardsOnField CardsOnField => _cardsOnField;
+    private List<Card> _cardsInHand;
+    // public List<Card> CardsInHand => _cardsInHand;
+
+    private AI _AI;
 
     public override void Enter(){
+        _AI = StateMachine.AI;
+        
         SplitCardsOnBoardByType(); //Verifica quais as cartas em campo
-        StateMachine.AI.StartCoroutine(AIRoutine());
+        _AI.StartCoroutine(AIRoutine());
     }
 
     public override void Exit(){}
 
     public IEnumerator AIRoutine(){
         yield return new WaitForSeconds(0.5f);
-        StateMachine.AI.StartCoroutine(StateMachine.AI.Actor.CardSelector.SelectCardRoutine(StateMachine.AI.Manager.CardsInHand, _cardsOnField));
+        _AI.Actor.UpdateCardLists(_AI.Manager.CardsInHand, _cardsOnField.MonstersOnAIField);
+        _AI.StartCoroutine(_AI.Actor.CardSelector.SelectCardRoutine(_AI.Manager.CardsInHand, _cardsOnField));
         yield return null;
     }
 
@@ -36,7 +44,7 @@ public class AISelectCardState : AbstractState{
         // _arcanesOnAIField.Clear();
         // _arcanesOnPlayerField.Clear();
 
-        foreach(var card in StateMachine.AI.CardsOnAIField){
+        foreach(var card in _AI.Actor.CardsOnAIField){
             if(card is MonsterCard){
                 _monstersOnAIField.Add(card as MonsterCard);
             }else{
@@ -44,7 +52,7 @@ public class AISelectCardState : AbstractState{
             }
         }
 
-        foreach(var card in StateMachine.AI.CardsOnPlayerField){
+        foreach(var card in _AI.Actor.CardsOnPlayerField){
             if(card is MonsterCard){
                 _monsterOnPlayerField.Add(card as MonsterCard);
             }else{

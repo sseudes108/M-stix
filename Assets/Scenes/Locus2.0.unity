@@ -556,8 +556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
 --- !u!1 &60973445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,8 +1057,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
 --- !u!1 &108885023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,8 +1196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
 --- !u!65 &119582080
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2684,8 +2678,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
 --- !u!1 &341933451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,8 +2958,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
 --- !u!1 &352044642
 GameObject:
   m_ObjectHideFlags: 0
@@ -3163,8 +3153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
 --- !u!65 &355532268
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3415,8 +3403,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
 --- !u!1 &390077724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3881,8 +3867,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
 --- !u!65 &418998017
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4135,8 +4119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
 --- !u!65 &543213786
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4694,8 +4676,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
 --- !u!65 &637230716
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5534,8 +5514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
 --- !u!1001 &839756431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6467,8 +6445,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
 --- !u!1 &1057802239
 GameObject:
   m_ObjectHideFlags: 0
@@ -6624,8 +6600,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
 --- !u!65 &1071389278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6961,8 +6935,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
 --- !u!65 &1158520202
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7815,8 +7787,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
 --- !u!65 &1344077297
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8379,6 +8349,8 @@ MonoBehaviour:
     type: 2}
   <Actor>k__BackingField: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9,
     type: 2}
+  _cardsOnAIField: []
+  _cardsOnPlayerField: []
 --- !u!1 &1400343844
 GameObject:
   m_ObjectHideFlags: 0
@@ -8951,8 +8923,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
 --- !u!65 &1443069447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10522,8 +10492,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
 --- !u!1 &1787081399
 GameObject:
   m_ObjectHideFlags: 0
@@ -10705,8 +10673,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
 --- !u!65 &1791220975
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11431,8 +11397,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
 --- !u!1 &1899135861
 GameObject:
   m_ObjectHideFlags: 0
@@ -14604,8 +14568,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
-  LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
-  DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
 --- !u!1 &4283873112560019203
 GameObject:
   m_ObjectHideFlags: 0

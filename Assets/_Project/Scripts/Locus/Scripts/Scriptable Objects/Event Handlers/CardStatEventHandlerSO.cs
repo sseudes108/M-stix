@@ -16,13 +16,9 @@ public class CardStatEventHandlerSO : ScriptableObject {
         OnSelectAnother ??= new UnityEvent<Card>();
         OnSelectionsEnd ??= new UnityEvent();
     }
-    public void Option1Clicked() { 
-        OnOption1Clicked?.Invoke(); 
-    }
-
-    public void Option2Clicked() { 
-        OnOption2Clicked?.Invoke(); 
-    }
+    
+    public void Option1Clicked() { OnOption1Clicked?.Invoke(); }
+    public void Option2Clicked() { OnOption2Clicked?.Invoke(); }
 
     public void SelectAnother(Card card) { OnSelectAnother?.Invoke(card); }
     public void SelectionsEnd() { OnSelectionsEnd?.Invoke(); }

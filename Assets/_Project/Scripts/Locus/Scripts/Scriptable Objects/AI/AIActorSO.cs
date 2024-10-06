@@ -22,23 +22,24 @@ public class AIActorSO : ScriptableObject {
     [HideInInspector] public UnityEvent CardSelector_OnSelectionFinished;
     [HideInInspector] public UnityEvent CardStatSelector_OnCardStatSelectionFinished;
     [HideInInspector] public UnityEvent BoardPlaceSelector_OnBoardPlaceSelected;
+    // [HideInInspector] public UnityEvent<List<Card>, List<MonsterCard>> OnUpdateCardLists;
 
     public bool MakeABoardFusion;
     public Card CardOnBoardToFusion;
 
-    public void ResetBoardFusion(){
-        MakeABoardFusion = false;
-        CardOnBoardToFusion = null;
-    }
+    public List<Card> CardsOnAIField { get; private set; } = new();
+    public List<Card> CardsOnPlayerField { get; private set; } = new();
     
     private void OnEnable() {
         FieldChecker??= new(this);
+
         CardSelector ??= new(this);
         CardStatSelector ??= new(this);
         BoardPlaceSelector ??= new(this);
 
         CardSelector_OnSelectionFinished ??= new UnityEvent();
         CardStatSelector_OnCardStatSelectionFinished ??= new UnityEvent();
+        // OnUpdateCardLists ??= new UnityEvent<List<Card>, List<MonsterCard>>();
     }
 
     public void CardSelectionFinished(){
@@ -51,6 +52,21 @@ public class AIActorSO : ScriptableObject {
 
     public void BoardPlaceSelected(){
         BoardPlaceSelector_OnBoardPlaceSelected?.Invoke();
+    }
+
+    public void UpdateCardLists(List<Card> cardsInHand, List<MonsterCard> monstersOnAIField){
+        // OnUpdateCardLists.Invoke(cardsInHand, monstersOnAIField);
+        FieldChecker.OrganizeCardLists(cardsInHand, monstersOnAIField);
+    }
+
+    public void ResetBoardFusion(){
+        MakeABoardFusion = false;
+        CardOnBoardToFusion = null;
+    }
+
+    public void SetAICardLists( List<Card> aICardsOnField, List<Card> playerCardsOnField){
+        CardsOnAIField = aICardsOnField;
+        CardsOnPlayerField = playerCardsOnField;
     }
 
     public void SetBoardPlaces(List<BoardPlace> monsterPlaces, List<BoardPlace> arcanePlaces){

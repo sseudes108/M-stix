@@ -2,8 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 public class AICardStatSelector : AIAction {
-    public AICardStatSelector(AIActorSO actor){ _actor = actor; }
-
+    public AICardStatSelector(AIActorSO actor) { _actor = actor; }
+    
     public IEnumerator SelectCardStats(Card card){
         if(card is MonsterCard){
             AnimaSelection(card as MonsterCard);

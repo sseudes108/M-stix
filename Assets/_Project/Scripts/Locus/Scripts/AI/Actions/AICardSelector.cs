@@ -11,13 +11,11 @@ public class AICardSelector : AIAction{
     private List<Card> _selectedList = new();
     public List<Card> SelectedList => _selectedList;
 
-    AIFieldChecker _fieldChecker;
+    private AIFieldChecker _fieldChecker;
 
     public IEnumerator SelectCardRoutine(List<Card> cardsInHand, CardsOnField cardsOnField){
         _selectedList.Clear();
-        _actor.AIManager.AI.SplitCardsOnBoardByType();
-        _fieldChecker.OrganizeCardsOnHand(cardsInHand);
-        _fieldChecker.OrganizeAIMonsterCardsOnField(cardsOnField.MonstersOnAIField);
+        _actor.UpdateCardLists(cardsInHand, cardsOnField.MonstersOnAIField);
 
         if(_actor.MakeABoardFusion){
             _actor.CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();

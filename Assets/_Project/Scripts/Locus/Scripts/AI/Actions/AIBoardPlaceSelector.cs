@@ -25,11 +25,6 @@ public class AIBoardPlaceSelector : AIAction {
             _actor.AIManager.AI.ChangeState(_actor.AIManager.AI.CardSelect);
         }else{
             SelectFirstFreePlace(cardToPlace);
-            // if(_boardPlace != null){ //If was a board fusion
-            //     _boardPlace.SetCardInPlace(cardToPlace); 
-            // }else{
-            //     SelectFirstFreePlace(cardToPlace);
-            // }
         }
         yield return null;
     }

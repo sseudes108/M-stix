@@ -12,12 +12,6 @@ public class AI : StateMachine {
     public AICardStatSelState CardStatSelect {get; private set;}
     public AIBoardPlaceSelState BoardPlaceSelect {get; private set;}
 
-    private List<Card> _cardsOnAIField = new();
-    private List<Card> _cardsOnPlayerField = new();
-
-    public List<Card> CardsOnPlayerField => _cardsOnPlayerField;
-    public List<Card> CardsOnAIField => _cardsOnAIField;
-
     public AI(){
         CardSelect??= new(this);
         CardStatSelect??= new(this);
@@ -28,7 +22,13 @@ public class AI : StateMachine {
         Manager.SetAI(this);
         Actor.SetAIMAnager(Manager);
         Actor.ResetBoardFusion();
+
+        // Actor.FieldChecker.SubscribeEvents();
     }
+
+    // private void OnDisable() {
+    //     Actor.FieldChecker.UnsubscribeEvents();
+    // }
 
     public void ChangeState(AbstractState newState){
         CurrentState?.Exit();
@@ -38,15 +38,23 @@ public class AI : StateMachine {
         TesterUI.Instance.UpdateAIStateText(CurrentState.ToString());
     }
 
-    public void SetPlayerCardsOnField(List<Card> playerCardsOnField){
-        _cardsOnPlayerField = playerCardsOnField;
+    public void SetAIOnBoardLists(List<Card> aICardsOnField, List<Card> playerCardsOnField){
+        Actor.SetAICardLists(aICardsOnField, playerCardsOnField);
     }
 
-    public void SetAICardsOnField(List<Card> aICardsOnField){
-        _cardsOnAIField = aICardsOnField;
-    }
+    // public void SetAICardsOnField(List<Card> aICardsOnField){
+    //     Actor. = aICardsOnField;
+    // }
 
     public void SplitCardsOnBoardByType(){
         CardSelect.SplitCardsOnBoardByType();
     }
+
+    // public void OrganizeCardsOnHandAndField(List<Card> cardsInHand, List<MonsterCard> monstersOnAIField){
+    //     CardSelect.SplitCardsOnBoardByType();
+
+    //     Actor.FieldChecker.OrganizeCardsOnHand(cardsInHand);
+
+    //     Actor.FieldChecker.OrganizeAIMonsterCardsOnField(monstersOnAIField);
+    // }
 }

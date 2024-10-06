@@ -19,31 +19,31 @@ public class BoardPlaceVisual : MonoBehaviour {
     }
 
     public void TurnOffLights(){
-        if(_place.IsPlayerPlace){
-            StartCoroutine(SetColorRoutine(_colorManager.PlayerDefaultColor, 0.01f, true));
-        }else{
-            StartCoroutine(SetColorRoutine(_colorManager.EnemyDefaultColor, 0.01f, true));
-        }
-
         // if(_place.IsPlayerPlace){
-        //     StartCoroutine(SetColorRoutine(new Color(9f, 9f, 181f), 0.01f, true));
+        //     StartCoroutine(SetColorRoutine(_colorManager.PlayerDefaultColor, 0.01f, true));
         // }else{
-        //     StartCoroutine(SetColorRoutine(new Color(181f, 9f, 9f), 0.01f, true));
+        //     StartCoroutine(SetColorRoutine(_colorManager.EnemyDefaultColor, 0.01f, true));
         // }
+
+        if(_place.IsPlayerPlace){
+            StartCoroutine(SetColorRoutine(new Color(9f, 9f, 181f), 0.01f, true));
+        }else{
+            StartCoroutine(SetColorRoutine(new Color(181f, 9f, 9f), 0.01f, true));
+        }
     }
 
     public void LightUp(){
-        if(_place.IsPlayerPlace){
-            StartCoroutine(SetColorRoutine(_colorManager.PlayerDefaultColor, 0.01f, true));
-        }else{
-            StartCoroutine(SetColorRoutine(_colorManager.EnemyDefaultColor, 0.01f, true));
-        }
-
         // if(_place.IsPlayerPlace){
-        //     StartCoroutine(SetColorRoutine(new Color(9f, 9f, 181f), 0.2f, false));
+        //     StartCoroutine(SetColorRoutine(_colorManager.PlayerDefaultColor, 0.01f, true));
         // }else{
-        //     StartCoroutine(SetColorRoutine(new Color(181f, 9f, 9f), 0.2f, false));
+        //     StartCoroutine(SetColorRoutine(_colorManager.EnemyDefaultColor, 0.01f, true));
         // }
+
+        if(_place.IsPlayerPlace){
+            StartCoroutine(SetColorRoutine(new Color(9f, 9f, 181f), 0.2f, false));
+        }else{
+            StartCoroutine(SetColorRoutine(new Color(181f, 9f, 9f), 0.2f, false));
+        }
     }
 
     public void HighLight(){
@@ -52,14 +52,14 @@ public class BoardPlaceVisual : MonoBehaviour {
     }
 
     public IEnumerator SetColorRoutine(Color newColor, float intensity, bool imediate){
-        // Color adjustedColor = new(
-        //     newColor.r * intensity, 
-        //     newColor.g * intensity, 
-        //     newColor.b * intensity,
-        //     newColor.a
-        // );
+        Color adjustedColor = new(
+            newColor.r * intensity, 
+            newColor.g * intensity, 
+            newColor.b * intensity,
+            newColor.a
+        );
 
-        Color adjustedColor = newColor;
+        // Color adjustedColor = newColor;
         
         if(imediate){
             foreach(var renderer in _renderers){
