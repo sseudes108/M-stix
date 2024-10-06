@@ -30,7 +30,12 @@ public class AISelectCardState : AbstractState{
         return "Select Card";
     }
 
-    private void SplitCardsOnBoardByType(){
+    public void SplitCardsOnBoardByType(){
+        _monstersOnAIField.Clear();
+        _monsterOnPlayerField.Clear();
+        // _arcanesOnAIField.Clear();
+        // _arcanesOnPlayerField.Clear();
+
         foreach(var card in StateMachine.AI.CardsOnAIField){
             if(card is MonsterCard){
                 _monstersOnAIField.Add(card as MonsterCard);
@@ -47,7 +52,7 @@ public class AISelectCardState : AbstractState{
             }
         }
 
-        _cardsOnField = null;
+        // _cardsOnField = null;
         _cardsOnField = new(
             _monsterOnPlayerField, 
             _monstersOnAIField

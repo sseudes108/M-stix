@@ -45,4 +45,8 @@ public class AI : StateMachine {
     public void SetAICardsOnField(List<Card> aICardsOnField){
         _cardsOnAIField = aICardsOnField;
     }
+
+    public void SplitCardsOnBoardByType(){
+        CardSelect.SplitCardsOnBoardByType();
+    }
 }

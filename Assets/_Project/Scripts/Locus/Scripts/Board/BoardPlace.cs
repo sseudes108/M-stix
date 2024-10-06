@@ -156,13 +156,17 @@ public class BoardPlace : MonoBehaviour {
         _boardManager.BoardPlaceSelected();
     }
 
+    public void SetPlaceFree(){
+        CardInPlace = null;
+        _canBeSelected = true;
+        IsFree = true;
+    }
+
     public void StartBoardFusion(){
-        // _boardManager.BoardFusion();
         var newCardList = new List<Card>{CardInPlace, _resultCard};
         _cardManager.Selector.SetCardsToBoardFusion(newCardList);
         _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
-        CardInPlace = null;
-        IsFree = true;
+        SetPlaceFree();
     }
 
 #endregion

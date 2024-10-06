@@ -24,28 +24,14 @@ public class AIBoardPlaceSelector : AIAction {
             
             _actor.AIManager.AI.ChangeState(_actor.AIManager.AI.CardSelect);
         }else{
-            if(_boardPlace != null){ //If was a board fusion
-                _boardPlace.SetCardInPlace(cardToPlace); 
-            }else{
-                SelectFirstFreePlace(cardToPlace);
-                yield return null;
-            }
+            SelectFirstFreePlace(cardToPlace);
+            // if(_boardPlace != null){ //If was a board fusion
+            //     _boardPlace.SetCardInPlace(cardToPlace); 
+            // }else{
+            //     SelectFirstFreePlace(cardToPlace);
+            // }
         }
-
-
-        // if(_actor.MakeABoardFusion){
-        //     _boardPlace = _actor.CardOnBoardToFusion.GetBoardPlace();
-        //     _actor.AIManager.AI.ChangeState(_actor.AIManager.AI.CardSelect);
-        //     yield break;
-        // }
-
-        // yield return new WaitForSeconds(2f);
-        // if(_boardPlace != null){ //If was a board fusion
-        //     _boardPlace.SetCardInPlace(cardToPlace); 
-        // }else{
-        //     SelectFirstFreePlace(cardToPlace);
-        //     yield return null;
-        // }
+        yield return null;
     }
 
     private void SelectFirstFreePlace(Card cardToPlace){

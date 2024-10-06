@@ -536,7 +536,7 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 6
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
@@ -555,11 +555,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
-  IntensityFactor: 2.5
 --- !u!1 &60973445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1039,7 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 9
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
@@ -1060,11 +1058,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
-  IntensityFactor: 2.5
 --- !u!1 &108885023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,11 +1199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
-  IntensityFactor: 2.5
 --- !u!65 &119582080
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2670,7 +2664,7 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 7
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
@@ -2689,11 +2683,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
-  IntensityFactor: 2.5
 --- !u!1 &341933451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,11 +2965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
-  IntensityFactor: 2.5
 --- !u!1 &352044642
 GameObject:
   m_ObjectHideFlags: 0
@@ -3172,11 +3162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
-  IntensityFactor: 2.5
 --- !u!65 &355532268
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3407,7 +3395,7 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 5
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
@@ -3426,11 +3414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
-  IntensityFactor: 2.5
 --- !u!1 &390077724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3894,11 +3880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
-  IntensityFactor: 2.5
 --- !u!65 &418998017
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4150,11 +4134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
-  IntensityFactor: 2.5
 --- !u!65 &543213786
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4711,11 +4693,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
-  IntensityFactor: 2.5
 --- !u!65 &637230716
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5553,11 +5533,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
-  IntensityFactor: 2.5
 --- !u!1001 &839756431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6488,11 +6466,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
-  IntensityFactor: 2.5
 --- !u!1 &1057802239
 GameObject:
   m_ObjectHideFlags: 0
@@ -6647,11 +6623,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
-  IntensityFactor: 2.5
 --- !u!65 &1071389278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6986,11 +6960,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
-  IntensityFactor: 2.5
 --- !u!65 &1158520202
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7842,11 +7814,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
-  IntensityFactor: 2.5
 --- !u!65 &1344077297
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8980,11 +8950,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
-  IntensityFactor: 2.5
 --- !u!65 &1443069447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10534,7 +10502,7 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  <Location>k__BackingField: 8
+  <Location>k__BackingField: 0
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
@@ -10553,11 +10521,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
-  IntensityFactor: 2.5
 --- !u!1 &1787081399
 GameObject:
   m_ObjectHideFlags: 0
@@ -10738,11 +10704,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.70980394, g: 0.03529412, b: 0.03529412, a: 1}
-  IntensityFactor: 2.5
 --- !u!65 &1791220975
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11466,11 +11430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
-  IntensityFactor: 2.5
 --- !u!1 &1899135861
 GameObject:
   m_ObjectHideFlags: 0
@@ -14641,11 +14603,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e2a48cdc08b44bba1bdabff4def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _place: {fileID: 0}
-  _renderers: []
+  _colorManager: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
   LightUpColor: {r: 0.84705883, g: 0.84705883, b: 0.105882354, a: 1}
   DefaultColor: {r: 0.03529412, g: 0.03529412, b: 0.70980394, a: 1}
-  IntensityFactor: 2.5
 --- !u!1 &4283873112560019203
 GameObject:
   m_ObjectHideFlags: 0

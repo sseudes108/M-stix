@@ -20,14 +20,14 @@ public class Fusion : MonoBehaviour {
         _fusionManager.OnFusionStart.AddListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionSucess.AddListener(FusionManager_OnFusionSucess);
         _fusionManager.OnFusionFailed.AddListener(FusionManager_OnFusionFailed);
-        _boardManager.OnBoardFusion.AddListener(BoardManager_IsBoardFusion);
+        _boardManager.OnBoardFusion.AddListener(BoardManager_OnBoardFusion);
     }
 
     private void OnDisable() {
         _fusionManager.OnFusionStart.RemoveListener(FusionManager_OnFusionStart);
         _fusionManager.OnFusionSucess.RemoveListener(FusionManager_OnFusionSucess);
         _fusionManager.OnFusionFailed.RemoveListener(FusionManager_OnFusionFailed);
-        _boardManager.OnBoardFusion.RemoveListener(BoardManager_IsBoardFusion);
+        _boardManager.OnBoardFusion.RemoveListener(BoardManager_OnBoardFusion);
     }
 
 #region Events
@@ -44,8 +44,8 @@ public class Fusion : MonoBehaviour {
         FusionFailed(card1, card2);
     }
 
-    private void BoardManager_IsBoardFusion(){
-        Debug.Log("Fusion.cs - BoardManager_IsBoardFusion");
+    private void BoardManager_OnBoardFusion(){
+        Debug.Log("Fusion.cs - BoardManager_OnBoardFusion");
         _isBoardFusion = true;
     }
 

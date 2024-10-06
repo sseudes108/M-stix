@@ -5,17 +5,23 @@ using UnityEngine;
 public class AICardSelector : AIAction{
     public AICardSelector(AIActorSO actor){
         _actor = actor;
+        _fieldChecker = _actor.FieldChecker;
     }
     
     private List<Card> _selectedList = new();
     public List<Card> SelectedList => _selectedList;
 
+    AIFieldChecker _fieldChecker;
+
     public IEnumerator SelectCardRoutine(List<Card> cardsInHand, CardsOnField cardsOnField){
         _selectedList.Clear();
-        _actor.FieldChecker.OrganizeCardsOnHand(cardsInHand);
-        _actor.FieldChecker.OrganizeAIMonsterCardsOnField(cardsOnField.MonstersOnAIField);
+        _actor.AIManager.AI.SplitCardsOnBoardByType();
+        _fieldChecker.OrganizeCardsOnHand(cardsInHand);
+        _fieldChecker.OrganizeAIMonsterCardsOnField(cardsOnField.MonstersOnAIField);
 
         if(_actor.MakeABoardFusion){
+            _actor.CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
+
             AddToSelectedList(_actor.AIManager.GetFusionedCard());
             AddToSelectedList(_actor.CardOnBoardToFusion);
 
@@ -24,7 +30,7 @@ public class AICardSelector : AIAction{
             if(cardsOnField.MonstersOnAIField.Count == 0){
                 StrongestFusionFromHand();
             }else{
-                StrongestFusionInBoard(cardsOnField.MonstersOnAIField);
+                CheckBoardFusion(cardsOnField.MonstersOnAIField);
             }
         }
 
@@ -43,12 +49,22 @@ public class AICardSelector : AIAction{
     }
 
     private void StrongestFusionFromHand(){
+        if(CanMakeALvl5FromHand()){
+            TryMakeALvl5FromHand();
+            return;
+        }
+
+        if(CanMakeALvl4FromHand()){
+            TryMakeALvl4FromHand();
+            return;
+        }
+
         if(CanMakeALvl3FromHand()){
             TryMakeALvl3FromHand();
             return;
         }
 
-        AddToSelectedList(_actor.FieldChecker.Lvl2OnHand[0]);
+        AddToSelectedList(_fieldChecker.Lvl2OnHand[0]);
     }
     
     /// <summary>
@@ -60,7 +76,7 @@ public class AICardSelector : AIAction{
         _actor.CardOnBoardToFusion = cardToFusion;
     }
 
-    private void StrongestFusionInBoard(List<MonsterCard> monstersOnAIField){
+    private void CheckBoardFusion(List<MonsterCard> monstersOnAIField){
         if(CanMakeALvl8()){
             TryMakeALvl8();
             return;
@@ -106,6 +122,8 @@ public class AICardSelector : AIAction{
             }
         }
 
+        StrongestFusionFromHand();
+
         /*
             Organizar as cartas da AI em campo. - OK
             Verificar qual o lvl mais alto em campo. - OK
@@ -118,15 +136,15 @@ public class AICardSelector : AIAction{
 #region Level 8
     private bool CanMakeALvl8(){
         // Verificar se há nivel 7 em campo;
-        if(_actor.FieldChecker.Lvl7OnAIField.Count != 0){
+        if(_fieldChecker.Lvl7OnAIField.Count != 0){
             // Verificar se há nivel 6 em campo;
-            if(_actor.FieldChecker.Lvl6OnAIField.Count != 0){
+            if(_fieldChecker.Lvl6OnAIField.Count != 0){
 
                 // Verificar se há nivel 5 em campo;
-                if(_actor.FieldChecker.Lvl5OnAIField.Count != 0){
+                if(_fieldChecker.Lvl5OnAIField.Count != 0){
                     //tem um nv7, um nv6 e um nv5 em campo;
 
-                    if(_actor.FieldChecker.Lvl4OnAIField.Count != 0){
+                    if(_fieldChecker.Lvl4OnAIField.Count != 0){
                         //Tem um nv4 em campo
 
                         //Tem um nv4 na mão ou pode ser fundido da mão?
@@ -163,13 +181,13 @@ public class AICardSelector : AIAction{
 #region Level 7
     private bool CanMakeALvl7(){
         // Verificar se há nivel 6 em campo;
-        if(_actor.FieldChecker.Lvl6OnAIField.Count != 0){
+        if(_fieldChecker.Lvl6OnAIField.Count != 0){
 
             // Verificar se há nivel 5 em campo;
-            if(_actor.FieldChecker.Lvl5OnAIField.Count != 0){
+            if(_fieldChecker.Lvl5OnAIField.Count != 0){
                 //nv6 e um nv5 em campo;
 
-                if(_actor.FieldChecker.Lvl4OnAIField.Count != 0){
+                if(_fieldChecker.Lvl4OnAIField.Count != 0){
                     //Tem um nv4 em campo
 
                     //Tem um nv4 na mão ou pode ser fundido da mão?
@@ -201,10 +219,10 @@ public class AICardSelector : AIAction{
 #region Level 6
     private bool CanMakeALvl6(){
         // Verificar se há nivel 5 em campo;
-        if(_actor.FieldChecker.Lvl5OnAIField.Count != 0){
+        if(_fieldChecker.Lvl5OnAIField.Count != 0){
             //nv6 e um nv5 em campo;
 
-            if(_actor.FieldChecker.Lvl4OnAIField.Count != 0){
+            if(_fieldChecker.Lvl4OnAIField.Count != 0){
                 //Tem um nv4 em campo
 
                 //Tem um nv4 na mão ou pode ser fundido da mão?
@@ -231,7 +249,12 @@ public class AICardSelector : AIAction{
 #region Level 5
     private bool CanMakeALvl5(){
         //Há um nv4 no campo
-        if(_actor.FieldChecker.Lvl4OnAIField.Count > 0){
+        if(_fieldChecker.Lvl4OnAIField.Count > 0){
+            // é possivel fazer um nv4 com o campo
+            if(CanMakeALvl4()){
+                return true;
+            }
+
             // é possivel fazer um nv4 da mão
             if(CanMakeALvl4FromHand()){
                 return true;
@@ -245,12 +268,12 @@ public class AICardSelector : AIAction{
     
     private bool CanMakeALvl5FromHand(){
         //Mais de um nv4 na mão
-        if(_actor.FieldChecker.Lvl4OnHand.Count > 1){
+        if(_fieldChecker.Lvl4OnHand.Count > 1){
             return true;
         }
 
         //Mais de um nv3 e um nv4 na mão
-        if(_actor.FieldChecker.Lvl3OnAIField.Count > 1 && _actor.FieldChecker.Lvl4OnHand.Count > 0){
+        if(_fieldChecker.Lvl3OnAIField.Count > 1 && _fieldChecker.Lvl4OnHand.Count > 0){
             return true;
         }
 
@@ -268,7 +291,7 @@ public class AICardSelector : AIAction{
 #region Level 4
 
     private bool CanMakeALvl4(){
-        if(_actor.FieldChecker.Lvl3OnAIField.Count > 0){
+        if(_fieldChecker.Lvl3OnAIField.Count > 0){
             if(CanMakeALvl3FromHand()){
                 return true;
             }
@@ -278,17 +301,17 @@ public class AICardSelector : AIAction{
 
     private bool CanMakeALvl4FromHand(){
         //Mais um 0 nv4 na mão.
-        if(_actor.FieldChecker.Lvl4OnHand.Count != 0){
+        if(_fieldChecker.Lvl4OnHand.Count != 0){
             return true;
         }
 
         //Mais de um nv3 na mão
-        if(_actor.FieldChecker.Lvl3OnHand.Count > 1){
+        if(_fieldChecker.Lvl3OnHand.Count > 1){
             return true;
         }
 
         //Mais de um nv2 na mão e um nv3 na mão (maior que 0, porém, não maior que 1)
-        if(_actor.FieldChecker.Lvl2OnHand.Count > 1 && _actor.FieldChecker.Lvl3OnHand.Count > 0){
+        if(_fieldChecker.Lvl2OnHand.Count > 1 && _fieldChecker.Lvl3OnHand.Count > 0){
             return true;
         }
 
@@ -296,12 +319,18 @@ public class AICardSelector : AIAction{
     }
 
     private void TryMakeALvl4(){
-        if(_actor.FieldChecker.Lvl3OnAIField.Count > 0){
+        if(CanMakeALvl4()){
             if(CanMakeALvl3FromHand()){
                 TryMakeALvl3FromHand();
-                BoardFusion(_actor.FieldChecker.Lvl3OnAIField[0]);
+                BoardFusion(_fieldChecker.Lvl3OnAIField[0]);
             }
         }
+        // if(_fieldChecker.Lvl3OnAIField.Count > 0){
+        //     if(CanMakeALvl3FromHand()){
+        //         TryMakeALvl3FromHand();
+        //         BoardFusion(_fieldChecker.Lvl3OnAIField[0]);
+        //     }
+        // }
     }
 
     private void TryMakeALvl4FromHand(){
@@ -311,8 +340,8 @@ public class AICardSelector : AIAction{
 
 #region Level 3
     private bool CanMakeALvl3(){
-        if(_actor.FieldChecker.Lvl2OnAIField.Count > 0){
-            if(_actor.FieldChecker.Lvl2OnHand.Count > 0){
+        if(_fieldChecker.Lvl2OnAIField.Count > 0){
+            if(_fieldChecker.Lvl2OnHand.Count > 0){
                 return true;
             }else{
                 return false;
@@ -324,12 +353,12 @@ public class AICardSelector : AIAction{
 
     private bool CanMakeALvl3FromHand(){
         //Mais um 0 nv3 na mão
-        if(_actor.FieldChecker.Lvl3OnHand.Count != 0){
+        if(_fieldChecker.Lvl3OnHand.Count != 0){
             return true;
         }
 
         //Mais de um nv2 na mão
-        if(_actor.FieldChecker.Lvl2OnHand.Count > 1){
+        if(_fieldChecker.Lvl2OnHand.Count > 1){
             return true;
         }
 
@@ -340,14 +369,14 @@ public class AICardSelector : AIAction{
     }
 
     private void TryMakeALvl3FromHand(){
-        if(_actor.FieldChecker.Lvl3OnHand.Count != 0){
-            AddToSelectedList(_actor.FieldChecker.Lvl3OnHand[0]);
+        if(_fieldChecker.Lvl3OnHand.Count != 0){
+            AddToSelectedList(_fieldChecker.Lvl3OnHand[0]);
             return;
         }
 
-        if(_actor.FieldChecker.Lvl2OnHand.Count > 1){
-            AddToSelectedList(_actor.FieldChecker.Lvl2OnHand[0]);
-            AddToSelectedList(_actor.FieldChecker.Lvl2OnHand[1]);
+        if(_fieldChecker.Lvl2OnHand.Count > 1){
+            AddToSelectedList(_fieldChecker.Lvl2OnHand[0]);
+            AddToSelectedList(_fieldChecker.Lvl2OnHand[1]);
             return;
         }
     }
