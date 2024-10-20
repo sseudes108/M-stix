@@ -59,6 +59,7 @@ public class Fusion : MonoBehaviour {
     private IEnumerator FusionRoutine(List<Card> selectedCards, bool isPlayerTurn){        
         _isPlayerTurn = isPlayerTurn;
         _fusionLine = selectedCards;
+        _resultCard = null;
 
         ResetCards(_fusionLine);
 
@@ -118,6 +119,7 @@ public class Fusion : MonoBehaviour {
     
         yield return new WaitForSeconds(1f);
 
+        //Board Fusion
         if(_isBoardFusion){
             _resultCard.SetCardAsFusioned();
             _resultCard.ResetCardStats();

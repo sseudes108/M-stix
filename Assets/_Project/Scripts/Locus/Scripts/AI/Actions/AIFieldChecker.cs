@@ -111,4 +111,14 @@ public class AIFieldChecker : AIAction {
         OrganizeCardsOnHand(cardsInHand);
         OrganizeAIMonsterCardsOnField(monstersOnAIField);
     }
+
+    public int GetStrongestLevelOnField(){
+        if(Lvl7OnAIField.Count > 0){return 7;}
+        if(Lvl6OnAIField.Count > 0){return 6;}
+        if(Lvl5OnAIField.Count > 0){return 5;}
+        if(Lvl4OnAIField.Count > 0){return 4;}
+        if(Lvl3OnAIField.Count > 0){return 3;}
+        if(Lvl2OnAIField.Count > 0){return 2;}
+        return 0;
+    }
 }

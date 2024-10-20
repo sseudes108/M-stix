@@ -60,7 +60,7 @@ public class AISelectCardState : AbstractState{
             }
         }
 
-        // _cardsOnField = null;
+        _cardsOnField = null;
         _cardsOnField = new(
             _monsterOnPlayerField, 
             _monstersOnAIField

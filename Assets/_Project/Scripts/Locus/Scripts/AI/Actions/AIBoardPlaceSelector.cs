@@ -26,6 +26,7 @@ public class AIBoardPlaceSelector : AIAction {
         }else{
             SelectFirstFreePlace(cardToPlace);
         }
+        
         yield return null;
     }
 
