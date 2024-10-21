@@ -11,16 +11,23 @@ public class DrawPhase : AbstractState{
     private void DrawCards(){
         if(StateMachine.Battle.TurnManager.CurrentTurn == 1){
             StateMachine.Battle.BattleManager.PlayerDraw();
+            StateMachine.Battle.Board.PlayerHand.CheckPositionsInHand();
+
             StateMachine.Battle.BattleManager.EnemyDraw();
+            StateMachine.Battle.Board.EnemyHand.CheckPositionsInHand();
+
             return;
         }
 
         if(StateMachine.Battle.TurnManager.IsPlayerTurn){
 
             StateMachine.Battle.BattleManager.PlayerDraw();
+            StateMachine.Battle.Board.PlayerHand.CheckPositionsInHand();
+            
             return;
         }
         StateMachine.Battle.BattleManager.EnemyDraw();
+        StateMachine.Battle.Board.EnemyHand.CheckPositionsInHand();
     }
 
     public override void SubscribeEvents(){

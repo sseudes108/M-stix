@@ -17,7 +17,25 @@ public class AIBoardPlaceSelector : AIAction {
 
     public IEnumerator BoardSelectionRoutine(Card cardToPlace){
         yield return new WaitForSeconds(2f);
+        
+        if(cardToPlace is MonsterCard){
+            var lvl = (cardToPlace as MonsterCard).Level;
 
+            switch(lvl){
+                case 4:
+                    if(_actor.FieldChecker.Lvl4OnAIField.Count > 0){
+                        _actor.BoardFusion(_actor.FieldChecker.Lvl4OnAIField[0]);
+                    }
+                break;
+
+                case 3:
+                    if(_actor.FieldChecker.Lvl3OnAIField.Count > 0){
+                        _actor.BoardFusion(_actor.FieldChecker.Lvl3OnAIField[0]);
+                    }
+                break;
+            }
+        }
+        
         if(_actor.MakeABoardFusion){
             _boardPlace = null;
             _boardPlace = _actor.CardOnBoardToFusion.GetBoardPlace();

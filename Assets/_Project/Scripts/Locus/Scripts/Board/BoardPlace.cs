@@ -147,7 +147,7 @@ public class BoardPlace : MonoBehaviour {
 
         CardInPlace = card;
         card.SetBoardPlace(this);
-        card.SetCardOnHand(false);
+        // card.SetCardOnHand(false);
         card.DeselectCard();
         card.DisableCollider();
         

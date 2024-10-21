@@ -25,9 +25,10 @@ public class Hand : MonoBehaviour {
         CheckPositionsInHand(); 
     }
 
-    private void CheckPositionsInHand(){
+    public void CheckPositionsInHand(){
         _cardsInHand.Clear();
         _freePositionsInHand.Clear();
+        Debug.Log($"Hand - {this}");
 
         foreach(var position in _handPositions){
             var handPosition = position.GetComponent<HandPosition>();

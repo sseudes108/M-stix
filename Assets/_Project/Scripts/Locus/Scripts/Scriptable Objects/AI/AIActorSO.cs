@@ -64,6 +64,15 @@ public class AIActorSO : ScriptableObject {
         CardOnBoardToFusion = null;
     }
 
+    /// <summary>
+    /// cardToFusion is the card on the field the will be used after the fusion from hand
+    /// </summary>
+    public void BoardFusion(Card cardToFusion){
+        BoardManager.BoardFusion();
+        MakeABoardFusion = true;
+        CardOnBoardToFusion = cardToFusion;
+    }
+
     public void SetAICardLists( List<Card> aICardsOnField, List<Card> playerCardsOnField){
         CardsOnAIField = aICardsOnField;
         CardsOnPlayerField = playerCardsOnField;

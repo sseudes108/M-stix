@@ -13,7 +13,7 @@ public class AICardSelector : AIAction{
 
     private AIFieldChecker _fieldChecker;
 
-    public IEnumerator SelectCardRoutine(List<Card> cardsInHand, CardsOnField cardsOnField){
+    public IEnumerator SelectCardRoutine(CardsOnField cardsOnField){
 
         /*
             Limpar lista de cartas selecionadas
@@ -37,7 +37,6 @@ public class AICardSelector : AIAction{
             AddToSelectedList(_actor.CardOnBoardToFusion);
 
             _actor.ResetBoardFusion();
-
         }else{//Não é uma board fusion
             if(cardsOnField.MonstersOnAIField.Count == 0){//Não existe nenhum monstro em campo
                 StrongestFusionFromHand();//Faz o monstro mais forte possivel da mão
@@ -74,40 +73,16 @@ public class AICardSelector : AIAction{
         AddToSelectedList(_fieldChecker.Lvl2OnHand[0]);
     }
     
-    /// <summary>
-    /// cardToFusion is the card on the field the will be used after the fusion from hand
-    /// </summary>
-    private void BoardFusion(Card cardToFusion){
-        _actor.BoardManager.BoardFusion();
-        _actor.MakeABoardFusion = true;
-        _actor.CardOnBoardToFusion = cardToFusion;
-    }
-
     private void CheckBoardFusion(){
-        MonsterCard lastFusionedMonster = null;
-        int lastFusionedMonsterLevel = 0;
-
-        if(_actor.AIManager.GetFusionedCard() != null){//Uma fusão foi anteriomente feita
-            if(!_actor.AIManager.GetFusionedCard().IsPlayerCard){//A Carta resultado nao é do player, ou seja, feita pela IA
-                lastFusionedMonster = _actor.AIManager.GetFusionedCard() as MonsterCard;
-                lastFusionedMonsterLevel = lastFusionedMonster.Level;
-            }
-        }
-        
+       
         if(_fieldChecker.Lvl4OnAIField.Count > 0){
             if(CanMakeAlvl4FromHand()){//é possivel fazer outro nivel 4 da mão
                 TryMakeALvl4FromHand();
-                BoardFusion(_fieldChecker.Lvl4OnAIField[0]);
+                _actor.BoardFusion(_fieldChecker.Lvl4OnAIField[0]);
                 return;
             }else if(CanMakeALvl4OnBoard()){//é possivel fazer outro nivel 4 utilizando um nivel 3 em campo
                 TryMakeALvl4OnBoard();
-                BoardFusion(_fieldChecker.Lvl3OnAIField[0]);
-                return;
-            }
-
-            if(lastFusionedMonsterLevel == 4){
-                AddToSelectedList(lastFusionedMonster);
-                BoardFusion(_fieldChecker.Lvl4OnAIField[0]);
+                _actor.BoardFusion(_fieldChecker.Lvl3OnAIField[0]);
                 return;
             }
         }
@@ -115,11 +90,11 @@ public class AICardSelector : AIAction{
         if(_fieldChecker.Lvl3OnAIField.Count > 0){
             if(CanMakeALvl3FromHand()){//é possivel fazer outro nivel 3 da mão
                 TryMakeALvl3FromHand();
-                BoardFusion(_fieldChecker.Lvl3OnAIField[0]);
+                _actor.BoardFusion(_fieldChecker.Lvl3OnAIField[0]);
                 return;
             }else if(CanMakeALvl3OnBoard()){//é possivel fazer outro nivel 3 utilizando um nivel 2 em campo
                 TryMakeALvl3OnBoard();
-                BoardFusion(_fieldChecker.Lvl3OnAIField[0]);
+                _actor.BoardFusion(_fieldChecker.Lvl3OnAIField[0]);
                 return;
             }
         }

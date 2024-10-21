@@ -52,9 +52,6 @@ public class BattleManagerSO : ScriptableObject {
         OnBoardPlaceSelectionEnd ??= new UnityEvent<Card, bool>();
 
         OnActionPhaseStart ??=new UnityEvent();
-        // OnActionPhaseEnd ??=new UnityEvent();
-
-        // OnActionPhaseTwoStart ??=new UnityEvent();
         
         OnEndPhaseStart ??= new UnityEvent();
     }
@@ -89,9 +86,6 @@ public class BattleManagerSO : ScriptableObject {
     public void BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { OnBoardPlaceSelectionEnd?.Invoke(card, isPlayerTurn); }
 
     public void ActionPhaseStart() { OnActionPhaseStart?.Invoke(); }
-    // public void ActionPhaseEnd() { OnActionPhaseEnd?.Invoke(); }
-
-    // public void ActionPhaseTwoStart() { OnActionPhaseTwoStart?.Invoke(); }
 
     public void EndPhaseStart() { OnEndPhaseStart?.Invoke(); }
 

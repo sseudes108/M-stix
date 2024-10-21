@@ -237,6 +237,9 @@ public class Fusion : MonoBehaviour {
 #region Custom Methods
     private void ResetCards(List<Card> selectedcards){
         foreach(var card in selectedcards){
+            if(card.IsOnHand){
+                card.SetCardOnHand(false);
+            }
             card.SetHandPositionFree();
             card.Visuals.Border.ResetBorderColor();
         }

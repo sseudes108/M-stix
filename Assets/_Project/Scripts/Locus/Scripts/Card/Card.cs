@@ -15,7 +15,7 @@ public abstract class Card : MonoBehaviour {
     protected CardMovement _cardMovement {get; private set;}
     public bool IsPlayerCard = false;
     public bool _canBeSelected = false;
-    public bool _isOnHand = false;
+    public bool IsOnHand = false;
     public bool _isSelected = false;
 
     public bool FusionedCard {get; private set;} = false;
@@ -55,7 +55,7 @@ public abstract class Card : MonoBehaviour {
 
     private void OnMouseDown() {
         if(!_canBeSelected) { return; }
-        if(IsPlayerCard && _isOnHand){
+        if(IsPlayerCard && IsOnHand){
             Vector3 newPos;
             if(!_isSelected){
                 newPos = new (0,+0.3f,0);
@@ -74,14 +74,14 @@ public abstract class Card : MonoBehaviour {
     }
 
     public void OnMouseOver(){
-        if(!IsPlayerCard && _isOnHand) {return;} //Not player card, on hand
+        if(!IsPlayerCard && IsOnHand) {return;} //Not player card, on hand
 
         if(IsPlayerCard){
             _uIManager.UpdateIllustration(Data.Illustration);
             return;
         }
 
-        if(!_isOnHand && !IsFaceDown){ //Not player card, not on hand, not face down
+        if(!IsOnHand && !IsFaceDown){ //Not player card, not on hand, not face down
             _uIManager.UpdateIllustration(Data.Illustration);
             return;
         }
@@ -102,7 +102,7 @@ public abstract class Card : MonoBehaviour {
     public virtual void SetCardInfo() { _illustration = Data.Illustration; }
     public virtual void SetCardText() { Name = Data.Name; }
     public void SetPlayerCard() { IsPlayerCard = true; }
-    public void SetCardOnHand(bool isOnHand) { _isOnHand = isOnHand; }
+    public void SetCardOnHand(bool isOnHand) { IsOnHand = isOnHand; }
     public void SetFusionedCard() { FusionedCard = true; }
     public void DeselectCard() { _isSelected = false; }
     public void SelectFace() { FaceSelected = true; }

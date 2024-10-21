@@ -4214,6 +4214,8 @@ MonoBehaviour:
   - {fileID: 326970416}
   - {fileID: 60300847}
   - {fileID: 377285074}
+  <PlayerHand>k__BackingField: {fileID: 185057573}
+  <EnemyHand>k__BackingField: {fileID: 1404176565}
 --- !u!1 &557776136
 GameObject:
   m_ObjectHideFlags: 0
@@ -8345,12 +8347,11 @@ MonoBehaviour:
     type: 2}
   <UIManager>k__BackingField: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a,
     type: 2}
+  <Board>k__BackingField: {fileID: 0}
   <Manager>k__BackingField: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3,
     type: 2}
   <Actor>k__BackingField: {fileID: 11400000, guid: 82daa2094c6bc0b4aaa1c8e6437142c9,
     type: 2}
-  _cardsOnAIField: []
-  _cardsOnPlayerField: []
 --- !u!1 &1400343844
 GameObject:
   m_ObjectHideFlags: 0
@@ -9563,6 +9564,7 @@ MonoBehaviour:
     type: 2}
   <UIManager>k__BackingField: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a,
     type: 2}
+  <Board>k__BackingField: {fileID: 546674705}
   FusionManager: {fileID: 11400000, guid: 1f189c5596d6e174d8b6d0d93191849a, type: 2}
   BoardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   PlayerHandManager: {fileID: 11400000, guid: b2a332859e0c41844a4ca94ddc78eb49, type: 2}

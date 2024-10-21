@@ -9,4 +9,6 @@ public class StateMachine : MonoBehaviour {
 
     [field:SerializeField] public TurnManagerSO TurnManager {get; private set;}
     [field:SerializeField] public UIEventHandlerSO UIManager {get; private set;}
+    [field:SerializeField] public Board Board {get; private set;}
+
 }
