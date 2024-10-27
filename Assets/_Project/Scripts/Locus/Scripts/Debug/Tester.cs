@@ -33,7 +33,8 @@ public class Tester : MonoBehaviour{
         }
 
         if(Input.GetKeyDown(KeyCode.I)){
-            instanciatedCard.Visuals.Dissolve.SolidifyCard(ColorManager.Moon);
+            Color color = new(ColorManager.Moon.x, ColorManager.Moon.y, ColorManager.Moon.z);
+            instanciatedCard.Visuals.Dissolve.SolidifyCard(color);
         }
     }
 

@@ -1,3 +1,4 @@
+using Cinemachine.Utility;
 using UnityEngine;
 
 public class ShaderAnima : MonoBehaviour{
@@ -41,8 +42,8 @@ public class ShaderAnima : MonoBehaviour{
     }
 
     private Color SetAnimaColor(EAnimaType animaType){
-        Color newColor = new();
-        float intensityFactor = 10f;
+        Vector3 newColor = new();
+        float intensityFactor = 0.03f;
 
         switch (animaType){
             case EAnimaType.Mars:
@@ -69,10 +70,9 @@ public class ShaderAnima : MonoBehaviour{
         }
 
         Color adjustedColor = new(
-            newColor.r * intensityFactor, 
-            newColor.g * intensityFactor, 
-            newColor.b * intensityFactor,
-            newColor.a
+            newColor.x * intensityFactor, 
+            newColor.y * intensityFactor, 
+            newColor.z * intensityFactor
         );
 
         return adjustedColor;

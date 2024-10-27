@@ -6,10 +6,11 @@ public class BoardPlaceVisual : MonoBehaviour {
 
     private BoardPlace _place;
     private Renderer[] _renderers;
-    // public Color LightUpColor;
-    // public Color DefaultColor;
     private float _intensityFactor;
     public bool IsFree => _place.IsFree;
+
+    private Color PlayerDefaultColor;
+    private Color EnemyDefaultColor;
 
     private void Awake() {
         _renderers = GetComponentsInChildren<Renderer>();
@@ -19,36 +20,24 @@ public class BoardPlaceVisual : MonoBehaviour {
     }
 
     public void TurnOffLights(){
-        // if(_place.IsPlayerPlace){
-        //     StartCoroutine(SetColorRoutine(_colorManager.PlayerDefaultColor, 0.01f, true));
-        // }else{
-        //     StartCoroutine(SetColorRoutine(_colorManager.EnemyDefaultColor, 0.01f, true));
-        // }
-
         if(_place.IsPlayerPlace){
-            StartCoroutine(SetColorRoutine(new Color(9f, 9f, 181f), 0.01f, true));
+            StartCoroutine(SetColorRoutine(PlayerDefaultColor, 0.01f, true));
         }else{
-            StartCoroutine(SetColorRoutine(new Color(181f, 9f, 9f), 0.01f, true));
+            StartCoroutine(SetColorRoutine(EnemyDefaultColor, 0.01f, true));
         }
     }
 
     public void LightUp(){
-        // if(_place.IsPlayerPlace){
-        //     StartCoroutine(SetColorRoutine(_colorManager.PlayerDefaultColor, 0.01f, true));
-        // }else{
-        //     StartCoroutine(SetColorRoutine(_colorManager.EnemyDefaultColor, 0.01f, true));
-        // }
-
         if(_place.IsPlayerPlace){
-            StartCoroutine(SetColorRoutine(new Color(9f, 9f, 181f), 0.2f, false));
+            StartCoroutine(SetColorRoutine(PlayerDefaultColor, 0.2f, false));
         }else{
-            StartCoroutine(SetColorRoutine(new Color(181f, 9f, 9f), 0.2f, false));
+            StartCoroutine(SetColorRoutine(EnemyDefaultColor, 0.2f, false));
         }
+
     }
 
     public void HighLight(){
-        StartCoroutine(SetColorRoutine(_colorManager.LightUpColor, 0.1f, false));
-        // StartCoroutine(SetColorRoutine(new Color(216, 216, 27), 0.1f, false));
+        StartCoroutine(SetColorRoutine(new Color(216, 216, 27), 0.1f, false));
     }
 
     public IEnumerator SetColorRoutine(Color newColor, float intensity, bool imediate){
@@ -58,8 +47,6 @@ public class BoardPlaceVisual : MonoBehaviour {
             newColor.b * intensity,
             newColor.a
         );
-
-        // Color adjustedColor = newColor;
         
         if(imediate){
             foreach(var renderer in _renderers){
@@ -92,12 +79,8 @@ public class BoardPlaceVisual : MonoBehaviour {
         yield return null;
     }
 
-    // public void SetIntensityAnColor(Color lightUpColor, float intensityFactor){
-    //     LightUpColor = lightUpColor;
-    //     _intensityFactor = intensityFactor;
-    // }
-
-    // public void SetDefaultColor(Color defaultColor){
-    //     DefaultColor = defaultColor;
-    // }
+    public void SetPlaceColors(Vector3 playerColor, Vector3 enemyColor){
+        PlayerDefaultColor = new Color(playerColor.x, playerColor.y, playerColor.z);
+        EnemyDefaultColor = new Color(enemyColor.x, enemyColor.y, enemyColor.z);
+    }
 }

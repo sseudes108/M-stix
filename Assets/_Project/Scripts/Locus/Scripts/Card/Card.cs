@@ -108,6 +108,7 @@ public abstract class Card : MonoBehaviour {
     public void DeselectCard() { _isSelected = false; }
     public void SelectFace() { FaceSelected = true; }
     public void SetFaceDown() { IsFaceDown = true; }
+    public void SetFaceUp() { IsFaceDown = false; }
     public void SetCanFlip() { CanFlip = true; }
 
     public void MoveCard(Vector3 position){

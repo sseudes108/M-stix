@@ -2,19 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Essa classe é chamada diversas vezes por turno. É chamada pela state machine de batalha e novamente pelo boardplace ao verificar a possibilidade de realizar uma fusao com um monstro em campo, onde é ativada a board fusion, setando a nova carta e ajustando as opções na carta em campo (boardplace, cardtofusion)
+    Ela verifica se a opção de board fusion esta ativa, seleciona devidamente as cartas e termina a selecão iniciando novamente a fusão, que sequencialmente vai cair no board ourtra vez. O processo é repetido até nao ser mais possivel fundir uma carta de nivel maior usando as do campo e a fundida por ultimo.
+*/
+
 public class AICardSelector : AIAction{
     public AICardSelector(AIActorSO actor){
         _actor = actor;
         _fieldChecker = _actor.FieldChecker;
     }
-    
-    private List<Card> _selectedList = new();
-    public List<Card> SelectedList => _selectedList;
 
+    public List<Card> SelectedList { get; private set; } = new();
+    
     private AIFieldChecker _fieldChecker;
 
+
     public IEnumerator SelectCardRoutine(){
-        _selectedList.Clear();
+        SelectedList.Clear();
 
         if(_actor.MakeABoardFusion){//É uma boardfusion
             _actor.CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
@@ -37,9 +42,14 @@ public class AICardSelector : AIAction{
         AddToSelectedList(randomCard);
     }
     private void AddToSelectedList(Card card){
-        _selectedList.Add(card);
+        SelectedList.Add(card);
     }
     private void StrongestFusionFromHand(){
+        if(CanMakeAlvl5FromHand()){
+            TryMakeALvl5FromHand();
+            return;
+        }
+
         if(CanMakeAlvl4FromHand()){
             TryMakeALvl4FromHand();
             return;
@@ -52,7 +62,50 @@ public class AICardSelector : AIAction{
 
         AddToSelectedList(_fieldChecker.Lvl2OnHand[0]);
     }
-    
+
+#region Level5
+    private bool CanMakeAlvl5FromHand(){
+        if(_fieldChecker.Lvl4OnHand.Count > 1){
+            return true;
+        }
+
+        if(_fieldChecker.Lvl3OnHand.Count > 1 && _fieldChecker.Lvl4OnHand.Count > 0){
+            return true;
+        }
+
+        if(_fieldChecker.Lvl2OnHand.Count > 1 && _fieldChecker.Lvl3OnHand.Count > 0 && _fieldChecker.Lvl4OnHand.Count > 0){
+            return true;
+        }
+
+        return false;
+    }
+
+    private void TryMakeALvl5FromHand(){
+        if(_fieldChecker.Lvl4OnHand.Count > 1){
+            AddToSelectedList(_fieldChecker.Lvl4OnHand[0]);
+            AddToSelectedList(_fieldChecker.Lvl4OnHand[1]);
+            return;
+        }
+
+        if(_fieldChecker.Lvl3OnHand.Count > 1 && _fieldChecker.Lvl4OnHand.Count > 0){
+            AddToSelectedList(_fieldChecker.Lvl3OnHand[0]);
+            AddToSelectedList(_fieldChecker.Lvl3OnHand[1]);
+
+            AddToSelectedList(_fieldChecker.Lvl4OnHand[0]);
+            return;
+        }
+
+        if(_fieldChecker.Lvl2OnHand.Count > 1 && _fieldChecker.Lvl3OnHand.Count > 0 && _fieldChecker.Lvl4OnHand.Count > 0){
+            AddToSelectedList(_fieldChecker.Lvl2OnHand[0]);
+            AddToSelectedList(_fieldChecker.Lvl2OnHand[1]);
+
+            AddToSelectedList(_fieldChecker.Lvl3OnHand[0]);
+            AddToSelectedList(_fieldChecker.Lvl4OnHand[0]);
+            return;
+        }
+    }
+#endregion
+
 #region Level 4
     private bool CanMakeAlvl4FromHand(){
         if(_fieldChecker.Lvl3OnHand.Count > 1){
@@ -70,12 +123,14 @@ public class AICardSelector : AIAction{
         if(_fieldChecker.Lvl3OnHand.Count > 1){
             AddToSelectedList(_fieldChecker.Lvl3OnHand[0]);
             AddToSelectedList(_fieldChecker.Lvl3OnHand[1]);
+            return;
         }
 
         if(_fieldChecker.Lvl2OnHand.Count > 1 && _fieldChecker.Lvl3OnHand.Count > 0){
             AddToSelectedList(_fieldChecker.Lvl2OnHand[0]);
             AddToSelectedList(_fieldChecker.Lvl2OnHand[1]);
             AddToSelectedList(_fieldChecker.Lvl3OnHand[0]);
+            return;
         }
     }
 

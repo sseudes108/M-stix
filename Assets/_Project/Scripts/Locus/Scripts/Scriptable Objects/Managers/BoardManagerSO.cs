@@ -12,7 +12,8 @@ public class BoardManagerSO : ScriptableObject {
     [SerializeField] private UIEventHandlerSO _uIManager;
     [SerializeField] private FusionManagerSO _fusionManager;
 
-    public BoardPlaceVisualController BoardVisualController {get; private set;}
+    public BoardPlaceVisualController BoardVisualController { get; private set; }
+    public Board BoardController { get; private set; }
 
     private void OnEnable() {
         OnBoardFusion ??= new UnityEvent();
@@ -44,12 +45,14 @@ public class BoardManagerSO : ScriptableObject {
     public void ShowOptions(BoardPlace place) { OnShowOptions?.Invoke(place); }
     public void HideOptions() { OnHideOptions?.Invoke(); }
 
-    public void BoardFusion() {
-        OnBoardFusion?.Invoke();
-    }
+    public void BoardFusion() { OnBoardFusion?.Invoke(); }
 
     //Custom Methods
     public void SetBoardPlaceVisualController(BoardPlaceVisualController boardPlaces){
         BoardVisualController = boardPlaces;
+    }
+    
+    public void SetBoardController(Board boardController){
+        BoardController = boardController;
     }
 }

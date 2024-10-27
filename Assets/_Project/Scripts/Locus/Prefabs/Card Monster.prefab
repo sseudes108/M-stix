@@ -73,22 +73,11 @@ MonoBehaviour:
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
   _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
-  Data: {fileID: 11400000, guid: d0ad6252c3099164d98142ec5ae6f66e, type: 2}
-  FusionedCard: 0
-  FaceSelected: 0
-  IsFaceDown: 0
-  CanFlip: 0
-  MonsterType: 0
-  FirstAnima: 0
-  SecondAnima: 0
-  Level: 0
-  Attack: 0
-  Deffense: 0
-  AnimaSelected: 0
-  ModeSelected: 0
-  IsInAttackMode: 1
-  CanAttack: 0
-  CanChangeMode: 0
+  Data: {fileID: 11400000, guid: 9f14752fff836c94994b3ba15538b2a6, type: 2}
+  IsPlayerCard: 0
+  _canBeSelected: 0
+  IsOnHand: 0
+  _isSelected: 0
   _levelLabel: {fileID: 4215302757009945003}
   _attackLabel: {fileID: 854108542203466186}
   _deffenseLabel: {fileID: 6724656198405140279}

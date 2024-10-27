@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +27,7 @@ public class Board : MonoBehaviour {
     }
 
     private void Start(){
+        _boardManager.SetBoardController(this);
         _boardManager.SetBoardPlaceVisualController(BoardPlaceVisualController);
         _aIManager.Actor.SetBoardPlaces(EnemyMonsterPlaces, EnemyArcanePlaces);
     }
@@ -75,6 +75,24 @@ public class Board : MonoBehaviour {
             _playerCardsOnField.Add(card);
         }else{
             _aICardsOnField.Add(card);
+        }
+    }
+
+    public void SetColor(Vector3 playerColor, Vector3 enemyColor){
+        foreach(var place in PlayerMonsterPlaces){
+            place.Visual.SetPlaceColors(playerColor, enemyColor);
+        }
+        
+        foreach(var place in PlayerArcanePlaces){
+            place.Visual.SetPlaceColors(playerColor, enemyColor);
+        }
+
+        foreach(var place in EnemyMonsterPlaces){
+            place.Visual.SetPlaceColors(playerColor, enemyColor);
+        }
+
+        foreach(var place in EnemyArcanePlaces){
+            place.Visual.SetPlaceColors(playerColor, enemyColor);
         }
     }
 }

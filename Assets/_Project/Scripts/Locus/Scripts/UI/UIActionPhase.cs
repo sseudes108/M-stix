@@ -12,6 +12,9 @@ public class UIActionPhase : MonoBehaviour {
     private Button _button1, _button2;
     private TextMeshProUGUI _button1Text, _button2Text;
 
+    private bool _flipCard = false;
+    private BoardPlace _flipPlace = null;
+
     private void OnEnable() {
         _boardManager.OnShowOptions.AddListener(BoardManager_OnShowOptions);
         _boardManager.OnHideOptions.AddListener(BoardManager_OnHideOptions);
@@ -98,7 +101,7 @@ public class UIActionPhase : MonoBehaviour {
             if(cardInPlace.CanChangeMode && !cardInPlace.IsInAttackMode){//is in deffense mode and can change
                 ShowButtons(place.Location);
 
-                _button2Text.text = "ATK"; //button two is used for aesthetic reasons
+                _button2Text.text = "ATK"; //button two is used for aesthetic reasons, button one is not activated
                 _button2.onClick.AddListener(Option1Clicked);
                 _button1.gameObject.SetActive(false);
                 return;
@@ -109,17 +112,31 @@ public class UIActionPhase : MonoBehaviour {
             ShowButtons(place.Location);
 
             _button2Text.text = "Flip";
+
+            _flipCard = true;
+            _flipPlace = place;
+
             _button2.onClick.AddListener(Option1Clicked);
             _button1.gameObject.SetActive(false);
+
             return;
         }
     }
 
     private void Option1Clicked(){
-        Debug.Log("Option1Clicked");
+        if(_flipCard){
+            FlipCard(_flipPlace);
+            return;
+        }
     }
 
     private void Option2Clicked(){
         Debug.Log("Option2Clicked");
+    }
+
+    private void FlipCard(BoardPlace place){
+        place.FlipCard();
+        _flipCard = false;
+        _flipPlace = null;
     }
 }

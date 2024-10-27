@@ -4,11 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(BoardPlaceVisual))]
 public class BoardPlace : MonoBehaviour {
     [SerializeField] private BattleManagerSO _battleManager;
+    [SerializeField] private ColorDatabaseSO _colorManager;
     [SerializeField] private BoardManagerSO _boardManager;
-    // [SerializeField] private FusionManagerSO _fusionManager;
-    // [SerializeField] private TurnManagerSO _turnManager;
     [SerializeField] private CardManagerSO _cardManager;
-    // [SerializeField] private UIEventHandlerSO _uIManager;
 
     [field:SerializeField] public EBoardPlace Location { get; private set; }
     [field:SerializeField] public Collider[] Colliders { get; private set; }
@@ -21,6 +19,14 @@ public class BoardPlace : MonoBehaviour {
     private bool _isOptShowing;
 
     public BoardPlaceVisual Visual;
+
+    Quaternion PlayerMonsterFaceDownAtkRotation = Quaternion.Euler(-90, -90, -90);
+    Quaternion PlayerMonsterFaceDownDefRotation = Quaternion.Euler(-90, -180, -90);
+    Quaternion PlayerMonsterFaceUpDefRotation = Quaternion.Euler(90, 90, 0);
+
+    Quaternion EnemyMonsterFaceDownAtkRotation = Quaternion.Euler(-90, -90, 90);
+    Quaternion EnemyMonsterFaceDownDefRotation = Quaternion.Euler(-90, -180, 90);
+    Quaternion EnemyMonsterFaceUpDefRotation = Quaternion.Euler(90, 90, 180);
 
     private void OnEnable() {
         _battleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
@@ -100,9 +106,9 @@ public class BoardPlace : MonoBehaviour {
                     Quaternion rotation;
 
                     if(monsterCard.IsPlayerCard){
-                        rotation = Quaternion.Euler(-90, -90, -90);
+                        rotation = PlayerMonsterFaceDownAtkRotation;
                     }else{
-                        rotation = Quaternion.Euler(-90, -90, 90);
+                        rotation = EnemyMonsterFaceDownAtkRotation;
                     }
 
                     card.MoveCard(transform, rotation);
@@ -117,9 +123,9 @@ public class BoardPlace : MonoBehaviour {
                     Quaternion rotation;
 
                     if(monsterCard.IsPlayerCard){
-                        rotation = Quaternion.Euler(-90, -180, -90);
+                        rotation = PlayerMonsterFaceDownDefRotation;
                     }else{
-                        rotation = Quaternion.Euler(-90, -180, 90);
+                        rotation = EnemyMonsterFaceDownDefRotation;
                     }
 
                     card.MoveCard(transform, rotation);
@@ -129,9 +135,9 @@ public class BoardPlace : MonoBehaviour {
                     Quaternion rotation;
 
                     if(monsterCard.IsPlayerCard){
-                        rotation = Quaternion.Euler(90, 90, 0);
+                        rotation = PlayerMonsterFaceUpDefRotation;
                     }else{
-                        rotation = Quaternion.Euler(90, 90, 180);
+                        rotation = EnemyMonsterFaceUpDefRotation;
                     }
 
                     card.MoveCard(transform, rotation);
@@ -147,12 +153,11 @@ public class BoardPlace : MonoBehaviour {
 
         CardInPlace = card;
         card.SetBoardPlace(this);
-        // card.SetCardOnHand(false);
         card.DeselectCard();
         card.DisableCollider();
         
-        _canBeSelected = false;
         IsFree = false;
+        _canBeSelected = false;
         _boardManager.BoardPlaceSelected();
     }
 
@@ -169,6 +174,41 @@ public class BoardPlace : MonoBehaviour {
         SetPlaceFree();
     }
 
+    public void FlipCard(){
+        if(CardInPlace is MonsterCard){
+            var monsterCard = CardInPlace as MonsterCard;
+
+            if(!monsterCard.IsFaceDown) { return; } // is face Up
+
+            Quaternion rotation;
+            if(monsterCard.IsPlayerCard){
+                //Monster in attack
+                if(monsterCard.IsInAttackMode){
+                    monsterCard.MoveCard(transform);
+                    return;
+                }
+
+                //Monster in Defense
+                rotation = PlayerMonsterFaceUpDefRotation;
+                monsterCard.MoveCard(transform, rotation);
+            }else{
+                //Monster in attack
+                if(monsterCard.IsInAttackMode){
+                    monsterCard.MoveCard(transform);
+                    return;
+                }
+
+                //Monster in Defense
+                rotation = EnemyMonsterFaceUpDefRotation;
+                monsterCard.MoveCard(transform, rotation);
+            }
+
+            monsterCard.SetFaceUp();
+        }else{
+
+        }
+    }
+
 #endregion
 
 #region Events
@@ -183,15 +223,6 @@ public class BoardPlace : MonoBehaviour {
         }else if(!IsMonsterPlace && _resultCard is ArcaneCard){
             _canBeSelected = true;
         }
-
-        // if(IsPlayerPlace && isPlayerTurn){
-        //     _resultCard = card;
-        //     if(IsMonsterPlace && _resultCard is MonsterCard){
-        //         _canBeSelected = true;
-        //     }else if(!IsMonsterPlace && _resultCard is ArcaneCard){
-        //         _canBeSelected = true;
-        //     }
-        // }
     }
 
     private void BoardManager_OnBoardPlaceSelected(){
