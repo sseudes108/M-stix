@@ -13,17 +13,17 @@ public class Battle : StateMachine {
     public CardStatEventHandlerSO CardStatSelManager;
     public CardManagerSO CardManager;
 
-    public AbstractState CurrentState {get; private set;}
+    public AbstractState CurrentState { get; private set; }
     
     //States - Phases
-    public StartPhase StartPhase {get; private set;}
-    public DrawPhase DrawPhase {get; private set;}
-    public CardSelectionPhase CardSelection {get; private set;}
-    public FusionPhase Fusion {get; private set;}
-    public CardStatSelectPhase CardStatSelection {get; private set;}
-    public BoardPlaceSelectionPhase BoardPlaceSelection {get; private set;}
-    public ActionPhase Action {get; private set;}
-    public EndPhase EndPhase {get; private set;}
+    public StartPhase StartPhase { get; private set; }
+    public DrawPhase DrawPhase { get; private set; }
+    public CardSelectionPhase CardSelection { get; private set; }
+    public FusionPhase Fusion { get; private set; }
+    public CardStatSelectPhase CardStatSelection { get; private set; }
+    public BoardPlaceSelectionPhase BoardPlaceSelection { get; private set; }
+    public ActionPhase Action { get; private set; }
+    public EndPhase EndPhase { get; private set; }
 
     public Battle(){
         StartPhase = new(this);

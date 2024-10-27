@@ -8,9 +8,7 @@ public class ActionPhaseTwo : AbstractState{
         StateMachine.Battle.StartCoroutine(StateMachine.Battle.BattleManager.ChangeStateRoutine(2f, StateMachine.Battle, StateMachine.Battle.EndPhase));
     }
 
-    public override void Exit(){
-        
-    }
+    public override void Exit(){}
     
     public override string ToString(){
         return "Action Two";

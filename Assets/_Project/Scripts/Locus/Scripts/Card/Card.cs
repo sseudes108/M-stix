@@ -9,19 +9,19 @@ public abstract class Card : MonoBehaviour {
 
     [Header("Global Settings")]
     public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serialized;. Needs to be public or otherwise it became null at the instatiation moment.
-    public string Name {get; private set;}
+    public string Name { get; private set; }
     private Texture2D _illustration;
-    public CardVisual Visuals {get; private set;}
-    protected CardMovement _cardMovement {get; private set;}
+    public CardVisual Visuals { get; private set; }
+    protected CardMovement CardMovement { get; private set; }
     public bool IsPlayerCard = false;
     public bool _canBeSelected = false;
     public bool IsOnHand = false;
     public bool _isSelected = false;
 
-    public bool FusionedCard {get; private set;} = false;
-    public bool FaceSelected {get; private set;} = false;
-    public bool IsFaceDown {get; private set;} = false;
-    public bool CanFlip {get; private set;} = false;
+    public bool FusionedCard { get; private set; } = false;
+    public bool FaceSelected { get; private set; } = false;
+    public bool IsFaceDown { get; private set; } = false;
+    public bool CanFlip { get; private set; } = false;
     
     private Transform _status;
     private Collider _collider;
@@ -43,7 +43,7 @@ public abstract class Card : MonoBehaviour {
     
     private void Awake() {
         Visuals = GetComponent<CardVisual>();
-        _cardMovement = GetComponent<CardMovement>();
+        CardMovement = GetComponent<CardMovement>();
         _status = transform.Find("Canvas");
         _collider = GetComponent<Collider>();
     }
@@ -55,6 +55,7 @@ public abstract class Card : MonoBehaviour {
 
     private void OnMouseDown() {
         if(!_canBeSelected) { return; }
+
         if(IsPlayerCard && IsOnHand){
             Vector3 newPos;
             if(!_isSelected){
@@ -110,22 +111,22 @@ public abstract class Card : MonoBehaviour {
     public void SetCanFlip() { CanFlip = true; }
 
     public void MoveCard(Vector3 position){
-        _cardMovement.SetTargetPosition(position, 5f);
-        _cardMovement.SetTargetRotation(Quaternion.identity);
+        CardMovement.SetTargetPosition(position, 5f);
+        CardMovement.SetTargetRotation(Quaternion.identity);
     }
 
     public void MoveCard(Transform targetTransform){
         transform.SetParent(targetTransform);
-        _cardMovement.AllowMovement(true);
-        _cardMovement.SetTargetPosition(targetTransform.position, 5f);
-        _cardMovement.SetTargetRotation(targetTransform.rotation);
+        CardMovement.AllowMovement(true);
+        CardMovement.SetTargetPosition(targetTransform.position, 5f);
+        CardMovement.SetTargetRotation(targetTransform.rotation);
     }
 
     public void MoveCard(Transform targetTransform, Quaternion rotation){
         transform.SetParent(targetTransform);
-        _cardMovement.AllowMovement(true);
-        _cardMovement.SetTargetPosition(targetTransform.position, 5f);
-        _cardMovement.SetTargetRotation(rotation);
+        CardMovement.AllowMovement(true);
+        CardMovement.SetTargetPosition(targetTransform.position, 5f);
+        CardMovement.SetTargetRotation(rotation);
     }
     
     public void DestroyCard() { Destroy(gameObject); }
@@ -141,15 +142,10 @@ public abstract class Card : MonoBehaviour {
     }
 
     public void SetCardAsFusioned() { FusionedCard = true; }
-    public virtual void ResetCardStats(){ FaceSelected = false; }
+    public virtual void ResetCardStats() { FaceSelected = false; }
 
-    public void SetBoardPlace(BoardPlace boardPlace){
-        _boardPlace = boardPlace;
-    }
-
-    public BoardPlace GetBoardPlace(){
-        return _boardPlace;
-    }
+    public void SetBoardPlace(BoardPlace boardPlace) { _boardPlace = boardPlace; }
+    public BoardPlace GetBoardPlace() { return _boardPlace; }
 
     #endregion
 }

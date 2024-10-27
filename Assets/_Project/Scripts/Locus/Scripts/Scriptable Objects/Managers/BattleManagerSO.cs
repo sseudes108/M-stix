@@ -22,15 +22,12 @@ public class BattleManagerSO : ScriptableObject {
     [HideInInspector] public UnityEvent<Card, bool> OnBoardPlaceSelectionEnd;
 
     [HideInInspector] public UnityEvent OnActionPhaseStart;
-    // [HideInInspector] public UnityEvent OnActionPhaseEnd;
-
-    // [HideInInspector] public UnityEvent OnActionPhaseTwoStart;
 
     [HideInInspector] public UnityEvent OnEndPhaseStart;
 
     private AbstractState _currentPhase;
     public AbstractState CurrentPhase => _currentPhase;
-    public Battle Battle {get; private set;}
+    public Battle Battle { get; private set; }
     
 #endregion
 
@@ -56,13 +53,9 @@ public class BattleManagerSO : ScriptableObject {
         OnEndPhaseStart ??= new UnityEvent();
     }
 
-    public void EndActionPhase(){
-        Battle.ChangeState(Battle.EndPhase);
-    }
+    public void EndActionPhase() { Battle.ChangeState(Battle.EndPhase); }
 
-    public void SetBattleController(StateMachine battle){
-        Battle = battle as Battle;
-    }
+    public void SetBattleController(StateMachine battle) { Battle = battle as Battle; }
 
 #region Events
     public void ChangeState(AbstractState newState) { // Used for hold the current phase ref and notify the UI
@@ -76,8 +69,7 @@ public class BattleManagerSO : ScriptableObject {
     public void EnemyDraw() { OnEnemyDraw?.Invoke(); }
 
     public void CardSelectionStart() { OnCardSelectionStart?.Invoke(); }
-    public void CardSelectionEnd() { 
-        OnCardSelectionEnd?.Invoke(); }
+    public void CardSelectionEnd() { OnCardSelectionEnd?.Invoke(); }
 
     public void StatSelectStart(Card card) { OnStatSelectStart?.Invoke(card); }
     public void StatSelectEnd(Card card, bool isPlayerTurn) { OnStatSelectEnd?.Invoke(card, isPlayerTurn); }
