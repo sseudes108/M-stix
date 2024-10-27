@@ -15,9 +15,6 @@ public class Board : MonoBehaviour {
 
     private List<Card> _playerCardsOnField = new();
     private List<Card> _aICardsOnField = new();
-    
-    [field:SerializeField] public Hand PlayerHand {get; private set;}
-    [field:SerializeField] public Hand EnemyHand {get; private set;}
 
     public BoardPlaceVisualController BoardPlaceVisualController;
 

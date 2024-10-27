@@ -14,7 +14,8 @@ public class Battle : StateMachine {
     public CardManagerSO CardManager;
 
     public AbstractState CurrentState {get; private set;}
-        
+    
+    //States - Phases
     public StartPhase StartPhase {get; private set;}
     public DrawPhase DrawPhase {get; private set;}
     public CardSelectionPhase CardSelection {get; private set;}
@@ -22,7 +23,6 @@ public class Battle : StateMachine {
     public CardStatSelectPhase CardStatSelection {get; private set;}
     public BoardPlaceSelectionPhase BoardPlaceSelection {get; private set;}
     public ActionPhase Action {get; private set;}
-    // public ActionPhaseTwo ActionTwo {get; private set;}
     public EndPhase EndPhase {get; private set;}
 
     public Battle(){
@@ -33,7 +33,6 @@ public class Battle : StateMachine {
         CardStatSelection = new(this);
         BoardPlaceSelection = new(this);
         Action = new(this);
-        // ActionTwo = new(this);
         EndPhase = new(this);
     }
 

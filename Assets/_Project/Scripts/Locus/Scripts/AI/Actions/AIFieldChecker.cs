@@ -8,26 +8,26 @@ public class AIFieldChecker : AIAction {
     }
 
     //AI HAND MONSTERS
-    public List<MonsterCard> Lvl2OnHand {get; private set;} = new();
-    public List<MonsterCard> Lvl3OnHand {get; private set;} = new();
-    public List<MonsterCard> Lvl4OnHand {get; private set;} = new();
+    public List<MonsterCard> Lvl2OnHand { get; private set; } = new();
+    public List<MonsterCard> Lvl3OnHand { get; private set; } = new();
+    public List<MonsterCard> Lvl4OnHand { get; private set; } = new();
 
     //AI FIELD MONSTERS
-    public List<MonsterCard> Lvl2OnAIField {get; private set;} = new();
-    public List<MonsterCard> Lvl3OnAIField {get; private set;} = new();
-    public List<MonsterCard> Lvl4OnAIField {get; private set;} = new();
-    public List<MonsterCard> Lvl5OnAIField {get; private set;} = new();
-    public List<MonsterCard> Lvl6OnAIField {get; private set;} = new();
-    public List<MonsterCard> Lvl7OnAIField {get; private set;} = new();
+    public List<MonsterCard> Lvl2OnAIField { get; private set; } = new();
+    public List<MonsterCard> Lvl3OnAIField { get; private set; } = new();
+    public List<MonsterCard> Lvl4OnAIField { get; private set; } = new();
+    public List<MonsterCard> Lvl5OnAIField { get; private set; } = new();
+    public List<MonsterCard> Lvl6OnAIField { get; private set; } = new();
+    public List<MonsterCard> Lvl7OnAIField { get; private set; } = new();
 
 
     //PLAYER FIELD MONSTERS
-    public List<MonsterCard> Lvl2OnPlayerField {get; private set;} = new();
-    public List<MonsterCard> Lvl3OnPlayerField {get; private set;} = new();
-    public List<MonsterCard> Lvl4OnPlayerField {get; private set;} = new();
-    public List<MonsterCard> Lvl5OnPlayerField {get; private set;} = new();
-    public List<MonsterCard> Lvl6OnPlayerField {get; private set;} = new();
-    public List<MonsterCard> Lvl7OnPlayerField {get; private set;} = new();
+    public List<MonsterCard> Lvl2OnPlayerField { get; private set; } = new();
+    public List<MonsterCard> Lvl3OnPlayerField { get; private set; } = new();
+    public List<MonsterCard> Lvl4OnPlayerField { get; private set; } = new();
+    public List<MonsterCard> Lvl5OnPlayerField { get; private set; } = new();
+    public List<MonsterCard> Lvl6OnPlayerField { get; private set; } = new();
+    public List<MonsterCard> Lvl7OnPlayerField { get; private set; } = new();
 
     public void OrganizeCardsOnHand(List<Card> cardsInHand){
         ClearHandLists();
@@ -50,6 +50,7 @@ public class AIFieldChecker : AIAction {
             }
         }
     }
+    
     public void OrganizeAIMonsterCardsOnField(List<MonsterCard> monstersOnAIField){
         ClearAIListsOnField();
 
@@ -83,6 +84,7 @@ public class AIFieldChecker : AIAction {
             }
         }
     }
+
     private void ClearAIListsOnField(){
         Lvl2OnAIField.Clear();
         Lvl3OnAIField.Clear();
@@ -98,6 +100,7 @@ public class AIFieldChecker : AIAction {
         Lvl6OnPlayerField.Clear();
         Lvl7OnPlayerField.Clear();
     }
+
     private void ClearHandLists(){
         Lvl2OnHand.Clear();
         Lvl3OnHand.Clear();
@@ -110,15 +113,5 @@ public class AIFieldChecker : AIAction {
 
         OrganizeCardsOnHand(cardsInHand);
         OrganizeAIMonsterCardsOnField(monstersOnAIField);
-    }
-
-    public int GetStrongestLevelOnField(){
-        if(Lvl7OnAIField.Count > 0){return 7;}
-        if(Lvl6OnAIField.Count > 0){return 6;}
-        if(Lvl5OnAIField.Count > 0){return 5;}
-        if(Lvl4OnAIField.Count > 0){return 4;}
-        if(Lvl3OnAIField.Count > 0){return 3;}
-        if(Lvl2OnAIField.Count > 0){return 2;}
-        return 0;
     }
 }

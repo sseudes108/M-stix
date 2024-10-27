@@ -14,6 +14,7 @@ public class AIActorSO : ScriptableObject {
     public AICardStatSelector CardStatSelector { get; private set; }
     public AIBoardPlaceSelector BoardPlaceSelector { get; private set; }
     public AIFieldChecker FieldChecker { get; private set; }
+    public AIFusioner Fusioner { get; private set; }
 
     [field:SerializeField] public AIManagerSO AIManager { get; private set; }
     [field:SerializeField] public BoardManagerSO BoardManager { get; private set; }
@@ -22,16 +23,16 @@ public class AIActorSO : ScriptableObject {
     [HideInInspector] public UnityEvent CardSelector_OnSelectionFinished;
     [HideInInspector] public UnityEvent CardStatSelector_OnCardStatSelectionFinished;
     [HideInInspector] public UnityEvent BoardPlaceSelector_OnBoardPlaceSelected;
-    // [HideInInspector] public UnityEvent<List<Card>, List<MonsterCard>> OnUpdateCardLists;
 
-    public bool MakeABoardFusion;
-    public Card CardOnBoardToFusion;
+    public bool MakeABoardFusion { get; private set; }
+    public Card CardOnBoardToFusion { get; private set; }
 
     public List<Card> CardsOnAIField { get; private set; } = new();
     public List<Card> CardsOnPlayerField { get; private set; } = new();
     
     private void OnEnable() {
-        FieldChecker??= new(this);
+        FieldChecker ??= new(this);
+        Fusioner ??= new(this);
 
         CardSelector ??= new(this);
         CardStatSelector ??= new(this);
@@ -39,7 +40,6 @@ public class AIActorSO : ScriptableObject {
 
         CardSelector_OnSelectionFinished ??= new UnityEvent();
         CardStatSelector_OnCardStatSelectionFinished ??= new UnityEvent();
-        // OnUpdateCardLists ??= new UnityEvent<List<Card>, List<MonsterCard>>();
     }
 
     public void CardSelectionFinished(){
@@ -55,22 +55,7 @@ public class AIActorSO : ScriptableObject {
     }
 
     public void UpdateCardLists(List<Card> cardsInHand, List<MonsterCard> monstersOnAIField){
-        // OnUpdateCardLists.Invoke(cardsInHand, monstersOnAIField);
         FieldChecker.OrganizeCardLists(cardsInHand, monstersOnAIField);
-    }
-
-    public void ResetBoardFusion(){
-        MakeABoardFusion = false;
-        CardOnBoardToFusion = null;
-    }
-
-    /// <summary>
-    /// cardToFusion is the card on the field the will be used after the fusion from hand
-    /// </summary>
-    public void BoardFusion(Card cardToFusion){
-        BoardManager.BoardFusion();
-        MakeABoardFusion = true;
-        CardOnBoardToFusion = cardToFusion;
     }
 
     public void SetAICardLists( List<Card> aICardsOnField, List<Card> playerCardsOnField){
@@ -84,5 +69,16 @@ public class AIActorSO : ScriptableObject {
 
     public void SetAIMAnager(AIManagerSO aimanager){
         AIManager = aimanager;
+    }
+
+    public void SetBoardFusion(Card cardToFusion){
+        BoardManager.BoardFusion();
+        MakeABoardFusion = true;
+        CardOnBoardToFusion = cardToFusion;
+    }
+
+    public void ResetBoardFusion(){
+        MakeABoardFusion = false;
+        CardOnBoardToFusion = null;
     }
 }

@@ -30,7 +30,7 @@ public class AISelectCardState : AbstractState{
     public IEnumerator AIRoutine(){
         yield return new WaitForSeconds(0.5f);
         _AI.Actor.UpdateCardLists(_AI.Manager.CardsInHand, _cardsOnField.MonstersOnAIField);
-        _AI.StartCoroutine(_AI.Actor.CardSelector.SelectCardRoutine(_cardsOnField));
+        _AI.StartCoroutine(_AI.Actor.CardSelector.SelectCardRoutine());
         yield return null;
     }
 
