@@ -8,6 +8,6 @@ public class GameManager : MonoBehaviour {
     
     private void Start() {
         _turnManager.ResetTurnStats();
-        _boardManager.BoardController.SetColor( _colorDataBase.BlueBoardColor, _colorDataBase.PurpleBoardColor);
+        _boardManager.BoardController.SetColor( _colorDataBase.BlueBoardColor, _colorDataBase.RedBoardColor);
     }
 }

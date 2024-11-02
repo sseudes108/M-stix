@@ -22,6 +22,7 @@ public abstract class Card : MonoBehaviour {
     public bool FaceSelected { get; private set; } = false;
     public bool IsFaceDown { get; private set; } = false;
     public bool CanFlip { get; private set; } = false;
+    public bool WasFlipedThisTurn { get; private set; } = false;
     
     private Transform _status;
     private Collider _collider;
@@ -109,8 +110,9 @@ public abstract class Card : MonoBehaviour {
     public void SelectFace() { FaceSelected = true; }
     public void SetFaceDown() { IsFaceDown = true; }
     public void SetFaceUp() { IsFaceDown = false; }
-    public void SetCanFlip() { CanFlip = true; }
-
+    public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }
+    public void SetWasFlipedThisTurn(bool flipedThisTurn){ WasFlipedThisTurn = flipedThisTurn; }
+    
     public void MoveCard(Vector3 position){
         CardMovement.SetTargetPosition(position, 5f);
         CardMovement.SetTargetRotation(Quaternion.identity);

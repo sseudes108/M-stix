@@ -54,6 +54,9 @@ public class Board : MonoBehaviour {
 
             SetCardOptions(place, place.CardInPlace);
             AddCardToInBoardList(place, place.CardInPlace);
+            if(place.CardInPlace.WasFlipedThisTurn){
+                place.CardInPlace.SetWasFlipedThisTurn(false);
+            }
         }
     }
 
@@ -66,7 +69,7 @@ public class Board : MonoBehaviour {
         }
         
         if(place.CardInPlace.IsFaceDown){
-            place.CardInPlace.SetCanFlip();
+            place.CardInPlace.SetCanFlip(true);
         }
     }
 

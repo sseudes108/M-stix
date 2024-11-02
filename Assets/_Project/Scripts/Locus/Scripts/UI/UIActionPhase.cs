@@ -4,16 +4,16 @@ using UnityEngine.UI;
 
 public class UIActionPhase : MonoBehaviour {
     [SerializeField] private BoardManagerSO _boardManager;
-    [SerializeField] private BattleManagerSO _battleManager;    
-    [SerializeField] private UIEventHandlerSO _uIManager;
     [SerializeField] private TurnManagerSO _turnManager;
 
     private GameObject _buttonsContainer;
     private Button _button1, _button2;
     private TextMeshProUGUI _button1Text, _button2Text;
 
-    private bool _flipCard = false;
-    private BoardPlace _flipPlace = null;
+    private BoardPlace _buttonPlace = null;
+
+    private MonsterCard _monsterCard;
+    private ArcaneCard _arcaneCard;
 
     private void OnEnable() {
         _boardManager.OnShowOptions.AddListener(BoardManager_OnShowOptions);
@@ -41,10 +41,15 @@ public class UIActionPhase : MonoBehaviour {
         //Options for the player cards on field
         if(_turnManager.IsPlayerTurn && place.IsPlayerPlace){
             if(place.IsMonsterPlace){
-                SetMonsterOptions(place.CardInPlace as MonsterCard, place);
+                _monsterCard = null;
+                _monsterCard = place.CardInPlace as MonsterCard;
+                SetMonsterOptions(_monsterCard, place);
                 return;
             }
 
+            _arcaneCard = null;
+            _arcaneCard = place.CardInPlace as ArcaneCard;
+            return;
             //Arcane Card
         }
 
@@ -85,26 +90,31 @@ public class UIActionPhase : MonoBehaviour {
     }
 
     private void SetMonsterOptions(MonsterCard cardInPlace, BoardPlace place){
+        // _buttonPlace = null;
+        // _buttonPlace = place;
+
         if(!cardInPlace.IsFaceDown){//card face Up
 
-            if(cardInPlace.CanChangeMode && cardInPlace.IsInAttackMode){//is in attack mode and can change
-                ShowButtons(place.Location);
+            if(cardInPlace.WasFlipedThisTurn == false){
+                if(cardInPlace.CanChangeMode && cardInPlace.IsInAttackMode){//is in attack mode and can change
+                    ShowButtons(place.Location);
 
-                _button1Text.text = "Attack!";
-                _button1.onClick.AddListener(Option1Clicked);
+                    _button1Text.text = "Attack!";
+                    _button1.onClick.AddListener(Option1Clicked);
 
-                _button2Text.text = "DEF";
-                _button2.onClick.AddListener(Option2Clicked);
-                return;
-            }
+                    _button2Text.text = "DEF";
+                    _button2.onClick.AddListener(Option2Clicked);
+                    return;
+                }
 
-            if(cardInPlace.CanChangeMode && !cardInPlace.IsInAttackMode){//is in deffense mode and can change
-                ShowButtons(place.Location);
+                if(cardInPlace.CanChangeMode && !cardInPlace.IsInAttackMode){//is in deffense mode and can change
+                    ShowButtons(place.Location);
 
-                _button2Text.text = "ATK"; //button two is used for aesthetic reasons, button one is not activated
-                _button2.onClick.AddListener(Option1Clicked);
-                _button1.gameObject.SetActive(false);
-                return;
+                    _button2Text.text = "ATK"; //button two "template" is used for aesthetic reasons
+                    _button2.onClick.AddListener(Option1Clicked);
+                    _button1.gameObject.SetActive(false);
+                    return;
+                }
             }
         }
 
@@ -112,31 +122,61 @@ public class UIActionPhase : MonoBehaviour {
             ShowButtons(place.Location);
 
             _button2Text.text = "Flip";
-
-            _flipCard = true;
-            _flipPlace = place;
-
+            _buttonPlace = place;
+            
             _button2.onClick.AddListener(Option1Clicked);
             _button1.gameObject.SetActive(false);
-
             return;
         }
     }
 
     private void Option1Clicked(){
-        if(_flipCard){
-            FlipCard(_flipPlace);
+        if(_monsterCard != null && _arcaneCard == null){
+
+            if(_monsterCard.IsFaceDown == false){
+                if(_monsterCard.IsInAttackMode){
+                    Debug.Log("Attack!");
+                    return;
+                }
+            }
+
+            if(_monsterCard.CanFlip){
+                FlipCard(_buttonPlace);
+                _button2.gameObject.SetActive(false);
+                return;
+            }
+        }
+
+        if(_arcaneCard != null && _monsterCard == null){
+
             return;
         }
     }
 
     private void Option2Clicked(){
-        Debug.Log("Option2Clicked");
+        if(_monsterCard != null && _arcaneCard == null){
+            if(_monsterCard.CanChangeMode && !_monsterCard.IsInAttackMode){//is in deffense mode and can change
+                ChangeMonsterToDef(_buttonPlace);
+            }
+        }
+
+        // if(_button2Text.text == "DEF"){
+        //     Debug.Log("Change To Def");
+        //     return;
+        // }
+
+        if(_button2Text.text == "ATK"){
+            Debug.Log("Change To Atk");
+            return;
+        }
     }
 
     private void FlipCard(BoardPlace place){
         place.FlipCard();
-        _flipCard = false;
-        _flipPlace = null;
+        _buttonPlace = null;
+    }
+
+    private void ChangeMonsterToDef(BoardPlace place){
+        place.ChangeMonsterToDef();
     }
 }

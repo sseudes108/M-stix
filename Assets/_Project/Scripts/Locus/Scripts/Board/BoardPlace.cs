@@ -181,31 +181,50 @@ public class BoardPlace : MonoBehaviour {
             if(!monsterCard.IsFaceDown) { return; } // is face Up
 
             Quaternion rotation;
+
             if(monsterCard.IsPlayerCard){
                 //Monster in attack
                 if(monsterCard.IsInAttackMode){
                     monsterCard.MoveCard(transform);
-                    return;
+                }else{
+                    //Monster in Defense
+                    rotation = PlayerMonsterFaceUpDefRotation;
+                    monsterCard.MoveCard(transform, rotation);
                 }
 
-                //Monster in Defense
-                rotation = PlayerMonsterFaceUpDefRotation;
-                monsterCard.MoveCard(transform, rotation);
             }else{
                 //Monster in attack
                 if(monsterCard.IsInAttackMode){
                     monsterCard.MoveCard(transform);
-                    return;
+                }else{
+                    //Monster in Defense
+                    rotation = EnemyMonsterFaceUpDefRotation;
+                    monsterCard.MoveCard(transform, rotation);
                 }
 
-                //Monster in Defense
-                rotation = EnemyMonsterFaceUpDefRotation;
-                monsterCard.MoveCard(transform, rotation);
             }
 
-            monsterCard.SetFaceUp();
+            CardInPlace.SetWasFlipedThisTurn(true);
+            CardInPlace.SetCanFlip(false);
+            CardInPlace.SetFaceUp();
+            return;
         }else{
 
+        }
+    }
+
+    public void ChangeMonsterToDef(){
+        var monsterCard = CardInPlace as MonsterCard;
+        Quaternion rotation;
+        if(monsterCard.IsPlayerCard){
+            if(monsterCard.IsFaceDown){
+                rotation = PlayerMonsterFaceDownDefRotation;
+                monsterCard.MoveCard(transform, rotation);
+                return;
+            }
+            rotation = PlayerMonsterFaceUpDefRotation;
+            monsterCard.MoveCard(transform, rotation);
+            return;
         }
     }
 
