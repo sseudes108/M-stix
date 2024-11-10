@@ -5,7 +5,7 @@ public class AI : StateMachine {
     [field:SerializeField] public AIManagerSO Manager { get; private set; }
     [field:SerializeField] public AIActorSO Actor { get; private set; }
 
-    public AbstractState CurrentState;
+    public AbstractState CurrentState { get; private set; }
 
     //States
     public AISelectCardState CardSelect { get; private set; }

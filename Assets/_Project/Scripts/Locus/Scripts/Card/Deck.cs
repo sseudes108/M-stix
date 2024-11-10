@@ -4,7 +4,5 @@ using UnityEngine;
 public class Deck : MonoBehaviour {
     [field:SerializeField] public List<CardSO> DeckInUse { get; private set; }
 
-    public void RemoveCardFromDeck(CardSO cardToRemove){
-        DeckInUse.Remove(cardToRemove);
-    }
+    public void RemoveCardFromDeck(CardSO cardToRemove) { DeckInUse.Remove(cardToRemove); }
 }

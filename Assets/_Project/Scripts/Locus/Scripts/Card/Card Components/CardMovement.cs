@@ -42,11 +42,7 @@ public class CardMovement : MonoBehaviour {
         _targetPosition = targetPosition;
     }
 
-    public void SetTargetRotation(Quaternion targetRotation){
-        _targetRotation = targetRotation;
-    }
+    public void SetTargetRotation(Quaternion targetRotation) { _targetRotation = targetRotation; }
 
-    public void AllowMovement(bool allow){
-        _moveCard = allow;
-    }
+    public void AllowMovement(bool allow) { _moveCard = allow; }
 }

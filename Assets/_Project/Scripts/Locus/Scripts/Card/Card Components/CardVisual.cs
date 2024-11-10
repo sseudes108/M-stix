@@ -8,9 +8,7 @@ public class CardVisual : MonoBehaviour {
     public ShaderDissolve Dissolve { get; private set; }
     public Card Card { get; private set; }
 
-    private void Awake() {
-        SetComponents();
-    }
+    private void Awake() { SetComponents(); }
 
     public void SetVisuals(Texture2D illustration){
         var sideMat = new Material(Renderer.sharedMaterials[0]);
@@ -27,13 +25,8 @@ public class CardVisual : MonoBehaviour {
         Renderer.materials = new[] { sideMat, faceMat, Renderer.sharedMaterials[2] };
     }
 
-    public void DisableRenderer(){
-        Renderer.enabled = false;
-    }
-
-    public void EnableRenderer(){
-        Renderer.enabled = true;
-    }
+    public void DisableRenderer() { Renderer.enabled = false; }
+    public void EnableRenderer() { Renderer.enabled = true; }
 
     public void SetComponents(){
         Card = GetComponent<Card>();
@@ -49,11 +42,6 @@ public class CardVisual : MonoBehaviour {
         Dissolve.SetController(Renderer, this, Card);
     }
 
-    public float GetCutoff(){
-        return Dissolve.CutOff;
-    }
-
-    public void ResetAnimaColors(){
-        Anima.AnimaNotSelectedColors();
-    }
+    public float GetCutoff() { return Dissolve.CutOff; }
+    public void ResetAnimaColors() { Anima.AnimaNotSelectedColors(); }
 }

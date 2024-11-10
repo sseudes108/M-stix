@@ -10,10 +10,17 @@ public class BoardManagerSO : ScriptableObject {
 
     [SerializeField] private BattleManagerSO _battleManager;
     [SerializeField] private UIEventHandlerSO _uIManager;
-    [SerializeField] private FusionManagerSO _fusionManager;
 
     public BoardPlaceVisualController BoardVisualController { get; private set; }
     public Board BoardController { get; private set; }
+
+    //Card Positions
+    public Quaternion PlayerMonsterFaceDownAtkRotation {get; private set;} = Quaternion.Euler(-90, -90, -90);
+    public Quaternion PlayerMonsterFaceDownDefRotation {get; private set;} = Quaternion.Euler(-90, -180, -90);
+    public Quaternion PlayerMonsterFaceUpDefRotation {get; private set;} = Quaternion.Euler(90, 90, 0);
+    public Quaternion EnemyMonsterFaceDownAtkRotation {get; private set;} = Quaternion.Euler(-90, -90, 90);
+    public Quaternion EnemyMonsterFaceDownDefRotation {get; private set;} = Quaternion.Euler(-90, -180, 90);
+    public Quaternion EnemyMonsterFaceUpDefRotation {get; private set;} = Quaternion.Euler(90, 90, 180);
 
     private void OnEnable() {
         OnBoardFusion ??= new UnityEvent();
@@ -40,18 +47,18 @@ public class BoardManagerSO : ScriptableObject {
     private void BattleManager_BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { BoardVisualController.OnBoardPlaceSelectionEnd(isPlayerTurn); }
     private void UIManager_MonsterAttack(Card card, bool isPlayerTurn) { BoardVisualController.OnMonsterAttack(card, isPlayerTurn); }
 
+
     //Board Events
     public void BoardPlaceSelected() { OnBoardPlaceSelected?.Invoke(); }
     public void ShowOptions(BoardPlace place) { OnShowOptions?.Invoke(place); }
     public void HideOptions() { OnHideOptions?.Invoke(); }
-
     public void BoardFusion() { OnBoardFusion?.Invoke(); }
+
 
     //Custom Methods
     public void SetBoardPlaceVisualController(BoardPlaceVisualController boardPlaces){
         BoardVisualController = boardPlaces;
     }
-    
     public void SetBoardController(Board boardController){
         BoardController = boardController;
     }

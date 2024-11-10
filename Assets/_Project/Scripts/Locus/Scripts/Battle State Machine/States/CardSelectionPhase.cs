@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class CardSelectionPhase : AbstractState{
     public CardSelectionPhase(StateMachine stateMachine) : base(stateMachine){}
 

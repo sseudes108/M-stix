@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public abstract class Card : MonoBehaviour {
@@ -93,7 +92,6 @@ public abstract class Card : MonoBehaviour {
 #endregion
 
 #region Events Methods
-
     private void BattleManager_OnCardSelectionStart() { _canBeSelected = true; }
     private void BattleManager_OnCardSelectionEnd() { _canBeSelected = false; }
 

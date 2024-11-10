@@ -17,7 +17,6 @@ public class AICardSelector : AIAction{
     
     private AIFieldChecker _fieldChecker;
 
-
     public IEnumerator SelectCardRoutine(){
         SelectedList.Clear();
 
@@ -63,7 +62,7 @@ public class AICardSelector : AIAction{
         AddToSelectedList(_fieldChecker.Lvl2OnHand[0]);
     }
 
-#region Level5
+#region Level 5
     private bool CanMakeAlvl5FromHand(){
         if(_fieldChecker.Lvl4OnHand.Count > 1){
             return true;

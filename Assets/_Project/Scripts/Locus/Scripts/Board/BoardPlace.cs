@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(BoardPlaceVisual))]
 public class BoardPlace : MonoBehaviour {
     [SerializeField] private BattleManagerSO _battleManager;
-    [SerializeField] private ColorDatabaseSO _colorManager;
     [SerializeField] private BoardManagerSO _boardManager;
     [SerializeField] private CardManagerSO _cardManager;
 
@@ -19,14 +18,6 @@ public class BoardPlace : MonoBehaviour {
     private bool _isOptShowing;
 
     public BoardPlaceVisual Visual;
-
-    Quaternion PlayerMonsterFaceDownAtkRotation = Quaternion.Euler(-90, -90, -90);
-    Quaternion PlayerMonsterFaceDownDefRotation = Quaternion.Euler(-90, -180, -90);
-    Quaternion PlayerMonsterFaceUpDefRotation = Quaternion.Euler(90, 90, 0);
-
-    Quaternion EnemyMonsterFaceDownAtkRotation = Quaternion.Euler(-90, -90, 90);
-    Quaternion EnemyMonsterFaceDownDefRotation = Quaternion.Euler(-90, -180, 90);
-    Quaternion EnemyMonsterFaceUpDefRotation = Quaternion.Euler(90, 90, 180);
 
     private void OnEnable() {
         _battleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
@@ -106,9 +97,9 @@ public class BoardPlace : MonoBehaviour {
                     Quaternion rotation;
 
                     if(monsterCard.IsPlayerCard){
-                        rotation = PlayerMonsterFaceDownAtkRotation;
+                        rotation = _boardManager.PlayerMonsterFaceDownAtkRotation;
                     }else{
-                        rotation = EnemyMonsterFaceDownAtkRotation;
+                        rotation = _boardManager.EnemyMonsterFaceDownAtkRotation;
                     }
 
                     card.MoveCard(transform, rotation);
@@ -123,9 +114,9 @@ public class BoardPlace : MonoBehaviour {
                     Quaternion rotation;
 
                     if(monsterCard.IsPlayerCard){
-                        rotation = PlayerMonsterFaceDownDefRotation;
+                        rotation = _boardManager.PlayerMonsterFaceDownDefRotation;
                     }else{
-                        rotation = EnemyMonsterFaceDownDefRotation;
+                        rotation = _boardManager.EnemyMonsterFaceDownDefRotation;
                     }
 
                     card.MoveCard(transform, rotation);
@@ -135,9 +126,9 @@ public class BoardPlace : MonoBehaviour {
                     Quaternion rotation;
 
                     if(monsterCard.IsPlayerCard){
-                        rotation = PlayerMonsterFaceUpDefRotation;
+                        rotation = _boardManager.PlayerMonsterFaceUpDefRotation;
                     }else{
-                        rotation = EnemyMonsterFaceUpDefRotation;
+                        rotation = _boardManager.EnemyMonsterFaceUpDefRotation;
                     }
 
                     card.MoveCard(transform, rotation);
@@ -188,7 +179,7 @@ public class BoardPlace : MonoBehaviour {
                     monsterCard.MoveCard(transform);
                 }else{
                     //Monster in Defense
-                    rotation = PlayerMonsterFaceUpDefRotation;
+                    rotation = _boardManager.PlayerMonsterFaceUpDefRotation;
                     monsterCard.MoveCard(transform, rotation);
                 }
 
@@ -198,7 +189,7 @@ public class BoardPlace : MonoBehaviour {
                     monsterCard.MoveCard(transform);
                 }else{
                     //Monster in Defense
-                    rotation = EnemyMonsterFaceUpDefRotation;
+                    rotation = _boardManager.EnemyMonsterFaceUpDefRotation;
                     monsterCard.MoveCard(transform, rotation);
                 }
 
@@ -218,11 +209,11 @@ public class BoardPlace : MonoBehaviour {
         Quaternion rotation;
         if(monsterCard.IsPlayerCard){
             if(monsterCard.IsFaceDown){
-                rotation = PlayerMonsterFaceDownDefRotation;
+                rotation = _boardManager.PlayerMonsterFaceDownDefRotation;
                 monsterCard.MoveCard(transform, rotation);
                 return;
             }
-            rotation = PlayerMonsterFaceUpDefRotation;
+            rotation = _boardManager.PlayerMonsterFaceUpDefRotation;
             monsterCard.MoveCard(transform, rotation);
             monsterCard.SetDeffenseMode();
             monsterCard.SetCanChangeMode(false);
