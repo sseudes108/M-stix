@@ -47,7 +47,8 @@ public class MonsterCard : Card {
 
     public void SelectAnima() { AnimaSelected = true; }
     public void SelectMode() { ModeSelected = true; }
-    public void SelectDeffenseMode() { IsInAttackMode = false; }
+    public void SetDeffenseMode() { IsInAttackMode = false; }
+    public void SetAttackMode() { IsInAttackMode = true; }
     public void SetCanChangeMode(bool canChangeMode) { CanChangeMode = canChangeMode; }
     public void SetCanAttack(bool canAttack) { CanAttack = canAttack; }
 

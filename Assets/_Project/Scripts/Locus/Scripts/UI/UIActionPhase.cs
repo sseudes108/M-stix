@@ -12,8 +12,7 @@ public class UIActionPhase : MonoBehaviour {
 
     private BoardPlace _buttonPlace = null;
 
-    private MonsterCard _monsterCard;
-    private ArcaneCard _arcaneCard;
+    private Card _card;
 
     private void OnEnable() {
         _boardManager.OnShowOptions.AddListener(BoardManager_OnShowOptions);
@@ -38,22 +37,11 @@ public class UIActionPhase : MonoBehaviour {
 
     private void BoardManager_OnHideOptions() {HideOptions(); }
     private void BoardManager_OnShowOptions(BoardPlace place){
-        //Options for the player cards on field
         if(_turnManager.IsPlayerTurn && place.IsPlayerPlace){
-            if(place.IsMonsterPlace){
-                _monsterCard = null;
-                _monsterCard = place.CardInPlace as MonsterCard;
-                SetMonsterOptions(_monsterCard, place);
-                return;
-            }
-
-            _arcaneCard = null;
-            _arcaneCard = place.CardInPlace as ArcaneCard;
-            return;
-            //Arcane Card
+            _card = null;
+            _card = place.CardInPlace;
+            SetCardOptions(_card, place);
         }
-
-        //Options to show on enemy cards on field
     }
 
     private void ShowButtons(EBoardPlace place){
@@ -89,94 +77,94 @@ public class UIActionPhase : MonoBehaviour {
         _button2.onClick.RemoveAllListeners();
     }
 
-    private void SetMonsterOptions(MonsterCard cardInPlace, BoardPlace place){
+    private void SetCardOptions(Card cardInPlace, BoardPlace place){
         // _buttonPlace = null;
-        // _buttonPlace = place;
+        _buttonPlace = place;
 
-        if(!cardInPlace.IsFaceDown){//card face Up
-
-            if(cardInPlace.WasFlipedThisTurn == false){
-                if(cardInPlace.CanChangeMode && cardInPlace.IsInAttackMode){//is in attack mode and can change
+        if(cardInPlace.MustShowButtons){
+            if(cardInPlace.IsFaceDown){//Is Face Down
+                if(cardInPlace.CanFlip){ // Can flip
                     ShowButtons(place.Location);
 
-                    _button1Text.text = "Attack!";
-                    _button1.onClick.AddListener(Option1Clicked);
+                    _button2Text.text = "Flip";
 
-                    _button2Text.text = "DEF";
-                    _button2.onClick.AddListener(Option2Clicked);
-                    return;
-                }
-
-                if(cardInPlace.CanChangeMode && !cardInPlace.IsInAttackMode){//is in deffense mode and can change
-                    ShowButtons(place.Location);
-
-                    _button2Text.text = "ATK"; //button two "template" is used for aesthetic reasons
                     _button2.onClick.AddListener(Option1Clicked);
                     _button1.gameObject.SetActive(false);
                     return;
                 }
+            }else{
+                if(cardInPlace is MonsterCard){
+                    MonsterCard monster = _card as MonsterCard;
+
+                    if(monster.IsInAttackMode){
+                        if(monster.CanAttack){
+                            ShowButtons(place.Location);
+                            _button1Text.text = "Attack!";
+                            _button1.onClick.AddListener(Option1Clicked);
+                        }
+
+                        if(monster.CanChangeMode){
+                            ShowButtons(place.Location);
+                            _button2Text.text = "DEF";
+                            _button2.onClick.AddListener(Option2Clicked);
+                        }
+                    }else{ //Is in Deffense Mode
+                        if(monster.CanChangeMode){
+                            ShowButtons(place.Location);
+                            _button2Text.text = "ATK"; //button two "template" is used for aesthetic reasons
+                            _button2.onClick.AddListener(Option1Clicked);
+                            _button1.gameObject.SetActive(false);
+                        }
+                    }
+
+                }else{
+                    //Arcane Options
+                }
             }
-        }
-
-        if(cardInPlace.IsFaceDown && cardInPlace.CanFlip){ //Face down and can flip
-            ShowButtons(place.Location);
-
-            _button2Text.text = "Flip";
-            _buttonPlace = place;
-            
-            _button2.onClick.AddListener(Option1Clicked);
-            _button1.gameObject.SetActive(false);
-            return;
         }
     }
 
     private void Option1Clicked(){
-        if(_monsterCard != null && _arcaneCard == null){
-
-            if(_monsterCard.IsFaceDown == false){
-                if(_monsterCard.IsInAttackMode){
-                    Debug.Log("Attack!");
-                    return;
+        if(_card is MonsterCard){
+            if(_card.IsFaceDown){
+                if(_card.CanFlip){
+                    FlipCard(_buttonPlace);
+                }
+            }else{
+                MonsterCard monster = _card as MonsterCard;
+                if(monster.IsInAttackMode){
+                    if(monster.CanAttack){
+                        Debug.Log("Attack!");
+                    }
+                }else{// Is In deffense
+                    if(monster.CanChangeMode){ //Not needed but keeped for readbility reasons
+                        ChangeMonsterToAtk(_buttonPlace);
+                    }
                 }
             }
-
-            if(_monsterCard.CanFlip){
-                FlipCard(_buttonPlace);
-                _button2.gameObject.SetActive(false);
-                return;
-            }
+        }else{
+            //Arcane Card
         }
 
-        if(_arcaneCard != null && _monsterCard == null){
-
-            return;
-        }
+        _card.SetShowButtons(false);
+        HideOptions();
     }
 
     private void Option2Clicked(){
-        if(_monsterCard != null && _arcaneCard == null){
-            if(_monsterCard.CanChangeMode && !_monsterCard.IsInAttackMode){//is in deffense mode and can change
+        if(_card is MonsterCard){
+            MonsterCard monster = _card as MonsterCard;
+            if(monster.IsInAttackMode && monster.CanChangeMode){
                 ChangeMonsterToDef(_buttonPlace);
             }
+        }else{
+            //Arcane Card
         }
 
-        // if(_button2Text.text == "DEF"){
-        //     Debug.Log("Change To Def");
-        //     return;
-        // }
-
-        if(_button2Text.text == "ATK"){
-            Debug.Log("Change To Atk");
-            return;
-        }
+        _card.SetShowButtons(false);
+        HideOptions();
     }
 
-    private void FlipCard(BoardPlace place){
-        place.FlipCard();
-        _buttonPlace = null;
-    }
-
-    private void ChangeMonsterToDef(BoardPlace place){
-        place.ChangeMonsterToDef();
-    }
+    private void FlipCard(BoardPlace place) { place.FlipCard(); }
+    private void ChangeMonsterToDef(BoardPlace place) { place.ChangeMonsterToDef(); }
+    private void ChangeMonsterToAtk(BoardPlace place) { place.ChangeMonsterToAtk(); }
 }

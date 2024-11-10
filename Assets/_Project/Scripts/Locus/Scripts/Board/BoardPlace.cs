@@ -224,6 +224,25 @@ public class BoardPlace : MonoBehaviour {
             }
             rotation = PlayerMonsterFaceUpDefRotation;
             monsterCard.MoveCard(transform, rotation);
+            monsterCard.SetDeffenseMode();
+            monsterCard.SetCanChangeMode(false);
+            return;
+        }
+    }
+
+    public void ChangeMonsterToAtk(){
+        var monsterCard = CardInPlace as MonsterCard;
+        // Quaternion rotation;
+        if(monsterCard.IsPlayerCard){
+            // if(monsterCard.IsFaceDown){
+            //     rotation = PlayerMonsterFaceDownAtkRotation;
+            //     monsterCard.MoveCard(transform, rotation);
+            //     return;
+            // }
+            // rotation = PlayerMonsterFaceUpRotation;
+            monsterCard.MoveCard(transform);
+            monsterCard.SetAttackMode();
+            monsterCard.SetCanChangeMode(false);
             return;
         }
     }

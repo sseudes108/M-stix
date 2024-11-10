@@ -80,7 +80,7 @@ public class CardStatSelections : MonoBehaviour {
 
                 if(!monster.ModeSelected){
                     monster.SelectMode();
-                    monster.SelectDeffenseMode();
+                    monster.SetDeffenseMode();
                     CardStatSelManager.SelectionsEnd();
                     return;
                 }
@@ -96,7 +96,7 @@ public class CardStatSelections : MonoBehaviour {
 
                 if(!monster.ModeSelected){ //Mode not selected
                     monster.SelectMode();
-                    monster.SelectDeffenseMode();
+                    monster.SetDeffenseMode();
                     CardStatSelManager.SelectAnother(monster);
                     return;
                 }

@@ -71,6 +71,8 @@ public class Board : MonoBehaviour {
         if(place.CardInPlace.IsFaceDown){
             place.CardInPlace.SetCanFlip(true);
         }
+
+        place.CardInPlace.SetShowButtons(true);
     }
 
     private void AddCardToInBoardList(BoardPlace place, Card card){

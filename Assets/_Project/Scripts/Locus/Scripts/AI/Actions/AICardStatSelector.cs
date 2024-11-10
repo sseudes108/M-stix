@@ -36,7 +36,7 @@ public class AICardStatSelector : AIAction {
     private void ModeSelection(MonsterCard card){
         var randomIndex = Random.Range(1, 3);
         if(randomIndex == 2){
-            card.SelectDeffenseMode();
+            card.SetDeffenseMode();
         }
 
         card.SelectMode();
