@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BoardPlaceVisualController {
     public BoardPlaceVisualController(
@@ -15,123 +14,105 @@ public class BoardPlaceVisualController {
         _enemyArcanePlaces = enemyArcanePlaces;
     }
 
-    private List<BoardPlace> _playerMonsterPlaces;
-    private List<BoardPlace> _playerArcanePlaces;
-    private List<BoardPlace> _enemyMonsterPlaces;
-    private List<BoardPlace> _enemyArcanePlaces; 
+    private List<BoardPlace> _playerMonsterPlaces, _playerArcanePlaces;
+    private List<BoardPlace> _enemyMonsterPlaces, _enemyArcanePlaces; 
 
-    public void OnMonsterAttack(Card card, bool isPlayerTurn){
-        Debug.Log("AttackSelected");
+#region Events
+
+    public void OnStartPhase() {
+        LightUpPlayerMonsterPlaces();
+        LightUpEnemyMonsterPlaces();
+    }
+
+    public void OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn) {
         if(isPlayerTurn){
-            HighLightEnemyOcuppiedPlaces(card);
+            HighLightPlayerMonsterPlaces();
         }else{
-            HighLightPlayerOcuppiedPlaces(card);
+            HighLightEnemyMonsterPlaces();
         }
     }
 
-    public void OnBoardPlaceSelectionEnd(bool isPlayerTurn){
+    public void OnBoardPlaceSelectionEnd(bool isPlayerTurn) {
         if(isPlayerTurn){
-            LightUpPlayerPlaces();
+            UnHighLightPlayerMonsterPlaces();
         }else{
-            LightUpEnemyPlaces();
+            UnHighLightEnemyMonsterPlaces();
         }
     }
 
-    public void OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn){
+    public void OnMonsterAttack(bool isPlayerTurn) {
         if(isPlayerTurn){
-            HighLightPlayerPlaces(card);
+            HighLightEnemyOcuppiedMonsterPlaces();
         }else{
-            HighLightEnemyPlaces(card);
+            HighLightPlayerOcuppiedMonsterPlaces();
         }
     }
 
-    private void HighLightPlayerOcuppiedPlaces(Card card){
-        List<BoardPlace> list;
+#endregion
 
-        list = card is MonsterCard ? _playerMonsterPlaces : _playerArcanePlaces;
+#region Custom Methods
+
+#region Player Places
+    private void LightUpPlayerMonsterPlaces() {
+        foreach(var place in _playerMonsterPlaces){
+            place.LightUpPlace();
+        }
+
+        foreach(var place in _playerArcanePlaces){
+            place.LightUpPlace();
+        }
+    }
+
+    public void HighLightPlayerOcuppiedMonsterPlaces(){
+        foreach(var place in _playerMonsterPlaces){
+            if(place.IsFree) { continue; }
+            place.HighLight();
+        }
+    }
+
+    public void HighLightPlayerMonsterPlaces(){
+        foreach(var place in _playerMonsterPlaces){
+            place.HighLight();
+        }
+    }
+    public void UnHighLightPlayerMonsterPlaces(){
+        foreach(var place in _playerMonsterPlaces){
+            place.UnHighLight();
+        }
+    }
+#endregion
+
+#region Enemy Places
+    private void LightUpEnemyMonsterPlaces() {
+        foreach(var place in _enemyMonsterPlaces){
+            place.LightUpPlace();
+        }
         
-        // if(card is MonsterCard){
-        //     list = _playerMonsterPlaces;
-        // }else{
-        //     list = _playerArcanePlaces;
-        // }
-
-        foreach (var place in list.Where(place => !place.IsFree)){
-            place.Visual.HighLight();
-        }
-        
-        // foreach (BoardPlace place in list){
-        //     if(!place.IsFree){
-        //         place.Visual.HighLight();
-        //     }
-        // }
-    }
-
-    private void HighLightEnemyOcuppiedPlaces(Card card){
-        List<BoardPlace> list;
-
-        list = card is MonsterCard ? _enemyMonsterPlaces : _enemyArcanePlaces;
-        
-        // if(card is MonsterCard){
-        //     list = _enemyMonsterPlaces;
-        // }else{
-        //     list = _enemyArcanePlaces;
-        // }
-        
-        foreach (BoardPlace place in list){
-            if(!place.IsFree){
-                // Debug.Log("!place.IsFree");
-                place.Visual.HighLight();
-            }else{
-                // Debug.Log("place.IsFree");
-            }
+        foreach(var place in _enemyArcanePlaces){
+            place.LightUpPlace();
         }
     }
 
-    private void HighLightPlayerPlaces(Card card){
-        if(card is MonsterCard){
-            foreach (BoardPlace place in _playerMonsterPlaces){
-                place.Visual.HighLight();
-            }
-        }else{
-            foreach (BoardPlace place in _playerArcanePlaces){
-                place.Visual.HighLight();
-            }
+    public void HighLightEnemyOcuppiedMonsterPlaces(){
+        foreach(var place in _enemyMonsterPlaces){
+            if(place.IsFree) { continue; }
+            place.HighLight();
         }
     }
 
-    private void HighLightEnemyPlaces(Card card){
-        if(card is MonsterCard){
-            foreach (BoardPlace place in _enemyMonsterPlaces){
-                place.Visual.HighLight();
-            }
-        }else{
-            foreach (BoardPlace place in _enemyArcanePlaces){
-                place.Visual.HighLight();
-            }
+    public void HighLightEnemyMonsterPlaces(){
+        foreach(var place in _enemyMonsterPlaces){
+            place.HighLight();
         }
     }
 
-    public void OnStartPhase(){
-        LightUpPlayerPlaces();
-        LightUpEnemyPlaces();
+    public void UnHighLightEnemyMonsterPlaces(){
+        foreach(var place in _enemyMonsterPlaces){
+            place.UnHighLight();
+        }
     }
+    
+#endregion
 
-    private void LightUpPlayerPlaces(){
-        foreach (BoardPlace place in _playerMonsterPlaces){
-            place.Visual.LightUp();
-        }
-        foreach (BoardPlace place in _playerArcanePlaces){
-            place.Visual.LightUp();
-        }
-    }
-
-    private void LightUpEnemyPlaces(){
-        foreach (BoardPlace place in _enemyMonsterPlaces){
-            place.Visual.LightUp();
-        }
-        foreach (BoardPlace place in _enemyArcanePlaces){
-            place.Visual.LightUp();
-        }
-    }
+#endregion
 }

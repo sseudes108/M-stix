@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoardPlaceVisual))]
 public class BoardPlace : MonoBehaviour {
+    
     [SerializeField] private BattleManagerSO _battleManager;
     [SerializeField] private BoardManagerSO _boardManager;
     [SerializeField] private CardManagerSO _cardManager;
@@ -12,9 +14,11 @@ public class BoardPlace : MonoBehaviour {
     [field:SerializeField] public bool IsPlayerPlace { get; private set; }
     [field:SerializeField] public bool IsMonsterPlace { get; private set; }
     [field:SerializeField] public bool IsFree { get; private set; }
-    private bool _canBeSelected;
+
     private Card _resultCard;
     public Card CardInPlace;
+
+    private bool _canBeSelected;
     private bool _isOptShowing;
 
     public BoardPlaceVisual Visual;
@@ -74,7 +78,11 @@ public class BoardPlace : MonoBehaviour {
             break;
 
             case ActionPhase:
-                Debug.Log("Attacked");
+                if(!IsFree){
+                    if(!_resultCard.IsPlayerCard){
+                        Debug.Log($"Attacked Card Lvl {(_resultCard as MonsterCard).Level}, Attack {(_resultCard as MonsterCard).Attack}");
+                    }
+                }
             break;
             
             default:
@@ -86,6 +94,10 @@ public class BoardPlace : MonoBehaviour {
 #endregion
 
 #region Custom Methods
+
+    public Board GetBoardController() { return _boardManager.BoardController; }
+    public void HighLight() { Visual.HighLight(); }
+    public void UnHighLight() { Visual.UnHighLight(); }
 
     public void SetCardInPlace(Card card){
         if(card is MonsterCard){
@@ -238,6 +250,14 @@ public class BoardPlace : MonoBehaviour {
         }
     }
 
+    public void MakeAttackOnMonster() { 
+        _boardManager.HighlighOcuppiedMonsterPlaces(); 
+    }
+
+    public void MakeDirectAttack(){
+
+    }
+
 #endregion
 
 #region Events
@@ -257,7 +277,11 @@ public class BoardPlace : MonoBehaviour {
     private void BoardManager_OnBoardPlaceSelected(){
         _canBeSelected = false;
     }
-    
-#endregion
+
+    public void LightUpPlace(){
+        Visual.LightUp();
+    }
+
+    #endregion
 
 }

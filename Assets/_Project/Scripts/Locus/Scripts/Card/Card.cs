@@ -149,6 +149,10 @@ public abstract class Card : MonoBehaviour {
 
     public void SetBoardPlace(BoardPlace boardPlace) { _boardPlace = boardPlace; }
     public BoardPlace GetBoardPlace() { return _boardPlace; }
+    public void HighLightBoardPlace(){
+        if( _boardPlace == null ) return;
+        _boardPlace.HighLight();
+    }
 
     #endregion
 }

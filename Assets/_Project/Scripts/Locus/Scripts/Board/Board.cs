@@ -12,8 +12,8 @@ public class Board : MonoBehaviour {
     public List<BoardPlace> EnemyMonsterPlaces;
     public List<BoardPlace> EnemyArcanePlaces;
 
-    private List<Card> _playerCardsOnField = new();
-    private List<Card> _aICardsOnField = new();
+    public List<Card> PlayerCardsOnField { get; private set; } = new();
+    public List<Card> AICardsOnField { get; private set; } = new();
 
     public BoardPlaceVisualController BoardPlaceVisualController;
 
@@ -33,8 +33,8 @@ public class Board : MonoBehaviour {
     }
 
     private void BattleManager_OnStartPhase(){
-        _playerCardsOnField.Clear();
-        _aICardsOnField.Clear();
+        PlayerCardsOnField.Clear();
+        AICardsOnField.Clear();
 
         CheckCardsOnBoard(PlayerMonsterPlaces);
         CheckCardsOnBoard(PlayerArcanePlaces);
@@ -45,7 +45,7 @@ public class Board : MonoBehaviour {
     }
 
     private void SetAIOnBoardLists(){
-        _aIManager.AI.SetAIOnBoardLists(_aICardsOnField, _playerCardsOnField);
+        _aIManager.AI.SetAIOnBoardLists(AICardsOnField, PlayerCardsOnField);
     }
 
     private void CheckCardsOnBoard(List<BoardPlace> places){
@@ -77,9 +77,9 @@ public class Board : MonoBehaviour {
 
     private void AddCardToInBoardList(BoardPlace place, Card card){
         if(place.IsPlayerPlace){
-            _playerCardsOnField.Add(card);
+            PlayerCardsOnField.Add(card);
         }else{
-            _aICardsOnField.Add(card);
+            AICardsOnField.Add(card);
         }
     }
 

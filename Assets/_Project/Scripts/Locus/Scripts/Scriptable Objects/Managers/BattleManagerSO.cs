@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,11 +26,13 @@ public class BattleManagerSO : ScriptableObject {
 
     [HideInInspector] public UnityEvent OnEndPhaseStart;
 
+    [HideInInspector] public UnityEvent OnAttack;
+
     private AbstractState _currentPhase;
     public AbstractState CurrentPhase => _currentPhase;
     public Battle Battle { get; private set; }
-    
-#endregion
+
+    #endregion
 
     private void OnEnable() {
         OnStateChange ??= new UnityEvent<AbstractState>();
@@ -49,6 +52,8 @@ public class BattleManagerSO : ScriptableObject {
         OnBoardPlaceSelectionEnd ??= new UnityEvent<Card, bool>();
 
         OnActionPhaseStart ??=new UnityEvent();
+
+        OnAttack ??=new UnityEvent();
         
         OnEndPhaseStart ??= new UnityEvent();
     }
@@ -90,6 +95,10 @@ public class BattleManagerSO : ScriptableObject {
         battle.ChangeState(newState);
         yield return null;
     }
-    
-#endregion
+
+    public void Attack(){
+        Battle.ChangeState(Battle.Action);
+    }
+
+    #endregion
 }

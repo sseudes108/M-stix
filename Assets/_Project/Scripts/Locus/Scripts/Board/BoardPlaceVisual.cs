@@ -33,11 +33,18 @@ public class BoardPlaceVisual : MonoBehaviour {
         }else{
             StartCoroutine(SetColorRoutine(EnemyDefaultColor, 0.2f, false));
         }
-
     }
-
+    
     public void HighLight(){
         StartCoroutine(SetColorRoutine(new Color(216, 216, 27), 0.1f, false));
+    }
+
+    public void UnHighLight(){
+        if(_place.IsPlayerPlace){
+            StartCoroutine(SetColorRoutine(PlayerDefaultColor, 0.2f, false));
+        }else{
+            StartCoroutine(SetColorRoutine(EnemyDefaultColor, 0.2f, false));
+        }
     }
 
     public IEnumerator SetColorRoutine(Color newColor, float intensity, bool imediate){
