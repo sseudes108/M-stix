@@ -23,6 +23,7 @@ public class Battle : StateMachine {
     public CardStatSelectPhase CardStatSelection { get; private set; }
     public BoardPlaceSelectionPhase BoardPlaceSelection { get; private set; }
     public ActionPhase Action { get; private set; }
+    public AttackSelectionPhase AttackSelectionPhase { get; private set; }
     public EndPhase EndPhase { get; private set; }
 
     public Battle(){
@@ -33,6 +34,7 @@ public class Battle : StateMachine {
         CardStatSelection = new(this);
         BoardPlaceSelection = new(this);
         Action = new(this);
+        AttackSelectionPhase = new(this);
         EndPhase = new(this);
     }
 

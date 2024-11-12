@@ -24,9 +24,9 @@ public class BattleManagerSO : ScriptableObject {
 
     [HideInInspector] public UnityEvent OnActionPhaseStart;
 
-    [HideInInspector] public UnityEvent OnEndPhaseStart;
+    [HideInInspector] public UnityEvent<bool, bool> OnAttackSelectionStart;
 
-    [HideInInspector] public UnityEvent OnAttack;
+    [HideInInspector] public UnityEvent OnEndPhaseStart;
 
     private AbstractState _currentPhase;
     public AbstractState CurrentPhase => _currentPhase;
@@ -53,7 +53,7 @@ public class BattleManagerSO : ScriptableObject {
 
         OnActionPhaseStart ??=new UnityEvent();
 
-        OnAttack ??=new UnityEvent();
+        OnAttackSelectionStart ??=new UnityEvent<bool, bool>();
         
         OnEndPhaseStart ??= new UnityEvent();
     }
@@ -84,6 +84,11 @@ public class BattleManagerSO : ScriptableObject {
 
     public void ActionPhaseStart() { OnActionPhaseStart?.Invoke(); }
 
+    public void AttackSelectionStart(bool isPlayerTurn, bool isDirectAttack) { 
+        OnAttackSelectionStart?.Invoke(isPlayerTurn, isDirectAttack);
+        ChangeState(Battle.AttackSelectionPhase);
+    }
+
     public void EndPhaseStart() { OnEndPhaseStart?.Invoke(); }
 
 #endregion
@@ -94,10 +99,6 @@ public class BattleManagerSO : ScriptableObject {
         yield return new WaitForSeconds(wait);
         battle.ChangeState(newState);
         yield return null;
-    }
-
-    public void Attack(){
-        Battle.ChangeState(Battle.Action);
     }
 
     #endregion

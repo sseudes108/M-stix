@@ -178,16 +178,27 @@ public class UIActionPhase : MonoBehaviour {
     private void ChangeMonsterToAtk(BoardPlace place) { place.ChangeMonsterToAtk(); }
     private void Attack(BoardPlace place) {
         HideOptions();
-        
-        if(_card.IsPlayerCard){
-            if(place.GetBoardController().AICardsOnField.Count == 0){
-                place.MakeDirectAttack();
-            }else{
-                place.MakeAttackOnMonster();
-            }
-        }
 
-        _battleManager.Attack();
+        bool isDirectAttack = place.GetBoardController().AICardsOnField.Count == 0;
+        _battleManager.AttackSelectionStart(_turnManager.IsPlayerTurn, isDirectAttack);
+
+        // if(_card.IsPlayerCard){
+        //     if(place.GetBoardController().AICardsOnField.Count == 0){
+
+        //     }
+        // }
+
+        // HideOptions();
+        
+        // if(_card.IsPlayerCard){
+        //     if(place.GetBoardController().AICardsOnField.Count == 0){
+        //         place.MakeDirectAttack();
+        //     }else{
+        //         place.MakeAttackOnMonster();
+        //     }
+        // }
+
+        // _battleManager.Attack();
     }
 
 #endregion

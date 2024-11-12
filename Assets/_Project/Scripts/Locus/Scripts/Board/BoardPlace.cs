@@ -63,11 +63,10 @@ public class BoardPlace : MonoBehaviour {
     }
 
     private void OnMouseDown() {
-        if(!_canBeSelected) { return; }
-
         switch (_battleManager.CurrentPhase){
             case BoardPlaceSelectionPhase:
-            
+                if(!_canBeSelected) { return; }
+
                 if(IsFree){
                     SetCardInPlace(_resultCard);
                     return;
@@ -77,20 +76,10 @@ public class BoardPlace : MonoBehaviour {
                 StartBoardFusion();
             break;
 
-            case ActionPhase:
-                if(!IsFree){
-                    if(!_resultCard.IsPlayerCard){
-                        Debug.Log($"Attacked Card Lvl {(_resultCard as MonsterCard).Level}, Attack {(_resultCard as MonsterCard).Attack}");
-                    }
-                }
-            break;
-            
             default:
             break;
         }
     }
-
-
 #endregion
 
 #region Custom Methods
@@ -250,13 +239,13 @@ public class BoardPlace : MonoBehaviour {
         }
     }
 
-    public void MakeAttackOnMonster() { 
-        _boardManager.HighlighOcuppiedMonsterPlaces(); 
-    }
+    // public void MakeAttackOnMonster() { 
+    //     _boardManager.HighlighOcuppiedMonsterPlaces(); 
+    // }
 
-    public void MakeDirectAttack(){
+    // public void MakeDirectAttack(){
 
-    }
+    // }
 
 #endregion
 
@@ -271,6 +260,12 @@ public class BoardPlace : MonoBehaviour {
             _canBeSelected = true;
         }else if(!IsMonsterPlace && _resultCard is ArcaneCard){
             _canBeSelected = true;
+        }
+    }
+
+    private void BattleManager_OnAttackPlaceSelectionStart(){
+        if(_boardManager.BoardController.AICardsOnField.Count == 0){
+
         }
     }
 

@@ -8,7 +8,6 @@ public class BoardManagerSO : ScriptableObject {
     [HideInInspector] public UnityEvent<BoardPlace> OnShowOptions;
     [HideInInspector] public UnityEvent OnHideOptions;
     [HideInInspector] public UnityEvent OnBoardFusion;
-    [HideInInspector] public UnityEvent OnAttack;
 
     [SerializeField] private BattleManagerSO _battleManager;
     [SerializeField] private TurnManagerSO _turnManager;
@@ -33,18 +32,21 @@ public class BoardManagerSO : ScriptableObject {
         _battleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
         _battleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_BoardPlaceSelectionStart);
         _battleManager.OnBoardPlaceSelectionEnd.AddListener(BattleManager_BoardPlaceSelectionEnd);
+        _battleManager.OnAttackSelectionStart.AddListener(BattleManager_AttackSelectionPhaseStart);
     }
 
     public void OnDisable(){
         _battleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
         _battleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_BoardPlaceSelectionStart);
         _battleManager.OnBoardPlaceSelectionEnd.RemoveListener(BattleManager_BoardPlaceSelectionEnd);
+        _battleManager.OnAttackSelectionStart.RemoveListener(BattleManager_AttackSelectionPhaseStart);
     }
 
     //listen Events
     private void BattleManager_OnStartPhase() { BoardVisualController.OnStartPhase(); }
     private void BattleManager_BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { BoardVisualController.OnBoardPlaceSelectionStart(card, isPlayerTurn); }
     private void BattleManager_BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { BoardVisualController.OnBoardPlaceSelectionEnd(isPlayerTurn); }
+    private void BattleManager_AttackSelectionPhaseStart(bool isPlayerTurn, bool isDirectAttack) { BoardVisualController.OnMonsterAttack(isPlayerTurn, isDirectAttack); }
 
     //Board Events
     public void BoardPlaceSelected() { OnBoardPlaceSelected?.Invoke(); }
@@ -56,5 +58,4 @@ public class BoardManagerSO : ScriptableObject {
     //Custom Methods
     public void SetBoardPlaceVisualController(BoardPlaceVisualController boardPlaces) { BoardVisualController = boardPlaces;}
     public void SetBoardController(Board boardController) { BoardController = boardController; }
-    public void HighlighOcuppiedMonsterPlaces() { BoardVisualController.OnMonsterAttack(_turnManager.IsPlayerTurn); }
 }

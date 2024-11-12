@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine.Rendering;
 
 public class BoardPlaceVisualController {
     public BoardPlaceVisualController(
@@ -40,11 +39,13 @@ public class BoardPlaceVisualController {
         }
     }
 
-    public void OnMonsterAttack(bool isPlayerTurn) {
-        if(isPlayerTurn){
-            HighLightEnemyOcuppiedMonsterPlaces();
-        }else{
-            HighLightPlayerOcuppiedMonsterPlaces();
+    public void OnMonsterAttack(bool isPlayerTurn, bool isDirectAttack) {
+        if(!isDirectAttack){
+            if(isPlayerTurn){
+                HighLightEnemyOcuppiedMonsterPlaces();
+            }else{
+                HighLightPlayerOcuppiedMonsterPlaces();
+            }
         }
     }
 

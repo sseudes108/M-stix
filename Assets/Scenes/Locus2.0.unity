@@ -2923,6 +2923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
+  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
 --- !u!114 &352044647
 MonoBehaviour:
   m_ObjectHideFlags: 0
