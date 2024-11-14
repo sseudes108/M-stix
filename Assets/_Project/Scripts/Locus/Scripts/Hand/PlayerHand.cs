@@ -34,15 +34,8 @@ public class PlayerHand : Hand {
 
     private void BattleManager_OnPlayerDraw() { Draw(); }
 
-    private void BattleManager_OnCardSelectionEnd(){
-        MoveHandOffScreen();
-    }
+    private void BattleManager_OnCardSelectionEnd() { MoveHandOffScreen(); }
 
-    private void MoveHandOffScreen(){
-        _movement.SetTargetPosition(_OffCameraHand.position);
-    }
-
-    private void MoveHandOnScreen(){
-        _movement.SetTargetPosition(_OnCameraHand.position);
-    }
+    private void MoveHandOffScreen() { _movement.SetTargetPosition(_OffCameraHand.position); }
+    private void MoveHandOnScreen() { _movement.SetTargetPosition(_OnCameraHand.position); }
 }

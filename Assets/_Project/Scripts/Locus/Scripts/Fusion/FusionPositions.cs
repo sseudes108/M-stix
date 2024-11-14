@@ -15,11 +15,13 @@ public class FusionPositions: Fusion {
 
 
     private void OnEnable() { 
-        _battleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart); 
+        _battleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
+        _battleManager.OnDamageStart.AddListener(BattleManager_OnDamageStart);
     }
 
     private void OnDisable() { 
-        _battleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart); 
+        _battleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart);
+        _battleManager.OnDamageStart.RemoveListener(BattleManager_OnDamageStart);
     }
 
     private void Start() {
@@ -28,6 +30,14 @@ public class FusionPositions: Fusion {
 
     private void BattleManager_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn) {
         MoveToBoardPlaceSelection(card, isPlayerTurn); 
+    }
+
+    private void BattleManager_OnDamageStart(MonsterCard attacker, MonsterCard attacked){
+        MoveCardsToBattlePosition(attacker, attacked);
+    }
+
+    private void MoveCardsToBattlePosition(MonsterCard attacker, MonsterCard attacked){
+        Debug.Log($"MoveCardsToBattlePosition - attacker {attacker.Level} - attacked {attacked.Level}");
     }
 
     private void MoveToBoardPlaceSelection(Card card, bool isPlayerTurn){

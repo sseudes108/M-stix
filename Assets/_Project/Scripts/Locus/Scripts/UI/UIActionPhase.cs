@@ -180,25 +180,7 @@ public class UIActionPhase : MonoBehaviour {
         HideOptions();
 
         bool isDirectAttack = place.GetBoardController().AICardsOnField.Count == 0;
-        _battleManager.AttackSelectionStart(_turnManager.IsPlayerTurn, isDirectAttack);
-
-        // if(_card.IsPlayerCard){
-        //     if(place.GetBoardController().AICardsOnField.Count == 0){
-
-        //     }
-        // }
-
-        // HideOptions();
-        
-        // if(_card.IsPlayerCard){
-        //     if(place.GetBoardController().AICardsOnField.Count == 0){
-        //         place.MakeDirectAttack();
-        //     }else{
-        //         place.MakeAttackOnMonster();
-        //     }
-        // }
-
-        // _battleManager.Attack();
+        _battleManager.AttackSelectionStart(_turnManager.IsPlayerTurn, isDirectAttack, place.CardInPlace as MonsterCard);
     }
 
 #endregion

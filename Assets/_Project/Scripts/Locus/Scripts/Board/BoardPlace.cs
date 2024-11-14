@@ -76,6 +76,13 @@ public class BoardPlace : MonoBehaviour {
                 StartBoardFusion();
             break;
 
+            case AttackSelectionPhase:
+                if(!IsFree){
+                    Debug.LogWarning($"Card in place, attacked {CardInPlace.name} - lvl {(CardInPlace as MonsterCard).Level}");
+                    _battleManager.StartDamagePhase(CardInPlace as MonsterCard);
+                }
+            break;
+
             default:
             break;
         }
@@ -238,14 +245,6 @@ public class BoardPlace : MonoBehaviour {
             return;
         }
     }
-
-    // public void MakeAttackOnMonster() { 
-    //     _boardManager.HighlighOcuppiedMonsterPlaces(); 
-    // }
-
-    // public void MakeDirectAttack(){
-
-    // }
 
 #endregion
 

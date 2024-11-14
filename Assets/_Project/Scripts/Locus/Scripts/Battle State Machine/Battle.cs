@@ -24,6 +24,7 @@ public class Battle : StateMachine {
     public BoardPlaceSelectionPhase BoardPlaceSelection { get; private set; }
     public ActionPhase Action { get; private set; }
     public AttackSelectionPhase AttackSelectionPhase { get; private set; }
+    public DamagePhase DamagePhase { get; private set; }
     public EndPhase EndPhase { get; private set; }
 
     public Battle(){
@@ -35,6 +36,7 @@ public class Battle : StateMachine {
         BoardPlaceSelection = new(this);
         Action = new(this);
         AttackSelectionPhase = new(this);
+        DamagePhase = new(this);
         EndPhase = new(this);
     }
 

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,11 +25,16 @@ public class BattleManagerSO : ScriptableObject {
 
     [HideInInspector] public UnityEvent<bool, bool> OnAttackSelectionStart;
 
+    [HideInInspector] public UnityEvent<MonsterCard, MonsterCard> OnDamageStart;
+    [HideInInspector] public UnityEvent OnDamageStartUI;
+
     [HideInInspector] public UnityEvent OnEndPhaseStart;
 
     private AbstractState _currentPhase;
     public AbstractState CurrentPhase => _currentPhase;
     public Battle Battle { get; private set; }
+
+    public MonsterCard AttackerMonster { get; private set; }
 
     #endregion
 
@@ -54,6 +58,9 @@ public class BattleManagerSO : ScriptableObject {
         OnActionPhaseStart ??=new UnityEvent();
 
         OnAttackSelectionStart ??=new UnityEvent<bool, bool>();
+
+        OnDamageStart ??=new UnityEvent<MonsterCard, MonsterCard>();
+        OnDamageStartUI ??=new UnityEvent();
         
         OnEndPhaseStart ??= new UnityEvent();
     }
@@ -84,9 +91,18 @@ public class BattleManagerSO : ScriptableObject {
 
     public void ActionPhaseStart() { OnActionPhaseStart?.Invoke(); }
 
-    public void AttackSelectionStart(bool isPlayerTurn, bool isDirectAttack) { 
+    public void AttackSelectionStart(bool isPlayerTurn, bool isDirectAttack, MonsterCard attacker) {
+        AttackerMonster = attacker;
         OnAttackSelectionStart?.Invoke(isPlayerTurn, isDirectAttack);
-        ChangeState(Battle.AttackSelectionPhase);
+        
+        Battle.ChangeState(Battle.AttackSelectionPhase);
+    }
+
+    public void StartDamagePhase(MonsterCard attacked){
+        OnDamageStart?.Invoke(AttackerMonster, attacked);
+        OnDamageStartUI?.Invoke();
+
+        Battle.ChangeState(Battle.DamagePhase);
     }
 
     public void EndPhaseStart() { OnEndPhaseStart?.Invoke(); }
