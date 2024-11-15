@@ -125,6 +125,13 @@ public abstract class Card : MonoBehaviour {
         CardMovement.SetTargetRotation(targetTransform.rotation);
     }
 
+    public void MoveCard(Transform targetTransform, float speed){
+        transform.SetParent(targetTransform);
+        CardMovement.AllowMovement(true);
+        CardMovement.SetTargetPosition(targetTransform.position, speed);
+        CardMovement.SetTargetRotation(targetTransform.rotation);
+    }
+
     public void MoveCard(Transform targetTransform, Quaternion rotation){
         transform.SetParent(targetTransform);
         CardMovement.AllowMovement(true);

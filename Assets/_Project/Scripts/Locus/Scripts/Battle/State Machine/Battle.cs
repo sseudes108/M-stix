@@ -27,17 +27,15 @@ public class Battle : StateMachine {
     public DamagePhase DamagePhase { get; private set; }
     public EndPhase EndPhase { get; private set; }
 
+    //Logic
+    public BattleLogic BattleLogic { get; private set; }
+
     public Battle(){
-        StartPhase = new(this);
-        DrawPhase = new(this);
-        CardSelection = new(this);
-        Fusion = new(this);
-        CardStatSelection = new(this);
-        BoardPlaceSelection = new(this);
-        Action = new(this);
-        AttackSelectionPhase = new(this);
-        DamagePhase = new(this);
-        EndPhase = new(this);
+        CreateBattlePhaseStates();
+    }
+
+    private void Awake() {
+        BattleLogic = GetComponent<BattleLogic>();
     }
 
     private void Start(){
@@ -55,5 +53,18 @@ public class Battle : StateMachine {
         CurrentState.Enter();
 
         TesterUI.Instance.UpdateBattlePhaseText(CurrentState.ToString());
+    }
+
+    private void CreateBattlePhaseStates(){
+        StartPhase = new(this);
+        DrawPhase = new(this);
+        CardSelection = new(this);
+        Fusion = new(this);
+        CardStatSelection = new(this);
+        BoardPlaceSelection = new(this);
+        Action = new(this);
+        AttackSelectionPhase = new(this);
+        DamagePhase = new(this);
+        EndPhase = new(this);
     }
 }

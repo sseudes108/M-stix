@@ -78,7 +78,6 @@ public class BoardPlace : MonoBehaviour {
 
             case AttackSelectionPhase:
                 if(!IsFree){
-                    Debug.LogWarning($"Card in place, attacked {CardInPlace.name} - lvl {(CardInPlace as MonsterCard).Level}");
                     _battleManager.StartDamagePhase(CardInPlace as MonsterCard);
                 }
             break;

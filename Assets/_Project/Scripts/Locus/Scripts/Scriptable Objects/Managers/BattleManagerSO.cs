@@ -30,15 +30,24 @@ public class BattleManagerSO : ScriptableObject {
 
     [HideInInspector] public UnityEvent OnEndPhaseStart;
 
+    #endregion
+
     private AbstractState _currentPhase;
     public AbstractState CurrentPhase => _currentPhase;
     public Battle Battle { get; private set; }
 
     public MonsterCard AttackerMonster { get; private set; }
-
-    #endregion
+    public MonsterCard DeffenderMonster { get; private set; }
 
     private void OnEnable() {
+        CreateEvents();
+    }
+
+    public void EndActionPhase() { Battle.ChangeState(Battle.EndPhase); }
+
+    public void SetBattleController(StateMachine battle) { Battle = battle as Battle; }
+
+    private void CreateEvents(){
         OnStateChange ??= new UnityEvent<AbstractState>();
 
         OnStartPhase ??= new UnityEvent();
@@ -65,10 +74,6 @@ public class BattleManagerSO : ScriptableObject {
         OnEndPhaseStart ??= new UnityEvent();
     }
 
-    public void EndActionPhase() { Battle.ChangeState(Battle.EndPhase); }
-
-    public void SetBattleController(StateMachine battle) { Battle = battle as Battle; }
-
 #region Events
     public void ChangeState(AbstractState newState) { // Used for hold the current phase ref and notify the UI
         _currentPhase = newState;
@@ -93,13 +98,16 @@ public class BattleManagerSO : ScriptableObject {
 
     public void AttackSelectionStart(bool isPlayerTurn, bool isDirectAttack, MonsterCard attacker) {
         AttackerMonster = attacker;
+
         OnAttackSelectionStart?.Invoke(isPlayerTurn, isDirectAttack);
         
         Battle.ChangeState(Battle.AttackSelectionPhase);
     }
 
-    public void StartDamagePhase(MonsterCard attacked){
-        OnDamageStart?.Invoke(AttackerMonster, attacked);
+    public void StartDamagePhase(MonsterCard deffender){
+        DeffenderMonster = deffender;
+
+        OnDamageStart?.Invoke(AttackerMonster, DeffenderMonster);
         OnDamageStartUI?.Invoke();
 
         Battle.ChangeState(Battle.DamagePhase);
