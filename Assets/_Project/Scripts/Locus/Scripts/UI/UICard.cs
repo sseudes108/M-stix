@@ -15,6 +15,7 @@ public class UICard : MonoBehaviour {
         _battleManager.OnCardSelectionEnd.AddListener(BattleManager_OnCardSelectionEnd);
         _battleManager.OnBoardPlaceSelectionEnd.AddListener(BattleManager_OnBoardPlaceSelectionEnd);
         _battleManager.OnDamageStartUI.AddListener(BattleManager_OnDamageStartUI);
+        _battleManager.OnAttackEnd.AddListener(BattleManager_OnAttackEnd);
     }
 
     private void OnDisable() {
@@ -22,6 +23,7 @@ public class UICard : MonoBehaviour {
         _battleManager.OnCardSelectionEnd.RemoveListener(BattleManager_OnCardSelectionEnd);
         _battleManager.OnBoardPlaceSelectionEnd.RemoveListener(BattleManager_OnBoardPlaceSelectionEnd);
         _battleManager.OnDamageStartUI.RemoveListener(BattleManager_OnDamageStartUI);
+        _battleManager.OnAttackEnd.RemoveListener(BattleManager_OnAttackEnd);
     }
 
     private void Awake() {
@@ -42,13 +44,15 @@ public class UICard : MonoBehaviour {
     }
 
     private void BattleManager_OnBoardPlaceSelectionEnd(Card arg0, bool arg1){ //Args not used
-        if(!_turnManager.IsPlayerTurn) { return; }
-
         MoveOnScren();
     }
 
     private void BattleManager_OnDamageStartUI(){
         MoveOffScren();
+    }
+
+    private void BattleManager_OnAttackEnd(){
+        MoveOnScren();
     }
 
     public void UpdateIllustration(Texture2D illustration){
@@ -64,6 +68,7 @@ public class UICard : MonoBehaviour {
     }
 
     private void MoveOnScren(){
+        if(!_turnManager.IsPlayerTurn) { return; }
         _cardMovement.AllowMovement(true);
         _cardMovement.SetTargetPosition(_startPosition, _moveSpeed);
     }

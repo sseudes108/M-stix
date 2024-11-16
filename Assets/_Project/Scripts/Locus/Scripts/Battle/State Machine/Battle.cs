@@ -40,6 +40,8 @@ public class Battle : StateMachine {
 
     private void Start(){
         BattleManager.SetBattleController(this);
+        BattleLogic.SetBattleController(this);
+
         ChangeState(StartPhase);
     }
 

@@ -19,6 +19,7 @@ public class MonsterCard : Card {
     public bool IsInAttackMode {get; private set;} = true;
     public bool CanAttack {get; private set;}
     public bool CanChangeMode {get; private set;}
+    public bool IsDead {get; private set;} = false;
 
     [Header("Labels")]
     [SerializeField] private TextMeshProUGUI _levelLabel;
@@ -51,6 +52,10 @@ public class MonsterCard : Card {
     public void SetAttackMode() { IsInAttackMode = true; }
     public void SetCanChangeMode(bool canChangeMode) { CanChangeMode = canChangeMode; }
     public void SetCanAttack(bool canAttack) { CanAttack = canAttack; }
+    public void Die() { 
+        IsDead = true;
+        BoardPlace.SetPlaceFree();
+    }
 
     public override void ResetCardStats(){ // Used to reset stats on board fusions
         base.ResetCardStats();

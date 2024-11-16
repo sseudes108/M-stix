@@ -142,7 +142,6 @@ public class UIActionPhase : MonoBehaviour {
                 MonsterCard monster = _card as MonsterCard;
                 if(monster.IsInAttackMode){
                     if(monster.CanAttack){
-                        Debug.Log("Attack!");
                         Attack(_buttonPlace);
                     }
                 }else{// Is In deffense

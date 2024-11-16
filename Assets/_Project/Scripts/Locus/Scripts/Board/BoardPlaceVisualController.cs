@@ -49,6 +49,14 @@ public class BoardPlaceVisualController {
         }
     }
 
+    public void OnAttackEnd(bool isPlayerTurn){
+        if(isPlayerTurn){
+            UnHighLightEnemyMonsterPlaces();
+        }else{
+            UnHighLightPlayerMonsterPlaces();
+        }
+    }
+
 #endregion
 
 #region Custom Methods

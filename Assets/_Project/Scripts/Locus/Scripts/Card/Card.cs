@@ -28,7 +28,7 @@ public abstract class Card : MonoBehaviour {
     private Collider _collider;
 
     private HandPosition _handPosition;
-    private BoardPlace _boardPlace;
+    public BoardPlace BoardPlace;
 
 #region Unity Methods
 
@@ -154,11 +154,11 @@ public abstract class Card : MonoBehaviour {
     public void SetCardAsFusioned() { FusionedCard = true; }
     public virtual void ResetCardStats() { FaceSelected = false; }
 
-    public void SetBoardPlace(BoardPlace boardPlace) { _boardPlace = boardPlace; }
-    public BoardPlace GetBoardPlace() { return _boardPlace; }
+    public void SetBoardPlace(BoardPlace boardPlace) { BoardPlace = boardPlace; }
+    public BoardPlace GetBoardPlace() { return BoardPlace; }
     public void HighLightBoardPlace(){
-        if( _boardPlace == null ) return;
-        _boardPlace.HighLight();
+        if( BoardPlace == null ) return;
+        BoardPlace.HighLight();
     }
 
     #endregion

@@ -33,6 +33,7 @@ public class BoardManagerSO : ScriptableObject {
         _battleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_BoardPlaceSelectionStart);
         _battleManager.OnBoardPlaceSelectionEnd.AddListener(BattleManager_BoardPlaceSelectionEnd);
         _battleManager.OnAttackSelectionStart.AddListener(BattleManager_AttackSelectionPhaseStart);
+        _battleManager.OnAttackEnd.AddListener(BattleManager_OnAttackEnd);
     }
 
     public void OnDisable(){
@@ -40,6 +41,7 @@ public class BoardManagerSO : ScriptableObject {
         _battleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_BoardPlaceSelectionStart);
         _battleManager.OnBoardPlaceSelectionEnd.RemoveListener(BattleManager_BoardPlaceSelectionEnd);
         _battleManager.OnAttackSelectionStart.RemoveListener(BattleManager_AttackSelectionPhaseStart);
+        _battleManager.OnAttackEnd.AddListener(BattleManager_OnAttackEnd);
     }
 
     //listen Events
@@ -47,6 +49,7 @@ public class BoardManagerSO : ScriptableObject {
     private void BattleManager_BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { BoardVisualController.OnBoardPlaceSelectionStart(card, isPlayerTurn); }
     private void BattleManager_BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { BoardVisualController.OnBoardPlaceSelectionEnd(isPlayerTurn); }
     private void BattleManager_AttackSelectionPhaseStart(bool isPlayerTurn, bool isDirectAttack) { BoardVisualController.OnMonsterAttack(isPlayerTurn, isDirectAttack); }
+    private void BattleManager_OnAttackEnd() { BoardVisualController.OnAttackEnd(_turnManager.IsPlayerTurn); }
 
     //Board Events
     public void BoardPlaceSelected() { OnBoardPlaceSelected?.Invoke(); }

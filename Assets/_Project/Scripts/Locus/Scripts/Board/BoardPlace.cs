@@ -8,6 +8,7 @@ public class BoardPlace : MonoBehaviour {
     [SerializeField] private BattleManagerSO _battleManager;
     [SerializeField] private BoardManagerSO _boardManager;
     [SerializeField] private CardManagerSO _cardManager;
+    [SerializeField] private TurnManagerSO _turnManager;
 
     [field:SerializeField] public EBoardPlace Location { get; private set; }
     [field:SerializeField] public Collider[] Colliders { get; private set; }
@@ -68,6 +69,7 @@ public class BoardPlace : MonoBehaviour {
                 if(!_canBeSelected) { return; }
 
                 if(IsFree){
+                    if(!_turnManager.IsPlayerTurn) { return; }
                     SetCardInPlace(_resultCard);
                     return;
                 }

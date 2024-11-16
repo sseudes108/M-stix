@@ -27,6 +27,7 @@ public class BattleManagerSO : ScriptableObject {
 
     [HideInInspector] public UnityEvent<MonsterCard, MonsterCard> OnDamageStart;
     [HideInInspector] public UnityEvent OnDamageStartUI;
+    [HideInInspector] public UnityEvent OnAttackEnd;
 
     [HideInInspector] public UnityEvent OnEndPhaseStart;
 
@@ -37,7 +38,7 @@ public class BattleManagerSO : ScriptableObject {
     public Battle Battle { get; private set; }
 
     public MonsterCard AttackerMonster { get; private set; }
-    public MonsterCard DeffenderMonster { get; private set; }
+    public MonsterCard TargetMonster { get; private set; }
 
     private void OnEnable() {
         CreateEvents();
@@ -70,6 +71,7 @@ public class BattleManagerSO : ScriptableObject {
 
         OnDamageStart ??=new UnityEvent<MonsterCard, MonsterCard>();
         OnDamageStartUI ??=new UnityEvent();
+        OnAttackEnd ??=new UnityEvent();
         
         OnEndPhaseStart ??= new UnityEvent();
     }
@@ -104,13 +106,19 @@ public class BattleManagerSO : ScriptableObject {
         Battle.ChangeState(Battle.AttackSelectionPhase);
     }
 
-    public void StartDamagePhase(MonsterCard deffender){
-        DeffenderMonster = deffender;
+    public void StartDamagePhase(MonsterCard target){
+        TargetMonster = target;
 
-        OnDamageStart?.Invoke(AttackerMonster, DeffenderMonster);
+        OnDamageStart?.Invoke(AttackerMonster, TargetMonster);
         OnDamageStartUI?.Invoke();
 
         Battle.ChangeState(Battle.DamagePhase);
+    }
+
+    public void AttackEnded(){
+        OnAttackEnd.Invoke();
+                
+        Battle.ChangeState(Battle.Action);
     }
 
     public void EndPhaseStart() { OnEndPhaseStart?.Invoke(); }
