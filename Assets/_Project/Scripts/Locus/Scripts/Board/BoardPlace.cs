@@ -141,12 +141,8 @@ public class BoardPlace : MonoBehaviour {
                     }
 
                     card.MoveCard(transform, rotation);
-
                 }
             }
-            // monsterCard.SetCanChangeMode(true);
-            // monsterCard.SetCanAttack(true);
-
         }else{// Arcane Card
 
         }

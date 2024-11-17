@@ -17,15 +17,15 @@ public class BattleLogic : MonoBehaviour {
 
     private IEnumerator BattleRoutine(){
         MoveCardsToFirstPosition();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         MoveCardsToSecondPosition();
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(MoveCardsToFirstPosition(27));
+        yield return new WaitForSeconds(0.7f);
 
         StartCoroutine(Battle());
-        yield return null;
-
-        MoveCardsToFirstPosition(27);
         yield return null;
     }
 
@@ -51,18 +51,14 @@ public class BattleLogic : MonoBehaviour {
     }
 
     private IEnumerator MoveCardsToFirstPosition(float speed){
-        if(_monsterAttacker.IsDead){
+        if(!_monsterAttacker.IsDead){
             _monsterAttacker.MoveCard(_attackerPosition, speed);
-            yield return new WaitForSeconds(0.7f);
-            _monsterAttacker.DestroyCard();
         }else{
             _monsterAttacker.MoveCard(_attackerPosition, speed);
         }
 
-        if(_monsterTarget.IsDead){
+        if(!_monsterTarget.IsDead){
             _monsterTarget.MoveCard(_attackedPosition, speed);
-            yield return new WaitForSeconds(0.7f);
-            _monsterAttacker.DestroyCard();
         }else{
             _monsterTarget.MoveCard(_attackedPosition, speed);
         }
@@ -72,20 +68,22 @@ public class BattleLogic : MonoBehaviour {
 #endregion
 
     private IEnumerator Battle(){
+        _monsterAttacker.MonsterAttacked();
+        
         if(_monsterTarget.IsInAttackMode){ // Is in attack Mode
             int atkAttacker = _monsterAttacker.Attack;
             int atkTarget = _monsterTarget.Attack;
 
             if(atkAttacker > atkTarget){ // Won
-                StartCoroutine(Destroy(_monsterTarget));
+                StartCoroutine(KillMonster(_monsterTarget));
             }else{
                 // Not won
                 if(atkAttacker == atkTarget){// Draw
-                    StartCoroutine(Destroy(_monsterAttacker));
-                    StartCoroutine(Destroy(_monsterTarget));
+                    StartCoroutine(KillMonster(_monsterAttacker));
+                    StartCoroutine(KillMonster(_monsterTarget));
 
                 }else{// Lost
-                    StartCoroutine(Destroy(_monsterAttacker));
+                    StartCoroutine(KillMonster(_monsterAttacker));
                 }
             }
         }else{// In Def
@@ -93,7 +91,7 @@ public class BattleLogic : MonoBehaviour {
             int defTarget = _monsterTarget.Attack;
 
             if(atkAttacker > defTarget){// Won
-                StartCoroutine(Destroy(_monsterTarget));
+                StartCoroutine(KillMonster(_monsterTarget));
 
             }else{
                 if(atkAttacker < defTarget){ // Lost
@@ -102,17 +100,17 @@ public class BattleLogic : MonoBehaviour {
             }
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return null;
         _battle.BattleManager.AttackEnded();
 
         ReturnToOriginalPositions();
     }
 
-    private IEnumerator Destroy(MonsterCard monster){
+    private IEnumerator KillMonster(MonsterCard monster){
         monster.Visuals.Dissolve.DissolveCard(Color.red);
         monster.Die();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         monster.DestroyCard();
     }
 
