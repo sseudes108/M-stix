@@ -16,6 +16,8 @@ public class AICardStatSelector : AIAction {
                 FaceSelection(card as MonsterCard);
                 yield return new WaitForSeconds(2f);
             }
+        }else{
+            //Arcane Options
         }
         yield return null;
         _actor.CardStatSelectionFinished();

@@ -6,9 +6,10 @@ public class Deck : MonoBehaviour {
     [field:SerializeField] public List<CardSO> DeckInUse { get; private set; }
     [field:SerializeField] private UIEventHandlerSO _UIEventHandler;
     [SerializeField] private bool _isPlayerDeck;
-    private int _deckCount = 0;
+    private int _deckCount;
 
     private void Start() {
+        _deckCount = 0;
         _UIEventHandler.UpadateDeckCount(_isPlayerDeck, _deckCount);
         StartCoroutine(ResetDeckCount());
     }

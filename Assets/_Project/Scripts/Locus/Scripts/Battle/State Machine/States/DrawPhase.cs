@@ -41,5 +41,6 @@ public class DrawPhase : AbstractState{
     }
 
     private void HandManager_OnCardsDrew() { StateMachine.Battle.ChangeState(StateMachine.Battle.CardSelection); }
+    
     public override string ToString() { return "Draw"; }
 }

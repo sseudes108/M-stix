@@ -3,13 +3,11 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "LifePointsManagerSO", menuName = "Mistix/Manager/LifePoints", order = 0)]
 public class LifePointsManagerSO : ScriptableObject {
-
     [field:SerializeField] private UIEventHandlerSO _UIEventHandler;
 
     private const int INITIALP = 8100;
     public int PlayerLP { get; private set; } = 0;
     public int EnemyLP { get; private set; } = 0;
-
 
     public void ResetLifePoints(GameManager manager){
         PlayerLP = 0;
@@ -21,7 +19,6 @@ public class LifePointsManagerSO : ScriptableObject {
         manager.StartCoroutine(ResetPlayerLife());
         manager.StartCoroutine(ResetEnemyLife());
     }
-
     private IEnumerator ResetPlayerLife(){
         while(PlayerLP < 8100){
             PlayerLP += 100;
@@ -35,7 +32,6 @@ public class LifePointsManagerSO : ScriptableObject {
 
         yield return null;
     }
-
     private IEnumerator ResetEnemyLife(){
         while(EnemyLP < 8100){
             EnemyLP += 100;
@@ -49,7 +45,6 @@ public class LifePointsManagerSO : ScriptableObject {
 
         yield return null;
     }
-
     private IEnumerator UpdateLifePoints(bool isPlayer, int lifePoints){
         if(isPlayer){
             int targetPoints = PlayerLP + lifePoints;
@@ -79,4 +74,5 @@ public class LifePointsManagerSO : ScriptableObject {
             }
         }
     } 
+
 }

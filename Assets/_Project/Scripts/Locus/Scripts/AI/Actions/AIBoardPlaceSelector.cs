@@ -20,8 +20,11 @@ public class AIBoardPlaceSelector : AIAction {
 
         if(cardToPlace is MonsterCard){
             _actor.Fusioner.CheckForBoardMonsterFusion(cardToPlace as MonsterCard);
+
+        }else{
+            //Arcane Options
         }
-                
+
         if(_actor.MakeABoardFusion){
             _boardPlace = null;
             _boardPlace = _actor.CardOnBoardToFusion.GetBoardPlace();
@@ -32,6 +35,7 @@ public class AIBoardPlaceSelector : AIAction {
             SelectRandomFreePlace(cardToPlace);
         }
         
+        _actor.BoardPlaceSelected();
         yield return null;
     }
 

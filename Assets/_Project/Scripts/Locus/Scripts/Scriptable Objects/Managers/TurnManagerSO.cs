@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "TurnManagerSO", menuName = "Mistix/Manager/Turn", order = 0)]
 public class TurnManagerSO : ScriptableObject {
-    [HideInInspector] public UnityEvent OnTurnEnd;
+    // [HideInInspector] public UnityEvent OnTurnEnd;
     [SerializeField] private BattleManagerSO _battleManager;
     public int CurrentTurn {get; private set;} = 1;
     public bool IsPlayerTurn {get; private set;} = true;
@@ -22,7 +22,7 @@ public class TurnManagerSO : ScriptableObject {
 
     public void EndTurn(){
         CurrentTurn++;
-        OnTurnEnd?.Invoke();
+        // OnTurnEnd?.Invoke();
         TesterUI.Instance.UpdateTurnText(CurrentTurn.ToString(), GetOwner());
     }
 
@@ -36,7 +36,7 @@ public class TurnManagerSO : ScriptableObject {
         return owner;
     }
 
-    public void CheckPlayerTurn(){
+    private void CheckPlayerTurn(){
         if(CurrentTurn % 2 != 0){
             IsPlayerTurn = true;
         }else{

@@ -15,16 +15,30 @@ public class BoardPlaceSelectionPhase : AbstractState{
     }
 
     public override void SubscribeEvents(){
-        StateMachine.Battle.BoardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
+        if(StateMachine.TurnManager.IsPlayerTurn){
+            StateMachine.Battle.BoardManager.OnBoardPlaceSelected.AddListener(BoardManager_OnBoardPlaceSelected);
+            return;
+        }
+
+        StateMachine.AI.Actor.BoardPlaceSelector_OnBoardPlaceSelected.AddListener(BoardPlaceSelector_OnBoardPlaceSelected);
     }
 
     public override void UnsubscribeEvents(){
-        StateMachine.Battle.BoardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
+        if(StateMachine.TurnManager.IsPlayerTurn){
+            StateMachine.Battle.BoardManager.OnBoardPlaceSelected.RemoveListener(BoardManager_OnBoardPlaceSelected);
+            return;
+        }
+
+        StateMachine.AI.Actor.BoardPlaceSelector_OnBoardPlaceSelected.RemoveListener(BoardPlaceSelector_OnBoardPlaceSelected);
     }
 
     private void BoardManager_OnBoardPlaceSelected(){
         StateMachine.Battle.BattleManager.BoardPlaceSelectionEnd(StateMachine.Battle.FusionManager.ResultCard, StateMachine.Battle.TurnManager.IsPlayerTurn);
         StateMachine.Battle.ChangeState(StateMachine.Battle.Action);
+    }
+
+    private void BoardPlaceSelector_OnBoardPlaceSelected(){
+        BoardManager_OnBoardPlaceSelected();
     }
 
     public override string ToString(){

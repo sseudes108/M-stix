@@ -11,11 +11,13 @@ public class AI : StateMachine {
     public AISelectCardState CardSelect { get; private set; }
     public AICardStatSelState CardStatSelect { get; private set; }
     public AIBoardPlaceSelState BoardPlaceSelect { get; private set; }
+    public AIActionSelState ActionSelect { get; private set; }
 
     public AI(){
-        CardSelect??= new(this);
-        CardStatSelect??= new(this);
-        BoardPlaceSelect??= new(this);
+        CardSelect ??= new(this);
+        CardStatSelect ??=  new(this);
+        BoardPlaceSelect ??= new(this);
+        ActionSelect ??= new(this);
     }
 
     private void Start(){

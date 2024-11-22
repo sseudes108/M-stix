@@ -7,6 +7,7 @@ public class BattleManagerSO : ScriptableObject {
 
 #region Events
     [HideInInspector] public UnityEvent <AbstractState> OnStateChange;
+    
     [HideInInspector] public UnityEvent OnStartPhase;
 
     [HideInInspector] public UnityEvent OnPlayerDraw;
