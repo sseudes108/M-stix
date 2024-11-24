@@ -7,27 +7,34 @@ public class AIFieldChecker : AIAction {
         _actor = actor;
     }
 
-    //AI HAND MONSTERS
-    public List<MonsterCard> Lvl2OnHand { get; private set; } = new();
-    public List<MonsterCard> Lvl3OnHand { get; private set; } = new();
-    public List<MonsterCard> Lvl4OnHand { get; private set; } = new();
+#region AI
+    #region AI - Monsters On Hand
+        public List<MonsterCard> Lvl2OnHand { get; private set; } = new();
+        public List<MonsterCard> Lvl3OnHand { get; private set; } = new();
+        public List<MonsterCard> Lvl4OnHand { get; private set; } = new();
+    #endregion
 
-    //AI FIELD MONSTERS
-    public List<MonsterCard> Lvl2OnAIField { get; private set; } = new();
-    public List<MonsterCard> Lvl3OnAIField { get; private set; } = new();
-    public List<MonsterCard> Lvl4OnAIField { get; private set; } = new();
-    public List<MonsterCard> Lvl5OnAIField { get; private set; } = new();
-    public List<MonsterCard> Lvl6OnAIField { get; private set; } = new();
-    public List<MonsterCard> Lvl7OnAIField { get; private set; } = new();
+    #region AI - Monsters On Field
+        public List<MonsterCard> Lvl2OnAIField { get; private set; } = new();
+        public List<MonsterCard> Lvl3OnAIField { get; private set; } = new();
+        public List<MonsterCard> Lvl4OnAIField { get; private set; } = new();
+        public List<MonsterCard> Lvl5OnAIField { get; private set; } = new();
+        public List<MonsterCard> Lvl6OnAIField { get; private set; } = new();
+        public List<MonsterCard> Lvl7OnAIField { get; private set; } = new();
+    #endregion
+#endregion
 
+#region Player
+    #region Player - Monsters On Field
+        public List<MonsterCard> Lvl2OnPlayerField { get; private set; } = new();
+        public List<MonsterCard> Lvl3OnPlayerField { get; private set; } = new();
+        public List<MonsterCard> Lvl4OnPlayerField { get; private set; } = new();
+        public List<MonsterCard> Lvl5OnPlayerField { get; private set; } = new();
+        public List<MonsterCard> Lvl6OnPlayerField { get; private set; } = new();
+        public List<MonsterCard> Lvl7OnPlayerField { get; private set; } = new();
+    #endregion
+#endregion
 
-    //PLAYER FIELD MONSTERS
-    public List<MonsterCard> Lvl2OnPlayerField { get; private set; } = new();
-    public List<MonsterCard> Lvl3OnPlayerField { get; private set; } = new();
-    public List<MonsterCard> Lvl4OnPlayerField { get; private set; } = new();
-    public List<MonsterCard> Lvl5OnPlayerField { get; private set; } = new();
-    public List<MonsterCard> Lvl6OnPlayerField { get; private set; } = new();
-    public List<MonsterCard> Lvl7OnPlayerField { get; private set; } = new();
 
     public void OrganizeCardsOnHand(List<Card> cardsInHand){
         ClearHandLists();
