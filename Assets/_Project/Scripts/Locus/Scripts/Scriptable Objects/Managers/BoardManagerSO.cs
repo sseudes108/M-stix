@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -56,7 +55,6 @@ public class BoardManagerSO : ScriptableObject {
     public void ShowOptions(BoardPlace place) { OnShowOptions?.Invoke(place); }
     public void HideOptions() { OnHideOptions?.Invoke(); }
     public void BoardFusion() { OnBoardFusion?.Invoke(); }
-
 
     //Custom Methods
     public void SetBoardPlaceVisualController(BoardPlaceVisualController boardPlaces) { BoardVisualController = boardPlaces;}

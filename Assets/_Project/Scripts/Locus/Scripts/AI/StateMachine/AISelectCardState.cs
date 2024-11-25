@@ -11,7 +11,7 @@ public class AISelectCardState : AbstractState{
         _AI = StateMachine.AI;
         _actor = _AI.Actor;
         
-        _actor.SplitCardsOnBoardByType(); //Verifica quais as cartas em campo
+        // _actor.SplitCardsOnBoardByType(); //Verifica quais as cartas em campo
         _AI.StartCoroutine(AIRoutine());
     }
 
@@ -19,7 +19,8 @@ public class AISelectCardState : AbstractState{
 
     public IEnumerator AIRoutine(){
         yield return new WaitForSeconds(0.5f);
-        _actor.UpdateCardLists(_AI.Manager.CardsInHand, _actor.CardsOnField.MonstersOnAIField);
+        // _actor.UpdateCardLists();
+        // _actor.UpdateCardLists(_AI.Manager.CardsInHand, _actor.CardsOnField.MonstersOnAIField);
         yield return _AI.StartCoroutine(_actor.CardSelector.SelectCardRoutine());
         yield return null;
     }

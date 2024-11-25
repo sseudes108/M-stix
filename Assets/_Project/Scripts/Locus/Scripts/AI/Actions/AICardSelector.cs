@@ -10,7 +10,7 @@ using UnityEngine;
 public class AICardSelector : AIAction{
     public AICardSelector(AIActorSO actor){
         _actor = actor;
-        _fieldChecker = _actor.FieldChecker;
+        // _fieldChecker = _actor.FieldChecker;
     }
 
     public List<Card> SelectedList { get; private set; } = new();
@@ -21,10 +21,13 @@ public class AICardSelector : AIAction{
         SelectedList.Clear();
 
         if(_actor.MakeABoardFusion){//É uma boardfusion
-            _actor.CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
+            // _actor.CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
+            // AddToSelectedList(_actor.AIManager.GetFusionedCard());
+            // AddToSelectedList(_actor.CardOnBoardToFusion);
 
-            AddToSelectedList(_actor.AIManager.GetFusionedCard());
-            AddToSelectedList(_actor.CardOnBoardToFusion);
+            _actor.AI.CardOrganizer.CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
+            AddToSelectedList(_actor.AI.Manager.GetFusionedCard());
+            AddToSelectedList(_actor.AI.CardOrganizer.CardOnBoardToFusion);
 
             _actor.Fusioner.ResetBoardFusion();
         }else{//Não é uma board fusion

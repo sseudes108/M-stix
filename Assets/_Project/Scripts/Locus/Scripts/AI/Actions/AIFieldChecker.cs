@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-[Serializable]
 public class AIFieldChecker : AIAction {
     public AIFieldChecker(AIActorSO actor){
         _actor = actor;
@@ -58,6 +55,7 @@ public class AIFieldChecker : AIAction {
             }
         }
     }
+    
     public void OrganizeAIMonsterCardsOnField(List<MonsterCard> monstersOnAIField){
         ClearAIListsOnField();
 

@@ -45,7 +45,10 @@ public class Board : MonoBehaviour {
     }
 
     private void SetAIOnBoardLists(){
-        _aIManager.AI.SetAIOnBoardLists(AICardsOnField, PlayerCardsOnField);
+        _aIManager.AI.CardOrganizer.SetAICardsOnField(AICardsOnField);
+        _aIManager.AI.CardOrganizer.SetPlayerCardsOnField(PlayerCardsOnField);
+        // _aIManager.CardCounter.SetAICardsOnField(AICardsOnField);
+        // _aIManager.CardCounter.SetPlayerCardsOnField(PlayerCardsOnField);
     }
 
     private void CheckCardsOnBoard(List<BoardPlace> places){

@@ -1,17 +1,20 @@
 public class AIFusioner : AIAction{
-    public AIFusioner(AIActorSO actor){
+    public AIFusioner(AIActorSO actor, AIManagerSO manager){
         _actor = actor;
+        _manager = manager;
     }
 
     public void ResetBoardFusion(){
-        _actor.ResetBoardFusion();
+        // _actor.ResetBoardFusion();
+        _manager.AI.CardOrganizer.ResetBoardFusion();
     }
 
     /// <summary>
     /// cardToFusion is the card on the field the will be used after the fusion from hand
     /// </summary>
     public void BoardFusion(Card cardToFusion){
-        _actor.SetBoardFusion(cardToFusion);
+        // _actor.SetBoardFusion(cardToFusion);
+        _manager.AI.CardOrganizer.SetBoardFusion(cardToFusion);
     }
 
     public void CheckForBoardMonsterFusion(MonsterCard monsterToPlace){

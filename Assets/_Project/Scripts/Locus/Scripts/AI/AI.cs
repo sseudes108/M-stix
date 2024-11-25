@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AI : StateMachine {
     [field:SerializeField] public AIManagerSO Manager { get; private set; }
     [field:SerializeField] public AIActorSO Actor { get; private set; }
+    [field:SerializeField] public AICardOrganizer CardOrganizer { get; private set; }
 
     public AbstractState CurrentState { get; private set; }
 
@@ -22,7 +22,9 @@ public class AI : StateMachine {
 
     private void Start(){
         Manager.SetAI(this);
-        Actor.SetAIMAnager(Manager);
+        Actor.SetAI(this);
+        // Manager.SetCardOrganizer(_AICardOrganizer);
+        // Actor.SetAIMAnager(Manager);
         Actor.Fusioner.ResetBoardFusion();
     }
 
@@ -34,7 +36,7 @@ public class AI : StateMachine {
         TesterUI.Instance.UpdateAIStateText(CurrentState.ToString());
     }
 
-    public void SetAIOnBoardLists(List<Card> aICardsOnField, List<Card> playerCardsOnField){
-        Actor.SetAICardLists(aICardsOnField, playerCardsOnField);
-    }
+    // public void SetAIOnBoardLists(List<Card> aICardsOnField, List<Card> playerCardsOnField){
+    //     Actor.SetAICardLists(aICardsOnField, playerCardsOnField);
+    // }
 }

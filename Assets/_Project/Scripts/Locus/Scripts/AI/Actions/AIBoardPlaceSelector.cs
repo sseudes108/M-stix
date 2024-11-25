@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIBoardPlaceSelector : AIAction {
-    public AIBoardPlaceSelector(AIActorSO actor){_actor = actor;}
+    public AIBoardPlaceSelector(AIActorSO actor, AIManagerSO manager){
+        _actor = actor;
+        _manager = manager;
+        _cardOrganizer = _manager.AI.CardOrganizer;
+    }
 
     private List<BoardPlace> _monsterPlaces;
     private List<BoardPlace> _arcanePlaces;
@@ -25,11 +29,22 @@ public class AIBoardPlaceSelector : AIAction {
             //Arcane Options
         }
 
+        // if(_actor.MakeABoardFusion){
+        //     _boardPlace = null;
+        //     _boardPlace = _actor.CardOnBoardToFusion.GetBoardPlace();
+            
+        //     _actor.AIManager.AI.ChangeState(_actor.AIManager.AI.CardSelect);
+        // }else{
+        //     // SelectFirstFreePlace(cardToPlace);
+        //     SelectRandomFreePlace(cardToPlace);
+        //     _actor.BoardPlaceSelected();
+        // }
+
         if(_actor.MakeABoardFusion){
             _boardPlace = null;
-            _boardPlace = _actor.CardOnBoardToFusion.GetBoardPlace();
+            _boardPlace = _cardOrganizer.CardOnBoardToFusion.GetBoardPlace();
             
-            _actor.AIManager.AI.ChangeState(_actor.AIManager.AI.CardSelect);
+            _manager.AI.ChangeState(_manager.AI.CardSelect);
         }else{
             // SelectFirstFreePlace(cardToPlace);
             SelectRandomFreePlace(cardToPlace);
