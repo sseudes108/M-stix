@@ -41,7 +41,7 @@ public class AICardStatSelector : AIAction {
         //     card.SetDeffenseMode();
         // }
         
-        card.SetDeffenseMode();
+        // card.SetDeffenseMode();
 
         card.SelectMode();
         // Debug.Log("ModeSelected");

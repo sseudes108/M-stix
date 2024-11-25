@@ -33,9 +33,9 @@ public class AIBoardPlaceSelector : AIAction {
         }else{
             // SelectFirstFreePlace(cardToPlace);
             SelectRandomFreePlace(cardToPlace);
+            _actor.BoardPlaceSelected();
         }
         
-        _actor.BoardPlaceSelected();
         yield return null;
     }
 

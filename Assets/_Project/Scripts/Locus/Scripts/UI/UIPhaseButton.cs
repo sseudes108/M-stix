@@ -6,6 +6,7 @@ public class UIPhaseButton : MonoBehaviour{
     [SerializeField] private CardManagerSO _cardManager;
     [SerializeField] private UIEventHandlerSO _uIManager;
     [SerializeField] private BattleManagerSO _battleManager;
+    [SerializeField] private TurnManagerSO _turnManager;
 
     private GameObject _actionButtonContainer;
     private Button _actionButton;
@@ -32,6 +33,8 @@ public class UIPhaseButton : MonoBehaviour{
     }
 
     private void BattleManager_OnActionPhaseStart(){
+        if(!_turnManager.IsPlayerTurn){ return; }
+        
         _actionButtonText.text = "End Phase";
         _actionButtonContainer.SetActive(true);
         _actionButton.onClick.AddListener(EndActionPhase);

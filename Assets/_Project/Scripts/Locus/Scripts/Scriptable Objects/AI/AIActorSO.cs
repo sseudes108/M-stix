@@ -9,38 +9,46 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "AIActor", menuName = "Mistix/AI/Actor", order = 0)]
 public class AIActorSO : ScriptableObject {
 
-    //Actions
+#region Actions
     public AICardSelector CardSelector { get; private set; }
     public AICardStatSelector CardStatSelector { get; private set; }
     public AIBoardPlaceSelector BoardPlaceSelector { get; private set; }
     public AIEffectSelector EffectSelector { get; private set; }
     public AIAttackSelector AttackSelector { get; private set; }
+#endregion
 
-
-    public AIFieldChecker FieldChecker { get; private set; }
-    public AIFusioner Fusioner { get; private set; }
-
-    [field:SerializeField] public AIManagerSO AIManager { get; private set; }
-    [field:SerializeField] public BoardManagerSO BoardManager { get; private set; }
-    
-    //Events
+#region Events
     [HideInInspector] public UnityEvent CardSelector_OnSelectionFinished;
     [HideInInspector] public UnityEvent CardStatSelector_OnCardStatSelectionFinished;
     [HideInInspector] public UnityEvent BoardPlaceSelector_OnBoardPlaceSelected;
     [HideInInspector] public UnityEvent EffectSelector_OnEffectSelected;
     [HideInInspector] public UnityEvent ActionPhaseEnd;
+#endregion
 
+#region Managers
+    [field:SerializeField] public AIManagerSO AIManager { get; private set; }
+    [field:SerializeField] public BoardManagerSO BoardManager { get; private set; }
+#endregion
+    
+    public AIFieldChecker FieldChecker { get; private set; }
+    public AIFusioner Fusioner { get; private set; }
+    
     public bool MakeABoardFusion { get; private set; }
     public Card CardOnBoardToFusion { get; private set; }
 
     public List<Card> CardsOnAIField { get; private set; } = new();
     public List<Card> CardsOnPlayerField { get; private set; } = new();
 
-    public bool TESTE_ATK;
+    public MonsterCard AttackingMonster { get; private set; }
+
+
+    public List<MonsterCard> MonstersOnAIField { get; private set; } = new();
+    public List<MonsterCard> MonstersOnAIFieldThatCanAttack { get; private set; } = new();
+    public List<MonsterCard> MonsterOnPlayerField { get; private set; } = new();
+    public CardsOnField CardsOnField;
+    public List<Card> CardsInHand { get; private set; } = new();
     
-    private void OnEnable() {
-        TESTE_ATK = true;
-        
+    private void OnEnable() {        
         FieldChecker ??= new(this);
         Fusioner ??= new(this);
 
@@ -56,17 +64,11 @@ public class AIActorSO : ScriptableObject {
     }
 
 #region End Action Signals
-    public void CardSelectionFinished(){
-        CardSelector_OnSelectionFinished?.Invoke();
-    }
+    public void CardSelectionFinished() { CardSelector_OnSelectionFinished?.Invoke(); }
 
-    public void CardStatSelectionFinished(){
-        CardStatSelector_OnCardStatSelectionFinished?.Invoke();
-    }
+    public void CardStatSelectionFinished() { CardStatSelector_OnCardStatSelectionFinished?.Invoke(); }
 
-    public void BoardPlaceSelected(){
-        BoardPlaceSelector_OnBoardPlaceSelected?.Invoke();
-    }
+    public void BoardPlaceSelected() { BoardPlaceSelector_OnBoardPlaceSelected?.Invoke(); }
 
     public void EffectSelected(){
         /*
@@ -75,19 +77,21 @@ public class AIActorSO : ScriptableObject {
             else
                 ActionEnd()
         */
-        if(TESTE_ATK){
-            Debug.Log("TESTE_ATK = true");
+        SplitCardsOnBoardByType();
+
+        if(MonstersOnAIFieldThatCanAttack.Count > 0){
+            Debug.Log($"AIMonstersThatCanAttack.Count {MonstersOnAIFieldThatCanAttack.Count}");
+            AttackingMonster = MonstersOnAIFieldThatCanAttack[0];
+            
             AIManager.AI.StartCoroutine(AttackSelector.SelectAttackRoutine());
-            TESTE_ATK = false;
         }else{
-            Debug.Log("TESTE_ATK = false");
+            Debug.Log($"AIMonstersThatCanAttack.Count {MonstersOnAIFieldThatCanAttack.Count}");
+            Debug.LogWarning("Action End");
             ActionEnd();
         }
     }
 
-    public void ActionEnd(){
-        ActionPhaseEnd?.Invoke();
-    }
+    public void ActionEnd() { ActionPhaseEnd?.Invoke(); }
 
 #endregion
 
@@ -104,10 +108,6 @@ public class AIActorSO : ScriptableObject {
     public void SetBoardPlaces(List<BoardPlace> monsterPlaces, List<BoardPlace> arcanePlaces){
         BoardPlaceSelector.SetBoardPlaces(monsterPlaces, arcanePlaces);
     }
-
-    public void SetAIMAnager(AIManagerSO aimanager){
-        AIManager = aimanager;
-    }
 #endregion
 
 #region Board Fusion
@@ -119,10 +119,72 @@ public class AIActorSO : ScriptableObject {
 
     public void ResetBoardFusion(){
         MakeABoardFusion = false;
-        CardOnBoardToFusion = null;
+        if(CardOnBoardToFusion != null){
+            CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
+            CardOnBoardToFusion = null;
+        }
     }
 #endregion
+    public void SetAIMAnager(AIManagerSO aimanager) { AIManager = aimanager; }
+    public void SetAttackingMonster(MonsterCard attackingMonster) { AttackingMonster = attackingMonster; }
+    public void SplitCardsOnBoardByType(){
+        ClearOnFieldLists();
 
+        foreach(var card in CardsOnAIField){
+            if(card is MonsterCard){
+                MonstersOnAIField.Add(card as MonsterCard);
+                if(card is MonsterCard){
+                    MonsterCard monsterCard = card as MonsterCard;
+                    if(monsterCard.CanAttack && monsterCard.IsInAttackMode){
+                        MonstersOnAIFieldThatCanAttack.Add(monsterCard);
+                    }
+                }
+            }else{
+                // _arcanesOnAIField.Add(card as ArcaneCard);
+            }
+        }
 
+        foreach(var card in CardsOnPlayerField){
+            if(card is MonsterCard){
+                MonsterOnPlayerField.Add(card as MonsterCard);
+            }else{
+                // _arcanesOnPlayerField.Add(card as ArcaneCard);
+            }
+        }
 
+        Debug.Log($"SplitCardsOnBoardByType() - MonstersOnAIFieldThatCanAttack.Count = {MonstersOnAIFieldThatCanAttack.Count}");
+
+        CardsOnField = null;
+        CardsOnField = new(
+            MonsterOnPlayerField, 
+            MonstersOnAIField,
+            MonstersOnAIFieldThatCanAttack
+        );
+    }
+
+    private void ClearOnFieldLists(){
+        Debug.Log($"MonstersOnAIFieldThatCanAttack.Count = {MonstersOnAIFieldThatCanAttack.Count}");
+        MonstersOnAIField.Clear();
+        MonsterOnPlayerField.Clear();
+        MonstersOnAIFieldThatCanAttack.Clear();
+        Debug.Log($"ClearOnFieldLists() - MonstersOnAIFieldThatCanAttack.Count = {MonstersOnAIFieldThatCanAttack.Count}");
+    }
+}
+
+public class CardsOnField{
+    public List<MonsterCard> MonstersOnPlayerField;
+    // public List<MonsterCard> ArcanesOnPlayerField;
+    public List<MonsterCard> MonstersOnAIFieldThatCanAttack;
+
+    public List<MonsterCard> MonstersOnAIField;
+    // public List<MonsterCard> ArcanesOnAIField;
+    public CardsOnField(
+        List<MonsterCard> monstersOnPlayerField,
+        List<MonsterCard> monstersOnAIField,
+        List<MonsterCard> monstersOnAIFieldThatCanAttack
+    ){
+        MonstersOnPlayerField = monstersOnPlayerField;
+        MonstersOnAIField = monstersOnAIField;
+        MonstersOnAIFieldThatCanAttack = monstersOnAIFieldThatCanAttack;
+    }
 }

@@ -37,8 +37,4 @@ public class AI : StateMachine {
     public void SetAIOnBoardLists(List<Card> aICardsOnField, List<Card> playerCardsOnField){
         Actor.SetAICardLists(aICardsOnField, playerCardsOnField);
     }
-
-    public void SplitCardsOnBoardByType(){
-        CardSelect.SplitCardsOnBoardByType();
-    }
 }

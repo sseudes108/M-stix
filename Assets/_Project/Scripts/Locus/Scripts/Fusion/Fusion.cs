@@ -116,6 +116,10 @@ public class Fusion : MonoBehaviour {
         if(!_isPlayerTurn){
             _aIManager.SetFusionedCard(_resultCard);
         }
+
+        if(_resultCard is MonsterCard){
+            (_resultCard as MonsterCard).SetCanAttack(false);
+        }
     
         yield return new WaitForSeconds(1f);
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class AIFieldChecker : AIAction {
@@ -57,7 +58,6 @@ public class AIFieldChecker : AIAction {
             }
         }
     }
-    
     public void OrganizeAIMonsterCardsOnField(List<MonsterCard> monstersOnAIField){
         ClearAIListsOnField();
 
@@ -91,7 +91,7 @@ public class AIFieldChecker : AIAction {
             }
         }
     }
-
+   
     private void ClearAIListsOnField(){
         Lvl2OnAIField.Clear();
         Lvl3OnAIField.Clear();
@@ -107,13 +107,11 @@ public class AIFieldChecker : AIAction {
         Lvl6OnPlayerField.Clear();
         Lvl7OnPlayerField.Clear();
     }
-
     private void ClearHandLists(){
         Lvl2OnHand.Clear();
         Lvl3OnHand.Clear();
         Lvl4OnHand.Clear();
     }
-
     public void OrganizeCardLists(List<Card> cardsInHand, List<MonsterCard> monstersOnAIField){
         ClearHandLists();
         ClearAIListsOnField();

@@ -31,7 +31,7 @@ public class AICardSelector : AIAction{
             StrongestFusionFromHand();
         }
 
-        yield return new WaitForSeconds(Random.Range(1.5f, 3f));
+        yield return new WaitForSeconds(2f);
         _actor.CardSelectionFinished();
         yield return null;
     }
@@ -40,9 +40,11 @@ public class AICardSelector : AIAction{
         var randomCard = cardsInHand[Random.Range(0, cardsInHand.Count)];
         AddToSelectedList(randomCard);
     }
+
     private void AddToSelectedList(Card card){
         SelectedList.Add(card);
     }
+    
     private void StrongestFusionFromHand(){
         if(CanMakeAlvl5FromHand()){
             TryMakeALvl5FromHand();

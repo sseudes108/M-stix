@@ -20,7 +20,7 @@ public class MonsterCard : Card {
     public bool CanAttack {get; private set;}
     public bool CanChangeMode {get; private set;}
     public bool IsDead {get; private set;} = false;
-    public bool HasAttacked { get; private set; } = false;
+
 
     [Header("Labels")]
     [SerializeField] private TextMeshProUGUI _levelLabel;
