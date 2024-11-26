@@ -2,7 +2,9 @@ using System.Collections;
 using UnityEngine;
 
 public class AICardStatSelector : AIAction {
-    public AICardStatSelector(AIActorSO actor) { _actor = actor; }
+    public AICardStatSelector(AIActor actor){
+        _Actor = actor;
+    }
     
     public IEnumerator SelectCardStats(Card card){
         if(card is MonsterCard){
@@ -20,7 +22,7 @@ public class AICardStatSelector : AIAction {
             //Arcane Options
         }
         yield return null;
-        _actor.CardStatSelectionFinished();
+        _Actor.CardStatSelectionFinished();
     }
 
     private void AnimaSelection(MonsterCard card){

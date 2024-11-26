@@ -1,9 +1,9 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-public class AIFieldChecker : AIAction {
-    public AIFieldChecker(AIActorSO actor){
-        _actor = actor;
-    }
+public class 
+
+AIFieldChecker : MonoBehaviour {
 
 #region AI
     #region AI - Monsters On Hand
@@ -33,7 +33,15 @@ public class AIFieldChecker : AIAction {
     #endregion
 #endregion
 
+    public List<Card> CardsOnAIField { get; private set; } = new();
+    public List<Card> CardsOnPlayerField { get; private set; } = new();
 
+    public MonsterCard AttackingMonster { get; private set; }
+
+    public List<MonsterCard> MonstersOnAIField { get; private set; } = new();
+    public List<MonsterCard> MonstersOnAIFieldThatCanAttack { get; private set; } = new();
+    public List<MonsterCard> MonsterOnPlayerField { get; private set; } = new();
+    
     public void OrganizeCardsOnHand(List<Card> cardsInHand){
         ClearHandLists();
 
@@ -110,6 +118,7 @@ public class AIFieldChecker : AIAction {
         Lvl3OnHand.Clear();
         Lvl4OnHand.Clear();
     }
+
     public void OrganizeCardLists(List<Card> cardsInHand, List<MonsterCard> monstersOnAIField){
         ClearHandLists();
         ClearAIListsOnField();

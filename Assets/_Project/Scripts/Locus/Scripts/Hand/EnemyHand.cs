@@ -16,7 +16,7 @@ public class EnemyHand : Hand {
     private void BattleManager_EnemyDraw(){ Draw(); }
 
     public override void CardsDrew(){
-        _aIManager.SetCardsInHand(_cardsInHand);
+        _aIManager.Actor.CardOrganizer.SetCardsInHand(_cardsInHand);
         base.CardsDrew();
     }
 }

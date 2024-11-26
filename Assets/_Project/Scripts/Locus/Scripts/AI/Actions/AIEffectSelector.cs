@@ -1,12 +1,9 @@
 using System.Collections;
-using UnityEngine;
-
 public class AIEffectSelector : AIAction {
-    public AIEffectSelector(AIActorSO actor) { _actor = actor; }
+    public AIEffectSelector(AIActor actor) { _Actor = actor; }
 
     public IEnumerator SelectEffectRoutine(){
-        // Debug.Log("SelectEffectRoutine()");
-        _actor.EffectSelected();
+        _AI.Actor.EffectSelected();
         yield return null;
     }
 }

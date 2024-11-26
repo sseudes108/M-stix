@@ -114,7 +114,7 @@ public class Fusion : MonoBehaviour {
         }
 
         if(!_isPlayerTurn){
-            _aIManager.SetFusionedCard(_resultCard);
+            _aIManager.Actor.SetFusionedCard(_resultCard);
         }
 
         if(_resultCard is MonsterCard){

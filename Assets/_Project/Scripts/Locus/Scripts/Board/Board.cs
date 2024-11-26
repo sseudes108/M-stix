@@ -29,7 +29,7 @@ public class Board : MonoBehaviour {
     private void Start(){
         _boardManager.SetBoardController(this);
         _boardManager.SetBoardPlaceVisualController(BoardPlaceVisualController);
-        _aIManager.Actor.SetBoardPlaces(EnemyMonsterPlaces, EnemyArcanePlaces);
+        // _aIManager.Actor.SetBoardPlaces(EnemyMonsterPlaces, EnemyArcanePlaces);
     }
 
     private void BattleManager_OnStartPhase(){
@@ -45,8 +45,8 @@ public class Board : MonoBehaviour {
     }
 
     private void SetAIOnBoardLists(){
-        _aIManager.AI.CardOrganizer.SetAICardsOnField(AICardsOnField);
-        _aIManager.AI.CardOrganizer.SetPlayerCardsOnField(PlayerCardsOnField);
+        // _aIManager.AI.CardOrganizer.SetAICardsOnField(AICardsOnField);
+        // _aIManager.AI.CardOrganizer.SetPlayerCardsOnField(PlayerCardsOnField);
         // _aIManager.CardCounter.SetAICardsOnField(AICardsOnField);
         // _aIManager.CardCounter.SetPlayerCardsOnField(PlayerCardsOnField);
     }

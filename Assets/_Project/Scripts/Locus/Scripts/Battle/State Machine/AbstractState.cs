@@ -3,7 +3,7 @@ public abstract class AbstractState {
         StateMachine = stateMachine;
     }
 
-    public StateMachine StateMachine{get; private set;}
+    public StateMachine StateMachine { get; private set; }
 
     public abstract void Enter();
     public abstract void Exit();
