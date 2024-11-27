@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AICardSelector : AIAction{
-    public AICardSelector(AI ai, AIActor actor, AIFieldChecker fieldChecker){
+    public AICardSelector(AI ai, AIActor actor, AIHandChecker handChecker){
         _AI = ai;
         _Actor = actor;
-        _FieldChecker = fieldChecker;
+        _HandChecker = handChecker;
     }
 
     public List<Card> SelectedList { get; private set; } = new();
@@ -57,20 +57,20 @@ public class AICardSelector : AIAction{
             return;
         }
 
-        AddToSelectedList(_FieldChecker.Lvl2OnHand[0]);
+        AddToSelectedList(_HandChecker.Lvl2OnHand[0]);
     }
 
 #region Level 5
     private bool CanMakeAlvl5FromHand(){
-        if(_FieldChecker.Lvl4OnHand.Count > 1){
+        if(_HandChecker.Lvl4OnHand.Count > 1){
             return true;
         }
 
-        if(_FieldChecker.Lvl3OnHand.Count > 1 && _FieldChecker.Lvl4OnHand.Count > 0){
+        if(_HandChecker.Lvl3OnHand.Count > 1 && _HandChecker.Lvl4OnHand.Count > 0){
             return true;
         }
 
-        if(_FieldChecker.Lvl2OnHand.Count > 1 && _FieldChecker.Lvl3OnHand.Count > 0 && _FieldChecker.Lvl4OnHand.Count > 0){
+        if(_HandChecker.Lvl2OnHand.Count > 1 && _HandChecker.Lvl3OnHand.Count > 0 && _HandChecker.Lvl4OnHand.Count > 0){
             return true;
         }
 
@@ -78,26 +78,26 @@ public class AICardSelector : AIAction{
     }
 
     private void TryMakeALvl5FromHand(){
-        if(_FieldChecker.Lvl4OnHand.Count > 1){
-            AddToSelectedList(_FieldChecker.Lvl4OnHand[0]);
-            AddToSelectedList(_FieldChecker.Lvl4OnHand[1]);
+        if(_HandChecker.Lvl4OnHand.Count > 1){
+            AddToSelectedList(_HandChecker.Lvl4OnHand[0]);
+            AddToSelectedList(_HandChecker.Lvl4OnHand[1]);
             return;
         }
 
-        if(_FieldChecker.Lvl3OnHand.Count > 1 && _FieldChecker.Lvl4OnHand.Count > 0){
-            AddToSelectedList(_FieldChecker.Lvl3OnHand[0]);
-            AddToSelectedList(_FieldChecker.Lvl3OnHand[1]);
+        if(_HandChecker.Lvl3OnHand.Count > 1 && _HandChecker.Lvl4OnHand.Count > 0){
+            AddToSelectedList(_HandChecker.Lvl3OnHand[0]);
+            AddToSelectedList(_HandChecker.Lvl3OnHand[1]);
 
-            AddToSelectedList(_FieldChecker.Lvl4OnHand[0]);
+            AddToSelectedList(_HandChecker.Lvl4OnHand[0]);
             return;
         }
 
-        if(_FieldChecker.Lvl2OnHand.Count > 1 && _FieldChecker.Lvl3OnHand.Count > 0 && _FieldChecker.Lvl4OnHand.Count > 0){
-            AddToSelectedList(_FieldChecker.Lvl2OnHand[0]);
-            AddToSelectedList(_FieldChecker.Lvl2OnHand[1]);
+        if(_HandChecker.Lvl2OnHand.Count > 1 && _HandChecker.Lvl3OnHand.Count > 0 && _HandChecker.Lvl4OnHand.Count > 0){
+            AddToSelectedList(_HandChecker.Lvl2OnHand[0]);
+            AddToSelectedList(_HandChecker.Lvl2OnHand[1]);
 
-            AddToSelectedList(_FieldChecker.Lvl3OnHand[0]);
-            AddToSelectedList(_FieldChecker.Lvl4OnHand[0]);
+            AddToSelectedList(_HandChecker.Lvl3OnHand[0]);
+            AddToSelectedList(_HandChecker.Lvl4OnHand[0]);
             return;
         }
     }
@@ -105,11 +105,11 @@ public class AICardSelector : AIAction{
 
 #region Level 4
     private bool CanMakeAlvl4FromHand(){
-        if(_FieldChecker.Lvl3OnHand.Count > 1){
+        if(_HandChecker.Lvl3OnHand.Count > 1){
             return true;
         }
 
-        if(_FieldChecker.Lvl2OnHand.Count > 1 && _FieldChecker.Lvl3OnHand.Count > 0){
+        if(_HandChecker.Lvl2OnHand.Count > 1 && _HandChecker.Lvl3OnHand.Count > 0){
             return true;
         }
 
@@ -117,16 +117,16 @@ public class AICardSelector : AIAction{
     }
 
     private void TryMakeALvl4FromHand(){
-        if(_FieldChecker.Lvl3OnHand.Count > 1){
-            AddToSelectedList(_FieldChecker.Lvl3OnHand[0]);
-            AddToSelectedList(_FieldChecker.Lvl3OnHand[1]);
+        if(_HandChecker.Lvl3OnHand.Count > 1){
+            AddToSelectedList(_HandChecker.Lvl3OnHand[0]);
+            AddToSelectedList(_HandChecker.Lvl3OnHand[1]);
             return;
         }
 
-        if(_FieldChecker.Lvl2OnHand.Count > 1 && _FieldChecker.Lvl3OnHand.Count > 0){
-            AddToSelectedList(_FieldChecker.Lvl2OnHand[0]);
-            AddToSelectedList(_FieldChecker.Lvl2OnHand[1]);
-            AddToSelectedList(_FieldChecker.Lvl3OnHand[0]);
+        if(_HandChecker.Lvl2OnHand.Count > 1 && _HandChecker.Lvl3OnHand.Count > 0){
+            AddToSelectedList(_HandChecker.Lvl2OnHand[0]);
+            AddToSelectedList(_HandChecker.Lvl2OnHand[1]);
+            AddToSelectedList(_HandChecker.Lvl3OnHand[0]);
             return;
         }
     }
@@ -135,15 +135,15 @@ public class AICardSelector : AIAction{
 
 #region Level 3
     private bool CanMakeALvl3FromHand(){
-        if(_FieldChecker.Lvl2OnHand.Count > 1){
+        if(_HandChecker.Lvl2OnHand.Count > 1){
             return true;
         }
         return false;
     }
 
     private void TryMakeALvl3FromHand(){
-        AddToSelectedList(_FieldChecker.Lvl2OnHand[0]);
-        AddToSelectedList(_FieldChecker.Lvl2OnHand[1]);
+        AddToSelectedList(_HandChecker.Lvl2OnHand[0]);
+        AddToSelectedList(_HandChecker.Lvl2OnHand[1]);
     }
 #endregion
 }

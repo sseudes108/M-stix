@@ -1,17 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class 
-
-AIFieldChecker : MonoBehaviour {
+public class AIFieldChecker : MonoBehaviour {
 
 #region AI
-    #region AI - Monsters On Hand
-        public List<MonsterCard> Lvl2OnHand { get; private set; } = new();
-        public List<MonsterCard> Lvl3OnHand { get; private set; } = new();
-        public List<MonsterCard> Lvl4OnHand { get; private set; } = new();
-    #endregion
-
     #region AI - Monsters On Field
         public List<MonsterCard> Lvl2OnAIField { get; private set; } = new();
         public List<MonsterCard> Lvl3OnAIField { get; private set; } = new();
@@ -36,33 +28,9 @@ AIFieldChecker : MonoBehaviour {
     public List<Card> CardsOnAIField { get; private set; } = new();
     public List<Card> CardsOnPlayerField { get; private set; } = new();
 
-    public MonsterCard AttackingMonster { get; private set; }
-
     public List<MonsterCard> MonstersOnAIField { get; private set; } = new();
     public List<MonsterCard> MonstersOnAIFieldThatCanAttack { get; private set; } = new();
     public List<MonsterCard> MonsterOnPlayerField { get; private set; } = new();
-    
-    public void OrganizeCardsOnHand(List<Card> cardsInHand){
-        ClearHandLists();
-
-        foreach (var card in cardsInHand){
-            if (card is MonsterCard){
-                int lvl = (card as MonsterCard).Level;
-
-                if (lvl == 2){
-                    Lvl2OnHand.Add(card as MonsterCard);
-                }
-
-                if (lvl == 3){
-                    Lvl3OnHand.Add(card as MonsterCard);
-                }
-
-                if (lvl == 4){
-                    Lvl4OnHand.Add(card as MonsterCard);
-                }
-            }
-        }
-    }
     
     public void OrganizeAIMonsterCardsOnField(List<MonsterCard> monstersOnAIField){
         ClearAIListsOnField();
@@ -98,7 +66,7 @@ AIFieldChecker : MonoBehaviour {
         }
     }
    
-    private void ClearAIListsOnField(){
+    public void ClearAIListsOnField(){
         Lvl2OnAIField.Clear();
         Lvl3OnAIField.Clear();
         Lvl4OnAIField.Clear();
@@ -113,17 +81,5 @@ AIFieldChecker : MonoBehaviour {
         Lvl6OnPlayerField.Clear();
         Lvl7OnPlayerField.Clear();
     }
-    private void ClearHandLists(){
-        Lvl2OnHand.Clear();
-        Lvl3OnHand.Clear();
-        Lvl4OnHand.Clear();
-    }
 
-    public void OrganizeCardLists(List<Card> cardsInHand, List<MonsterCard> monstersOnAIField){
-        ClearHandLists();
-        ClearAIListsOnField();
-
-        OrganizeCardsOnHand(cardsInHand);
-        OrganizeAIMonsterCardsOnField(monstersOnAIField);
-    }
 }
