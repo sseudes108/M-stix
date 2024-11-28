@@ -30,6 +30,7 @@ public class AIFieldChecker : MonoBehaviour {
 
     public List<MonsterCard> MonstersOnAIField { get; private set; } = new();
     public List<MonsterCard> MonstersOnAIFieldThatCanAttack { get; private set; } = new();
+    
     public List<MonsterCard> MonsterOnPlayerField { get; private set; } = new();
     
     public void OrganizeAIMonsterCardsOnField(List<MonsterCard> monstersOnAIField){
@@ -82,4 +83,27 @@ public class AIFieldChecker : MonoBehaviour {
         Lvl7OnPlayerField.Clear();
     }
 
+    public void SplitCardsOnBoardByType() {
+        foreach(var card in CardsOnAIField){
+            if(card is MonsterCard){
+                MonstersOnAIField.Add(card as MonsterCard);
+                if(card is MonsterCard){
+                    MonsterCard monsterCard = card as MonsterCard;
+                    if(monsterCard.CanAttack && monsterCard.IsInAttackMode){
+                        MonstersOnAIFieldThatCanAttack.Add(monsterCard);
+                    }
+                }
+            }else{
+                // _arcanesOnAIField.Add(card as ArcaneCard);
+            }
+        }
+
+        foreach(var card in CardsOnPlayerField){
+            if(card is MonsterCard){
+                MonsterOnPlayerField.Add(card as MonsterCard);
+            }else{
+                // _arcanesOnPlayerField.Add(card as ArcaneCard);
+            }
+        }
+    }
 }

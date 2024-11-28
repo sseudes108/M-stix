@@ -8,7 +8,7 @@ public class AIActionSelState : AbstractState{
     public override void Exit(){}
 
     public IEnumerator AIRoutine(){
-        Debug.LogWarning("Start Select Effect Routine");
+        // Debug.LogWarning("Start Select Effect Routine");
         yield return StateMachine.Battle.StartCoroutine(StateMachine.AI.Actor.EffectSelector.SelectEffectRoutine());
         yield return null;
     }

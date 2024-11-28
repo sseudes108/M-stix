@@ -17,7 +17,7 @@ public class AICardOrganizer : MonoBehaviour {
     public Card CardOnBoardToFusion { get; private set; }
     public MonsterCard AttackingMonster { get; private set; }
 
-    public List<Card> CardsInHand = new(){};
+    public List<Card> CardsInHand { get; private set; } = new(){};
 
     private void Awake() { Actor = GetComponent<AIActor>(); }
     
@@ -44,31 +44,19 @@ public class AICardOrganizer : MonoBehaviour {
     }
 
     public void SetPlayerCardsOnField(List<Card> playerMonstersOnField){
+        Debug.Log("SetPlayerCardsOnField");
         foreach(var card in playerMonstersOnField){
             if(card is MonsterCard){
-                PlayerMonstersOnField.Add(card as MonsterCard);
+                if(!PlayerMonstersOnField.Contains(card as MonsterCard)){
+                    PlayerMonstersOnField.Add(card as MonsterCard);
+                }
             }else{
-                PlayerArcanesOnField.Add(card as ArcaneCard);
+                if(!PlayerArcanesOnField.Contains(card as ArcaneCard)){
+                    PlayerArcanesOnField.Add(card as ArcaneCard);
+                }
             }
         }
     }
     
     public void SetCardsInHand(List<Card> cardsInHand) { CardsInHand = cardsInHand; }
-
-    public void SetBoardFusion(Card cardToFusion){
-        BoardManager.BoardFusion();
-        
-        Actor.IsBoardFusion(true);
-        CardOnBoardToFusion = cardToFusion;
-    }
-
-    public void ResetBoardFusion(){
-        Actor.IsBoardFusion(false);
-
-        if(CardOnBoardToFusion != null){
-            CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
-            CardOnBoardToFusion = null;
-        }
-    }
-
 }

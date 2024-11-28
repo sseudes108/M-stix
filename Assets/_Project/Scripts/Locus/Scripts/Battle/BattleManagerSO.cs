@@ -83,7 +83,10 @@ public class BattleManagerSO : ScriptableObject {
         OnStateChange?.Invoke(newState); //UI notification
     }
     
-    public void StartPhase() { OnStartPhase?.Invoke(); }
+    public void StartPhase() { 
+        Debug.Log("Start Phase");
+        OnStartPhase?.Invoke(); 
+    }
 
     public void PlayerDraw() { OnPlayerDraw?.Invoke(); }
     public void EnemyDraw() { OnEnemyDraw?.Invoke(); }

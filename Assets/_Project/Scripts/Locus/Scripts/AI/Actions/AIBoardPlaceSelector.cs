@@ -22,9 +22,7 @@ public class AIBoardPlaceSelector : AIAction {
         yield return new WaitForSeconds(2f);
 
         if(cardToPlace is MonsterCard){
-            // _AI.Actor.Fusioner.CheckForBoardMonsterFusion(cardToPlace as MonsterCard);
             _Actor.Fusioner.CheckForBoardMonsterFusion(cardToPlace as MonsterCard);
-
         }else{
             //Arcane Options
         }

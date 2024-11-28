@@ -9,6 +9,7 @@ public class AISelectCardState : AbstractState{
     public override void Exit(){}
 
     public IEnumerator AIRoutine(){
+        StateMachine.AI.Actor.OrganizeCardLists(StateMachine.AI.Actor.CardOrganizer.CardsInHand);
         yield return new WaitForSeconds(0.5f);
         yield return StateMachine.StartCoroutine(StateMachine.AI.Actor.CardSelector.SelectCardRoutine());
         yield return null;

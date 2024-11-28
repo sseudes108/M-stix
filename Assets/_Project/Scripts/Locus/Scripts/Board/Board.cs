@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,7 +30,8 @@ public class Board : MonoBehaviour {
     private void Start(){
         _boardManager.SetBoardController(this);
         _boardManager.SetBoardPlaceVisualController(BoardPlaceVisualController);
-        // _aIManager.Actor.SetBoardPlaces(EnemyMonsterPlaces, EnemyArcanePlaces);
+
+        _aIManager.Actor.SetBoardPlaces(EnemyMonsterPlaces, EnemyArcanePlaces);
     }
 
     private void BattleManager_OnStartPhase(){
