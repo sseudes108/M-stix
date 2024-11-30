@@ -1,8 +1,8 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Board : MonoBehaviour {
+    [SerializeField] private TurnManagerSO _turnManager;
     [SerializeField] private BoardManagerSO _boardManager;
     [SerializeField] private BattleManagerSO _battleManager;
 
@@ -47,6 +47,7 @@ public class Board : MonoBehaviour {
     }
 
     private void SetAIOnBoardLists(){
+        if(_turnManager.CurrentTurn == 1){ return; }
         _aIManager.Actor.CardOrganizer.SetAICardsOnField(AICardsOnField);
         _aIManager.Actor.CardOrganizer.SetPlayerCardsOnField(PlayerCardsOnField);
     }

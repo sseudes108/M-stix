@@ -13,12 +13,13 @@ public class AICardSelector : AIAction{
 
     public IEnumerator SelectCardRoutine(){
         SelectedList.Clear();
+        _Actor.FieldChecker.OrganizeAIMonsterCardsOnField(_Actor.CardOrganizer.AIMonstersOnField);
 
         if(_Actor.MakeABoardFusion){//É uma boardfusion
 
-            _Actor.CardOrganizer.CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
+            _Actor.CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
             AddToSelectedList(_Actor.GetFusionedCard());
-            AddToSelectedList(_Actor.CardOrganizer.CardOnBoardToFusion);
+            AddToSelectedList(_Actor.CardOnBoardToFusion);
 
             _Actor.ResetBoardFusion();
 

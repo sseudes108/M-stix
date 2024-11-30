@@ -93,14 +93,15 @@ public class AIActor : MonoBehaviour {
         */
 
         FieldChecker.SplitCardsOnBoardByType();
+        FieldChecker.CheckMonstersToAttack();
 
-        if(FieldChecker.MonstersOnAIFieldThatCanAttack.Count > 0){
-            Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.MonstersOnAIFieldThatCanAttack.Count}");
-            AttackingMonster = FieldChecker.MonstersOnAIFieldThatCanAttack[0];
+        if(FieldChecker.AIMonstersOnFieldThatCanAttack.Count > 0){
+            Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
+            AttackingMonster = FieldChecker.AIMonstersOnFieldThatCanAttack[0];
             
             AIManager.AI.StartCoroutine(AttackSelector.SelectAttackRoutine());
         }else{
-            Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.MonstersOnAIFieldThatCanAttack.Count}");
+            Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
             Debug.LogWarning("Action End");
             ActionEnd();
         }
@@ -110,9 +111,7 @@ public class AIActor : MonoBehaviour {
 
 #endregion
 
-    public void OrganizeCardLists(List<Card> cardsInHand){
-        HandChecker.OrganizeCardsOnHand(cardsInHand);
-    }
+    public void OrganizeCardLists(List<Card> cardsInHand) { HandChecker.OrganizeCardsOnHand(cardsInHand); }
     
     public void SetBoardPlaces(List<BoardPlace> monsterPlaces, List<BoardPlace> arcanePlaces){
         BoardPlaceSelector.SetBoardPlaces(monsterPlaces, arcanePlaces);

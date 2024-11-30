@@ -29,7 +29,7 @@ public class AIBoardPlaceSelector : AIAction {
 
         if(_AI.Actor.MakeABoardFusion){
             _boardPlace = null;
-            _boardPlace = _Actor.CardOrganizer.CardOnBoardToFusion.GetBoardPlace();
+            _boardPlace = _Actor.CardOnBoardToFusion.GetBoardPlace();
             
             _AI.ChangeState(_AI.CardSelect);
         }else{
