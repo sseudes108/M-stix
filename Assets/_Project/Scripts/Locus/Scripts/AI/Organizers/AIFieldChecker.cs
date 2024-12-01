@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIFieldChecker : MonoBehaviour {
+    public List<MonsterCard> AIMonstersOnFieldThatCanAttack { get; private set; } = new();
 
 #region AI
     #region AI - Monsters On Field
@@ -24,20 +25,15 @@ public class AIFieldChecker : MonoBehaviour {
         public List<MonsterCard> Lvl7OnPlayerField { get; private set; } = new();
     #endregion
 #endregion
-
-    public List<Card> CardsOnAIField { get; private set; } = new();
-    public List<Card> CardsOnPlayerField { get; private set; } = new();
-
-    public List<MonsterCard> MonstersOnAIField { get; private set; } = new();
-    public List<MonsterCard> AIMonstersOnFieldThatCanAttack { get; private set; } = new();
-    
-    public List<MonsterCard> MonsterOnPlayerField { get; private set; } = new();
     
     public void OrganizeAIMonsterCardsOnField(List<MonsterCard> monstersOnAIField){
         ClearAIListsOnField();
 
         foreach(var card in monstersOnAIField){
             int lvl = card.Level;
+            if(card.IsInAttackMode && card.CanAttack){
+                AIMonstersOnFieldThatCanAttack.Add(card);
+            }
 
             switch (lvl){
                 case 2:
@@ -68,6 +64,8 @@ public class AIFieldChecker : MonoBehaviour {
     }
    
     public void ClearAIListsOnField(){
+        AIMonstersOnFieldThatCanAttack.Clear();
+
         Lvl2OnAIField.Clear();
         Lvl3OnAIField.Clear();
         Lvl4OnAIField.Clear();
@@ -83,30 +81,14 @@ public class AIFieldChecker : MonoBehaviour {
         Lvl7OnPlayerField.Clear();
     }
 
-    public void SplitCardsOnBoardByType() {
-        foreach(var card in CardsOnAIField){
-            if(card is MonsterCard){
-                MonstersOnAIField.Add(card as MonsterCard);
-            }else{
-                // _arcanesOnAIField.Add(card as ArcaneCard);
-            }
-        }
+    // public void CheckMonstersToAttack(List<MonsterCard> aiMonstersOnField){
+    //     ClearAIListsOnField();
+    //     AIMonstersOnFieldThatCanAttack.Clear();
 
-        foreach(var card in CardsOnPlayerField){
-            if(card is MonsterCard){
-                MonsterOnPlayerField.Add(card as MonsterCard);
-            }else{
-                // _arcanesOnPlayerField.Add(card as ArcaneCard);
-            }
-        }
-    }
-
-    public void CheckMonstersToAttack(){
-        AIMonstersOnFieldThatCanAttack.Clear();
-        foreach(var card in MonstersOnAIField){
-            if(card.IsInAttackMode && card.CanAttack){
-                AIMonstersOnFieldThatCanAttack.Add(card);
-            }
-        }
-    }
+    //     foreach(var card in aiMonstersOnField){
+    //         if(card.IsInAttackMode && card.CanAttack){
+    //             AIMonstersOnFieldThatCanAttack.Add(card);
+    //         }
+    //     }
+    // }
 }

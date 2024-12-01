@@ -4213,6 +4213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab08195d7dfbac24b8eb4e4546251962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _turnManager: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd, type: 2}
   _boardManager: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5, type: 2}
   _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
   _aIManager: {fileID: 11400000, guid: 4eb29cdf6f3438542b75c5b6bdbc0df3, type: 2}
@@ -9108,8 +9109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Actor>k__BackingField: {fileID: 0}
   <BoardManager>k__BackingField: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5,
-    type: 2}
-  <TurnManager>k__BackingField: {fileID: 11400000, guid: 243b82180b06e194695be69ddbe690cd,
     type: 2}
 --- !u!114 &1396675616
 MonoBehaviour:

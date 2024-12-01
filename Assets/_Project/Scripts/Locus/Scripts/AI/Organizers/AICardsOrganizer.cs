@@ -2,26 +2,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AICardOrganizer : MonoBehaviour {
-    [field:SerializeField] public AIActor Actor { get; private set; }
-    [field:SerializeField] public BoardManagerSO BoardManager { get; private set; }
-    
-
+    public List<Card> CardsInAIHand { get; private set; } = new(){};
     public List<Card> AIMonstersInHand { get; private set; } = new();
     public List<Card> AIArcanesInHand { get; private set; } = new();
     public List<MonsterCard> AIMonstersOnField { get; private set; } = new();
     public List<ArcaneCard> AIArcanesOnField { get; private set; } = new();
-    // public List<MonsterCard> AIMonstersOnFieldThatCanAttack { get; private set; } = new();
 
     public List<MonsterCard> PlayerMonstersOnField { get; private set; } = new();
     public List<ArcaneCard> PlayerArcanesOnField { get; private set; } = new();
 
-    public MonsterCard AttackingMonster { get; private set; }
 
-    public List<Card> CardsInHand { get; private set; } = new(){};
 
-    private void Awake() { Actor = GetComponent<AIActor>(); }
-    
-    public void OnDisable() { CardsInHand.Clear(); }
+    public void OnDisable() { CardsInAIHand.Clear(); }
 
     public void SetAICardsOnField(List<Card> aiCardOnField){
         Debug.Log("SetAICardsOnField");
@@ -51,7 +43,20 @@ public class AICardOrganizer : MonoBehaviour {
         }
     }
     
-    public void SetCardsInHand(List<Card> cardsInHand) { CardsInHand = cardsInHand; }
+    public void SetCardsInAIHand(List<Card> cardsInHand) {
+        AIMonstersInHand.Clear();
+        AIArcanesInHand.Clear();
+
+        foreach(var card in cardsInHand) {
+            if(card is MonsterCard){
+                AIMonstersInHand.Add(card as MonsterCard);
+            }else{
+                AIArcanesInHand.Add(card as ArcaneCard);
+            }
+        }
+
+        CardsInAIHand = cardsInHand; 
+    }
 
     private void ClearAILists(){
         AIMonstersOnField.Clear();

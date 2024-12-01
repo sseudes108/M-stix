@@ -48,7 +48,7 @@ public class AIActor : MonoBehaviour {
         BoardPlaceSelector ??= new(_ai, this);
         CardStatSelector ??= new(this);
         EffectSelector ??= new(this);
-        AttackSelector ??= new(this);
+        AttackSelector ??= new(_ai, this);
     }
 
 #region Board Fusion
@@ -79,11 +79,8 @@ public class AIActor : MonoBehaviour {
 
 #region End Action Signals
     public void CardSelectionFinished() { CardSelector_OnSelectionFinished?.Invoke(); }
-
     public void CardStatSelectionFinished() { CardStatSelector_OnCardStatSelectionFinished?.Invoke(); }
-
     public void BoardPlaceSelected() { BoardPlaceSelector_OnBoardPlaceSelected?.Invoke(); }
-
     public void EffectSelected(){
         /*
             if there some monster on field that can attack
@@ -92,8 +89,8 @@ public class AIActor : MonoBehaviour {
                 ActionEnd()
         */
 
-        FieldChecker.SplitCardsOnBoardByType();
-        FieldChecker.CheckMonstersToAttack();
+        // FieldChecker.SplitCardsOnBoardByType();
+        FieldChecker.OrganizeAIMonsterCardsOnField(CardOrganizer.AIMonstersOnField);
 
         if(FieldChecker.AIMonstersOnFieldThatCanAttack.Count > 0){
             Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
@@ -103,6 +100,7 @@ public class AIActor : MonoBehaviour {
         }else{
             Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
             Debug.LogWarning("Action End");
+            AttackingMonster = null;
             ActionEnd();
         }
     }
