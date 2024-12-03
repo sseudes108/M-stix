@@ -4,8 +4,10 @@ using UnityEngine.Events;
 
 public class AIActor : MonoBehaviour {
 
+#region Managers
     [field:SerializeField] public BoardManagerSO BoardManager { get; private set; }
     [field:SerializeField] public AIManagerSO AIManager { get; private set; }
+#endregion
 
 #region Events
     [HideInInspector] public UnityEvent CardSelector_OnSelectionFinished;
@@ -15,10 +17,20 @@ public class AIActor : MonoBehaviour {
     [HideInInspector] public UnityEvent ActionPhaseEnd;
 #endregion
 
+#region Arms
     public AICardOrganizer CardOrganizer { get; private set; }
     public AIFieldChecker FieldChecker { get; private set; }
     public AIHandChecker HandChecker { get; private set; }
     public AIFusioner Fusioner { get; private set; }
+#endregion
+
+#region Actions
+    public AICardSelector CardSelector { get; private set; }
+    public AICardStatSelector CardStatSelector { get; private set; }
+    public AIBoardPlaceSelector BoardPlaceSelector { get; private set; }
+    public AIEffectSelector EffectSelector { get; private set; }
+    public AIAttackSelector AttackSelector { get; private set; }
+#endregion
 
     public bool MakeABoardFusion { get; private set; }
     
@@ -27,12 +39,6 @@ public class AIActor : MonoBehaviour {
     private AI _ai;
 
     public MonsterCard AttackingMonster { get; private set; }
-
-    public AICardSelector CardSelector { get; private set; }
-    public AICardStatSelector CardStatSelector { get; private set; }
-    public AIBoardPlaceSelector BoardPlaceSelector { get; private set; }
-    public AIEffectSelector EffectSelector { get; private set; }
-    public AIAttackSelector AttackSelector { get; private set; }
 
     private void Awake() {
         _ai = GetComponent<AI>();
@@ -52,7 +58,7 @@ public class AIActor : MonoBehaviour {
     }
 
 #region Board Fusion
-    public void IsBoardFusion(bool IsBoardFusion) { MakeABoardFusion = IsBoardFusion; }
+    // public void IsBoardFusion(bool IsBoardFusion) { MakeABoardFusion = IsBoardFusion; }
     public void SetBoardFusion(Card cardToFusion){
         BoardManager.BoardFusion();
         MakeABoardFusion = true;
@@ -65,6 +71,7 @@ public class AIActor : MonoBehaviour {
             CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
             CardOnBoardToFusion = null;
         }
+        AIManager.Board.ResetAIBoardOnList();
     }
 #endregion
 
@@ -88,15 +95,61 @@ public class AIActor : MonoBehaviour {
             else
                 ActionEnd()
         */
-
-        // FieldChecker.SplitCardsOnBoardByType();
         FieldChecker.OrganizeAIMonsterCardsOnField(CardOrganizer.AIMonstersOnField);
 
         if(FieldChecker.AIMonstersOnFieldThatCanAttack.Count > 0){
-            Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
-            AttackingMonster = FieldChecker.AIMonstersOnFieldThatCanAttack[0];
-            
-            AIManager.AI.StartCoroutine(AttackSelector.SelectAttackRoutine());
+            // Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
+            // Debug.LogWarning($"Implementar restante da função de attack! <color=red>Verificar Diagrama</color>");
+
+            OrganizeAIMonstersByAttack();
+            if(CardOrganizer.PlayerMonstersOnField.Count > 0){
+                OrganizePlayerMonstersByAttack();
+                if(FieldChecker.AIMonstersOnFieldThatCanAttack[0].Attack > CardOrganizer.PlayerMonstersOnField[0].Attack){ //Can destroy monster in attack
+                    if(CardOrganizer.PlayerArcanesOnField.Count > 0){ // has arcane
+                        //random choice to make the attack or not
+                    }else{
+                        //Attack player monster in attack
+                    }
+                }else{
+                    OrganizePlayerMonstersByDeffense();
+                    if(FieldChecker.AIMonstersOnFieldThatCanAttack[0].Attack > CardOrganizer.PlayerMonstersOnField[0].Deffense){ //Can destroy monster in deffense
+                        if(CardOrganizer.PlayerArcanesOnField.Count > 0){ // has arcane
+                            //random choice to make the attack in defense with the second strongest monster or not
+                        }else{
+                            //Attack player monster in deffense
+                        }
+                    }
+                }
+
+                /*
+                    Organize Player Monsters By Atk, Def and Lvl
+                    Count the star gods from AI field to implement or decrement the attack of AI monsters
+                    (Can destoy the strongest monster in Attack?){
+                        (any arcanes on field?){
+                            //random choice to make the attack in defense with the second strongest monster or not
+                        }else{
+                            //Attack player monster in attack
+                        }
+                    }else{
+                        (any arcanes on field?){
+                            //random choice to make the attack the monster in attack with the second strongest monster or not
+                        }else{
+                            //Attack player monster in defense 
+                        }
+                    }
+                */
+            }else{
+                /*
+                    (Any arcane on field?){
+                        //random choice to make an direct attack with the second strongest monster or not
+                    }else{
+                        //Direct attack
+                    }
+                */
+            }
+
+            // AttackingMonster = FieldChecker.AIMonstersOnFieldThatCanAttack[0];
+            // AIManager.AI.StartCoroutine(AttackSelector.SelectAttackRoutine());
         }else{
             Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
             Debug.LogWarning("Action End");
@@ -105,13 +158,33 @@ public class AIActor : MonoBehaviour {
         }
     }
 
+    //End the turn. Called from this script when there are no monsters that can attack.
     public void ActionEnd() { ActionPhaseEnd?.Invoke(); }
 
 #endregion
-
     public void OrganizeCardLists(List<Card> cardsInHand) { HandChecker.OrganizeCardsOnHand(cardsInHand); }
     
     public void SetBoardPlaces(List<BoardPlace> monsterPlaces, List<BoardPlace> arcanePlaces){
         BoardPlaceSelector.SetBoardPlaces(monsterPlaces, arcanePlaces);
+    }
+
+    private void OrganizeAIMonstersByAttack(){
+        FieldChecker.AIMonstersOnFieldThatCanAttack.Sort((x,y) => y.Attack.CompareTo(x.Attack));
+    }
+
+    private void OrganizePlayerMonstersByAttack(){
+        CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Attack.CompareTo(x.Attack));
+    }
+
+    private void OrganizePlayerMonstersByDeffense(){
+        CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Deffense.CompareTo(x.Deffense));
+    }
+
+    private void OrganizePlayerMonstersByLevel(){
+        CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Level.CompareTo(x.Level));
+    }
+
+    private void CheckAnimas(MonsterCard aiMonster, MonsterCard playerMonster){
+
     }
 }

@@ -7,6 +7,7 @@ public class MonsterCard : Card {
     public EMonsterType MonsterType {get; private set;}
     public EAnimaType FirstAnima {get; private set;}
     public EAnimaType SecondAnima {get; private set;}
+    public EAnimaType ActiveAnima {get; private set;}
 
     [Header("Stats")]
     public int Level {get; private set;}

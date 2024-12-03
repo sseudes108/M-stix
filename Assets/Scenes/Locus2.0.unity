@@ -9107,9 +9107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0dcd6a2b59770644b6c42fec62911d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Actor>k__BackingField: {fileID: 0}
-  <BoardManager>k__BackingField: {fileID: 11400000, guid: d90ca6b1536474c49975e7026c2cbfc5,
-    type: 2}
 --- !u!114 &1396675616
 MonoBehaviour:
   m_ObjectHideFlags: 0

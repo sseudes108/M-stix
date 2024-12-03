@@ -11,12 +11,13 @@ public class AICardOrganizer : MonoBehaviour {
     public List<MonsterCard> PlayerMonstersOnField { get; private set; } = new();
     public List<ArcaneCard> PlayerArcanesOnField { get; private set; } = new();
 
-
+    // public List<MonsterCard> PlayerMonsterOnFieldByLevel { get; private set; } = new();
+    // public List<MonsterCard> PlayerMonsterOnFieldByAttack { get; private set; } = new();
+    // public List<MonsterCard> PlayerMonsterOnFieldByDeffense { get; private set; } = new();
 
     public void OnDisable() { CardsInAIHand.Clear(); }
 
     public void SetAICardsOnField(List<Card> aiCardOnField){
-        Debug.Log("SetAICardsOnField");
         ClearAILists();
         foreach(var card in aiCardOnField){
             if(card is MonsterCard){
@@ -28,7 +29,6 @@ public class AICardOrganizer : MonoBehaviour {
     }
 
     public void SetPlayerCardsOnField(List<Card> playerMonstersOnField){
-        Debug.Log("SetPlayerCardsOnField");
         ClearPlayerLists();
         foreach(var card in playerMonstersOnField){
             if(card is MonsterCard){

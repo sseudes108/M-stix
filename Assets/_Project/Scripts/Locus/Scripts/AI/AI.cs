@@ -1,6 +1,5 @@
 public class AI : StateMachine{
     public AIActor Actor { get; private set; }
-    //States
     public AbstractState CurrentState { get; private set; }
 
     public AISelectCardState CardSelect { get; private set; }
