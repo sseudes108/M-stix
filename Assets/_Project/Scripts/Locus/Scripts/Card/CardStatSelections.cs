@@ -30,7 +30,7 @@ public class CardStatSelections : MonoBehaviour {
                 // fusioned Card
                 if(!monster.AnimaSelected){ // Anima not selected
                     monster.Visuals.Anima.Anima1Selected();
-                    monster.SelectAnima();
+                    monster.SelectAnima(1);
                     CardStatSelManager.SelectAnother(monster);
                     return;                    
                 }
@@ -46,7 +46,7 @@ public class CardStatSelections : MonoBehaviour {
             }else{
                 if(!monster.AnimaSelected){ //Anima not Selected
                     monster.Visuals.Anima.Anima1Selected();
-                    monster.SelectAnima();
+                    monster.SelectAnima(1);
                     CardStatSelManager.SelectAnother(monster);
                     return;
                 }
@@ -73,7 +73,7 @@ public class CardStatSelections : MonoBehaviour {
 
                 if(!monster.AnimaSelected){
                     monster.Visuals.Anima.Anima2Selected();
-                    monster.SelectAnima();
+                    monster.SelectAnima(2);
                     CardStatSelManager.SelectAnother(monster);
                     return;
                 }
@@ -89,7 +89,7 @@ public class CardStatSelections : MonoBehaviour {
 
                 if(!monster.AnimaSelected){ //Anima not Selected
                     monster.Visuals.Anima.Anima2Selected();
-                    monster.SelectAnima();
+                    monster.SelectAnima(2);
                     CardStatSelManager.SelectAnother(monster);
                     return;
                 }

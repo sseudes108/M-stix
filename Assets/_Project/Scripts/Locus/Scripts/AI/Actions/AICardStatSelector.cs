@@ -33,7 +33,7 @@ public class AICardStatSelector : AIAction {
             card.Visuals.Anima.Anima2Selected();
         }
 
-        card.SelectAnima();
+        card.SelectAnima(randomIndex);
         // Debug.Log("AnimaSelected");
     }
 

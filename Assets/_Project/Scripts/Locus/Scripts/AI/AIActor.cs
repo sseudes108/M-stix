@@ -39,6 +39,7 @@ public class AIActor : MonoBehaviour {
     private AI _ai;
 
     public MonsterCard AttackingMonster { get; private set; }
+    public MonsterCard MonsterToAttack { get; private set; }
 
     private void Awake() {
         _ai = GetComponent<AI>();
@@ -99,62 +100,68 @@ public class AIActor : MonoBehaviour {
 
         if(FieldChecker.AIMonstersOnFieldThatCanAttack.Count > 0){
             // Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
-            // Debug.LogWarning($"Implementar restante da função de attack! <color=red>Verificar Diagrama</color>");
 
             OrganizeAIMonstersByAttack();
+
             if(CardOrganizer.PlayerMonstersOnField.Count > 0){
-                OrganizePlayerMonstersByAttack();
-                if(FieldChecker.AIMonstersOnFieldThatCanAttack[0].Attack > CardOrganizer.PlayerMonstersOnField[0].Attack){ //Can destroy monster in attack
-                    if(CardOrganizer.PlayerArcanesOnField.Count > 0){ // has arcane
-                        //random choice to make the attack or not
+                CheckMonstersToBattle(0, 0);
+            }else{
+                if(CardOrganizer.PlayerArcanesOnField.Count > 0){
+
+                }else{
+                    //Direct Attack
+                }
+            }
+
+            /*
+                Organize Player Monsters By Atk, Def and Lvl
+                Count the star gods from AI field to implement or decrement the attack of AI monsters
+                (Can destoy the strongest monster in Attack?){
+                    (any arcanes on field?){
+                        //random choice to make the attack in defense with the second strongest monster or not
                     }else{
                         //Attack player monster in attack
                     }
                 }else{
-                    OrganizePlayerMonstersByDeffense();
-                    if(FieldChecker.AIMonstersOnFieldThatCanAttack[0].Attack > CardOrganizer.PlayerMonstersOnField[0].Deffense){ //Can destroy monster in deffense
-                        if(CardOrganizer.PlayerArcanesOnField.Count > 0){ // has arcane
-                            //random choice to make the attack in defense with the second strongest monster or not
-                        }else{
-                            //Attack player monster in deffense
-                        }
+                    (any arcanes on field?){
+                        //random choice to make the attack the monster in attack with the second strongest monster or not
+                    }else{
+                        //Attack player monster in defense 
                     }
                 }
+            */
+            
+            /*
+                (Any arcane on field?){
+                    //random choice to make an direct attack with the second strongest monster or not
+                }else{
+                    //Direct attack
+                }
+            */
 
-                /*
-                    Organize Player Monsters By Atk, Def and Lvl
-                    Count the star gods from AI field to implement or decrement the attack of AI monsters
-                    (Can destoy the strongest monster in Attack?){
-                        (any arcanes on field?){
-                            //random choice to make the attack in defense with the second strongest monster or not
-                        }else{
-                            //Attack player monster in attack
-                        }
-                    }else{
-                        (any arcanes on field?){
-                            //random choice to make the attack the monster in attack with the second strongest monster or not
-                        }else{
-                            //Attack player monster in defense 
-                        }
-                    }
-                */
-            }else{
-                /*
-                    (Any arcane on field?){
-                        //random choice to make an direct attack with the second strongest monster or not
-                    }else{
-                        //Direct attack
-                    }
-                */
-            }
-
-            // AttackingMonster = FieldChecker.AIMonstersOnFieldThatCanAttack[0];
             // AIManager.AI.StartCoroutine(AttackSelector.SelectAttackRoutine());
         }else{
             Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
             Debug.LogWarning("Action End");
             AttackingMonster = null;
             ActionEnd();
+        }
+    }
+
+    private void CheckMonstersToBattle(int aiIndexCard, int playerIndexCard){
+        if(CardOrganizer.PlayerMonstersOnField[playerIndexCard]){
+            CheckAnimas(FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
+            if (FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard].Attack > CardOrganizer.PlayerMonstersOnField[playerIndexCard].Attack){ //Can destroy the player monster
+                if (CardOrganizer.PlayerArcanesOnField.Count > 0){
+
+                }else{
+                    SetMonstersToBattle(FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
+                }
+            }else{ //Can't destroy the actual player monster
+                playerIndexCard++;
+                if(playerIndexCard == 4){ return; }
+                CheckMonstersToBattle(aiIndexCard, playerIndexCard);
+            }
         }
     }
 
@@ -185,6 +192,103 @@ public class AIActor : MonoBehaviour {
     }
 
     private void CheckAnimas(MonsterCard aiMonster, MonsterCard playerMonster){
+        switch(aiMonster.ActiveAnima){
+            case EAnimaType.Venus:
+                if(playerMonster.ActiveAnima == EAnimaType.Mars){
+                    aiMonster.BuffAttack();
+                    return;
+                }
 
+                if(playerMonster.ActiveAnima == EAnimaType.Saturn){
+                    aiMonster.DebuffAttack();
+                    return;
+                }
+            break;
+
+            case EAnimaType.Mars:
+                if(playerMonster.ActiveAnima == EAnimaType.Saturn){
+                    aiMonster.BuffAttack();
+                    return;
+                }
+                
+                if(playerMonster.ActiveAnima == EAnimaType.Venus){
+                    aiMonster.DebuffAttack();
+                    return;
+                }
+            break;
+
+            case EAnimaType.Saturn:
+                if(playerMonster.ActiveAnima == EAnimaType.Jupiter){
+                    aiMonster.BuffAttack();
+                    return;
+                }
+                
+                if(playerMonster.ActiveAnima == EAnimaType.Mars){
+                    aiMonster.DebuffAttack();
+                    return;
+                }
+            break;
+
+            case EAnimaType.Jupiter:
+                if(playerMonster.ActiveAnima == EAnimaType.Mercury){
+                    aiMonster.BuffAttack();
+                    return;
+                }
+                
+                if(playerMonster.ActiveAnima == EAnimaType.Saturn){
+                    aiMonster.DebuffAttack();
+                    return;
+                }
+            break;
+
+            case EAnimaType.Mercury:
+                if(playerMonster.ActiveAnima == EAnimaType.Saturn){
+                    aiMonster.BuffAttack();
+                    return;
+                }
+                
+                if(playerMonster.ActiveAnima == EAnimaType.Moon){
+                    aiMonster.DebuffAttack();
+                    return;
+                }
+            break;
+
+            case EAnimaType.Sun:
+                if(playerMonster.ActiveAnima == EAnimaType.Moon){
+                    aiMonster.BuffAttack();
+                    return;
+                }
+                
+                if(playerMonster.ActiveAnima == EAnimaType.Jupiter){
+                    aiMonster.DebuffAttack();
+                    return;
+                }
+            break;
+
+            case EAnimaType.Moon:
+                if(playerMonster.ActiveAnima == EAnimaType.Mars){
+                    aiMonster.BuffAttack();
+                    return;
+                }
+                
+                if(playerMonster.ActiveAnima == EAnimaType.Sun){
+                    aiMonster.DebuffAttack();
+                    return;
+                }
+            break;
+        }
+    }
+
+    private void SetMonstersToBattle(MonsterCard aiMonster, MonsterCard playerMonster){
+        AttackingMonster = null;
+        MonsterToAttack = null;
+
+        AttackingMonster = aiMonster;
+        MonsterToAttack = playerMonster;
+    }
+
+    public void ResetAttackPoints(){
+        AttackingMonster.ResetAttack();
+        MonsterToAttack.ResetAttack();
     }
 }

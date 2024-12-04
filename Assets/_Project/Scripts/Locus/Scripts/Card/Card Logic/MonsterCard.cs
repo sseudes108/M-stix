@@ -28,15 +28,17 @@ public class MonsterCard : Card {
     [SerializeField] private TextMeshProUGUI _attackLabel;
     [SerializeField] private TextMeshProUGUI _deffenseLabel;
 
+    private MonsterCardSO _cardData;
+
     public override void SetCardInfo(){
         base.SetCardInfo();
-        var CardData = Data as MonsterCardSO;
-        MonsterType = CardData.MonsterType;
-        FirstAnima = CardData.FirstAnima;
-        SecondAnima = CardData.SecondAnima;
-        Level = CardData.Level;
-        Attack = CardData.Attack;
-        Deffense = CardData.Deffense;
+        var _cardData = Data as MonsterCardSO;
+        MonsterType = _cardData.MonsterType;
+        FirstAnima = _cardData.FirstAnima;
+        SecondAnima = _cardData.SecondAnima;
+        Level = _cardData.Level;
+        Attack = _cardData.Attack;
+        Deffense = _cardData.Deffense;
 
         SetCardText();
     }
@@ -48,7 +50,19 @@ public class MonsterCard : Card {
         _deffenseLabel.text = Deffense.ToString();
     }
 
-    public void SelectAnima() { AnimaSelected = true; }
+    public void SelectAnima(int anima) { 
+        AnimaSelected = true;
+
+        if(anima == 1){
+            ActiveAnima = FirstAnima;
+            return;
+        }
+
+        if(anima == 2){
+            ActiveAnima = SecondAnima;
+            return;
+        }
+    }
     public void SelectMode() { ModeSelected = true; }
     public void SetDeffenseMode() { IsInAttackMode = false; }
     public void SetAttackMode() { IsInAttackMode = true; }
@@ -70,5 +84,17 @@ public class MonsterCard : Card {
         AnimaSelected = false;   
         ModeSelected = false;
         Visuals.ResetAnimaColors();
+    }
+
+    public void BuffAttack(){
+        Attack += 500;
+    }
+    
+    public void DebuffAttack(){
+        Attack -= 500;
+    }
+
+    public void ResetAttack(){
+        Attack = _cardData.Attack;
     }
 }

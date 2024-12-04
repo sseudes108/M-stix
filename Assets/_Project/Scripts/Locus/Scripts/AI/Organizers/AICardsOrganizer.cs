@@ -11,10 +11,6 @@ public class AICardOrganizer : MonoBehaviour {
     public List<MonsterCard> PlayerMonstersOnField { get; private set; } = new();
     public List<ArcaneCard> PlayerArcanesOnField { get; private set; } = new();
 
-    // public List<MonsterCard> PlayerMonsterOnFieldByLevel { get; private set; } = new();
-    // public List<MonsterCard> PlayerMonsterOnFieldByAttack { get; private set; } = new();
-    // public List<MonsterCard> PlayerMonsterOnFieldByDeffense { get; private set; } = new();
-
     public void OnDisable() { CardsInAIHand.Clear(); }
 
     public void SetAICardsOnField(List<Card> aiCardOnField){

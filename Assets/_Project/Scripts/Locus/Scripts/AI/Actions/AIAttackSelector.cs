@@ -12,6 +12,7 @@ public class AIAttackSelector : AIAction {
         Debug.LogWarning("Attacking!!!!");
         yield return new WaitForSeconds(2.5f);
         _Actor.AttackingMonster.SetCanAttack(false);
+        _Actor.ResetAttackPoints();
         _AI.ChangeState(_AI.ActionSelect);
         yield return null;
     }
