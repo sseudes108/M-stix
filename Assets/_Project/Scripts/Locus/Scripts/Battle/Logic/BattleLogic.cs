@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 
 public class BattleLogic : MonoBehaviour {
-
     private Battle _battle;
 
     [SerializeField] private Transform _attackerPosition, _attackerPosition2;
@@ -15,7 +14,7 @@ public class BattleLogic : MonoBehaviour {
         StartCoroutine(BattleRoutine());
     }
 
-    private IEnumerator BattleRoutine(){
+    public IEnumerator BattleRoutine(){
         MoveCardsToFirstPosition();
         yield return new WaitForSeconds(1f);
 

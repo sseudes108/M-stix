@@ -39,7 +39,7 @@ public class AIActor : MonoBehaviour {
     private AI _ai;
 
     public MonsterCard AttackingMonster { get; private set; }
-    public MonsterCard MonsterToAttack { get; private set; }
+    public MonsterCard TargetMonster { get; private set; }
 
     private void Awake() {
         _ai = GetComponent<AI>();
@@ -96,73 +96,8 @@ public class AIActor : MonoBehaviour {
             else
                 ActionEnd()
         */
-        FieldChecker.OrganizeAIMonsterCardsOnField(CardOrganizer.AIMonstersOnField);
 
-        if(FieldChecker.AIMonstersOnFieldThatCanAttack.Count > 0){
-            // Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
-
-            OrganizeAIMonstersByAttack();
-
-            if(CardOrganizer.PlayerMonstersOnField.Count > 0){
-                CheckMonstersToBattle(0, 0);
-            }else{
-                if(CardOrganizer.PlayerArcanesOnField.Count > 0){
-
-                }else{
-                    //Direct Attack
-                }
-            }
-
-            /*
-                Organize Player Monsters By Atk, Def and Lvl
-                Count the star gods from AI field to implement or decrement the attack of AI monsters
-                (Can destoy the strongest monster in Attack?){
-                    (any arcanes on field?){
-                        //random choice to make the attack in defense with the second strongest monster or not
-                    }else{
-                        //Attack player monster in attack
-                    }
-                }else{
-                    (any arcanes on field?){
-                        //random choice to make the attack the monster in attack with the second strongest monster or not
-                    }else{
-                        //Attack player monster in defense 
-                    }
-                }
-            */
-            
-            /*
-                (Any arcane on field?){
-                    //random choice to make an direct attack with the second strongest monster or not
-                }else{
-                    //Direct attack
-                }
-            */
-
-            // AIManager.AI.StartCoroutine(AttackSelector.SelectAttackRoutine());
-        }else{
-            Debug.Log($"AIMonstersThatCanAttack.Count {FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
-            Debug.LogWarning("Action End");
-            AttackingMonster = null;
-            ActionEnd();
-        }
-    }
-
-    private void CheckMonstersToBattle(int aiIndexCard, int playerIndexCard){
-        if(CardOrganizer.PlayerMonstersOnField[playerIndexCard]){
-            CheckAnimas(FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
-            if (FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard].Attack > CardOrganizer.PlayerMonstersOnField[playerIndexCard].Attack){ //Can destroy the player monster
-                if (CardOrganizer.PlayerArcanesOnField.Count > 0){
-
-                }else{
-                    SetMonstersToBattle(FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
-                }
-            }else{ //Can't destroy the actual player monster
-                playerIndexCard++;
-                if(playerIndexCard == 4){ return; }
-                CheckMonstersToBattle(aiIndexCard, playerIndexCard);
-            }
-        }
+        _ai.StartCoroutine(AttackSelector.SelectAttackRoutine());
     }
 
     //End the turn. Called from this script when there are no monsters that can attack.
@@ -175,120 +110,29 @@ public class AIActor : MonoBehaviour {
         BoardPlaceSelector.SetBoardPlaces(monsterPlaces, arcanePlaces);
     }
 
-    private void OrganizeAIMonstersByAttack(){
-        FieldChecker.AIMonstersOnFieldThatCanAttack.Sort((x,y) => y.Attack.CompareTo(x.Attack));
-    }
-
-    private void OrganizePlayerMonstersByAttack(){
-        CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Attack.CompareTo(x.Attack));
-    }
-
-    private void OrganizePlayerMonstersByDeffense(){
-        CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Deffense.CompareTo(x.Deffense));
-    }
-
-    private void OrganizePlayerMonstersByLevel(){
-        CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Level.CompareTo(x.Level));
-    }
-
-    private void CheckAnimas(MonsterCard aiMonster, MonsterCard playerMonster){
-        switch(aiMonster.ActiveAnima){
-            case EAnimaType.Venus:
-                if(playerMonster.ActiveAnima == EAnimaType.Mars){
-                    aiMonster.BuffAttack();
-                    return;
-                }
-
-                if(playerMonster.ActiveAnima == EAnimaType.Saturn){
-                    aiMonster.DebuffAttack();
-                    return;
-                }
-            break;
-
-            case EAnimaType.Mars:
-                if(playerMonster.ActiveAnima == EAnimaType.Saturn){
-                    aiMonster.BuffAttack();
-                    return;
-                }
-                
-                if(playerMonster.ActiveAnima == EAnimaType.Venus){
-                    aiMonster.DebuffAttack();
-                    return;
-                }
-            break;
-
-            case EAnimaType.Saturn:
-                if(playerMonster.ActiveAnima == EAnimaType.Jupiter){
-                    aiMonster.BuffAttack();
-                    return;
-                }
-                
-                if(playerMonster.ActiveAnima == EAnimaType.Mars){
-                    aiMonster.DebuffAttack();
-                    return;
-                }
-            break;
-
-            case EAnimaType.Jupiter:
-                if(playerMonster.ActiveAnima == EAnimaType.Mercury){
-                    aiMonster.BuffAttack();
-                    return;
-                }
-                
-                if(playerMonster.ActiveAnima == EAnimaType.Saturn){
-                    aiMonster.DebuffAttack();
-                    return;
-                }
-            break;
-
-            case EAnimaType.Mercury:
-                if(playerMonster.ActiveAnima == EAnimaType.Saturn){
-                    aiMonster.BuffAttack();
-                    return;
-                }
-                
-                if(playerMonster.ActiveAnima == EAnimaType.Moon){
-                    aiMonster.DebuffAttack();
-                    return;
-                }
-            break;
-
-            case EAnimaType.Sun:
-                if(playerMonster.ActiveAnima == EAnimaType.Moon){
-                    aiMonster.BuffAttack();
-                    return;
-                }
-                
-                if(playerMonster.ActiveAnima == EAnimaType.Jupiter){
-                    aiMonster.DebuffAttack();
-                    return;
-                }
-            break;
-
-            case EAnimaType.Moon:
-                if(playerMonster.ActiveAnima == EAnimaType.Mars){
-                    aiMonster.BuffAttack();
-                    return;
-                }
-                
-                if(playerMonster.ActiveAnima == EAnimaType.Sun){
-                    aiMonster.DebuffAttack();
-                    return;
-                }
-            break;
-        }
-    }
-
-    private void SetMonstersToBattle(MonsterCard aiMonster, MonsterCard playerMonster){
+    public void ResetAttackingMonster(){
         AttackingMonster = null;
-        MonsterToAttack = null;
+    }
 
-        AttackingMonster = aiMonster;
-        MonsterToAttack = playerMonster;
+    public void ResetTargetMonster(){
+        TargetMonster = null;
+    }
+
+    public void SetAttackingMonster(MonsterCard attackingMonster){
+        AttackingMonster = attackingMonster;
+    }
+    
+    public void SetTargetMonster(MonsterCard targetMonster){
+        TargetMonster = targetMonster;
     }
 
     public void ResetAttackPoints(){
-        AttackingMonster.ResetAttack();
-        MonsterToAttack.ResetAttack();
+        if(AttackingMonster){
+            AttackingMonster.ResetAttack();
+        }
+
+        if(TargetMonster){
+            TargetMonster.ResetAttack();
+        }
     }
 }

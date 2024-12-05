@@ -3,7 +3,9 @@ public class AIEffectSelector : AIAction {
     public AIEffectSelector(AIActor actor) { _Actor = actor; }
 
     public IEnumerator SelectEffectRoutine(){
-        _Actor.EffectSelected();
+        //Implemente Arcanes on field check
+
+        _Actor.EffectSelected(); //Effect selection Finished
         yield return null;
     }
 }
