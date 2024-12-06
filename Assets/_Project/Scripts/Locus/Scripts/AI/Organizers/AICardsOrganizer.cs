@@ -9,6 +9,8 @@ public class AICardOrganizer : MonoBehaviour {
     public List<ArcaneCard> AIArcanesOnField { get; private set; } = new();
 
     public List<MonsterCard> PlayerMonstersOnField { get; private set; } = new();
+    public List<MonsterCard> PlayerMonstersOnFieldInAttack { get; private set; } = new();
+    public List<MonsterCard> PlayerMonstersOnFieldInDeffense { get; private set; } = new();
     public List<ArcaneCard> PlayerArcanesOnField { get; private set; } = new();
 
     public void OnDisable() { CardsInAIHand.Clear(); }
@@ -30,6 +32,18 @@ public class AICardOrganizer : MonoBehaviour {
             if(card is MonsterCard){
                 if(!PlayerMonstersOnField.Contains(card as MonsterCard)){
                     PlayerMonstersOnField.Add(card as MonsterCard);
+
+                    if(!PlayerMonstersOnFieldInAttack.Contains(card as MonsterCard)){
+                        if((card as MonsterCard).IsInAttackMode){
+                            PlayerMonstersOnFieldInAttack.Add(card as MonsterCard);
+                        }
+                    }
+
+                    if(!PlayerMonstersOnFieldInDeffense.Contains(card as MonsterCard)){
+                        if(!(card as MonsterCard).IsInAttackMode){//Not in Attack Mode
+                            PlayerMonstersOnFieldInDeffense.Add(card as MonsterCard);
+                        }
+                    }
                 }
             }else{
                 if(!PlayerArcanesOnField.Contains(card as ArcaneCard)){

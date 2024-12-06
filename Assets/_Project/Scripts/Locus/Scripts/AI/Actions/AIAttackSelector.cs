@@ -1,59 +1,30 @@
 using System.Collections;
-using UnityEngine;
+
 public class AIAttackSelector : AIAction {
-    public AIAttackSelector(AI ai, AIActor actor) {
+    public AIAttackSelector(AI ai, AIActor actor, AIFieldChecker fieldChecker, AICardOrganizer cardOrganizer) {
         _AI = ai;
         _Actor = actor;
+        _FieldChecker = fieldChecker;
+        _CardOrganizer = cardOrganizer;
     }
 
+    private bool _attack;
+
     public IEnumerator SelectAttackRoutine(){
-        _Actor.FieldChecker.OrganizeAIMonsterCardsOnField(_Actor.CardOrganizer.AIMonstersOnField);
+        _attack = false;
 
-        yield return new WaitForSeconds(1);
-
-        if(_Actor.FieldChecker.AIMonstersOnFieldThatCanAttack.Count > 0){
+        if(_FieldChecker.AIMonstersOnFieldThatCanAttack.Count > 0){
             OrganizeAIMonstersByAttack();
-
-            if(_Actor.CardOrganizer.PlayerMonstersOnField.Count > 0){
-                CheckMonstersToBattle(0, 0);
-            }else{
-                if(_Actor.CardOrganizer.PlayerArcanesOnField.Count > 0){
-
-                }else{
-                    //Direct Attack
+            if(_CardOrganizer.PlayerMonstersOnFieldInAttack.Count > 0){
+                int index = _CardOrganizer.PlayerMonstersOnFieldInAttack.Count;
+                CheckAnimas(_FieldChecker.AIMonstersOnFieldThatCanAttack[0], _CardOrganizer.PlayerMonstersOnFieldInAttack[0]);
+                if(_FieldChecker.AIMonstersOnFieldThatCanAttack[0].Attack > _CardOrganizer.PlayerMonstersOnFieldInAttack[0].Attack){
+                    SetMonstersToBattle(_FieldChecker.AIMonstersOnFieldThatCanAttack[0], _CardOrganizer.PlayerMonstersOnFieldInAttack[0]);
                 }
             }
+        }
 
-            /*
-                Organize Player Monsters By Atk, Def and Lvl
-                Count the star gods from AI field to implement or decrement the attack of AI monsters
-                (Can destoy the strongest monster in Attack?){
-                    (any arcanes on field?){
-                        //random choice to make the attack in defense with the second strongest monster or not
-                    }else{
-                        //Attack player monster in attack
-                    }
-                }else{
-                    (any arcanes on field?){
-                        //random choice to make the attack the monster in attack with the second strongest monster or not
-                    }else{
-                        //Attack player monster in defense 
-                    }
-                }
-            */
-            
-            /*
-                (Any arcane on field?){
-                    //random choice to make an direct attack with the second strongest monster or not
-                }else{
-                    //Direct attack
-                }
-            */
-        }else{
-            Debug.Log($"AIMonstersThatCanAttack.Count {_Actor.FieldChecker.AIMonstersOnFieldThatCanAttack.Count}");
-            Debug.LogWarning("Action End");
-
-            _Actor.ResetAttackingMonster();
+        if(!_attack){
             _Actor.ActionEnd();
         }
 
@@ -61,33 +32,33 @@ public class AIAttackSelector : AIAction {
     }
 
     private void OrganizeAIMonstersByAttack(){
-        _Actor.FieldChecker.AIMonstersOnFieldThatCanAttack.Sort((x,y) => y.Attack.CompareTo(x.Attack));
+        _FieldChecker.AIMonstersOnFieldThatCanAttack.Sort((x,y) => y.Attack.CompareTo(x.Attack));
     }
 
     private void OrganizePlayerMonstersByAttack(){
-        _Actor.CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Attack.CompareTo(x.Attack));
+        _CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Attack.CompareTo(x.Attack));
     }
 
     private void OrganizePlayerMonstersByDeffense(){
-        _Actor.CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Deffense.CompareTo(x.Deffense));
+        _CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Deffense.CompareTo(x.Deffense));
     }
 
     private void OrganizePlayerMonstersByLevel(){
-        _Actor.CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Level.CompareTo(x.Level));
+        _CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Level.CompareTo(x.Level));
     }
 
     private void CheckMonstersToBattle(int aiIndexCard, int playerIndexCard){
-        if(_Actor.CardOrganizer.PlayerMonstersOnField[playerIndexCard]){
-            CheckAnimas(_Actor.FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], _Actor.CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
-            if (_Actor.FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard].Attack > _Actor.CardOrganizer.PlayerMonstersOnField[playerIndexCard].Attack){ //Can destroy the player monster
-                if (_Actor.CardOrganizer.PlayerArcanesOnField.Count > 0){
+        if(_CardOrganizer.PlayerMonstersOnField[playerIndexCard]){
+            CheckAnimas(_FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], _CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
+            if (_FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard].Attack > _CardOrganizer.PlayerMonstersOnField[playerIndexCard].Attack){ //Can destroy the player monster
+                if (_CardOrganizer.PlayerArcanesOnField.Count > 0){
 
                 }else{
-                    SetMonstersToBattle(_Actor.FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], _Actor.CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
+                    SetMonstersToBattle(_FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], _CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
                 }
             }else{ //Can't destroy the actual player monster
                 playerIndexCard++;
-                if(playerIndexCard > 4){ return; }
+                if(playerIndexCard > _CardOrganizer.PlayerMonstersOnField.Count){ return; }
                 CheckMonstersToBattle(aiIndexCard, playerIndexCard);
             }
         }
@@ -182,8 +153,8 @@ public class AIAttackSelector : AIAction {
     }
 
     private void SetMonstersToBattle(MonsterCard aiMonster, MonsterCard playerMonster){
+        _attack = true;
         _Actor.SetAttackingMonster(aiMonster);
         _Actor.SetTargetMonster(playerMonster);
     }
-
 }

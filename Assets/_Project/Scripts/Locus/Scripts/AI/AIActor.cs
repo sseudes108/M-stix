@@ -55,7 +55,7 @@ public class AIActor : MonoBehaviour {
         BoardPlaceSelector ??= new(_ai, this);
         CardStatSelector ??= new(this);
         EffectSelector ??= new(this);
-        AttackSelector ??= new(_ai, this);
+        AttackSelector ??= new(_ai, this, FieldChecker, CardOrganizer);
     }
 
 #region Board Fusion
