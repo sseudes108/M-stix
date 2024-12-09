@@ -12,6 +12,7 @@ public class AIAttackSelector : AIAction {
 
     public IEnumerator SelectAttackRoutine(){
         _attack = false;
+        _FieldChecker.CheckMonstersThatCanAttack(_CardOrganizer.AIMonstersOnField);
 
         if(_FieldChecker.AIMonstersOnFieldThatCanAttack.Count > 0){
             OrganizeAIMonstersByAttack();
