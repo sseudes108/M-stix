@@ -80,13 +80,4 @@ public class AIFieldChecker : MonoBehaviour {
         Lvl6OnPlayerField.Clear();
         Lvl7OnPlayerField.Clear();
     }
-
-    public void CheckMonstersThatCanAttack(List<MonsterCard> monstersOnAIField){
-        AIMonstersOnFieldThatCanAttack.Clear();
-        foreach(var monster in monstersOnAIField){
-            if(monster.IsInAttackMode && monster.CanAttack){
-                AIMonstersOnFieldThatCanAttack.Add(monster);
-            }
-        }
-    }
 }

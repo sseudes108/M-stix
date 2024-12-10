@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 
 public class AIAttackSelector : AIAction {
     public AIAttackSelector(AI ai, AIActor actor, AIFieldChecker fieldChecker, AICardOrganizer cardOrganizer) {
@@ -8,29 +9,66 @@ public class AIAttackSelector : AIAction {
         _CardOrganizer = cardOrganizer;
     }
 
-    private bool _attack;
+    private bool _targetInAttack;
+    private List<MonsterCard> _playerListToAttack = new();
 
     public IEnumerator SelectAttackRoutine(){
-        _attack = false;
-        _FieldChecker.CheckMonstersThatCanAttack(_CardOrganizer.AIMonstersOnField);
+        _FieldChecker.OrganizeAIMonsterCardsOnField(_CardOrganizer.AIMonstersOnField);
+        _Actor.BoardManager.BoardController.ResetPlayerBoardOnList();
 
         if(_FieldChecker.AIMonstersOnFieldThatCanAttack.Count > 0){
             OrganizeAIMonstersByAttack();
-            if(_CardOrganizer.PlayerMonstersOnFieldInAttack.Count > 0){
-                int index = _CardOrganizer.PlayerMonstersOnFieldInAttack.Count;
-                CheckAnimas(_FieldChecker.AIMonstersOnFieldThatCanAttack[0], _CardOrganizer.PlayerMonstersOnFieldInAttack[0]);
-                if(_FieldChecker.AIMonstersOnFieldThatCanAttack[0].Attack > _CardOrganizer.PlayerMonstersOnFieldInAttack[0].Attack){
-                    SetMonstersToBattle(_FieldChecker.AIMonstersOnFieldThatCanAttack[0], _CardOrganizer.PlayerMonstersOnFieldInAttack[0]);
-                }
-            }
-        }
 
-        if(!_attack){
+            if(_CardOrganizer.PlayerMonstersOnField.Count > 0){// Player has monsters on field
+
+                if(_CardOrganizer.PlayerMonstersOnFieldInAttack.Count > 0){
+                    OrganizePlayerMonstersByAttack();
+                    _targetInAttack = true;
+                }else{
+                    OrganizePlayerMonstersByDeffense();
+                    _targetInAttack = false;
+                }
+
+                _playerListToAttack.Clear();
+                if(_targetInAttack){
+                    _playerListToAttack = _CardOrganizer.PlayerMonstersOnFieldInAttack;
+                }else{
+                    _playerListToAttack = _CardOrganizer.PlayerMonstersOnFieldInDeffense;
+                }
+
+                foreach(var playerMonster in _playerListToAttack){
+                    CheckAnimas(_FieldChecker.AIMonstersOnFieldThatCanAttack[0], playerMonster);
+                    int value = 0;
+
+                    if(_targetInAttack){
+                        value = playerMonster.Attack;
+                    }else{
+                        value = playerMonster.Deffense;
+                    }
+
+                    if(_FieldChecker.AIMonstersOnFieldThatCanAttack[0].Attack > value){
+                        SetMonstersToBattle(_FieldChecker.AIMonstersOnFieldThatCanAttack[0], playerMonster);
+                        break;
+                    }
+                }
+
+                //Change Battle pahase to battle
+
+            }else{ // direct attack
+                do{
+                    _FieldChecker.OrganizeAIMonsterCardsOnField(_CardOrganizer.AIMonstersOnField);
+                    //direct attack;
+                }while(_FieldChecker.AIMonstersOnFieldThatCanAttack.Count > 0);
+                _Actor.ActionEnd();
+            }
+
+        }else{//No monsters that can attack
             _Actor.ActionEnd();
         }
 
         yield return null;
     }
+
 
     private void OrganizeAIMonstersByAttack(){
         _FieldChecker.AIMonstersOnFieldThatCanAttack.Sort((x,y) => y.Attack.CompareTo(x.Attack));
@@ -154,7 +192,6 @@ public class AIAttackSelector : AIAction {
     }
 
     private void SetMonstersToBattle(MonsterCard aiMonster, MonsterCard playerMonster){
-        _attack = true;
         _Actor.SetAttackingMonster(aiMonster);
         _Actor.SetTargetMonster(playerMonster);
     }

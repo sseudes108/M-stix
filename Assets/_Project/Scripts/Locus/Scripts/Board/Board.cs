@@ -72,6 +72,22 @@ public class Board : MonoBehaviour {
 
         _aIManager.Actor.CardOrganizer.SetAICardsOnField(AICardsOnField);
     }
+    
+    public void ResetPlayerBoardOnList(){
+        PlayerCardsOnField.Clear();
+
+        foreach(var place in PlayerMonsterPlaces){
+            if(place.IsFree){ continue; }
+            AddCardToInBoardList(place, place.CardInPlace);
+        }
+
+        foreach(var place in PlayerArcanePlaces){
+            if(place.IsFree){ continue; }
+            AddCardToInBoardList(place, place.CardInPlace);
+        }
+
+        _aIManager.Actor.CardOrganizer.SetPlayerCardsOnField(PlayerCardsOnField);
+    }
 
     /*Set the card list to AI use in current Turn. 
         Called by this script on BattleManager_OnStartPhase()
