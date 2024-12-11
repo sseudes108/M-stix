@@ -28,7 +28,7 @@ public class BattleLogic : MonoBehaviour {
         yield return null;
     }
 
-    public void SetBattleCards(MonsterCard attacker, MonsterCard target){
+    public void SetMonstersToBattle(MonsterCard attacker, MonsterCard target){
         _attackerOriginalPos = attacker.GetBoardPlace().transform;
         _targetOriginalPos = target.GetBoardPlace().transform;
 
@@ -103,6 +103,7 @@ public class BattleLogic : MonoBehaviour {
         _battle.BattleManager.AttackEnded();
 
         ReturnToOriginalPositions();
+        Debug.Log("BattleLogic.cs - Battle() routine. Ended");
     }
 
     private IEnumerator KillMonster(MonsterCard monster){
@@ -120,6 +121,16 @@ public class BattleLogic : MonoBehaviour {
 
         if(!_monsterTarget.IsDead){
             _monsterTarget.GetBoardPlace().SetCardInPlace(_monsterTarget);
+        }
+    }
+
+    public void ResetAttackPoints(){
+        if(_monsterAttacker){
+            _monsterTarget.ResetAttack();
+        }
+
+        if(_monsterAttacker){
+            _monsterTarget.ResetAttack();
         }
     }
 }

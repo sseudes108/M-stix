@@ -48,7 +48,7 @@ public class BoardManagerSO : ScriptableObject {
     private void BattleManager_BoardPlaceSelectionStart(Card card, bool isPlayerTurn) { BoardVisualController.OnBoardPlaceSelectionStart(card, isPlayerTurn); }
     private void BattleManager_BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { BoardVisualController.OnBoardPlaceSelectionEnd(isPlayerTurn); }
     private void BattleManager_AttackSelectionPhaseStart(bool isPlayerTurn, bool isDirectAttack) { BoardVisualController.OnMonsterAttack(isPlayerTurn, isDirectAttack); }
-    private void BattleManager_OnAttackEnd() { BoardVisualController.OnAttackEnd(_turnManager.IsPlayerTurn); }
+    private void BattleManager_OnAttackEnd() { BoardVisualController.OnAttackEnd(_turnManager.IsPlayerTurn); }//Turn on and off the highlighted places
 
     //Board Events
     public void BoardPlaceSelected() { OnBoardPlaceSelected?.Invoke(); }

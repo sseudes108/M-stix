@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class AIActor : MonoBehaviour {
 
 #region Managers
+    [field:SerializeField] public BattleManagerSO BattleManager { get; private set; }
     [field:SerializeField] public BoardManagerSO BoardManager { get; private set; }
     [field:SerializeField] public AIManagerSO AIManager { get; private set; }
 #endregion
@@ -90,6 +91,7 @@ public class AIActor : MonoBehaviour {
     public void CardStatSelectionFinished() { CardStatSelector_OnCardStatSelectionFinished?.Invoke(); }
     public void BoardPlaceSelected() { BoardPlaceSelector_OnBoardPlaceSelected?.Invoke(); }
     public void EffectSelected(){
+        Debug.Log("AIActor.cs - EffectSelected()");
         /*
             if there some monster on field that can attack
                 enter attack select routine
@@ -101,7 +103,10 @@ public class AIActor : MonoBehaviour {
     }
 
     //End the turn. Called from this script when there are no monsters that can attack.
-    public void ActionEnd() { ActionPhaseEnd?.Invoke(); }
+    public void ActionEnd() { 
+        Debug.Log("AIActor.cs - ActionEnd()");
+        ActionPhaseEnd?.Invoke();   
+    }
 
 #endregion
     public void OrganizeCardLists(List<Card> cardsInHand) { HandChecker.OrganizeCardsOnHand(cardsInHand); }
@@ -126,13 +131,18 @@ public class AIActor : MonoBehaviour {
         TargetMonster = targetMonster;
     }
 
-    public void ResetAttackPoints(){
-        if(AttackingMonster){
-            AttackingMonster.ResetAttack();
-        }
+    // public void ResetAttackPoints(){
+    //     if(AttackingMonster){
+    //         AttackingMonster.ResetAttack();
+    //     }
 
-        if(TargetMonster){
-            TargetMonster.ResetAttack();
-        }
-    }
+    //     if(TargetMonster){
+    //         TargetMonster.ResetAttack();
+    //     }
+    // }
+
+    // public void SetMonstersToBattle(MonsterCard aiMonster, MonsterCard playerMonster){
+    //     // _ai.Battle.BattleLogic.SetBattleCards(playerMonster, aiMonster);
+    //     BattleManager.Battle.BattleLogic.SetMonstersToBattle(aiMonster, playerMonster);
+    // }
 }

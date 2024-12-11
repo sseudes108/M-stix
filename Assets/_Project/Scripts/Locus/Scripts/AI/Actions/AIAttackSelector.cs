@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AIAttackSelector : AIAction {
     public AIAttackSelector(AI ai, AIActor actor, AIFieldChecker fieldChecker, AICardOrganizer cardOrganizer) {
@@ -13,6 +14,7 @@ public class AIAttackSelector : AIAction {
     private List<MonsterCard> _playerListToAttack = new();
 
     public IEnumerator SelectAttackRoutine(){
+        Debug.Log("AIAttackSelector.cs - SelectAttackRoutine()");
         _FieldChecker.OrganizeAIMonsterCardsOnField(_CardOrganizer.AIMonstersOnField);
         _Actor.BoardManager.BoardController.ResetPlayerBoardOnList();
 
@@ -38,7 +40,7 @@ public class AIAttackSelector : AIAction {
 
                 foreach(var playerMonster in _playerListToAttack){
                     CheckAnimas(_FieldChecker.AIMonstersOnFieldThatCanAttack[0], playerMonster);
-                    int value = 0;
+                    int value;
 
                     if(_targetInAttack){
                         value = playerMonster.Attack;
@@ -52,8 +54,11 @@ public class AIAttackSelector : AIAction {
                     }
                 }
 
-                //Change Battle pahase to battle
-
+                //Change Battle phase to battle
+                _AI.Battle.ChangeState(_AI.Battle.DamagePhase);
+                yield return new WaitForSeconds(5f);
+                Debug.Log("AIAttackSelector.cs - SelectAttackRoutine(). Ended");
+                _AI.ChangeState(_AI.ActionSelect);
             }else{ // direct attack
                 do{
                     _FieldChecker.OrganizeAIMonsterCardsOnField(_CardOrganizer.AIMonstersOnField);
@@ -86,22 +91,22 @@ public class AIAttackSelector : AIAction {
         _CardOrganizer.PlayerMonstersOnField.Sort((x,y) => y.Level.CompareTo(x.Level));
     }
 
-    private void CheckMonstersToBattle(int aiIndexCard, int playerIndexCard){
-        if(_CardOrganizer.PlayerMonstersOnField[playerIndexCard]){
-            CheckAnimas(_FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], _CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
-            if (_FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard].Attack > _CardOrganizer.PlayerMonstersOnField[playerIndexCard].Attack){ //Can destroy the player monster
-                if (_CardOrganizer.PlayerArcanesOnField.Count > 0){
+    // private void CheckMonstersToBattle(int aiIndexCard, int playerIndexCard){
+    //     if(_CardOrganizer.PlayerMonstersOnField[playerIndexCard]){
+    //         CheckAnimas(_FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], _CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
+    //         if (_FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard].Attack > _CardOrganizer.PlayerMonstersOnField[playerIndexCard].Attack){ //Can destroy the player monster
+    //             if (_CardOrganizer.PlayerArcanesOnField.Count > 0){
 
-                }else{
-                    SetMonstersToBattle(_FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], _CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
-                }
-            }else{ //Can't destroy the actual player monster
-                playerIndexCard++;
-                if(playerIndexCard > _CardOrganizer.PlayerMonstersOnField.Count){ return; }
-                CheckMonstersToBattle(aiIndexCard, playerIndexCard);
-            }
-        }
-    }
+    //             }else{
+    //                 SetMonstersToBattle(_FieldChecker.AIMonstersOnFieldThatCanAttack[aiIndexCard], _CardOrganizer.PlayerMonstersOnField[playerIndexCard]);
+    //             }
+    //         }else{ //Can't destroy the actual player monster
+    //             playerIndexCard++;
+    //             if(playerIndexCard > _CardOrganizer.PlayerMonstersOnField.Count){ return; }
+    //             CheckMonstersToBattle(aiIndexCard, playerIndexCard);
+    //         }
+    //     }
+    // }
 
     private void CheckAnimas(MonsterCard aiMonster, MonsterCard playerMonster){
         switch(aiMonster.ActiveAnima){

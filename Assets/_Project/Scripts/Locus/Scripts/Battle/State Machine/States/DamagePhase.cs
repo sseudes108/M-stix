@@ -2,7 +2,12 @@ public class DamagePhase : AbstractState{
     public DamagePhase(StateMachine stateMachine) : base(stateMachine){}
 
     public override void Enter(){
-        StateMachine.Battle.BattleLogic.SetBattleCards(StateMachine.BattleManager.AttackerMonster, StateMachine.BattleManager.TargetMonster);
+        if(StateMachine.TurnManager.IsPlayerTurn){
+            StateMachine.Battle.BattleLogic.SetMonstersToBattle(StateMachine.BattleManager.AttackerMonster, StateMachine.BattleManager.TargetMonster);
+        }else{
+            StateMachine.Battle.BattleLogic.SetMonstersToBattle(StateMachine.AI.Actor.AttackingMonster, StateMachine.AI.Actor.TargetMonster);
+        }
+
         StateMachine.Battle.BattleLogic.StartBattleRoutine();
     }
 

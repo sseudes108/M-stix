@@ -28,7 +28,7 @@ public class BattleManagerSO : ScriptableObject {
 
     [HideInInspector] public UnityEvent<MonsterCard, MonsterCard> OnDamageStart;
     [HideInInspector] public UnityEvent OnDamageStartUI;
-    [HideInInspector] public UnityEvent OnAttackEnd;
+    [HideInInspector] public UnityEvent OnAttackEnd; //Highlight and unhiglight board places //Move UI holder card
 
     [HideInInspector] public UnityEvent OnEndPhaseStart;
 
@@ -41,9 +41,7 @@ public class BattleManagerSO : ScriptableObject {
     public MonsterCard AttackerMonster { get; private set; }
     public MonsterCard TargetMonster { get; private set; }
 
-    private void OnEnable() {
-        CreateEvents();
-    }
+    private void OnEnable() { CreateEvents(); }
 
     public void EndActionPhase() { Battle.ChangeState(Battle.EndPhase); }
 
@@ -98,8 +96,9 @@ public class BattleManagerSO : ScriptableObject {
     public void BoardPlaceSelectionEnd(Card card, bool isPlayerTurn) { OnBoardPlaceSelectionEnd?.Invoke(card, isPlayerTurn); }
 
     public void ActionPhaseStart() { OnActionPhaseStart?.Invoke(); }
+    
 
-    public void AttackSelectionStart(bool isPlayerTurn, bool isDirectAttack, MonsterCard attacker) {
+    public void AttackSelectionStart(bool isPlayerTurn, bool isDirectAttack, MonsterCard attacker) { //Used only by the player
         AttackerMonster = attacker;
 
         OnAttackSelectionStart?.Invoke(isPlayerTurn, isDirectAttack);
@@ -107,7 +106,7 @@ public class BattleManagerSO : ScriptableObject {
         Battle.ChangeState(Battle.AttackSelectionPhase);
     }
 
-    public void StartDamagePhase(MonsterCard target){
+    public void StartDamagePhase(MonsterCard target){ //Used only by the player
         TargetMonster = target;
 
         OnDamageStart?.Invoke(AttackerMonster, TargetMonster);
@@ -134,5 +133,5 @@ public class BattleManagerSO : ScriptableObject {
         yield return null;
     }
 
-    #endregion
+#endregion
 }
