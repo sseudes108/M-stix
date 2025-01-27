@@ -74,7 +74,6 @@ public class AIAttackSelector : AIAction {
         yield return null;
     }
 
-
     private void OrganizeAIMonstersByAttack(){
         _FieldChecker.AIMonstersOnFieldThatCanAttack.Sort((x,y) => y.Attack.CompareTo(x.Attack));
     }

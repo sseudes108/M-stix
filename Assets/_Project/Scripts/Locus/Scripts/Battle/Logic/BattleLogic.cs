@@ -10,9 +10,18 @@ public class BattleLogic : MonoBehaviour {
     private MonsterCard _monsterAttacker, _monsterTarget;
     private Transform _attackerOriginalPos, _targetOriginalPos;
 
-    public void StartBattleRoutine(){
-        StartCoroutine(BattleRoutine());
+    public void SetBattleController(Battle battle) { _battle = battle; }
+
+    //Seta os monstros para a batalha, chamada pelo Player e pela IA - Através de DamagePhase.cs
+    public void SetMonstersToBattle(MonsterCard attacker, MonsterCard target){
+        _attackerOriginalPos = attacker.GetBoardPlace().transform;
+        _targetOriginalPos = target.GetBoardPlace().transform;
+
+        _monsterAttacker = attacker;
+        _monsterTarget = target;
     }
+
+    public void StartBattleRoutine() {StartCoroutine(BattleRoutine());}
 
     public IEnumerator BattleRoutine(){
         MoveCardsToFirstPosition();
@@ -27,17 +36,7 @@ public class BattleLogic : MonoBehaviour {
         StartCoroutine(Battle());
         yield return null;
     }
-
-    public void SetMonstersToBattle(MonsterCard attacker, MonsterCard target){
-        _attackerOriginalPos = attacker.GetBoardPlace().transform;
-        _targetOriginalPos = target.GetBoardPlace().transform;
-
-        _monsterAttacker = attacker;
-        _monsterTarget = target;
-    }
-
-    public void SetBattleController(Battle battle) { _battle = battle; }
-
+    
 #region Positions
     private void MoveCardsToFirstPosition(){
         _monsterAttacker.MoveCard(_attackerPosition);

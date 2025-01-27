@@ -39,8 +39,16 @@ public class AIActor : MonoBehaviour {
     public Card CardOnBoardToFusion { get; private set; }
     private AI _ai;
 
-    public MonsterCard AttackingMonster { get; private set; }
+    public MonsterCard AttackerMonster { get; private set; }
     public MonsterCard TargetMonster { get; private set; }
+
+    private void OnEnable() {
+        BattleManager.OnAttackEnd.AddListener(BattleManager_AttackEnded);
+    }
+
+    private void OnDisable() {
+        BattleManager.OnAttackEnd.RemoveListener(BattleManager_AttackEnded);
+    }
 
     private void Awake() {
         _ai = GetComponent<AI>();
@@ -57,6 +65,12 @@ public class AIActor : MonoBehaviour {
         CardStatSelector ??= new(this);
         EffectSelector ??= new(this);
         AttackSelector ??= new(_ai, this, FieldChecker, CardOrganizer);
+    }
+
+    //Limpa os monstros que batalharam
+    private void BattleManager_AttackEnded(){
+        AttackerMonster = null;
+        TargetMonster = null;
     }
 
 #region Board Fusion
@@ -115,16 +129,8 @@ public class AIActor : MonoBehaviour {
         BoardPlaceSelector.SetBoardPlaces(monsterPlaces, arcanePlaces);
     }
 
-    public void ResetAttackingMonster(){
-        AttackingMonster = null;
-    }
-
-    public void ResetTargetMonster(){
-        TargetMonster = null;
-    }
-
     public void SetAttackingMonster(MonsterCard attackingMonster){
-        AttackingMonster = attackingMonster;
+        AttackerMonster = attackingMonster;
     }
     
     public void SetTargetMonster(MonsterCard targetMonster){

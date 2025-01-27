@@ -5,7 +5,7 @@ public class DamagePhase : AbstractState{
         if(StateMachine.TurnManager.IsPlayerTurn){
             StateMachine.Battle.BattleLogic.SetMonstersToBattle(StateMachine.BattleManager.AttackerMonster, StateMachine.BattleManager.TargetMonster);
         }else{
-            StateMachine.Battle.BattleLogic.SetMonstersToBattle(StateMachine.AI.Actor.AttackingMonster, StateMachine.AI.Actor.TargetMonster);
+            StateMachine.Battle.BattleLogic.SetMonstersToBattle(StateMachine.AI.Actor.AttackerMonster, StateMachine.AI.Actor.TargetMonster);
         }
 
         StateMachine.Battle.BattleLogic.StartBattleRoutine();
