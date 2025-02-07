@@ -1,7 +1,11 @@
+using UnityEngine;
+
 namespace Mistix{    
     public class BattleSM : StateMachine {
-        public AbstractState CurrentState { get; private set; }
+        [SerializeField] private BattleManager BattleManager;
 
+        public AbstractState CurrentState { get; private set; }
+        
         //States - Phases
         public BS_01_StartPhase StartPhase { get; private set; }
 
@@ -23,7 +27,7 @@ namespace Mistix{
         }
 
         private void CreateStates(){
-            StartPhase = new(this);
+            StartPhase = new(this, BattleManager);
         }
     }
 }

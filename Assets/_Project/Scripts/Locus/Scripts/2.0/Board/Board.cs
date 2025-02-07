@@ -1,7 +1,7 @@
-// using System.Collections.Generic;
-// using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine;
 
-// public class Board : MonoBehaviour {
+public class Board : MonoBehaviour {
 //     [SerializeField] private TurnManagerSO _turnManager;
 //     [SerializeField] private BoardManagerSO _boardManager;
 //     [SerializeField] private BattleManagerSO _battleManager;
@@ -157,4 +157,4 @@
 //             place.Visual.SetPlaceColors(playerColor, enemyColor);
 //         }
 //     }
-// }
+}
