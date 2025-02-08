@@ -1,7 +1,5 @@
+using UnityEngine;
+
 namespace Mistix{
-    using UnityEngine;
-    
-    public class StateMachine : MonoBehaviour {
-        
-    }
+    public class StateMachine : MonoBehaviour {}
 }

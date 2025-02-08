@@ -1,11 +1,16 @@
+using UnityEngine;
+
 namespace Mistix{
-    using UnityEngine;
     
     public class BattleManager : MonoBehaviour {
-        [field:SerializeField] public BoardManager BoardManager { get; private set; }
-        
-        public void UpdateUI(){
-            Debug.Log("UpdateUI");
+        [SerializeField] private BoardManager _boardManager;
+
+        public void LighOffAllPlaces() { _boardManager.LightOffAllPlaces(); }
+
+        public void LightUpAllPlaces() { _boardManager.LightUpAllPlaces(); }
+
+        public void SetPlaceColors(Vector3 blueBoardColor, Vector3 redBoardColor){
+            _boardManager.SetPlaceColors(blueBoardColor, redBoardColor);
         }
     }
 }

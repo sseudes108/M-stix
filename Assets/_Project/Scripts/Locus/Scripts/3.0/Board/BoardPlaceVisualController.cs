@@ -1,10 +1,18 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace Mistix{
-    using System.Collections.Generic;
-    
+
     public class BoardPlaceVisualController{
-        public void LightUpPlaces(List<BoardPlace> boardPlaces){
+        public void LightUpPlaces(List<BoardPlace> boardPlaces, Color color){
             foreach(var place in boardPlaces){
-                place.Visual.LightUp();
+                place.LightUp(color);
+            }
+        }
+
+        public void LightOffPlaces(List<BoardPlace> boardPlaces, Color color) {
+            foreach(var place in boardPlaces){
+                place.LightOff(color);
             }
         }
     }

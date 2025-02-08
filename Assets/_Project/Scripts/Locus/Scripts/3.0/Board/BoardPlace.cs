@@ -1,5 +1,6 @@
+using UnityEngine;
+
 namespace Mistix{
-    using UnityEngine;
 
     [RequireComponent(typeof(BoardPlaceVisual))]
     public class BoardPlace : MonoBehaviour {
@@ -10,15 +11,23 @@ namespace Mistix{
         [field:SerializeField] public bool IsMonsterPlace { get; private set; }
         [field:SerializeField] public bool IsFree { get; private set; }
 
-        public BoardPlaceVisual Visual;
+        private BoardPlaceVisual _visual;
 
         private void Awake() {
             Colliders = GetComponents<Collider>();
-            Visual = GetComponent<BoardPlaceVisual>();
+            _visual = GetComponent<BoardPlaceVisual>();
         }
 
         private void Start(){
             IsFree = true;
+        }
+
+        public void LightUp(Color color){
+            _visual.LightUp(color);
+        }
+
+        public void LightOff(Color color){
+            _visual.LightOff(color);
         }
     }
 }

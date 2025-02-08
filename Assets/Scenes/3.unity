@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7c7d3e019ed1949bcdfa0e586e7280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BoardManager>k__BackingField: {fileID: 1488751544}
+  _boardManager: {fileID: 1488751544}
 --- !u!1001 &626193107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -241,6 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1029235501}
+  - component: {fileID: 1029235502}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -263,6 +264,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029235502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029235500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3fa6bfe76493445975c02c8ed4ff5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorDatabase: {fileID: 11400000, guid: 77ccdc90547634a4b85713eb1a51c75c, type: 2}
+  _battleManager: {fileID: 408478682}
 --- !u!1 &1488751542
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,25 +322,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eabd4852368dfc42a55e9b8c365a912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerMonsterPlaces:
+  _playerMonsterPlaces:
   - {fileID: 4377215725906037888}
   - {fileID: 8915110265863400188}
   - {fileID: 8155174818563473805}
   - {fileID: 7654342664017209597}
   - {fileID: 1416857058432260141}
-  PlayerArcanePlaces:
+  _playerArcanePlaces:
   - {fileID: 8153528973529032863}
   - {fileID: 8092200609343750196}
   - {fileID: 6914312128763798882}
   - {fileID: 7776460519319531290}
   - {fileID: 8150011148300778831}
-  EnemyMonsterPlaces:
+  _enemyMonsterPlaces:
   - {fileID: 9146829799151560803}
   - {fileID: 6603530190538680337}
   - {fileID: 5023143893493924206}
   - {fileID: 7461466990363058304}
   - {fileID: 7350017188222136313}
-  EnemyArcanePlaces:
+  _enemyArcanePlaces:
   - {fileID: 3954353173055860454}
   - {fileID: 3681697667583567213}
   - {fileID: 7698060437245628002}
@@ -1246,7 +1261,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!114 &1433984661830966928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4013,7 +4027,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!222 &3699453436057976655
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4196,7 +4209,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!4 &3954536310887156672
 Transform:
   m_ObjectHideFlags: 0
@@ -4678,7 +4690,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!23 &4385334252663678891
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5252,7 +5263,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!23 &5042906273275744569
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7386,7 +7396,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!114 &6626363980672840802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7943,12 +7952,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2061ae7cf72d84b9cc767c80d4f6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 7
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!33 &6928750908403966195
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8339,7 +8347,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!1 &7434806330872354390
 GameObject:
   m_ObjectHideFlags: 0
@@ -8407,7 +8414,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!1 &7463767081417013416
 GameObject:
   m_ObjectHideFlags: 0
@@ -8764,7 +8770,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!1 &7672887985023284294
 GameObject:
   m_ObjectHideFlags: 0
@@ -8852,7 +8857,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!4 &7732443720723507090
 Transform:
   m_ObjectHideFlags: 0
@@ -8898,7 +8902,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!224 &7746271445513848773
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9051,12 +9054,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2061ae7cf72d84b9cc767c80d4f6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 6
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!224 &7786555033550899287
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9451,12 +9453,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2061ae7cf72d84b9cc767c80d4f6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 8
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!222 &8109626942106316146
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9557,12 +9558,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2061ae7cf72d84b9cc767c80d4f6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 5
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!1 &8153528973529032861
 GameObject:
   m_ObjectHideFlags: 0
@@ -9606,12 +9606,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2061ae7cf72d84b9cc767c80d4f6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Location>k__BackingField: 0
+  <Location>k__BackingField: 9
   <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!1 &8155174818563473803
 GameObject:
   m_ObjectHideFlags: 0
@@ -9661,7 +9660,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!1 &8175904213989295525
 GameObject:
   m_ObjectHideFlags: 0
@@ -10102,7 +10100,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!1 &8564853839372287068
 GameObject:
   m_ObjectHideFlags: 0
@@ -10713,7 +10710,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!4 &9004093228693639696
 Transform:
   m_ObjectHideFlags: 0
@@ -10831,7 +10827,6 @@ MonoBehaviour:
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
   <IsFree>k__BackingField: 0
-  Visual: {fileID: 0}
 --- !u!114 &9164478386352156889
 MonoBehaviour:
   m_ObjectHideFlags: 0

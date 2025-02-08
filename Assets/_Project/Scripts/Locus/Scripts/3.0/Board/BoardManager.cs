@@ -1,26 +1,40 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace Mistix{
-    using System.Collections.Generic;
-    using UnityEngine;
     
     public class BoardManager : MonoBehaviour {
-        [SerializeField] private BoardPlaceVisualController BoardPlaceVisualController;
+        private BoardPlaceVisualController _boardPlaceVisualController;
 
-        public List<BoardPlace> PlayerMonsterPlaces;
-        public List<BoardPlace> PlayerArcanePlaces;
-        public List<BoardPlace> EnemyMonsterPlaces;
-        public List<BoardPlace> EnemyArcanePlaces;
+        private Color PlayerDefaultColor;
+        private Color EnemyDefaultColor;
 
-        private void Awake() {
-            BoardPlaceVisualController = new();
+        [SerializeField] private List<BoardPlace> _playerMonsterPlaces;
+        [SerializeField] private List<BoardPlace> _playerArcanePlaces;
+        [SerializeField] private List<BoardPlace> _enemyMonsterPlaces;
+        [SerializeField] private List<BoardPlace> _enemyArcanePlaces;
+
+        private void Awake() { _boardPlaceVisualController = new(); }
+
+        public void LightUpAllPlaces(){
+            _boardPlaceVisualController.LightUpPlaces(_playerMonsterPlaces, PlayerDefaultColor);
+            _boardPlaceVisualController.LightUpPlaces(_playerArcanePlaces, PlayerDefaultColor);
+
+            _boardPlaceVisualController.LightUpPlaces(_enemyMonsterPlaces, EnemyDefaultColor);
+            _boardPlaceVisualController.LightUpPlaces(_enemyArcanePlaces, EnemyDefaultColor);
         }
 
-        public void StartPhase(){
-            BoardPlaceVisualController.LightUpPlaces(PlayerMonsterPlaces);
-            BoardPlaceVisualController.LightUpPlaces(PlayerArcanePlaces);
+        public void LightOffAllPlaces() { 
+            _boardPlaceVisualController.LightOffPlaces(_playerMonsterPlaces, PlayerDefaultColor);
+            _boardPlaceVisualController.LightOffPlaces(_playerArcanePlaces, PlayerDefaultColor);
 
-            BoardPlaceVisualController.LightUpPlaces(EnemyMonsterPlaces);
-            BoardPlaceVisualController.LightUpPlaces(EnemyArcanePlaces);
+            _boardPlaceVisualController.LightOffPlaces(_enemyMonsterPlaces, EnemyDefaultColor);
+            _boardPlaceVisualController.LightOffPlaces(_enemyArcanePlaces, EnemyDefaultColor);
         }
 
+        public void SetPlaceColors(Vector3 playerBoardColor, Vector3 enemyBoardColor){
+            PlayerDefaultColor = new Color(playerBoardColor.x, playerBoardColor.y, playerBoardColor.z);
+            EnemyDefaultColor = new Color(enemyBoardColor.x, enemyBoardColor.y, enemyBoardColor.z);
+        }
     }
 }

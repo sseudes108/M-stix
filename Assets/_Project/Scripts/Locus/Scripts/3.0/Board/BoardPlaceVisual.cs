@@ -1,49 +1,33 @@
+using System.Collections;
+using UnityEngine;
+
 namespace Mistix{
-    using System.Collections;
-    using UnityEngine;
     
     public class BoardPlaceVisual : MonoBehaviour {
         private BoardPlace _place;
         private Renderer[] _renderers;
         private float _intensityFactor;
         public bool IsFree => _place.IsFree;
-
-        private Color PlayerDefaultColor = Color.blue;
-        private Color EnemyDefaultColor = Color.red;
-
         private void Awake() {
             _renderers = GetComponentsInChildren<Renderer>();
             _place = GetComponent<BoardPlace>();
 
-            TurnOffLights();
         }
 
-        public void TurnOffLights(){
-            if(_place.IsPlayerPlace){
-                StartCoroutine(SetColorRoutine(PlayerDefaultColor, 0.01f, true));
-            }else{
-                StartCoroutine(SetColorRoutine(EnemyDefaultColor, 0.01f, true));
-            }
+        public void LightOff(Color color){
+            StartCoroutine(SetColorRoutine(color, 0.01f, true));
         }
 
-        public void LightUp(){
-            if(_place.IsPlayerPlace){
-                StartCoroutine(SetColorRoutine(PlayerDefaultColor, 0.2f, false));
-            }else{
-                StartCoroutine(SetColorRoutine(EnemyDefaultColor, 0.2f, false));
-            }
+        public void LightUp(Color color){
+            StartCoroutine(SetColorRoutine(color, 0.2f, false));
         }
         
         public void HighLight(){
             StartCoroutine(SetColorRoutine(new Color(216, 216, 27), 0.1f, false));
         }
 
-        public void UnHighLight(){
-            if(_place.IsPlayerPlace){
-                StartCoroutine(SetColorRoutine(PlayerDefaultColor, 0.2f, false));
-            }else{
-                StartCoroutine(SetColorRoutine(EnemyDefaultColor, 0.2f, false));
-            }
+        public void UnHighLight(Color color){
+            StartCoroutine(SetColorRoutine(color, 0.2f, false));
         }
 
         public IEnumerator SetColorRoutine(Color newColor, float intensity, bool imediate){
@@ -83,11 +67,6 @@ namespace Mistix{
                 yield return null;
             }while(intensityFactor < intensityTarget);
             yield return null;
-        }
-
-        public void SetPlaceColors(Vector3 playerColor, Vector3 enemyColor){
-            PlayerDefaultColor = new Color(playerColor.x, playerColor.y, playerColor.z);
-            EnemyDefaultColor = new Color(enemyColor.x, enemyColor.y, enemyColor.z);
         }
     }
 }

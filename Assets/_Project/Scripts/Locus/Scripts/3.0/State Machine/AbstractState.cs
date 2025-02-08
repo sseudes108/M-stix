@@ -1,12 +1,10 @@
 namespace Mistix{  
     public abstract class AbstractState {
-        public AbstractState(StateMachine stateMachine, BattleManager battleManager){
-            StateMachine = stateMachine;
-            BattleManager = battleManager;
+        public AbstractState(BattleSM battleSM){
+            BattleSM = battleSM;
         }
         
-        public StateMachine StateMachine { get; private set; }
-        public BattleManager BattleManager { get; private set; }
+        public BattleSM BattleSM { get; private set; }
 
         public abstract void Enter();
         public abstract void Exit();

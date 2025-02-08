@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-namespace Mistix{    
+namespace Mistix{
     public class BattleSM : StateMachine {
         [SerializeField] private BattleManager BattleManager;
 
@@ -9,13 +10,9 @@ namespace Mistix{
         //States - Phases
         public BS_01_StartPhase StartPhase { get; private set; }
 
-        private void Awake() {
-            CreateStates();
-        }
+        private void Awake() { CreateStates(); }
 
-        private void Start() {
-            ChangeState(StartPhase);
-        }
+        private void Start() { ChangeState(StartPhase); }
 
         public void ChangeState(AbstractState newState){
             if(newState == CurrentState) { return;}
@@ -27,7 +24,10 @@ namespace Mistix{
         }
 
         private void CreateStates(){
-            StartPhase = new(this, BattleManager);
+            StartPhase = new(this);
         }
+
+        public void LightOffAllPlaces(){ BattleManager.LighOffAllPlaces(); }
+        public void LightUpAllPlaces() { BattleManager.LightUpAllPlaces(); }
     }
 }
