@@ -46,5 +46,9 @@ namespace Mistix{
         public void CheckPositionsInHand() { BattleManager.CheckPositionsInHand(); }
 
         public void DrawCards() { BattleManager.DrawCards(); }
+
+        public void AllowCardSelection(){
+            BattleManager.AllowCardSelection();
+        }
     }
 }

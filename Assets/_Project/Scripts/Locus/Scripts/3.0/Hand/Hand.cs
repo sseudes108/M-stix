@@ -58,6 +58,12 @@ namespace Mistix{
             yield return null;
         }
 
-        public bool IsPlayerHand() { return _isPlayerHand; }
+        // public bool IsPlayerHand() { return _isPlayerHand; }
+
+        public void AllowCardSelection(){
+            foreach(var card in _cardsInHand){
+                card.SetCanSelectCard();
+            }
+        }
     }
 }

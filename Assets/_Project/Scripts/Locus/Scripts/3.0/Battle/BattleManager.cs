@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Mistix{
     
     public class BattleManager : MonoBehaviour {
+        
         [SerializeField] private BoardManager _boardManager;
         [SerializeField] private UI_Battle _uiBattle;
         [SerializeField] private UI_Deck _uiDeck;
@@ -48,6 +49,10 @@ namespace Mistix{
 
         public Card InstantiateCard(ScriptableObject cardData){
             return _cardManager.InstantiateCard(cardData);
+        }
+
+        public void AllowCardSelection(){
+            _handManager.AllowCardSelection();
         }
     }
 }

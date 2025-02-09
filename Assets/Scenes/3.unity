@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 820496041}
   - component: {fileID: 820496042}
   - component: {fileID: 820496043}
+  - component: {fileID: 820496044}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -321,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creator: {fileID: 0}
+  _selector: {fileID: 0}
 --- !u!114 &820496043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +339,18 @@ MonoBehaviour:
     type: 3}
   _arcaneCardPrefab: {fileID: 6569281006682968886, guid: 53341672514af1c4780e37ae727e9609,
     type: 3}
+--- !u!114 &820496044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820496040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7a466be44649b41a11c29ff38118db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1029235500
 GameObject:
   m_ObjectHideFlags: 0

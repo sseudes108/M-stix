@@ -37,5 +37,9 @@ namespace Mistix{
         public Card InstantiateCard(ScriptableObject cardData){
             return _battleManager.InstantiateCard(cardData);
         }
+
+        public void AllowCardSelection(){
+            _playerHand.AllowCardSelection();
+        }
     }
 }

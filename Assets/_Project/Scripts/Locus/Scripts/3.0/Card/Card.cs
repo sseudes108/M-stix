@@ -4,8 +4,8 @@ namespace Mistix{
     public abstract class Card : MonoBehaviour {
         // [Header("Managers")]
         // [SerializeField] private BattleManagerSO _battleManager;
-        // [SerializeField] private CardManagerSO _cardManager;
         // [SerializeField] private UIEventHandlerSO _uIManager;
+        [SerializeField] protected CardManager _cardManager;
 
         [Header("Global Settings")]
         public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serialized;. Needs to be public or otherwise it became null at the instatiation moment.
@@ -14,7 +14,7 @@ namespace Mistix{
         public CardVisual Visuals { get; private set; }
         protected CardMovement CardMovement { get; private set; }
         public bool IsPlayerCard = false;
-        public bool _canBeSelected = false;
+        private bool _canBeSelected = false;
         public bool IsOnHand = false;
         public bool _isSelected = false;
 
@@ -44,6 +44,7 @@ namespace Mistix{
         // }
         
         private void Awake() {
+            _cardManager = FindFirstObjectByType<CardManager>();
             Visuals = GetComponent<CardVisual>();
             CardMovement = GetComponent<CardMovement>();
             _status = transform.Find("Canvas");
@@ -56,24 +57,26 @@ namespace Mistix{
         }
 
         private void OnMouseDown() {
-            // if(!_canBeSelected) { return; }
+            if(!_canBeSelected) { return; }
 
-            // if(IsPlayerCard && IsOnHand){
-            //     Vector3 newPos;
-            //     if(!_isSelected){
-            //         newPos = new (0,+0.3f,0);
-            //         Visuals.Border.SetBorderColor(new Color(191, 162, 57));
-            //         _isSelected = true;
-            //         _cardManager.Selector.AddToSelectedList(this);
-            //     }else{
-            //         newPos = new (0,-0.3f,0);
-            //         Visuals.Border.ResetBorderColor();
-            //         _isSelected = false;
-            //         _cardManager.Selector.RemoveFromSelectedList(this);
-            //     }
+            if(IsPlayerCard && IsOnHand){
+                Vector3 newPos;
+                if(!_isSelected){
+                    newPos = new (0,+0.3f,0);
+                    Visuals.Border.SetBorderColor(new Color(191, 162, 57));
+                    _isSelected = true;
+                    // _cardManager.Selector.AddToSelectedList(this);
+                    _cardManager.SelectCard(this);
+                }else{
+                    newPos = new (0,-0.3f,0);
+                    Visuals.Border.ResetBorderColor();
+                    _isSelected = false;
+                    _cardManager.DeselectCard(this);
+                    // _cardManager.Selector.RemoveFromSelectedList(this);
+                }
 
-            //     transform.position += newPos;
-            // }
+                transform.position += newPos;
+            }
         }
 
         public void OnMouseOver(){
@@ -113,6 +116,10 @@ namespace Mistix{
         public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }
         public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
         public void SetShowButtons(bool mustShowButtons) { MustShowButtons = mustShowButtons; }
+
+        public void SetCanSelectCard(){
+            _canBeSelected = true;
+        }
         
         public void MoveCard(Vector3 position){
             CardMovement.SetTargetPosition(position, 5f);
