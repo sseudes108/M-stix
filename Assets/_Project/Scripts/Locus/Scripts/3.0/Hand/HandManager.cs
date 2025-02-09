@@ -7,6 +7,7 @@ namespace Mistix{
         [SerializeField] private Hand _enemyHand;
 
         [SerializeField] private BattleManager _battleManager;
+        private bool _selectionEnded = false;
 
         public void CheckPositionsInHand(int currentTurn, bool isPlayerTurn){
             if(currentTurn == 1){
@@ -38,7 +39,10 @@ namespace Mistix{
             return _battleManager.DrawCard(cardData);
         }
 
-        public void AllowCardSelection() { _playerHand.AllowCardSelection(); }
+        public void AllowCardSelection() { 
+            _selectionEnded = false;
+            _playerHand.AllowCardSelection(); 
+        }
 
         public bool IsHandFull(){
             if(_battleManager.IsPlayerTurn()){
@@ -48,6 +52,16 @@ namespace Mistix{
                 Debug.Log("Enemy Hand Full");
                 return _enemyHand.IsHandFull();
             }
+        }
+
+        public void BlockCardSelection() { _playerHand.BlockCardSelection(); }
+
+        public bool IsCardSelectionEnded(){
+            return _selectionEnded;
+        }
+
+        public void EndCardSelection(){
+            _selectionEnded = true;
         }
     }
 }

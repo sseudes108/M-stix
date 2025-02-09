@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace Mistix{   
     public class UI_Battle : MonoBehaviour {
-        private UI_Deck _uiDeck;
-        private UI_CardHolder _uiCardHolder;
-        private UI_Buttons _uiButtons;
+        // private UI_Deck _uiDeck;
+        // private UI_CardHolder _uiCardHolder;
+        // private UI_BattleButtons _uiButtons;
+
+        private UIManager _uiManager;
 
         [Header("Battle")]
         [SerializeField] private TextMeshProUGUI _turn;
@@ -24,10 +26,7 @@ namespace Mistix{
         [SerializeField] private TextMeshProUGUI _aiState;
 
         private void Awake() {
-            _uiDeck = GetComponent<UI_Deck>();
-            _uiButtons = GetComponent<UI_Buttons>();
-            _uiCardHolder = GetComponent<UI_CardHolder>();
-            
+            _uiManager = GetComponent<UIManager>();
         }
 
         public void UpdateTurn(int turn, bool playerTurn){
@@ -55,11 +54,12 @@ namespace Mistix{
             _battlePhase.text = $"Battle: {battlePhase}";
         }
 
-        public void ResetDeckCount() { _uiDeck.ResetDeckCount(); }
-        public void UpdateIllustration(Texture2D illustration) { _uiCardHolder.UpdateIllustration(illustration); }
+        public void ResetDeckCount() { _uiManager.ResetDeckCount(); }
 
-        public void ShowEndSelectionButton() { _uiButtons.ShowEndSelectionButton(); }
+        public void UpdateIllustration(Texture2D illustration) { _uiManager.UpdateIllustration(illustration); }
 
-        public void HideEndSelectionButton() { _uiButtons.HideEndSelectionButton(); }
+        public void ShowEndSelectionButton() { _uiManager.ShowEndSelectionButton(); }
+
+        public void HideEndSelectionButton() { _uiManager.HideEndSelectionButton(); }
     }
 }

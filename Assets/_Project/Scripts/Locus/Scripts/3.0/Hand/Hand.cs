@@ -12,8 +12,6 @@ namespace Mistix{
         [SerializeField] private bool _isPlayerHand;
         private bool _handFull = false;
 
-        // public void CheckPositionsInHand() { CheckPositions(); }
-
         public void CheckPositionsInHand(){
             _cardsInHand.Clear();
             _freePositionsInHand.Clear();
@@ -62,11 +60,15 @@ namespace Mistix{
             yield return null;
         }
 
-        // public bool IsPlayerHand() { return _isPlayerHand; }
-
         public void AllowCardSelection(){
             foreach(var card in _cardsInHand){
-                card.SetCanSelectCard();
+                card.AllowCardSelection();
+            }
+        }
+        
+        public void BlockCardSelection(){
+            foreach(var card in _cardsInHand){
+                card.BlockCardSelection();
             }
         }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Mistix{
     public abstract class Card : MonoBehaviour {
-        protected BattleManager _battleManager;
+        protected CardManager _cardManager;
 
         [Header("Global Settings")]
         public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serialized;. Needs to be public or otherwise it became null at the instatiation moment.
@@ -28,20 +28,9 @@ namespace Mistix{
         private HandPosition _handPosition;
         public BoardPlace BoardPlace;
 
-    #region Unity Methods
-
-        // private void OnEnable() {
-        //     _battleManager.OnCardSelectionStart.AddListener(BattleManager_OnCardSelectionStart);
-        //     _battleManager.OnCardSelectionEnd.AddListener(BattleManager_OnCardSelectionEnd);
-        // }
-
-        // private void OnDisable() {
-        //     _battleManager.OnCardSelectionStart.RemoveListener(BattleManager_OnCardSelectionStart);
-        //     _battleManager.OnCardSelectionEnd.RemoveListener(BattleManager_OnCardSelectionEnd);
-        // }
-        
+    #region Unity Methods        
         private void Awake() {
-            _battleManager = FindFirstObjectByType<BattleManager>();
+            _cardManager = FindFirstObjectByType<CardManager>();
             
             _visuals = GetComponent<CardVisual>();
             _cardMovement = GetComponent<CardMovement>();
@@ -63,12 +52,12 @@ namespace Mistix{
                     newPos = new (0,+0.3f,0);
                     _visuals.Border.SetBorderColor(new Color(191, 162, 57));
                     _isSelected = true;
-                    _battleManager.SelectCard(this);
+                    _cardManager.SelectCard(this);
                 }else{
                     newPos = new (0,-0.3f,0);
                     _visuals.Border.ResetBorderColor();
                     _isSelected = false;
-                    _battleManager.DeselectCard(this);
+                    _cardManager.DeselectCard(this);
                 }
 
                 transform.position += newPos;
@@ -79,23 +68,17 @@ namespace Mistix{
             if(!IsPlayerCard && IsOnHand) {return;} //Not player card, on hand
 
             if(IsPlayerCard){
-                _battleManager.UpdateCardUilustration(Data.Illustration);
+                _cardManager.UpdateCardUilustration(Data.Illustration);
                 return;
             }
 
             if(!IsOnHand && !IsFaceDown){ //Not player card, not on hand, not face down
-                _battleManager.UpdateCardUilustration(Data.Illustration);
+                _cardManager.UpdateCardUilustration(Data.Illustration);
                 return;
             }
         }
 
     #endregion
-
-    // #region Events Methods
-    //     private void BattleManager_OnCardSelectionStart() { _canBeSelected = true; }
-    //     private void BattleManager_OnCardSelectionEnd() { _canBeSelected = false; }
-
-    // #endregion
 
     #region Custom Methods Methods
 
@@ -113,8 +96,11 @@ namespace Mistix{
         public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
         public void SetShowButtons(bool mustShowButtons) { MustShowButtons = mustShowButtons; }
 
-        public void SetCanSelectCard(){
+        public void AllowCardSelection(){
             _canBeSelected = true;
+        }
+        public void BlockCardSelection(){
+            _canBeSelected = false;
         }
         
         public void MoveCard(Vector3 position){

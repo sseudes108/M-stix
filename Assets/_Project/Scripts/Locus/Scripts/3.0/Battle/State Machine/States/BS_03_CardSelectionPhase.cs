@@ -9,10 +9,16 @@ namespace Mistix{
         public override void Exit(){}
 
         private IEnumerator CardSelectPhaseRoutine() {
-            BattleSM.AllowCardSelection(); //Iterar sobre as cartas na mao do jogador e liberar sua seleção
+            BattleSM.AllowCardSelection(); //Itera sobre as cartas na mao do jogador e libera a seleção
+            
+            while(BattleSM.IsCardSelectionEnded() == false){ //Aguardar o botão de confirmar ser pressionado (Botão só é mostrado caso alguma carta esteja selecionada)
+                yield return null;
+            }
 
-            //Aguardar o botão de confirmar ser pressionado
-            //Passar para a próxima fase (Fusão)
+            BattleSM.BlockCardSelection(); //Itera sobre as cartas na mao do jogador e bloqueia a seleção
+            
+            BattleSM.ChangeState(BattleSM.FusionPhase); //Passar para a próxima fase (Fusão)
+
             yield return null;
         }
 

@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 namespace Mistix{
     
     public class BattleManager : MonoBehaviour {
         [SerializeField] private BoardManager _boardManager;
-        [SerializeField] private UI_Battle _uiBattle;
+        [SerializeField] private UIManager _uiManager;
         [SerializeField] private LPManager _lpManager;
         [SerializeField] private HandManager _handManager;
         [SerializeField] private CardManager _cardManager;
@@ -29,9 +30,6 @@ namespace Mistix{
 
     #region Card Manager
         public Card DrawCard(ScriptableObject cardData) { return _cardManager.DrawCard(cardData); }
-        public void SelectCard(Card card) { _cardManager.SelectCard(card); }
-        public void DeselectCard(Card card) { _cardManager.DeselectCard(card); }
-
     #endregion
 
     #region Turn Manager
@@ -41,15 +39,25 @@ namespace Mistix{
     #endregion
 
     #region Hand Manager
-        public void AllowCardSelection(){ _handManager.AllowCardSelection(); }
+        public void AllowCardSelection() { _handManager.AllowCardSelection(); }
+        public void BlockCardSelection() { _handManager.BlockCardSelection(); }
         public bool IsHandFull() { return _handManager.IsHandFull(); }
         public void CheckPositionsInHand(){
             var turn = _turnManager.GetTurnInfo();
             _handManager.CheckPositionsInHand(turn.Item1, turn.Item2);
         }
+
         public void DrawCards(){
             var turn = _turnManager.GetTurnInfo();
             _handManager.DrawCards(turn.Item1, turn.Item2);            
+        }
+
+        public bool IsCardSelectionEnded() {
+            return _handManager.IsCardSelectionEnded();
+        }
+
+        public void EndCardSelection(){
+            _handManager.EndCardSelection();
         }
         
     #endregion
@@ -57,23 +65,23 @@ namespace Mistix{
     #region UI Manager
         public void UpdateTurn(){
             var turn = _turnManager.GetTurnInfo();
-            _uiBattle.UpdateTurn(turn.Item1, turn.Item2);
+            _uiManager.UpdateTurn(turn.Item1, turn.Item2);
         }
-        public void UpdateLifePoints(bool isPlayer, int lifePoints) { _uiBattle.UpdateLifePoints(isPlayer, lifePoints); }
-        public void UpdateDeckCount(bool isPlayer, int deckCount) { _uiBattle.UpdateDeckCount(isPlayer, deckCount); }
-        public void ResetDeckCount() { _uiBattle.ResetDeckCount(); }
-        public void UpdateDebugBattleState(string state) { _uiBattle.UpdateDebugBattleState(state); }
+        public void UpdateLifePoints(bool isPlayer, int lifePoints) { _uiManager.UpdateLifePoints(isPlayer, lifePoints); }
+        public void UpdateDeckCount(bool isPlayer, int deckCount) { _uiManager.UpdateDeckCount(isPlayer, deckCount); }
+        public void ResetDeckCount() { _uiManager.ResetDeckCount(); }
+        public void UpdateDebugBattleState(string state) { _uiManager.UpdateDebugBattleState(state); }
         public void UpdateCardUilustration(Texture2D illustration) {
-            _uiBattle.UpdateIllustration(illustration);
+            _uiManager.UpdateIllustration(illustration);
         }
         public void ShowEndSelectionButton() {
-            _uiBattle.ShowEndSelectionButton();
+            _uiManager.ShowEndSelectionButton();
         }
         public void HideEndSelectionButton() {
-            _uiBattle.HideEndSelectionButton();
+            _uiManager.HideEndSelectionButton();
         }
-    
-    #endregion
-    
+
+        #endregion
+
     }
 }

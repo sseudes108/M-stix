@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -30,6 +31,10 @@ namespace Mistix{
 
         public void HideEndSelectionButton(){
             _battleManager.HideEndSelectionButton();
+        }
+
+        public void UpdateCardUilustration(Texture2D illustration){
+            _battleManager.UpdateCardUilustration(illustration);
         }
     }
 }

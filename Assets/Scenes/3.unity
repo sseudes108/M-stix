@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boardManager: {fileID: 1488751544}
-  _uiBattle: {fileID: 8031828688844525928}
+  _uiManager: {fileID: 8031828688844525932}
   _lpManager: {fileID: 1237225917}
   _handManager: {fileID: 1438666430}
   _cardManager: {fileID: 820496042}
@@ -7724,6 +7724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8031828688844525927}
+  - component: {fileID: 8031828688844525932}
   - component: {fileID: 8031828688844525928}
   - component: {fileID: 8031828688844525929}
   - component: {fileID: 8031828688844525930}
@@ -13995,8 +13996,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b3f7600cc535d47a7f8d61439a903d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionButton: {fileID: 8808485304963659350}
+  _actionButtonObject: {fileID: 8808485304963659350}
   _actionButtonText: {fileID: 6799753790690062914}
+--- !u!114 &8031828688844525932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843403810405233628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b6e9294176e2544abaee4a50df21e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _battleManager: {fileID: 408478682}
 --- !u!4 &8039919782589876887
 Transform:
   m_ObjectHideFlags: 0

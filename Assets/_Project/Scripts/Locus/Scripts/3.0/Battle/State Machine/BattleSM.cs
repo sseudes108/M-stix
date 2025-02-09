@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -10,6 +11,7 @@ namespace Mistix{
         public BS_01_StartPhase StartPhase { get; private set; }
         public BS_02_DrawPhase DrawPhase { get; private set; }
         public BS_03_CardSelectionPhase CardSelectionPhase { get; private set; }
+        public BS_04_FusionPhase FusionPhase { get; private set; }
 
     #region Unity Methods
         private void Awake() { CreateStates(); }
@@ -33,6 +35,7 @@ namespace Mistix{
             StartPhase = new(this);
             DrawPhase = new(this);
             CardSelectionPhase = new(this);
+            FusionPhase = new(this);
         }
     #endregion
 
@@ -55,12 +58,18 @@ namespace Mistix{
     #region Cards
         public void DrawCards() { BattleManager.DrawCards(); }
         public void AllowCardSelection() { BattleManager.AllowCardSelection(); }
+        public void BlockCardSelection() { BattleManager.BlockCardSelection(); }
     #endregion
 
     #region Hand
         public bool IsHandFull() { return BattleManager.IsHandFull(); }
         public void CheckPositionsInHand() { BattleManager.CheckPositionsInHand(); }
-    #endregion
-        
+
+        public bool IsCardSelectionEnded(){
+            return BattleManager.IsCardSelectionEnded();
+        }
+
+        #endregion
+    
     }
 }
