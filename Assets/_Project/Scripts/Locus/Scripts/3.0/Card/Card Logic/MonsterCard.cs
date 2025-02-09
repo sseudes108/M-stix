@@ -84,7 +84,7 @@ namespace Mistix{
             base.ResetCardStats();
             AnimaSelected = false;   
             ModeSelected = false;
-            Visuals.ResetAnimaColors();
+            _visuals.ResetAnimaColors();
         }
 
         public void BuffAttack(){

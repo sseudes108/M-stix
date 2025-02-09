@@ -2,17 +2,14 @@ using UnityEngine;
 
 namespace Mistix{
     public abstract class Card : MonoBehaviour {
-        // [Header("Managers")]
-        // [SerializeField] private BattleManagerSO _battleManager;
-        // [SerializeField] private UIEventHandlerSO _uIManager;
-        [SerializeField] protected CardManager _cardManager;
+        protected BattleManager _battleManager;
 
         [Header("Global Settings")]
         public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serialized;. Needs to be public or otherwise it became null at the instatiation moment.
         public string Name { get; private set; }
         private Texture2D _illustration;
-        public CardVisual Visuals { get; private set; }
-        protected CardMovement CardMovement { get; private set; }
+        protected CardVisual _visuals;
+        protected CardMovement _cardMovement;
         public bool IsPlayerCard = false;
         private bool _canBeSelected = false;
         public bool IsOnHand = false;
@@ -44,16 +41,17 @@ namespace Mistix{
         // }
         
         private void Awake() {
-            _cardManager = FindFirstObjectByType<CardManager>();
-            Visuals = GetComponent<CardVisual>();
-            CardMovement = GetComponent<CardMovement>();
+            _battleManager = FindFirstObjectByType<BattleManager>();
+            
+            _visuals = GetComponent<CardVisual>();
+            _cardMovement = GetComponent<CardMovement>();
             _status = transform.Find("Canvas");
             _collider = GetComponent<Collider>();
         }
 
         private void Start(){
             SetCardInfo();
-            Visuals.SetVisuals(_illustration);
+            _visuals.SetVisuals(_illustration);
         }
 
         private void OnMouseDown() {
@@ -63,16 +61,14 @@ namespace Mistix{
                 Vector3 newPos;
                 if(!_isSelected){
                     newPos = new (0,+0.3f,0);
-                    Visuals.Border.SetBorderColor(new Color(191, 162, 57));
+                    _visuals.Border.SetBorderColor(new Color(191, 162, 57));
                     _isSelected = true;
-                    // _cardManager.Selector.AddToSelectedList(this);
-                    _cardManager.SelectCard(this);
+                    _battleManager.SelectCard(this);
                 }else{
                     newPos = new (0,-0.3f,0);
-                    Visuals.Border.ResetBorderColor();
+                    _visuals.Border.ResetBorderColor();
                     _isSelected = false;
-                    _cardManager.DeselectCard(this);
-                    // _cardManager.Selector.RemoveFromSelectedList(this);
+                    _battleManager.DeselectCard(this);
                 }
 
                 transform.position += newPos;
@@ -80,26 +76,26 @@ namespace Mistix{
         }
 
         public void OnMouseOver(){
-            // if(!IsPlayerCard && IsOnHand) {return;} //Not player card, on hand
+            if(!IsPlayerCard && IsOnHand) {return;} //Not player card, on hand
 
-            // if(IsPlayerCard){
-            //     _uIManager.UpdateIllustration(Data.Illustration);
-            //     return;
-            // }
+            if(IsPlayerCard){
+                _battleManager.UpdateCardUilustration(Data.Illustration);
+                return;
+            }
 
-            // if(!IsOnHand && !IsFaceDown){ //Not player card, not on hand, not face down
-            //     _uIManager.UpdateIllustration(Data.Illustration);
-            //     return;
-            // }
+            if(!IsOnHand && !IsFaceDown){ //Not player card, not on hand, not face down
+                _battleManager.UpdateCardUilustration(Data.Illustration);
+                return;
+            }
         }
 
     #endregion
 
-    #region Events Methods
-        private void BattleManager_OnCardSelectionStart() { _canBeSelected = true; }
-        private void BattleManager_OnCardSelectionEnd() { _canBeSelected = false; }
+    // #region Events Methods
+    //     private void BattleManager_OnCardSelectionStart() { _canBeSelected = true; }
+    //     private void BattleManager_OnCardSelectionEnd() { _canBeSelected = false; }
 
-    #endregion
+    // #endregion
 
     #region Custom Methods Methods
 
@@ -122,29 +118,29 @@ namespace Mistix{
         }
         
         public void MoveCard(Vector3 position){
-            CardMovement.SetTargetPosition(position, 5f);
-            CardMovement.SetTargetRotation(Quaternion.identity);
+            _cardMovement.SetTargetPosition(position, 5f);
+            _cardMovement.SetTargetRotation(Quaternion.identity);
         }
 
         public void MoveCard(Transform targetTransform){
             transform.SetParent(targetTransform);
-            CardMovement.AllowMovement(true);
-            CardMovement.SetTargetPosition(targetTransform.position, 5f);
-            CardMovement.SetTargetRotation(targetTransform.rotation);
+            _cardMovement.AllowMovement(true);
+            _cardMovement.SetTargetPosition(targetTransform.position, 5f);
+            _cardMovement.SetTargetRotation(targetTransform.rotation);
         }
 
         public void MoveCard(Transform targetTransform, float speed){
             transform.SetParent(targetTransform);
-            CardMovement.AllowMovement(true);
-            CardMovement.SetTargetPosition(targetTransform.position, speed);
-            CardMovement.SetTargetRotation(targetTransform.rotation);
+            _cardMovement.AllowMovement(true);
+            _cardMovement.SetTargetPosition(targetTransform.position, speed);
+            _cardMovement.SetTargetRotation(targetTransform.rotation);
         }
 
         public void MoveCard(Transform targetTransform, Quaternion rotation){
             transform.SetParent(targetTransform);
-            CardMovement.AllowMovement(true);
-            CardMovement.SetTargetPosition(targetTransform.position, 5f);
-            CardMovement.SetTargetRotation(rotation);
+            _cardMovement.AllowMovement(true);
+            _cardMovement.SetTargetPosition(targetTransform.position, 5f);
+            _cardMovement.SetTargetRotation(rotation);
         }
         
         public void DestroyCard() { Destroy(gameObject); }

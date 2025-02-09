@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -10,12 +9,15 @@ namespace Mistix{
         //States - Phases
         public BS_01_StartPhase StartPhase { get; private set; }
         public BS_02_DrawPhase DrawPhase { get; private set; }
-        public BS_03_CardSelection CardSelectionPhase { get; private set; }
+        public BS_03_CardSelectionPhase CardSelectionPhase { get; private set; }
 
+    #region Unity Methods
         private void Awake() { CreateStates(); }
-
         private void Start() { ChangeState(StartPhase); }
 
+    #endregion
+
+    #region States
         public void ChangeState(AbstractState newState){
             if(newState == CurrentState) { return;}
 
@@ -32,23 +34,33 @@ namespace Mistix{
             DrawPhase = new(this);
             CardSelectionPhase = new(this);
         }
+    #endregion
 
+    #region Board
         public void LightOffAllPlaces(){ BattleManager.LighOffAllPlaces(); }
         public void LightUpAllPlaces() { BattleManager.LightUpAllPlaces(); }
+    #endregion
+
+    #region Turn
         public void UpdateTurn() { BattleManager.UpdateTurn(); }
+        public bool IsFirstTurn() { return BattleManager.IsFirstTurn(); }
+    #endregion
+
+    #region UI
         public void ResetLifePoints() { BattleManager.ResetLifePoints(); }
         public void ResetDeckCount() { BattleManager.ResetDeckCount(); }
+        private void UpdateDebugBattleState(AbstractState state) { BattleManager.UpdateDebugBattleState(state.ToString()); }
+    #endregion
 
-        private void UpdateDebugBattleState(AbstractState state){
-            BattleManager.UpdateDebugBattleState(state.ToString());
-        }
-
-        public void CheckPositionsInHand() { BattleManager.CheckPositionsInHand(); }
-
+    #region Cards
         public void DrawCards() { BattleManager.DrawCards(); }
+        public void AllowCardSelection() { BattleManager.AllowCardSelection(); }
+    #endregion
 
-        public void AllowCardSelection(){
-            BattleManager.AllowCardSelection();
-        }
+    #region Hand
+        public bool IsHandFull() { return BattleManager.IsHandFull(); }
+        public void CheckPositionsInHand() { BattleManager.CheckPositionsInHand(); }
+    #endregion
+        
     }
 }

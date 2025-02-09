@@ -3,24 +3,21 @@ using UnityEngine;
 
 namespace Mistix{
     public class CardSelector : MonoBehaviour  {
-    //     private readonly CardManagerSO _cardManager;
-    //     // private readonly BattleManagerSO _battleManager;
         private List<Card> _selectedList = new();
+        private CardManager _cardManager;
 
-    //     // public CardSelector(CardManagerSO cardManager, BattleManagerSO battleManager){
-    //     //     _cardManager = cardManager;
-    //     //     _battleManager = battleManager;
-    //     //     SelectedList = new();
-    //     // }
+        private void Awake() {
+            _cardManager = FindFirstObjectByType<CardManager>();
+        }
 
         public void AddToSelectedList(Card selectedCard){
-            // if(SelectedList.Count == 0) { _cardManager.SomeCardSelected(); } //mostrar botao de finalizar seleção
+            if(_selectedList.Count == 0) { _cardManager.ShowEndSelectionButton(); }
             _selectedList.Add(selectedCard);
         }
         
         public void RemoveFromSelectedList(Card deselectedCard){
             _selectedList.Remove(deselectedCard);
-            // if(SelectedList.Count == 0){ _cardManager.NoneCardSelected();} //ocultar botao de finalizar seleção
+            if(_selectedList.Count == 0) { _cardManager.HideEndSelectionButton(); }
         }
 
     //     // public void RegisterEvents(){

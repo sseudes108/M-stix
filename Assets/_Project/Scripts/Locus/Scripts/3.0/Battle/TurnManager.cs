@@ -14,5 +14,13 @@ namespace Mistix{
             if(CurrentTurn == 1) return (CurrentTurn, true);
             return (CurrentTurn, CurrentTurn % 2 == 0);
         }
+
+        public bool IsFirstTurn(){
+            if(CurrentTurn == 1){
+                return true;
+            }else{
+                return false; 
+            }
+        }
     }
 }

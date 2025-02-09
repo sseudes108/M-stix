@@ -34,12 +34,20 @@ namespace Mistix{
             }
         }
 
-        public Card InstantiateCard(ScriptableObject cardData){
-            return _battleManager.InstantiateCard(cardData);
+        public Card DrawCard(ScriptableObject cardData){
+            return _battleManager.DrawCard(cardData);
         }
 
-        public void AllowCardSelection(){
-            _playerHand.AllowCardSelection();
+        public void AllowCardSelection() { _playerHand.AllowCardSelection(); }
+
+        public bool IsHandFull(){
+            if(_battleManager.IsPlayerTurn()){
+                Debug.Log("Player Hand Full");
+                return _playerHand.IsHandFull();
+            }else{
+                Debug.Log("Enemy Hand Full");
+                return _enemyHand.IsHandFull();
+            }
         }
     }
 }

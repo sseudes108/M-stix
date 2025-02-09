@@ -203,7 +203,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boardManager: {fileID: 1488751544}
   _uiBattle: {fileID: 8031828688844525928}
-  _uiDeck: {fileID: 8031828688844525929}
   _lpManager: {fileID: 1237225917}
   _handManager: {fileID: 1438666430}
   _cardManager: {fileID: 820496042}
@@ -323,6 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _creator: {fileID: 0}
   _selector: {fileID: 0}
+  _battleManager: {fileID: 408478682}
 --- !u!114 &820496043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7726,6 +7726,8 @@ GameObject:
   - component: {fileID: 8031828688844525927}
   - component: {fileID: 8031828688844525928}
   - component: {fileID: 8031828688844525929}
+  - component: {fileID: 8031828688844525930}
+  - component: {fileID: 8031828688844525931}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -13968,6 +13970,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 408478682}
+--- !u!114 &8031828688844525930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843403810405233628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f868c8fefc89647b4a737ba39c66cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offScreenPosition: {fileID: 1683008661098600447}
+--- !u!114 &8031828688844525931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843403810405233628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b3f7600cc535d47a7f8d61439a903d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionButton: {fileID: 8808485304963659350}
+  _actionButtonText: {fileID: 6799753790690062914}
 --- !u!4 &8039919782589876887
 Transform:
   m_ObjectHideFlags: 0

@@ -13,9 +13,18 @@ namespace Mistix{
 
             BattleSM.DrawCards(); //Dono do turno saca as cartas, se for turno 1 os dois sacam
             
-            yield return new WaitForSeconds(4f);
+            if(BattleSM.IsFirstTurn()){ //Todos sacam, primeiro turno
 
-            BattleSM.ChangeState(BattleSM.CardSelectionPhase);// Passar para Card Selection State
+                yield return new WaitForSeconds(4f); //Tempo para sacar as 5 cartas iniciais
+                BattleSM.ChangeState(BattleSM.CardSelectionPhase); // Passar para Card Selection State
+
+            }else{ //Cada um saca em seu turno
+
+                if(BattleSM.IsHandFull()){ //Verifica se o dono do turno já nao tem mais espaço na mão
+                    BattleSM.ChangeState(BattleSM.CardSelectionPhase); // Passar para Card Selection State
+                }
+            }
+
             yield return null;
         }
 
