@@ -70,14 +70,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc738afb18fe3d4ca6a02b5f14ece5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _battleManager: {fileID: 11400000, guid: 99e21e7dbe1b98445b2fb73e63b3dafd, type: 2}
-  _cardManager: {fileID: 11400000, guid: 26cfb6e879c3e5047a60a8a108b2129e, type: 2}
-  _uIManager: {fileID: 11400000, guid: 5fc4b86c855be43409bc86df5685de7a, type: 2}
-  Data: {fileID: 11400000, guid: 9f14752fff836c94994b3ba15538b2a6, type: 2}
+  Data: {fileID: 11400000, guid: feb1336391a710f4db3a6dac7eb917fb, type: 2}
   IsPlayerCard: 0
   _canBeSelected: 0
   IsOnHand: 0
   _isSelected: 0
+  BoardPlace: {fileID: 0}
   _levelLabel: {fileID: 4215302757009945003}
   _attackLabel: {fileID: 854108542203466186}
   _deffenseLabel: {fileID: 6724656198405140279}

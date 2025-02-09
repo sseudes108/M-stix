@@ -10,17 +10,27 @@ namespace Mistix{
         public override void Exit() { }
 
         private IEnumerator StartPhaseRoutine() {
+            UpdateUI(); //Atualizar UI
+
             BattleSM.LightOffAllPlaces(); //Apagar board places
 
             yield return new WaitForSeconds(1f);
 
             BattleSM.LightUpAllPlaces(); //Iluminar board places
 
-            //Atualizar UI - HPs e Contagem de decks
+            yield return new WaitForSeconds(2f);
 
-            //Passar para a Draw Phase
+            BattleSM.ChangeState(BattleSM.DrawPhase); //Passar para a Draw Phase
 
             yield return null;
         }
+
+        private void UpdateUI(){
+            BattleSM.UpdateTurn(); //Atualizar UI - Turno
+            BattleSM.ResetLifePoints(); //Atualizar UI - LifePoints
+            BattleSM.ResetDeckCount(); //Atualizar UI - DeckCount
+        }
+
+        public override string ToString() { return "Start"; }
     }
 }
