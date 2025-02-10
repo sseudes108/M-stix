@@ -10,7 +10,12 @@ namespace Mistix{
         [SerializeField] private Deck _deck;
         [SerializeField] private HandManager _handManager;
         [SerializeField] private bool _isPlayerHand;
+        private HandMovement _handMovement;
         private bool _handFull = false;
+
+        private void Awake() {
+            TryGetComponent<HandMovement>(out _handMovement);
+        }
 
         public void CheckPositionsInHand(){
             _cardsInHand.Clear();
@@ -75,5 +80,8 @@ namespace Mistix{
         public bool IsHandFull(){
             return _handFull;
         }
+
+        public void MoveHandOffScreen(){ _handMovement.MoveHandOffScreen(); }
+        public void MoveHandOnScreen(){ _handMovement.MoveHandOnScreen(); }
     }
 }

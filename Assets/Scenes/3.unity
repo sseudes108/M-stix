@@ -155,6 +155,7 @@ Transform:
   - {fileID: 1237225916}
   - {fileID: 1438666429}
   - {fileID: 820496041}
+  - {fileID: 481141169}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &408478680
@@ -206,6 +207,119 @@ MonoBehaviour:
   _lpManager: {fileID: 1237225917}
   _handManager: {fileID: 1438666430}
   _cardManager: {fileID: 820496042}
+  _fusionManager: {fileID: 481141173}
+--- !u!1 &481141168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 481141169}
+  - component: {fileID: 481141173}
+  - component: {fileID: 481141172}
+  - component: {fileID: 481141174}
+  - component: {fileID: 481141171}
+  - component: {fileID: 481141170}
+  m_Layer: 0
+  m_Name: FusionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &481141169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481141168}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 214914614}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &481141170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481141168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b02a8079bc4394fb261216a7fdc58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &481141171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481141168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61c6095c2a318e4591a9c30e5afbedb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &481141172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481141168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c4a8e5d0466bd4eb8add2540986a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &481141173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481141168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962050681e6acb44dba9f9b9173ff8fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &481141174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481141168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45a86fb146b121439ec9ccea78fc95a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerFusionPositions:
+  - {fileID: 4251284554781405580}
+  - {fileID: 6002460983366260760}
+  - {fileID: 7451625691146337527}
+  - {fileID: 1271505306538326030}
+  - {fileID: 5130828090405355502}
+  _playerResultCardPosition: {fileID: 8619883369161474169}
+  _playerBoardSelectionPlace: {fileID: 4142867470708502666}
+  _enemyFusionPositions:
+  - {fileID: 7258126201787742772}
+  - {fileID: 1132188198804326186}
+  - {fileID: 7220368501838796268}
+  - {fileID: 20839840469293576}
+  - {fileID: 6715156489626148803}
+  _enemyResultCardPosition: {fileID: 3133005860628311353}
+  _enemyBoardSelectionPlace: {fileID: 3789823684635427994}
 --- !u!1001 &626193107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13610,6 +13724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca67ba155e88eb428d27a97b16fcbb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _handTransform: {fileID: 7847506165236320555}
+  _OffCameraHand: {fileID: 947154246497892517}
 --- !u!222 &7887754524704154955
 CanvasRenderer:
   m_ObjectHideFlags: 0

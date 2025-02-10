@@ -22,5 +22,10 @@ namespace Mistix{
                 return false; 
             }
         }
+
+        public bool IsPlayerTurn(){
+            if(CurrentTurn == 1) return true;
+            return CurrentTurn % 2 == 0;
+        }
     }
 }

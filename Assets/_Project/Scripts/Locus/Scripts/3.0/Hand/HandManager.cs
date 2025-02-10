@@ -56,12 +56,11 @@ namespace Mistix{
 
         public void BlockCardSelection() { _playerHand.BlockCardSelection(); }
 
-        public bool IsCardSelectionEnded(){
-            return _selectionEnded;
-        }
+        public bool IsCardSelectionEnded(){ return _selectionEnded; }
 
-        public void EndCardSelection(){
-            _selectionEnded = true;
-        }
+        public void EndCardSelection(){ _selectionEnded = true; }
+
+        public void MoveHandOffScreen(){ _playerHand.MoveHandOffScreen(); }
+        public void MoveHandOnScreen(){ _playerHand.MoveHandOnScreen(); }
     }
 }

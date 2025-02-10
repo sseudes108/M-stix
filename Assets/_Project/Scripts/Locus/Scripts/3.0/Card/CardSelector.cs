@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,22 +21,12 @@ namespace Mistix{
             if(_selectedList.Count == 0) { _cardManager.HideEndSelectionButton(); }
         }
 
-    //     // public void RegisterEvents(){
-    //     //     _battleManager.OnStartPhase.AddListener(BattleManager_OnStartPhase);
-    //     // }
-        
-    //     // public void UnregisterEvents(){
-    //     //     _battleManager.OnStartPhase.RemoveListener(BattleManager_OnStartPhase);
-    //     // }
+        public void RemoveSelectedCardsInHand(){
+            foreach(var card in _selectedList){
+                card.SetCardOnHand(false);
+            }
+        }
 
-    //     private void BattleManager_OnStartPhase(){
-    //     SelectedList.Clear();
-    //     }
-
-    //     public void SetCardsToBoardFusion(List<Card> selectedCards){
-    //         SelectedList.Clear();
-    //         SelectedList = selectedCards;
-    //     }
-    // }
+        public List<Card> GetSelectedCards(){ return _selectedList; }
     }
 }

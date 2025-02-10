@@ -39,5 +39,9 @@ namespace Mistix{
         public void EndCardSelection(){
             _battleManager.EndCardSelection();
         }
+
+        public void MoveUICardOffScreen(){
+            _uiCardHolder.MoveOffScren();
+        }
     }
 }

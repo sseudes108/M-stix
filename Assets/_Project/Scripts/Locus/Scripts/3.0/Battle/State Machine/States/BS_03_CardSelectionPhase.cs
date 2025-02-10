@@ -8,7 +8,7 @@ namespace Mistix{
 
         public override void Exit(){}
 
-        private IEnumerator CardSelectPhaseRoutine() {
+        private IEnumerator CardSelectPhaseRoutine(){
             BattleSM.AllowCardSelection(); //Itera sobre as cartas na mao do jogador e libera a seleção
             
             while(BattleSM.IsCardSelectionEnded() == false){ //Aguardar o botão de confirmar ser pressionado (Botão só é mostrado caso alguma carta esteja selecionada)

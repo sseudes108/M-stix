@@ -53,6 +53,9 @@ namespace Mistix{
         public void ResetLifePoints() { BattleManager.ResetLifePoints(); }
         public void ResetDeckCount() { BattleManager.ResetDeckCount(); }
         private void UpdateDebugBattleState(AbstractState state) { BattleManager.UpdateDebugBattleState(state.ToString()); }
+
+        public void MoveUICardOffScreen(){ BattleManager.MoveUICardOffScreen(); }
+
     #endregion
 
     #region Cards
@@ -65,11 +68,13 @@ namespace Mistix{
         public bool IsHandFull() { return BattleManager.IsHandFull(); }
         public void CheckPositionsInHand() { BattleManager.CheckPositionsInHand(); }
 
-        public bool IsCardSelectionEnded(){
-            return BattleManager.IsCardSelectionEnded();
-        }
+        public bool IsCardSelectionEnded(){ return BattleManager.IsCardSelectionEnded(); }
+
+        public void MoveHandOffScreen(){ BattleManager.MoveHandOffScreen(); }
+
+        public void StartFusionRoutine(){ BattleManager.StartFusionRoutine(); }
 
         #endregion
-    
+
     }
 }

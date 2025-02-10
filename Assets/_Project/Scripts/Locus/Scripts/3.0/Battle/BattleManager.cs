@@ -9,6 +9,7 @@ namespace Mistix{
         [SerializeField] private LPManager _lpManager;
         [SerializeField] private HandManager _handManager;
         [SerializeField] private CardManager _cardManager;
+        [SerializeField] private FusionManager _fusionManager;
 
         private TurnManager _turnManager;
 
@@ -80,6 +81,16 @@ namespace Mistix{
         public void HideEndSelectionButton() {
             _uiManager.HideEndSelectionButton();
         }
+
+        public void MoveUICardOffScreen(){
+            _uiManager.MoveUICardOffScreen();
+        }
+
+        public void MoveHandOffScreen(){
+            _handManager.MoveHandOffScreen();
+        }
+
+        public void StartFusionRoutine(){ _fusionManager.StartFusionRoutine(_cardManager.GetSelectedCards(), _turnManager.IsPlayerTurn()); }
 
         #endregion
 
