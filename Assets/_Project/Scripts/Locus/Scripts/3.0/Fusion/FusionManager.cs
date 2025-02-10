@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Mistix{
     public class FusionManager : MonoBehaviour {
+        [SerializeField] private BattleManager _battleManager;
         private Fusion _fusion;
         private MonsterFusion _monsterFusion;
         private ArcaneFusion _arcaneFusion;
@@ -39,6 +40,14 @@ namespace Mistix{
 
         public void MoveCardsToMergePosition(List<Card> materials, bool isPlayerTurn){
             _fusionPositions.MoveCardsToMergePosition(materials, isPlayerTurn);
+        }
+
+        public void FusionFailed(MonsterCard monster1, MonsterCard monster2){
+            _fusion.FusionFailed(monster1, monster2);
+        }
+
+        public Card CreateCard(MonsterCardSO monsterCardSO){
+            return _battleManager.CreateMonsterCard(monsterCardSO);
         }
     }
 }

@@ -114,14 +114,14 @@ namespace Mistix{
                 if(card.IsOnHand){
                     card.SetCardOnHand(false);
                     card.SetHandPositionFree();
-                    // card.Visuals.Border.ResetBorderColor();
+                    card.ResetBorderColor();
                 }
             }
         }
 
     #region Fusion Failed
 
-        private void FusionFailed(Card card1, Card card2){
+        public void FusionFailed(Card card1, Card card2){
             StartCoroutine(FusionFailedRoutine(card1, card2));
         }
 
@@ -148,11 +148,13 @@ namespace Mistix{
 
             //Dissolve the first card
             // card1.Visuals.Dissolve.DissolveCard(Color.red);
+            card1.DissolveCard(Color.red);
 
             yield return new WaitForSeconds(0.5f);
 
             //Destroy Card
             // card1.Visuals.DisableRenderer();
+            card1.DisableRenderer();
             yield return null;
             card1.DestroyCard();
 
@@ -166,5 +168,53 @@ namespace Mistix{
         }
 
     #endregion
+    
+    #region Fusion Sucess
+        private void FusionSucess(Card card1, Card card2, Card resultCard){
+            StartCoroutine(FusionSucessRoutine(card1, card2, resultCard));
+        }
+
+        private IEnumerator FusionSucessRoutine(Card card1, Card card2, Card resultCard){
+            //Set Result of fusion Card
+            _resultCard = null;
+            _resultCard = resultCard;
+
+            //Cards used in fusion
+            var materials = new List<Card>() {card1, card2};
+
+            //Move cards
+            // _fusionManager.Positions.MoveCardsToMergePosition(materials, _isPlayerTurn);
+            _fusionManager.MoveCardsToMergePosition(materials, _isPlayerTurn);
+
+            //Dissolve cards used
+            yield return new WaitForSeconds(0.3f);
+            foreach(var card in materials){
+                // card.Visuals.Dissolve.DissolveCard(Color.green);
+                card.DissolveCard(Color.green);
+            }
+
+            //Destroy Cards
+            yield return new WaitForSeconds(0.7f);
+            foreach(var card in materials){
+                card.DestroyCard();
+            }
+
+            //Set Card Owner
+            if(_isPlayerTurn){
+                resultCard.SetPlayerCard();
+            }
+
+            //Move fusioned card to position
+            // _fusionManager.Positions.MoveCardToResultPosition(resultCard, _isPlayerTurn);
+            _fusionManager.MoveCardToResultPosition(resultCard, _isPlayerTurn);
+
+            //Check if the line is 0
+            if(_fusionLine.Count > 0){
+                AddCardToFusionLine(resultCard);
+            }
+        }
+
+    #endregion
+
     }
 }

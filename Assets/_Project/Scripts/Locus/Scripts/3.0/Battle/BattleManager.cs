@@ -31,6 +31,7 @@ namespace Mistix{
 
     #region Card Manager
         public Card DrawCard(ScriptableObject cardData) { return _cardManager.DrawCard(cardData); }
+        public Card CreateMonsterCard(MonsterCardSO monsterCardSO){ return _cardManager.DrawCard(monsterCardSO); }
     #endregion
 
     #region Turn Manager
@@ -89,9 +90,15 @@ namespace Mistix{
         public void MoveHandOffScreen(){
             _handManager.MoveHandOffScreen();
         }
+        #endregion
 
-        public void StartFusionRoutine(){ _fusionManager.StartFusionRoutine(_cardManager.GetSelectedCards(), _turnManager.IsPlayerTurn()); }
-
+    #region Fusion Manager
+        public void StartFusionRoutine(){ 
+            _fusionManager.StartFusionRoutine(
+                _cardManager.GetSelectedCards(), 
+                _turnManager.IsPlayerTurn()
+            ); 
+        }
         #endregion
 
     }

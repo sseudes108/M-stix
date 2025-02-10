@@ -10,7 +10,8 @@ namespace Mistix{
             _controller = controller;
         }
 
-        public void SetBorderColor(Color newColor){
+        public void HighBorderColor(){
+            var newColor = new Color(191, 162, 57);
             var sideMat = new Material(_renderer.sharedMaterials[0]);
             var faceMat = new Material(_renderer.sharedMaterials[1]);
 

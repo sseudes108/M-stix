@@ -268,6 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61c6095c2a318e4591a9c30e5afbedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _strongestTypeList: []
+  _cardDatabase: {fileID: 11400000, guid: 2f75b87eb20934545bb4f689cf07efd6, type: 2}
 --- !u!114 &481141172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962050681e6acb44dba9f9b9173ff8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _battleManager: {fileID: 408478682}
 --- !u!114 &481141174
 MonoBehaviour:
   m_ObjectHideFlags: 0

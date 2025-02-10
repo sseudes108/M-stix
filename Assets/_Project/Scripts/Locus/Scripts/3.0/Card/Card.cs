@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -49,15 +50,9 @@ namespace Mistix{
             if(IsPlayerCard && IsOnHand){
                 Vector3 newPos;
                 if(!_isSelected){
-                    newPos = new (0,+0.3f,0);
-                    _visuals.Border.SetBorderColor(new Color(191, 162, 57));
-                    _isSelected = true;
-                    _cardManager.SelectCard(this);
+                    newPos = Selected();
                 }else{
-                    newPos = new (0,-0.3f,0);
-                    _visuals.Border.ResetBorderColor();
-                    _isSelected = false;
-                    _cardManager.DeselectCard(this);
+                    newPos = Deselected();
                 }
 
                 transform.position += newPos;
@@ -80,29 +75,76 @@ namespace Mistix{
 
     #endregion
 
-    #region Custom Methods Methods
-
         public void SetCardData(ScriptableObject cardData) { Data = cardData as CardSO; }
         public virtual void SetCardInfo() { _illustration = Data.Illustration; }
         public virtual void SetCardText() { Name = Data.Name; }
         public void SetPlayerCard() { IsPlayerCard = true; }
         public void SetCardOnHand(bool isOnHand) { IsOnHand = isOnHand; }
+        public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }
+        public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
+
+    #region Visuals
+        public void ResetBorderColor(){
+            _visuals.Border.ResetBorderColor();
+        }
+        public void HighBorderColor(){
+            _visuals.Border.HighBorderColor();
+        }
+        public void DissolveCard(Color color){
+            _visuals.Dissolve.DissolveCard(color);
+        }
+        public void DisableRenderer(){
+            _visuals.DisableRenderer();
+        }
+        public void MakeCardInvisible(){
+            _visuals.Dissolve.MakeCardInvisible();
+        }
+    #endregion
+        
+    #region Buttons
+        public void SetShowButtons(bool mustShowButtons) { MustShowButtons = mustShowButtons; }
+    #endregion
+    
+    #region Fusion
         public void SetFusionedCard() { FusionedCard = true; }
-        public void DeselectCard() { _isSelected = false; }
+        public void SetCardAsFusioned() { FusionedCard = true; }
+    #endregion
+
+    #region Stats
+        public virtual void ResetCardStats() { FaceSelected = false; }
+
+        public void EnableStatCanvas() { _status.gameObject.SetActive(true); }
+        public void DisableStatCanvas() { _status.gameObject.SetActive(false); }
+
         public void SelectFace() { FaceSelected = true; }
         public void SetFaceDown() { IsFaceDown = true; }
         public void SetFaceUp() { IsFaceDown = false; }
-        public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }
-        public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
-        public void SetShowButtons(bool mustShowButtons) { MustShowButtons = mustShowButtons; }
 
-        public void AllowCardSelection(){
-            _canBeSelected = true;
+    #endregion
+    
+    #region Selection
+        public void AllowCardSelection(){ _canBeSelected = true; }
+        public void BlockCardSelection(){ _canBeSelected = false; }
+        public void DeselectCard() { _isSelected = false; }
+
+        private Vector3 Selected(){
+            Vector3 newPos = new(0, +0.3f, 0);
+            HighBorderColor();
+            _isSelected = true;
+            _cardManager.SelectCard(this);
+            return newPos;
         }
-        public void BlockCardSelection(){
-            _canBeSelected = false;
+
+        private Vector3 Deselected(){
+            Vector3 newPos = new(0, -0.3f, 0);
+            ResetBorderColor();
+            _isSelected = false;
+            _cardManager.DeselectCard(this);
+            return newPos;
         }
-        
+    #endregion
+
+    #region Movement
         public void MoveCard(Vector3 position){
             _cardMovement.SetTargetPosition(position, 5f);
             _cardMovement.SetTargetRotation(Quaternion.identity);
@@ -128,10 +170,11 @@ namespace Mistix{
             _cardMovement.SetTargetPosition(targetTransform.position, 5f);
             _cardMovement.SetTargetRotation(rotation);
         }
+
+    #endregion
         
         public void DestroyCard() { Destroy(gameObject); }
-        public void EnableStatCanvas() { _status.gameObject.SetActive(true); }
-        public void DisableStatCanvas() { _status.gameObject.SetActive(false); }
+
         public void DisableCollider() { _collider.enabled = false; }
 
         public void SetHandPosition(HandPosition handPosition) { _handPosition = handPosition; }
@@ -141,16 +184,12 @@ namespace Mistix{
             _handPosition.SetPlaceFree();
         }
 
-        public void SetCardAsFusioned() { FusionedCard = true; }
-        public virtual void ResetCardStats() { FaceSelected = false; }
-
         public void SetBoardPlace(BoardPlace boardPlace) { BoardPlace = boardPlace; }
         public BoardPlace GetBoardPlace() { return BoardPlace; }
+
         // public void HighLightBoardPlace(){
         //     if( BoardPlace == null ) return;
         //     BoardPlace.HighLight();
         // }
-
-        #endregion
     }
 }
