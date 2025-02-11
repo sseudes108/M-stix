@@ -14,21 +14,26 @@ namespace Mistix{
             _uiManager = GetComponent<UIManager>();
             
             _actionButton = _actionButtonObject.GetComponent<Button>();
-            _actionButton.onClick.AddListener(EndCardSelection);
+            _actionButton.onClick.AddListener(ActionButtonClicked);
         }
 
-        public void ShowEndSelectionButton() {
+        public void ShowEndCardSelectionButton() {
             _actionButtonObject.SetActive(true);
             _actionButtonText.text = "End Selection";
         }
 
-        public void HideEndSelectionButton() { 
+        public void HideActionButton() { 
             _actionButtonObject.SetActive(false); 
         }
 
-        private void EndCardSelection(){
-            _uiManager.EndCardSelection();
-            HideEndSelectionButton();
+        // É chamada ao clique do botão
+        private void ActionButtonClicked(){
+            //Checar o Current State da battle e tomar chamar os metodos correspondentes
+            if(_uiManager.IsCardSelectionPhase()){
+                _uiManager.EndCardSelection();
+                HideActionButton();
+                return;
+            }
         }
     }
 }

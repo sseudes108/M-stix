@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mistix{
     public class BattleSM : StateMachine {
-        [SerializeField] private BattleManager BattleManager;
+        [SerializeField] private BattleManager _battleManager;
 
         public AbstractState CurrentState { get; private set; }
         
@@ -12,6 +12,7 @@ namespace Mistix{
         public BS_02_DrawPhase DrawPhase { get; private set; }
         public BS_03_CardSelectionPhase CardSelectionPhase { get; private set; }
         public BS_04_FusionPhase FusionPhase { get; private set; }
+        public BS_05_CardStatSelPhase CardStatSelPhase { get; private set; }
 
     #region Unity Methods
         private void Awake() { CreateStates(); }
@@ -36,45 +37,50 @@ namespace Mistix{
             DrawPhase = new(this);
             CardSelectionPhase = new(this);
             FusionPhase = new(this);
+            CardStatSelPhase = new(this);
         }
     #endregion
 
     #region Board
-        public void LightOffAllPlaces(){ BattleManager.LighOffAllPlaces(); }
-        public void LightUpAllPlaces() { BattleManager.LightUpAllPlaces(); }
+        public void LightOffAllPlaces(){ _battleManager.LighOffAllPlaces(); }
+        public void LightUpAllPlaces() { _battleManager.LightUpAllPlaces(); }
     #endregion
 
     #region Turn
-        public void UpdateTurn() { BattleManager.UpdateTurn(); }
-        public bool IsFirstTurn() { return BattleManager.IsFirstTurn(); }
+        public void UpdateTurn() { _battleManager.UpdateTurn(); }
+        public bool IsFirstTurn() { return _battleManager.IsFirstTurn(); }
     #endregion
 
     #region UI
-        public void ResetLifePoints() { BattleManager.ResetLifePoints(); }
-        public void ResetDeckCount() { BattleManager.ResetDeckCount(); }
-        private void UpdateDebugBattleState(AbstractState state) { BattleManager.UpdateDebugBattleState(state.ToString()); }
+        public void ResetLifePoints() { _battleManager.ResetLifePoints(); }
+        public void ResetDeckCount() { _battleManager.ResetDeckCount(); }
+        private void UpdateDebugBattleState(AbstractState state) { _battleManager.UpdateDebugBattleState(state.ToString()); }
 
-        public void MoveUICardOffScreen(){ BattleManager.MoveUICardOffScreen(); }
+        public void MoveUICardOffScreen(){ _battleManager.MoveUICardOffScreen(); }
 
     #endregion
 
     #region Cards
-        public void DrawCards() { BattleManager.DrawCards(); }
-        public void AllowCardSelection() { BattleManager.AllowCardSelection(); }
-        public void BlockCardSelection() { BattleManager.BlockCardSelection(); }
+        public void DrawCards() { _battleManager.DrawCards(); }
+        public void AllowCardSelection() { _battleManager.AllowCardSelection(); }
+        public void BlockCardSelection() { _battleManager.BlockCardSelection(); }
     #endregion
 
     #region Hand
-        public bool IsHandFull() { return BattleManager.IsHandFull(); }
-        public void CheckPositionsInHand() { BattleManager.CheckPositionsInHand(); }
+        public bool IsHandFull() { return _battleManager.IsHandFull(); }
+        public void CheckPositionsInHand() { _battleManager.CheckPositionsInHand(); }
 
-        public bool IsCardSelectionEnded(){ return BattleManager.IsCardSelectionEnded(); }
+        public bool IsCardSelectionEnded(){ return _battleManager.IsCardSelectionEnded(); }
 
-        public void MoveHandOffScreen(){ BattleManager.MoveHandOffScreen(); }
+        public void MoveHandOffScreen(){ _battleManager.MoveHandOffScreen(); }
 
-        public void StartFusionRoutine(){ BattleManager.StartFusionRoutine(); }
+        public void StartFusionRoutine(){ _battleManager.StartFusionRoutine(); }
 
-        #endregion
-
+    #endregion
+    
+    #region Hand
+        public bool IsFusionEnded(){ return _battleManager.IsFusionEnded(); }
+    #endregion
+    
     }
 }

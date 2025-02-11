@@ -4,11 +4,13 @@ using UnityEngine;
 
 namespace Mistix{
     public class Fusion : MonoBehaviour {
-        private bool _isPlayerTurn;
+        private FusionManager _fusionManager;
+
         private List<Card> _fusionLine;
         private Card _resultCard;
+        
+        private bool _isPlayerTurn;
         private bool _isBoardFusion;
-        private FusionManager _fusionManager;
 
         private void Awake() {
             _fusionManager = GetComponent<FusionManager>();
@@ -98,6 +100,7 @@ namespace Mistix{
             _fusionManager.SetResultCard(_resultCard);
 
             _fusionLine.Clear();
+            _fusionManager.FusionEnded();
         }
 
         private void RemoveCardsFromFusionLine(Card card1, Card card2){
@@ -135,25 +138,22 @@ namespace Mistix{
             var materials = new List<Card>() {card1, card2};
 
             //Move cards
-            // _fusionManager.Positions.MoveCardsToMergePosition(materials, _isPlayerTurn);
             _fusionManager.MoveCardsToMergePosition(materials, _isPlayerTurn);
 
             // Camera Shake
             if(_isPlayerTurn){
-                //_cameraManager.CamShake();
-                Debug.LogWarning("Implement Camera Shake");
+                _fusionManager.ShakeCamera();
+                // Debug.LogWarning("Implement Camera Shake");
             }
 
             yield return new WaitForSeconds(0.05f);
 
             //Dissolve the first card
-            // card1.Visuals.Dissolve.DissolveCard(Color.red);
             card1.DissolveCard(Color.red);
 
             yield return new WaitForSeconds(0.5f);
 
             //Destroy Card
-            // card1.Visuals.DisableRenderer();
             card1.DisableRenderer();
             yield return null;
             card1.DestroyCard();
@@ -170,7 +170,7 @@ namespace Mistix{
     #endregion
     
     #region Fusion Sucess
-        private void FusionSucess(Card card1, Card card2, Card resultCard){
+        public void FusionSucess(Card card1, Card card2, Card resultCard){
             StartCoroutine(FusionSucessRoutine(card1, card2, resultCard));
         }
 
@@ -183,13 +183,11 @@ namespace Mistix{
             var materials = new List<Card>() {card1, card2};
 
             //Move cards
-            // _fusionManager.Positions.MoveCardsToMergePosition(materials, _isPlayerTurn);
             _fusionManager.MoveCardsToMergePosition(materials, _isPlayerTurn);
 
             //Dissolve cards used
             yield return new WaitForSeconds(0.3f);
             foreach(var card in materials){
-                // card.Visuals.Dissolve.DissolveCard(Color.green);
                 card.DissolveCard(Color.green);
             }
 
@@ -205,7 +203,6 @@ namespace Mistix{
             }
 
             //Move fusioned card to position
-            // _fusionManager.Positions.MoveCardToResultPosition(resultCard, _isPlayerTurn);
             _fusionManager.MoveCardToResultPosition(resultCard, _isPlayerTurn);
 
             //Check if the line is 0
@@ -214,7 +211,7 @@ namespace Mistix{
             }
         }
 
-    #endregion
+        #endregion
 
     }
 }

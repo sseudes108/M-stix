@@ -10,9 +10,14 @@ namespace Mistix{
             BattleSM.MoveUICardOffScreen(); //Move UI card para fora da tela
             BattleSM.MoveHandOffScreen(); //Move cartas não selecionadas na mao para fora da tela
 
-            BattleSM.StartFusionRoutine(); //Iniciar Rotina de fusão
+            BattleSM.StartFusionRoutine(); //Inicia Rotina de fusão
+
+            while(BattleSM.IsFusionEnded() == false){ //Aguarda o final da fusão
+                yield return null;
+            }
+
+            BattleSM.ChangeState(BattleSM.CardStatSelPhase); //Muda para Card status Select State
             
-            //Mudar para Card status Select State
             yield return null;
         }
 

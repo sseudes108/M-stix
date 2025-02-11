@@ -28,7 +28,6 @@ namespace Mistix{
             //Fusion Failed
             if(monster1Lvl != monster2Lvl){
                 //Not equal levels
-                // _fusionManager.FusionFailed(monster1, monster2);
                 _fusionManager.FusionFailed(monster1, monster2);
                 yield break;
             }
@@ -51,25 +50,22 @@ namespace Mistix{
 
             //Instantiate fusioned card
             var randomIndex = Random.Range(0, possibleMonsters.Count);
-            // var fusionedCard = Instantiate(_cardManager.Creator.CreateCard(possibleMonsters[randomIndex]));
             var fusionedCard = Instantiate(_fusionManager.CreateCard(possibleMonsters[randomIndex]));
             fusionedCard.name = $"ID {fusionedCard.GetInstanceID()} - Fusioned";
             fusionedCard.SetFusionedCard();
 
             // make card invisible
-            // fusionedCard.Visuals.Dissolve.MakeCardInvisible();
             fusionedCard.MakeCardInvisible();
-            // fusionedCard.Visuals.DisableRenderer();
             fusionedCard.DisableRenderer();
             fusionedCard.DisableStatCanvas();
 
             // Fusion
-            // _fusionManager.FusionSucess(monster1, monster2, fusionedCard);
+            _fusionManager.FusionSucess(monster1, monster2, fusionedCard);
 
             //Make Visibel
             yield return new WaitForSeconds(2f);
-            // fusionedCard.Visuals.EnableRenderer();
-            // fusionedCard.Visuals.Dissolve.SolidifyCard(Color.white);
+            fusionedCard.EnableRenderer();
+            fusionedCard.SolidifyCard(Color.white);
             yield return null;
         }
 

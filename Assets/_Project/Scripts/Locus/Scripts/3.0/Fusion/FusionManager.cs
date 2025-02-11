@@ -11,6 +11,7 @@ namespace Mistix{
         private FusionPositions _fusionPositions;
 
         private Card _resultCard;
+        private bool _isFusionEnded;
         
         private void Awake() {
             _fusion = GetComponent<Fusion>();
@@ -21,10 +22,6 @@ namespace Mistix{
 
         public void SetResultCard(Card card) { _resultCard = card; }
         public Card GetResultCard() { return _resultCard;}
-
-        public void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
-            _fusion.StartFusionRoutine(selectedCards, isPlayerTurn);
-        }
 
         public void MoveCardsToFusionPosition(List<Card> cards, bool isPlayerTurn){
             _fusionPositions.MoveCardsToFusionPosition(cards, isPlayerTurn);
@@ -42,12 +39,34 @@ namespace Mistix{
             _fusionPositions.MoveCardsToMergePosition(materials, isPlayerTurn);
         }
 
+        public void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
+            _isFusionEnded = false;
+            _fusion.StartFusionRoutine(selectedCards, isPlayerTurn);
+        }
+
+
         public void FusionFailed(MonsterCard monster1, MonsterCard monster2){
             _fusion.FusionFailed(monster1, monster2);
         }
 
+        public void FusionSucess(MonsterCard monster1, MonsterCard monster2, Card fusionedCard){
+            _fusion.FusionSucess(monster1, monster2, fusionedCard);
+        }
+
         public Card CreateCard(MonsterCardSO monsterCardSO){
             return _battleManager.CreateMonsterCard(monsterCardSO);
+        }
+
+        public bool IsFusionEnded(){
+            return _isFusionEnded;
+        }
+
+        public void FusionEnded(){
+            _isFusionEnded = true;
+        }
+
+        public void ShakeCamera(){
+            _battleManager.ShakeCamera();
         }
     }
 }

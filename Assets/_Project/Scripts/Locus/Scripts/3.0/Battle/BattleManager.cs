@@ -10,6 +10,8 @@ namespace Mistix{
         [SerializeField] private HandManager _handManager;
         [SerializeField] private CardManager _cardManager;
         [SerializeField] private FusionManager _fusionManager;
+        [SerializeField] private CameraManager _cameraManager;
+        [SerializeField] private BattleSM _battleSM;
 
         private TurnManager _turnManager;
 
@@ -90,6 +92,10 @@ namespace Mistix{
         public void MoveHandOffScreen(){
             _handManager.MoveHandOffScreen();
         }
+        public bool IsCardSelectionPhase(){
+            return _battleSM.CurrentState is BS_03_CardSelectionPhase;
+        }
+
         #endregion
 
     #region Fusion Manager
@@ -99,6 +105,15 @@ namespace Mistix{
                 _turnManager.IsPlayerTurn()
             ); 
         }
+
+        public void ShakeCamera(){
+            _cameraManager.ShakeCamera();
+        }
+
+        public bool IsFusionEnded(){
+            return _fusionManager.IsFusionEnded();
+        }
+
         #endregion
 
     }

@@ -96,8 +96,14 @@ namespace Mistix{
         public void DisableRenderer(){
             _visuals.DisableRenderer();
         }
+        public void EnableRenderer(){
+            _visuals.EnableRenderer();
+        }
         public void MakeCardInvisible(){
             _visuals.Dissolve.MakeCardInvisible();
+        }
+        public void SolidifyCard(Color color){
+            _visuals.Dissolve.SolidifyCard(color);
         }
     #endregion
         
