@@ -3,11 +3,15 @@ using UnityEngine;
 
 namespace Mistix{    
     public class UI_Deck : MonoBehaviour {
-        [SerializeField] private BattleManager _battleManager;
-
+        private UIManager _uiManager;
+        
         private const int DECKCARDS = 42;
         private int _playerDeck;
         private int _enemyDeck;
+
+        private void Awake() {
+            _uiManager = GetComponent<UIManager>();
+        }
 
         public void ResetDeckCount(){
             _playerDeck = 0;
@@ -21,7 +25,7 @@ namespace Mistix{
             while(_playerDeck < DECKCARDS){
                 _playerDeck += 1;
                 yield return new WaitForSeconds(0.02f);
-                _battleManager.UpdateDeckCount(true, _playerDeck);
+                _uiManager.UpdateDeckCount(true, _playerDeck);
             }
 
             if(_playerDeck > DECKCARDS){
@@ -35,7 +39,7 @@ namespace Mistix{
             while(_enemyDeck < DECKCARDS){
                 _enemyDeck += 1;
                 yield return new WaitForSeconds(0.02f);
-                _battleManager.UpdateDeckCount(false, _enemyDeck);
+                _uiManager.UpdateDeckCount(false, _enemyDeck);
             }
 
             if(_enemyDeck > DECKCARDS){

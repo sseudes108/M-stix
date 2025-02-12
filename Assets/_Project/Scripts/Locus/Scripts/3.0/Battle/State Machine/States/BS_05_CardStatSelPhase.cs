@@ -10,6 +10,9 @@ namespace Mistix{
         public override void Exit(){}
 
         private IEnumerator CardStatSelectionRoutine(){
+            BattleSM.ShowCardStatOptions(BattleSM.GetFusionResultCard()); //Apresentar botoes de seleção de status
+            //Aguardar todas as seleções
+            //mudar para Board place selection phase
             yield return null;
         }
 

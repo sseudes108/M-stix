@@ -80,8 +80,8 @@ namespace Mistix{
         public virtual void SetCardText() { Name = Data.Name; }
         public void SetPlayerCard() { IsPlayerCard = true; }
         public void SetCardOnHand(bool isOnHand) { IsOnHand = isOnHand; }
-        public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }
-        public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
+        // public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }
+        // public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
 
     #region Visuals
         public void ResetBorderColor(){
@@ -105,10 +105,18 @@ namespace Mistix{
         public void SolidifyCard(Color color){
             _visuals.Dissolve.SolidifyCard(color);
         }
+
+        // public void SelectAnima1(){
+        //     _visuals.Anima.Anima1Selected();
+        // }
+
+        // public void SelectAnima2(){
+        //     _visuals.Anima.Anima2Selected();
+        // }
     #endregion
         
     #region Buttons
-        public void SetShowButtons(bool mustShowButtons) { MustShowButtons = mustShowButtons; }
+        // public void SetShowButtons(bool mustShowButtons) { MustShowButtons = mustShowButtons; }
     #endregion
     
     #region Fusion
@@ -131,7 +139,7 @@ namespace Mistix{
     #region Selection
         public void AllowCardSelection(){ _canBeSelected = true; }
         public void BlockCardSelection(){ _canBeSelected = false; }
-        public void DeselectCard() { _isSelected = false; }
+        // public void DeselectCard() { _isSelected = false; }
 
         private Vector3 Selected(){
             Vector3 newPos = new(0, +0.3f, 0);
@@ -181,17 +189,17 @@ namespace Mistix{
         
         public void DestroyCard() { Destroy(gameObject); }
 
-        public void DisableCollider() { _collider.enabled = false; }
+        // public void DisableCollider() { _collider.enabled = false; }
 
-        public void SetHandPosition(HandPosition handPosition) { _handPosition = handPosition; }
+        // public void SetHandPosition(HandPosition handPosition) { _handPosition = handPosition; }
 
         public void SetHandPositionFree() {
             if(_handPosition == null) { return; }
             _handPosition.SetPlaceFree();
         }
 
-        public void SetBoardPlace(BoardPlace boardPlace) { BoardPlace = boardPlace; }
-        public BoardPlace GetBoardPlace() { return BoardPlace; }
+        // public void SetBoardPlace(BoardPlace boardPlace) { BoardPlace = boardPlace; }
+        // public BoardPlace GetBoardPlace() { return BoardPlace; }
 
         // public void HighLightBoardPlace(){
         //     if( BoardPlace == null ) return;

@@ -34,6 +34,10 @@ namespace Mistix{
     #region Card Manager
         public Card DrawCard(ScriptableObject cardData) { return _cardManager.DrawCard(cardData); }
         public Card CreateMonsterCard(MonsterCardSO monsterCardSO){ return _cardManager.DrawCard(monsterCardSO); }
+
+        public void Option1_Clicked(Card card) { _cardManager.Option1_Clicked(card); }
+        public void Option2_Clicked(Card card){ _cardManager.Option2_Clicked(card); }
+
     #endregion
 
     #region Turn Manager
@@ -71,30 +75,24 @@ namespace Mistix{
             var turn = _turnManager.GetTurnInfo();
             _uiManager.UpdateTurn(turn.Item1, turn.Item2);
         }
+
         public void UpdateLifePoints(bool isPlayer, int lifePoints) { _uiManager.UpdateLifePoints(isPlayer, lifePoints); }
         public void UpdateDeckCount(bool isPlayer, int deckCount) { _uiManager.UpdateDeckCount(isPlayer, deckCount); }
         public void ResetDeckCount() { _uiManager.ResetDeckCount(); }
         public void UpdateDebugBattleState(string state) { _uiManager.UpdateDebugBattleState(state); }
-        public void UpdateCardUilustration(Texture2D illustration) {
-            _uiManager.UpdateIllustration(illustration);
-        }
-        public void ShowEndSelectionButton() {
-            _uiManager.ShowEndSelectionButton();
-        }
-        public void HideEndSelectionButton() {
-            _uiManager.HideEndSelectionButton();
-        }
+        public void UpdateCardUilustration(Texture2D illustration) { _uiManager.UpdateIllustration(illustration); }
 
-        public void MoveUICardOffScreen(){
-            _uiManager.MoveUICardOffScreen();
-        }
+        public void ShowEndSelectionButton() { _uiManager.ShowEndSelectionButton(); }
+        public void HideEndSelectionButton() { _uiManager.HideEndSelectionButton(); }
 
-        public void MoveHandOffScreen(){
-            _handManager.MoveHandOffScreen();
-        }
-        public bool IsCardSelectionPhase(){
-            return _battleSM.CurrentState is BS_03_CardSelectionPhase;
-        }
+        public void MoveUICardOffScreen() { _uiManager.MoveUICardOffScreen(); }
+        public void MoveHandOffScreen() { _handManager.MoveHandOffScreen(); }
+
+        public void ShowCardStatOptions(Card card) { _uiManager.ShowCardStatOptions(card); }
+
+        public void SelectAnother(MonsterCard monster) { _uiManager.SelectAnother(monster); }
+
+        public void StatSelectionEnd() { _uiManager.StatSelectionEnd(); }
 
         #endregion
 
@@ -105,16 +103,26 @@ namespace Mistix{
                 _turnManager.IsPlayerTurn()
             ); 
         }
-
-        public void ShakeCamera(){
-            _cameraManager.ShakeCamera();
-        }
-
         public bool IsFusionEnded(){
             return _fusionManager.IsFusionEnded();
         }
 
-        #endregion
+        public Card GetFusionResultCard(){
+            return _fusionManager.GetResultCard();
+        }
+    #endregion
+
+    #region Camera Manager
+        public void ShakeCamera(){
+            _cameraManager.ShakeCamera();
+        }
+    #endregion
+
+    #region State Machine
+        public bool IsCardSelectionPhase(){
+            return _battleSM.CurrentState is BS_03_CardSelectionPhase;
+        }
+    #endregion
 
     }
 }

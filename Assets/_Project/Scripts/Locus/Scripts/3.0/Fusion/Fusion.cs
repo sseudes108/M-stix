@@ -143,7 +143,6 @@ namespace Mistix{
             // Camera Shake
             if(_isPlayerTurn){
                 _fusionManager.ShakeCamera();
-                // Debug.LogWarning("Implement Camera Shake");
             }
 
             yield return new WaitForSeconds(0.05f);

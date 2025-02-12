@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,9 +19,15 @@ namespace Mistix{
             _fusionPositions = GetComponent<FusionPositions>();
         }
 
+    #region Card
+        public Card CreateCard(MonsterCardSO monsterCardSO){
+            return _battleManager.CreateMonsterCard(monsterCardSO);
+        }
         public void SetResultCard(Card card) { _resultCard = card; }
         public Card GetResultCard() { return _resultCard;}
+    #endregion
 
+    #region Positions
         public void MoveCardsToFusionPosition(List<Card> cards, bool isPlayerTurn){
             _fusionPositions.MoveCardsToFusionPosition(cards, isPlayerTurn);
         }
@@ -38,12 +43,13 @@ namespace Mistix{
         public void MoveCardsToMergePosition(List<Card> materials, bool isPlayerTurn){
             _fusionPositions.MoveCardsToMergePosition(materials, isPlayerTurn);
         }
+    #endregion
 
+    #region Fusion
         public void StartFusionRoutine(List<Card> selectedCards, bool isPlayerTurn){
             _isFusionEnded = false;
             _fusion.StartFusionRoutine(selectedCards, isPlayerTurn);
         }
-
 
         public void FusionFailed(MonsterCard monster1, MonsterCard monster2){
             _fusion.FusionFailed(monster1, monster2);
@@ -53,20 +59,19 @@ namespace Mistix{
             _fusion.FusionSucess(monster1, monster2, fusionedCard);
         }
 
-        public Card CreateCard(MonsterCardSO monsterCardSO){
-            return _battleManager.CreateMonsterCard(monsterCardSO);
-        }
-
         public bool IsFusionEnded(){
             return _isFusionEnded;
         }
 
+        //Chamado em fusion.cs ao finalizar a rotina
         public void FusionEnded(){
             _isFusionEnded = true;
         }
 
+        //Chamado em fusion.cs em fusion failed
         public void ShakeCamera(){
             _battleManager.ShakeCamera();
         }
+    #endregion
     }
 }

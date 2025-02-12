@@ -1,17 +1,18 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mistix{
     public class CardManager : MonoBehaviour {
-        [SerializeField] private CardCreator _creator;
-        [SerializeField] private CardSelector _selector;
+        private CardCreator _creator;
+        private CardSelector _selector;
+        private CardStatsSelecion _statsSelecion;
 
         [SerializeField] private BattleManager _battleManager;
 
         private void Awake() {
             _creator = GetComponent<CardCreator>();
             _selector = GetComponent<CardSelector>();
+            _statsSelecion = GetComponent<CardStatsSelecion>();
         }
 
         public Card DrawCard(ScriptableObject cardData){ return _creator.CreateCard(cardData); }
@@ -27,5 +28,21 @@ namespace Mistix{
         public void UpdateCardUilustration(Texture2D illustration){ _battleManager.UpdateCardUilustration(illustration); }
 
         public List<Card> GetSelectedCards(){ return _selector.GetSelectedCards(); }
+
+        public void SelectAnother(MonsterCard monster){
+            _battleManager.SelectAnother(monster);
+        }
+
+        public void StatSelectionEnd(){
+            _battleManager.StatSelectionEnd();
+        }
+
+        public void Option1_Clicked(Card card){
+            _statsSelecion.Option1_Clicked(card);
+        }
+
+        public void Option2_Clicked(Card card){
+            _statsSelecion.Option2_Clicked(card);
+        }
     }
 }

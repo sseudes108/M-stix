@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 820496042}
   - component: {fileID: 820496043}
   - component: {fileID: 820496044}
+  - component: {fileID: 820496045}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -540,6 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _creator: {fileID: 0}
   _selector: {fileID: 0}
+  _statsSelecion: {fileID: 0}
   _battleManager: {fileID: 408478682}
 --- !u!114 &820496043
 MonoBehaviour:
@@ -567,6 +569,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba7a466be44649b41a11c29ff38118db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &820496045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820496040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cc7830cf2a0b64695a0ad98b8bbdfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1029235500
@@ -7947,6 +7961,7 @@ GameObject:
   - component: {fileID: 8031828688844525929}
   - component: {fileID: 8031828688844525930}
   - component: {fileID: 8031828688844525931}
+  - component: {fileID: 8031828688844525933}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -14231,6 +14246,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 408478682}
+--- !u!114 &8031828688844525933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843403810405233628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c70e184b3dd734ca6e6a48cc3381a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statSelButtonsContainer: {fileID: 1872379241820515595}
+  _statButton1: {fileID: 3569330724921250593}
+  _statButton2: {fileID: 4783231893476403749}
+  _statText1: {fileID: 5407259707340075189}
+  _statText2: {fileID: 5554165948525525231}
+  _uiManager: {fileID: 0}
 --- !u!4 &8039919782589876887
 Transform:
   m_ObjectHideFlags: 0

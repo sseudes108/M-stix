@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -13,6 +12,7 @@ namespace Mistix{
         public BS_03_CardSelectionPhase CardSelectionPhase { get; private set; }
         public BS_04_FusionPhase FusionPhase { get; private set; }
         public BS_05_CardStatSelPhase CardStatSelPhase { get; private set; }
+        
 
     #region Unity Methods
         private void Awake() { CreateStates(); }
@@ -78,9 +78,20 @@ namespace Mistix{
 
     #endregion
     
-    #region Hand
+    #region Fusion
         public bool IsFusionEnded(){ return _battleManager.IsFusionEnded(); }
+
     #endregion
-    
+
+    #region Card Stats
+        public void ShowCardStatOptions(Card card){
+            _battleManager.ShowCardStatOptions(card);
+        }
+
+        public Card GetFusionResultCard(){
+            return _battleManager.GetFusionResultCard();
+        }
+    #endregion
+
     }
 }

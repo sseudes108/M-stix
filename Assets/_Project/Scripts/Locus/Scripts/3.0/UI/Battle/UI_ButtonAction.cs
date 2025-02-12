@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Mistix{
     
-    public class UI_BattleButtons : MonoBehaviour {
+    public class UI_ButtonAction : MonoBehaviour {
         private Button _actionButton;
         private UIManager _uiManager;
         [SerializeField] private GameObject _actionButtonObject;
