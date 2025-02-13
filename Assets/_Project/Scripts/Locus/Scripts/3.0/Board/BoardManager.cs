@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Mistix{
     
     public class BoardManager : MonoBehaviour {
+        [SerializeField] private BattleManager _battleManager;
         private BoardPlaceVisualController _boardPlaceVisualController;
 
         private Color PlayerDefaultColor;
@@ -35,6 +36,34 @@ namespace Mistix{
         public void SetPlaceColors(Vector3 playerBoardColor, Vector3 enemyBoardColor){
             PlayerDefaultColor = new Color(playerBoardColor.x, playerBoardColor.y, playerBoardColor.z);
             EnemyDefaultColor = new Color(enemyBoardColor.x, enemyBoardColor.y, enemyBoardColor.z);
+        }
+
+        public void HighLightFreePlaces(){
+            if(_battleManager.GetFusionResultCard() is MonsterCard){
+                HighlightFreeMonsterPlaces();
+            }else{
+                HighlightFreeArcanePlaces();
+            }
+        }
+
+        private void HighlightFreeMonsterPlaces(){
+            if(_battleManager.IsPlayerTurn()){
+                foreach(var place in _playerMonsterPlaces){
+                    if(place.IsFree){
+                        _boardPlaceVisualController.HighlightPlace(place);
+                    }
+                }
+            }else{
+                foreach(var place in _enemyMonsterPlaces){
+                    if(place.IsFree){
+                        _boardPlaceVisualController.HighlightPlace(place);
+                    }
+                }
+            }
+        }
+
+        private void HighlightFreeArcanePlaces(){
+
         }
     }
 }

@@ -29,5 +29,9 @@ namespace Mistix{
         public void LightOff(Color color){
             _visual.LightOff(color);
         }
+
+        public void HighLight(){
+            _visual.HighLight();
+        }
     }
 }

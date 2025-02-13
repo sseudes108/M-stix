@@ -2,8 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 namespace Mistix{
-    public class BS_02_DrawPhase : AbstractState{
-        public BS_02_DrawPhase(BattleSM battleSM) : base(battleSM) {}
+    public class BS_02_Draw : AbstractState{
+        public BS_02_Draw(BattleSM battleSM) : base(battleSM) {}
 
         public override void Enter() { BattleSM.StartCoroutine(DrawPhaseRoutine()); }
         public override void Exit() {}

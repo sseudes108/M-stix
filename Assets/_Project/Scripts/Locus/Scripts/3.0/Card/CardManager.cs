@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Mistix{
         private CardStatsSelecion _statsSelecion;
 
         [SerializeField] private BattleManager _battleManager;
+
+        private bool _allStatsSelected;
 
         private void Awake() {
             _creator = GetComponent<CardCreator>();
@@ -34,6 +37,7 @@ namespace Mistix{
         }
 
         public void StatSelectionEnd(){
+            _allStatsSelected = true;
             _battleManager.StatSelectionEnd();
         }
 
@@ -44,5 +48,8 @@ namespace Mistix{
         public void Option2_Clicked(Card card){
             _statsSelecion.Option2_Clicked(card);
         }
+
+        public bool IsAllStatsSelected(){ return _allStatsSelected; }
+        public void SetAllStatsSelectedFalse() { _allStatsSelected = false; }
     }
 }

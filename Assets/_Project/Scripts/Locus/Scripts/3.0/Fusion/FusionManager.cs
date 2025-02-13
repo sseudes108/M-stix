@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,6 +44,10 @@ namespace Mistix{
         public void MoveCardsToMergePosition(List<Card> materials, bool isPlayerTurn){
             _fusionPositions.MoveCardsToMergePosition(materials, isPlayerTurn);
         }
+
+        public void MoveToBoardPlaceSelection(){ 
+            _fusionPositions.MoveToBoardPlaceSelection(_resultCard, _battleManager.IsPlayerTurn()); 
+        }
     #endregion
 
     #region Fusion
@@ -72,6 +77,7 @@ namespace Mistix{
         public void ShakeCamera(){
             _battleManager.ShakeCamera();
         }
+
     #endregion
     }
 }

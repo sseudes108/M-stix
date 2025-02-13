@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -23,6 +22,7 @@ namespace Mistix{
         public void SetPlaceColors(Vector3 blueBoardColor, Vector3 redBoardColor){
             _boardManager.SetPlaceColors(blueBoardColor, redBoardColor);
         }
+        public void HighLightPossiblePlaces(){ _boardManager.HighLightFreePlaces(); }
 
     #endregion
 
@@ -88,7 +88,10 @@ namespace Mistix{
         public void MoveUICardOffScreen() { _uiManager.MoveUICardOffScreen(); }
         public void MoveHandOffScreen() { _handManager.MoveHandOffScreen(); }
 
-        public void ShowCardStatOptions(Card card) { _uiManager.ShowCardStatOptions(card); }
+        public void ShowCardStatOptions(Card card) { 
+            _uiManager.ShowCardStatOptions(card);
+            _cardManager.SetAllStatsSelectedFalse();
+        }
 
         public void SelectAnother(MonsterCard monster) { _uiManager.SelectAnother(monster); }
 
@@ -103,12 +106,16 @@ namespace Mistix{
                 _turnManager.IsPlayerTurn()
             ); 
         }
+        
         public bool IsFusionEnded(){
             return _fusionManager.IsFusionEnded();
         }
 
         public Card GetFusionResultCard(){
             return _fusionManager.GetResultCard();
+        }
+        public void MoveToBoardPlaceSelection(){ 
+            _fusionManager.MoveToBoardPlaceSelection(); 
         }
     #endregion
 
@@ -120,8 +127,11 @@ namespace Mistix{
 
     #region State Machine
         public bool IsCardSelectionPhase(){
-            return _battleSM.CurrentState is BS_03_CardSelectionPhase;
+            return _battleSM.CurrentState is BS_03_CardSelection;
         }
+
+        public bool IsAllStatsSelected(){ return  _cardManager.IsAllStatsSelected(); }
+
     #endregion
 
     }

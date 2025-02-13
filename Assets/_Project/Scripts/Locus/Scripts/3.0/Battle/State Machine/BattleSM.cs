@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -7,11 +8,12 @@ namespace Mistix{
         public AbstractState CurrentState { get; private set; }
         
         //States - Phases
-        public BS_01_StartPhase StartPhase { get; private set; }
-        public BS_02_DrawPhase DrawPhase { get; private set; }
-        public BS_03_CardSelectionPhase CardSelectionPhase { get; private set; }
-        public BS_04_FusionPhase FusionPhase { get; private set; }
-        public BS_05_CardStatSelPhase CardStatSelPhase { get; private set; }
+        public BS_01_Start StartPhase { get; private set; }
+        public BS_02_Draw DrawPhase { get; private set; }
+        public BS_03_CardSelection CardSelectionPhase { get; private set; }
+        public BS_04_Fusion FusionPhase { get; private set; }
+        public BS_05_CardStatSel CardStatSelPhase { get; private set; }
+        public BS_06_BoardPlaceSel BoardPlaceSelPhase { get; private set; }
         
 
     #region Unity Methods
@@ -38,7 +40,9 @@ namespace Mistix{
             CardSelectionPhase = new(this);
             FusionPhase = new(this);
             CardStatSelPhase = new(this);
+            BoardPlaceSelPhase = new(this);
         }
+
     #endregion
 
     #region Board
@@ -91,7 +95,18 @@ namespace Mistix{
         public Card GetFusionResultCard(){
             return _battleManager.GetFusionResultCard();
         }
-    #endregion
+
+        public bool IsAllStatsSelected(){ return _battleManager.IsAllStatsSelected(); }
+
+        public void MoveToBoardPlaceSelection(){
+            _battleManager.MoveToBoardPlaceSelection();
+        }
+
+        public void HighLightPossiblePlaces(){
+            _battleManager.HighLightPossiblePlaces();
+        }
+
+        #endregion
 
     }
 }

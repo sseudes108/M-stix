@@ -1,8 +1,8 @@
 using System.Collections;
 
 namespace Mistix{
-    public class BS_03_CardSelectionPhase : AbstractState{
-        public BS_03_CardSelectionPhase(BattleSM battleSM) : base(battleSM){}
+    public class BS_03_CardSelection : AbstractState{
+        public BS_03_CardSelection(BattleSM battleSM) : base(battleSM){}
 
         public override void Enter(){ BattleSM.StartCoroutine(CardSelectPhaseRoutine()); }
 

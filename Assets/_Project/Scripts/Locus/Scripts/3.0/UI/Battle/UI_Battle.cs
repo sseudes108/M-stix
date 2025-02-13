@@ -4,10 +4,6 @@ using UnityEngine;
 
 namespace Mistix{   
     public class UI_Battle : MonoBehaviour {
-        // private UI_Deck _uiDeck;
-        // private UI_CardHolder _uiCardHolder;
-        // private UI_BattleButtons _uiButtons;
-
         private UIManager _uiManager;
 
         [Header("Battle")]

@@ -317,7 +317,7 @@ MonoBehaviour:
   - {fileID: 1271505306538326030}
   - {fileID: 5130828090405355502}
   _playerResultCardPosition: {fileID: 8619883369161474169}
-  _playerBoardSelectionPlace: {fileID: 4142867470708502666}
+  _playerBoardSelectionPlace: {fileID: 5547522240076801353}
   _enemyFusionPositions:
   - {fileID: 7258126201787742772}
   - {fileID: 1132188198804326186}
@@ -325,7 +325,7 @@ MonoBehaviour:
   - {fileID: 20839840469293576}
   - {fileID: 6715156489626148803}
   _enemyResultCardPosition: {fileID: 3133005860628311353}
-  _enemyBoardSelectionPlace: {fileID: 3789823684635427994}
+  _enemyBoardSelectionPlace: {fileID: 1413365484244674244}
 --- !u!1001 &626193107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -539,9 +539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c9e0a2445c05140b6d381ea98a17da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _creator: {fileID: 0}
-  _selector: {fileID: 0}
-  _statsSelecion: {fileID: 0}
   _battleManager: {fileID: 408478682}
 --- !u!114 &820496043
 MonoBehaviour:
@@ -765,6 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eabd4852368dfc42a55e9b8c365a912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _battleManager: {fileID: 408478682}
   _playerMonsterPlaces:
   - {fileID: 4377215725906037888}
   - {fileID: 8915110265863400188}
@@ -14205,7 +14203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83e66ef3d8b01a4a92cad4ba16cd347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _battleManager: {fileID: 408478682}
 --- !u!114 &8031828688844525930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14263,7 +14260,6 @@ MonoBehaviour:
   _statButton2: {fileID: 4783231893476403749}
   _statText1: {fileID: 5407259707340075189}
   _statText2: {fileID: 5554165948525525231}
-  _uiManager: {fileID: 0}
 --- !u!4 &8039919782589876887
 Transform:
   m_ObjectHideFlags: 0

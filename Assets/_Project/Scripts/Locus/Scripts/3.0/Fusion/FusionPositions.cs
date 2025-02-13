@@ -15,23 +15,7 @@ namespace Mistix{
         [SerializeField] private Transform _enemyResultCardPosition, _enemyBoardSelectionPlace;
 
 
-        // private void OnEnable() { 
-        //     _battleManager.OnBoardPlaceSelectionStart.AddListener(BattleManager_OnBoardPlaceSelectionStart);
-        // }
-
-        // private void OnDisable() { 
-        //     _battleManager.OnBoardPlaceSelectionStart.RemoveListener(BattleManager_OnBoardPlaceSelectionStart);
-        // }
-
-        // private void Start() {
-        //     _fusionManager.SetPositions(this);
-        // }
-
-        // private void BattleManager_OnBoardPlaceSelectionStart(Card card, bool isPlayerTurn) {
-        //     MoveToBoardPlaceSelection(card, isPlayerTurn); 
-        // }
-
-        private void MoveToBoardPlaceSelection(Card card, bool isPlayerTurn){
+        public void MoveToBoardPlaceSelection(Card card, bool isPlayerTurn){
             if(card == null){
                 Debug.Log("Card is Null in FusionPositions at MoveToBoardPlaceSelection()");
             }

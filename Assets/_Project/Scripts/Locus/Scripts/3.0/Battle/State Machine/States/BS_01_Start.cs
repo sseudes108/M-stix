@@ -2,8 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 namespace Mistix{
-    public class BS_01_StartPhase : AbstractState{
-        public BS_01_StartPhase(BattleSM battleSM) : base(battleSM){}
+    public class BS_01_Start : AbstractState{
+        public BS_01_Start(BattleSM battleSM) : base(battleSM){}
 
         public override void Enter() { BattleSM.StartCoroutine(StartPhaseRoutine()); }
 
