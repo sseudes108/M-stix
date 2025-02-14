@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -23,6 +24,9 @@ namespace Mistix{
             _boardManager.SetPlaceColors(blueBoardColor, redBoardColor);
         }
         public void HighLightPossiblePlaces(){ _boardManager.HighLightFreePlaces(); }
+        public bool IsBoardPlaceSelected(){
+            return _boardManager.IsBoardPlaceSelected();
+        }
 
     #endregion
 
@@ -37,6 +41,8 @@ namespace Mistix{
 
         public void Option1_Clicked(Card card) { _cardManager.Option1_Clicked(card); }
         public void Option2_Clicked(Card card){ _cardManager.Option2_Clicked(card); }
+
+        public bool IsAllStatsSelected(){ return  _cardManager.IsAllStatsSelected(); }
 
     #endregion
 
@@ -130,7 +136,9 @@ namespace Mistix{
             return _battleSM.CurrentState is BS_03_CardSelection;
         }
 
-        public bool IsAllStatsSelected(){ return  _cardManager.IsAllStatsSelected(); }
+        public bool IsBoardPlaceSelectionPhase(){
+            return _battleSM.CurrentState is BS_06_BoardPlaceSel;
+        }
 
     #endregion
 

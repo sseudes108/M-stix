@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 
 namespace Mistix{
 
@@ -14,11 +15,13 @@ namespace Mistix{
 
             BattleSM.HighLightPossiblePlaces();//Highlight os places possiveis
 
-            //esperar a seleção
+            while(BattleSM.BoardPlaceSelected() == false){//esperar a seleção
+                yield return null;
+            }
 
-            //posicionar a carta
-
-            //passar para action phase
+            yield return new WaitForSeconds(0.5f);
+            
+            BattleSM.ChangeState(BattleSM.ActionPhase);//passar para action phase
 
             yield return null;
         }

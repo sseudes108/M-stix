@@ -20,8 +20,8 @@ namespace Mistix{
         public bool ModeSelected {get; private set;} = false;
         public bool IsInAttackMode {get; private set;} = true;
         public bool CanAttack {get; private set;}
-        public bool CanChangeMode {get; private set;}
-        public bool IsDead {get; private set;} = false;
+        // public bool CanChangeMode {get; private set;}
+        // public bool IsDead {get; private set;} = false;
 
 
         [Header("Labels")]
@@ -29,7 +29,7 @@ namespace Mistix{
         [SerializeField] private TextMeshProUGUI _attackLabel;
         [SerializeField] private TextMeshProUGUI _deffenseLabel;
 
-        private MonsterCardSO _cardData;
+        // private MonsterCardSO _cardData;
 
         public override void SetCardInfo(){
             base.SetCardInfo();
@@ -55,25 +55,28 @@ namespace Mistix{
             AnimaSelected = true;
 
             if(anima == 1){
+                _visuals.Anima.Anima1Selected();
                 ActiveAnima = FirstAnima;
                 return;
             }
 
             if(anima == 2){
+                _visuals.Anima.Anima2Selected();
                 ActiveAnima = SecondAnima;
                 return;
             }
         }
+
         public void SelectMode() { ModeSelected = true; }
         public void SetDeffenseMode() { IsInAttackMode = false; }
-        public void SetAttackMode() { IsInAttackMode = true; }
-        public void SetCanChangeMode(bool canChangeMode) { CanChangeMode = canChangeMode; }
+        // public void SetAttackMode() { IsInAttackMode = true; }
+        // public void SetCanChangeMode(bool canChangeMode) { CanChangeMode = canChangeMode; }
         public void SetCanAttack(bool canAttack) { CanAttack = canAttack; }
 
-        public void MonsterAttacked(){
-            SetCanAttack(false);
-            SetCanChangeMode(false);
-        }
+        // public void MonsterAttacked(){
+        //     SetCanAttack(false);
+        //     SetCanChangeMode(false);
+        // }
 
         // public void Die() { 
         //     IsDead = true;
@@ -87,16 +90,16 @@ namespace Mistix{
             _visuals.ResetAnimaColors();
         }
 
-        public void BuffAttack(){
-            Attack += 500;
-        }
+        // public void BuffAttack(){
+        //     Attack += 500;
+        // }
         
-        public void DebuffAttack(){
-            Attack -= 500;
-        }
+        // public void DebuffAttack(){
+        //     Attack -= 500;
+        // }
 
-        public void ResetAttack(){
-            Attack = _cardData.Attack;
-        }
+        // public void ResetAttack(){
+        //     Attack = _cardData.Attack;
+        // }
     }
 }

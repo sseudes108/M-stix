@@ -106,13 +106,6 @@ namespace Mistix{
             _visuals.Dissolve.SolidifyCard(color);
         }
 
-        // public void SelectAnima1(){
-        //     _visuals.Anima.Anima1Selected();
-        // }
-
-        // public void SelectAnima2(){
-        //     _visuals.Anima.Anima2Selected();
-        // }
     #endregion
         
     #region Buttons
@@ -189,7 +182,7 @@ namespace Mistix{
         
         public void DestroyCard() { Destroy(gameObject); }
 
-        // public void DisableCollider() { _collider.enabled = false; }
+        public void DisableCollider() { _collider.enabled = false; }
 
         // public void SetHandPosition(HandPosition handPosition) { _handPosition = handPosition; }
 
@@ -198,7 +191,8 @@ namespace Mistix{
             _handPosition.SetPlaceFree();
         }
 
-        // public void SetBoardPlace(BoardPlace boardPlace) { BoardPlace = boardPlace; }
+        public void SetBoardPlace(BoardPlace boardPlace) { BoardPlace = boardPlace; }
+
         // public BoardPlace GetBoardPlace() { return BoardPlace; }
 
         // public void HighLightBoardPlace(){

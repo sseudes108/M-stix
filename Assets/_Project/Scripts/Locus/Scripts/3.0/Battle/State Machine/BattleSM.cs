@@ -14,6 +14,7 @@ namespace Mistix{
         public BS_04_Fusion FusionPhase { get; private set; }
         public BS_05_CardStatSel CardStatSelPhase { get; private set; }
         public BS_06_BoardPlaceSel BoardPlaceSelPhase { get; private set; }
+        public BS_07_Action ActionPhase { get; private set; }
         
 
     #region Unity Methods
@@ -41,6 +42,7 @@ namespace Mistix{
             FusionPhase = new(this);
             CardStatSelPhase = new(this);
             BoardPlaceSelPhase = new(this);
+            ActionPhase  = new(this);
         }
 
     #endregion
@@ -48,6 +50,14 @@ namespace Mistix{
     #region Board
         public void LightOffAllPlaces(){ _battleManager.LighOffAllPlaces(); }
         public void LightUpAllPlaces() { _battleManager.LightUpAllPlaces(); }
+
+        public void MoveToBoardPlaceSelection(){
+            _battleManager.MoveToBoardPlaceSelection();
+        }
+
+        public void HighLightPossiblePlaces(){
+            _battleManager.HighLightPossiblePlaces();
+        }
     #endregion
 
     #region Turn
@@ -83,6 +93,9 @@ namespace Mistix{
     #endregion
     
     #region Fusion
+        public Card GetFusionResultCard(){
+            return _battleManager.GetFusionResultCard();
+        }
         public bool IsFusionEnded(){ return _battleManager.IsFusionEnded(); }
 
     #endregion
@@ -92,19 +105,9 @@ namespace Mistix{
             _battleManager.ShowCardStatOptions(card);
         }
 
-        public Card GetFusionResultCard(){
-            return _battleManager.GetFusionResultCard();
-        }
-
         public bool IsAllStatsSelected(){ return _battleManager.IsAllStatsSelected(); }
 
-        public void MoveToBoardPlaceSelection(){
-            _battleManager.MoveToBoardPlaceSelection();
-        }
-
-        public void HighLightPossiblePlaces(){
-            _battleManager.HighLightPossiblePlaces();
-        }
+        public bool BoardPlaceSelected(){ return _battleManager.IsBoardPlaceSelected(); }
 
         #endregion
 

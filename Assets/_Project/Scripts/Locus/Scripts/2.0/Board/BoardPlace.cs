@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
+// using UnityEngine;
 
 // [RequireComponent(typeof(BoardPlaceVisual))]
-public class BoardPlace : MonoBehaviour {
+// public class BoardPlace : MonoBehaviour {
     
 //     [SerializeField] private BattleManagerSO _battleManager;
 //     [SerializeField] private BoardManagerSO _boardManager;
@@ -275,4 +273,4 @@ public class BoardPlace : MonoBehaviour {
 
 //     #endregion
 
-}
+//}

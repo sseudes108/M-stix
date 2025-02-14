@@ -4,6 +4,8 @@ using UnityEngine;
 namespace Mistix{
     
     public class BoardManager : MonoBehaviour {
+        public static BoardManager Instance { get; private set;}
+
         [SerializeField] private BattleManager _battleManager;
         private BoardPlaceVisualController _boardPlaceVisualController;
 
@@ -15,7 +17,24 @@ namespace Mistix{
         [SerializeField] private List<BoardPlace> _enemyMonsterPlaces;
         [SerializeField] private List<BoardPlace> _enemyArcanePlaces;
 
-        private void Awake() { _boardPlaceVisualController = new(); }
+        public Quaternion PlayerMonsterFaceDownAtkRotation {get; private set;} = Quaternion.Euler(-90, -90, -90);
+        public Quaternion PlayerMonsterFaceDownDefRotation {get; private set;} = Quaternion.Euler(-90, -180, -90);
+        public Quaternion PlayerMonsterFaceUpDefRotation {get; private set;} = Quaternion.Euler(90, 90, 0);
+        public Quaternion EnemyMonsterFaceDownAtkRotation {get; private set;} = Quaternion.Euler(-90, -90, 90);
+        public Quaternion EnemyMonsterFaceDownDefRotation {get; private set;} = Quaternion.Euler(-90, -180, 90);
+        public Quaternion EnemyMonsterFaceUpDefRotation {get; private set;} = Quaternion.Euler(90, 90, 180);
+
+        private bool _boardPlaceSelected = false;
+
+        private void Awake() {
+            if(Instance == null){
+                Instance = this;
+            }else{
+                Debug.LogError("More Than One Instance of BoardManager");
+            }
+            
+            _boardPlaceVisualController = new(); 
+        }
 
         public void LightUpAllPlaces(){
             _boardPlaceVisualController.LightUpPlaces(_playerMonsterPlaces, PlayerDefaultColor);
@@ -62,8 +81,26 @@ namespace Mistix{
             }
         }
 
-        private void HighlightFreeArcanePlaces(){
+        private void HighlightFreeArcanePlaces(){}
 
+        public bool IsBoardPlaceSelectionPhase(){
+            return _battleManager.IsBoardPlaceSelectionPhase();
+        }
+
+        public bool IsPlayerTurn(){
+            return _battleManager.IsPlayerTurn();
+        }
+
+        public Card GetResultCard(){
+            return _battleManager.GetFusionResultCard();
+        }
+
+        public void BoardPlaceSelected(){
+            _boardPlaceSelected = true;
+        }
+
+        public bool IsBoardPlaceSelected(){
+            return _boardPlaceSelected;
         }
     }
 }
