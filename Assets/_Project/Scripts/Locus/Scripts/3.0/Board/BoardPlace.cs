@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -15,7 +16,9 @@ namespace Mistix{
 
         private BoardPlaceVisual _visual;
         private Card _cardInPlace;
+        private bool _isOptShowing;
 
+    #region Unity
         private void Awake() {
             _colliders = GetComponents<Collider>();
             _visual = GetComponent<BoardPlaceVisual>();
@@ -25,7 +28,9 @@ namespace Mistix{
             IsFree = true;
             _boardManager = BoardManager.Instance;
         }
+    #endregion
 
+    #region Light
         public void LightUp(Color color){
             _visual.LightUp(color);
         }
@@ -37,11 +42,24 @@ namespace Mistix{
         public void HighLight(){
             _visual.HighLight();
         }
+    #endregion
 
-        // private void OnMouseOver() {// Mostrar botoes de opção
-        //     if(_cardInPlace == null) { return; }
-        //     _cardInPlace.OnMouseOver(); //Atualiza a ilustração do UI
-        // }
+        private void OnMouseOver() {// Mostrar botoes de opção
+            if(_cardInPlace == null) { return; }
+            _cardInPlace.OnMouseOver(); //Atualiza a ilustração do UI
+
+            if(_boardManager.IsActionPhase() == false){ return; }
+            if(_isOptShowing){ return; }
+
+            _boardManager.ShowOptions(_cardInPlace, this);
+            _isOptShowing = true;
+        }
+
+        private void OnMouseExit(){
+            _boardManager.HideOptions();
+            if(_isOptShowing == false){ return; }
+            _isOptShowing = false;
+        }
 
         private void OnMouseDown(){
             if(_boardManager.IsBoardPlaceSelectionPhase()){
@@ -112,6 +130,80 @@ namespace Mistix{
             IsFree = false;
             // _canBeSelected = false;
             _boardManager.BoardPlaceSelected();
+        }
+
+        public void FlipCard(){
+            if(_cardInPlace is MonsterCard){
+                var monsterCard = _cardInPlace as MonsterCard;
+
+                if(!monsterCard.IsFaceDown) { return; } // is face Up
+
+                Quaternion rotation;
+
+                if(monsterCard.IsPlayerCard){
+                    //Monster in attack
+                    if(monsterCard.IsInAttackMode){
+                        monsterCard.MoveCard(transform);
+                    }else{
+                        //Monster in Defense
+                        rotation = _boardManager.PlayerMonsterFaceUpDefRotation;
+                        monsterCard.MoveCard(transform, rotation);
+                    }
+
+                }else{
+                    //Monster in attack
+                    if(monsterCard.IsInAttackMode){
+                        monsterCard.MoveCard(transform);
+                    }else{
+                        //Monster in Defense
+                        rotation = _boardManager.EnemyMonsterFaceUpDefRotation;
+                        monsterCard.MoveCard(transform, rotation);
+                    }
+
+                }
+
+                _cardInPlace.SetWasFlipedThisTurn(true);
+                _cardInPlace.SetCanFlip(false);
+                _cardInPlace.SetFaceUp();
+                return;
+            }else{
+
+            }
+        }
+
+        public void ChangeMonsterToAtk(){
+            var monsterCard = _cardInPlace as MonsterCard;
+            Quaternion rotation;
+            if(monsterCard.IsPlayerCard){
+                if(monsterCard.IsFaceDown){
+                    // rotation = PlayerMonsterFaceDownAtkRotation;
+                    rotation = _boardManager.PlayerMonsterFaceDownAtkRotation;
+                    monsterCard.MoveCard(transform, rotation);
+                    return;
+                }
+                // rotation = _uiManager.PlayerMonsterFaceUpRotation();
+                monsterCard.MoveCard(transform);
+                monsterCard.SetAttackMode();
+                monsterCard.SetCanChangeMode(false);
+                return;
+            }
+        }
+
+        public void ChangeMonsterToDef(){
+            var monsterCard = _cardInPlace as MonsterCard;
+            Quaternion rotation;
+            if(monsterCard.IsPlayerCard){
+                if(monsterCard.IsFaceDown){         
+                    rotation = _boardManager.PlayerMonsterFaceDownDefRotation;
+                    monsterCard.MoveCard(transform, rotation);
+                    return;
+                }
+                rotation = _boardManager.PlayerMonsterFaceUpDefRotation;
+                monsterCard.MoveCard(transform, rotation);
+                monsterCard.SetDeffenseMode();
+                monsterCard.SetCanChangeMode(false);
+                return;
+            }
         }
     }
 }

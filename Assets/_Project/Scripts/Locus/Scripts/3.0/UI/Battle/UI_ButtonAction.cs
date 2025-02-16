@@ -17,6 +17,11 @@ namespace Mistix{
             _actionButton.onClick.AddListener(ActionButtonClicked);
         }
 
+        public void ShowEndActionPhaseButton(){
+            _actionButtonObject.SetActive(true);
+            _actionButtonText.text = "End Action";
+        }
+
         public void ShowEndCardSelectionButton() {
             _actionButtonObject.SetActive(true);
             _actionButtonText.text = "End Selection";
@@ -32,6 +37,11 @@ namespace Mistix{
             if(_uiManager.IsCardSelectionPhase()){
                 _uiManager.EndCardSelection();
                 HideActionButton();
+                return;
+            }
+
+            if(_uiManager.IsActionPhase()){
+                _uiManager.ActionSelected();
                 return;
             }
         }

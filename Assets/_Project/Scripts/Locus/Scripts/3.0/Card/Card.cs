@@ -80,8 +80,8 @@ namespace Mistix{
         public virtual void SetCardText() { Name = Data.Name; }
         public void SetPlayerCard() { IsPlayerCard = true; }
         public void SetCardOnHand(bool isOnHand) { IsOnHand = isOnHand; }
-        // public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }
-        // public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
+        public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }
+        public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
 
     #region Visuals
         public void ResetBorderColor(){
@@ -109,7 +109,7 @@ namespace Mistix{
     #endregion
         
     #region Buttons
-        // public void SetShowButtons(bool mustShowButtons) { MustShowButtons = mustShowButtons; }
+        public void SetShowButtons(bool mustShowButtons) { MustShowButtons = mustShowButtons; }
     #endregion
     
     #region Fusion
@@ -191,7 +191,10 @@ namespace Mistix{
             _handPosition.SetPlaceFree();
         }
 
-        public void SetBoardPlace(BoardPlace boardPlace) { BoardPlace = boardPlace; }
+        public void SetBoardPlace(BoardPlace boardPlace) { 
+            BoardPlace = boardPlace;
+            SetShowButtons(true);
+        }
 
         // public BoardPlace GetBoardPlace() { return BoardPlace; }
 

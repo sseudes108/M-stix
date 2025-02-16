@@ -20,8 +20,8 @@ namespace Mistix{
         public bool ModeSelected {get; private set;} = false;
         public bool IsInAttackMode {get; private set;} = true;
         public bool CanAttack {get; private set;}
-        // public bool CanChangeMode {get; private set;}
-        // public bool IsDead {get; private set;} = false;
+        public bool CanChangeMode {get; private set;}
+        public bool IsDead {get; private set;} = false;
 
 
         [Header("Labels")]
@@ -69,8 +69,8 @@ namespace Mistix{
 
         public void SelectMode() { ModeSelected = true; }
         public void SetDeffenseMode() { IsInAttackMode = false; }
-        // public void SetAttackMode() { IsInAttackMode = true; }
-        // public void SetCanChangeMode(bool canChangeMode) { CanChangeMode = canChangeMode; }
+        public void SetAttackMode() { IsInAttackMode = true; }
+        public void SetCanChangeMode(bool canChangeMode) { CanChangeMode = canChangeMode; }
         public void SetCanAttack(bool canAttack) { CanAttack = canAttack; }
 
         // public void MonsterAttacked(){

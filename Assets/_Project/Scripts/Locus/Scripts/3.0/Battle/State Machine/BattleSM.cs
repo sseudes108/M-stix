@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -15,6 +14,10 @@ namespace Mistix{
         public BS_05_CardStatSel CardStatSelPhase { get; private set; }
         public BS_06_BoardPlaceSel BoardPlaceSelPhase { get; private set; }
         public BS_07_Action ActionPhase { get; private set; }
+        public BS_08_Effects EffectsPhase { get; private set; }
+        public BS_09_Damage DamagePhase { get; private set; }
+        public BS_10_Action2 Action2Phase { get; private set; }
+        public BS_11_End EndPhase { get; private set; }
         
 
     #region Unity Methods
@@ -42,7 +45,10 @@ namespace Mistix{
             FusionPhase = new(this);
             CardStatSelPhase = new(this);
             BoardPlaceSelPhase = new(this);
-            ActionPhase  = new(this);
+            ActionPhase = new(this);
+            EffectsPhase = new(this);
+            DamagePhase = new(this);
+            EndPhase = new(this);
         }
 
     #endregion
@@ -58,6 +64,8 @@ namespace Mistix{
         public void HighLightPossiblePlaces(){
             _battleManager.HighLightPossiblePlaces();
         }
+        public bool BoardPlaceSelected(){ return _battleManager.IsBoardPlaceSelected(); }
+        
     #endregion
 
     #region Turn
@@ -71,6 +79,8 @@ namespace Mistix{
         private void UpdateDebugBattleState(AbstractState state) { _battleManager.UpdateDebugBattleState(state.ToString()); }
 
         public void MoveUICardOffScreen(){ _battleManager.MoveUICardOffScreen(); }
+        public bool IsActionSelected(){ return _battleManager.IsActionSelected(); }
+        public void ShowEndActionButton(){ _battleManager.ShowEndActionButton(); }
 
     #endregion
 
@@ -101,15 +111,9 @@ namespace Mistix{
     #endregion
 
     #region Card Stats
-        public void ShowCardStatOptions(Card card){
-            _battleManager.ShowCardStatOptions(card);
-        }
-
-        public bool IsAllStatsSelected(){ return _battleManager.IsAllStatsSelected(); }
-
-        public bool BoardPlaceSelected(){ return _battleManager.IsBoardPlaceSelected(); }
-
-        #endregion
+        public void ShowCardStatOptions(Card card){ _battleManager.ShowCardStatOptions(card); }
+        public bool IsAllStatsSelected(){ return _battleManager.IsAllStatsSelected(); }        
+    #endregion
 
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -7,10 +8,13 @@ namespace Mistix{
         private UI_CardHolder _uiCardHolder;
         private UI_ButtonAction _uiButtonActions;
         private UI_ButtonCardStat _uiButtonCardStat;
+        private UI_ActionPhaseButtons _uiActionPhaseButtons;
         private UI_Battle _uiBattle;
         [SerializeField] private BattleManager _battleManager;
 
         private Card _fusionResultCard;
+
+        private bool _actionSelected = false;
 
         private void Awake() {
             _uiDeck = GetComponent<UI_Deck>();
@@ -18,6 +22,7 @@ namespace Mistix{
             _uiCardHolder = GetComponent<UI_CardHolder>();
             _uiButtonActions = GetComponent<UI_ButtonAction>();
             _uiButtonCardStat = GetComponent<UI_ButtonCardStat>();
+            _uiActionPhaseButtons = GetComponent<UI_ActionPhaseButtons>();
         }
 
         public void ResetDeckCount() { _uiDeck.ResetDeckCount(); }
@@ -46,5 +51,24 @@ namespace Mistix{
 
         public void Option1_Clicked(){ _battleManager.Option1_Clicked(_fusionResultCard); }
         public void Option2_Clicked(){ _battleManager.Option2_Clicked(_fusionResultCard); }
+
+        public void ShowOptions(Card cardInPlace, BoardPlace place){
+            _actionSelected = false;
+            _uiActionPhaseButtons.SetCardOptions(cardInPlace, place);
+        }
+
+        public void HideOptions(){
+            _uiActionPhaseButtons.HideOptions();
+        }
+
+        public void ActionSelected(){
+            _actionSelected = true;
+        }
+
+        public bool IsCardSelected(){ return _actionSelected; }
+
+        public void ShowEndActionButton(){ _uiButtonActions.ShowEndActionPhaseButton(); }
+
+        public bool IsActionPhase(){ return _battleManager.IsActionPhase(); }
     }
 }

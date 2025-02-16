@@ -8,6 +8,19 @@ namespace Mistix{
 
         public override void Exit(){}
         private IEnumerator ActionPhaseRoutine(){
+            if(BattleSM.IsFirstTurn()){
+                //Caso não haja nenhuma arcane no campo{
+                BattleSM.ChangeState(BattleSM.EndPhase);
+                yield break;
+                //}
+            }
+
+            BattleSM.ShowEndActionButton(); //Mostrar botoao de encerrar fase
+            while(BattleSM.IsActionSelected() == false){ //Aguardar seleção da ação
+                yield return null;
+            }
+
+            // BattleSM.ChangeState(BattleSM.EffectsPhase);
             yield return null;
         }
 

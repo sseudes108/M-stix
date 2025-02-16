@@ -140,7 +140,27 @@ namespace Mistix{
             return _battleSM.CurrentState is BS_06_BoardPlaceSel;
         }
 
-    #endregion
+        public bool IsActionPhase(){
+            return _battleSM.CurrentState is BS_07_Action;
+        }
+
+        public void ShowOptions(Card cardInPlace, BoardPlace place){
+            _uiManager.ShowOptions(cardInPlace, place);
+        }
+
+        public void HideOptions(){
+            _uiManager.HideOptions();
+        }
+
+        public bool IsActionSelected(){
+            return _uiManager.IsCardSelected();
+        }
+
+        public void ShowEndActionButton(){
+            _uiManager.ShowEndActionButton();
+        }
+
+        #endregion
 
     }
 }

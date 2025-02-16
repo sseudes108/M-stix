@@ -2430,10 +2430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 0
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
 --- !u!114 &1433984661830966928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6272,10 +6270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 8
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
 --- !u!222 &3699453436057976655
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6589,10 +6585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 9
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
 --- !u!4 &3954536310887156672
 Transform:
   m_ObjectHideFlags: 0
@@ -7269,10 +7263,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 4
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
 --- !u!33 &4379364710160531491
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7960,6 +7952,7 @@ GameObject:
   - component: {fileID: 8031828688844525930}
   - component: {fileID: 8031828688844525931}
   - component: {fileID: 8031828688844525933}
+  - component: {fileID: 8031828688844525934}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -8198,10 +8191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 2
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
 --- !u!1 &5024869160670986968
 GameObject:
   m_ObjectHideFlags: 0
@@ -11323,10 +11314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 3
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
 --- !u!114 &6608160360063295940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12104,10 +12093,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 7
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
 --- !u!33 &6928750908403966195
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -12759,10 +12746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 0
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
 --- !u!1 &7384536541510463005
 GameObject:
   m_ObjectHideFlags: 0
@@ -12875,10 +12860,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 1
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
 --- !u!1 &7463767081417013416
 GameObject:
   m_ObjectHideFlags: 0
@@ -13315,10 +13298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 1
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
 --- !u!1 &7672887985023284294
 GameObject:
   m_ObjectHideFlags: 0
@@ -13419,10 +13400,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 7
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
 --- !u!114 &7719165197658293459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13477,10 +13456,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 6
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
 --- !u!224 &7746271445513848773
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13650,10 +13627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 6
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
 --- !u!224 &7786555033550899287
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14260,6 +14235,23 @@ MonoBehaviour:
   _statButton2: {fileID: 4783231893476403749}
   _statText1: {fileID: 5407259707340075189}
   _statText2: {fileID: 5554165948525525231}
+--- !u!114 &8031828688844525934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843403810405233628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45144f6ba9ed7814b8467c0c8947c792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonsContainer: {fileID: 4534195091216424324}
+  _button1: {fileID: 5832044095397551391}
+  _button2: {fileID: 5659954202503454500}
+  _button1Text: {fileID: 1666911076520398401}
+  _button2Text: {fileID: 7562334811202139207}
 --- !u!4 &8039919782589876887
 Transform:
   m_ObjectHideFlags: 0
@@ -14398,10 +14390,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 8
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
 --- !u!1 &8104558180771564181
 GameObject:
   m_ObjectHideFlags: 0
@@ -14557,10 +14547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 5
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
 --- !u!1 &8153528973529032861
 GameObject:
   m_ObjectHideFlags: 0
@@ -14605,10 +14593,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 9
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
 --- !u!1 &8155174818563473803
 GameObject:
   m_ObjectHideFlags: 0
@@ -14654,10 +14640,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 2
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
 --- !u!1 &8175904213989295525
 GameObject:
   m_ObjectHideFlags: 0
@@ -15161,10 +15145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 5
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 0
-  <IsFree>k__BackingField: 0
 --- !u!1 &8564853839372287068
 GameObject:
   m_ObjectHideFlags: 0
@@ -16003,10 +15985,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 3
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 1
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
 --- !u!4 &8934068309538090398
 Transform:
   m_ObjectHideFlags: 0
@@ -16154,10 +16134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Location>k__BackingField: 4
-  <Colliders>k__BackingField: []
   <IsPlayerPlace>k__BackingField: 0
   <IsMonsterPlace>k__BackingField: 1
-  <IsFree>k__BackingField: 0
 --- !u!114 &9164478386352156889
 MonoBehaviour:
   m_ObjectHideFlags: 0

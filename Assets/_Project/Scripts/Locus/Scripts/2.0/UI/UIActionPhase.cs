@@ -129,8 +129,8 @@
 //                 }
 //             }
 //         }
-
 //     }
+
 //     private void Option1Clicked(){
 //         if(_card is MonsterCard){
 //             if(_card.IsFaceDown){

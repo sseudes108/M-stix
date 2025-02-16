@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace Mistix{
         public Quaternion PlayerMonsterFaceDownAtkRotation {get; private set;} = Quaternion.Euler(-90, -90, -90);
         public Quaternion PlayerMonsterFaceDownDefRotation {get; private set;} = Quaternion.Euler(-90, -180, -90);
         public Quaternion PlayerMonsterFaceUpDefRotation {get; private set;} = Quaternion.Euler(90, 90, 0);
+        
         public Quaternion EnemyMonsterFaceDownAtkRotation {get; private set;} = Quaternion.Euler(-90, -90, 90);
         public Quaternion EnemyMonsterFaceDownDefRotation {get; private set;} = Quaternion.Euler(-90, -180, 90);
         public Quaternion EnemyMonsterFaceUpDefRotation {get; private set;} = Quaternion.Euler(90, 90, 180);
@@ -101,6 +103,18 @@ namespace Mistix{
 
         public bool IsBoardPlaceSelected(){
             return _boardPlaceSelected;
+        }
+
+        public bool IsActionPhase(){
+            return _battleManager.IsActionPhase();
+        }
+
+        public void ShowOptions(Card cardInPlace, BoardPlace place){
+            _battleManager.ShowOptions(cardInPlace, place);
+        }
+
+        public void HideOptions(){
+            _battleManager.HideOptions();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Mistix{
                 yield return null;
             }
 
-            BattleSM.ChangeState(BattleSM.BoardPlaceSelPhase); //mudar para Board place selection phase
+            BattleSM.ChangeState(BattleSM.BoardPlaceSelPhase);//mudar para Board place selection phase
             yield return null;
         }
 
