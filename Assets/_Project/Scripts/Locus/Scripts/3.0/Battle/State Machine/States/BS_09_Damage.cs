@@ -3,7 +3,7 @@ using System.Collections;
 namespace Mistix{
 
     public class BS_09_Damage : AbstractState{
-        public BS_09_Damage(BattleSM battleSM) : base(battleSM){}
+        public BS_09_Damage(BattleSM battleSM, AISM aiSM) : base(battleSM, aiSM){}
 
         public override void Enter(){ BattleSM.StartCoroutine(DamagePhaseRoutine()); }
 

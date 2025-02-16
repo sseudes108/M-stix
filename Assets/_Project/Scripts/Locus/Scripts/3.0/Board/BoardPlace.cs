@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -31,17 +30,9 @@ namespace Mistix{
     #endregion
 
     #region Light
-        public void LightUp(Color color){
-            _visual.LightUp(color);
-        }
-
-        public void LightOff(Color color){
-            _visual.LightOff(color);
-        }
-
-        public void HighLight(){
-            _visual.HighLight();
-        }
+        public void LightUp(Color color){ _visual.LightUp(color); }
+        public void LightOff(Color color){ _visual.LightOff(color); }
+        public void HighLight(){ _visual.HighLight(); }
     #endregion
 
         private void OnMouseOver() {// Mostrar botoes de opção

@@ -33,7 +33,7 @@ namespace Mistix{
         public void UpdateTurn(int turn, bool IsPlayerTurn){ _uiBattle.UpdateTurn(turn, IsPlayerTurn); }
         public void UpdateLifePoints(bool isPlayer, int lifePoints){ _uiBattle.UpdateLifePoints(isPlayer, lifePoints); }
         public void UpdateDeckCount(bool isPlayer, int deckCount){ _uiBattle.UpdateDeckCount(isPlayer, deckCount); }
-        public void UpdateDebugBattleState(string state){ _uiBattle.UpdateDebugBattleState(state); }
+        
 
         public void MoveUICardOffScreen(){ _uiCardHolder.MoveOffScren(); }
 
@@ -61,14 +61,16 @@ namespace Mistix{
             _uiActionPhaseButtons.HideOptions();
         }
 
-        public void ActionSelected(){
-            _actionSelected = true;
-        }
+        public void ResetActionSelected(){_actionSelected = false; }
+        public void ActionSelected(){ _actionSelected = true; }
 
-        public bool IsCardSelected(){ return _actionSelected; }
+        public bool IsActionSelected(){ return _actionSelected; }
 
         public void ShowEndActionButton(){ _uiButtonActions.ShowEndActionPhaseButton(); }
 
         public bool IsActionPhase(){ return _battleManager.IsActionPhase(); }
+
+        public void UpdateDebugAIState(string state){ _uiBattle.UpdateDebugAIState(state); }
+        public void UpdateDebugBattleState(string state){ _uiBattle.UpdateDebugBattleState(state); }
     }
 }

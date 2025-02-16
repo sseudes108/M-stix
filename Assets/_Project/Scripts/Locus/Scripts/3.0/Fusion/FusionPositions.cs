@@ -19,7 +19,7 @@ namespace Mistix{
             if(card == null){
                 Debug.Log("Card is Null in FusionPositions at MoveToBoardPlaceSelection()");
             }
-
+            
             if(isPlayerTurn){
                 _boardSelectionPlace = _playerBoardSelectionPlace;
             }else{

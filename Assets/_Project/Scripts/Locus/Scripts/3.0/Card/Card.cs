@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -6,7 +5,7 @@ namespace Mistix{
         protected CardManager _cardManager;
 
         [Header("Global Settings")]
-        public CardSO Data; //For some reason, need to be public... makes no F* sense - It has 3 refencies. In ArcaneCard.cs, DamageCard.cs, MonsterCard.cs. None try to change the value, only here. And cannot be private with a public refence to it (Card => _card). Can't be serialized;. Needs to be public or otherwise it became null at the instatiation moment.
+        public CardSO _data;
         public string Name { get; private set; }
         private Texture2D _illustration;
         protected CardVisual _visuals;
@@ -63,21 +62,21 @@ namespace Mistix{
             if(!IsPlayerCard && IsOnHand) {return;} //Not player card, on hand
 
             if(IsPlayerCard){
-                _cardManager.UpdateCardUilustration(Data.Illustration);
+                _cardManager.UpdateCardUilustration(_data.Illustration);
                 return;
             }
 
             if(!IsOnHand && !IsFaceDown){ //Not player card, not on hand, not face down
-                _cardManager.UpdateCardUilustration(Data.Illustration);
+                _cardManager.UpdateCardUilustration(_data.Illustration);
                 return;
             }
         }
 
     #endregion
 
-        public void SetCardData(ScriptableObject cardData) { Data = cardData as CardSO; }
-        public virtual void SetCardInfo() { _illustration = Data.Illustration; }
-        public virtual void SetCardText() { Name = Data.Name; }
+        public void SetCardData(ScriptableObject cardData) { _data = cardData as CardSO; }
+        public virtual void SetCardInfo() { _illustration = _data.Illustration; }
+        public virtual void SetCardText() { Name = _data.Name; }
         public void SetPlayerCard() { IsPlayerCard = true; }
         public void SetCardOnHand(bool isOnHand) { IsOnHand = isOnHand; }
         public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }

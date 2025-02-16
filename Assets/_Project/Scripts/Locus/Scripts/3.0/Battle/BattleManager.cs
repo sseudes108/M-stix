@@ -2,10 +2,10 @@ using System;
 using UnityEngine;
 
 namespace Mistix{
-    
     public class BattleManager : MonoBehaviour {
         [SerializeField] private BoardManager _boardManager;
         [SerializeField] private UIManager _uiManager;
+        [SerializeField] private AIManager _aiManager;
         [SerializeField] private LPManager _lpManager;
         [SerializeField] private HandManager _handManager;
         [SerializeField] private CardManager _cardManager;
@@ -26,6 +26,13 @@ namespace Mistix{
         public void HighLightPossiblePlaces(){ _boardManager.HighLightFreePlaces(); }
         public bool IsBoardPlaceSelected(){
             return _boardManager.IsBoardPlaceSelected();
+        }
+        public bool PlayerHasArcaneOnField(){
+            return _boardManager.PlayerHasArcaneOnField();
+        }
+
+        public bool EnemyHasArcaneOnField(){
+            return _boardManager.EnemyHasArcaneOnField();
         }
 
     #endregion
@@ -49,6 +56,7 @@ namespace Mistix{
     #region Turn Manager
         public bool IsFirstTurn() { return _turnManager.IsFirstTurn(); }
         public bool IsPlayerTurn() { return _turnManager.GetTurnInfo().Item2; }
+        public void EndTurn(){  _turnManager.EndTurn(); }
 
     #endregion
 
@@ -71,8 +79,14 @@ namespace Mistix{
         }
 
         public void EndCardSelection(){
+            Debug.Log("BattleManager.cs EndCardSelection()");
             _handManager.EndCardSelection();
         }
+        
+        public void ResetCardSelectionEnded(){
+            _handManager.ResetCardSelection();
+        }
+
         
     #endregion
 
@@ -86,6 +100,7 @@ namespace Mistix{
         public void UpdateDeckCount(bool isPlayer, int deckCount) { _uiManager.UpdateDeckCount(isPlayer, deckCount); }
         public void ResetDeckCount() { _uiManager.ResetDeckCount(); }
         public void UpdateDebugBattleState(string state) { _uiManager.UpdateDebugBattleState(state); }
+        public void UpdateDebugAIState(string aiPhase) { _uiManager.UpdateDebugAIState(aiPhase); }
         public void UpdateCardUilustration(Texture2D illustration) { _uiManager.UpdateIllustration(illustration); }
 
         public void ShowEndSelectionButton() { _uiManager.ShowEndSelectionButton(); }
@@ -103,7 +118,13 @@ namespace Mistix{
 
         public void StatSelectionEnd() { _uiManager.StatSelectionEnd(); }
 
-        #endregion
+        public void ShowOptions(Card cardInPlace, BoardPlace place){ _uiManager.ShowOptions(cardInPlace, place); }
+
+        public void HideOptions(){ _uiManager.HideOptions(); }
+        public bool IsActionSelected(){ return _uiManager.IsActionSelected(); }
+        public void ResetActionSelected(){ _uiManager.ResetActionSelected(); }
+        public void ShowEndActionButton(){ _uiManager.ShowEndActionButton(); }
+    #endregion
 
     #region Fusion Manager
         public void StartFusionRoutine(){ 
@@ -112,17 +133,9 @@ namespace Mistix{
                 _turnManager.IsPlayerTurn()
             ); 
         }
-        
-        public bool IsFusionEnded(){
-            return _fusionManager.IsFusionEnded();
-        }
-
-        public Card GetFusionResultCard(){
-            return _fusionManager.GetResultCard();
-        }
-        public void MoveToBoardPlaceSelection(){ 
-            _fusionManager.MoveToBoardPlaceSelection(); 
-        }
+        public bool IsFusionEnded(){ return _fusionManager.IsFusionEnded(); }
+        public Card GetFusionResultCard(){ return _fusionManager.GetResultCard(); }
+        public void MoveToBoardPlaceSelection(){ _fusionManager.MoveToBoardPlaceSelection(); }
     #endregion
 
     #region Camera Manager
@@ -132,35 +145,22 @@ namespace Mistix{
     #endregion
 
     #region State Machine
-        public bool IsCardSelectionPhase(){
-            return _battleSM.CurrentState is BS_03_CardSelection;
-        }
+        public bool IsCardSelectionPhase(){ return _battleSM.CurrentState is BS_03_CardSelection; }
 
-        public bool IsBoardPlaceSelectionPhase(){
-            return _battleSM.CurrentState is BS_06_BoardPlaceSel;
-        }
+        public bool IsBoardPlaceSelectionPhase(){ return _battleSM.CurrentState is BS_06_BoardPlaceSel; }
 
-        public bool IsActionPhase(){
-            return _battleSM.CurrentState is BS_07_Action;
-        }
+        public bool IsActionPhase(){ return _battleSM.CurrentState is BS_07_Action; }
 
-        public void ShowOptions(Card cardInPlace, BoardPlace place){
-            _uiManager.ShowOptions(cardInPlace, place);
-        }
+    #endregion
 
-        public void HideOptions(){
-            _uiManager.HideOptions();
+    #region  AI
+        public void ChangeAISMToCardSelectionPhase(){
+            _aiManager.ChangeAISMToCardSelectionPhase();
         }
-
-        public bool IsActionSelected(){
-            return _uiManager.IsCardSelected();
-        }
-
-        public void ShowEndActionButton(){
-            _uiManager.ShowEndActionButton();
+        public void ChangeAISMToCardStatSelPhase(){
+            _aiManager.ChangeAISMToCardStatSelPhase();
         }
 
         #endregion
-
     }
 }

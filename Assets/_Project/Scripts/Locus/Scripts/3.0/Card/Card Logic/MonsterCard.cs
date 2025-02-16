@@ -33,7 +33,7 @@ namespace Mistix{
 
         public override void SetCardInfo(){
             base.SetCardInfo();
-            var _cardData = Data as MonsterCardSO;
+            var _cardData = _data as MonsterCardSO;
             MonsterType = _cardData.MonsterType;
             FirstAnima = _cardData.FirstAnima;
             SecondAnima = _cardData.SecondAnima;

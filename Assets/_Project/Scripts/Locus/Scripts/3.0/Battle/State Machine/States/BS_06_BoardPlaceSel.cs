@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Mistix{
 
     public class BS_06_BoardPlaceSel : AbstractState{
-        public BS_06_BoardPlaceSel(BattleSM battleSM) : base(battleSM){}
+        public BS_06_BoardPlaceSel(BattleSM battleSM, AISM aiSM) : base(battleSM, aiSM){}
 
         public override void Enter(){ BattleSM.StartCoroutine(BoardPlaceSelectionRoutine()); }
 
@@ -15,6 +15,11 @@ namespace Mistix{
 
             BattleSM.HighLightPossiblePlaces();//Highlight os places possiveis
 
+            // if(!BattleSM.IsPlayerTurn()){
+                //Change AI Stat para Board place Select
+            // }
+
+            //BattleSM.ResetBoardPlaceSelected()// Reseta o bool que verifica se o place foi selecionado
             while(BattleSM.BoardPlaceSelected() == false){//esperar a seleção
                 yield return null;
             }
@@ -26,6 +31,6 @@ namespace Mistix{
             yield return null;
         }
         
-        public override string ToString(){ return "Board Place Sel."; }
+        public override string ToString(){ return "Place Sel."; }
     }
 }

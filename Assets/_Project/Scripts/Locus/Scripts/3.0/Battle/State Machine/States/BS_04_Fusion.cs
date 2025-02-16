@@ -3,7 +3,7 @@ using System.Collections;
 namespace Mistix{
 
     public class BS_04_Fusion : AbstractState{
-        public BS_04_Fusion(BattleSM battleSM) : base(battleSM){}
+        public BS_04_Fusion(BattleSM battleSM, AISM aiSM) : base(battleSM, aiSM){}
         public override void Enter(){ BattleSM.StartCoroutine(FusionPhaseRoutine()); }
         public override void Exit(){}
         private IEnumerator FusionPhaseRoutine(){

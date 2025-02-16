@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -39,16 +40,16 @@ namespace Mistix{
         }
 
         private void CreateStates(){
-            StartPhase = new(this);
-            DrawPhase = new(this);
-            CardSelectionPhase = new(this);
-            FusionPhase = new(this);
-            CardStatSelPhase = new(this);
-            BoardPlaceSelPhase = new(this);
-            ActionPhase = new(this);
-            EffectsPhase = new(this);
-            DamagePhase = new(this);
-            EndPhase = new(this);
+            StartPhase = new(this, null);
+            DrawPhase = new(this, null);
+            CardSelectionPhase = new(this, null);
+            FusionPhase = new(this, null);
+            CardStatSelPhase = new(this, null);
+            BoardPlaceSelPhase = new(this, null);
+            ActionPhase = new(this, null);
+            EffectsPhase = new(this, null);
+            DamagePhase = new(this, null);
+            EndPhase = new(this, null);
         }
 
     #endregion
@@ -71,6 +72,8 @@ namespace Mistix{
     #region Turn
         public void UpdateTurn() { _battleManager.UpdateTurn(); }
         public bool IsFirstTurn() { return _battleManager.IsFirstTurn(); }
+        public bool IsPlayerTurn(){ return _battleManager.IsPlayerTurn(); }
+        public void EndTurn(){ _battleManager.EndTurn(); }
     #endregion
 
     #region UI
@@ -80,6 +83,7 @@ namespace Mistix{
 
         public void MoveUICardOffScreen(){ _battleManager.MoveUICardOffScreen(); }
         public bool IsActionSelected(){ return _battleManager.IsActionSelected(); }
+        public void ResetActionSelected(){ _battleManager.ResetActionSelected(); }
         public void ShowEndActionButton(){ _battleManager.ShowEndActionButton(); }
 
     #endregion
@@ -113,6 +117,30 @@ namespace Mistix{
     #region Card Stats
         public void ShowCardStatOptions(Card card){ _battleManager.ShowCardStatOptions(card); }
         public bool IsAllStatsSelected(){ return _battleManager.IsAllStatsSelected(); }        
+
+    #endregion
+
+    #region Card Stats
+
+
+        public void ResetCardSelectionEnded(){
+            _battleManager.ResetCardSelectionEnded();
+        }
+
+        public bool PlayerHasArcaneOnField(){  return _battleManager.PlayerHasArcaneOnField(); }
+
+        public bool EnemyHasArcaneOnField(){  return _battleManager.EnemyHasArcaneOnField(); }
+
+    #endregion
+
+    #region AI
+        public void ChangeAISMToCardSelectionPhase(){
+            _battleManager.ChangeAISMToCardSelectionPhase();
+        }
+
+        public void ChangeAISMToCardStatSelPhase(){
+            _battleManager.ChangeAISMToCardStatSelPhase();
+        }
     #endregion
 
     }

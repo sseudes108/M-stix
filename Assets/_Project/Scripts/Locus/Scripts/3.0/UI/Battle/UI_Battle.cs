@@ -50,12 +50,8 @@ namespace Mistix{
             _battlePhase.text = $"Battle: {battlePhase}";
         }
 
-        public void ResetDeckCount() { _uiManager.ResetDeckCount(); }
-
-        public void UpdateIllustration(Texture2D illustration) { _uiManager.UpdateIllustration(illustration); }
-
-        public void ShowEndSelectionButton() { _uiManager.ShowEndSelectionButton(); }
-
-        public void HideEndSelectionButton() { _uiManager.HideEndSelectionButton(); }
+        public void UpdateDebugAIState(string aiPhase){ 
+            _aiState.text = $"AI: {aiPhase}";
+        }
     }
 }

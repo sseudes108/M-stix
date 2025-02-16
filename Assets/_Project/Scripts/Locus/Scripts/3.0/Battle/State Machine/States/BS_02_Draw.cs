@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mistix{
     public class BS_02_Draw : AbstractState{
-        public BS_02_Draw(BattleSM battleSM) : base(battleSM) {}
+        public BS_02_Draw(BattleSM battleSM, AISM aiSM) : base(battleSM, aiSM) {}
 
         public override void Enter() { BattleSM.StartCoroutine(DrawPhaseRoutine()); }
         public override void Exit() {}
@@ -19,7 +19,6 @@ namespace Mistix{
                 BattleSM.ChangeState(BattleSM.CardSelectionPhase); // Passar para Card Selection State
 
             }else{ //Cada um saca em seu turno
-
                 if(BattleSM.IsHandFull()){ //Verifica se o dono do turno já nao tem mais espaço na mão
                     BattleSM.ChangeState(BattleSM.CardSelectionPhase); // Passar para Card Selection State
                 }

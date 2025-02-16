@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -46,10 +45,8 @@ namespace Mistix{
 
         public bool IsHandFull(){
             if(_battleManager.IsPlayerTurn()){
-                Debug.Log("Player Hand Full");
                 return _playerHand.IsHandFull();
             }else{
-                Debug.Log("Enemy Hand Full");
                 return _enemyHand.IsHandFull();
             }
         }
@@ -58,7 +55,14 @@ namespace Mistix{
 
         public bool IsCardSelectionEnded(){ return _selectionEnded; }
 
-        public void EndCardSelection(){ _selectionEnded = true; }
+        public void EndCardSelection(){ 
+            Debug.Log("HandManager.cs EndCardSelection()");
+            _selectionEnded = true; 
+        }
+        public void ResetCardSelection() { 
+            Debug.Log("HandManager.cs ResetCardSelection()");
+            _selectionEnded = false; 
+        }
 
         public void MoveHandOffScreen(){ _playerHand.MoveHandOffScreen(); }
         public void MoveHandOnScreen(){ _playerHand.MoveHandOnScreen(); }

@@ -85,36 +85,41 @@ namespace Mistix{
 
         private void HighlightFreeArcanePlaces(){}
 
-        public bool IsBoardPlaceSelectionPhase(){
-            return _battleManager.IsBoardPlaceSelectionPhase();
+        public bool IsBoardPlaceSelectionPhase(){ return _battleManager.IsBoardPlaceSelectionPhase(); }
+
+        public bool IsPlayerTurn(){ return _battleManager.IsPlayerTurn(); }
+        public Card GetResultCard(){ return _battleManager.GetFusionResultCard(); }
+
+        public void BoardPlaceSelected(){ _boardPlaceSelected = true; }
+        public bool IsBoardPlaceSelected(){ return _boardPlaceSelected; }
+
+        public bool IsActionPhase(){ return _battleManager.IsActionPhase(); }
+
+        public void ShowOptions(Card cardInPlace, BoardPlace place){ _battleManager.ShowOptions(cardInPlace, place); }
+        public void HideOptions(){ _battleManager.HideOptions(); }
+
+        public bool PlayerHasArcaneOnField(){
+            bool arcaneOnField = false;
+            foreach(var place in _playerArcanePlaces){
+                if(place.IsFree){
+                    continue;
+                }else{
+                    return true;
+                }
+            }
+            return arcaneOnField;
         }
 
-        public bool IsPlayerTurn(){
-            return _battleManager.IsPlayerTurn();
-        }
-
-        public Card GetResultCard(){
-            return _battleManager.GetFusionResultCard();
-        }
-
-        public void BoardPlaceSelected(){
-            _boardPlaceSelected = true;
-        }
-
-        public bool IsBoardPlaceSelected(){
-            return _boardPlaceSelected;
-        }
-
-        public bool IsActionPhase(){
-            return _battleManager.IsActionPhase();
-        }
-
-        public void ShowOptions(Card cardInPlace, BoardPlace place){
-            _battleManager.ShowOptions(cardInPlace, place);
-        }
-
-        public void HideOptions(){
-            _battleManager.HideOptions();
+        public bool EnemyHasArcaneOnField(){
+            bool arcaneOnField = false;
+            foreach(var place in _enemyArcanePlaces){
+                if(place.IsFree){
+                    continue;
+                }else{
+                    return true;
+                }
+            }
+            return arcaneOnField;
         }
     }
 }

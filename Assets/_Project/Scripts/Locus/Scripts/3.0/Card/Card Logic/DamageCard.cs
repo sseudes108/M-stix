@@ -3,7 +3,7 @@ namespace Mistix{
         public int Amount { get; set; }
         public override void SetCardInfo(){
             base.SetCardInfo();
-            Amount = (Data as DamageCardSO).Amount;
+            Amount = (_data as DamageCardSO).Amount;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Mistix{
         [SerializeField] private TextMeshProUGUI _effect;
 
         public override void SetCardInfo(){
-            var CardData = Data as ArcaneCardSO;
+            var CardData = _data as ArcaneCardSO;
             base.SetCardInfo();
             ArcaneType = CardData.ArcaneType;
 
