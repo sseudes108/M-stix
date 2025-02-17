@@ -10,11 +10,9 @@ namespace Mistix{
         public override void Exit(){}
 
         private IEnumerator CardSelectRoutine() {
-            Debug.Log("AI - Selecting Card");
-
+            AISM.StartCardSelection();
             //Select Cards From Enemy Hand To Fusion
-            
-            AISM.EndCardSelection();
+            //AISM.EndCardSelection();
             yield return null;
         }
 

@@ -30,9 +30,6 @@ namespace Mistix{
 
         private void UpdateDebugBattleState(AbstractState aiPhase) { _battleManager.UpdateDebugAIState(aiPhase.ToString()); }
 
-        public void EndCardSelection(){
-            Debug.Log("AISM.cs EndCardSelection()");
-            _battleManager.EndCardSelection();
-        }
+        public void StartCardSelection(){ _battleManager.StartCardSelection(); }
     }
 }

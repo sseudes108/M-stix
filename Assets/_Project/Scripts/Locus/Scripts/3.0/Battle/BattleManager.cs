@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mistix{
@@ -79,7 +80,6 @@ namespace Mistix{
         }
 
         public void EndCardSelection(){
-            Debug.Log("BattleManager.cs EndCardSelection()");
             _handManager.EndCardSelection();
         }
         
@@ -160,7 +160,13 @@ namespace Mistix{
         public void ChangeAISMToCardStatSelPhase(){
             _aiManager.ChangeAISMToCardStatSelPhase();
         }
+        public void StartCardSelection(){ _aiManager.StartCardSelection(); }
+
+        public List<Card> GetCardsInAIHand(){
+            return _handManager.GetCardsInAIHand();
+        }
 
         #endregion
+
     }
 }

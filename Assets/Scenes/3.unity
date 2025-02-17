@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 318585018}
   - component: {fileID: 318585020}
   - component: {fileID: 318585019}
+  - component: {fileID: 318585021}
   m_Layer: 0
   m_Name: AIManager
   m_TagString: Untagged
@@ -216,6 +217,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b1014187caf18c459696b274747944d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _battleManager: {fileID: 408478682}
+--- !u!114 &318585021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318585017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef960f3580dc82e4bbcad31a8f935dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &408478680

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mistix{
@@ -56,15 +57,17 @@ namespace Mistix{
         public bool IsCardSelectionEnded(){ return _selectionEnded; }
 
         public void EndCardSelection(){ 
-            Debug.Log("HandManager.cs EndCardSelection()");
             _selectionEnded = true; 
         }
         public void ResetCardSelection() { 
-            Debug.Log("HandManager.cs ResetCardSelection()");
             _selectionEnded = false; 
         }
 
         public void MoveHandOffScreen(){ _playerHand.MoveHandOffScreen(); }
         public void MoveHandOnScreen(){ _playerHand.MoveHandOnScreen(); }
+
+        public List<Card> GetCardsInAIHand(){
+            return _enemyHand.GetCardsInHand();
+        }
     }
 }

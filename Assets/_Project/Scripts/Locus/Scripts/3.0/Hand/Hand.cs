@@ -83,5 +83,9 @@ namespace Mistix{
 
         public void MoveHandOffScreen(){ _handMovement.MoveHandOffScreen(); }
         public void MoveHandOnScreen(){ _handMovement.MoveHandOnScreen(); }
+
+        public List<Card> GetCardsInHand(){
+            return _cardsInHand;
+        }
     }
 }
