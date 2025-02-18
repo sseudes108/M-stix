@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -77,6 +78,10 @@ namespace Mistix{
             _battleManager.ShakeCamera();
         }
 
-    #endregion
+        public void SetFusionedCard(Card resultCard){
+            _battleManager.SetFusionedCard(resultCard);
+        }
+
+        #endregion
     }
 }

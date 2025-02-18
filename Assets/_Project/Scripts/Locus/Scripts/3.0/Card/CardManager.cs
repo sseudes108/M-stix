@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +30,8 @@ namespace Mistix{
 
         public void UpdateCardUilustration(Texture2D illustration){ _battleManager.UpdateCardUilustration(illustration); }
 
+        public void SetSelectedAICards(List<Card> selectedList){ _selector.SetSelectedAICards(selectedList); }
+
         public List<Card> GetSelectedCards(){ return _selector.GetSelectedCards(); }
 
         public void SelectAnother(MonsterCard monster){
@@ -49,6 +52,6 @@ namespace Mistix{
         }
 
         public bool IsAllStatsSelected(){ return _allStatsSelected; }
-        public void SetAllStatsSelectedFalse() { _allStatsSelected = false; }
+        public void ResetCardStatSelectionEnded(){ _allStatsSelected = false; }
     }
 }

@@ -59,6 +59,7 @@ namespace Mistix{
         public void EndCardSelection(){ 
             _selectionEnded = true; 
         }
+        
         public void ResetCardSelection() { 
             _selectionEnded = false; 
         }

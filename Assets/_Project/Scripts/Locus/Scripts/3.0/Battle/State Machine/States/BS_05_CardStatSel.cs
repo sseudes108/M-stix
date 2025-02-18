@@ -17,7 +17,7 @@ namespace Mistix{
                 //Change AISM To Stat Card Select State
             }
 
-            // BattleSM.ResetCardStatSelectionEnded()// Reseta o bool que verifica se as seleções foram feitas
+            BattleSM.ResetCardStatSelectionEnded(); // Reseta o bool que verifica se as seleções foram feitas
             while(BattleSM.IsAllStatsSelected() == false){//Aguardar todas as seleções
                 yield return null;
             }

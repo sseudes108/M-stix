@@ -28,5 +28,7 @@ namespace Mistix{
         }
 
         public List<Card> GetSelectedCards(){ return _selectedList; }
+
+        public void SetSelectedAICards(List<Card> selectedList){ _selectedList = selectedList; }
     }
 }

@@ -14,7 +14,6 @@ namespace Mistix{
         [SerializeField] private List<Transform> _enemyFusionPositions;
         [SerializeField] private Transform _enemyResultCardPosition, _enemyBoardSelectionPlace;
 
-
         public void MoveToBoardPlaceSelection(Card card, bool isPlayerTurn){
             if(card == null){
                 Debug.Log("Card is Null in FusionPositions at MoveToBoardPlaceSelection()");

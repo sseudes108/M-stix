@@ -4,10 +4,7 @@ using UnityEngine;
 
 namespace Mistix{
     public class AIA_CardSelector{
-        public AIA_CardSelector(AIActor actor){
-            _actor = actor;
-        }
-
+        public AIA_CardSelector(AIActor actor){ _actor = actor; }
         private AIActor _actor;
         private List<Card> _selectedList = new();
 
@@ -32,10 +29,12 @@ namespace Mistix{
             //     StrongestFusionFromHand();
             // }
 
-            // yield return new WaitForSeconds(2f);
-            // _Actor.CardSelectionFinished();
+            yield return new WaitForSeconds(2f);
 
-            Debug.Log($"Selected - { _selectedList[0].Name}");
+            _actor.SetSelectedAICards(_selectedList);
+
+            _actor.CardSelectionFinished();
+
             yield return null;
         }
 
@@ -43,6 +42,7 @@ namespace Mistix{
             var randomCard = cardsInHand[Random.Range(0, cardsInHand.Count)];
             AddToSelectedList(randomCard);
         }
+
         private void AddToSelectedList(Card card) { _selectedList.Add(card);}
     }
 }

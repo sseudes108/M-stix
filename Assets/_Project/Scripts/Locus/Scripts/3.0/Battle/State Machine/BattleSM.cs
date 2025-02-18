@@ -116,21 +116,17 @@ namespace Mistix{
 
     #region Card Stats
         public void ShowCardStatOptions(Card card){ _battleManager.ShowCardStatOptions(card); }
-        public bool IsAllStatsSelected(){ return _battleManager.IsAllStatsSelected(); }        
+        public bool IsAllStatsSelected(){ return _battleManager.IsAllStatsSelected(); }
+        public void ResetCardStatSelectionEnded(){ _battleManager.ResetCardStatSelectionEnded(); }     
 
     #endregion
 
-    #region Card Stats
-
-
-        public void ResetCardSelectionEnded(){
-            _battleManager.ResetCardSelectionEnded();
-        }
+    #region Card
+        public void ResetCardSelectionEnded(){ _battleManager.ResetCardSelectionEnded(); }
 
         public bool PlayerHasArcaneOnField(){  return _battleManager.PlayerHasArcaneOnField(); }
 
         public bool EnemyHasArcaneOnField(){  return _battleManager.EnemyHasArcaneOnField(); }
-
     #endregion
 
     #region AI

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Mistix{
@@ -21,6 +22,18 @@ namespace Mistix{
 
         public List<Card> GetCardsInAIHand(){
             return _battleManager.GetCardsInAIHand();
+        }
+
+        public void CardSelectionFinished(){
+            _battleManager.EndCardSelection();
+        }
+
+        public void SetFusionedCard(Card resultCard){
+            _actor.SetFusionedCard(resultCard);
+        }
+
+        public void SetSelectedAICards(List<Card> selectedList){
+            _battleManager.SetSelectedAICards(selectedList);
         }
     }
 }

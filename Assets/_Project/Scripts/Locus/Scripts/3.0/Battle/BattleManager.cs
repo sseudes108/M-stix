@@ -79,6 +79,7 @@ namespace Mistix{
             return _handManager.IsCardSelectionEnded();
         }
 
+        //Called by AImanager e UIManager (Player e AI)
         public void EndCardSelection(){
             _handManager.EndCardSelection();
         }
@@ -111,7 +112,7 @@ namespace Mistix{
 
         public void ShowCardStatOptions(Card card) { 
             _uiManager.ShowCardStatOptions(card);
-            _cardManager.SetAllStatsSelectedFalse();
+            _cardManager.ResetCardStatSelectionEnded();
         }
 
         public void SelectAnother(MonsterCard monster) { _uiManager.SelectAnother(monster); }
@@ -129,7 +130,7 @@ namespace Mistix{
     #region Fusion Manager
         public void StartFusionRoutine(){ 
             _fusionManager.StartFusionRoutine(
-                _cardManager.GetSelectedCards(), 
+                _cardManager.GetSelectedCards(),
                 _turnManager.IsPlayerTurn()
             ); 
         }
@@ -164,6 +165,16 @@ namespace Mistix{
 
         public List<Card> GetCardsInAIHand(){
             return _handManager.GetCardsInAIHand();
+        }
+
+        public void SetFusionedCard(Card resultCard){
+            _aiManager.SetFusionedCard(resultCard);
+        }
+
+        public void ResetCardStatSelectionEnded(){ _cardManager.ResetCardStatSelectionEnded(); }
+
+        public void SetSelectedAICards(List<Card> selectedList){
+            _cardManager.SetSelectedAICards(selectedList);
         }
 
         #endregion

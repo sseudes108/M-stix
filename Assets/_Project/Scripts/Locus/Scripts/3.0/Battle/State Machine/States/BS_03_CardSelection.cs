@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 
 namespace Mistix{
     public class BS_03_CardSelection : AbstractState{

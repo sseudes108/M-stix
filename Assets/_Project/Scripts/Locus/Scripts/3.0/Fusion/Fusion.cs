@@ -79,8 +79,7 @@ namespace Mistix{
             }
 
             if(!_isPlayerTurn){
-                // _aIManager.Actor.SetFusionedCard(_resultCard);
-                Debug.LogWarning("AI - Card Fusioned");
+                _fusionManager.SetFusionedCard(_resultCard);
             }
 
             if(_resultCard is MonsterCard){
