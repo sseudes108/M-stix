@@ -11,7 +11,10 @@ namespace Mistix{
 
         private IEnumerator EndPhaseRoutine(){
             BattleSM.EndTurn();
+            BattleSM.MoveUICardOnScreen(); //Move UI card para dentro da tela
+
             yield return new WaitForSeconds(1f);
+
             BattleSM.ChangeState(BattleSM.StartPhase);
             yield return null;
         }

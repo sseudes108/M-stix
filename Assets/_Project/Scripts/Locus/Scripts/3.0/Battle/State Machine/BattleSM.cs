@@ -82,6 +82,8 @@ namespace Mistix{
         private void UpdateDebugBattleState(AbstractState state) { _battleManager.UpdateDebugBattleState(state.ToString()); }
 
         public void MoveUICardOffScreen(){ _battleManager.MoveUICardOffScreen(); }
+        public void MoveUICardOnScreen(){ _battleManager.MoveUICardOnScreen(); }
+
         public bool IsActionSelected(){ return _battleManager.IsActionSelected(); }
         public void ResetActionSelected(){ _battleManager.ResetActionSelected(); }
         public void ShowEndActionButton(){ _battleManager.ShowEndActionButton(); }
@@ -137,6 +139,7 @@ namespace Mistix{
         public void ChangeAISMToCardStatSelPhase(){
             _battleManager.ChangeAISMToCardStatSelPhase();
         }
+
     #endregion
 
     }

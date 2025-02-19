@@ -16,24 +16,15 @@ namespace Mistix{
         public void ChangeAISMToCardSelectionPhase(){ _aiSM.ChangeState(_aiSM.AI_CardSelection); }
         public void ChangeAISMToCardStatSelPhase(){ _aiSM.ChangeState(_aiSM.AI_CardStatSelection); }
 
-        public void StartCardSelection(){
-            _actor.StartCardSelection();
-        }
+        public void StartCardSelection(){ _actor.StartCardSelection(); }
+        public void StartCardStatsSelection(){ _actor.StartCardStatsSelection(); }
 
-        public List<Card> GetCardsInAIHand(){
-            return _battleManager.GetCardsInAIHand();
-        }
+        public List<Card> GetCardsInAIHand(){ return _battleManager.GetCardsInAIHand(); }
 
-        public void CardSelectionFinished(){
-            _battleManager.EndCardSelection();
-        }
+        public void CardSelectionFinished(){ _battleManager.EndCardSelection(); }
 
-        public void SetFusionedCard(Card resultCard){
-            _actor.SetFusionedCard(resultCard);
-        }
+        public void SetFusionedCard(Card resultCard){ _actor.SetFusionedCard(resultCard); }
 
-        public void SetSelectedAICards(List<Card> selectedList){
-            _battleManager.SetSelectedAICards(selectedList);
-        }
+        public void SetSelectedAICards(List<Card> selectedList){ _battleManager.SetSelectedAICards(selectedList); }
     }
 }

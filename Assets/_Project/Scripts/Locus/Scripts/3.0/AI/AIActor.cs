@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mistix{
     public class AIActor : MonoBehaviour {
         private AIA_CardSelector _cardSelector;
+        private AIA_CardStatsSelector _cardStatsSelector;
         private AIManager _aiManager;
         private Card _resultCard;
 
@@ -15,24 +15,20 @@ namespace Mistix{
 
         private void CreateActions(){
             _cardSelector = new(this);
+            _cardStatsSelector = new(this);
         }
 
         public void StartCardSelection(){ _cardSelector.StartCardSelectionRoutine(); }
+        public void StartCardStatsSelection(){ _cardStatsSelector.StartCardStatsSelectionRoutine(); }
 
-        public List<Card> GetCardsInAIHand(){
-            return _aiManager.GetCardsInAIHand();
-        }
+        public List<Card> GetCardsInAIHand(){ return _aiManager.GetCardsInAIHand(); }
 
-        public void CardSelectionFinished(){
-            _aiManager.CardSelectionFinished();
-        }
+        public void CardSelectionFinished(){ _aiManager.CardSelectionFinished(); }
 
-        public void SetFusionedCard(Card resultCard){
-            _resultCard = resultCard;
-        }
+        public void SetFusionedCard(Card resultCard){ _resultCard = resultCard; }
 
-        public void SetSelectedAICards(List<Card> selectedList){
-            _aiManager.SetSelectedAICards(selectedList);
-        }
+        public void SetSelectedAICards(List<Card> selectedList){ _aiManager.SetSelectedAICards(selectedList); }
+
+
     }
 }

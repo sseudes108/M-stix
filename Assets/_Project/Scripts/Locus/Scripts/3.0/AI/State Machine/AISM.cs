@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -31,5 +32,6 @@ namespace Mistix{
         private void UpdateDebugBattleState(AbstractState aiPhase) { _battleManager.UpdateDebugAIState(aiPhase.ToString()); }
 
         public void StartCardSelection(){ _battleManager.StartCardSelection(); }
+        public void StartCardStatsSelection(){ _battleManager.StartCardStatsSelection(); }
     }
 }

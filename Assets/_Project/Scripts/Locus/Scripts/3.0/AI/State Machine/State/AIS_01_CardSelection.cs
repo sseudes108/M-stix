@@ -11,8 +11,6 @@ namespace Mistix{
 
         private IEnumerator CardSelectRoutine() {
             AISM.StartCardSelection();
-            //Select Cards From Enemy Hand To Fusion
-            //AISM.EndCardSelection();
             yield return null;
         }
 

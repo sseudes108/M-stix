@@ -36,6 +36,7 @@ namespace Mistix{
         
 
         public void MoveUICardOffScreen(){ _uiCardHolder.MoveOffScren(); }
+        public void MoveUICardOnScreen(){ _uiCardHolder.MoveOnScren(); }
 
         public void EndCardSelection(){ _battleManager.EndCardSelection(); }
         public bool IsCardSelectionPhase(){ return _battleManager.IsCardSelectionPhase(); }
@@ -72,5 +73,6 @@ namespace Mistix{
 
         public void UpdateDebugAIState(string state){ _uiBattle.UpdateDebugAIState(state); }
         public void UpdateDebugBattleState(string state){ _uiBattle.UpdateDebugBattleState(state); }
+
     }
 }

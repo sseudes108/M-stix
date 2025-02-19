@@ -12,7 +12,7 @@ namespace Mistix{
             _actor.StartCoroutine(CardSelectionRoutine());
         }
 
-        public IEnumerator CardSelectionRoutine(){
+        private IEnumerator CardSelectionRoutine(){
             _selectedList.Clear();
             SelectRandomCard(_actor.GetCardsInAIHand());
 

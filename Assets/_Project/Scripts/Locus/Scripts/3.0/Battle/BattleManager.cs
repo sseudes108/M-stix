@@ -51,6 +51,7 @@ namespace Mistix{
         public void Option2_Clicked(Card card){ _cardManager.Option2_Clicked(card); }
 
         public bool IsAllStatsSelected(){ return  _cardManager.IsAllStatsSelected(); }
+        public void ResetCardStatSelectionEnded(){ _cardManager.ResetCardStatSelectionEnded(); }
 
     #endregion
 
@@ -108,6 +109,8 @@ namespace Mistix{
         public void HideEndSelectionButton() { _uiManager.HideEndSelectionButton(); }
 
         public void MoveUICardOffScreen() { _uiManager.MoveUICardOffScreen(); }
+        public void MoveUICardOnScreen(){ _uiManager.MoveUICardOnScreen(); }
+        
         public void MoveHandOffScreen() { _handManager.MoveHandOffScreen(); }
 
         public void ShowCardStatOptions(Card card) { 
@@ -155,29 +158,20 @@ namespace Mistix{
     #endregion
 
     #region  AI
-        public void ChangeAISMToCardSelectionPhase(){
-            _aiManager.ChangeAISMToCardSelectionPhase();
-        }
-        public void ChangeAISMToCardStatSelPhase(){
-            _aiManager.ChangeAISMToCardStatSelPhase();
-        }
+        //Card Selection
+        public void ChangeAISMToCardSelectionPhase(){ _aiManager.ChangeAISMToCardSelectionPhase(); }
         public void StartCardSelection(){ _aiManager.StartCardSelection(); }
+        public void SetSelectedAICards(List<Card> selectedList){ _cardManager.SetSelectedAICards(selectedList); }
 
-        public List<Card> GetCardsInAIHand(){
-            return _handManager.GetCardsInAIHand();
-        }
+        //Card Stat Selection
+        public void ChangeAISMToCardStatSelPhase(){ _aiManager.ChangeAISMToCardStatSelPhase(); }
+        public void StartCardStatsSelection(){ _aiManager.StartCardStatsSelection(); }
 
-        public void SetFusionedCard(Card resultCard){
-            _aiManager.SetFusionedCard(resultCard);
-        }
+        //Cards
+        public List<Card> GetCardsInAIHand(){ return _handManager.GetCardsInAIHand(); }
+        public void SetFusionedCard(Card resultCard){ _aiManager.SetFusionedCard(resultCard); }
 
-        public void ResetCardStatSelectionEnded(){ _cardManager.ResetCardStatSelectionEnded(); }
-
-        public void SetSelectedAICards(List<Card> selectedList){
-            _cardManager.SetSelectedAICards(selectedList);
-        }
-
-        #endregion
+    #endregion
 
     }
 }

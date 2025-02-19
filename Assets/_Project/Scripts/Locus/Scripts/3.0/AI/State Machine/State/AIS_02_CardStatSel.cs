@@ -10,6 +10,7 @@ namespace Mistix{
         public override void Exit(){}
 
         private IEnumerator CardStatsSelectRoutine() {
+            AISM.StartCardStatsSelection();
             Debug.Log("AI - Selecting Card Stats");
             yield return null;
         }
