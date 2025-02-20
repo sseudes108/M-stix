@@ -171,7 +171,11 @@ namespace Mistix{
         public List<Card> GetCardsInAIHand(){ return _handManager.GetCardsInAIHand(); }
         public void SetFusionedCard(Card resultCard){ _aiManager.SetFusionedCard(resultCard); }
 
-    #endregion
+        public void EndAICardStatsSelection(){ 
+            _cardManager.StatSelectionEnd();
+        }
+
+        #endregion
 
     }
 }

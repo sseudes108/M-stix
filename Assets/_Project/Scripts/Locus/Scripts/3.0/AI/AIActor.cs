@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,17 +19,18 @@ namespace Mistix{
             _cardStatsSelector = new(this);
         }
 
-        public void StartCardSelection(){ _cardSelector.StartCardSelectionRoutine(); }
-        public void StartCardStatsSelection(){ _cardStatsSelector.StartCardStatsSelectionRoutine(); }
+        public void StartCardSelection(){ _cardSelector.StartActionRoutine(); }
+        public void StartCardStatsSelection(){ _cardStatsSelector.StartActionRoutine(); }
 
         public List<Card> GetCardsInAIHand(){ return _aiManager.GetCardsInAIHand(); }
 
         public void CardSelectionFinished(){ _aiManager.CardSelectionFinished(); }
+        public void EndAICardStatsSelection(){ _aiManager.EndAICardStatsSelection(); }
 
         public void SetFusionedCard(Card resultCard){ _resultCard = resultCard; }
+        public Card GetFusionedCard(){ return _resultCard; }
 
         public void SetSelectedAICards(List<Card> selectedList){ _aiManager.SetSelectedAICards(selectedList); }
-
 
     }
 }

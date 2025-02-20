@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mistix{
-    public class AIA_CardSelector{
-        public AIA_CardSelector(AIActor actor){ _actor = actor; }
-        private AIActor _actor;
+    public class AIA_CardSelector : AIA_Action{
+        public AIA_CardSelector(AIActor actor) : base(actor){}
+        
         private List<Card> _selectedList = new();
 
-        public void StartCardSelectionRoutine(){
-            _actor.StartCoroutine(CardSelectionRoutine());
+        public override void StartActionRoutine(){
+            _actor.StartCoroutine(ActionRoutine());
         }
 
-        private IEnumerator CardSelectionRoutine(){
+        public override IEnumerator ActionRoutine(){
             _selectedList.Clear();
             SelectRandomCard(_actor.GetCardsInAIHand());
 
@@ -44,5 +44,6 @@ namespace Mistix{
         }
 
         private void AddToSelectedList(Card card) { _selectedList.Add(card);}
+
     }
 }
