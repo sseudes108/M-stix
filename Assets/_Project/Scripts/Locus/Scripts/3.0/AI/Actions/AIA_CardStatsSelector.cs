@@ -5,9 +5,7 @@ namespace Mistix{
     public class AIA_CardStatsSelector : AIA_Action{
         public AIA_CardStatsSelector(AIActor actor) : base(actor){}
 
-        public override void StartActionRoutine(){
-            _actor.StartCoroutine(ActionRoutine());
-        }
+        public override void StartActionRoutine(){ _actor.StartCoroutine(ActionRoutine()); }
 
         public override IEnumerator ActionRoutine(){
             var card = _actor.GetFusionedCard();
@@ -34,8 +32,10 @@ namespace Mistix{
         private void AnimaSelection(MonsterCard card){
             var randomIndex = Random.Range(1, 3);
             if(randomIndex == 1){
+                card.SelectAnima(1);
                 // card.Visuals.Anima.Anima1Selected();
             }else{
+                card.SelectAnima(2);
                 // card.Visuals.Anima.Anima2Selected();
             }
 

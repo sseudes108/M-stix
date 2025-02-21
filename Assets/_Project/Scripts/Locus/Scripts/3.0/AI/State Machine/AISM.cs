@@ -30,8 +30,8 @@ namespace Mistix{
         }
 
         private void UpdateDebugBattleState(AbstractState aiPhase) { _battleManager.UpdateDebugAIState(aiPhase.ToString()); }
-
         public void StartCardSelection(){ _battleManager.StartCardSelection(); }
         public void StartCardStatsSelection(){ _battleManager.StartCardStatsSelection(); }
+        public void StartBoardPlaceSelection(){ _battleManager.StartBoardPlaceSelection(); }
     }
 }

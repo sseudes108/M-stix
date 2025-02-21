@@ -58,13 +58,10 @@ namespace Mistix{
         public void LightOffAllPlaces(){ _battleManager.LighOffAllPlaces(); }
         public void LightUpAllPlaces() { _battleManager.LightUpAllPlaces(); }
 
-        public void MoveToBoardPlaceSelection(){
-            _battleManager.MoveToBoardPlaceSelection();
-        }
+        public void MoveToBoardPlaceSelection(){ _battleManager.MoveToBoardPlaceSelection(); }
+        public void HighLightPossiblePlaces(){ _battleManager.HighLightPossiblePlaces(); }
 
-        public void HighLightPossiblePlaces(){
-            _battleManager.HighLightPossiblePlaces();
-        }
+        public void ResetBoardPlaceSelected(){ _battleManager.ResetBoardPlaceSelected(); }
         public bool BoardPlaceSelected(){ return _battleManager.IsBoardPlaceSelected(); }
         
     #endregion
@@ -99,11 +96,8 @@ namespace Mistix{
     #region Hand
         public bool IsHandFull() { return _battleManager.IsHandFull(); }
         public void CheckPositionsInHand() { _battleManager.CheckPositionsInHand(); }
-
         public bool IsCardSelectionEnded(){ return _battleManager.IsCardSelectionEnded(); }
-
         public void MoveHandOffScreen(){ _battleManager.MoveHandOffScreen(); }
-
         public void StartFusionRoutine(){ _battleManager.StartFusionRoutine(); }
 
     #endregion
@@ -132,14 +126,9 @@ namespace Mistix{
     #endregion
 
     #region AI
-        public void ChangeAISMToCardSelectionPhase(){
-            _battleManager.ChangeAISMToCardSelectionPhase();
-        }
-
-        public void ChangeAISMToCardStatSelPhase(){
-            _battleManager.ChangeAISMToCardStatSelPhase();
-        }
-
+        public void ChangeAISMToCardSelectionPhase(){ _battleManager.ChangeAISMToCardSelectionPhase(); }
+        public void ChangeAISMToCardStatSelPhase(){ _battleManager.ChangeAISMToCardStatSelPhase(); }
+        public void ChangeAISMToBoardPlaceSelPhase(){ _battleManager.ChangeAISMToBoardPlaceSelPhase(); }
     #endregion
 
     }

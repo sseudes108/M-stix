@@ -15,11 +15,11 @@ namespace Mistix{
 
             BattleSM.HighLightPossiblePlaces();//Highlight os places possiveis
 
-            // if(!BattleSM.IsPlayerTurn()){
-                //Change AI Stat para Board place Select
-            // }
+            if(!BattleSM.IsPlayerTurn()){
+                BattleSM.ChangeAISMToBoardPlaceSelPhase();//Change AI Stat para Board place Select
+            }
 
-            //BattleSM.ResetBoardPlaceSelected()// Reseta o bool que verifica se o place foi selecionado
+            BattleSM.ResetBoardPlaceSelected(); // Reseta o bool que verifica se o place foi selecionado
             while(BattleSM.BoardPlaceSelected() == false){//esperar a seleção
                 yield return null;
             }

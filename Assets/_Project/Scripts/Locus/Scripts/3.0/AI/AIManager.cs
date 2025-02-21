@@ -13,19 +13,26 @@ namespace Mistix{
             _actor = GetComponent<AIActor>();
         }
 
+        //Card Selection
         public void ChangeAISMToCardSelectionPhase(){ _aiSM.ChangeState(_aiSM.AI_CardSelection); }
-        public void ChangeAISMToCardStatSelPhase(){ _aiSM.ChangeState(_aiSM.AI_CardStatSelection); }
-
         public void StartCardSelection(){ _actor.StartCardSelection(); }
-        public void StartCardStatsSelection(){ _actor.StartCardStatsSelection(); }
+        public void CardSelectionFinished(){ _battleManager.EndCardSelection(); }
 
+        //Card Stat Selection
+        public void ChangeAISMToCardStatSelPhase(){ _aiSM.ChangeState(_aiSM.AI_CardStatSelection); }
+        public void StartCardStatsSelection(){ _actor.StartCardStatsSelection(); }
+        public void EndAICardStatsSelection(){ _battleManager.EndAICardStatsSelection(); }
+        
+        //Board Place Selection
+        public void ChangeAISMToBoardPlaceSelPhase(){ _aiSM.ChangeState(_aiSM.AI_BoardPlaceSelection); }
+        public void StartBoardPlaceSelection(){ _actor.StartBoardPlaceSelection(); }
+        public (List<BoardPlace>, List<BoardPlace>) GetAIPlaces(){ return _battleManager.GetAIPlaces(); }
+
+        //Cards In Hand
         public List<Card> GetCardsInAIHand(){ return _battleManager.GetCardsInAIHand(); }
 
-        public void CardSelectionFinished(){ _battleManager.EndCardSelection(); }
-        public void EndAICardStatsSelection(){ _battleManager.EndAICardStatsSelection(); }
-
+        //Result Card
         public void SetFusionedCard(Card resultCard){ _actor.SetFusionedCard(resultCard); }
-
         public void SetSelectedAICards(List<Card> selectedList){ _battleManager.SetSelectedAICards(selectedList); }
 
     }

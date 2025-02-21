@@ -11,6 +11,7 @@ namespace Mistix{
 
         private IEnumerator BoardPlaceSelectRoutine() {
             Debug.Log("AI - Selecting Board Place");
+            AISM.StartBoardPlaceSelection();
             yield return null;
         }
 

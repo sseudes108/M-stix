@@ -8,9 +8,7 @@ namespace Mistix{
         
         private List<Card> _selectedList = new();
 
-        public override void StartActionRoutine(){
-            _actor.StartCoroutine(ActionRoutine());
-        }
+        public override void StartActionRoutine(){ _actor.StartCoroutine(ActionRoutine()); }
 
         public override IEnumerator ActionRoutine(){
             _selectedList.Clear();
@@ -43,7 +41,6 @@ namespace Mistix{
             AddToSelectedList(randomCard);
         }
 
-        private void AddToSelectedList(Card card) { _selectedList.Add(card);}
-
+        private void AddToSelectedList(Card card){ _selectedList.Add(card);}
     }
 }

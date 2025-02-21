@@ -25,16 +25,12 @@ namespace Mistix{
             _boardManager.SetPlaceColors(blueBoardColor, redBoardColor);
         }
         public void HighLightPossiblePlaces(){ _boardManager.HighLightFreePlaces(); }
-        public bool IsBoardPlaceSelected(){
-            return _boardManager.IsBoardPlaceSelected();
-        }
-        public bool PlayerHasArcaneOnField(){
-            return _boardManager.PlayerHasArcaneOnField();
-        }
 
-        public bool EnemyHasArcaneOnField(){
-            return _boardManager.EnemyHasArcaneOnField();
-        }
+        public void ResetBoardPlaceSelected(){ _boardManager.ResetBoardPlaceSelected(); }
+        public bool IsBoardPlaceSelected(){ return _boardManager.IsBoardPlaceSelected(); }
+
+        public bool PlayerHasArcaneOnField(){ return _boardManager.PlayerHasArcaneOnField(); }
+        public bool EnemyHasArcaneOnField(){ return _boardManager.EnemyHasArcaneOnField(); }
 
     #endregion
 
@@ -131,7 +127,7 @@ namespace Mistix{
     #endregion
 
     #region Fusion Manager
-        public void StartFusionRoutine(){ 
+        public void StartFusionRoutine(){
             _fusionManager.StartFusionRoutine(
                 _cardManager.GetSelectedCards(),
                 _turnManager.IsPlayerTurn()
@@ -150,9 +146,7 @@ namespace Mistix{
 
     #region State Machine
         public bool IsCardSelectionPhase(){ return _battleSM.CurrentState is BS_03_CardSelection; }
-
         public bool IsBoardPlaceSelectionPhase(){ return _battleSM.CurrentState is BS_06_BoardPlaceSel; }
-
         public bool IsActionPhase(){ return _battleSM.CurrentState is BS_07_Action; }
 
     #endregion
@@ -166,14 +160,20 @@ namespace Mistix{
         //Card Stat Selection
         public void ChangeAISMToCardStatSelPhase(){ _aiManager.ChangeAISMToCardStatSelPhase(); }
         public void StartCardStatsSelection(){ _aiManager.StartCardStatsSelection(); }
+        public void EndAICardStatsSelection(){ _cardManager.StatSelectionEnd(); }
 
-        //Cards
+        //Board Place Selection
+        public void ChangeAISMToBoardPlaceSelPhase(){ _aiManager.ChangeAISMToBoardPlaceSelPhase(); }
+        public (List<BoardPlace>, List<BoardPlace>) GetAIPlaces() { return _boardManager.GetAIPlaces(); }
+
+        //Cards in Hand
         public List<Card> GetCardsInAIHand(){ return _handManager.GetCardsInAIHand(); }
+
+        //Result Card
         public void SetFusionedCard(Card resultCard){ _aiManager.SetFusionedCard(resultCard); }
 
-        public void EndAICardStatsSelection(){ 
-            _cardManager.StatSelectionEnd();
-        }
+        public void StartBoardPlaceSelection(){ _aiManager.StartBoardPlaceSelection(); }
+
 
         #endregion
 

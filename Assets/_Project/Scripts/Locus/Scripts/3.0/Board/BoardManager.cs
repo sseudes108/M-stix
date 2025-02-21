@@ -90,6 +90,7 @@ namespace Mistix{
         public bool IsPlayerTurn(){ return _battleManager.IsPlayerTurn(); }
         public Card GetResultCard(){ return _battleManager.GetFusionResultCard(); }
 
+        public void ResetBoardPlaceSelected(){ _boardPlaceSelected = false; }
         public void BoardPlaceSelected(){ _boardPlaceSelected = true; }
         public bool IsBoardPlaceSelected(){ return _boardPlaceSelected; }
 
@@ -120,6 +121,14 @@ namespace Mistix{
                 }
             }
             return arcaneOnField;
+        }
+
+        /// <summary>
+        /// Return Monster and Arcane Places
+        /// </summary>
+        /// <returns></returns>
+        public (List<BoardPlace>,List<BoardPlace>) GetAIPlaces(){
+            return (_enemyMonsterPlaces, _enemyArcanePlaces);
         }
     }
 }
