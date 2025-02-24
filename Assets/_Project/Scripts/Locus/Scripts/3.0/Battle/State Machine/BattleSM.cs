@@ -60,6 +60,7 @@ namespace Mistix{
 
         public void MoveToBoardPlaceSelection(){ _battleManager.MoveToBoardPlaceSelection(); }
         public void HighLightPossiblePlaces(){ _battleManager.HighLightPossiblePlaces(); }
+        public void UnHighLightPossiblePlaces(){ _battleManager.UnHighLightPossiblePlaces(); }
 
         public void ResetBoardPlaceSelected(){ _battleManager.ResetBoardPlaceSelected(); }
         public bool BoardPlaceSelected(){ return _battleManager.IsBoardPlaceSelected(); }
@@ -129,6 +130,7 @@ namespace Mistix{
         public void ChangeAISMToCardSelectionPhase(){ _battleManager.ChangeAISMToCardSelectionPhase(); }
         public void ChangeAISMToCardStatSelPhase(){ _battleManager.ChangeAISMToCardStatSelPhase(); }
         public void ChangeAISMToBoardPlaceSelPhase(){ _battleManager.ChangeAISMToBoardPlaceSelPhase(); }
+
     #endregion
 
     }

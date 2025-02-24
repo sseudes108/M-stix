@@ -24,6 +24,8 @@ namespace Mistix{
                 yield return null;
             }
 
+            BattleSM.UnHighLightPossiblePlaces(); //Voltar cor dos places destacados para o padrão
+            
             yield return new WaitForSeconds(0.5f);
             
             BattleSM.ChangeState(BattleSM.ActionPhase);//passar para action phase

@@ -16,6 +16,7 @@ namespace Mistix{
         private BoardPlaceVisual _visual;
         private Card _cardInPlace;
         private bool _isOptShowing;
+        private bool _isHighlighting;
 
     #region Unity
         private void Awake() {
@@ -32,7 +33,24 @@ namespace Mistix{
     #region Light
         public void LightUp(Color color){ _visual.LightUp(color); }
         public void LightOff(Color color){ _visual.LightOff(color); }
-        public void HighLight(){ _visual.HighLight(); }
+        public void HighLight(){
+            _visual.HighLight(); 
+            _isHighlighting = true;
+        }
+
+        public void UnHighLight(){
+            Color color = new();
+            
+            if(_boardManager.IsPlayerTurn()){
+                color = _boardManager.PlayerDefaultColor;
+            }else{
+                color = _boardManager.EnemyDefaultColor;
+            }
+
+            _visual.UnHighLight(color);
+            _isHighlighting = false;
+        }
+
     #endregion
 
         private void OnMouseOver() {// Mostrar botoes de opção
@@ -195,6 +213,10 @@ namespace Mistix{
                 monsterCard.SetCanChangeMode(false);
                 return;
             }
+        }
+
+        public bool IsPlaceHighlighting(){
+            return _isHighlighting;
         }
     }
 }

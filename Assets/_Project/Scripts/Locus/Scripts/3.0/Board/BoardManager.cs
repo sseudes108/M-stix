@@ -10,8 +10,8 @@ namespace Mistix{
         [SerializeField] private BattleManager _battleManager;
         private BoardPlaceVisualController _boardPlaceVisualController;
 
-        private Color PlayerDefaultColor;
-        private Color EnemyDefaultColor;
+        public Color PlayerDefaultColor { get; private set;}
+        public Color EnemyDefaultColor { get; private set;}
 
         [SerializeField] private List<BoardPlace> _playerMonsterPlaces;
         [SerializeField] private List<BoardPlace> _playerArcanePlaces;
@@ -37,6 +37,8 @@ namespace Mistix{
             
             _boardPlaceVisualController = new(); 
         }
+
+#region Lights
 
         public void LightUpAllPlaces(){
             _boardPlaceVisualController.LightUpPlaces(_playerMonsterPlaces, PlayerDefaultColor);
@@ -67,6 +69,32 @@ namespace Mistix{
             }
         }
 
+        public void UnHighLightPossiblePlaces(){
+            if(_battleManager.IsPlayerTurn()){
+                foreach(var place in _playerMonsterPlaces){
+                    if(place.IsPlaceHighlighting()){
+                        _boardPlaceVisualController.UnHighlightPlace(place);
+                    }
+                }
+                foreach(var place in _playerArcanePlaces){
+                    if(place.IsPlaceHighlighting()){
+                        _boardPlaceVisualController.UnHighlightPlace(place);
+                    }
+                }
+            }else{
+                foreach(var place in _enemyMonsterPlaces){
+                    if(place.IsPlaceHighlighting()){
+                        _boardPlaceVisualController.UnHighlightPlace(place);
+                    }
+                }
+                foreach(var place in _enemyArcanePlaces){
+                    if(place.IsPlaceHighlighting()){
+                        _boardPlaceVisualController.UnHighlightPlace(place);
+                    }
+                }
+            }
+        }
+
         private void HighlightFreeMonsterPlaces(){
             if(_battleManager.IsPlayerTurn()){
                 foreach(var place in _playerMonsterPlaces){
@@ -84,6 +112,8 @@ namespace Mistix{
         }
 
         private void HighlightFreeArcanePlaces(){}
+
+#endregion
 
         public bool IsBoardPlaceSelectionPhase(){ return _battleManager.IsBoardPlaceSelectionPhase(); }
 

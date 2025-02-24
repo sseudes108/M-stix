@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEngine;
 
 namespace Mistix{
     public class AIS_02_CardStatSel : AbstractState{
@@ -10,13 +9,10 @@ namespace Mistix{
         public override void Exit(){}
 
         private IEnumerator CardStatsSelectRoutine() {
-            Debug.Log("AI - Selecting Card Stats");
             AISM.StartCardStatsSelection();
             yield return null;
         }
 
-        public override string ToString(){
-            return "Card Stat Sel.";
-        }
+        public override string ToString(){ return "Card Stat Sel."; }
     }
 }

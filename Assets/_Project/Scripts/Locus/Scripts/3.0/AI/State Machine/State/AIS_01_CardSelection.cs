@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEngine;
 
 namespace Mistix{
     public class AIS_01_CardSelection : AbstractState{
@@ -14,8 +13,6 @@ namespace Mistix{
             yield return null;
         }
 
-        public override string ToString(){
-            return "Card Sel.";
-        }
+        public override string ToString(){ return "Card Sel."; }
     }
 }

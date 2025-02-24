@@ -21,10 +21,13 @@ namespace Mistix{
     #region Board Manager
         public void LighOffAllPlaces() { _boardManager.LightOffAllPlaces(); }
         public void LightUpAllPlaces() { _boardManager.LightUpAllPlaces(); }
+
         public void SetPlaceColors(Vector3 blueBoardColor, Vector3 redBoardColor){
             _boardManager.SetPlaceColors(blueBoardColor, redBoardColor);
         }
+
         public void HighLightPossiblePlaces(){ _boardManager.HighLightFreePlaces(); }
+        public void UnHighLightPossiblePlaces(){ _boardManager.UnHighLightPossiblePlaces(); }
 
         public void ResetBoardPlaceSelected(){ _boardManager.ResetBoardPlaceSelected(); }
         public bool IsBoardPlaceSelected(){ return _boardManager.IsBoardPlaceSelected(); }
@@ -173,7 +176,6 @@ namespace Mistix{
         public void SetFusionedCard(Card resultCard){ _aiManager.SetFusionedCard(resultCard); }
 
         public void StartBoardPlaceSelection(){ _aiManager.StartBoardPlaceSelection(); }
-
 
         #endregion
 

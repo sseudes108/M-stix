@@ -8,6 +8,7 @@ namespace Mistix{
         private Renderer[] _renderers;
         private float _intensityFactor;
         public bool IsFree => _place.IsFree;
+
         private void Awake() {
             _renderers = GetComponentsInChildren<Renderer>();
             _place = GetComponent<BoardPlace>();

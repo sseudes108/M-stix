@@ -41,7 +41,8 @@ namespace Mistix{
             //     _AI.Actor.BoardPlaceSelected();
             // }
             
-            SelectFirstFreePlace(card);
+            // SelectFirstFreePlace(card);
+            SelectRandomFreePlace(card);
             yield return null;
         }
 

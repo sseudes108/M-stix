@@ -19,5 +19,9 @@ namespace Mistix{
         public void HighlightPlace(BoardPlace boardPlace){
             boardPlace.HighLight();
         }
+        
+        public void UnHighlightPlace(BoardPlace boardPlace){
+            boardPlace.UnHighLight();
+        }
     }
 }
