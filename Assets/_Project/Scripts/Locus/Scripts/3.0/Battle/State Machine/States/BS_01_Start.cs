@@ -22,8 +22,11 @@ namespace Mistix{
                 
             }else{
                 BattleSM.UpdateTurn(); //Atualizar UI - Turno
+                if(BattleSM.IsPlayerTurn()){
+                    BattleSM.MoveHandOnScreen();
+                }
             }
-
+            
             yield return new WaitForSeconds(1f);
             BattleSM.ChangeState(BattleSM.DrawPhase); //Passar para a Draw Phase
 

@@ -64,7 +64,10 @@ namespace Mistix{
     #region Hand Manager
         public void AllowCardSelection() { _handManager.AllowCardSelection(); }
         public void BlockCardSelection() { _handManager.BlockCardSelection(); }
+
         public bool IsHandFull() { return _handManager.IsHandFull(); }
+        // public void ResetHandFull(){ _handManager.ResetHandFull(); }
+
         public void CheckPositionsInHand(){
             var turn = _turnManager.GetTurnInfo();
             _handManager.CheckPositionsInHand(turn.Item1, turn.Item2);
@@ -75,18 +78,12 @@ namespace Mistix{
             _handManager.DrawCards(turn.Item1, turn.Item2);            
         }
 
-        public bool IsCardSelectionEnded() {
-            return _handManager.IsCardSelectionEnded();
-        }
+        public bool IsCardSelectionEnded() {  return _handManager.IsCardSelectionEnded(); }
 
         //Called by AImanager e UIManager (Player e AI)
-        public void EndCardSelection(){
-            _handManager.EndCardSelection();
-        }
+        public void EndCardSelection(){ _handManager.EndCardSelection(); }
         
-        public void ResetCardSelectionEnded(){
-            _handManager.ResetCardSelection();
-        }
+        public void ResetCardSelectionEnded(){ _handManager.ResetCardSelection(); }
 
         
     #endregion
@@ -111,6 +108,7 @@ namespace Mistix{
         public void MoveUICardOnScreen(){ _uiManager.MoveUICardOnScreen(); }
         
         public void MoveHandOffScreen() { _handManager.MoveHandOffScreen(); }
+        public void MoveHandOnScreen(){ _handManager.MoveHandOnScreen(); }
 
         public void ShowCardStatOptions(Card card) { 
             _uiManager.ShowCardStatOptions(card);

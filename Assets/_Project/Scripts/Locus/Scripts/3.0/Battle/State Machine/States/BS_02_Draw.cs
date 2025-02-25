@@ -10,6 +10,7 @@ namespace Mistix{
 
         private IEnumerator DrawPhaseRoutine() {
             BattleSM.CheckPositionsInHand(); //Checar posições livres na mão
+            // BattleSM.ResetHandFull(); //Reseta o bool que verifica se cartas precisam ser sacadas
 
             BattleSM.DrawCards(); //Dono do turno saca as cartas, se for turno 1 os dois sacam
             

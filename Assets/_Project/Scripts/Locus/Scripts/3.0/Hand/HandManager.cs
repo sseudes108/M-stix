@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,6 +45,14 @@ namespace Mistix{
             _playerHand.AllowCardSelection(); 
         }
 
+        // public void ResetHandFull(){
+        //     if(_battleManager.IsPlayerTurn()){
+        //         _playerHand.ResetHandFull();
+        //     }else{
+        //         _enemyHand.ResetHandFull();
+        //     }
+        // }
+
         public bool IsHandFull(){
             if(_battleManager.IsPlayerTurn()){
                 return _playerHand.IsHandFull();
@@ -70,5 +79,6 @@ namespace Mistix{
         public List<Card> GetCardsInAIHand(){
             return _enemyHand.GetCardsInHand();
         }
+
     }
 }

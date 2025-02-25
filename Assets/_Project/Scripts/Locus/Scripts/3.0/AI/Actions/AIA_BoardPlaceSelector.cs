@@ -11,7 +11,7 @@ namespace Mistix{
         private BoardPlace _boardPlace;
 
         public void SetBoardPlaces(List<BoardPlace> monsterPlaces, List<BoardPlace> arcanePlaces){
-            Debug.Log("Set AI Board Places");
+            // Debug.Log("Set AI Board Places");
             _monsterPlaces = monsterPlaces;
             _arcanePlaces = arcanePlaces;
         }
