@@ -183,7 +183,7 @@ namespace Mistix{
 
         public void DisableCollider() { _collider.enabled = false; }
 
-        // public void SetHandPosition(HandPosition handPosition) { _handPosition = handPosition; }
+        public void SetHandPosition(HandPosition handPosition) { _handPosition = handPosition; }
 
         public void SetHandPositionFree() {
             if(_handPosition == null) { return; }
@@ -191,6 +191,7 @@ namespace Mistix{
         }
 
         public void SetBoardPlace(BoardPlace boardPlace) { 
+            _isSelected = false;
             BoardPlace = boardPlace;
             SetShowButtons(true);
         }

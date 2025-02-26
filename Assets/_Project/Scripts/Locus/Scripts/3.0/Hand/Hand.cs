@@ -20,7 +20,6 @@ namespace Mistix{
         public void CheckPositionsInHand(){
             _cardsInHand.Clear();
             _freePositionsInHand.Clear();
-            Debug.Log($"_freePositionsInHand.Clear() - {this}");
         
             foreach(var position in _handPositions){
                 var handPosition = position.GetComponent<HandPosition>();
@@ -35,9 +34,8 @@ namespace Mistix{
         public void Draw() { StartCoroutine(DrawCardsRoutine()); }
 
         private IEnumerator DrawCardsRoutine(){
-            Debug.Log($"Draw Routine - {this}");
             _handFull = false;
-            // CheckPositionsInHand();
+            CheckPositionsInHand();
             foreach(var position in _freePositionsInHand){
                 //Random card data
                 var randomIndex = Random.Range(0, _deck.GetDeckCount());
@@ -85,8 +83,6 @@ namespace Mistix{
         public void MoveHandOffScreen(){ _handMovement.MoveHandOffScreen(); }
         public void MoveHandOnScreen(){ _handMovement.MoveHandOnScreen(); }
 
-        public List<Card> GetCardsInHand(){
-            return _cardsInHand;
-        }
+        public List<Card> GetCardsInHand(){ return _cardsInHand; }
     }
 }

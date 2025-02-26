@@ -10,16 +10,18 @@ namespace Mistix{
 
         private IEnumerator DrawPhaseRoutine() {
             BattleSM.CheckPositionsInHand(); //Checar posições livres na mão
-            // BattleSM.ResetHandFull(); //Reseta o bool que verifica se cartas precisam ser sacadas
+
+            if(BattleSM.IsPlayerTurn()){
+                yield return new WaitForSeconds(1f);//Tempo da mão do player retornar a posição
+            }
 
             BattleSM.DrawCards(); //Dono do turno saca as cartas, se for turno 1 os dois sacam
             
             if(BattleSM.IsFirstTurn()){ //Todos sacam, primeiro turno
-
                 yield return new WaitForSeconds(4f); //Tempo para sacar as 5 cartas iniciais
                 BattleSM.ChangeState(BattleSM.CardSelectionPhase); // Passar para Card Selection State
 
-            }else{ //Cada um saca em seu turno
+            }else{ //Cada um saca em seu turno                
                 if(BattleSM.IsHandFull()){ //Verifica se o dono do turno já nao tem mais espaço na mão
                     BattleSM.ChangeState(BattleSM.CardSelectionPhase); // Passar para Card Selection State
                 }

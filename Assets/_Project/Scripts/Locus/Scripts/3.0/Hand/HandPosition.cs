@@ -13,7 +13,7 @@ namespace Mistix{
         public void OccupyPlace(Card card){
             IsFree = false;
             SetCardInPosition(card);
-            // card.SetHandPosition(this);
+            card.SetHandPosition(this);
         }
 
         private void SetCardInPosition(Card card){
