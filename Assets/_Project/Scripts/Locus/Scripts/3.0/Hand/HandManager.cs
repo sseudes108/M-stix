@@ -45,14 +45,6 @@ namespace Mistix{
             _playerHand.AllowCardSelection(); 
         }
 
-        // public void ResetHandFull(){
-        //     if(_battleManager.IsPlayerTurn()){
-        //         _playerHand.ResetHandFull();
-        //     }else{
-        //         _enemyHand.ResetHandFull();
-        //     }
-        // }
-
         public bool IsHandFull(){
             if(_battleManager.IsPlayerTurn()){
                 return _playerHand.IsHandFull();
@@ -80,5 +72,8 @@ namespace Mistix{
             return _enemyHand.GetCardsInHand();
         }
 
+        public void UpdateDeckCount(bool isPlayer, int deckCount){
+            _battleManager.UpdateDeckCount(isPlayer, deckCount);
+        }
     }
 }

@@ -96,7 +96,6 @@ namespace Mistix{
 
     #region Hand
         public bool IsHandFull() { return _battleManager.IsHandFull(); }
-        // internal void ResetHandFull(){ _battleManager.ResetHandFull(); }
 
         public void CheckPositionsInHand() { _battleManager.CheckPositionsInHand(); }
         public bool IsCardSelectionEnded(){ return _battleManager.IsCardSelectionEnded(); }

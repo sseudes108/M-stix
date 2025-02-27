@@ -21,7 +21,11 @@ namespace Mistix{
                 yield return new WaitForSeconds(4f); //Tempo para sacar as 5 cartas iniciais
                 BattleSM.ChangeState(BattleSM.CardSelectionPhase); // Passar para Card Selection State
 
-            }else{ //Cada um saca em seu turno                
+            }else{ //Cada um saca em seu turno
+                while(BattleSM.IsHandFull() == false){ //Aguarda a "sacagem" das cartas
+                    yield return null;
+                }
+
                 if(BattleSM.IsHandFull()){ //Verifica se o dono do turno já nao tem mais espaço na mão
                     BattleSM.ChangeState(BattleSM.CardSelectionPhase); // Passar para Card Selection State
                 }

@@ -59,6 +59,10 @@ namespace Mistix{
                 _cardsInHand.Add(drewCard);
                 drewCard.SetCardOnHand(true);
                 position.GetComponent<HandPosition>().OccupyPlace(drewCard);
+
+                //Update Deck Count UI
+                _handManager.UpdateDeckCount(_isPlayerHand, _deck.GetDeckCount());
+
                 yield return new WaitForSeconds(0.5f);
             }
             _handFull = true;
@@ -77,9 +81,8 @@ namespace Mistix{
             }
         }
 
-        // public void ResetHandFull(){ _handFull = false; }
         public bool IsHandFull(){ return _handFull; }
-
+        
         public void MoveHandOffScreen(){ _handMovement.MoveHandOffScreen(); }
         public void MoveHandOnScreen(){ _handMovement.MoveHandOnScreen(); }
 

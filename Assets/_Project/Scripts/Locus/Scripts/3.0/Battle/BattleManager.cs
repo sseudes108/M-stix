@@ -66,7 +66,6 @@ namespace Mistix{
         public void BlockCardSelection() { _handManager.BlockCardSelection(); }
 
         public bool IsHandFull() { return _handManager.IsHandFull(); }
-        // public void ResetHandFull(){ _handManager.ResetHandFull(); }
 
         public void CheckPositionsInHand(){
             var turn = _turnManager.GetTurnInfo();
