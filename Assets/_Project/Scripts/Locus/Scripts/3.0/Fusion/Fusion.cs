@@ -29,7 +29,6 @@ namespace Mistix{
 
             if(_fusionLine.Count > 1){
                 do{
-                    
                     _fusionManager.MoveCardsToFusionPosition(_fusionLine, isPlayerTurn);       
         
                     yield return new WaitForSeconds(1f);

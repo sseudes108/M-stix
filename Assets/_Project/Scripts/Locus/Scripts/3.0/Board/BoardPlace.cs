@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mistix{
@@ -72,9 +73,14 @@ namespace Mistix{
 
         private void OnMouseDown(){
             if(_boardManager.IsBoardPlaceSelectionPhase()){
-                if(!IsFree){return;}
 
-                if(!_boardManager.IsPlayerTurn()){return;}
+                if(!IsFree){// Place Ocupado
+                    StartBoardFusion();
+                    return;
+                } 
+
+                if(!_boardManager.IsPlayerTurn()){return;} // Foi clicado fora do turno correto
+
                 SetCardInPlace(_boardManager.GetResultCard());
                 return;
             }
@@ -171,7 +177,7 @@ namespace Mistix{
 
                 }
 
-                _cardInPlace.SetWasFlipedThisTurn(true);
+                // _cardInPlace.SetWasFlipedThisTurn(true);
                 _cardInPlace.SetCanFlip(false);
                 _cardInPlace.SetFaceUp();
                 return;
@@ -215,8 +221,21 @@ namespace Mistix{
             }
         }
 
-        public bool IsPlaceHighlighting(){
-            return _isHighlighting;
+        public bool IsPlaceHighlighting(){ return _isHighlighting; }
+
+        private void StartBoardFusion(){
+            var newCardList = new List<Card>{_cardInPlace, _boardManager.GetResultCard()};
+            // _cardManager.Selector.SetCardsToBoardFusion(newCardList);
+            // _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
+            _boardManager.SetCardsToBoardFusion(newCardList);
+            _boardManager.ChangeToFusionPhase();//Change phase back to fusion
+            SetPlaceFree();
+        }
+
+        private void SetPlaceFree(){
+            _cardInPlace = null;
+            // _canBeSelected = true;
+            IsFree = true;
         }
     }
 }

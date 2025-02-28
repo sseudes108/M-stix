@@ -35,6 +35,12 @@ namespace Mistix{
         public bool PlayerHasArcaneOnField(){ return _boardManager.PlayerHasArcaneOnField(); }
         public bool EnemyHasArcaneOnField(){ return _boardManager.EnemyHasArcaneOnField(); }
 
+        public void ChangeToFusionPhase(){ _battleSM.ChangeState(_battleSM.FusionPhase); }
+
+        public void SetCardsToBoardFusion(List<Card> newCardList){
+            _cardManager.SetCardsToBoardFusion(newCardList);
+        }
+
     #endregion
 
     #region Life Points Manager

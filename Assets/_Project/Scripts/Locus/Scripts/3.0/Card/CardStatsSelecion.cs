@@ -8,6 +8,7 @@ namespace Mistix{
         }
 
         public void Option1_Clicked(Card card){
+            // Debug.Log("Option1_Clicked");
             if(card is MonsterCard){
                 var monster = card as MonsterCard;
                 if(monster.FusionedCard){
@@ -49,6 +50,7 @@ namespace Mistix{
         }
 
         public void Option2_Clicked(Card card){
+            // Debug.Log("Option2_Clicked");
             if(card is MonsterCard){
                 var monster = card as MonsterCard;
                 if(monster.FusionedCard){

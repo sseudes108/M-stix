@@ -19,7 +19,8 @@ namespace Mistix{
         public bool FaceSelected { get; private set; } = false;
         public bool IsFaceDown { get; private set; } = false;
         public bool CanFlip { get; private set; } = false;
-        public bool WasFlipedThisTurn { get; private set; } = false;
+
+        // public bool WasFlipedThisTurn { get; private set; } = false;
         public bool MustShowButtons { get; private set; } = false;
         
         private Transform _status;
@@ -80,7 +81,8 @@ namespace Mistix{
         public void SetPlayerCard() { IsPlayerCard = true; }
         public void SetCardOnHand(bool isOnHand) { IsOnHand = isOnHand; }
         public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }
-        public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
+        
+        // public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
 
     #region Visuals
         public void ResetBorderColor(){

@@ -22,8 +22,8 @@ namespace Mistix{
 
         public void HideOptions(){
             _statSelButtonsContainer.SetActive(false);
-            _statButton1.onClick.AddListener(_uiManager.Option1_Clicked);
-            _statButton2.onClick.AddListener(_uiManager.Option2_Clicked);
+            _statButton1.onClick.RemoveAllListeners();
+            _statButton2.onClick.RemoveAllListeners();
         }
 
         public void SetButtonText(Card card){

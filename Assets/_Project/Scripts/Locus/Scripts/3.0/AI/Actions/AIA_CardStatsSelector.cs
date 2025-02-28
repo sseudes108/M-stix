@@ -40,7 +40,7 @@ namespace Mistix{
             }
 
             card.SelectAnima(randomIndex);
-            Debug.Log("AnimaSelected");
+            // Debug.Log("AnimaSelected");
         }
 
         private void ModeSelection(MonsterCard card){
@@ -52,7 +52,7 @@ namespace Mistix{
             card.SetDeffenseMode();
 
             card.SelectMode();
-            Debug.Log("ModeSelected");
+            // Debug.Log("ModeSelected");
         }
 
         private void FaceSelection(MonsterCard card){
@@ -62,7 +62,7 @@ namespace Mistix{
             }
 
             card.SelectFace();
-            Debug.Log("FaceSelected");
+            // Debug.Log("FaceSelected");
         }
     }
 }

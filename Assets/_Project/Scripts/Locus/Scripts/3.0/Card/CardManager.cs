@@ -53,5 +53,7 @@ namespace Mistix{
 
         public bool IsAllStatsSelected(){ return _allStatsSelected; }
         public void ResetCardStatSelectionEnded(){ _allStatsSelected = false; }
+
+        public void SetCardsToBoardFusion(List<Card> newCardList){ _selector.SetCardsToBoardFusion(newCardList); }
     }
 }

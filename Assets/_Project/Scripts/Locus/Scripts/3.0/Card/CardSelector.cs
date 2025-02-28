@@ -30,5 +30,7 @@ namespace Mistix{
         public List<Card> GetSelectedCards(){ return _selectedList; }
 
         public void SetSelectedAICards(List<Card> selectedList){ _selectedList = selectedList; }
+
+        public void SetCardsToBoardFusion(List<Card> newCardList){ _selectedList = newCardList; }
     }
 }

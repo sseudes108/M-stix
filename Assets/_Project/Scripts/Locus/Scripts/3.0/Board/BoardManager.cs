@@ -160,5 +160,13 @@ namespace Mistix{
         public (List<BoardPlace>,List<BoardPlace>) GetAIPlaces(){
             return (_enemyMonsterPlaces, _enemyArcanePlaces);
         }
+
+        public void ChangeToFusionPhase(){
+            _battleManager.ChangeToFusionPhase();
+        }
+
+        public void SetCardsToBoardFusion(List<Card> newCardList){
+            _battleManager.SetCardsToBoardFusion(newCardList);
+        }
     }
 }
