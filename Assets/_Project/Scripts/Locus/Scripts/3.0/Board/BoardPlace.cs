@@ -29,32 +29,8 @@ namespace Mistix{
             IsFree = true;
             _boardManager = BoardManager.Instance;
         }
-    #endregion
 
-    #region Light
-        public void LightUp(Color color){ _visual.LightUp(color); }
-        public void LightOff(Color color){ _visual.LightOff(color); }
-        public void HighLight(){
-            _visual.HighLight(); 
-            _isHighlighting = true;
-        }
-
-        public void UnHighLight(){
-            Color color = new();
-            
-            if(_boardManager.IsPlayerTurn()){
-                color = _boardManager.PlayerDefaultColor;
-            }else{
-                color = _boardManager.EnemyDefaultColor;
-            }
-
-            _visual.UnHighLight(color);
-            _isHighlighting = false;
-        }
-
-    #endregion
-
-        private void OnMouseOver() {// Mostrar botoes de opção
+                private void OnMouseOver() {// Mostrar botoes de opção
             if(_cardInPlace == null) { return; }
             _cardInPlace.OnMouseOver(); //Atualiza a ilustração do UI
 
@@ -85,6 +61,31 @@ namespace Mistix{
                 return;
             }
         }
+        
+    #endregion
+
+    #region Light
+        public void LightUp(Color color){ _visual.LightUp(color); }
+        public void LightOff(Color color){ _visual.LightOff(color); }
+        public void HighLight(){
+            _visual.HighLight(); 
+            _isHighlighting = true;
+        }
+
+        public void UnHighLight(){
+            Color color = new();
+            
+            if(_boardManager.IsPlayerTurn()){
+                color = _boardManager.PlayerDefaultColor;
+            }else{
+                color = _boardManager.EnemyDefaultColor;
+            }
+
+            _visual.UnHighLight(color);
+            _isHighlighting = false;
+        }
+
+    #endregion
 
         public void SetCardInPlace(Card card){
             if(card is MonsterCard){
