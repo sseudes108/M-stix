@@ -108,6 +108,7 @@ namespace Mistix{
 
         public void ShowEndSelectionButton() { _uiManager.ShowEndSelectionButton(); }
         public void HideEndSelectionButton() { _uiManager.HideEndSelectionButton(); }
+        public void HideActionButton() { _uiManager.HideActionButton(); }
 
         public void MoveUICardOffScreen() { _uiManager.MoveUICardOffScreen(); }
         public void MoveUICardOnScreen(){ _uiManager.MoveUICardOnScreen(); }

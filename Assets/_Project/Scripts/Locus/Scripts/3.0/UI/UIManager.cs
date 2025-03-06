@@ -29,6 +29,7 @@ namespace Mistix{
         public void UpdateIllustration(Texture2D illustration) { _uiCardHolder.UpdateIllustration(illustration); }
         public void ShowEndSelectionButton() { _uiButtonActions.ShowEndCardSelectionButton(); }
         public void HideEndSelectionButton() { _uiButtonActions.HideActionButton(); }
+        public void HideActionButton() { _uiButtonActions.HideActionButton(); }
         
         public void UpdateTurn(int turn, bool IsPlayerTurn){ _uiBattle.UpdateTurn(turn, IsPlayerTurn); }
         public void UpdateLifePoints(bool isPlayer, int lifePoints){ _uiBattle.UpdateLifePoints(isPlayer, lifePoints); }

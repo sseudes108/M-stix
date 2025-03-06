@@ -4,25 +4,35 @@ namespace Mistix{
     public class BS_07_Action : AbstractState{
         public BS_07_Action(BattleSM battleSM, AISM aiSM) : base(battleSM, aiSM){}
         public override void Enter(){ BattleSM.StartCoroutine(ActionPhaseRoutine()); }
-        public override void Exit(){}
+        public override void Exit(){
+            BattleSM.HideEndActionButton();
+        }
         
         private IEnumerator ActionPhaseRoutine(){
             BattleSM.ResetActionSelected();//Reseta o bool que verifica se a ação foi selecionada
 
-            if(BattleSM.IsFirstTurn()){
-                if(BattleSM.PlayerHasArcaneOnField() == false){
-                    BattleSM.ChangeState(BattleSM.EndPhase); // Muda a fase direto, pois nao há ação possivel
-                    yield break;
-                }else{
-                    BattleSM.ShowEndActionButton();//Mostrar botoao de encerrar fase caso haja arcanes no campo, ou nao seja o primeiro turno e for turno do player
-                }
-            }else{
-                if(BattleSM.EnemyHasArcaneOnField() == false){
-                    BattleSM.ChangeState(BattleSM.EndPhase); // Muda a fase direto, pois nao há ação possivel
-                    yield break;
-                }
-                //Change Ai to Action Selection
-            }
+            // if(BattleSM.IsFirstTurn()){
+            //     // if(BattleSM.PlayerHasArcaneOnField() == false){
+            //     //     BattleSM.ChangeState(BattleSM.EndPhase); // Muda a fase direto, pois nao há ação possivel
+            //     //     yield break;
+            //     // }else{
+            //     //     BattleSM.ShowEndActionButton();//Mostrar botoao de encerrar fase caso haja arcanes no campo, ou nao seja o primeiro turno e for turno do player
+            //     // }
+            // }else{
+            //     // if(BattleSM.EnemyHasArcaneOnField() == false){
+            //     //     BattleSM.ChangeState(BattleSM.EndPhase); // Muda a fase direto, pois nao há ação possivel
+            //     //     yield break;
+            //     // }
+            //     //Change Ai to Action Selection
+            // }
+
+            // if(BattleSM.IsPlayerTurn()){
+            //     BattleSM.ShowEndActionButton();
+            // }
+
+            BattleSM.MoveUICardOnScreen();
+
+            BattleSM.ShowEndActionButton();
 
             // BattleSM.ResetActionSelected();//Reseta o bool que verifica se a ação foi selecionada
 
@@ -31,6 +41,7 @@ namespace Mistix{
             }
 
             // BattleSM.ChangeState(BattleSM.EffectsPhase);
+            BattleSM.ChangeState(BattleSM.EndPhase);
             yield return null;
         }
 

@@ -85,6 +85,7 @@ namespace Mistix{
         public bool IsActionSelected(){ return _battleManager.IsActionSelected(); }
         public void ResetActionSelected(){ _battleManager.ResetActionSelected(); }
         public void ShowEndActionButton(){ _battleManager.ShowEndActionButton(); }
+        public void HideEndActionButton(){ _battleManager.HideActionButton(); }
 
     #endregion
 
@@ -132,8 +133,7 @@ namespace Mistix{
         public void ChangeAISMToCardSelectionPhase(){ _battleManager.ChangeAISMToCardSelectionPhase(); }
         public void ChangeAISMToCardStatSelPhase(){ _battleManager.ChangeAISMToCardStatSelPhase(); }
         public void ChangeAISMToBoardPlaceSelPhase(){ _battleManager.ChangeAISMToBoardPlaceSelPhase(); }
-
-    #endregion
+        #endregion
 
     }
 }
