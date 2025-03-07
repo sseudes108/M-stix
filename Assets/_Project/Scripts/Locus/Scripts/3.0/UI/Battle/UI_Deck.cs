@@ -9,9 +9,7 @@ namespace Mistix{
         private int _playerDeck;
         private int _enemyDeck;
 
-        private void Awake() {
-            _uiManager = GetComponent<UIManager>();
-        }
+        private void Awake() { _uiManager = GetComponent<UIManager>(); }
 
         public void ResetDeckCount(){
             _playerDeck = 0;

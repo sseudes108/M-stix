@@ -9,9 +9,7 @@ namespace Mistix{
         [SerializeField] private TextMeshProUGUI _statText1, _statText2;
         private UIManager _uiManager;
 
-        private void Awake() {
-            _uiManager = GetComponent<UIManager>();
-        }
+        private void Awake() { _uiManager = GetComponent<UIManager>(); }
 
         public void ShowOptions(Card card){
             _statSelButtonsContainer.SetActive(true);

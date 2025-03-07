@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -35,7 +34,6 @@ namespace Mistix{
         public void UpdateLifePoints(bool isPlayer, int lifePoints){ _uiBattle.UpdateLifePoints(isPlayer, lifePoints); }
         public void UpdateDeckCount(bool isPlayer, int deckCount){ _uiBattle.UpdateDeckCount(isPlayer, deckCount); }
         
-
         public void MoveUICardOffScreen(){ _uiCardHolder.MoveOffScren(); }
         public void MoveUICardOnScreen(){ _uiCardHolder.MoveOnScren(); }
 
@@ -59,9 +57,7 @@ namespace Mistix{
             _uiActionPhaseButtons.SetCardOptions(cardInPlace, place);
         }
 
-        public void HideOptions(){
-            _uiActionPhaseButtons.HideOptions();
-        }
+        public void HideOptions(){ _uiActionPhaseButtons.HideOptions(); }
 
         public void ResetActionSelected(){_actionSelected = false; }
         public void ActionSelected(){ _actionSelected = true; }
@@ -74,6 +70,5 @@ namespace Mistix{
 
         public void UpdateDebugAIState(string state){ _uiBattle.UpdateDebugAIState(state); }
         public void UpdateDebugBattleState(string state){ _uiBattle.UpdateDebugBattleState(state); }
-
     }
 }

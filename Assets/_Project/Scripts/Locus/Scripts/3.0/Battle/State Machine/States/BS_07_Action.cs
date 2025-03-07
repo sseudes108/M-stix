@@ -11,36 +11,21 @@ namespace Mistix{
         private IEnumerator ActionPhaseRoutine(){
             BattleSM.ResetActionSelected();//Reseta o bool que verifica se a ação foi selecionada
 
-            // if(BattleSM.IsFirstTurn()){
-            //     // if(BattleSM.PlayerHasArcaneOnField() == false){
-            //     //     BattleSM.ChangeState(BattleSM.EndPhase); // Muda a fase direto, pois nao há ação possivel
-            //     //     yield break;
-            //     // }else{
-            //     //     BattleSM.ShowEndActionButton();//Mostrar botoao de encerrar fase caso haja arcanes no campo, ou nao seja o primeiro turno e for turno do player
-            //     // }
-            // }else{
-            //     // if(BattleSM.EnemyHasArcaneOnField() == false){
-            //     //     BattleSM.ChangeState(BattleSM.EndPhase); // Muda a fase direto, pois nao há ação possivel
-            //     //     yield break;
-            //     // }
-            //     //Change Ai to Action Selection
-            // }
-
-            // if(BattleSM.IsPlayerTurn()){
-            //     BattleSM.ShowEndActionButton();
-            // }
-
             BattleSM.MoveUICardOnScreen();
 
-            BattleSM.ShowEndActionButton();
-
-            // BattleSM.ResetActionSelected();//Reseta o bool que verifica se a ação foi selecionada
-
+            if(BattleSM.IsPlayerTurn()){
+                BattleSM.ShowEndActionButton();
+            }else{
+                if(BattleSM.EnemyHasArcaneOnField() == false){
+                    BattleSM.ChangeState(BattleSM.EndPhase); // Muda a fase direto, pois nao há ação possivel
+                    yield break;
+                }
+            }
+            
             while(BattleSM.IsActionSelected() == false){ //Aguardar seleção da ação
                 yield return null;
             }
 
-            // BattleSM.ChangeState(BattleSM.EffectsPhase);
             BattleSM.ChangeState(BattleSM.EndPhase);
             yield return null;
         }

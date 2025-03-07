@@ -20,7 +20,6 @@ namespace Mistix{
         public bool IsFaceDown { get; private set; } = false;
         public bool CanFlip { get; private set; } = false;
 
-        // public bool WasFlipedThisTurn { get; private set; } = false;
         public bool MustShowButtons { get; private set; } = false;
         
         private Transform _status;
@@ -68,6 +67,7 @@ namespace Mistix{
             }
 
             if(!IsOnHand && !IsFaceDown){ //Not player card, not on hand, not face down
+                if(BoardPlace == null) {return;} //Impede a visualização da carta do AI enquanto na fusion line 
                 _cardManager.UpdateCardUilustration(_data.Illustration);
                 return;
             }
@@ -81,31 +81,15 @@ namespace Mistix{
         public void SetPlayerCard() { IsPlayerCard = true; }
         public void SetCardOnHand(bool isOnHand) { IsOnHand = isOnHand; }
         public void SetCanFlip(bool canFlip) { CanFlip = canFlip; }
-        
-        // public void SetWasFlipedThisTurn(bool flipedThisTurn) { WasFlipedThisTurn = flipedThisTurn; }
 
     #region Visuals
-        public void ResetBorderColor(){
-            _visuals.Border.ResetBorderColor();
-        }
-        public void HighBorderColor(){
-            _visuals.Border.HighBorderColor();
-        }
-        public void DissolveCard(Color color){
-            _visuals.Dissolve.DissolveCard(color);
-        }
-        public void DisableRenderer(){
-            _visuals.DisableRenderer();
-        }
-        public void EnableRenderer(){
-            _visuals.EnableRenderer();
-        }
-        public void MakeCardInvisible(){
-            _visuals.Dissolve.MakeCardInvisible();
-        }
-        public void SolidifyCard(Color color){
-            _visuals.Dissolve.SolidifyCard(color);
-        }
+        public void ResetBorderColor(){ _visuals.Border.ResetBorderColor(); }
+        public void HighBorderColor(){ _visuals.Border.HighBorderColor(); }
+        public void DissolveCard(Color color){ _visuals.Dissolve.DissolveCard(color); }
+        public void DisableRenderer(){ _visuals.DisableRenderer(); }
+        public void EnableRenderer(){ _visuals.EnableRenderer(); }
+        public void MakeCardInvisible(){ _visuals.Dissolve.MakeCardInvisible(); }
+        public void SolidifyCard(Color color){ _visuals.Dissolve.SolidifyCard(color); }
 
     #endregion
         
@@ -133,7 +117,6 @@ namespace Mistix{
     #region Selection
         public void AllowCardSelection(){ _canBeSelected = true; }
         public void BlockCardSelection(){ _canBeSelected = false; }
-        // public void DeselectCard() { _isSelected = false; }
 
         private Vector3 Selected(){
             Vector3 newPos = new(0, +0.3f, 0);
@@ -199,10 +182,5 @@ namespace Mistix{
         }
 
         // public BoardPlace GetBoardPlace() { return BoardPlace; }
-
-        // public void HighLightBoardPlace(){
-        //     if( BoardPlace == null ) return;
-        //     BoardPlace.HighLight();
-        // }
     }
 }

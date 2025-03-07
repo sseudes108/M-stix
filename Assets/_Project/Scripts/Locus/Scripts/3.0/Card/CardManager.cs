@@ -43,13 +43,9 @@ namespace Mistix{
             _battleManager.StatSelectionEnd();
         }
 
-        public void Option1_Clicked(Card card){
-            _statsSelecion.Option1_Clicked(card);
-        }
+        public void Option1_Clicked(Card card){ _statsSelecion.Option1_Clicked(card); }
 
-        public void Option2_Clicked(Card card){
-            _statsSelecion.Option2_Clicked(card);
-        }
+        public void Option2_Clicked(Card card){ _statsSelecion.Option2_Clicked(card); }
 
         public bool IsAllStatsSelected(){ return _allStatsSelected; }
         public void ResetCardStatSelectionEnded(){ _allStatsSelected = false; }
