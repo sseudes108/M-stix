@@ -168,5 +168,16 @@ namespace Mistix{
         public void SetCardsToBoardFusion(List<Card> newCardList){
             _battleManager.SetCardsToBoardFusion(newCardList);
         }
+
+        public List<MonsterCard> GetCardsInAIField(){
+            List<MonsterCard> cardInAIField = new();
+
+            foreach(var place in _enemyMonsterPlaces){
+                if(place.IsFree){ continue; }
+                cardInAIField.Add(place.GetCardInPlace() as MonsterCard);
+            }
+
+            return cardInAIField;
+        }
     }
 }

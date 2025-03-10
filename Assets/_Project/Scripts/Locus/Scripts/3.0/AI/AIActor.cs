@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,11 +6,17 @@ namespace Mistix{
         private AIA_CardSelector _cardSelector;
         private AIA_CardStatsSelector _cardStatsSelector;
         private AIA_BoardPlaceSelector _boardPlaceSelector;
+
+        private AIB_FieldChecker _fieldChecker;
+
         private AIManager _aiManager;
         private Card _resultCard;
 
+        private bool _isBoardFusion = false;
+
         private void Awake() {
             _aiManager = GetComponent<AIManager>();
+            _fieldChecker = GetComponent<AIB_FieldChecker>();
             CreateActions();
         }
 
@@ -41,6 +46,11 @@ namespace Mistix{
         public void SetFusionedCard(Card resultCard){ _resultCard = resultCard; }
         public Card GetFusionedCard(){ return _resultCard; }
 
+        public void OrganizeAIMonsterCardsOnField(){
+            _fieldChecker.OrganizeAIMonsterCardsOnField(_aiManager.GetMonstersInField());
+        }
 
+        public bool IsBoardFusion(){return _isBoardFusion;}
+        public void SetBoardFusion(bool isBoardFusion){_isBoardFusion = isBoardFusion;}
     }
 }

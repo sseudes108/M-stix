@@ -175,6 +175,7 @@ namespace Mistix{
 
         //Cards in Hand
         public List<Card> GetCardsInAIHand(){ return _handManager.GetCardsInAIHand(); }
+        public List<MonsterCard> GetMonstersInAIField(){ return _boardManager.GetCardsInAIField(); }
 
         //Result Card
         public void SetFusionedCard(Card resultCard){ _aiManager.SetFusionedCard(resultCard); }

@@ -30,7 +30,7 @@ namespace Mistix{
             _boardManager = BoardManager.Instance;
         }
 
-                private void OnMouseOver() {// Mostrar botoes de opção
+        private void OnMouseOver() {// Mostrar botoes de opção
             if(_cardInPlace == null) { return; }
             _cardInPlace.OnMouseOver(); //Atualiza a ilustração do UI
 
@@ -186,7 +186,7 @@ namespace Mistix{
 
             }
         }
-
+        public Card GetCardInPlace(){return _cardInPlace; }
         public void ChangeMonsterToAtk(){
             var monsterCard = _cardInPlace as MonsterCard;
             Quaternion rotation;

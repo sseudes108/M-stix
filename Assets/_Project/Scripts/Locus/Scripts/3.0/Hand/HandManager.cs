@@ -57,23 +57,18 @@ namespace Mistix{
 
         public bool IsCardSelectionEnded(){ return _selectionEnded; }
 
-        public void EndCardSelection(){ 
-            _selectionEnded = true; 
-        }
+        public void EndCardSelection(){ _selectionEnded = true; }
         
-        public void ResetCardSelection() { 
-            _selectionEnded = false; 
-        }
+        public void ResetCardSelection() { _selectionEnded = false; }
 
         public void MoveHandOffScreen(){ _playerHand.MoveHandOffScreen(); }
         public void MoveHandOnScreen(){ _playerHand.MoveHandOnScreen(); }
 
-        public List<Card> GetCardsInAIHand(){
-            return _enemyHand.GetCardsInHand();
-        }
+        public List<Card> GetCardsInAIHand(){ return _enemyHand.GetCardsInHand(); }
 
         public void UpdateDeckCount(bool isPlayer, int deckCount){
             _battleManager.UpdateDeckCount(isPlayer, deckCount);
         }
+
     }
 }

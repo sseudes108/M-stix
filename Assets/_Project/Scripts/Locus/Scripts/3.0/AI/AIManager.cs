@@ -28,12 +28,12 @@ namespace Mistix{
         public void StartBoardPlaceSelection(){ _actor.StartBoardPlaceSelection(); }
         public (List<BoardPlace>, List<BoardPlace>) GetAIPlaces(){ return _battleManager.GetAIPlaces(); }
 
-        //Cards In Hand
+        //Cards In Hand and Field
         public List<Card> GetCardsInAIHand(){ return _battleManager.GetCardsInAIHand(); }
+        public List<MonsterCard> GetMonstersInField(){ return _battleManager.GetMonstersInAIField(); }
 
         //Result Card
         public void SetFusionedCard(Card resultCard){ _actor.SetFusionedCard(resultCard); }
         public void SetSelectedAICards(List<Card> selectedList){ _battleManager.SetSelectedAICards(selectedList); }
-
     }
 }

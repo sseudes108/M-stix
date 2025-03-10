@@ -25,7 +25,6 @@ namespace Mistix{
                 //Arcane Options
             }
             yield return null;
-            // _Actor.CardStatSelectionFinished();
             _actor.EndAICardStatsSelection();
         }
 
@@ -33,14 +32,11 @@ namespace Mistix{
             var randomIndex = Random.Range(1, 3);
             if(randomIndex == 1){
                 card.SelectAnima(1);
-                // card.Visuals.Anima.Anima1Selected();
             }else{
                 card.SelectAnima(2);
-                // card.Visuals.Anima.Anima2Selected();
             }
 
             card.SelectAnima(randomIndex);
-            // Debug.Log("AnimaSelected");
         }
 
         private void ModeSelection(MonsterCard card){
@@ -52,7 +48,6 @@ namespace Mistix{
             card.SetDeffenseMode();
 
             card.SelectMode();
-            // Debug.Log("ModeSelected");
         }
 
         private void FaceSelection(MonsterCard card){
@@ -62,7 +57,6 @@ namespace Mistix{
             }
 
             card.SelectFace();
-            // Debug.Log("FaceSelected");
         }
     }
 }

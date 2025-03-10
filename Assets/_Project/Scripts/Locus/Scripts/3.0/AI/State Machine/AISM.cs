@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Mistix{
@@ -17,7 +16,6 @@ namespace Mistix{
 
             CurrentState?.Exit();
             CurrentState = newState;
-            
             CurrentState.Enter();
 
             UpdateDebugBattleState(CurrentState);
