@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Mistix{
         private AIA_BoardPlaceSelector _boardPlaceSelector;
 
         private AIB_FieldChecker _fieldChecker;
+        private AIB_HandChecker _handChecker;
 
         private AIManager _aiManager;
         private Card _resultCard;
@@ -17,6 +19,7 @@ namespace Mistix{
         private void Awake() {
             _aiManager = GetComponent<AIManager>();
             _fieldChecker = GetComponent<AIB_FieldChecker>();
+            _handChecker = GetComponent<AIB_HandChecker>();
             CreateActions();
         }
 
@@ -46,11 +49,21 @@ namespace Mistix{
         public void SetFusionedCard(Card resultCard){ _resultCard = resultCard; }
         public Card GetFusionedCard(){ return _resultCard; }
 
+        //Field Checker
         public void OrganizeAIMonsterCardsOnField(){
             _fieldChecker.OrganizeAIMonsterCardsOnField(_aiManager.GetMonstersInField());
         }
-
         public bool IsBoardFusion(){return _isBoardFusion;}
         public void SetBoardFusion(bool isBoardFusion){_isBoardFusion = isBoardFusion;}
+
+        //Hand Checker
+        public int Lvl4OnHandCount(){ return _handChecker.Lvl4OnHand.Count; }
+        public int Lvl3OnHandCount(){ return _handChecker.Lvl3OnHand.Count; }
+        public int Lvl2OnHandCount(){ return _handChecker.Lvl2OnHand.Count; }
+        public MonsterCard SelectLvl4Card(int index){ return _handChecker.Lvl4OnHand[index]; }
+        public MonsterCard SelectLvl3Card(int index){ return _handChecker.Lvl3OnHand[index]; }
+        public MonsterCard SelectLvl2Card(int index){ return _handChecker.Lvl2OnHand[index]; }
+
+        internal void OrganizeCardsOnHand(){ _handChecker.OrganizeCardsOnHand(GetCardsInAIHand()); }
     }
 }

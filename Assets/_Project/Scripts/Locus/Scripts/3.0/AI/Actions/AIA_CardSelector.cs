@@ -13,6 +13,7 @@ namespace Mistix{
         public override IEnumerator ActionRoutine(){
             _selectedList.Clear();
             // SelectRandomCard(_actor.GetCardsInAIHand());
+            _actor.OrganizeCardsOnHand();
             _actor.OrganizeAIMonsterCardsOnField();
 
             // if(_actor.IsBoardFusion()){
@@ -34,7 +35,7 @@ namespace Mistix{
             //     StrongestFusionFromHand();
             // }
 
-
+            StrongestFusionFromHand();
 
             yield return new WaitForSeconds(2f);
 
@@ -51,63 +52,58 @@ namespace Mistix{
         }
 
         private void AddToSelectedList(Card card){ _selectedList.Add(card);}
-        // private void StrongestFusionFromHand(){
-        //     if(CanMakeAlvl5FromHand()){
-        //         TryMakeALvl5FromHand();
-        //         return;
-        //     }
+        private void StrongestFusionFromHand(){
+            if(CanMakeAlvl5FromHand()){
+                TryMakeALvl5FromHand();
+                return;
+            }
 
-        //     if(CanMakeAlvl4FromHand()){
-        //         TryMakeALvl4FromHand();
-        //         return;
-        //     }
+            if(CanMakeAlvl4FromHand()){
+                TryMakeALvl4FromHand();
+                return;
+            }
 
-        //     if(CanMakeALvl3FromHand()){
-        //         TryMakeALvl3FromHand();
-        //         return;
-        //     }
+            if(CanMakeALvl3FromHand()){
+                TryMakeALvl3FromHand();
+                return;
+            }
 
-        //     // AddToSelectedList(_HandChecker.Lvl2OnHand[0]);
-        // }
-/*
+            // AddToSelectedList(_HandChecker.Lvl2OnHand[0]);
+            AddToSelectedList(_actor.SelectLvl2Card(0));
+        }
+
     #region Level 5
         private bool CanMakeAlvl5FromHand(){
-            if(_HandChecker.Lvl4OnHand.Count > 1){
-                return true;
-            }
+            if(_actor.Lvl4OnHandCount() > 1){ return true; } //Mais de um lvl 4 na mão
 
-            if(_HandChecker.Lvl3OnHand.Count > 1 && _HandChecker.Lvl4OnHand.Count > 0){
-                return true;
-            }
+            if(_actor.Lvl3OnHandCount() > 1 && _actor.Lvl4OnHandCount() > 0){ return true; } //Mais de um lvl 3 e um lvl 4
 
-            if(_HandChecker.Lvl2OnHand.Count > 1 && _HandChecker.Lvl3OnHand.Count > 0 && _HandChecker.Lvl4OnHand.Count > 0){
-                return true;
-            }
+            if(_actor.Lvl2OnHandCount() > 1 && _actor.Lvl3OnHandCount() > 0 && _actor.Lvl4OnHandCount() > 0){ return true; } //Mais de um lvl 2, um lvl 3 e um lvl 4
 
-            return false;
+            return false; //Nao é possivel fazer um lvl 5
         }
 
         private void TryMakeALvl5FromHand(){
-            if(_HandChecker.Lvl4OnHand.Count > 1){
-                AddToSelectedList(_HandChecker.Lvl4OnHand[0]);
-                AddToSelectedList(_HandChecker.Lvl4OnHand[1]);
+            if(_actor.Lvl4OnHandCount() > 1){
+                AddToSelectedList(_actor.SelectLvl4Card(0));
+                AddToSelectedList(_actor.SelectLvl4Card(1));
                 return;
             }
 
-            if(_HandChecker.Lvl3OnHand.Count > 1 && _HandChecker.Lvl4OnHand.Count > 0){
-                AddToSelectedList(_HandChecker.Lvl3OnHand[0]);
-                AddToSelectedList(_HandChecker.Lvl3OnHand[1]);
+            if(_actor.Lvl3OnHandCount() > 1 && _actor.Lvl4OnHandCount() > 0){
+                AddToSelectedList(_actor.SelectLvl3Card(0));
+                AddToSelectedList(_actor.SelectLvl3Card(1));
 
-                AddToSelectedList(_HandChecker.Lvl4OnHand[0]);
+                AddToSelectedList(_actor.SelectLvl4Card(0));
                 return;
             }
 
-            if(_HandChecker.Lvl2OnHand.Count > 1 && _HandChecker.Lvl3OnHand.Count > 0 && _HandChecker.Lvl4OnHand.Count > 0){
-                AddToSelectedList(_HandChecker.Lvl2OnHand[0]);
-                AddToSelectedList(_HandChecker.Lvl2OnHand[1]);
+            if(_actor.Lvl2OnHandCount() > 1 && _actor.Lvl3OnHandCount() > 0 && _actor.Lvl4OnHandCount() > 0){
+                AddToSelectedList(_actor.SelectLvl2Card(0));
+                AddToSelectedList(_actor.SelectLvl2Card(1));
 
-                AddToSelectedList(_HandChecker.Lvl3OnHand[0]);
-                AddToSelectedList(_HandChecker.Lvl4OnHand[0]);
+                AddToSelectedList(_actor.SelectLvl3Card(0));
+                AddToSelectedList(_actor.SelectLvl4Card(0));
                 return;
             }
         }
@@ -115,28 +111,24 @@ namespace Mistix{
 
     #region Level 4
         private bool CanMakeAlvl4FromHand(){
-            if(_HandChecker.Lvl3OnHand.Count > 1){
-                return true;
-            }
+            if(_actor.Lvl3OnHandCount() > 1){ return true; }
 
-            if(_HandChecker.Lvl2OnHand.Count > 1 && _HandChecker.Lvl3OnHand.Count > 0){
-                return true;
-            }
+            if(_actor.Lvl2OnHandCount() > 1 && _actor.Lvl3OnHandCount() > 0){ return true; }
 
             return false;
         }
 
         private void TryMakeALvl4FromHand(){
-            if(_HandChecker.Lvl3OnHand.Count > 1){
-                AddToSelectedList(_HandChecker.Lvl3OnHand[0]);
-                AddToSelectedList(_HandChecker.Lvl3OnHand[1]);
+            if(_actor.Lvl3OnHandCount() > 1){
+                AddToSelectedList(_actor.SelectLvl3Card(0));
+                AddToSelectedList(_actor.SelectLvl3Card(1));
                 return;
             }
 
-            if(_HandChecker.Lvl2OnHand.Count > 1 && _HandChecker.Lvl3OnHand.Count > 0){
-                AddToSelectedList(_HandChecker.Lvl2OnHand[0]);
-                AddToSelectedList(_HandChecker.Lvl2OnHand[1]);
-                AddToSelectedList(_HandChecker.Lvl3OnHand[0]);
+            if(_actor.Lvl2OnHandCount() > 1 && _actor.Lvl3OnHandCount() > 0){
+                AddToSelectedList(_actor.SelectLvl2Card(0));
+                AddToSelectedList(_actor.SelectLvl2Card(1));
+                AddToSelectedList(_actor.SelectLvl3Card(0));
                 return;
             }
         }
@@ -145,17 +137,17 @@ namespace Mistix{
 
     #region Level 3
         private bool CanMakeALvl3FromHand(){
-            if(_HandChecker.Lvl2OnHand.Count > 1){
+            if(_actor.Lvl2OnHandCount() > 1){
                 return true;
             }
             return false;
         }
 
         private void TryMakeALvl3FromHand(){
-            AddToSelectedList(_HandChecker.Lvl2OnHand[0]);
-            AddToSelectedList(_HandChecker.Lvl2OnHand[1]);
+            AddToSelectedList(_actor.SelectLvl2Card(0));
+            AddToSelectedList(_actor.SelectLvl2Card(1));
         }
     #endregion
-*/
+
     }
 }
