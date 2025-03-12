@@ -80,5 +80,46 @@ namespace Mistix{
             Lvl6OnPlayerField.Clear();
             Lvl7OnPlayerField.Clear();
         }
+
+        // public MonsterCard CheckCardLvlOnField(int level){
+        //     switch(level){
+        //         case 7:
+        //             if(Lvl7OnAIField.Count > 0){
+        //                 return Lvl7OnAIField[0];
+        //             }
+        //         break;
+
+        //         case 6:
+        //             if(Lvl6OnAIField.Count > 0){
+        //                 return Lvl6OnAIField[0];
+        //             }
+        //         break;
+
+        //         case 5:
+        //             if(Lvl5OnAIField.Count > 0){
+        //                 return Lvl5OnAIField[0];
+        //             }
+        //         break;
+
+        //         case 4:
+        //             if(Lvl4OnAIField.Count > 0){
+        //                 return Lvl4OnAIField[0];
+        //             }
+        //         break;
+
+        //         case 3:
+        //             if(Lvl3OnAIField.Count > 0){
+        //                 return Lvl3OnAIField[0];
+        //             }
+        //         break;
+
+        //         case 2:
+        //             if(Lvl2OnAIField.Count > 0){
+        //                 return Lvl2OnAIField[0];
+        //             }
+        //         break;
+        //     }
+        //     return null;
+        // }
     }
 }

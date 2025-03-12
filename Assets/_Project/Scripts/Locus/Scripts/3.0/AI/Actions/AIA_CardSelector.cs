@@ -40,18 +40,18 @@ namespace Mistix{
             yield return new WaitForSeconds(2f);
 
             _actor.SetSelectedAICards(_selectedList);
-
             _actor.CardSelectionFinished();
 
             yield return null;
         }
+        
+        private void AddToSelectedList(Card card){ _selectedList.Add(card);}
 
         private void SelectRandomCard(List<Card> cardsInHand){
             var randomCard = cardsInHand[Random.Range(0, cardsInHand.Count)];
             AddToSelectedList(randomCard);
         }
 
-        private void AddToSelectedList(Card card){ _selectedList.Add(card);}
         private void StrongestFusionFromHand(){
             if(CanMakeAlvl5FromHand()){
                 TryMakeALvl5FromHand();
@@ -68,7 +68,6 @@ namespace Mistix{
                 return;
             }
 
-            // AddToSelectedList(_HandChecker.Lvl2OnHand[0]);
             AddToSelectedList(_actor.SelectLvl2Card(0));
         }
 

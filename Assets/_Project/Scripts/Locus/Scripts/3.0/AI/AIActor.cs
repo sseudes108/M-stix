@@ -63,7 +63,27 @@ namespace Mistix{
         public MonsterCard SelectLvl4Card(int index){ return _handChecker.Lvl4OnHand[index]; }
         public MonsterCard SelectLvl3Card(int index){ return _handChecker.Lvl3OnHand[index]; }
         public MonsterCard SelectLvl2Card(int index){ return _handChecker.Lvl2OnHand[index]; }
+        public void OrganizeCardsOnHand(){ _handChecker.OrganizeCardsOnHand(GetCardsInAIHand()); }
+        
+        //Board Fusion
+        public void IsBoardFusion(bool IsBoardFusion) { MakeABoardFusion = IsBoardFusion; }
+        public void SetBoardFusion(Card cardToFusion){
+            BoardManager.BoardFusion();
+            MakeABoardFusion = true;
+            CardOnBoardToFusion = cardToFusion;
+        }
 
-        internal void OrganizeCardsOnHand(){ _handChecker.OrganizeCardsOnHand(GetCardsInAIHand()); }
+        public void ResetBoardFusion(){
+            MakeABoardFusion = false;
+            if(CardOnBoardToFusion != null){
+                CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
+                CardOnBoardToFusion = null;
+            }
+            AIManager.Board.ResetAIBoardOnList();
+        }
+        
+        public void CheckCardLvlOnField(int lvl){
+            _fieldChecker.CheckCardLvlOnField(lvl);
+        }
     }
 }
