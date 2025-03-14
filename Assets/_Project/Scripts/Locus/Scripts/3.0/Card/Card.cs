@@ -181,6 +181,6 @@ namespace Mistix{
             SetShowButtons(true);
         }
 
-        // public BoardPlace GetBoardPlace() { return BoardPlace; }
+        public BoardPlace GetBoardPlace() { return BoardPlace; }
     }
 }

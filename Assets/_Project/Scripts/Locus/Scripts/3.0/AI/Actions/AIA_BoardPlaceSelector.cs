@@ -21,8 +21,27 @@ namespace Mistix{
         }
 
         public override IEnumerator ActionRoutine(){
+            _actor.ResetBoardFusion();
+            
             var card = _actor.GetFusionedCard();
             yield return new WaitForSeconds(2f);
+
+            if(card is MonsterCard){
+                _actor.CheckForBoardFusion(card as MonsterCard); //Verifica que há monstros no campo que tenham o mesmo lvl do mostro feito agora
+            }else{
+                //Arcane
+            }
+
+            if(_actor.IsBoardFusion()){
+                _boardPlace = null;
+                _boardPlace = _actor.GetCardOnBoardToFusion().GetBoardPlace();
+
+                _actor.ReEnterCardSelectionPhase();
+            }else{
+                SelectRandomFreePlace(card);
+            }
+
+            yield return null;
 
             // if(card is MonsterCard){
             //     _Actor.Fusioner.CheckForBoardMonsterFusion(card as MonsterCard);
@@ -42,8 +61,8 @@ namespace Mistix{
             // }
             
             // SelectFirstFreePlace(card);
-            SelectRandomFreePlace(card);
-            yield return null;
+            // SelectRandomFreePlace(card);
+            // yield return null;
         }
 
         private void SelectFirstFreePlace(Card cardToPlace){

@@ -10,16 +10,21 @@ namespace Mistix{
 
         private AIB_FieldChecker _fieldChecker;
         private AIB_HandChecker _handChecker;
+        private AIB_Fusioner _fusioner;
 
         private AIManager _aiManager;
         private Card _resultCard;
 
         private bool _isBoardFusion = false;
+        private Card _cardOnBoardToFusion;
 
         private void Awake() {
             _aiManager = GetComponent<AIManager>();
-            _fieldChecker = GetComponent<AIB_FieldChecker>();
+
+            _fusioner = GetComponent<AIB_Fusioner>();
             _handChecker = GetComponent<AIB_HandChecker>();
+            _fieldChecker = GetComponent<AIB_FieldChecker>();
+
             CreateActions();
         }
 
@@ -53,8 +58,6 @@ namespace Mistix{
         public void OrganizeAIMonsterCardsOnField(){
             _fieldChecker.OrganizeAIMonsterCardsOnField(_aiManager.GetMonstersInField());
         }
-        public bool IsBoardFusion(){return _isBoardFusion;}
-        public void SetBoardFusion(bool isBoardFusion){_isBoardFusion = isBoardFusion;}
 
         //Hand Checker
         public int Lvl4OnHandCount(){ return _handChecker.Lvl4OnHand.Count; }
@@ -66,24 +69,40 @@ namespace Mistix{
         public void OrganizeCardsOnHand(){ _handChecker.OrganizeCardsOnHand(GetCardsInAIHand()); }
         
         //Board Fusion
-        public void IsBoardFusion(bool IsBoardFusion) { MakeABoardFusion = IsBoardFusion; }
+        public Card GetCardOnBoardToFusion(){ return _cardOnBoardToFusion; }
+        public bool IsBoardFusion(){ return _isBoardFusion; }
         public void SetBoardFusion(Card cardToFusion){
-            BoardManager.BoardFusion();
-            MakeABoardFusion = true;
-            CardOnBoardToFusion = cardToFusion;
+            _isBoardFusion = true;
+            _cardOnBoardToFusion = cardToFusion;
         }
 
         public void ResetBoardFusion(){
-            MakeABoardFusion = false;
-            if(CardOnBoardToFusion != null){
-                CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
-                CardOnBoardToFusion = null;
+            _isBoardFusion = false;
+            if(_cardOnBoardToFusion != null){
+                _cardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
+                _cardOnBoardToFusion = null;
             }
-            AIManager.Board.ResetAIBoardOnList();
         }
         
-        public void CheckCardLvlOnField(int lvl){
-            _fieldChecker.CheckCardLvlOnField(lvl);
+        public void CheckForBoardFusion(MonsterCard cardToPlace){
+            _fusioner.CheckForBoardMonsterFusion(cardToPlace);
         }
+
+        public void ReEnterCardSelectionPhase(){
+            _aiManager.ChangeAISMToCardSelectionPhase();
+        }
+
+        public int Lvl7OnAIField(){ return _fieldChecker.Lvl7OnAIField.Count; }
+        public int Lvl6OnAIField(){ return _fieldChecker.Lvl6OnAIField.Count; }
+        public int Lvl5OnAIField(){ return _fieldChecker.Lvl5OnAIField.Count; }
+        public int Lvl4OnAIField(){ return _fieldChecker.Lvl4OnAIField.Count; }
+        public int Lvl3OnAIField(){ return _fieldChecker.Lvl3OnAIField.Count; }
+        public int Lvl2OnAIField(){ return _fieldChecker.Lvl2OnAIField.Count; }
+        public MonsterCard GetLvl7OnField() {return _fieldChecker.Lvl7OnAIField[0];}
+        public MonsterCard GetLvl6OnField() {return _fieldChecker.Lvl6OnAIField[0];}
+        public MonsterCard GetLvl5OnField() {return _fieldChecker.Lvl5OnAIField[0];}
+        public MonsterCard GetLvl4OnField() {return _fieldChecker.Lvl4OnAIField[0];}
+        public MonsterCard GetLvl3OnField() {return _fieldChecker.Lvl3OnAIField[0];}
+        public MonsterCard GetLvl2OnField() {return _fieldChecker.Lvl2OnAIField[0];}
     }
 }

@@ -233,7 +233,7 @@ namespace Mistix{
             SetPlaceFree();
         }
 
-        private void SetPlaceFree(){
+        public void SetPlaceFree(){
             _cardInPlace = null;
             // _canBeSelected = true;
             IsFree = true;
