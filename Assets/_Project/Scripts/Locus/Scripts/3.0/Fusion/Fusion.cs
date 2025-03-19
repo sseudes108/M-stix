@@ -92,6 +92,10 @@ namespace Mistix{
                 _resultCard.SetCardAsFusioned();
                 _resultCard.ResetCardStats();
                 _isBoardFusion = false;
+                
+                if(!_fusionManager.IsPlayerTurn()){
+                    _fusionManager.ResetAIBoardFusion();
+                }
             }
 
             // Open UI Select options
@@ -209,6 +213,10 @@ namespace Mistix{
         }
 
         #endregion
+
+        public void SetBoardFusion(){
+            _isBoardFusion = true;
+        }
 
     }
 }

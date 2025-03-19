@@ -8,10 +8,10 @@ namespace Mistix{
 
         private List<BoardPlace> _monsterPlaces;
         private List<BoardPlace> _arcanePlaces;
+
         private BoardPlace _boardPlace;
 
         public void SetBoardPlaces(List<BoardPlace> monsterPlaces, List<BoardPlace> arcanePlaces){
-            // Debug.Log("Set AI Board Places");
             _monsterPlaces = monsterPlaces;
             _arcanePlaces = arcanePlaces;
         }
@@ -35,7 +35,6 @@ namespace Mistix{
             if(_actor.IsBoardFusion()){
                 _boardPlace = null;
                 _boardPlace = _actor.GetCardOnBoardToFusion().GetBoardPlace();
-
                 _actor.ReEnterCardSelectionPhase();
             }else{
                 SelectRandomFreePlace(card);
@@ -63,6 +62,10 @@ namespace Mistix{
             // SelectFirstFreePlace(card);
             // SelectRandomFreePlace(card);
             // yield return null;
+        }
+
+        private void BoardFusionPlace(BoardPlace place, Card card){
+            place.SetCardInPlace(card);
         }
 
         private void SelectFirstFreePlace(Card cardToPlace){

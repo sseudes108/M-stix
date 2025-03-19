@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -69,6 +68,7 @@ namespace Mistix{
         public void OrganizeCardsOnHand(){ _handChecker.OrganizeCardsOnHand(GetCardsInAIHand()); }
         
         //Board Fusion
+        public void ReEnterCardSelectionPhase(){ _aiManager.ChangeAISMToCardSelectionPhase(); }
         public Card GetCardOnBoardToFusion(){ return _cardOnBoardToFusion; }
         public bool IsBoardFusion(){ return _isBoardFusion; }
         public void SetBoardFusion(Card cardToFusion){
@@ -84,12 +84,8 @@ namespace Mistix{
             }
         }
         
-        public void CheckForBoardFusion(MonsterCard cardToPlace){
-            _fusioner.CheckForBoardMonsterFusion(cardToPlace);
-        }
-
-        public void ReEnterCardSelectionPhase(){
-            _aiManager.ChangeAISMToCardSelectionPhase();
+        public void CheckForBoardFusion(MonsterCard cardToPlace){ 
+            _fusioner.CheckForBoardMonsterFusion(cardToPlace); 
         }
 
         public int Lvl7OnAIField(){ return _fieldChecker.Lvl7OnAIField.Count; }

@@ -184,5 +184,13 @@ namespace Mistix{
 
         #endregion
 
+        public void SetBoardFusion(){
+            _fusionManager.SetBoardFusion();
+        }
+
+        public void ResetAIBoardFusion(){
+            _aiManager.ResetAIBoardFusion();
+        }
+
     }
 }

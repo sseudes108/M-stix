@@ -3,9 +3,7 @@ namespace Mistix{
     public class AIB_Fusioner : MonoBehaviour {
         private AIActor _actor;
 
-        private void Awake() {
-            _actor = GetComponent<AIActor>();
-        }
+        private void Awake() { _actor = GetComponent<AIActor>(); }
 
         public void BoardFusion(Card cardToFusion){
             _actor.SetBoardFusion(cardToFusion);

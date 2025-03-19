@@ -229,6 +229,7 @@ namespace Mistix{
             // _cardManager.Selector.SetCardsToBoardFusion(newCardList);
             // _battleManager.Battle.ChangeState(_battleManager.Battle.Fusion);//Change phase back to fusion
             _boardManager.SetCardsToBoardFusion(newCardList);
+            _boardManager.SetBoardFusion();
             _boardManager.ChangeToFusionPhase();//Change phase back to fusion
             SetPlaceFree();
         }
