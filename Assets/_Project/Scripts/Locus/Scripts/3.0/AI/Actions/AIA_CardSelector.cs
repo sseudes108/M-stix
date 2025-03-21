@@ -11,10 +11,41 @@ namespace Mistix{
         public override void StartActionRoutine(){ _actor.StartCoroutine(ActionRoutine()); }
 
         public override IEnumerator ActionRoutine(){
-            _selectedList.Clear();
+            yield return null;
+            
+            /*
+            Limpar lista de cartas selecionadas
+            Organiza as listas de cartas no campo
+            Verifica se é uma  board fusion (configuração setada na boardplace action)
+                Caso seja:
+                    Libera o place da Carta a ser usada no campo
+                    Adiciona a carta recem fundida a lista de seleção
+                    Adiciona a carta a ser usada do campo a lista de seleção
+                    Resetar configuração de board fusion
+                Caso não seja:
+                    Fazer a carta mais forte possivel da mão
+            Setar lista de cartas selecionadas
+            Encerrar ação de seleção
+            */
+
+            // _selectedList.Clear();
             // SelectRandomCard(_actor.GetCardsInAIHand());
-            _actor.OrganizeCardsOnHand();
-            _actor.OrganizeAIMonsterCardsOnField();
+            // _actor.OrganizeCardsOnHand();
+            // _actor.OrganizeAIMonsterCardsOnField();
+
+            // if(_actor.IsBoardFusion()){
+
+            //     _actor.GetCardOnBoardToFusion().GetBoardPlace().SetPlaceFree();
+            //     AddToSelectedList(_actor.GetFusionedCard());
+            //     AddToSelectedList(_actor.GetCardOnBoardToFusion());
+
+            //     _actor.ResetBoardFusion();
+            // }else{
+            //     _actor.OrganizeCardsOnHand();
+            //     _actor.OrganizeAIMonsterCardsOnField();
+
+            //     StrongestFusionFromHand();
+            // }
 
             // if(_actor.IsBoardFusion()){
             //     _Actor.ResetBoardFusion();
@@ -35,12 +66,12 @@ namespace Mistix{
             //     StrongestFusionFromHand();
             // }
 
-            StrongestFusionFromHand();
+            // StrongestFusionFromHand();
 
-            yield return new WaitForSeconds(2f);
+            // yield return new WaitForSeconds(2f);
 
-            _actor.SetSelectedAICards(_selectedList);
-            _actor.CardSelectionFinished();
+            // _actor.SetSelectedAICards(_selectedList);
+            // _actor.CardSelectionFinished();
 
             yield return null;
         }

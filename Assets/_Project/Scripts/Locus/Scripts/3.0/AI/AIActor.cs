@@ -14,8 +14,8 @@ namespace Mistix{
         private AIManager _aiManager;
         private Card _resultCard;
 
-        private bool _isBoardFusion = false;
-        private Card _cardOnBoardToFusion;
+        // private bool _isBoardFusion = false;
+        // private Card _cardOnBoardToFusion;
 
         private void Awake() {
             _aiManager = GetComponent<AIManager>();
@@ -69,24 +69,26 @@ namespace Mistix{
         
         //Board Fusion
         public void ReEnterCardSelectionPhase(){ _aiManager.ChangeAISMToCardSelectionPhase(); }
-        public Card GetCardOnBoardToFusion(){ return _cardOnBoardToFusion; }
-        public bool IsBoardFusion(){ return _isBoardFusion; }
-        public void SetBoardFusion(Card cardToFusion){
-            _isBoardFusion = true;
-            _cardOnBoardToFusion = cardToFusion;
-        }
-
-        public void ResetBoardFusion(){
-            _isBoardFusion = false;
-            if(_cardOnBoardToFusion != null){
-                _cardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
-                _cardOnBoardToFusion = null;
-            }
-        }
         
-        public void CheckForBoardFusion(MonsterCard cardToPlace){ 
-            _fusioner.CheckForBoardMonsterFusion(cardToPlace); 
-        }
+        // public Card GetCardOnBoardToFusion(){ return _cardOnBoardToFusion; }
+
+        // public bool IsBoardFusion(){ return _isBoardFusion; }
+        // public void SetBoardFusion(Card cardToFusion){
+        //     _isBoardFusion = true;
+        //     _cardOnBoardToFusion = cardToFusion;
+        // }
+
+        // public void ResetBoardFusion(){
+        //     _isBoardFusion = false;
+        //     if(_cardOnBoardToFusion != null){
+        //         _cardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
+        //         _cardOnBoardToFusion = null;
+        //     }
+        // }
+        
+        // public void CheckForBoardFusion(MonsterCard cardToPlace){ 
+        //     _fusioner.CheckForBoardMonsterFusion(cardToPlace); 
+        // }
 
         public int Lvl7OnAIField(){ return _fieldChecker.Lvl7OnAIField.Count; }
         public int Lvl6OnAIField(){ return _fieldChecker.Lvl6OnAIField.Count; }
