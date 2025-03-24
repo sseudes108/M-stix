@@ -180,8 +180,8 @@ namespace Mistix{
             return cardInAIField;
         }
 
-        public void SetBoardFusion(){
-            _battleManager.SetBoardFusion();
-        }
+        // public void SetBoardFusion(){
+        //     _battleManager.SetBoardFusion();
+        // }
     }
 }

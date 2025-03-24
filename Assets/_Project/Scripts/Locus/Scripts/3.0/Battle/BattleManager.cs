@@ -184,13 +184,12 @@ namespace Mistix{
 
         #endregion
 
-        public void SetBoardFusion(){
-            _fusionManager.SetBoardFusion();
-        }
+        // public void SetBoardFusion(){
+        //     _fusionManager.SetBoardFusion();
+        // }
 
-        public void ResetAIBoardFusion(){
-            _aiManager.ResetAIBoardFusion();
+        public void ChangeBSMToCardSelectionPhase(){
+            _battleSM.ChangeState(_battleSM.CardSelectionPhase);
         }
-
     }
 }

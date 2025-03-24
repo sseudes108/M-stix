@@ -11,8 +11,6 @@ namespace Mistix{
         public override void StartActionRoutine(){ _actor.StartCoroutine(ActionRoutine()); }
 
         public override IEnumerator ActionRoutine(){
-            yield return null;
-            
             /*
             Limpar lista de cartas selecionadas
             Organiza as listas de cartas no campo
@@ -28,50 +26,20 @@ namespace Mistix{
             Encerrar ação de seleção
             */
 
-            // _selectedList.Clear();
-            // SelectRandomCard(_actor.GetCardsInAIHand());
-            // _actor.OrganizeCardsOnHand();
-            // _actor.OrganizeAIMonsterCardsOnField();
+            _selectedList.Clear(); //Limpar lista de cartas selecionadas
+            _actor.OrganizeAIMonsterCardsOnField(); //Organiza as listas de cartas no campo
+            if(!_actor.IsBoardFusion()){ // Não é uma board Fusion
+                _actor.OrganizeCardsOnHand(); //Organiza lista de cartas na mão
+                StrongestFusionFromHand(); //Fazer a carta mais forte possivel da mão
+            }else{// É uma board Fusion
+                AddToSelectedList(_actor.GetFusionedCard());//Adiciona a carta recem fundida a lista de seleção
+                AddToSelectedList(_actor.GetCardOnBoardToFusion());//Adiciona a carta a ser usada do campo a lista de seleção
+                _actor.ResetBoardFusion();//Reseta board fusion
+            }
 
-            // if(_actor.IsBoardFusion()){
-
-            //     _actor.GetCardOnBoardToFusion().GetBoardPlace().SetPlaceFree();
-            //     AddToSelectedList(_actor.GetFusionedCard());
-            //     AddToSelectedList(_actor.GetCardOnBoardToFusion());
-
-            //     _actor.ResetBoardFusion();
-            // }else{
-            //     _actor.OrganizeCardsOnHand();
-            //     _actor.OrganizeAIMonsterCardsOnField();
-
-            //     StrongestFusionFromHand();
-            // }
-
-            // if(_actor.IsBoardFusion()){
-            //     _Actor.ResetBoardFusion();
-            // }else{//Não é uma board fusion
-            //     StrongestFusionFromHand();
-            // }
-
-            // _Actor.FieldChecker.OrganizeAIMonsterCardsOnField(_Actor.CardOrganizer.AIMonstersOnField);
-
-            // if(_Actor.MakeABoardFusion){//É uma boardfusion
-
-            //     _Actor.CardOnBoardToFusion.GetBoardPlace().SetPlaceFree();
-            //     AddToSelectedList(_Actor.GetFusionedCard());
-            //     AddToSelectedList(_Actor.CardOnBoardToFusion);
-
-            //     _Actor.ResetBoardFusion();
-            // }else{//Não é uma board fusion
-            //     StrongestFusionFromHand();
-            // }
-
-            // StrongestFusionFromHand();
-
-            // yield return new WaitForSeconds(2f);
-
-            // _actor.SetSelectedAICards(_selectedList);
-            // _actor.CardSelectionFinished();
+            yield return new WaitForSeconds(2f);
+            _actor.SetSelectedAICards(_selectedList);//Seta as cartas para fusão
+            _actor.CardSelectionFinished();//Encerrar ação de seleção de cartas
 
             yield return null;
         }

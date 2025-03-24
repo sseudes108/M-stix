@@ -82,16 +82,12 @@ namespace Mistix{
             _battleManager.SetFusionedCard(resultCard);
         }
 
-        public void SetBoardFusion(){
-            _fusion.SetBoardFusion();
-        }
+        // public void SetBoardFusion(){
+        //     _fusion.SetBoardFusion();
+        // }
 
         public bool IsPlayerTurn(){
             return _battleManager.IsPlayerTurn();
-        }
-
-        public void ResetAIBoardFusion(){
-            _battleManager.ResetAIBoardFusion();
         }
 
         #endregion
