@@ -7,6 +7,8 @@ namespace Mistix{
         public override void Enter(){ BattleSM.StartCoroutine(FusionPhaseRoutine()); }
         public override void Exit(){}
         private IEnumerator FusionPhaseRoutine(){
+            BattleSM.UnHighLightPossiblePlaces();
+            
             if(BattleSM.IsPlayerTurn()){
                 BattleSM.MoveUICardOffScreen(); //Move UI card para fora da tela
                 BattleSM.MoveHandOffScreen(); //Move cartas não selecionadas na mao para fora da tela

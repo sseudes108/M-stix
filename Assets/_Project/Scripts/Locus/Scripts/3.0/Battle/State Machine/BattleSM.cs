@@ -127,6 +127,9 @@ namespace Mistix{
         public bool PlayerHasArcaneOnField(){  return _battleManager.PlayerHasArcaneOnField(); }
 
         public bool EnemyHasArcaneOnField(){  return _battleManager.EnemyHasArcaneOnField(); }
+
+        public void ResetCardStats(){ _battleManager.ResetCardStats(); }
+
     #endregion
 
     #region AI

@@ -36,6 +36,7 @@ namespace Mistix{
         public void SetFusionedCard(Card resultCard){ _actor.SetFusionedCard(resultCard); }
         public void SetSelectedAICards(List<Card> selectedList){ _battleManager.SetSelectedAICards(selectedList); }
 
+        //Board Fusion
         public void ChangeBSMToCardSelectionPhase(){
             _battleManager.ChangeBSMToCardSelectionPhase();
         }

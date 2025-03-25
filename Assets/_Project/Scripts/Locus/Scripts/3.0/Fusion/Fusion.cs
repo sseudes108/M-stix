@@ -10,7 +10,6 @@ namespace Mistix{
         private Card _resultCard;
         
         private bool _isPlayerTurn;
-        // private bool _isBoardFusion;
 
         private void Awake() {
             _fusionManager = GetComponent<FusionManager>();
@@ -86,17 +85,6 @@ namespace Mistix{
             }
         
             yield return new WaitForSeconds(1f);
-
-            //Board Fusion
-            // if(_isBoardFusion){
-            //     _resultCard.SetCardAsFusioned();
-            //     _resultCard.ResetCardStats();
-            //     // _isBoardFusion = false;
-                
-            //     // if(!_fusionManager.IsPlayerTurn()){
-            //     //     _fusionManager.ResetAIBoardFusion();
-            //     // }
-            // }
 
             // Open UI Select options
             _fusionManager.SetResultCard(_resultCard);
@@ -206,17 +194,12 @@ namespace Mistix{
             //Move fusioned card to position
             _fusionManager.MoveCardToResultPosition(resultCard, _isPlayerTurn);
 
-            //Check if the line is 0
+            //Check if the line is greater than 0
             if(_fusionLine.Count > 0){
                 AddCardToFusionLine(resultCard);
             }
         }
 
         #endregion
-
-        // public void SetBoardFusion(){
-        //     _isBoardFusion = true;
-        // }
-
     }
 }

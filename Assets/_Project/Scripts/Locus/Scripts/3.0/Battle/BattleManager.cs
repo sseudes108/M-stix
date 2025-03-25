@@ -172,6 +172,7 @@ namespace Mistix{
         //Board Place Selection
         public void ChangeAISMToBoardPlaceSelPhase(){ _aiManager.ChangeAISMToBoardPlaceSelPhase(); }
         public (List<BoardPlace>, List<BoardPlace>) GetAIPlaces() { return _boardManager.GetAIPlaces(); }
+        public void StartBoardPlaceSelection(){ _aiManager.StartBoardPlaceSelection(); }
 
         //Cards in Hand
         public List<Card> GetCardsInAIHand(){ return _handManager.GetCardsInAIHand(); }
@@ -180,16 +181,15 @@ namespace Mistix{
         //Result Card
         public void SetFusionedCard(Card resultCard){ _aiManager.SetFusionedCard(resultCard); }
 
-        public void StartBoardPlaceSelection(){ _aiManager.StartBoardPlaceSelection(); }
-
-        #endregion
-
-        // public void SetBoardFusion(){
-        //     _fusionManager.SetBoardFusion();
-        // }
-
+        //Board Fusion
         public void ChangeBSMToCardSelectionPhase(){
             _battleSM.ChangeState(_battleSM.CardSelectionPhase);
         }
+
+        public void ResetCardStats(){
+            _battleSM.GetFusionResultCard().ResetCardStats();
+        }
+
+        #endregion
     }
 }

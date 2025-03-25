@@ -93,6 +93,7 @@ namespace Mistix{
             _fusioner.CheckForBoardMonsterFusion(cardToPlace); 
         }
 
+        //Field Checker
         public int Lvl7OnAIField(){ return _fieldChecker.Lvl7OnAIField.Count; }
         public int Lvl6OnAIField(){ return _fieldChecker.Lvl6OnAIField.Count; }
         public int Lvl5OnAIField(){ return _fieldChecker.Lvl5OnAIField.Count; }

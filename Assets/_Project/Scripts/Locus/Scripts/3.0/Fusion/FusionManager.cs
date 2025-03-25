@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -81,10 +80,6 @@ namespace Mistix{
         public void SetFusionedCard(Card resultCard){
             _battleManager.SetFusionedCard(resultCard);
         }
-
-        // public void SetBoardFusion(){
-        //     _fusion.SetBoardFusion();
-        // }
 
         public bool IsPlayerTurn(){
             return _battleManager.IsPlayerTurn();

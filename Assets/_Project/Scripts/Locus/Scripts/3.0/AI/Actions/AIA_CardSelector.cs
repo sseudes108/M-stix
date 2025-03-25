@@ -11,29 +11,14 @@ namespace Mistix{
         public override void StartActionRoutine(){ _actor.StartCoroutine(ActionRoutine()); }
 
         public override IEnumerator ActionRoutine(){
-            /*
-            Limpar lista de cartas selecionadas
-            Organiza as listas de cartas no campo
-            Verifica se é uma  board fusion (configuração setada na boardplace action)
-                Caso seja:
-                    Libera o place da Carta a ser usada no campo
-                    Adiciona a carta recem fundida a lista de seleção
-                    Adiciona a carta a ser usada do campo a lista de seleção
-                    Resetar configuração de board fusion
-                Caso não seja:
-                    Fazer a carta mais forte possivel da mão
-            Setar lista de cartas selecionadas
-            Encerrar ação de seleção
-            */
-
             _selectedList.Clear(); //Limpar lista de cartas selecionadas
             _actor.OrganizeAIMonsterCardsOnField(); //Organiza as listas de cartas no campo
             if(!_actor.IsBoardFusion()){ // Não é uma board Fusion
                 _actor.OrganizeCardsOnHand(); //Organiza lista de cartas na mão
                 StrongestFusionFromHand(); //Fazer a carta mais forte possivel da mão
             }else{// É uma board Fusion
-                AddToSelectedList(_actor.GetFusionedCard());//Adiciona a carta recem fundida a lista de seleção
                 AddToSelectedList(_actor.GetCardOnBoardToFusion());//Adiciona a carta a ser usada do campo a lista de seleção
+                AddToSelectedList(_actor.GetFusionedCard());//Adiciona a carta recem fundida a lista de seleção
                 _actor.ResetBoardFusion();//Reseta board fusion
             }
 

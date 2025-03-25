@@ -10,6 +10,8 @@ namespace Mistix{
         public override void Exit(){}
 
         private IEnumerator CardStatSelectionRoutine(){
+            BattleSM.ResetCardStats();
+            
             if(BattleSM.IsPlayerTurn()){
                 BattleSM.ShowCardStatOptions(BattleSM.GetFusionResultCard());//Apresentar botoes de seleção de status
             }else{
